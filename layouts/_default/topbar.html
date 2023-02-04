@@ -1,0 +1,10 @@
+<header class="w-full text-center py-3">
+  <h1>
+    <a href="/">Bong-u's TIL</a>
+  </h1>
+  <nav class="my-3">
+    {{ range .Site.Sections }}
+    <a class="mx-8" href="/{{ .Section }}"> {{ .Section }} </a>
+    {{ end }}
+  </nav>
+</header>

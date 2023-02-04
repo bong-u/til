@@ -1,0 +1,8 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = "bong-u's TIL"
+
+[frontmatter]
+	date = ['date']
+	lastmod = [':git', 'lastmode', 'date']
+

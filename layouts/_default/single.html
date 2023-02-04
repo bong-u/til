@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+<section>
+	<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+	  <h1 id="title" class="overflow-hidden overflow-ellipsis">{{ .Title }}</h1>
+	  <h4 id="date"> {{ .Date.Format "2006-01-02" }} </h4>
+	</div>
+	<article id="content" class="flex flex-col">
+	   {{ .Content }}
+	</article>
+</section>
+<aside id="meta" class="py-10">
+	<div>
+	{{ with .GetTerms "tags" }}
+	<ul id="tags">
+	  {{ range . }}
+		<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+	  {{ end }}
+	</ul>
+	{{ end }}
+	<div class="flex justify-between w-full whitespace-nowrap">
+	{{ with .PrevInSection }}
+	  <a class="previous mr-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}"> {{.Title}}</a>
+	{{ end }}
+	{{ with .NextInSection }}
+	  <a class="next ml-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}"> {{.Title}}</a>
+	{{ end }}
+	</div>
+</aside>
+{{ end }}

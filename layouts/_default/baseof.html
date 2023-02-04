@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="/src/tailwind.config.js"></script>
+    <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
+  </head>
+  <body class="dark">
+    {{ .Render "topbar" }}
+
+    <section class="px-24">{{ block "main" . }} {{ end }}</section>
+
+    {{ block "footer" . }} {{ end }}
+  </body>
+</html>
+
+<link rel="stylesheet" href="/src/base.css" />
+<link rel="stylesheet" href="/src/content.css" />

@@ -1,0 +1,15 @@
+<div class="w-full flex">
+  <img
+    class="w-16 h-16 mr-5"
+    src="/image/{{ .Section }}.png"
+    alt="{{ .Section }}"
+  />
+  <div class="w-full">
+    <a href="{{ .RelPermalink }}" class="block">
+      <h2 class="w-full whitespace-nowrap overflow-ellipsis overflow-hidden">
+        {{ .Title }}
+      </h2>
+    </a>
+    <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
+  </div>
+</div>
