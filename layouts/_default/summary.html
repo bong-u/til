@@ -7,7 +7,9 @@
   <div class="w-full">
     <a href="{{ .RelPermalink }}" class="block">
       <h2 class="w-full whitespace-nowrap overflow-ellipsis overflow-hidden">
-        {{ .Title }}
+        {{ if lt (sub now.YearDay .Lastmod.YearDay) 1 }}
+        <img class="w-5 h-5 inline" src="image/new.png" alt="new" />
+        {{ end }} {{ .Title }}
       </h2>
     </a>
     <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
