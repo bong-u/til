@@ -1,8 +1,9 @@
 baseURL = '/'
 languageCode = 'en-us'
-title = "bong-u's TIL"
 
+title = "bong-u's TIL"
+enableGitInfo = true
 [frontmatter]
 	date = ['date']
-	lastmod = [':git', 'lastmode', 'date']
+	lastmod = ['lastmode', ':git', 'date']
 
