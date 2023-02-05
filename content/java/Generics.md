@@ -1,7 +1,6 @@
 ---
-    title: "Generics"
-    date: 2023-02-01
-    lastmod: 2023-02-01
+title: "Generics"
+date: 2023-02-01
 ---
 
 * 효과 : 타입안정성, 간결한 코드

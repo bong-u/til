@@ -1,7 +1,6 @@
 ---
-    title: "07_AOP"
-    date: 2023-01-09
-    lastmod: 2023-01-09
+title: "07_AOP"
+date: 2023-01-09
 ---
 
 ### AOP (Aspect Oriented Programming)

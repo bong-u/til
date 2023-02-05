@@ -1,7 +1,6 @@
 ---
-    title: "React: deploy"
-    date: 2023-01-19
-    lastmod: 2023-01-19
+title: "React: deploy"
+date: 2023-01-19
 ---
 
 ### build 결과물을 돌리면 빈 화면만 나오는 문제

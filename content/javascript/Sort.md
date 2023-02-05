@@ -1,7 +1,6 @@
 ---
-    title: "JS: Sort"
-    date: 2023-01-17
-    lastmod: 2023-01-17
+title: "JS: Sort"
+date: 2023-01-17
 ---
 
 ## Table에 있는 데이터들을 column별로 정렬해야 한다

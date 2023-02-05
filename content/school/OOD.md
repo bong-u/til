@@ -1,7 +1,6 @@
 ---
-    title: "객체지향설계"
-    date: 2023-01-09
-    lastmod: 2023-01-09
+title: "객체지향설계"
+date: 2023-01-09
 ---
 
 ## Dynamic dispatch and Multiple inheritance

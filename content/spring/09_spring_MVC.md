@@ -1,7 +1,6 @@
 ---
-    title: "09_spring_MVC"
-    date: 2023-01-07
-    lastmod: 2023-01-12
+title: "09_spring_MVC"
+date: 2023-01-07
 ---
 
 ## Spring MVC 시작하기

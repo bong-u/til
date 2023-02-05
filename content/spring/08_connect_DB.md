@@ -1,7 +1,6 @@
 ---
-    title: "08_connect_DB"
-    date: 2023-01-10
-    lastmod: 2023-01-10
+title: "08_connect_DB"
+date: 2023-01-10
 ---
 
 ## DataSource 설정

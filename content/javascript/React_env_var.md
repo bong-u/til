@@ -1,7 +1,6 @@
 ---
-    title: "React: environment variable"
-    date: 2023-01-19
-    lastmod: 2023-01-19
+title: "React: environment variable"
+date: 2023-01-19
 ---
 
 - 프로그램이 개발/배포 상황에 따라 변수를 달리해야 할 때가 있다.

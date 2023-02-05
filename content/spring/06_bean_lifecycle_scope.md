@@ -1,7 +1,6 @@
 ---
-    title: "05_bean_lifecycle_scope"
-    date: 2023-01-07
-    lastmod: 2023-01-07
+title: "05_bean_lifecycle_scope"
+date: 2023-01-07
 ---
 
 ### 빈 객체의 lifecycle

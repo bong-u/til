@@ -1,7 +1,6 @@
 ---
-    title: "React: useEffect"
-    date: 2023-01-19
-    lastmod: 2023-01-19
+title: "React: useEffect"
+date: 2023-01-19
 ---
 
 1. component가 rendering 될 때 실행

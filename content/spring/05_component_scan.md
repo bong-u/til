@@ -1,7 +1,6 @@
 ---
-    title: "05_Component_scan"
-    date: 2023-01-07
-    lastmod: 2023-01-07
+title: "05_Component_scan"
+date: 2023-01-07
 ---
 
 ### @Component scan

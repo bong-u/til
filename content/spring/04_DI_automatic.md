@@ -1,7 +1,6 @@
 ---
-    title: "04_DI_automatic"
-    date: 2023-01-07
-    lastmod: 2023-01-07
+title: "04_DI_automatic"
+date: 2023-01-07
 ---
 
 ### Maven project 만들기 복습
