@@ -31,10 +31,10 @@ ol > li {
 }
 
 ul {
-  list-style-type: decimal !important;
+  list-style-type: disc !important;
 }
 ol {
-  list-style-type: disc !important;
+  list-style-type: decimal !important;
 }
 
 #content table th,
