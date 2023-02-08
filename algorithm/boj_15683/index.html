@@ -1,0 +1,92 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">15683 : 감시 (G4)</h1>
+<div>
+<h4 id=date> created at 2023-01-09 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> copy<span style=color:#f92672>,</span> sys
+
+N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+cctv <span style=color:#f92672>=</span> []
+direction <span style=color:#f92672>=</span> [[[(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)]],
+[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]],
+[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)]],
+[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)]],
+[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]]]
+res <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>maxsize
+
+<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+        <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;=</span> L[i][j] <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>5</span>:
+            cctv<span style=color:#f92672>.</span>append((L[i][j]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, i, j))
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(map_, depth):
+    <span style=color:#66d9ef>global</span> res
+
+    <span style=color:#66d9ef>if</span> depth <span style=color:#f92672>==</span> len(cctv):
+        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+                <span style=color:#66d9ef>if</span> map_[i][j] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+        res <span style=color:#f92672>=</span> min(cnt, res)
+        <span style=color:#66d9ef>return</span>
+    ctype, cx, cy <span style=color:#f92672>=</span> cctv[depth]
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> direction[ctype]:
+        new_map <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(map_)
+        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> i:
+            nx, ny <span style=color:#f92672>=</span> cx, cy
+            <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+                nx <span style=color:#f92672>+=</span> j[<span style=color:#ae81ff>0</span>]
+                ny <span style=color:#f92672>+=</span> j[<span style=color:#ae81ff>1</span>]
+
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>or</span> map_[nx][ny] <span style=color:#f92672>==</span> <span style=color:#ae81ff>6</span>:
+                    <span style=color:#66d9ef>break</span>
+                new_map[nx][ny] <span style=color:#f92672>=</span> <span style=color:#ae81ff>7</span>
+        dfs(new_map, depth<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+
+dfs(L, <span style=color:#ae81ff>0</span>)
+print (res)
+</code></pre></div><ul>
+<li>구현 문제는 늘 시간이 오래걸린다</li>
+<li>오늘도 혼자 힘으로 풀어버렸다!</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_1699/> 1699 : 제곱수의 합 (S2)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_14891/> 14891 : 톱니바퀴 (G5)</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

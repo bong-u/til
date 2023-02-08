@@ -1,0 +1,70 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">05_Component_scan</h1>
+<div>
+<h4 id=date> created at 2023-01-07 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h3 id=component-scan>@Component scan</h3>
+<ul>
+<li>
+<p>Component Scan은 스프링이 직접 클래스를 검색해서 빈으로 등록해주는 기능이다</p>
+</li>
+<li>
+<p>AppCtx.java</p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
+<span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;spring&#34;</span><span style=color:#f92672>})</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{...}</span>
+</code></pre></div><ul>
+<li>MemberInfoPrinter.java</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MemberInfoPrinter</span> <span style=color:#f92672>{...}</span>
+</code></pre></div><ul>
+<li>효과</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// before
+</span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>,</span> MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<span style=color:#75715e>// after
+</span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+</code></pre></div>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/spring/09_spring_mvc/> 09_spring_MVC</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/spring/06_bean_lifecycle_scope/> 05_bean_lifecycle_scope</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

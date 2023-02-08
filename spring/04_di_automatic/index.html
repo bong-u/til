@@ -1,0 +1,163 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">04_DI_automatic</h1>
+<div>
+<h4 id=date> created at 2023-01-07 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h3 id=maven-project-만들기-복습>Maven project 만들기 복습</h3>
+<ol>
+<li>pom.xml을 만든다.</li>
+<li>프로젝트 구조를 만든다
+<ul>
+<li>구조는 프로젝트폴더/src/main/java/패키지/클래스 이다.</li>
+</ul>
+</li>
+<li>eclipse에서 import maven project로 Maven dependencies를 인식시킨다</li>
+</ol>
+<h3 id=autowired를-이용한-자동-객체-주입>@Autowired를 이용한 자동 객체 주입</h3>
+<ul>
+<li>
+<p>방법1 : Field에 적용</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MemberListPrinter</span> <span style=color:#f92672>{</span>
+    <span style=color:#a6e22e>@Autowired</span>
+    <span style=color:#66d9ef>private</span> MemberDao memberDao<span style=color:#f92672>;</span>
+    <span style=color:#a6e22e>@Autowired</span>
+    <span style=color:#66d9ef>private</span> MemberPrinter printer<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>MemberListPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>printAll</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        Collection<span style=color:#f92672>&lt;</span>Member<span style=color:#f92672>&gt;</span> members <span style=color:#f92672>=</span> memberDao<span style=color:#f92672>.</span><span style=color:#a6e22e>selectAll</span><span style=color:#f92672>();</span>
+        members<span style=color:#f92672>.</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>m <span style=color:#f92672>-&gt;</span> printer<span style=color:#f92672>.</span><span style=color:#a6e22e>print</span><span style=color:#f92672>(</span>m<span style=color:#f92672>));</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+<li>
+<p>방법2 : Method에 적용</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MemberListPrinter</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> MemberDao memberDao<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>private</span> MemberPrinter printer<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>MemberListPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{}</span>
+
+    <span style=color:#a6e22e>@Autowired</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setMemberDao</span><span style=color:#f92672>(</span>MemberDao memberDao<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>memberDao</span> <span style=color:#f92672>=</span> meberDao<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#a6e22e>@Autowired</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setMemberPrinter</span><span style=color:#f92672>(</span>MemberPrinter memberPrinter<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printer</span> <span style=color:#f92672>=</span> printer<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>printAll</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        Collection<span style=color:#f92672>&lt;</span>Member<span style=color:#f92672>&gt;</span> members <span style=color:#f92672>=</span> memberDao<span style=color:#f92672>.</span><span style=color:#a6e22e>selectAll</span><span style=color:#f92672>();</span>
+        members<span style=color:#f92672>.</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>m <span style=color:#f92672>-&gt;</span> printer<span style=color:#f92672>.</span><span style=color:#a6e22e>print</span><span style=color:#f92672>(</span>m<span style=color:#f92672>));</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+<li>
+<p>결과</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
+<span style=color:#66d9ef>public</span> MemberListPrinter <span style=color:#a6e22e>listPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// 일일이 객체를 주입할 필요가 없다
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberListPrinter<span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ul>
+<h3 id=qualifier>@Qualifier</h3>
+<ul>
+<li>AppCtx.java
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
+<span style=color:#a6e22e>@Qualifier</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;printer&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> MemberPrinter <span style=color:#a6e22e>memberPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberPrinter<span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+<li>MemberListPrinter.java
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Autowired</span>
+<span style=color:#a6e22e>@Qualifier</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;printer&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>private</span> MemberPrinter printer<span style=color:#f92672>;</span>
+</code></pre></div></li>
+<li>자동 주입 가능한 빈이 두 개 이상일 때 특정 빈을 한정하기 위해 사용한다</li>
+<li>필드, 메소드 둘 다 사용 가능하다</li>
+<li>@Qualifier annotation이 없으면 빈의 이름을 한정자로 지정한다</li>
+</ul>
+<h3 id=autowired의-필수-여부를-지정하는-방법>@Autowired의 필수 여부를 지정하는 방법</h3>
+<ul>
+<li>의존 객체를 꼭 주입할 필요가 없는 경우가 있다</li>
+<li>아래의 세 방법은 필드에도 적용 가능하다</li>
+</ul>
+<ol>
+<li>required=false
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Autowired</span><span style=color:#f92672>(</span>required <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setDateFormatter</span><span style=color:#f92672>(</span>DateTimeForMatter formatterOpt<span style=color:#f92672>)</span> <span style=color:#f92672>{...}</span>
+</code></pre></div><ul>
+<li>일치하는 빈이 없으면 할당을 자체를 하지 않음</li>
+</ul>
+</li>
+<li>Optional
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Autowired</span><span style=color:#f92672>()</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setDateFormatter</span><span style=color:#f92672>(</span>Optional<span style=color:#f92672>&lt;</span>DateTimeFormatter<span style=color:#f92672>&gt;</span> formatterOpt<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+	<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>formatterOpt<span style=color:#f92672>.</span><span style=color:#a6e22e>isPresent</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+		<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>dateTimeFormatter</span> <span style=color:#f92672>=</span> formatterOpt<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>();</span>
+	<span style=color:#f92672>}</span>
+	<span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+		<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>dateTimeFormatter</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+	<span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>일치하는 빈이 없으면 값이 없는 Optional을 할당</li>
+</ul>
+</li>
+<li>@Nullable
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Autowired</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setDateFormatter</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Nullable</span> DateTiemFormatter formatterOpt<span style=color:#f92672>)</span> <span style=color:#f92672>{...}</span>
+</code></pre></div><ul>
+<li>일치하는 빈이 없으면 null값을 전달</li>
+</ul>
+</li>
+</ol>
+<h3 id=자동-주입-명시적-의존-주입>자동 주입, 명시적 의존 주입</h3>
+<ul>
+<li><strong>둘 다 수행한 경우 자동 주입</strong>을 통해 빈을 주입한다</li>
+<li>자동 주입, 명시적 수동 주입을 섞어서 사용하지 말자</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/spring/06_bean_lifecycle_scope/> 05_bean_lifecycle_scope</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/spring/03_di/> 03_DI</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

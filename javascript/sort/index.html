@@ -1,0 +1,79 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">JS: Sort</h1>
+<div>
+<h4 id=date> created at 2023-01-17 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h2 id=table에-있는-데이터들을-column별로-정렬해야-한다>Table에 있는 데이터들을 column별로 정렬해야 한다</h2>
+<h3 id=데이터의-형식에-따라-comparator를-따로-구현하였다>데이터의 형식에 따라 comparator를 따로 구현하였다</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorStr</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>order</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>b</span>);
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>a</span>);
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorInt</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>order</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+};
+</code></pre></div><h3 id=정렬할-키나-순서가-바뀔때-마다-정렬을-수행한다>정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#a6e22e>useEffect</span>(() =&gt; {
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Key</span>.<span style=color:#a6e22e>NAME</span>)
+    <span style=color:#a6e22e>setStateList</span>(
+      [...<span style=color:#a6e22e>stateList</span>].<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>comparatorStr</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>sortOrder</span>))
+    );
+  <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Key</span>.<span style=color:#a6e22e>SIZE</span>)
+    <span style=color:#a6e22e>setStateList</span>(
+      [...<span style=color:#a6e22e>stateList</span>].<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>comparatorInt</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>size</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>size</span>, <span style=color:#a6e22e>sortOrder</span>))
+    );
+}, [<span style=color:#a6e22e>sortBy</span>, <span style=color:#a6e22e>sortOrder</span>]);
+</code></pre></div><h3 id=정렬할-키-순서는-다음과-같이-정한다>정렬할 키, 순서는 다음과 같이 정한다</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sortHandle</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>key</span>) =&gt; {
+  <span style=color:#75715e>// (현재 선택 된 키를 다시 눌렀을 때 &amp;&amp; 현재 오름차순 정렬일 때) -&gt; 내림차순
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>key</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>sortOrder</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#a6e22e>setSortOrder</span>(<span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>DESC</span>);
+  <span style=color:#75715e>// 나머지 모든 경우 -&gt; 오름차순
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>else</span> <span style=color:#a6e22e>setSortOrder</span>(<span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>);
+  <span style=color:#75715e>// update sortBy
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>setSortBy</span>(<span style=color:#a6e22e>key</span>);
+};
+</code></pre></div><h3 id=느낀-점>느낀 점</h3>
+<ul>
+<li>나름 신경썼는데 UX측면에서 내 방식이 적절한 방식인지 잘 모르겠다.</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/javascript/react_useeffect/> React: useEffect</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

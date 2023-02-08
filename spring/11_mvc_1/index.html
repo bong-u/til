@@ -1,0 +1,131 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">MVC 1 : Request Mapping, Command Object, Redirect, Form Tag, Model</h1>
+<div>
+<h4 id=date> created at 2023-01-17 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h2 id=request-mapping>Request Mapping</h2>
+<ul>
+<li>GetMapping/PostMapping으로 처리할 method를 지정하거나 RequestMapping을 사용할 수 있다.</li>
+</ul>
+<h3 id=access-request-parameter--httpservletrequest>Access request parameter : HttpServletRequest</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step2&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep2</span><span style=color:#f92672>(</span>HttpServletRequest request<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    String agreeParam <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getParameter</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;agree&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>agreeParam <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>||</span> <span style=color:#f92672>!</span>agreeParam<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step1&#34;</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step2&#34;</span><span style=color:#f92672>;</span>
+</code></pre></div><h3 id=access-request-parameter--requestparam-annotation>Access request parameter : RequestParam Annotation</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step2&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep2</span><span style=color:#f92672>(</span>
+<span style=color:#a6e22e>@RequestParam</span><span style=color:#f92672>(</span>value<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;agree&#34;</span><span style=color:#f92672>,</span> defaultValue<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;false&#34;</span><span style=color:#f92672>)</span> Boolean agree<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>agree<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step1&#34;</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step2&#34;</span><span style=color:#f92672>;</span>
+</code></pre></div><h2 id=redirect>Redirect</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@GetMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step2&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep2Get</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/register/step1&#34;</span><span style=color:#f92672>;</span>
+</code></pre></div><h2 id=command-object>Command Object</h2>
+<h3 id=use-request-parameter-as-command-object>Use request parameter as command object</h3>
+<ul>
+<li>RegisterController.java
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step3&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep3</span><span style=color:#f92672>(</span>RegisterRequest regReq<span style=color:#f92672>)</span> <span style=color:#f92672>{...}</span>
+</code></pre></div></li>
+<li>step3.jsp
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>p</span>&gt;&lt;<span style=color:#f92672>strong</span>&gt;${registerRequest.name}님&lt;/<span style=color:#f92672>strong</span>&gt;&lt;/<span style=color:#f92672>p</span>&gt;
+</code></pre></div></li>
+</ul>
+<h3 id=unsatisfieddependencyexception-error-creating-bean-with-name-controllerconfig-unsatisfied-dependency-expressed-through-field-memberregsvc-nested-exception-is-orgspringframeworkbeansfactorynosuchbeandefinitionexception-no-qualifying-bean-of-type-springmemberregisterservice-available-expected-at-least-1-bean-which-qualifies-as-autowire-candidate-dependency-annotations-orgspringframeworkbeansfactoryannotationautowiredrequiredtrue>UnsatisfiedDependencyException: Error creating bean with name &lsquo;controllerConfig&rsquo;: Unsatisfied dependency expressed through field &lsquo;memberRegSvc&rsquo;; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type &lsquo;spring.MemberRegisterService&rsquo; available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}</h3>
+<ul>
+<li>web.xml</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;param-value&gt;</span>
+    config.MvcConfig
+
+    <span style=color:#75715e>&lt;!-- new!! --&gt;</span>
+    config.MemberConfig
+
+    config.ControllerConfig
+<span style=color:#f92672>&lt;/param-value&gt;</span>
+</code></pre></div><ul>
+<li>web.xml에 MemberConfig 클래스가 빠져있어서 bean이 만들어지지 않아 발생한 오류이다</li>
+</ul>
+<h3 id=custom-tag--form>Custom Tag : Form</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#960050;background-color:#1e0010>&lt;</span>%@ taglib prefix=&#34;form&#34; uri=&#34;http://www.springframework.org/tags/form&#34; %&gt;
+<span style=color:#75715e>&lt;!-- ... --&gt;</span>
+&lt;<span style=color:#f92672>form:form</span> <span style=color:#a6e22e>action</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;step3&#34;</span> <span style=color:#a6e22e>modelAttribute</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;registerRequest&#34;</span>&gt;
+  <span style=color:#75715e>&lt;!-- ... --&gt;</span>
+  &lt;<span style=color:#f92672>form:input</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span>
+/&gt;&lt;/<span style=color:#f92672>form:form</span>&gt;
+</code></pre></div><ul>
+<li>Spring MVC에서 지원하는 Custom Tag를 이용해 Command 객체와 간단하게 연동할 수 있다.</li>
+</ul>
+<h3 id=jsp로-for문-사용하기>jsp로 for문 사용하기</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#960050;background-color:#1e0010>&lt;</span>%@ taglib prefix=&#34;c&#34; uri=&#34;http://java.sun.com/jsp/jstl/core&#34; %&gt;
+<span style=color:#75715e>&lt;!-- ... --&gt;</span>
+&lt;<span style=color:#f92672>c:forEach</span> <span style=color:#a6e22e>var</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;response&#34;</span> <span style=color:#a6e22e>items</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${ansData.responses}&#34;</span> <span style=color:#a6e22e>varStatus</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;status&#34;</span>&gt;
+  &lt;<span style=color:#f92672>li</span>&gt;${status.index + 1}번 문항: ${response}&lt;/<span style=color:#f92672>li</span>&gt;
+&lt;/<span style=color:#f92672>c:forEach</span>&gt;
+</code></pre></div><h3 id=jsp로-데이터-보내기>jsp로 데이터 보내기</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@GetMapping</span>
+<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>form</span><span style=color:#f92672>(</span>Model model<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    List<span style=color:#f92672>&lt;</span>Question<span style=color:#f92672>&gt;</span> questions <span style=color:#f92672>=</span> createQuestions<span style=color:#f92672>();</span>
+    model<span style=color:#f92672>.</span><span style=color:#a6e22e>addAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;questions&#34;</span><span style=color:#f92672>,</span> questions<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;survey/surveyForm&#34;</span><span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>c:forEach</span> <span style=color:#a6e22e>var</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;q&#34;</span> <span style=color:#a6e22e>items</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${questions}&#34;</span> <span style=color:#a6e22e>varStatus</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;status&#34;</span>&gt;&lt;/<span style=color:#f92672>c:forEach</span>&gt;
+</code></pre></div><h3 id=modelandview-활용>ModelAndView 활용</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@GetMapping</span>
+<span style=color:#66d9ef>public</span> ModelAndView <span style=color:#a6e22e>form</span><span style=color:#f92672>(</span>Model model<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    List<span style=color:#f92672>&lt;</span>Question<span style=color:#f92672>&gt;</span> questions <span style=color:#f92672>=</span> createQuestions<span style=color:#f92672>();</span>
+    ModelAndView mav <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ModelAndView<span style=color:#f92672>();</span>
+    mav<span style=color:#f92672>.</span><span style=color:#a6e22e>addObject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;questions&#34;</span><span style=color:#f92672>,</span> questions<span style=color:#f92672>);</span>
+    mav<span style=color:#f92672>.</span><span style=color:#a6e22e>setViewName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;survey/surveyForm&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>return</span> mav<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>데이터 설정, 뷰이름 리턴 두가지를 한번에 처리할 수 있다</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/spring/08_connect_db/> 08_connect_DB</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/spring/12_mvc_2/> MVC 2 : Messages, Validate command object</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

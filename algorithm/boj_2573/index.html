@@ -1,0 +1,108 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">2573 : 빙산 (G5)</h1>
+<div>
+<h4 id=date> created at 2023-01-09 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> copy
+<span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+
+N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+L[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+L[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][M<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+vx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
+vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>melt</span>(L):
+    L_ <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(L)
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
+        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(N):
+            <span style=color:#66d9ef>if</span> L[j][i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+                <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+                    nx <span style=color:#f92672>=</span> j <span style=color:#f92672>+</span> vx[k]
+                    ny <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> vy[k]
+
+                    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M:
+                        <span style=color:#66d9ef>continue</span>
+                    <span style=color:#66d9ef>if</span> L[nx][ny] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> L_[j][i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+                        L_[j][i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>return</span> L_
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check</span>(L):
+    visited <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+    q <span style=color:#f92672>=</span> deque()
+    c <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
+        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(N):
+            <span style=color:#66d9ef>if</span> L[j][i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[j][i]:
+                q<span style=color:#f92672>.</span>append((j, i))
+                <span style=color:#66d9ef>while</span> q:
+                    cx, cy <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+
+                    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+                        nx <span style=color:#f92672>=</span> cx <span style=color:#f92672>+</span> vx[k]
+                        ny <span style=color:#f92672>=</span> cy <span style=color:#f92672>+</span> vy[k]
+
+                        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>or</span> visited[nx][ny]:
+                            <span style=color:#66d9ef>continue</span>
+                        <span style=color:#66d9ef>if</span> L[nx][ny] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+                            visited[nx][ny] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+                            q<span style=color:#f92672>.</span>append((nx, ny))
+                c <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>return</span> c
+
+cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+    cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+    L <span style=color:#f92672>=</span> melt(L)
+    t <span style=color:#f92672>=</span> check(L)
+    <span style=color:#66d9ef>if</span> t <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+        print (<span style=color:#ae81ff>0</span>)
+        <span style=color:#66d9ef>break</span>
+    <span style=color:#66d9ef>if</span> t <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span>:
+        print (cnt)
+        <span style=color:#66d9ef>break</span>
+</code></pre></div><ul>
+<li>가로세로가 헷갈리면 안되는데.. 큰일이다</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_2748/> 2748 : 피보나치 수2 (B2)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_2565/> 2565 : 전깃줄 (G5)</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

@@ -1,0 +1,93 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">9252 : LCS 2 (G4)</h1>
+<div>
+<h4 id=date> created at 2023-02-02 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>S1 <span style=color:#f92672>=</span> list(input())
+S2 <span style=color:#f92672>=</span> list(input())
+
+N1 <span style=color:#f92672>=</span> len(S1)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+N2 <span style=color:#f92672>=</span> len(S2)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+
+dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(N1) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N2)]
+
+<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N2):
+    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N1):
+        <span style=color:#66d9ef>if</span> S2[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> S1[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+            dp[i][j] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+        <span style=color:#66d9ef>else</span>:
+            dp[i][j] <span style=color:#f92672>=</span> max(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j], dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+i <span style=color:#f92672>=</span> N2<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+j <span style=color:#f92672>=</span> N1<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+print (dp[i][j])
+<span style=color:#66d9ef>if</span> dp[i][j] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+    exit()
+
+result <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+    <span style=color:#66d9ef>if</span> i<span style=color:#f92672>==</span><span style=color:#ae81ff>0</span> <span style=color:#f92672>or</span> j<span style=color:#f92672>==</span><span style=color:#ae81ff>0</span>:
+        <span style=color:#66d9ef>break</span>
+
+    <span style=color:#66d9ef>if</span> dp[i][j] <span style=color:#f92672>==</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j]:
+        i <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>elif</span> dp[i][j] <span style=color:#f92672>==</span> dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+        j <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>else</span>:
+        result <span style=color:#f92672>=</span> S1[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> result
+        i <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+        j <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+
+print (result)
+</code></pre></div><ol>
+<li>점화식을 잘못 세웠었다
+<ul>
+<li>문자가 같은 경우에 max(dp[i-1][j], dp[i][j-1])+1이 아닌 dp[i-1][j-1]+1이다.</li>
+</ul>
+</li>
+<li>LCS 구하는 것을 인터넷에서 참고하였다
+<ul>
+<li>오른쪽끝에서 시작하여 현재 dp 값이랑 같은 쪽으로 옮긴다</li>
+<li>현재 dp 값이랑 같은 것이 없으면 문자를 저장하고 대각선 위로 올라간다</li>
+</ul>
+</li>
+</ol>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_10942/> 10942 : 팰린드롬? (G4)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_1915/> 1915 : 가장 큰 정사각형 (G4)</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

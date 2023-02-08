@@ -1,0 +1,518 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">221207 SYSP</h1>
+<div>
+<h4 id=date> created at 2023-01-09 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h2 id=목차>목차</h2>
+<h3 id=09---process-109-process1><a href=#09-process1>09 - process 1</a></h3>
+<h3 id=10---process-210-process2><a href=#10-process2>10 - process 2</a></h3>
+<h3 id=11---signal11-signal><a href=#11-signal>11 - signal</a></h3>
+<hr>
+<h2 id=09-process1>09-process1</h2>
+<h3 id=예외적인-제어-흐름>예외적인 제어 흐름</h3>
+<ul>
+<li>하위 매커니즘
+<ol>
+<li>예외 (Exception)</li>
+</ol>
+</li>
+<li>상위 매커니즘
+<ol>
+<li>프로세스 컨텍스트 전환
+<ul>
+<li>OS 소프트웨어와 하드웨어 타이머로 구현</li>
+</ul>
+</li>
+<li>시그널
+<ul>
+<li>OS 소프트웨어로 구현</li>
+</ul>
+</li>
+<li>nolocal 점프</li>
+</ol>
+</li>
+</ul>
+<h3 id=예외-테이블-exception-tables>예외 테이블 (Exception Tables)</h3>
+<ul>
+<li>각 이벤트 타입은 예외번호 k를 갖는다</li>
+</ul>
+<h3 id=비동기형-예외-interrupt>비동기형 예외 (Interrupt)</h3>
+<ul>
+<li>
+<p>입출력 인터럽트 (ctrl + c)</p>
+</li>
+<li>
+<p>하드 리셋 인터러트</p>
+</li>
+<li>
+<p>소프트 리셋 인터럽트</p>
+<h3 id=동기형-예외>동기형 예외</h3>
+</li>
+<li>
+<p>Traps : 명령어의 결과로 발생하는 의도적인 예외 (syscall)</p>
+</li>
+<li>
+<p>Faults : 핸들러가 정정할 수 있는 에러의 결과로 발생 (page faults)</p>
+</li>
+<li>
+<p>Aborts : 복구 불가능한 에러의 결과로 발생</p>
+</li>
+</ul>
+<h3 id=page-fault>Page Fault</h3>
+<ul>
+<li>
+<p>사용자 메모리의 특정 페이지가 현재 하드디스크에 위치하는 경우</p>
+</li>
+<li>
+<p>오류 처리후에 오류를 발생시킨 명령어를 다시 실행한다</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> a [<span style=color:#ae81ff>1000</span>];
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span> () {
+a[<span style=color:#ae81ff>500</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>13</span>;
+}
+</code></pre></div><h3 id=process>Process</h3>
+<blockquote>
+<p>프로세스 : 운영체제가 만들어 주는 프로그램의 한 실행 예</p>
+</blockquote>
+</li>
+<li>
+<p>프로그램에 2개의 중요한 추상화 제공</p>
+<ol>
+<li>논리적인 제어 흐름 : 각 프로그램이 CPU를 독점하는 것처럼 보이게 한다</li>
+<li>사적인 주소 공간 : 각 프로그램이 주 메모리를 독점하는 것 처럼 보이도록 한다</li>
+</ol>
+</li>
+<li>
+<p>어떻게?</p>
+<ol>
+<li>프로세스의 실행이 서로 교대로 실행된다</li>
+<li>주소공간의 가상메모리 시스템에 의해 관리</li>
+</ol>
+</li>
+</ul>
+<h3 id=multiprocessing-과거>Multiprocessing (과거)</h3>
+<ol>
+<li>
+<p>현재 레지스터들을 메모리에 보관</p>
+</li>
+<li>
+<p>다음 프로세스를 실행하기 위해 스케쥴링</p>
+</li>
+<li>
+<p>보관된 레지스터들을 가져오고 주소공간을 전환 (context switch)</p>
+<h3 id=multiprocessing-현대>Multiprocessing (현대)</h3>
+</li>
+<li>
+<p>멀티코어 프로세서</p>
+</li>
+<li>
+<p>각 코어는 별도의 프로세스를 실행 가능</p>
+</li>
+</ol>
+<h3 id=동시성-프로세스>동시성 프로세스</h3>
+<ol>
+<li>두 프로세스의 실행시간이 서로 중첩되면 -> concurrent</li>
+<li>중첩되지 않고 순차적으로 실행된다면 -> sequential</li>
+</ol>
+<h3 id=fork>fork</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> fork(<span style=color:#66d9ef>void</span>)
+</code></pre></div><ul>
+<li>호출하는 프로세스와 동일한 새 프로세스 생성</li>
+<li>자식 프로세스는 0을 리턴</li>
+<li>부모 프로세스는 자식 프로세스의 pid 리턴</li>
+</ul>
+<h3 id=exit>exit</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>void</span> exit(<span style=color:#66d9ef>int</span> status)
+</code></pre></div><ul>
+<li>종료 상태 status 값을 가지고 종료 (정상이면 0)</li>
+<li>atexit() 함수는 exit 할 때 실행할 함수를 등록</li>
+</ul>
+<h3 id=좀비-zombies>좀비 (Zombies)</h3>
+<ul>
+<li>
+<p>종료되었지만, 아직 정리되지 않은 프로세스</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>fork8</span>() {
+<span style=color:#66d9ef>if</span> (fork() <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+  printf(<span style=color:#e6db74>&#34;Running child, PID = %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, getpid());
+  <span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>)
+    ;
+}
+<span style=color:#66d9ef>else</span> {
+  printf(<span style=color:#e6db74>&#34;Terminating Parent, PID = %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, getpid());
+  exit(<span style=color:#ae81ff>0</span>);
+}
+}
+</code></pre></div></li>
+</ul>
+<h2 id=10-process2>10-process2</h2>
+<h3 id=wait>wait</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> wait (<span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>child_status)
+</code></pre></div><ul>
+<li>
+<p>현재 프로세스를 자신의 자식 프로세스들 중에 하나가 종료될 때까지 정지시킨다</p>
+</li>
+<li>
+<p>리턴값은 종료한 자식 프로세스의 PID</p>
+</li>
+<li>
+<p>child_status != NULL인 경우, 자식 프로그램의 종료 이유를 나타내는 상태정보를 갖는다</p>
+</li>
+<li>
+<p>example</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>pid_t wpid <span style=color:#f92672>=</span> wait(<span style=color:#f92672>&amp;</span>child_status);
+<span style=color:#66d9ef>if</span> (WIFEXITED(child_status))
+  printf(<span style=color:#e6db74>&#34;Child %d terminated with exit status %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, wpid, WEXITSTATUS(child_status));
+<span style=color:#66d9ef>else</span>
+  <span style=color:#a6e22e>printf</span>(<span style=color:#e6db74>&#34;Child %d terminate abnormally</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, wpid);
+</code></pre></div><h3 id=waitpid>waitpid</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>waitpid(pid, <span style=color:#f92672>&amp;</span>status, options)
+</code></pre></div></li>
+<li>
+<p>pid : 특정 pid의 프로세스를 기다린다. -1이면 wait()과 동일</p>
+</li>
+<li>
+<p>options : 0 (종료된 자식을 기다린다), WNOHANG(==1 한번만 체크), WUNTRACED(==2, 정지되거나 종료된 자식을 기다린다)</p>
+<h3 id=sleep>sleep</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>// 자기 자신을 secs초 동안 정지
+</span><span style=color:#75715e></span><span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> sleep(<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> secs)
+<span style=color:#75715e>// 호출하는 프로세스를 시그널 받을 때 까지 잠재운다
+</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> pause(<span style=color:#66d9ef>void</span>)
+</code></pre></div><h3 id=execve>execve</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> execve(<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>filename, <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>argv[], <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>envp[])
+</code></pre></div></li>
+<li>
+<p>실행 파일 filename을 현재 프로세스의 환경변수를 이용하면서 argv로 현재의 code, data, stack을 덮어 씌움</p>
+</li>
+<li>
+<p>example</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>if</span> ((pid <span style=color:#f92672>=</span> fork()) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+  <span style=color:#66d9ef>if</span> (execve(myargv[<span style=color:#ae81ff>0</span>], myargv, environ) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {
+    printf(<span style=color:#e6db74>&#34;%s: Command not found.</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, myargv[<span style=color:#ae81ff>0</span>]);
+    exit(<span style=color:#ae81ff>1</span>);
+  }
+}
+</code></pre></div></li>
+</ul>
+<h3 id=shell>shell</h3>
+<blockquote>
+<p>사용자의 명령을 처리해주는 응용 프로그램</p>
+</blockquote>
+<ul>
+<li>Utility : file로 구현된 명령어</li>
+<li>Built-in : 코드로 구현된 명령어</li>
+</ul>
+<h3 id=eval>eval</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>eval</span>(<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>cmdline) {
+  <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>argv[MAXARGS];
+  <span style=color:#66d9ef>int</span> bg;
+  pid_t pid;
+
+  bg <span style=color:#f92672>=</span> parseline(cmdline, argv);
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>builtin_command(argv)) {
+    <span style=color:#66d9ef>if</span> ((pid <span style=color:#f92672>=</span> fork()) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+      <span style=color:#66d9ef>if</span> (execve(argv[<span style=color:#ae81ff>0</span>], argv, environ) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {
+        printf(<span style=color:#e6db74>&#34;%s: Command not found.</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, argv[<span style=color:#ae81ff>0</span>]);
+        exit(<span style=color:#ae81ff>0</span>);
+      }
+    }
+
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>bg) {
+      <span style=color:#66d9ef>int</span> status;
+      <span style=color:#66d9ef>if</span> (waitpid(pid, <span style=color:#f92672>&amp;</span>status, <span style=color:#ae81ff>0</span>) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> )
+        unix_error(<span style=color:#e6db74>&#34;waitfg: waitpid error&#34;</span>);
+    }
+    <span style=color:#66d9ef>else</span>
+      printf(<span style=color:#e6db74>&#34;%d %s&#34;</span>, pid, cmdline);
+  }
+}
+</code></pre></div><p>-> 백그라운드 작업이 종료되면 zombie가 된다</p>
+<ul>
+<li>해결방법 : <strong>signal</strong></li>
+</ul>
+<h2 id=11-signal>11-signal</h2>
+<h3 id=signal>Signal</h3>
+<blockquote>
+<p>어떤 이벤트가 시스템에 발생했다는 것을 프로세스에게 알려주는 짧은 메시지</p>
+</blockquote>
+<h3 id=receiving-a-signal>Receiving a signal</h3>
+<blockquote>
+<p>목적지 프로세스가 시그널을 받을 때, 어떤 형태로든 반응을 하도록 커널에 의해 요구될때, 시그널을 받는다고 한다.</p>
+</blockquote>
+<ul>
+<li>3가지 반응
+<ul>
+<li>무시</li>
+<li>대상 프로세스를 종료</li>
+<li><strong>signal handler</strong>라고 부르는 유저레벨 함수를 실행하여 시그널을 잡는다</li>
+</ul>
+</li>
+</ul>
+<h3 id=시그널의-특징>시그널의 특징</h3>
+<ul>
+<li>프로세스는 특정 시그널의 수신을 블록할 수 있다.</li>
+<li>대기하는 시그널은 최대 한번만 수신할 수 있다.</li>
+<li>커널이 context에 가지고 있는 비트벡터
+<ul>
+<li>pending : 대기 시그널들을 표시
+<ul>
+<li>도착할때마다 pending값의 k번째 비트를 1로 설정</li>
+<li>수신할때마다 pending값의 k번째 비트를 0으로 설정</li>
+</ul>
+</li>
+<li>blocked : 블록된 시그널들을 표시
+<ul>
+<li>sigprocmask 함수를 사용하여 응용프로그램이 1또는 0로 설정</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=프로세스-그룹>프로세스 그룹</h3>
+<ul>
+<li>각 프로세스는 하나의 프로세스 그룹에 속한다</li>
+<li>기본적으로 자식은 부모와 같은 그룹에 속한다</li>
+<li>쉘은 각 job마다 별도의 프로세스 그룹을 만든다</li>
+<li>getpgrp() : 프로세스의 프로세스 그룹을 리턴</li>
+<li>setpgid() : 프로세스의 그룹을 변경</li>
+</ul>
+<h3 id=kill>kill</h3>
+<ul>
+<li>kill -9 24818 : SIGKILL을 pid 24818로 보냄</li>
+<li>kill -9 -24817 : pgid 24871의 각 프로세스에 SIGKILL을 보냄</li>
+</ul>
+<h3 id=키보드로부터-시그널-보내기>키보드로부터 시그널 보내기</h3>
+<ul>
+<li>키보드로 ctrl+c (ctrl+z)를 누르면 SIGINT(SIGTSTP) 시그널이 포그라운드 프로세스 그룹의 모든 작업으로 전송된다</li>
+<li>SIGINT : 각 프로세스를 모두 종료시킨다.</li>
+<li>SIGTSTP : 기본 동작은 각 프로세스를 정지시킨다.</li>
+</ul>
+<h3 id=시그널-받기>시그널 받기</h3>
+<ul>
+<li>커널은 pnb = pending & ~blocked 를 계산</li>
+<li>각 시그널 타입은 사전에 정의된 기본 동작을 가진다.</li>
+<li>기본 동작은 signal함수를 이용하여 변경이 가능한다
+<strong>(SIGSTOP과 SIGKILL은 예외)</strong></li>
+</ul>
+<h3 id=시그널-핸들러의-설치>시그널 핸들러의 설치</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>handler_t <span style=color:#f92672>*</span>signal(<span style=color:#66d9ef>int</span> signum, handler_t <span style=color:#f92672>*</span>handler)
+</code></pre></div><ul>
+<li>handler의 값
+<ul>
+<li>SIG_IGN : signum 타입 시그널 무시</li>
+<li>SIG_DFL : signum의 기본동작으로 복귀</li>
+<li>이외의 경우 : signal handler의 주소</li>
+</ul>
+</li>
+</ul>
+<h3 id=시그널-블록하기와-해제하기>시그널 블록하기와 해제하기</h3>
+<ul>
+<li>
+<p>sigprocmask 이용</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>sigprocmask</span>(<span style=color:#66d9ef>int</span> how, <span style=color:#66d9ef>const</span> sigset_t <span style=color:#f92672>*</span>set, sigset_t <span style=color:#f92672>*</span>oldest);
+</code></pre></div></li>
+<li>
+<p>how값에 따라 동작이 결정된다</p>
+<ul>
+<li>SIG_BLOCK : blocked = (blocked | set)</li>
+<li>SIG_UNBLOCK : blocked = blocked & ~set</li>
+<li>SIG_SETMASK : blocked = set</li>
+</ul>
+</li>
+<li>
+<p>set 관련 지원 함수</p>
+<ul>
+<li>sigemptyset : 모든 시그널이 비어있는 집합 생성</li>
+<li>sigfillset : 모든 시그널 번호를 1로 설정</li>
+<li>sigaddset : 특정 시그널 번호를 1로 설정</li>
+<li>sigdelset : 특정 시그널 번호를 0으로 설정</li>
+</ul>
+</li>
+</ul>
+<h3 id=경주-race-현상으로-인한-동기화의-문제>경주 Race 현상으로 인한 동기화의 문제</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>handler</span>(<span style=color:#66d9ef>int</span> sig) {
+  <span style=color:#66d9ef>int</span> olderrno <span style=color:#f92672>=</span> errno;
+  sigset_t mask_all, prev_all;
+  pid_t pid;
+
+  sigfillset(<span style=color:#f92672>&amp;</span>mask_all);
+  <span style=color:#66d9ef>while</span> ((pid <span style=color:#f92672>=</span> waitpid(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, NULL, <span style=color:#ae81ff>0</span>)) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> ) {
+    sigprocmask(SIG_BLOCK, <span style=color:#f92672>&amp;</span>mask_all, <span style=color:#f92672>&amp;</span>prev_all);
+    deletejob(pid);
+    sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev_all, NULL);
+  }
+  <span style=color:#66d9ef>if</span> (errno <span style=color:#f92672>!=</span> ECHILD)
+    sio_error(<span style=color:#e6db74>&#34;waitpid error&#34;</span>);
+  errno <span style=color:#f92672>=</span> olderno;
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv) {
+  <span style=color:#66d9ef>int</span> pid;
+  sigset_t mask_all, prev_all;
+  <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> N; <span style=color:#75715e>// N = 5
+</span><span style=color:#75715e></span>  sigfillset(<span style=color:#f92672>&amp;</span>mask_all);
+  signal(SIGCHLD, handler);
+  initjobs();
+
+  <span style=color:#66d9ef>while</span> (n<span style=color:#f92672>--</span>) {
+    <span style=color:#66d9ef>if</span> ((pid <span style=color:#f92672>=</span> fork()) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+      execve(<span style=color:#e6db74>&#34;/bin/date&#34;</span>, argv, NULL);
+    }
+    <span style=color:#75715e>// !! 여기서 SIGCHLD가 발생하면 오류
+</span><span style=color:#75715e></span>
+    <span style=color:#75715e>// 핸들러에서 job을 access하지 못하도록 모든 signal block
+</span><span style=color:#75715e></span>    sigprocmask(SIG_BLOCK, <span style=color:#f92672>&amp;</span>mask_all, <span style=color:#f92672>&amp;</span>prev_all)<span style=color:#960050;background-color:#1e0010>류</span>
+    addjob(pid);
+    sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev_all, NULL);
+  }
+  exit(<span style=color:#ae81ff>0</span>);
+}
+</code></pre></div><ul>
+<li>부모가 먼저 SIGCHLD 시그널이 터지기 전에 SIG_BLOCK하고 addjob을 하는 경우 -> OK</li>
+<li>부모가 SIG_BLOCK하기 전에 자식이 끝나는 경우 handler가 먼저 실행된다 addjob하기전에 deletejob 수행
+<ul>
+<li>무한 루프 발생</li>
+</ul>
+</li>
+</ul>
+<h3 id=경주현상을-회피하는-동기화-방법>경주현상을 회피하는 동기화 방법</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv) {
+  <span style=color:#66d9ef>int</span> pid;
+  sigset_t mask_all, mask_one, prev_one;
+  <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> N; <span style=color:#75715e>// N = 5
+</span><span style=color:#75715e></span>  sigfillset(<span style=color:#f92672>&amp;</span>mask_all);
+  sigemptyset(<span style=color:#f92672>&amp;</span>mask_one);
+  sigaddset(<span style=color:#f92672>&amp;</span>mask_one, SIGCHLD);
+  signal(SIGCHLD, handler);
+  initjobs();
+
+  <span style=color:#66d9ef>while</span> (n<span style=color:#f92672>--</span>) {
+    sigprocmask(SIG_BLOCK, <span style=color:#f92672>&amp;</span>mask_one, <span style=color:#f92672>&amp;</span>prev_one); <span style=color:#75715e>// block SIGCHILD
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> ((pid <span style=color:#f92672>=</span> fork()) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+      <span style=color:#75715e>// 자식은 SIGCHLD를 block할 필요가 없으므로 다시 unblock
+</span><span style=color:#75715e></span>      sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev_one, NULL); <span style=color:#75715e>// unblock SIGCHLD
+</span><span style=color:#75715e></span>      execve(<span style=color:#e6db74>&#34;/bin/date&#34;</span>, argv, NULL);
+    }
+    sigprocmask(SIG_BLOCK, <span style=color:#f92672>&amp;</span>mask_all, NULL);
+    addjob(pid);
+    sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev_one, NULL);
+  }
+  exit(<span style=color:#ae81ff>0</span>);
+}
+</code></pre></div><ul>
+<li>부모입장에서 fork가 실행되고 나서 SIGCHLD가 unblock 되는 순간이 단 한번도 존재 하지 않음.</li>
+<li>항상 addjob이 먼저 실행됨 -> 오류 X</li>
+</ul>
+<h3 id=명시적으로-핸들러를-기다리는-방식>명시적으로 핸들러를 기다리는 방식</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>volatile</span> sig_atomic_t pid; <span style=color:#75715e>// pid는 전역변수로 선언
+</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>sigchld_handler</span>(<span style=color:#66d9ef>int</span> s) {
+  <span style=color:#66d9ef>int</span> orderrno <span style=color:#f92672>=</span> errno;
+  <span style=color:#75715e>// sigchld_handler에서 waitpid 하는 방식
+</span><span style=color:#75715e></span>  pid <span style=color:#f92672>=</span> waitpid(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, NULL, <span style=color:#ae81ff>0</span>);
+  errno <span style=color:#f92672>=</span> olderrno;
+}
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>sigint_handler</span>(<span style=color:#66d9ef>int</span> s) {}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv) {
+  sigset_t mask, prev;
+  <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> N; <span style=color:#75715e>// N = 10
+</span><span style=color:#75715e></span>  signal(SIGCHLD, sigchld_handler);
+  signal(SIGINT, sigint_handler);
+  sigemptyset(<span style=color:#f92672>&amp;</span>mask);
+  sigaddset(<span style=color:#f92672>&amp;</span>mask, SIGCHLD);
+
+  <span style=color:#66d9ef>while</span> (n<span style=color:#f92672>--</span>) {
+    sigprocmask(SIG_BLOCK, <span style=color:#f92672>&amp;</span>mask, <span style=color:#f92672>&amp;</span>prev); <span style=color:#75715e>// block SIGCHILD
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (fork() <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+      exit(<span style=color:#ae81ff>0</span>);
+
+    pid <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev, NULL);
+
+    <span style=color:#75715e>// Wait for SIGCHLD to be recieved
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>pid)
+      ;
+
+    <span style=color:#75715e>// Do some work after receiving SIGCHLD
+</span><span style=color:#75715e></span>    printf(<span style=color:#e6db74>&#34;.&#34;</span>);
+
+  printf(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+  exit(<span style=color:#ae81ff>0</span>);
+}
+</code></pre></div><ul>
+<li>
+<p>sigsuspend를 사용한 시그널 동기화</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>sigsuspend</span>(<span style=color:#66d9ef>const</span> sigset_t <span style=color:#f92672>*</span>mask);
+<span style=color:#75715e>// 아래의 코드를 구현한 것과 동일
+</span><span style=color:#75715e></span>sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>mask, <span style=color:#f92672>&amp;</span>prev);
+pause();
+sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev, NULL);
+</code></pre></div></li>
+<li>
+<p>sigsuspend를 이용한 시그널 기다리기</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv) {
+sigset_t mask, prev;
+<span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> N; <span style=color:#75715e>// N = 10
+</span><span style=color:#75715e></span>signal(SIGCHLD, sigchld_handler);
+signal(SIGINT, sigint_handler);
+sigemptyset(<span style=color:#f92672>&amp;</span>mask);
+sigaddset(<span style=color:#f92672>&amp;</span>mask, SIGCHLD);
+
+<span style=color:#66d9ef>while</span> (n<span style=color:#f92672>--</span>) {
+  sigprocmask(SIG_BLOCK, <span style=color:#f92672>&amp;</span>mask, <span style=color:#f92672>&amp;</span>prev); <span style=color:#75715e>// block SIGCHILD
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (fork() <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+    exit(<span style=color:#ae81ff>0</span>);
+
+  pid <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+  <span style=color:#75715e>// Wait for SIGCHLD to be recieved
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>pid)
+    sigsuspend(<span style=color:#f92672>&amp;</span>prev);
+
+  <span style=color:#75715e>// Optionally unblock SIGCHILD
+</span><span style=color:#75715e></span>  sigprocmask(SIG_SETMASK, <span style=color:#f92672>&amp;</span>prev, NULL);
+
+  <span style=color:#75715e>// Do some work after receiving SIGCHLD
+</span><span style=color:#75715e></span>  printf(<span style=color:#e6db74>&#34;.&#34;</span>);
+}
+printf(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+exit(<span style=color:#ae81ff>0</span>);
+}
+</code></pre></div></li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/school/sysp_12_13/> 221208 SYSP</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

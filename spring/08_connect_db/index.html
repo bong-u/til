@@ -1,0 +1,194 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">08_connect_DB</h1>
+<div>
+<h4 id=date> created at 2023-01-10 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h2 id=datasource-설정>DataSource 설정</h2>
+<ul>
+<li>AppCtx.java</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#a6e22e>@Bean</span><span style=color:#f92672>(</span>destroyMethod <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;close&#34;</span><span style=color:#f92672>)</span>
+    <span style=color:#66d9ef>public</span> DataSource <span style=color:#a6e22e>dataSource</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        DataSource ds <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> DataSource<span style=color:#f92672>();</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setDriverClassName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;com.mysql.jdbc.Driver&#34;</span><span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setUrl</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;jdbc:mysql://localhost/spring5fs?&#34;</span><span style=color:#f92672>+</span>
+        <span style=color:#e6db74>&#34;enabledTLSProtocols=TLSv1.2&amp;&#34;</span><span style=color:#f92672>+</span>
+        <span style=color:#e6db74>&#34;useSSL=false&amp;&#34;</span><span style=color:#f92672>+</span>
+        <span style=color:#e6db74>&#34;characterEncoding=utf8&#34;</span><span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setUsername</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;spring5&#34;</span><span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setPassword</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;spring5&#34;</span><span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setInitialSize</span><span style=color:#f92672>(</span>2<span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setMaxActive</span><span style=color:#f92672>(</span>10<span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setTestWhileIdle</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setMinEvictableIdleTimeMillis</span><span style=color:#f92672>(</span>60000 <span style=color:#f92672>*</span> 3<span style=color:#f92672>);</span>
+        ds<span style=color:#f92672>.</span><span style=color:#a6e22e>setTimeBetweenEvictionRunsMillis</span><span style=color:#f92672>(</span>10 <span style=color:#f92672>*</span> 1000<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>return</span> ds<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><h2 id=query-실행>Query 실행</h2>
+<h3 id=jdbctemplate을-이용한-select>JdbcTemplate을 이용한 select</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>jdbcTemplate<span style=color:#f92672>.</span><span style=color:#a6e22e>query</span><span style=color:#f92672>(</span>
+<span style=color:#e6db74>&#34;select * from MEMBER where EMAIL = ?&#34;</span><span style=color:#f92672>,</span>
+<span style=color:#66d9ef>new</span> RowMapper<span style=color:#f92672>&lt;</span>Member<span style=color:#f92672>&gt;()</span> <span style=color:#f92672>{</span>
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> Member <span style=color:#a6e22e>mapRow</span><span style=color:#f92672>(</span>ResultSet rs<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> rowNum<span style=color:#f92672>)</span>
+        <span style=color:#66d9ef>throws</span> SQLException <span style=color:#f92672>{</span>
+            Member member <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Member<span style=color:#f92672>(</span>
+                rs<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;EMAIL&#34;</span><span style=color:#f92672>),</span>
+                rs<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;PASSWORD&#34;</span><span style=color:#f92672>),</span>
+                rs<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;NAME&#34;</span><span style=color:#f92672>),</span>
+                rs<span style=color:#f92672>.</span><span style=color:#a6e22e>getTimestamp</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;REGDATE&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>toLocalDateTime</span><span style=color:#f92672>());</span>
+            member<span style=color:#f92672>.</span><span style=color:#a6e22e>setId</span><span style=color:#f92672>(</span>rs<span style=color:#f92672>.</span><span style=color:#a6e22e>getLong</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;ID&#34;</span><span style=color:#f92672>));</span>
+            <span style=color:#66d9ef>return</span> member<span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>},</span>
+    email<span style=color:#f92672>);</span>
+</code></pre></div><h3 id=preparedstatementcreater를-이용한-update>PreparedStatementCreater를 이용한 update</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>jdbcTemplate<span style=color:#f92672>.</span><span style=color:#a6e22e>update</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> PreparedStatementCreator<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> PreparedStatement <span style=color:#a6e22e>createPreparedStatement</span><span style=color:#f92672>(</span>Connection con<span style=color:#f92672>)</span>
+    <span style=color:#66d9ef>throws</span> SQLException <span style=color:#f92672>{</span>
+        PreparedStatement pstmt <span style=color:#f92672>=</span> con<span style=color:#f92672>.</span><span style=color:#a6e22e>prepareStatement</span><span style=color:#f92672>(</span>
+            <span style=color:#e6db74>&#34;insert into MEMBER (EMAIL, PASSWORD, NAME, REGDATE) values (?, ?, ?, ?)&#34;</span><span style=color:#f92672>);</span>
+        pstmt<span style=color:#f92672>.</span><span style=color:#a6e22e>setString</span><span style=color:#f92672>(</span>1<span style=color:#f92672>,</span> member<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
+        pstmt<span style=color:#f92672>.</span><span style=color:#a6e22e>setString</span><span style=color:#f92672>(</span>2<span style=color:#f92672>,</span> member<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>());</span>
+        pstmt<span style=color:#f92672>.</span><span style=color:#a6e22e>setString</span><span style=color:#f92672>(</span>3<span style=color:#f92672>,</span> member<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+        pstmt<span style=color:#f92672>.</span><span style=color:#a6e22e>setTimestamp</span><span style=color:#f92672>(</span>4<span style=color:#f92672>,</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>member<span style=color:#f92672>.</span><span style=color:#a6e22e>getRegisterDateTime</span><span style=color:#f92672>()));</span>
+
+        <span style=color:#66d9ef>return</span> pstmt<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>})</span>
+</code></pre></div><h3 id=javasqlsqlexception-unable-to-load-class-comemysqljdbcdriver-from->java.sql.SQLException: Unable to load class: come.mysql.jdbc.Driver from &mldr;</h3>
+<ul>
+<li>오류를 잘 보자&mldr; come.mysql&mldr;</li>
+<li>오타로 인한 문제였다</li>
+</ul>
+<h3 id=javasqlsqlexception-unable-to-load-authentication-plugin-caching_sha2_password>java.sql.SQLException: Unable to load authentication plugin &lsquo;caching_sha2_password&rsquo;.</h3>
+<ul>
+<li>mysql 비밀번호 인증 방식에 따른 오류이다</li>
+<li>해결방법 : mysql에서 비밀번호 인증방식을 바꾸자
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>ALTER</span> <span style=color:#66d9ef>USER</span> <span style=color:#e6db74>&#39;사용자&#39;</span><span style=color:#f92672>@</span><span style=color:#e6db74>&#39;localhost&#39;</span> IDENTIFIED <span style=color:#66d9ef>WITH</span> mysql_native_password <span style=color:#66d9ef>BY</span> <span style=color:#e6db74>&#39;비밀번호&#39;</span>;
+</code></pre></div></li>
+</ul>
+<h3 id=javaxnetsslsslhandshakeexception-no-appropriate-protocol-protocol-is-disabled-or-cipher-suites-are-inappropriate>javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)</h3>
+<ul>
+<li>url에 enabledTLSProtocols=TLSv1.2를 지정하여 해결할 수 있다</li>
+<li>url형식때문에 해결하는데 조금 시간이 걸렸다.</li>
+<li>올바른 URL 형식은 아래와 같다 기억하자
+<blockquote>
+<p>jdbc:mysql://localhost/spring5fs?속성1=값1&속성2=값2&mldr;"</p>
+</blockquote>
+</li>
+</ul>
+<h2 id=transaction-처리>Transaction 처리</h2>
+<h3 id=transaction>Transaction</h3>
+<blockquote>
+<p>데이터베이스의 상태를 변화시키기 위해 수행하는 <strong>작업의 단위</strong></p>
+</blockquote>
+<h3 id=배경>배경</h3>
+<ul>
+<li>쿼리 두 개를 실행하는데 만약 2번째 쿼리에서 오류가 발생했을때</li>
+<li>1번째 쿼리 실행 이전 상태로 되돌리는 (롤백) 작업이 필요하다</li>
+<li>이와 같이 쿼리 두 개를 묶어야 하는 상황에 Transaction을 이용한다.</li>
+<li>rollback 함수를 직접 호출하는 방법도 있지만, Spring에서는 @Transactional을 이용해 더 간편하게 구현할 수 있다.</li>
+</ul>
+<h3 id=appctxjava>AppCtx.java</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
+<span style=color:#66d9ef>public</span> PlatformTransactionManager <span style=color:#a6e22e>transactionManager</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    DataSourceTransactionManager tm <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> DataSourceTransactionManager<span style=color:#f92672>();</span>
+    tm<span style=color:#f92672>.</span><span style=color:#a6e22e>setDataSource</span><span style=color:#f92672>(</span>dataSource<span style=color:#f92672>());</span>
+    <span style=color:#66d9ef>return</span> tm<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h3 id=changepasswordservicejava>ChangePasswordService.java</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Transactional</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>changePassword</span><span style=color:#f92672>(</span>String email<span style=color:#f92672>,</span> String oldPwd<span style=color:#f92672>,</span> String newPwd<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    Member member <span style=color:#f92672>=</span> memberDao<span style=color:#f92672>.</span><span style=color:#a6e22e>selectByEmail</span><span style=color:#f92672>(</span>email<span style=color:#f92672>);</span>
+
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>member <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> MemberNotFoundException<span style=color:#f92672>();</span>
+
+    member<span style=color:#f92672>.</span><span style=color:#a6e22e>changePassword</span><span style=color:#f92672>(</span>oldPwd<span style=color:#f92672>,</span> newPwd<span style=color:#f92672>);</span>
+    memberDao<span style=color:#f92672>.</span><span style=color:#a6e22e>update</span><span style=color:#f92672>(</span>member<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=트랜잭션-관련-로그-메시지-출력>트랜잭션 관련 로그 메시지 출력</h2>
+<h3 id=logbackxml>logback.xml</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#960050;background-color:#1e0010>&lt;</span>?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;&gt;
+
+<span style=color:#f92672>&lt;configuration&gt;</span>
+    <span style=color:#f92672>&lt;appender</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;stdout&#34;</span> <span style=color:#a6e22e>class=</span><span style=color:#e6db74>&#34;chqos.logback.core.ConsoleAppender&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;encoder&gt;</span>
+            <span style=color:#f92672>&lt;pattern&gt;</span>%d %5p %c{2} - %m%n<span style=color:#f92672>&lt;/pattern&gt;</span>
+        <span style=color:#f92672>&lt;/encoder&gt;</span>
+    <span style=color:#f92672>&lt;/appender&gt;</span>
+    <span style=color:#f92672>&lt;root</span> <span style=color:#a6e22e>level=</span><span style=color:#e6db74>&#34;INFO&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;appender-ref</span> <span style=color:#a6e22e>ref=</span><span style=color:#e6db74>&#34;stdout&#34;</span> <span style=color:#f92672>/&gt;</span>
+    <span style=color:#f92672>&lt;/root&gt;</span>
+
+    <span style=color:#f92672>&lt;logger</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;org.springframework.jdbc&#34;</span> <span style=color:#a6e22e>level=</span><span style=color:#e6db74>&#34;DEBUG&#34;</span> <span style=color:#f92672>/&gt;</span>
+<span style=color:#f92672>&lt;/configuration&gt;</span>
+</code></pre></div><ul>
+<li>로그 출력하는 것도 배워보았다.</li>
+</ul>
+<h2 id=transaction-전파>Transaction 전파</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SomeService</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> AnyService anyService<span style=color:#f92672>;</span>
+
+    <span style=color:#a6e22e>@Transactional</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>some</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        anyService<span style=color:#f92672>.</span><span style=color:#a6e22e>any</span><span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setAnyService</span><span style=color:#f92672>(</span>AnyService as<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        anyService <span style=color:#f92672>=</span> as<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AnyService</span> <span style=color:#f92672>{</span>
+    <span style=color:#a6e22e>@Transactional</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>any</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span> <span style=color:#f92672>...</span> <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>some메소드가 any메소드를 호출했다. 위 코드에서는 메소드 둘 다 @Transactional이 붙어있지만 만약 붙어있지 않으면 어떻게 될까?</li>
+<li>이렇게 메소드 간 호출이 발생할 때 트랜잭션이 유지되는 것을 <strong>트랜잭션 전파</strong>라고 한다.</li>
+<li>@Transactional annotation에 사용할 수 있는 속성 중 propagation이 트랜잭션 전파타입을 지정한다.</li>
+<li>기본값 : REQUIRED : 현재 진행중인 트랜잭션이 존재하면 해당 트랜잭션 사용, 존재하지 않으면 새로운 트랜잭션을 생성한다</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/spring/07_aop/> 07_AOP</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/spring/11_mvc_1/> MVC 1 : Request Mapping, Command Object, Redirect, Form Tag, Model</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

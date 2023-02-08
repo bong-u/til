@@ -1,0 +1,63 @@
+pre,
+blockquote {
+  background-color: var(--code-bg-color) !important;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+blockquote {
+  white-space: inherit;
+}
+
+#content :is(h1, h2, h3, h4, h5) {
+  margin-top: 24px;
+}
+#content * {
+  margin-top: 5px;
+}
+ul,
+ol {
+  margin-top: 8px;
+}
+li {
+  margin-bottom: 8px;
+}
+ul > li,
+ol > li {
+  margin-left: 1em;
+}
+
+ul {
+  list-style-type: disc !important;
+}
+ol {
+  list-style-type: decimal !important;
+}
+
+#content table th,
+#content table td {
+  padding: 6px 13px;
+  border: 1px solid var(--color-border-default);
+}
+
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.2em;
+}
+h3 {
+  font-size: 1em;
+}
+h4 {
+  font-size: 0.8em;
+}
+h5 {
+  font-size: 0.6em;
+}
+h6 {
+  font-size: 0.4em;
+}

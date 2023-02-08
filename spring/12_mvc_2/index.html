@@ -1,0 +1,167 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">MVC 2 : Messages, Validate command object</h1>
+<div>
+<h4 id=date> created at 2023-02-01 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h2 id=messages>Messages</h2>
+<ul>
+<li>label.properties</li>
+</ul>
+<pre tabindex=0><code>member.register=회원가입
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#960050;background-color:#1e0010>&lt;</span>%@ taglib prefix=&#34;spring&#34; uri=&#34;http://www.springframework.org/tags&#34; %&gt;
+&lt;<span style=color:#f92672>head</span>&gt;
+  &lt;<span style=color:#f92672>title</span>&gt;&lt;<span style=color:#f92672>spring:message</span> <span style=color:#a6e22e>code</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member.register&#34;</span> /&gt;&lt;/<span style=color:#f92672>title</span>&gt;
+&lt;/<span style=color:#f92672>head</span>&gt;
+</code></pre></div><ul>
+<li>사이트가 여러 언어를 지원해야할 때 label_ko.properties, label_en.properties와 같이 만든다고 한다</li>
+<li>http헤더의 Accept-Launguage를 자동으로 인식한다고 하니까 편할 것 같다</li>
+</ul>
+<h2 id=validate-command-object>Validate command object</h2>
+<h3 id=validation>Validation</h3>
+<ul>
+<li>RegisterRequestValidator</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Override</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>Object target<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    RegisterRequest regReq <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>RegisterRequest<span style=color:#f92672>)</span> target<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>()</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>|</span> regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>().</span><span style=color:#a6e22e>trim</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+        errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;bad&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+        Matcher matcher <span style=color:#f92672>=</span> pattern<span style=color:#f92672>.</span><span style=color:#a6e22e>matcher</span><span style=color:#f92672>(</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
+        <span style=color:#66d9ef>if</span><span style=color:#f92672>(!</span>matcher<span style=color:#f92672>.</span><span style=color:#a6e22e>matches</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;bad&#34;</span><span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+
+    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmptyOrWhitespace</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
+    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmpty</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;password&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
+    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmpty</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;confirmPassword&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>isPasswordEqualToConfirmPassword</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;confirmPassword&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;nomatch&#34;</span><span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h3 id=print-error-message>Print Error Message</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>form:errors</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span> /&gt;
+</code></pre></div><ul>
+<li>만약 errors.rejectValue(&ldquo;email&rdquo;, &ldquo;requireed&rdquo;) 코드로 에러코드를 추가했고 커맨드 객체가 registerRequest인 경우,
+<ol>
+<li>required.registerRequest.eail</li>
+<li>required.email</li>
+<li>required.String</li>
+<li>required</li>
+</ol>
+</li>
+<li>위와 같은 순서대로 메시지 코드를 검색한다.</li>
+</ul>
+<h3 id=global-scoped-validate>Global scoped validate</h3>
+<ul>
+<li>MvcConfig.java</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Override</span>
+<span style=color:#66d9ef>public</span> Validator <span style=color:#a6e22e>getValidator</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> RegisterRequestValidator<span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>RegisterController.java</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step3&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep3</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Valid</span> RegisterRequest regReq<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>errors<span style=color:#f92672>.</span><span style=color:#a6e22e>hasErrors</span><span style=color:#f92672>())</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step2&#34;</span><span style=color:#f92672>;</span>
+</code></pre></div><ul>
+<li>global 범위 validator를 사용할 수 있다.</li>
+</ul>
+<h3 id=controller-scoped-validate>Controller scoped validate</h3>
+<ul>
+<li>RegisterController.java</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@InitBinder</span>
+<span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initBinder</span><span style=color:#f92672>(</span>WebDataBinder binder<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    binder<span style=color:#f92672>.</span><span style=color:#a6e22e>setValidator</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> RegisterRequestValidator<span style=color:#f92672>());</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>우선순위
+<ul>
+<li>setValidator() : controller scoped validator 적용</li>
+<li>addValidator() : global scoped validator 적용 후 controller scoped validator 적용</li>
+</ul>
+</li>
+</ul>
+<h3 id=bean-validation>Bean validation</h3>
+<ul>
+<li>RegisterRequest.java</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> javax.validation.constraints.Size<span style=color:#f92672>;</span>
+
+<span style=color:#f92672>import</span> org.hibernate.validator.constraints.Email<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.hibernate.validator.constraints.NotBlank<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> org.hibernate.validator.constraints.NotEmpty<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RegisterRequest</span> <span style=color:#f92672>{</span>
+	<span style=color:#a6e22e>@NotBlank</span>
+	<span style=color:#a6e22e>@Email</span>
+	<span style=color:#66d9ef>private</span> String email<span style=color:#f92672>;</span>
+	<span style=color:#a6e22e>@Size</span><span style=color:#f92672>(</span>min <span style=color:#f92672>=</span> 6<span style=color:#f92672>)</span>
+	<span style=color:#66d9ef>private</span> String password<span style=color:#f92672>;</span>
+	<span style=color:#a6e22e>@NotEmpty</span>
+	<span style=color:#66d9ef>private</span> String confirmPassword<span style=color:#f92672>;</span>
+	<span style=color:#a6e22e>@NotEmpty</span>
+	<span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
+</code></pre></div><ul>
+<li>
+<p>bean validation을 사용하기 위해</p>
+</li>
+<li>
+<p>org.hiberante dependency를 추가해야한다</p>
+</li>
+<li>
+<p>기존에 있던 Validator를 없애두어야한다</p>
+</li>
+<li>
+<p>대부분의 경우 이거 써서 validator 직접 짤 일은 없을 것 같다.</p>
+</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/spring/11_mvc_1/> MVC 1 : Request Mapping, Command Object, Redirect, Form Tag, Model</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/spring/13_mvc_3/> MVC 3 : Session, Interceptor, Cookies</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>

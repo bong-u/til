@@ -1,0 +1,56 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<nav class=my-3>
+<a class=mx-8 href=/algorithm> algorithm </a>
+<a class=mx-8 href=/spring> spring </a>
+<a class=mx-8 href=/java> java </a>
+<a class=mx-8 href=/javascript> javascript </a>
+<a class=mx-8 href=/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">16194 : 카드 구매하기 2 (S1)</h1>
+<div>
+<h4 id=date> created at 2023-01-26 </h4>
+<h4 id=date> modified at 2023-02-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>N <span style=color:#f92672>=</span> int(input())
+P <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
+dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>10000000</span>]<span style=color:#f92672>*</span>(N)
+
+<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i):
+        dp[i] <span style=color:#f92672>=</span> min(dp[i], dp[j]<span style=color:#f92672>+</span>P[i<span style=color:#f92672>-</span>j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+    dp[i] <span style=color:#f92672>=</span> min(dp[i], P[i])
+
+print (dp[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</code></pre></div>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_1965/> 1965 : 상자넣기 (S2)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/algorithm/boj_1495/> 1495 : 기타리스트 (S1)</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=/src/base.css>
+<link rel=stylesheet href=/src/content.css>
