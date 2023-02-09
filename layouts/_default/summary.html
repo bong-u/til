@@ -1,14 +1,14 @@
 <div class="w-full flex">
   <img
     class="w-16 h-16 mr-5"
-    src="/image/{{ .Section }}.png"
+    src="{{ .Site.BaseURL }}image/{{ .Section }}.png"
     alt="{{ .Section }}"
   />
   <div class="w-full">
     <a href="{{ .RelPermalink }}" class="block">
       <h2 class="w-full whitespace-nowrap overflow-ellipsis overflow-hidden">
         {{ if lt (sub now.YearDay .Lastmod.YearDay) 1 }}
-        <img class="w-5 h-5 inline" src="image/new.png" alt="new" />
+        <img class="w-5 h-5 inline" src="{{ .Site.BaseURL }}image/new.png" alt="new" />
         {{ end }} {{ .Title }}
       </h2>
     </a>
