@@ -2,6 +2,10 @@
   <h1>
     <a href="/">Bong-u's TIL</a>
   </h1>
+  <input type="checkbox" id="toggleDarkMode" onchange="toggleDarkModeHandler()" hidden />
+  <label class="fixed right-0 top-0 m-4 float-right toggleSwitch" for="toggleDarkMode">
+    <span class="toggleButton"></span>
+  </label>
   <nav class="my-3">
     {{ range .Site.Sections }}
     <a class="mx-8" href="{{ .Site.BaseURL }}{{ .Section }}"> {{ .Section }} </a>

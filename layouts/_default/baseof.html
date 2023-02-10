@@ -4,16 +4,17 @@
     <meta charset="utf-8" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" src="/src/tailwind.config.js"></script>
+    <script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
     <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
   </head>
   <body class="dark">
     {{ .Render "topbar" }}
-
+    
     <section class="px-24">{{ block "main" . }} {{ end }}</section>
-
+    
     {{ block "footer" . }} {{ end }}
   </body>
-</html>
-
-<link rel="stylesheet" href="{{ .Site.BaseURL }}src/base.css" />
-<link rel="stylesheet" href="{{ .Site.BaseURL }}src/content.css" />
+  </html>
+  
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}src/base.css" />
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}src/content.css" />
