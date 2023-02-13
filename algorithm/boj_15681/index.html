@@ -1,0 +1,95 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script src=https://cdn.tailwindcss.com></script>
+<script type=text/javascript src=/src/tailwind.config.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<title> bong-u's TIL </title>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<h1>
+<a href=/>Bong-u's TIL</a>
+</h1>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="fixed right-0 top-0 m-4 float-right toggleSwitch" for=toggleDarkMode>
+<span class=toggleButton></span>
+</label>
+<nav class=my-3>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/spring> spring </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/java> java </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/school> school </a>
+</nav>
+</header>
+<section class=px-24>
+<section>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis"></h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 0001-01-01 </h4>
+<h4 id=date> MODIFIED 2023-02-13</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<h3 id=15681--트리와-쿼리-g5>15681 : 트리와 쿼리 (G5)</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
+sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
+N, R, Q <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+cnt <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
+visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>N
+
+<span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
+    a, b <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+    G[a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append(b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+    G[b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append(a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node):
+    visited[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> G[node]:
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[i]:
+            cnt[node] <span style=color:#f92672>+=</span> dfs(i)
+    <span style=color:#66d9ef>return</span> cnt[node]
+
+dfs(R<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+
+<span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(Q):
+    print (cnt[int(input())<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</code></pre></div><ul>
+<li>
+<p>혼자 풀었다!</p>
+</li>
+<li>
+<p>서브트리에 속한 정점의 수를 memoization해놓고 쿼리마다 index의 값을 출력하면 된다</p>
+</li>
+<li>
+<p>sys.stdin.readline 안써서 시간 초과 한 번</p>
+</li>
+<li>
+<p>recursionlimit 안 늘려서 런타임 에러 한 번</p>
+</li>
+<li>
+<p>python3 안 쓰고 pypy3 써서 메모리 초과 한 번</p>
+</li>
+<li>
+<p>총 3번 틀렸다</p>
+</li>
+</ul>
+</article>
+</section>
+<aside id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_2748/> 2748 : 피보나치 수2 (B2)</a>
+</div>
+</aside>
+</section>
+</body>
+</html>
+<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/base.css>
+<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/content.css>
