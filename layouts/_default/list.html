@@ -1,15 +1,19 @@
 {{ define "main" }}
-<main>
+<main class="w-96">
   <article>
     <header>
-      <h1>{{ .Section }}</h1>
+      <img class="w-8 h-8 mr-3 inline" src="{{ .Site.BaseURL }}image/{{ .Section }}.png" alt="{{ .Section }}" />
+      <h1 class="inline">{{ .Section }}</h1>
     </header>
     <!-- {{ .Content }} -->
   </article>
   <ul>
     {{ range .Data.Pages.ByLastmod.Reverse }}
-    <li>
-      <a href="{{.RelPermalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+    <li class="m-0 my-3 whitespace-nowrap overflow-ellipsis overflow-hidden">
+      <a class="" href="{{.RelPermalink}}">
+        {{.Title }}
+        <!-- <span>{{.Date.Format "2006-01-02"}}</span> -->
+      </a>
     </li>
     {{ end }}
   </ul>
