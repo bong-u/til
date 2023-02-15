@@ -1,12 +1,12 @@
 {{ define "main" }}
-    <main class="mx-auto w-96"  aria-role="main">
-      <div class="homepage-content">
-		  <!-- {{ .Content }} -->
-      </div>
-      <div class="flex flex-col gap-8">
-		{{ range first 10 .Site.RegularPages.ByLastmod.Reverse }}
-            {{ .Render "summary"}}
-        {{ end }}
-      </div>
-    </main>
+<main aria-role="main" class="w-96">
+  <div class="homepage-content">
+    <!-- {{ .Content }} -->
+  </div>
+  <div class="flex flex-col gap-8">
+    {{ range first 10 .Site.RegularPages.ByLastmod.Reverse }}
+    {{ .Render "summary"}}
+    {{ end }}
+  </div>
+</main>
 {{ end }}
