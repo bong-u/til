@@ -5,7 +5,7 @@ date: 2023-02-20
 ## 클라우드 제대로 이해하기
 
 ### 클라우드란
-* 개인이 가진 단말기를 통해서는 주로 입/출력 작업만 이루어지고, 정보분석 및 처리, 저장, 관리 유통 등의 작업은 클라우드라고 불리는 제 3을 단말을 사용
+> 개인이 가진 단말기를 통해서는 주로 입/출력 작업만 이루어지고, 정보분석 및 처리, 저장, 관리 유통 등의 작업은 클라우드라고 불리는 제3의 공간에서 이루어지는 컴퓨팅 시스템 형태
 
 ### 클라우드 컴퓨팅이 필요한 이유
 1. 비용절감
@@ -18,7 +18,7 @@ date: 2023-02-20
   * GCE, AWS, Azure
 * Platform as a Service (Paas) : 빌드 및 배포를 위한 환경이 사용자에게 제공
   * Openshift, Github, docker, kubernetes
-* Osftware as a a Service (Saas) : 완전한 제품 제공
+* Software as a a Service (Saas) : 완전한 제품 제공
   * GShift
 * 비교
   > On-site < Iaas < Paas < Saas
@@ -42,7 +42,7 @@ date: 2023-02-20
   * 최종 사용자가 소유하지 않은 IT인프라에서 생성되는 클라우드 환경
   * Alibaba Cloud, AWS, GCP, IBM Cloud, Microsft Azure 등이 있다
 ### Hybrid cloud
-  * private cloud와 public cloud 둘 다 사용
+  * 단일 IT환경 처럼 보이지만 실제로는 여러 환경이 연결된 형태
 
 ## 업체별 클라우드 시장
 * GCP, Azure, AWS
