@@ -1,5 +1,5 @@
 ---
-title: "쿠버네티스 및 MSA 특강 3일차 : 모니터링 시스템 구축 실습 (ELK)"
+title: "쿠버네티스 및 MSA 특강 3일차 : 모니터링 시스템 구축 실습 (ELK), kubernetes"
 date: 2023-02-22
 ---
 
@@ -157,5 +157,3 @@ curl localhost:8080
 - Pod
 - Replica set
 - Replication controller
-
-... 자료 올라오면 수정할 예정
