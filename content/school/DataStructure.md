@@ -3,7 +3,7 @@ title: "자료구조"
 date: 2023-03-02
 ---
 
-## 제 1장 : 자료구조를 배우기 위한 준비 (230302)
+# 제 1장 : 자료구조를 배우기 위한 준비 (230302)
 
 ### 배열
 
@@ -15,7 +15,7 @@ date: 2023-03-02
 - ADT =~ 자바의 interface, 자료구조 =~ 자바의 class
 - 자료구조는 추상데이터타입을 구체적으로 구현한 것
 
-### 1-2 수행시간의 분석
+## 1-2 수행시간의 분석
 
 - 알고리즘의 성능: 수행시간을 나타내는 **시간복잡도(Time Complexity)**와 알고리즘이 수행되는 동안 사용되는 메모리 공간의 크기를 나타내는 **공간복잡도(Space Complexity)**에 기반하여 분석
 
@@ -31,7 +31,7 @@ date: 2023-03-02
   - 최선경우 분석(Best-case Analysis) : 가장 빠른 수행시간
   - 상각분석(Amortized Analysis) : 총 연산횟수를 합하고 연산 횟수로 나누어 수행시간을 분석
 
-### 1-3 수행시간의 점근표기법
+## 1-3 수행시간의 점근표기법
 
 - O (Big-Oh)-표기법
 - Ω (Big-Omega)-표기법
@@ -58,3 +58,44 @@ date: 2023-03-02
 ### 자주 사용되는 함수의 O-표기와 이름
 
 - O(1), O(logN), O(N), O(NlogN), O(N2), O(N3), O(2N)
+
+## 1-5 순환 (Recursion)
+
+### 순환으로 구현된 메소드의 구성요소
+
+- 기본(Base) case : 스스로를 더 이상 호출하지 않는 부분
+- 순환 case : 스스로를 호출하는 부분
+
+### 꼬리 순환 (Tail Recursion)
+
+- 메소드의 마지막 부분에서 순환 (호출 후 되돌아 왔을때 수행할 연산이 없는 경우)
+- 꼬리 순환은 반복문으로 변환하는 것이 효율적이다
+
+```java
+public class TailRecursion {
+  public static int factorial(int n, int fact) {
+    if (n==1)
+      return fact;
+    return factorial( ,);
+  }
+}
+```
+
+# 제 2장 : 리스트
+
+### 리스트
+
+- 일련의 동일한 타입의 항목들이 나열된 것
+
+### 배열
+
+- 동일한 타입의 원소들이 연속적인 메모리 공간에 할당되어 각 항목이 하나의 원소에 저장되는 기본적인 자료구조
+- 접근 : O(1), 삽입/삭제 : O(n)
+
+### 배열로 리스트 구현 (ArrList)
+
+- peek, insert, resize, delete
+
+### 단순 연결 리스트(Singly Linked List)
+
+- print, search, insertFront, insertAfter
