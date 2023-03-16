@@ -99,3 +99,23 @@ public class TailRecursion {
 ### 단순 연결 리스트(Singly Linked List)
 
 - print, search, insertFront, insertAfter
+
+* 자기참조변수
+  ```java
+  public class Node <E> {
+    private Node<E> next; // 자기 참조 변수
+    ...
+  }
+  ```
+* 수행시간
+  - search : O(n)
+  - insert, delete : O(1), p가 안주어지면 O(n)
+
+### 이중 연결 리스트 (Doubly Linked List)
+
+- head, tail, item
+- insertBefore, insertAfter, delete,
+
+* 수행시간
+  - 삽입/삭제 연산 : O(1)
+  - 탐색: O(n)
