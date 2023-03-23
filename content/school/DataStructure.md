@@ -118,4 +118,16 @@ public class TailRecursion {
 
 * 수행시간
   - 삽입/삭제 연산 : O(1)
-  - 탐색: O(n)
+  - 탐색 연산 : O(n)
+
+### 원형 연결 리스트(Circular Linked List)
+
+- 수행시간
+  - 삽입/삭제 연산 : O(1)
+  - 탐색 연산 : O(n)
+
+# 제 3장 : 스택과 큐
+
+## 스택
+
+### 배열로 구현 / LinkedList로 구현
