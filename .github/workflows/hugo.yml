@@ -14,16 +14,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.91.2'
+          hugo-version: "0.91.2"
           # extended: true
 
       - name: Build
         run: hugo --minify
+
+      - name: Add google analytics id
+        run: echo -e "\n{$GA_TRACKING_ID}" >> config.toml
+        env: GA_TRACKING_ID ${{ secrets.GA_TRACKING_ID }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
