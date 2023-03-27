@@ -9,8 +9,6 @@
   <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
   {{ if .Site.Params.googleAnalytics }}
   {{ partial "google-analytics.html" . }}{{ end }}
-  {{- partial "head/head.html". -}}
-  {{- block "head" . -}}{{ end }}
 </head>
 
 <body class="dark">
