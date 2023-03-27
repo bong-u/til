@@ -26,8 +26,9 @@ jobs:
         run: hugo --minify
 
       - name: Add google analytics id
-        run: echo -e "\n{$GA_TRACKING_ID}" >> config.toml
-        env: GA_TRACKING_ID ${{ secrets.GA_TRACKING_ID }}
+        run: echo -e "\n[params]\ngoogleAnalytics = \"$GA_TRACKING_ID\"" >> config.toml
+        env:
+          GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
