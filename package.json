@@ -1,0 +1,22 @@
+{
+  "name": "til-hugo",
+  "version": "1.0.0",
+  "description": "![example workflow](https://github.com/bong-u/til-hugo/actions/workflows/hugo.yml/badge.svg)",
+  "main": "index.js",
+  "scripts": {
+    "build-tw": "npx tailwindcss -i ./static/src/main.css -o ./static/src/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bong-u/til-hugo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bong-u/til-hugo/issues"
+  },
+  "homepage": "https://github.com/bong-u/til-hugo#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.0"
+  }
+}
