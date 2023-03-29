@@ -1,5 +1,5 @@
 ---
-title: "230345 기프랩 Design Thinking 방법론 - 김재정 교수님"
+title: "230315 기프랩 Design Thinking 방법론 - 김재정 교수님"
 date: 2023-03-15
 ---
 
