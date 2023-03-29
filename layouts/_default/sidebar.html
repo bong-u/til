@@ -1,0 +1,5 @@
+<aside class="flex flex-col w-80 px-5">
+    {{ range .Site.Sections }}
+    <a class="mx-8" href="{{ .Site.BaseURL }}{{ .Section }}"> {{ .Section }} </a>
+    {{ end }}
+</aside>

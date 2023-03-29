@@ -16,9 +16,12 @@
 <body class="dark">
   {{ .Render "topbar" }}
 
-  <section class="flex flex-col items-center">
-    {{ block "main" . }} {{ end }}
-  </section>
+  <main class="flex w-full">
+      {{ .Render "sidebar" }}
+    <section class="flex flex-col items-center">
+      {{ block "main" . }} {{ end }}
+    </section>
+  </main>
 
   {{ block "footer" . }} {{ end }}
 </body>
