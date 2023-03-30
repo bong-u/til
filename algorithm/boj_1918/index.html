@@ -1,0 +1,114 @@
+<!doctype html><html>
+<head>
+<meta charset=utf-8>
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link rel=stylesheet href=https://bong-u.github.io/til-hugo//src/style.css>
+<title> bong-u's TIL </title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];const gtag=(...a)=>{dataLayer.push(a)};gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=dark>
+<header class="w-full text-center py-3">
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
+<span class=toggleButton></span>
+</label>
+<h1>
+<a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
+</h1>
+</header>
+<main class="flex w-full">
+<aside class="flex flex-col w-80 px-5">
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/school> school </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/spring> spring </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/java> java </a>
+<a class=mx-8 href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
+</aside>
+<section class="w-full mx-20">
+<section class=w-full>
+<div>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis">1918 : 후위 표기식 (G2)</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-02-03 </h4>
+<h4 id=date> MODIFIED 2023-03-30</h4>
+</div>
+</div>
+</div>
+<article id=content class="flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>string <span style=color:#f92672>=</span> list(input())
+
+priority <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;(&#39;</span>:<span style=color:#ae81ff>0</span>, <span style=color:#e6db74>&#39;)&#39;</span>:<span style=color:#ae81ff>0</span>, <span style=color:#e6db74>&#39;+&#39;</span>:<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;-&#39;</span>:<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;*&#39;</span>:<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;/&#39;</span>:<span style=color:#ae81ff>2</span>}
+operator <span style=color:#f92672>=</span> []
+result <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+
+<span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> string:
+    <span style=color:#66d9ef>if</span> c<span style=color:#f92672>.</span>isalpha():
+        result <span style=color:#f92672>+=</span> c
+    <span style=color:#66d9ef>elif</span> c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;(&#39;</span>:
+        operator<span style=color:#f92672>.</span>append(c)
+    <span style=color:#66d9ef>elif</span> c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;)&#39;</span>:
+        <span style=color:#66d9ef>while</span> operator:
+            op <span style=color:#f92672>=</span> operator<span style=color:#f92672>.</span>pop()
+            <span style=color:#66d9ef>if</span> op <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;(&#39;</span>:
+                <span style=color:#66d9ef>break</span>
+            result <span style=color:#f92672>+=</span> op
+    <span style=color:#66d9ef>else</span>:
+        <span style=color:#66d9ef>if</span> operator:
+            <span style=color:#66d9ef>if</span> priority[operator[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]] <span style=color:#f92672>&lt;</span> priority[c]:
+                operator<span style=color:#f92672>.</span>append(c)
+            <span style=color:#66d9ef>else</span>:
+                <span style=color:#66d9ef>while</span> operator <span style=color:#f92672>and</span> priority[operator[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]] <span style=color:#f92672>&gt;=</span> priority[c]:
+                    result <span style=color:#f92672>+=</span> operator<span style=color:#f92672>.</span>pop()
+                operator<span style=color:#f92672>.</span>append(c)
+        <span style=color:#66d9ef>else</span>:
+            operator<span style=color:#f92672>.</span>append(c)
+<span style=color:#66d9ef>while</span> operator:
+    result <span style=color:#f92672>+=</span> operator<span style=color:#f92672>.</span>pop()
+
+print (result)
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>중위 표기법으로 입력된 수식을 후위 표기법으로 변환하는 문제이다.</li>
+<li>예제
+<ul>
+<li>입력 : A+B*C-D/E</li>
+<li>출력 : ABC*+DE/-</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>입력받은 문자열을 리스트에 담긴 문자별로 순회한다.</li>
+</ul>
+<ol>
+<li>해당 문자가 알파벳인 경우 : 바로 결과 문자열에 더한다</li>
+<li>해당 문자가 여는 괄호인 경우 : stack에 push한다</li>
+<li>해당 문자가 닫는 괄호인 경우 : 여는 괄호가 나올때까지 stack을 pop한다</li>
+<li>해당 문자가 연산자인 경우 (+, -, *, /)
+<ul>
+<li>스택의 top에 있는 연산자와 우선순위를 비교하여 추가하는데,</li>
+<li>top에 있는 연산자의 우선순위가 해당 연산자보다 작을때까지 pop한다</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>스택의 남은 연산자를 추가하여 결과값을 출력한다.</li>
+</ul>
+</article>
+</div>
+<div id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_9252/> 9252 : LCS 2 (G4)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_1915/> 1915 : 가장 큰 정사각형 (G4)</a>
+</div>
+</div>
+</section>
+</section>
+</main>
+</body>
+</html>
