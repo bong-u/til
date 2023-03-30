@@ -130,4 +130,9 @@ public class TailRecursion {
 
 ## 스택
 
-### 배열로 구현 / LinkedList로 구현
+- 배열로 구현 / LinkedList로 구현
+- 후위 표기 <-> 중위 표기
+- 수행시간
+  - push, pop : O(1)
+  - 배열 크기의 확대/축소 : O(n)
+  - 단순 연결 리스트의 pop, push : O(1)
