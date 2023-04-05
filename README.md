@@ -13,9 +13,9 @@ source serve.sh
 ```
 
 ### Link
-* Docker Image https://hub.docker.com/repository/docker/bongu/til-hugo
 * Deploy https://bong-u.github.io/til-hugo
-* Develop http://130.162.154.86
+* Develop http://localhost:1313/til-hugo
+* Docker Image https://hub.docker.com/repository/docker/bongu/til-hugo
 
 ### Commit Convention
 | Type          | Description     |
