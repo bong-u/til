@@ -14,5 +14,4 @@ const checkRecentPost = (e, recentCommitYearday) => {
 
     if (today - recentCommitYearday < 2 )
         target.classList.remove('hidden');
-    console.log(today, recentCommitYearday);
 };
