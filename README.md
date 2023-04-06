@@ -17,6 +17,9 @@ source serve.sh
 * Develop http://localhost:1313/til-hugo
 * Docker Image https://hub.docker.com/repository/docker/bongu/til-hugo
 
+### Dependency
+* github-markdown-css : https://cdnjs.com/libraries/github-markdown-css
+
 ### Commit Convention
 | Type          | Description     |
 |---------------|-----------------|
