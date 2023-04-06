@@ -422,6 +422,17 @@ video {
   display: none;
 }
 
+* {
+  font-family: 'hana';
+}
+
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 17 23 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(201 209 217 / var(--tw-text-opacity));
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -713,6 +724,15 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .filter {

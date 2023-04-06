@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+@layer base {
+    * {
+        font-family: 'hana';
+    }
+
+    body {
+        @apply text-[#c9d1d9] bg-[#0d1117];
+    }
+}
