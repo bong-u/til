@@ -6,6 +6,7 @@
   <script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
   {{ $style := resources.Get "style.css" }}
   <link rel="stylesheet" href="{{ .Site.BaseURL }}/src/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.css" rel="stylesheet">
 
   <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
 
@@ -17,7 +18,7 @@
   {{ .Render "topbar" }}
 
   <main class="flex w-full">
-      {{ .Render "sidebar" }}
+    {{ .Render "sidebar" }}
     <section class="w-full mx-20">
       {{ block "main" . }} {{ end }}
     </section>
