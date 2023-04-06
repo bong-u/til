@@ -2,43 +2,45 @@
 <head>
 <meta charset=utf-8>
 <script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
 <link rel=stylesheet href=https://bong-u.github.io/til-hugo//src/style.css>
+<link rel=favicon href=/static/favicon.ico>
 <title> bong-u's TIL </title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
 <body class=dark>
-<header class="w-full text-center py-3">
+<header class="w-full text-center pt-3 pb-9">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
 <span class=toggleButton></span>
 </label>
-<h1>
+<h1 class="text-4xl font-bold">
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
 <main class="flex w-full">
 <aside class="flex flex-col w-80 px-5">
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/school> school </a>
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/spring> spring </a>
-<a class=mx-8 href=https://bong-u.github.io/til-hugo/java> java </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/school> school </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
+<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
 </aside>
 <section class="w-full mx-20">
 <section class=w-full>
-<div>
+<div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-<h1 id=title class="overflow-hidden overflow-ellipsis">2193 : 이친수 (S3)</h1>
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">2193 : 이친수 (S3)</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-09 </h4>
 <h4 id=date> MODIFIED 2023-02-05</h4>
 </div>
 </div>
 </div>
-<article id=content class="flex flex-col">
+<article id=content class="markdown-body flex flex-col">
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>N <span style=color:#f92672>=</span> int(input())
 dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
 <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, N):
