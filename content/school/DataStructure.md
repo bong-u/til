@@ -158,7 +158,8 @@ public class TailRecursion {
 - 각 노드의 자식 수가 2 이하인 트리
 
 * 특별한 형태의 이진트리
-  ![speical binary tree](/static/image/speical_binary_tree.png)
+
+  ![speical binary tree](/static/image/ds_speical_binary_tree.png)
 
   - 포화 이진 트리(Perfect Binary Tree)
     - 각 내부 노드가 2개의 자식을 가지고 모든 이파리가 같은 층에 있는 트리
