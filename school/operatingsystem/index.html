@@ -36,17 +36,245 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">운영체제</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-06 </h4>
-<h4 id=date> MODIFIED 2023-03-06</h4>
+<h4 id=date> MODIFIED 2023-04-08</h4>
 </div>
 </div>
 </div>
 <article id=content class="markdown-body flex flex-col">
+<h2 id=운영체제-개요>운영체제 개요</h2>
 <h3 id=운영체제의-역할>운영체제의 역할</h3>
 <ul>
 <li>Program execution</li>
 <li>Access to computer resources (I/O device, Data&mldr;)</li>
 <li>Error detection and response</li>
 <li>Accounting (ex: task manager)</li>
+</ul>
+<h3 id=운영체제의-발전>운영체제의 발전</h3>
+<ul>
+<li>
+<p>Serial Processing : No OS, No Job scheduling</p>
+</li>
+<li>
+<p>Simple batch system</p>
+<ul>
+<li>OS가 job을 할당</li>
+<li>Controlled by monitor</li>
+</ul>
+</li>
+<li>
+<p>Uni-programming</p>
+<ul>
+<li>다 실행될때까지 기다림</li>
+<li>bad utilization</li>
+</ul>
+</li>
+<li>
+<p>Multiprogramming</p>
+<ul>
+<li>The processor can switch to the other job</li>
+<li>better utilization, needs more memory</li>
+</ul>
+</li>
+<li>
+<p>Time sharing</p>
+<ul>
+<li>proceess에게 정해진 time slice (time quantum)가 주어진다.</li>
+<li>better utilization, bad throughput</li>
+</ul>
+</li>
+<li>
+<p>Symmetric multiprocessing (SMP)</p>
+<ul>
+<li>여러 processors가 main memory, I/O 장치들을 공유</li>
+<li>여러 processors가 동일한 function 수행 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id=운영체제의-구성-요소>운영체제의 구성 요소</h3>
+<ul>
+<li>Distributed Systems (분산시스템)
+<ul>
+<li>여러 컴퓨터를 연결해 사용</li>
+<li>빠른 속도, 높은 데이터 가용성</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Command-Interpreter System
+<ul>
+<li>user가 직접 OS에게 일을 시킨다</li>
+</ul>
+</li>
+</ul>
+<h3 id=os-architecture>OS Architecture</h3>
+<ul>
+<li>Monolithic kernel
+<ul>
+<li>모든 OS의 기능을 하나의 kernel이 가지고 있는다</li>
+<li>하나 수정하면 전체를 컴파일 해야 한다</li>
+</ul>
+</li>
+<li>Microkernel kernel
+<ul>
+<li>kernel 내에 필요한 기능만 남기고 외부로 이동</li>
+<li>kernel간 통신속도가 느리다</li>
+</ul>
+</li>
+</ul>
+<h2 id=process>Process</h2>
+<h3 id=process란>Process란</h3>
+<ul>
+<li>컴퓨터에서 실행 중인 객체</li>
+<li>register 중 PC가 context를 가리킨다</li>
+<li>Context는 data와 code로 구성</li>
+</ul>
+<h3 id=trace-of-processes>Trace of Processes</h3>
+<ul>
+<li>A -> time out -> B -> I/O request -> A</li>
+<li>사이사이에 dispatcher가 processor에 process를 교체한다</li>
+</ul>
+<h3 id=process-state-model>Process state model</h3>
+<p><img src=/static/image/os_process_states.png alt=process_states></p>
+<ul>
+<li>Process suspension의 이유
+<ul>
+<li>Swapping : memory 공간 확보를 위해</li>
+<li>Timing : 주기적으로 실행되는 프로그램</li>
+<li>Interactive user request : user의 요청</li>
+<li>Parent process request : parent process의 요청</li>
+</ul>
+</li>
+</ul>
+<h3 id=process-control-block>Process Control block</h3>
+<ul>
+<li>구성요소 : Identifier, State, Priority, PC, Memory pointers, Address of memory context, I/O state info, Accounting info</li>
+<li>Process 1개 당 PCB 1개</li>
+</ul>
+<h3 id=process-context>Process Context</h3>
+<ul>
+<li>User Context : code, data, user stack</li>
+<li>System Context : kernel stack, PCB</li>
+</ul>
+<h3 id=process-creation>Process Creation</h3>
+<ul>
+<li>
+<p>Process가 생성되는 경우</p>
+<ol>
+<li>OS가 만드는 경우</li>
+<li>실행 중인 process가 자식을 만드는 경우</li>
+<li>User command</li>
+</ol>
+</li>
+<li>
+<p>fork()</p>
+<ol>
+<li>자식 프로세스의 memory infotable이 부모의 context를 가리키게 한다</li>
+<li>memory내에서 부모의 data, stack을 복제한다</li>
+<li>자식이 가리키는 것을 복제된 context로 바꾼다</li>
+</ol>
+<ul>
+<li>COW(Copy on write) : 복사를 늦춤으로서 메모리 절약</li>
+</ul>
+</li>
+</ul>
+<h3 id=process-switch>Process switch</h3>
+<ul>
+<li>Mode change : Memory 내에서 user mode &lt;-> system mode</li>
+<li>Context change : 다른 process로 switch</li>
+</ul>
+<ul>
+<li>
+<p>Context change를 하는 경우</p>
+<ul>
+<li>Process의 소멸 : Running -> Release</li>
+<li>Process의 block (I/O request, file open, page fault) : Running -> Blocked</li>
+<li>Expiration of time slice : Running -> Ready</li>
+<li>I/O interrupt : Blocked -> Ready</li>
+</ul>
+</li>
+<li>
+<p>Steps of context switch</p>
+<ol>
+<li>Save context(pc, other register) of processor</li>
+<li>Update the PCB</li>
+<li>Move PCB to appropriate queue</li>
+<li>Select another process to execute</li>
+<li>Update the PCB</li>
+<li>Update memory-management data structures</li>
+<li>Restore context of the selected process</li>
+</ol>
+</li>
+</ul>
+<h3 id=process-termination>Process Termination</h3>
+<ul>
+<li>Process가 삭제되는 경우
+<ol>
+<li>Normal ompletion</li>
+<li>Parent request</li>
+<li>Protection error : 비정상적인 접근을 할때 OS가 강제 종료</li>
+<li>Arithmetic Error, Invalid instruction&mldr;</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>terminated 상태 : Computer resource는 뺏겼지만, PCB는 남아있는 상태</li>
+<li>해당 프로세서의 부모 프로세스가 wait syscall을 호출하면 완전히 삭제</li>
+<li>지워지는 부모 밑에 자식이 남아있다면 자식들을 init 프로세스의 양자로 보낸다</li>
+</ul>
+<h3 id=inter-process-communication-ipc>Inter-Process Communication (IPC)</h3>
+<ol>
+<li>Message Passing
+<ul>
+<li>user mode -> kernel mode -> user mode</li>
+</ul>
+</li>
+<li>Shared Memory
+<ul>
+<li>VAD에 shared memory의 주소를 갖고있다</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Message / Signal</li>
+</ul>
+<h2 id=threads>Threads</h2>
+<h3 id=process와-thread의-차이>Process와 Thread의 차이</h3>
+<h3 id=thread란>Thread란</h3>
+<ul>
+<li>
+<p>A unit of execution of in a process</p>
+</li>
+<li>
+<p>has an execution state</p>
+</li>
+<li>
+<p>구성 요소</p>
+<ul>
+<li>Stack</li>
+<li>Memory for registers context : thread control block</li>
+</ul>
+</li>
+<li>
+<p>multithread</p>
+<p><img src=/static/image/os_multithread.png alt=multi_thread></p>
+</li>
+</ul>
+<h3 id=thread의-장점>Thread의 장점</h3>
+<ol>
+<li>Process 만드는거 보다 Thread 만드는게 빠르다</li>
+<li>Process 없애는거 보다 Thread 없애는게 빠르다</li>
+<li>Process끼리 통신하는거보다 Thread끼리 통신이 더 빠르다 (data 공유)</li>
+</ol>
+<h3 id=user-level-threads>User-Level Threads</h3>
+<ul>
+<li>mode change가 필요없다</li>
+<li>user가 control 할 수 있다</li>
+<li>하나가 block되면 나머지도 block (kernel 입장에서 1개의 thread)</li>
+</ul>
+<h3 id=kernel-level-threads>Kernel-Level Threads</h3>
+<ul>
+<li>kernel에 종속적이다</li>
+<li>kernel이 개별적으로 관리할 수 있다</li>
 </ul>
 </article>
 </div>
