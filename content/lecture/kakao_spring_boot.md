@@ -49,3 +49,11 @@ date: 2023-04-03
 ### Dispatcher Servlet
 
 - Servlet Container에서 HTTP 프로토콜을 통해 들어오는 요청을 프레젠테이션 계층의 제일 앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러
+
+### 간단히 서비스 배포하기
+
+- Tasks > build > bootJar을 통해 jar파일 생성
+- 배포할 서버에서
+  ```
+  java -jar project-0.0.1-SNAPSHOT.jar
+  ```
