@@ -193,12 +193,56 @@ public class TailRecursion {
     ```
 
 - 위 트리를 배열에 저장하면 (인덱스 1부터 시작)
+
   ```
   A = [A, B, C, D, E, F, G, H, I, J, K]
   ```
+
   - a[i]의 부모는 **a[i/2]**, 단 i>1
   - a[i]의 왼쪽 자식은 **a[2i]**, 단 2i <= n
   - a[i]의 오른쪽 자식은 **a[2i+1]**, 단 2i+1 <= n
 
-* 편향(skewed) 이진 트리
+- 편향(skewed) 이진 트리
   - 메모리 낭비가 심하다
+
+### 이진 트리의 순회
+
+preorder ; root - left - right
+inorder : left - root - right
+postorder : left - right - root
+levelorder : left -> right (from top level)
+
+### 수행 시간
+
+- O(n) 시간이 소요
+
+### 집합의 표현
+
+- 배열
+  | index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+  | - | - | - | - | - | - | - | - | - | - | - |
+  | value | 4 | 2 | 7 | 7 | 4 | 4 | 2 | 7 | 7 | 4 |
+
+* 집합 1
+
+```bash
+7
+├── 2
+│   ├-─ 1
+│   └-─ 6
+├── 8
+└── 3
+```
+
+- 집합2
+
+```bash
+4
+├── 0
+├── 5
+└── 9
+```
+
+- 수행 시간
+  - union : O(N)
+  - find : O(N)
