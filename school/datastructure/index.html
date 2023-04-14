@@ -37,7 +37,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">자료구조</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-04-08</h4>
+<h4 id=date> MODIFIED 2023-04-13</h4>
 </div>
 </div>
 </div>
@@ -256,7 +256,8 @@
 </li>
 </ul>
 <ul>
-<li>위 트리를 배열에 저장하면 (인덱스 1부터 시작)
+<li>
+<p>위 트리를 배열에 저장하면 (인덱스 1부터 시작)</p>
 <pre tabindex=0><code>A = [A, B, C, D, E, F, G, H, I, J, K]
 </code></pre><ul>
 <li>a[i]의 부모는 <strong>a[i/2]</strong>, 단 i>1</li>
@@ -264,11 +265,80 @@
 <li>a[i]의 오른쪽 자식은 <strong>a[2i+1]</strong>, 단 2i+1 &lt;= n</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>편향(skewed) 이진 트리
+<li>
+<p>편향(skewed) 이진 트리</p>
 <ul>
 <li>메모리 낭비가 심하다</li>
+</ul>
+</li>
+</ul>
+<h3 id=이진-트리의-순회>이진 트리의 순회</h3>
+<p>preorder ; root - left - right
+inorder : left - root - right
+postorder : left - right - root
+levelorder : left -> right (from top level)</p>
+<h3 id=수행-시간>수행 시간</h3>
+<ul>
+<li>O(n) 시간이 소요</li>
+</ul>
+<h3 id=집합의-표현>집합의 표현</h3>
+<ul>
+<li>배열
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>4</td>
+<td>2</td>
+<td>7</td>
+<td>7</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>7</td>
+<td>7</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li>집합 1</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#ae81ff>7</span>
+├── <span style=color:#ae81ff>2</span>
+│   ├-─ <span style=color:#ae81ff>1</span>
+│   └-─ <span style=color:#ae81ff>6</span>
+├── <span style=color:#ae81ff>8</span>
+└── <span style=color:#ae81ff>3</span>
+</code></pre></div><ul>
+<li>집합2</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#ae81ff>4</span>
+├── <span style=color:#ae81ff>0</span>
+├── <span style=color:#ae81ff>5</span>
+└── <span style=color:#ae81ff>9</span>
+</code></pre></div><ul>
+<li>수행 시간
+<ul>
+<li>union : O(N)</li>
+<li>find : O(N)</li>
 </ul>
 </li>
 </ul>
