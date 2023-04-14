@@ -180,3 +180,295 @@ date: 2023-03-06
 
 - kernel에 종속적이다
 - kernel이 개별적으로 관리할 수 있다
+
+## Mutual Exclusion and Synchronization
+
+### Key terms in Concurrency
+
+- Race condition : 순서에 따라 결과가 달라질 때
+- Mutual exclusion : 한 프로세스가 공유된 data를 access할때, 다른 프로세스가 건드리면 안된다는 성질
+- Critical section : 공유된 resource를 access하는 부분의 코드
+
+* Starvation : Process에게 자원이 배정되지 않는 경우
+* Deadlock : Starvation for infinite duration
+
+### Producer/Consumer : Finite Buffer
+
+- producer
+
+```c
+item v;
+
+
+while (1) {
+  while (counter == BUFFER_SIZE) ; // busy waiting
+  /* produce item v */
+  b[in] = v;
+  in = (in + 1) % BUFFER_SIZE;
+  counter++;
+}
+```
+
+- consumer
+
+```c
+item w;
+while (1) {
+  while (counter == 0) ; // busy waiting
+  w = b[out];
+  out = (out + 1) % BUFFER_SIZE;
+  counter--;
+  /* consume item w */
+}
+```
+
+- => Race condition 발생 가능
+
+### Race Condition in a Uniprocessor
+
+- counter++, counter--와 같은 구문은 assembly로 바뀌면 1개이상의 instruction이다.
+- 중간에 interrupt가 발생하면 race condition이 생길 수 있으므로 atomic하게 실행되어야한다.
+
+### Race Condition in one Process
+
+- Multithreading에서도 race condition이 발생할 수 있다.
+
+### Prevent Race Condition (**SW solution**)
+
+- 조건
+
+1. Mutual Exclusion : critical section에 하나가 접근 중이면 다른 하나는 접근 불가
+2. Progress : 아무도 없으면 접근 가능
+3. Bounded Waiting : 기다리는 데 한계 존재 (P1 -> P3 -> P1 -> P3 .., P2는?)
+
+- 방법 1
+
+  - P0
+    ```c
+    do {
+      while (turn != 0) ;
+      /* critical section */
+      turn = 1;
+      /* remainder section */
+    } while (true);
+    ```
+  - P1
+    ```c
+    do {
+      while (turn != 1) ;
+      /* critical section */
+      turn = 0;
+      /* remainder section */
+    } while (true);
+    ```
+  - P0에서 turn = 1을 실행하기 전에 interrupt가 발생하면, P1도 접근 불가
+  - -> progress 성질 만족 X
+
+* 방법 2 (Peterson's Algorithm)
+  - P0
+    ```c
+    do {
+      flag[0] = true;
+      turn = 1;
+      while (flag [1] && turn == 1) ;
+      /* critical section */
+      flag[0] = false;
+      /* remainder section */
+    } while (true);
+    ```
+  * P1
+    ```c
+    do {
+      flag[1] = true;
+      turn = 0;
+      while (flag [0] && turn == 0) ;
+      /* critical section */
+      flag[1] = false;
+      /* remainder section */
+    } while (true);
+    ```
+  * 모든 조건 만족
+  * 프로세스 2개일때만 적용 가여
+* 방법 3 (Bakery Algorithm)
+
+  ```c
+  do {
+    // number를 부여받는 과정은 atomic 하지 않다
+    choosing[i] = true
+    // 가장 큰 번호 + 1을 부여
+    number[i] = max(number[0], number[1], ..., number[n-1])+1;
+    choosing[i] = false;
+
+    for (j=0; j<n; j++) {
+      // 다른 프로세스가 choosing 중인지 체크
+      while (choosing[i]);
+
+      // 자신이 번호를 받았는지, 발급 받은 번호가 1순위인지 체크
+      while ((number[i] != 0) && (number[j], j) < (number[i], i)) ;
+    }
+
+    /* critical section */
+
+    number[i] = 0
+
+    /* remainder section */
+    } while (true);
+  ```
+
+  - 모든 조건을 만족
+  - Overhead가 너무 크다
+
+### Test and Set Instruction (**HW solution**)
+
+- testset function
+  ```c
+  boolean testset (i) {
+    if (i == 0) {
+      // 들어가시오
+      i = 1;
+      return true;
+    }
+    else {
+      // 들어가지 마시오
+      return false;
+    }
+  }
+  ```
+
+* example
+  ```c
+  const int n = /* number of processes */;
+  int bolt;
+  void P(int i) {
+    while (true) {
+      while (! testset(bolt));
+      /* critical section */
+      bolt = 0;
+      /* remainder section*/
+    }
+  }
+  void main() {
+    bolt = 0;
+    parbegin (P(1), P(2), ... , P(n))
+  }
+  ```
+
+### Semaphore (**HW solution**)
+
+- 기본 요소
+
+  ```c
+  struct semaphore {
+    int count;
+    queueType queue;
+  }
+
+  void semWait (semaphore s) {
+    s.count --;
+    if (s.count < 0) {
+      // place this process in s.queue;
+      // block this process
+    }
+  }
+
+  void semSignal (semaphore s) {
+    s.count++;
+    if (s.count <= 0) {
+      // remove a process P from s.queue;
+      // place process P on ready_list
+    }
+  }
+  ```
+
+1. basic example
+
+- ```c
+  const int n = /* number of processes */
+  semaphore s = 1;
+  void P (int i) {
+    while (true) {
+      semWait(s);
+      /* critical section */
+      semSignal(s);
+      /* remainder section */
+    }
+  }
+  void main() {
+    parbegin (P(1), P(2), ... , P(n));
+  }
+  ```
+
+2. producer/consumer example
+
+   - producer
+     ```c
+     semaphore count = 0;
+     semaphore empty = BUFFER_SIZE;
+     semaphore mut_ex = 1;
+     void producer() {
+        while (true) {
+            produce();
+            semWait(empty);
+            semWait(mut_ex);
+            append(); // put the produced item into buffer
+            semSignal(mut_ex);
+            semSignal(counter);
+        }
+     }
+     ```
+
+   * consumer
+
+     ```c
+     void consumer() {
+         while (true) {
+             semWait(counter):
+             semWait(mut_ex);
+             take();
+             semSignal(mut_ex);
+             semSignal(empty);
+             consume();
+         }
+     }
+     void main() {
+        parbegin (producer1, producer2, ... , consumer);
+     }
+     ```
+
+3. reader/writer example
+
+   - writer process
+
+     ```c
+         void writer() {
+             while(true) {
+                 semWait(wsem);
+                 WRITEUNIT();
+                 semSignal(wsem);
+             }
+         }
+     ```
+
+   - reader process
+
+     ```c
+         void reader() {
+             while (true) {
+                 semWait(rsem);
+                 readcount++;
+                 if (readcount == 1)
+                     semWait(wsem);
+                 semSignal(rsem);
+
+                 READUNIT();
+
+                 semWait(rsem);
+                 readcount--;
+                 if (readcount == 0)
+                     semSignal(wsem);
+                 semSignal(rsem);
+             }
+         }
+     ```
+
+   - binary semaphore
