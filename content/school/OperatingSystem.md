@@ -454,21 +454,27 @@ while (1) {
      ```c
          void reader() {
              while (true) {
-                 semWait(rsem);
+                 semWait(rsem); // 다른 reader 접근 불가
                  readcount++;
-                 if (readcount == 1)
-                     semWait(wsem);
-                 semSignal(rsem);
+                 if (readcount == 1) // 첫번째 들어가는 reader
+                     semWait(wsem) // writer 접근 불능
+                 semSignal(rsem); // 다른 reader 접근 가능
 
                  READUNIT();
 
-                 semWait(rsem);
+                 semWait(rsem); // 다른 reader 접근 불가
                  readcount--;
-                 if (readcount == 0)
-                     semSignal(wsem);
-                 semSignal(rsem);
+                 if (readcount == 0) // 마지막 나오는 reader
+                     semSignal(wsem); // writer 접근 가능
+                 semSignal(rsem); // 다른 reader 접근 가능
              }
          }
      ```
 
-   - binary semaphore
+- binary semaphore
+  - semaphore의 값이 0과 1로 제한
+  - 값이 1로 바뀌었을 때,모든 프로세스가 ready state로 변환
+
+* Lock
+
+  - binary semaphore를 이용해 구현된 동기화 방식
