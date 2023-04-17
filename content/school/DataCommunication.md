@@ -51,6 +51,21 @@ $$ y(t) = A sin(2\pi ft + \varphi)$$
 
 * 과정 : Sampling(표본화), Qunatization(양자화), Encoding(부호화)
 
+### 무잡음 채널 - Nyquist 정리
+
+$$ Bit Rate = 2 \times bandwidth \times log_2(L)$$
+
+- bandwidth : 대역폭
+- L : 신호 레벨
+- Bit rate : 초당비트수
+
+### 잡음 채널 - 섀넌 용량 (Shannon Capacity)
+
+$$ Capacity = bandwidth \times log_2(1+SNR) $$
+
+- SNR은 신호에 대한 잡음 비율
+- Capacity : 채널 용량 (bps)
+
 ## Digital -> Analog
 
 ### ASK (Amplitude Shift Keying)
@@ -199,3 +214,71 @@ show ip bgp 168.188.0.0/16
 
 * BGP (Border Gateway Protocol)
   > 서로 다른 조직의 네트워크를 연결할 때 사용하는 라우팅 프로토콜
+
+## 통신 속도
+
+### 처리율 (Throughput)
+
+> A -> B로 전송하는 단위 시간당 디지털 전송률
+
+```bash
+# 서버 networks.cnu.ac.kr:8080 으로 시험 패킷을 전송
+iperf3 -c networks.cnu.ac.kr -p 8080
+```
+
+- 각종 전송 비트 전송률 계산 (강의 자료 참고)
+
+### 통신 지연 시간
+
+- d(nodal) : nodal delay (전체 노드 지연)
+  > d(nodal) = d(proc) + d(queue) + d(trans) + d(prop)
+- d(proc) : nodal processing delay (노드 처리 지연)
+  - 라우터에서의 처리 지연
+- d(queue) : queueing delay (대기 지연)
+  - 패킷이 큐에서 출력 링크로 전송되기를 기다리는 시간
+- d(trans) : transmission delay (전송 지연)
+  - 패킷의 모든 비트들을 링크로 전송하는데 필요한 시간
+- d(prop) : propagation delay (전달 지연/전파 지연)
+  - 출력 링크에서 다음 라우터까지 전파하는데 필요한 시간
+
+* 테스트 명령어
+
+```bash
+ping www.google.com
+traceroute www.eurecom.fr
+```
+
+### Decibel, dB
+
+- 신호 세기의 측정 단위
+  $$ L_b = 10log {B \over A} |dB| $$
+- 두 신호(A, B) 값에 대한 상대적 크기 차이
+
+### 전력, 무선신호
+
+### 신호를 방해하는 요소
+
+- 약화 (attenuation)
+- 왜곡 (distortion)
+- 잡음 (noise) (SNR:Signal-to-noise ratio : 신호 대 잡음 비율)
+
+* 지터
+  > 지연값이 다양하게 달라지는 것 (들쭉날쭉)
+
+## 데이터 링크 계층
+
+- 데이터 링크 계층
+  - 물리 계층을 이용하여 전송
+  - 장비 : 브리지, L2 switch(ethernet address)
+  - 서브 계층 2개
+    - 논리적 링크 제어
+    - 매체 접근 제어
+- Mac Address
+  - Network interface card(NIC) identifier
+  - 대부분 고정, 일부는 가변
+  - 48비트 6바이트 (MAC-48)
+- IP Address
+  - IPv4 : 32bit (4bytes)
+  - IPv6 : 128bit (16bytes)
+  - CIDR (Classless Inter-Domain Routing)
+    - ???
