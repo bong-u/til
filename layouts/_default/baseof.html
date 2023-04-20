@@ -2,19 +2,32 @@
 <html>
 
 <head>
+  <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
   <meta charset="utf-8" />
+
+  <!-- my custom js -->
   <script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
-  {{ $style := resources.Get "style.css" }}
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css"
-    rel="stylesheet">
+
+
+  <!-- my tailwind css -->
   <link rel="stylesheet" href="{{ .Site.BaseURL }}src/style.css" />
+
+  <!-- my favicon -->
   <link rel="icon" href="{{ .Site.BaseURL }}favicon16.png" sizes="16x16">
   <link rel="icon" href="{{ .Site.BaseURL }}favicon32.png" sizes="32x32">
 
-  <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
+  <!-- github markdown css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css"
+    rel="stylesheet">
 
+  <!-- latex -->
+  {{ partial "latex.html" . }}
+
+  <!-- google analytics -->
   {{ if .Site.Params.googleAnalytics }}
   {{ partial "google-analytics.html" . }}{{ end }}
+
+  <base href="til-hugo" target="_blank">
 </head>
 
 <body class="dark">
@@ -30,8 +43,5 @@
   {{ block "footer" . }} {{ end }}
 </body>
 
-</html>
 
-<!-- <link rel="stylesheet" href="{{ .Site.BaseURL }}src/base.css" />
-<link rel="stylesheet" href="{{ .Site.BaseURL }}src/content.css" /> -->
-<!-- <link rel="stylesheet" href="{{ .Site.BaseURL }}/style.css" /> -->
+</html>
