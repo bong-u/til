@@ -1,12 +1,18 @@
 <!doctype html><html>
 <head>
+<title> bong-u's TIL </title>
 <meta charset=utf-8>
 <script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
-<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
 <link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
 <link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
 <link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
-<title> bong-u's TIL </title>
+<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']]}
+  });
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
@@ -37,7 +43,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">221208 SYSP</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> MODIFIED 2023-04-20</h4>
 </div>
 </div>
 </div>
@@ -102,14 +108,12 @@
 </ol>
 <h3 id=성능-지표-1--처리량-throughput>성능 지표 1 : 처리량 (Throughput)</h3>
 <ul>
-<li>
-<p>단위 시간 동안 완료한 요청의 수</p>
+<li>단위 시간 동안 완료한 요청의 수</li>
+</ul>
 <h3 id=성능-지표-2--최대-메모리-이용율-utilization>성능 지표 2 : 최대 메모리 이용율 (Utilization)</h3>
-</li>
-<li>
-<p>k개의 요청 후에, 최대 메모리 이용율
-$$ U*{k} = (max*{i&lt;=k}: P*{i}) / H*{k} $$</p>
-</li>
+<ul>
+<li>k개의 요청 후에, 최대 메모리 이용율
+$$ U*{k} = (max*{i&lt;=k}: P*{i}) / H*{k} $$</li>
 </ul>
 <h3 id=내부-메모리-단편화-internal-fragmentation>내부 메모리 단편화 (Internal Fragmentation)</h3>
 <ul>
