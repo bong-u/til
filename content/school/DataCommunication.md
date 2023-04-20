@@ -31,7 +31,7 @@ date: 2023-03-26
 
 ### 아날로그 신호 - 사인 함수
 
-$$ y(t) = A sin(2\pi ft + \varphi)$$
+$$ y(t) = A sin(2\pi ft + \varphi) $$
 
 - A = 크기(amplitude)
 - f = 주파수(frequency)
