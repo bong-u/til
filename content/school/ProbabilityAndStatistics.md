@@ -151,10 +151,10 @@ date: 2023-03-02
 * 상관계수
 * $$ Corr(X, Y) = \frac{Cov(X, Y)}{\sigma_X \sigma_Y} $$
 * 두 확률 변수가 독립이라면,
-1. $E(XY) = E(X)E(Y)$
-2. $Var(X+Y) = Var(X)+Var(Y)$
-3. $Cov(X, Y) = 0$
-4. $Corr(X, Y) = 0$
+  1. $E(XY) = E(X)E(Y)$
+  2. $Var(X+Y) = Var(X)+Var(Y)$
+  3. $Cov(X, Y) = 0$
+  4. $Corr(X, Y) = 0$
 
 ## 여러가지 확률분포
 
