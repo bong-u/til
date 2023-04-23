@@ -260,13 +260,13 @@ iperf3 -c networks.cnu.ac.kr -p 8080
 - d(nodal) : nodal delay (전체 노드 지연)
   > d(nodal) = d(proc) + d(queue) + d(trans) + d(prop)
 - d(proc) : nodal processing delay (노드 처리 지연)
-  - 라우터에서의 처리 지연
+  - 패킷 헤더 또는 경로 테이블 찾는 시간
 - d(queue) : queueing delay (대기 지연)
-  - 패킷이 큐에서 출력 링크로 전송되기를 기다리는 시간
+  - 컴퓨터 또는 라우터에서 처리되기 까지 기다리는 시간
 - d(trans) : transmission delay (전송 지연)
-  - 패킷의 모든 비트들을 링크로 전송하는데 필요한 시간
+  - 1개의 비트를 컴퓨터에서 링크로 전송되는 시간
 - d(prop) : propagation delay (전달 지연/전파 지연)
-  - 출력 링크에서 다음 라우터까지 전파하는데 필요한 시간
+  - 컴퓨터(링크)-컴퓨터(링크) 사이 거리에 따른 시간
 
 * 테스트 명령어
 
