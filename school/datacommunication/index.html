@@ -443,7 +443,7 @@ $$ L_b = 10log {B \over A} |dB| $$</li>
 <ul>
 <li>IPv4 : 32bit (4bytes)</li>
 <li>IPv6 : 128bit (16bytes)</li>
-<li>class
+<li>Class
 <table>
 <thead>
 <tr>
@@ -478,6 +478,22 @@ $$ L_b = 10log {B \over A} |dB| $$</li>
 </tr>
 </tbody>
 </table>
+<ul>
+<li>예) 192.168.1.132, subnet mask = 255.255.255.192
+<ul>
+<li>해당 주소
+<blockquote>
+<p>192.168.1.128 (132 & 192)</p>
+</blockquote>
+</li>
+<li>네트워크 주소와, 브로드캐스트 제외한 호스트 개수
+<blockquote>
+<p>$2^6-2 = 62개$</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>CIDR (Classless Inter-Domain Routing)
 <ul>
