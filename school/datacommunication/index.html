@@ -43,7 +43,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">데이터통신</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-26 </h4>
-<h4 id=date> MODIFIED 2023-04-20</h4>
+<h4 id=date> MODIFIED 2023-04-23</h4>
 </div>
 </div>
 </div>
@@ -102,7 +102,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id=패킷>패킷</h3>
+<h3 id=protocol-suite>Protocol Suite</h3>
 <ul>
 <li>HTTP - TCP - IP - Ethernet</li>
 </ul>
@@ -118,6 +118,14 @@
 <li>주기(Period) : 신호가 반복되는 시간</li>
 <li>주파수 (Frequency) : 시간당 반복되는 신호 개수</li>
 <li>대역폭 (Bandwidth) : 아날로그 -> 주파수 범위 (Hz), 디지털 -> 비트 전송률(bps)</li>
+</ul>
+<ul>
+<li>관련 함수
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># start에서 end까지 step 증가</span>
+numpy<span style=color:#f92672>.</span>arange(start, stop, step)
+<span style=color:#75715e># start에서 end까지 step개로 나눔</span>
+numpy<span style=color:#f92672>.</span>linspace(start, stop, step)
+</code></pre></div></li>
 </ul>
 <h2 id=analog---digital>Analog -> Digital</h2>
 <h3 id=pcm-pulse-code-modulation-펄스-부호-변조>PCM (Pulse-code modulation, 펄스 부호 변조)</h3>
@@ -139,6 +147,8 @@
 <ul>
 <li>SNR은 신호에 대한 잡음 비율</li>
 <li>Capacity : 채널 용량 (bps)</li>
+<li>SNR이 데시벨(dB)로 주어지는 경우
+$$ SNR = 10^{\frac{SNR(dB)}{10}} $$</li>
 </ul>
 <h2 id=digital---analog>Digital -> Analog</h2>
 <h3 id=ask-amplitude-shift-keying>ASK (Amplitude Shift Keying)</h3>
@@ -156,6 +166,31 @@
 <h3 id=qam-quadrature-amplitude-modulation>QAM (Quadrature Amplitude Modulation)</h3>
 <ul>
 <li>디지털 데이터를 크기와 각도로 전송</li>
+</ul>
+<h3 id=fourier-transfer>Fourier Transfer</h3>
+<ul>
+<li>시간이나 공간에 대한 함수를 주파수 성분으로 분해하는 변환</li>
+</ul>
+<h2 id=line-coding>Line coding</h2>
+<h3 id=unipolar-nrz-non-return-to-zero>Unipolar NRZ (Non return to Zero)</h3>
+<ul>
+<li>0 or 1</li>
+</ul>
+<h3 id=polar-nrz-l>Polar NRZ-L</h3>
+<ul>
+<li>-1 or 1</li>
+</ul>
+<h3 id=polar-nrz-i>Polar NRZ-I</h3>
+<ul>
+<li>-1 or 1, 1이 나오면 transition</li>
+</ul>
+<h3 id=rz-return-to-zero>RZ (Return to Zero)</h3>
+<ul>
+<li>0 or 5</li>
+</ul>
+<h3 id=manchester>Manchester</h3>
+<ul>
+<li>신호 변화 -> 신호의 동기화</li>
 </ul>
 <h2 id=cable>Cable</h2>
 <h3 id=전송-매체-transmission-media>전송 매체 (Transmission media)</h3>
@@ -408,9 +443,63 @@ $$ L_b = 10log {B \over A} |dB| $$</li>
 <ul>
 <li>IPv4 : 32bit (4bytes)</li>
 <li>IPv6 : 128bit (16bytes)</li>
+<li>class
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>시작(2진수)</th>
+<th>시작 (10진수)</th>
+<th>구성</th>
+<th>host 범위</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0</td>
+<td>1~126</td>
+<td>network 7, host 24</td>
+<td>$2^7-1$</td>
+</tr>
+<tr>
+<td>B</td>
+<td>10</td>
+<td>128.0~191.255</td>
+<td>network 14, host 16</td>
+<td>$2^{14}$</td>
+</tr>
+<tr>
+<td>C</td>
+<td>110</td>
+<td>192.0.0~223.255.255</td>
+<td>network 21, host 8</td>
+<td>$2^ {22}$</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li>CIDR (Classless Inter-Domain Routing)
 <ul>
-<li>???</li>
+<li>예) 143.7.65.203/24
+<ul>
+<li>주소 공간
+<blockquote>
+<p>앞에서 24비트 빼고 사용 가능 : 143.7.65.0 ~ 143.7.65.255</p>
+</blockquote>
+</li>
+<li>서브넷 마스크
+<blockquote>
+<p>앞 24자리가 1이다 : 255.255.255.0</p>
+</blockquote>
+</li>
+<li>브로드캐스트주소
+<blockquote>
+<p>주소공간의 마지막 주소 : 143.7.65.255</p>
+</blockquote>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
