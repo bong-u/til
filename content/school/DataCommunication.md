@@ -25,7 +25,7 @@ date: 2023-03-26
 | 4    | Transport   | TCP Segment, UDP Datagram | Port 번호       |
 | 5    | Application | HTTP 메시지, Email 메시지 | URL, Email 주소 |
 
-### 패킷
+### Protocol Suite
 
 - HTTP - TCP - IP - Ethernet
 
@@ -42,6 +42,14 @@ $$ y(t) = A sin(2\pi ft + \varphi) $$
 - 주기(Period) : 신호가 반복되는 시간
 - 주파수 (Frequency) : 시간당 반복되는 신호 개수
 - 대역폭 (Bandwidth) : 아날로그 -> 주파수 범위 (Hz), 디지털 -> 비트 전송률(bps)
+* 관련 함수
+  ```python
+  # start에서 end까지 step 증가
+  numpy.arange(start, stop, step)
+  # start에서 end까지 step개로 나눔
+  numpy.linspace(start, stop, step)
+  ```
+
 
 ## Analog -> Digital
 
@@ -65,6 +73,8 @@ $$ Capacity = bandwidth \times log_2(1+SNR) $$
 
 - SNR은 신호에 대한 잡음 비율
 - Capacity : 채널 용량 (bps)
+- SNR이 데시벨(dB)로 주어지는 경우
+  $$ SNR = 10^{\frac{SNR(dB)}{10}} $$
 
 ## Digital -> Analog
 
@@ -83,6 +93,23 @@ $$ Capacity = bandwidth \times log_2(1+SNR) $$
 ### QAM (Quadrature Amplitude Modulation)
 
 - 디지털 데이터를 크기와 각도로 전송
+
+### Fourier Transfer
+* 시간이나 공간에 대한 함수를 주파수 성분으로 분해하는 변환
+
+## Line coding
+
+### Unipolar NRZ (Non return to Zero)
+  * 0 or 1
+### Polar NRZ-L
+  * -1 or 1
+### Polar NRZ-I
+  * -1 or 1, 1이 나오면 transition
+### RZ (Return to Zero)
+  * 0 or 5
+### Manchester
+  * 신호 변화 -> 신호의 동기화
+
 
 ## Cable
 
@@ -280,5 +307,17 @@ traceroute www.eurecom.fr
 - IP Address
   - IPv4 : 32bit (4bytes)
   - IPv6 : 128bit (16bytes)
+  - class
+    | 구분 | 시작(2진수) | 시작 (10진수) | 구성 | host 범위 |
+    | --- | ---------- | ------------ | --- | --------- |
+    | A |  0 | 1~126 | network 7, host 24 | $2^7-1$ |
+    | B | 10 | 128.0~191.255 | network 14, host 16 | $2^{14}$ |
+    | C | 110 | 192.0.0~223.255.255 | network 21, host 8 | $2^ {22}$ | 
   - CIDR (Classless Inter-Domain Routing)
-    - ???
+    - 예) 143.7.65.203/24
+      - 주소 공간
+        > 앞에서 24비트 빼고 사용 가능 : 143.7.65.0 ~ 143.7.65.255
+      - 서브넷 마스크
+        > 앞 24자리가 1이다 : 255.255.255.0
+      - 브로드캐스트주소
+        > 주소공간의 마지막 주소 : 143.7.65.255
