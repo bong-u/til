@@ -43,7 +43,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">운영체제</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-06 </h4>
-<h4 id=date> MODIFIED 2023-04-15</h4>
+<h4 id=date> MODIFIED 2023-04-24</h4>
 </div>
 </div>
 </div>
@@ -594,6 +594,39 @@ semaphore mut_ex <span style=color:#f92672>=</span> <span style=color:#ae81ff>1<
 <li>binary semaphore를 이용해 구현된 동기화 방식</li>
 </ul>
 </li>
+</ul>
+<h2 id=deadlock>Deadlock</h2>
+<h3 id=deadlock이란>Deadlock이란</h3>
+<ul>
+<li>Starvation : 어떤 자원을 다른 프로세스가 이미 점유하고 있어서 실행할 수 없는 상황</li>
+<li>Deadlock : 2개 이상의 process들이 서로 starvation인 상태</li>
+</ul>
+<h3 id=deadlock의-조건을-하나씩-깨보자>Deadlock의 조건을 하나씩 깨보자</h3>
+<ol>
+<li>Mutual exclusion : OS의 필수 기능</li>
+<li>Hold and wait : 시작부터 모든 자원을 받도록 구현 -> 비효율적</li>
+<li>No Preemption : 자원을 서로 뺏어감 -> 비효율적</li>
+<li>Circular Wait : 자원을 먼저 받아야 하는 경우 존재</li>
+</ol>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>최선의 방법 : deadlock이 발생했을 때, 한 개씩 죽여보기</li>
+</ul>
+<h2 id=file-management>File Management</h2>
+<h3 id=fcb>FCB</h3>
+<ul>
+<li>File Control block, 보조기억장치에 저장</li>
+<li>구성
+<blockquote>
+<p>file name, file size, uid, gid, file operation, creation time, last modified, last access time, address of file data&mldr;</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=device-file>Device file</h3>
+<ul>
+<li>블록형 파일 (단위 : 4096byte)</li>
+<li>file size 대신 major number, minor number 존재</li>
+<li>Device I/O가 발생하면 해당 Device File과 I/O 하듯이 작동</li>
 </ul>
 </article>
 </div>
