@@ -43,7 +43,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">운영체제</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-06 </h4>
-<h4 id=date> MODIFIED 2023-04-24</h4>
+<h4 id=date> MODIFIED 2023-04-25</h4>
 </div>
 </div>
 </div>
@@ -123,7 +123,11 @@
 </li>
 <li>Microkernel kernel
 <ul>
-<li>kernel 내에 필요한 기능만 남기고 외부로 이동</li>
+<li>kernel 내에 필요한 기능
+<blockquote>
+<p>Address space management, Interprocess communication, 기본적인 프로세스 scheduling 기능</p>
+</blockquote>
+</li>
 <li>kernel간 통신속도가 느리다</li>
 </ul>
 </li>
@@ -159,8 +163,29 @@
 </ul>
 <h3 id=process-context>Process Context</h3>
 <ul>
-<li>User Context : code, data, user stack</li>
-<li>System Context : kernel stack, PCB</li>
+<li><strong>User Context : code, data, user stack</strong></li>
+<li><strong>System Context : kernel stack, PCB</strong></li>
+</ul>
+<h3 id=virtual-address-space>Virtual Address Space</h3>
+<blockquote>
+<p>프로세스가 실행되면 서 접근(access, reference) 가능한 주소들의 범위</p>
+</blockquote>
+<ul>
+<li>
+<p>32bit address computer : $2^{32}$ = 4G 번지, 3G~4G번지에는 커널이 들어간다</p>
+</li>
+<li>
+<p>보조기억장치의 VAS는 프로세스 개수만큼 존재</p>
+</li>
+<li>
+<p>구성</p>
+<pre tabindex=0><code>| kernel
+| stack (local var)
+| bss  (만들때 초기화 안 한 global var)
+
+| data (만들때 초기화 한 global var)
+| code
+</code></pre></li>
 </ul>
 <h3 id=process-creation>Process Creation</h3>
 <ul>
@@ -230,14 +255,16 @@
 </ul>
 <h3 id=inter-process-communication-ipc>Inter-Process Communication (IPC)</h3>
 <ol>
-<li>Message Passing
+<li>Message Passing : kernel내 mailbox를 통해 메시지를 주고받는 방법
 <ul>
 <li>user mode -> kernel mode -> user mode</li>
+<li>구현이 쉽다, 느리다</li>
 </ul>
 </li>
 <li>Shared Memory
 <ul>
-<li>VAD에 shared memory의 주소를 갖고있다</li>
+<li>VAD에 shared memory법 주소를 갖고있다</li>
+<li>빠르다, 구현이 어렵다</li>
 </ul>
 </li>
 </ol>
@@ -296,8 +323,8 @@
 </ul>
 <h3 id=producerconsumer--finite-buffer>Producer/Consumer : Finite Buffer</h3>
 <ul>
-<li>producer</li>
-</ul>
+<li>
+<p>producer</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>item v;
 
 
@@ -308,9 +335,9 @@
   in <span style=color:#f92672>=</span> (in <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
   counter<span style=color:#f92672>++</span>;
 }
-</code></pre></div><ul>
-<li>consumer</li>
-</ul>
+</code></pre></div></li>
+<li>
+<p>consumer</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>item w;
 <span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
   <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) ; <span style=color:#75715e>// busy waiting
@@ -319,8 +346,10 @@
   counter<span style=color:#f92672>--</span>;
   <span style=color:#75715e>/* consume item w */</span>
 }
-</code></pre></div><ul>
-<li>=> Race condition 발생 가능</li>
+</code></pre></div></li>
+<li>
+<p>=> Race condition 발생 가능</p>
+</li>
 </ul>
 <h3 id=race-condition-in-a-uniprocessor>Race Condition in a Uniprocessor</h3>
 <ul>
