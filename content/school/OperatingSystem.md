@@ -55,7 +55,8 @@ date: 2023-03-06
   - 모든 OS의 기능을 하나의 kernel이 가지고 있는다
   - 하나 수정하면 전체를 컴파일 해야 한다
 - Microkernel kernel
-  - kernel 내에 필요한 기능만 남기고 외부로 이동
+  - kernel 내에 필요한 기능
+    > Address space management, Interprocess communication, 기본적인 프로세스 scheduling 기능
   - kernel간 통신속도가 느리다
 
 ## Process
@@ -88,8 +89,24 @@ date: 2023-03-06
 
 ### Process Context
 
-- User Context : code, data, user stack
-- System Context : kernel stack, PCB
+- **User Context : code, data, user stack**
+- **System Context : kernel stack, PCB**
+
+### Virtual Address Space
+> 프로세스가 실행되면 서 접근(access, reference) 가능한 주소들의 범위
+* 32bit address computer : $2^{32}$ = 4G 번지, 3G~4G번지에는 커널이 들어간다
+* 보조기억장치의 VAS는 프로세스 개수만큼 존재
+
+* 구성
+  ```
+  | kernel
+  | stack (local var)
+  | bss  (만들때 초기화 안 한 global var)
+
+  | data (만들때 초기화 한 global var)
+  | code
+  ```
+
 
 ### Process Creation
 
@@ -140,10 +157,12 @@ date: 2023-03-06
 
 ### Inter-Process Communication (IPC)
 
-1. Message Passing
+1. Message Passing : kernel내 mailbox를 통해 메시지를 주고받는 방법
    - user mode -> kernel mode -> user mode
+   - 구현이 쉽다, 느리다
 2. Shared Memory
-   - VAD에 shared memory의 주소를 갖고있다
+   - VAD에 shared memory법 주소를 갖고있다
+   - 빠르다, 구현이 어렵다
 
 - Message / Signal
 
@@ -196,31 +215,31 @@ date: 2023-03-06
 
 - producer
 
-```c
-item v;
+  ```c
+  item v;
 
 
-while (1) {
-  while (counter == BUFFER_SIZE) ; // busy waiting
-  /* produce item v */
-  b[in] = v;
-  in = (in + 1) % BUFFER_SIZE;
-  counter++;
-}
-```
+  while (1) {
+    while (counter == BUFFER_SIZE) ; // busy waiting
+    /* produce item v */
+    b[in] = v;
+    in = (in + 1) % BUFFER_SIZE;
+    counter++;
+  }
+  ```
 
 - consumer
 
-```c
-item w;
-while (1) {
-  while (counter == 0) ; // busy waiting
-  w = b[out];
-  out = (out + 1) % BUFFER_SIZE;
-  counter--;
-  /* consume item w */
-}
-```
+  ```c
+  item w;
+  while (1) {
+    while (counter == 0) ; // busy waiting
+    w = b[out];
+    out = (out + 1) % BUFFER_SIZE;
+    counter--;
+    /* consume item w */
+  }
+  ```
 
 - => Race condition 발생 가능
 
