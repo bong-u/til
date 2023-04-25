@@ -109,7 +109,8 @@ $$ Capacity = bandwidth \times log_2(1+SNR) $$
   * 0 or 5
 ### Manchester
   * 신호 변화 -> 신호의 동기화
-
+### Differential Manchester
+  * Manchester 반대
 
 ## Cable
 
