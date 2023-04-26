@@ -8,10 +8,6 @@
   <!-- my custom js -->
   <script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
 
-
-  <!-- my tailwind css -->
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}src/style.css" />
-
   <!-- my favicon -->
   <link rel="icon" href="{{ .Site.BaseURL }}favicon16.png" sizes="16x16">
   <link rel="icon" href="{{ .Site.BaseURL }}favicon32.png" sizes="32x32">
@@ -19,6 +15,9 @@
   <!-- github markdown css -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css"
     rel="stylesheet">
+
+  <!-- my tailwind css -->
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}src/style.css" />
 
   <!-- latex -->
   {{ partial "latex.html" . }}
