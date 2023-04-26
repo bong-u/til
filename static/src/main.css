@@ -4,12 +4,24 @@
 
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 
+:root {
+    --background-color: #1d1e20;
+    --text-color: #dadadb;
+}
+
 @layer base {
     * {
         font-family: 'hana';
     }
 
     body {
-        @apply text-[#c9d1d9] bg-[#0d1117];
+        @apply text-[var(--text-color)] bg-[var(--background-color)];
+    }
+
+    .summary_item {
+        @apply bg-#2e2e33 p-6 rounded-lg;
+      }
+    #content {
+        @apply bg-[var(--background-color)];
     }
 }
