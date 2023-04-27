@@ -43,7 +43,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">데이터통신</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-26 </h4>
-<h4 id=date> MODIFIED 2023-04-25</h4>
+<h4 id=date> MODIFIED 2023-04-27</h4>
 </div>
 </div>
 </div>
@@ -378,22 +378,22 @@ iperf3 -c networks.cnu.ac.kr -p <span style=color:#ae81ff>8080</span>
 </li>
 <li>d(proc) : nodal processing delay (노드 처리 지연)
 <ul>
-<li>패킷 헤더 또는 경로 테이블 찾는 시간</li>
+<li>패킷 헤더를 조사하고 그 패킷을 어디로 보낼지 결정하는 시간</li>
 </ul>
 </li>
-<li>d(queue) : queueing delay (대기 지연)
+<li>d(queue) : queueing delay (큐잉 지연)
 <ul>
-<li>컴퓨터 또는 라우터에서 처리되기 까지 기다리는 시간</li>
+<li>패킷이 큐에서 링크로 전송되기를 기다리는 시간</li>
 </ul>
 </li>
 <li>d(trans) : transmission delay (전송 지연)
 <ul>
-<li>1개의 비트를 컴퓨터에서 링크로 전송되는 시간</li>
+<li>패킷의 모든 비트를 링크로 밀어내는 데 필요한 시간</li>
 </ul>
 </li>
 <li>d(prop) : propagation delay (전달 지연/전파 지연)
 <ul>
-<li>컴퓨터(링크)-컴퓨터(링크) 사이 거리에 따른 시간</li>
+<li>비트가 라우터 A 상에서의 링크에서 라우터 B까지의 전파에 필요한 시간</li>
 </ul>
 </li>
 </ul>
