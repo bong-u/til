@@ -55,11 +55,15 @@ $$ y(t) = A sin(2\pi ft + \varphi) $$
 
 ### PCM (Pulse-code modulation, 펄스 부호 변조)
 
-- 아날로그 신호의 디지털 표현, 디지털 비디오의 표준
+> 아날로그 신호의 디지털 표현, 디지털 비디오의 표준
 
-* 과정 : Sampling(표본화), Qunatization(양자화), Encoding(부호화)
+* 과정 : Sampling(표본화), Quantization(양자화), Encoding(부호화)
 
-### 무잡음 채널 - Nyquist 정리
+### Nyquist sampling theorem
+
+> 신호에 포함된 가장 높은 진동수의 2배에 해당하는 빈도로 일정하게 샘플링하면 원래의 신호로 복원할 수 있다.
+
+### Nyquist bit rate - 무잡음 채널
 
 $$ Bit Rate = 2 \times bandwidth \times log_2(L)$$
 
@@ -67,7 +71,7 @@ $$ Bit Rate = 2 \times bandwidth \times log_2(L)$$
 - L : 신호 레벨
 - Bit rate : 초당비트수
 
-### 잡음 채널 - 섀넌 용량 (Shannon Capacity)
+### 섀넌 용량 (Shannon Capacity) - 잡음채널
 
 $$ Capacity = bandwidth \times log_2(1+SNR) $$
 
@@ -96,6 +100,10 @@ $$ Capacity = bandwidth \times log_2(1+SNR) $$
 
 ### Fourier Transfer
 * 시간이나 공간에 대한 함수를 주파수 성분으로 분해하는 변환
+
+### Reed-Solomon(RS) Code
+* n = k(원래 데이터) + n-k(오류 정정 코드)
+* (n-k)/2 = t, t개 이하 symbol 오류 정정 가능
 
 ## Line coding
 
@@ -225,7 +233,7 @@ netstat -rn
 # 활성화된 네트워크 인터페이스의 세부사항 표시
 ifconfig
 # NAT테이블에서 vn이라는 이름의 체인에 대한 규칙 조회
-iptables -t
+iptables -t nat -L -vn
 
 # Router view 서비스를 제공하는 호스트에 접속
 telnet route-views.routeviews.org
@@ -271,10 +279,10 @@ iperf3 -c networks.cnu.ac.kr -p 8080
 
 * 테스트 명령어
 
-```bash
-ping www.google.com
-traceroute www.eurecom.fr
-```
+  ```bash
+  ping www.google.com
+  traceroute www.eurecom.fr
+  ```
 
 ### Decibel, dB
 
