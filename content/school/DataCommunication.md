@@ -27,7 +27,7 @@ date: 2023-03-26
 
 ### Protocol Suite
 
-- HTTP - TCP - IP - Ethernet
+- HTTP - TCP - IP - ARP
 
 ### 아날로그 신호 - 사인 함수
 
