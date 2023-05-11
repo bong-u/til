@@ -43,7 +43,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">자료구조</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-04-13</h4>
+<h4 id=date> MODIFIED 2023-05-11</h4>
 </div>
 </div>
 </div>
@@ -346,6 +346,63 @@ levelorder : left -> right (from top level)</p>
 <li>union : O(N)</li>
 <li>find : O(N)</li>
 </ul>
+</li>
+</ul>
+<h2 id=제-5장--탐색-트리>제 5장 : 탐색 트리</h2>
+<h3 id=52-avl-트리>5.2 AVL 트리</h3>
+<h4 id=avl트리의-정의>AVL트리의 정의</h4>
+<blockquote>
+<p>임의의 노드 x에 대해 x의 왼쪽 서브트리와 오른쪽 서브트리의 높이 차이가 1을 넘지 않는 이진 탐색 트리</p>
+</blockquote>
+<h4 id=avl트리의-회전-연산>AVL트리의 회전 연산</h4>
+<ul>
+<li>LL 회전 : 왼쪽으로 치우친 경우 rotateRight(n)를 통해 해결</li>
+<li>RR 회전 : 오른쪽으로 치우친 경우 rotateLeft(n)를 통해 해결</li>
+<li>LR 회전 : rotateLeft(n.left) -> rotateRight(n)로 해결</li>
+<li>RL 회전 : rotateRight(n.right) -> rotateLeft(n)로 해결</li>
+<li>4가지 회전의 공통점
+<blockquote>
+<p>회전 후의 트리들이 모두 같다, 모두 O(1)</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=avl트리의-연산>AVL트리의 연산</h4>
+<ul>
+<li>삽입 연산
+<ol>
+<li>이진 트리의 삽입과 동일하게 새 노드 삽입</li>
+<li>새 노드로부터 루트로 거슬러 올라가며 불균형이 발생하면 적절하게 회전 연산 수행</li>
+</ol>
+</li>
+<li>삭제 연산</li>
+</ul>
+<h3 id=53-2-3-트리>5.3 2-3 트리</h3>
+<h4 id=2-3-트리의-정의>2-3 트리의 정의</h4>
+<blockquote>
+<p>임의의 노드가 2개 또는 3개의 자식을 가질 수 있는 트리로, 모든 리프 노드가 같은 레벨에 있다.</p>
+</blockquote>
+<h4 id=2-3-트리의-연산>2-3 트리의 연산</h4>
+<ul>
+<li>탐색 연산
+<blockquote>
+<p>이진 탐색 트리와 동일한 방법으로 탐색</p>
+</blockquote>
+</li>
+<li>분리 연산
+<blockquote>
+<p>키를 부모로 올려 보냄<br>
+부모가 3-노드이면 다시 분리연산 수행<br>
+루트에서 일어나면 트리의 높이 1 증가</p>
+</blockquote>
+</li>
+<li>삽입 연산
+<blockquote>
+<p>분리 연산을 동반</p>
+</blockquote>
+</li>
+<li>삭제 연산
+<blockquote>
+</blockquote>
 </li>
 </ul>
 </article>
