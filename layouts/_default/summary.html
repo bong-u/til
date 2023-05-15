@@ -1,13 +1,18 @@
-<div class="summary_item flex">
-  <img class="w-16 h-16 mr-5" src="{{ .Site.BaseURL }}icon/{{ .Section }}.png" alt="{{ .Section }}" />
+<div class="summary_item flex flex-col gap-3">
+  <div class="flex justify-between">
+    <div>
+      <img class="w-8 h-8 mr-2 inline" src="{{ .Site.BaseURL }}icon/{{ .Section }}.png" alt="{{ .Section }}" />
+      <span>{{ .Section }}</span>
+    </div>
+    <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
+  </div>
   <div class="w-full">
     <a href="{{ .RelPermalink }}" class="block">
-      <h2 class="whitespace-nowrap overflow-ellipsis overflow-hidden font-bold">
+      <h1 class="text-2xl font-bold whitespace-nowrap overflow-ellipsis overflow-hidden">
         <img onload="checkRecentPost(event, '{{ .Lastmod.YearDay }}')" class="w-5 h-5 inline hidden"
           src="{{ .Site.BaseURL }}icon/new.png" alt="new" />
         {{ .Title }}
-      </h2>
+      </h1>
     </a>
-    <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
   </div>
 </div>

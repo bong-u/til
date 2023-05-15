@@ -435,7 +435,7 @@ body {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(46 46 51 / var(--tw-bg-opacity));
-  padding: 1.5rem;
+  padding: 1.25rem;
 }
 
 #content {
@@ -624,6 +624,10 @@ body {
   margin-left: 1.25rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -648,20 +652,12 @@ body {
   display: none;
 }
 
-.h-16 {
-  height: 4rem;
-}
-
 .h-5 {
   height: 1.25rem;
 }
 
 .h-8 {
   height: 2rem;
-}
-
-.w-16 {
-  width: 4rem;
 }
 
 .w-5 {
@@ -702,6 +698,10 @@ body {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-8 {
@@ -745,6 +745,11 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl {
