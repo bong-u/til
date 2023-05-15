@@ -30,9 +30,11 @@
 <body class="dark">
   {{ .Render "topbar" }}
 
-  <main class="flex w-full">
-    {{ .Render "sidebar" }}
-    <section class="w-full mx-20">
+  <main class="flex w-full justify-center">
+    <aside class="fixed left-0">
+      {{ .Render "sidebar" }}
+    </aside>
+    <section class="">
       {{ block "main" . }} {{ end }}
     </section>
   </main>

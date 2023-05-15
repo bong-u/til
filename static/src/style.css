@@ -432,6 +432,7 @@ body {
 }
 
 .summary_item {
+  width: 66.666667%;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(46 46 51 / var(--tw-bg-opacity));
@@ -574,8 +575,16 @@ body {
   position: static;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
+}
+
+.left-0 {
+  left: 0px;
 }
 
 .right-0 {
@@ -584,11 +593,6 @@ body {
 
 .m-0 {
   margin: 0px;
-}
-
-.mx-20 {
-  margin-left: 5rem;
-  margin-right: 5rem;
 }
 
 .mx-4 {
@@ -694,6 +698,10 @@ body {
 
 .items-baseline {
   align-items: baseline;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .justify-between {
