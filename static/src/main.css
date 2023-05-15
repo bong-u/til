@@ -7,6 +7,7 @@
 :root {
     --background-color: #1d1e20;
     --text-color: #dadadb;
+    --summary-color: #2e2e33;
 }
 
 @layer base {
@@ -18,4 +19,7 @@
         @apply text-[var(--text-color)] bg-[var(--background-color)];
     }
 
+    .overflow-ellipsis-bundle {
+        @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    }
 }
