@@ -431,16 +431,7 @@ body {
   color: var(--text-color);
 }
 
-.summary_item {
-  width: 66.666667%;
-  border-radius: 0.5rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(46 46 51 / var(--tw-bg-opacity));
-  padding: 1.25rem;
-}
-
 #content {
-  background-color: var(--background-color);
 }
 
 *, ::before, ::after {
@@ -668,12 +659,20 @@ body {
   width: 1.25rem;
 }
 
+.w-7\/12 {
+  width: 58.333333%;
+}
+
 .w-8 {
   width: 2rem;
 }
 
 .w-80 {
   width: 20rem;
+}
+
+.w-9\/12 {
+  width: 75%;
 }
 
 .w-96 {
@@ -726,6 +725,23 @@ body {
 
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.bg-\[\#2e2e33\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 46 51 / var(--tw-bg-opacity));
+}
+
+.bg-\[var\(--background-color\)\] {
+  background-color: var(--background-color);
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-5 {

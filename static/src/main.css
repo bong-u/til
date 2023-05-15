@@ -18,10 +18,4 @@
         @apply text-[var(--text-color)] bg-[var(--background-color)];
     }
 
-    .summary_item {
-        @apply bg-[#2e2e33] p-5 rounded-lg w-8/12;
-      }
-    #content {
-        @apply bg-[var(--background-color)];
-    }
 }
