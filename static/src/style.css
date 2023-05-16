@@ -658,6 +658,10 @@ body {
   height: 2rem;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -668,10 +672,6 @@ body {
 
 .w-8 {
   width: 2rem;
-}
-
-.w-9\/12 {
-  width: 75%;
 }
 
 .w-96 {
@@ -742,6 +742,11 @@ body {
   padding: 1.25rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -801,22 +806,16 @@ body {
   --summary-color: #2e2e33;
 }
 
-@media (min-width: 640px) {
-  .sm\:hidden {
-    display: none;
-  }
-
-  .sm\:w-full {
-    width: 100%;
-  }
-}
-
 @media (min-width: 768px) {
   .md\:flex {
     display: flex;
   }
 
-  .md\:w-7\/12 {
-    width: 58.333333%;
+  .md\:w-8\/12 {
+    width: 66.666667%;
+  }
+
+  .md\:w-9\/12 {
+    width: 75%;
   }
 }

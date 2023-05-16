@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="main flex justify-center">
-  <div class="flex flex-col gap-8 w-9/12">
+  <div class="flex flex-col gap-8 w-11/12 md:w-9/12">
     <!-- 최근에 commit한 20개 페이지 -->
     {{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
     <div class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full">
