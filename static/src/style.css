@@ -423,7 +423,9 @@ video {
 }
 
 * {
-  font-family: 'hana';
+  /* font-family: 'hana'; */
+  /* font-family: 'NotosansKR'; */
+  font-family: 'Ubuntu', sans-serif;
 }
 
 body {
@@ -799,6 +801,8 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+
+/* @import url(http://fonts.googleapis.com/earlyaccess/hanna.css); */
 
 :root {
   --background-color: #1d1e20;
