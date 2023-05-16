@@ -423,7 +423,9 @@ video {
 }
 
 * {
-  font-family: 'hana';
+  /* font-family: 'hana'; */
+  /* font-family: 'NotosansKR'; */
+  font-family: 'Ubuntu', sans-serif;
 }
 
 body {
@@ -431,15 +433,10 @@ body {
   color: var(--text-color);
 }
 
-.summary_item {
-  border-radius: 0.5rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(46 46 51 / var(--tw-bg-opacity));
-  padding: 1.5rem;
-}
-
-#content {
-  background-color: var(--background-color);
+.overflow-ellipsis-bundle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 *, ::before, ::after {
@@ -574,8 +571,16 @@ body {
   position: static;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
+}
+
+.left-0 {
+  left: 0px;
 }
 
 .right-0 {
@@ -584,11 +589,6 @@ body {
 
 .m-0 {
   margin: 0px;
-}
-
-.mx-20 {
-  margin-left: 5rem;
-  margin-right: 5rem;
 }
 
 .mx-4 {
@@ -624,6 +624,10 @@ body {
   margin-left: 1.25rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -648,10 +652,6 @@ body {
   display: none;
 }
 
-.h-16 {
-  height: 4rem;
-}
-
 .h-5 {
   height: 1.25rem;
 }
@@ -660,20 +660,20 @@ body {
   height: 2rem;
 }
 
-.w-16 {
-  width: 4rem;
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .w-5 {
   width: 1.25rem;
 }
 
-.w-8 {
-  width: 2rem;
+.w-60 {
+  width: 15rem;
 }
 
-.w-80 {
-  width: 20rem;
+.w-8 {
+  width: 2rem;
 }
 
 .w-96 {
@@ -700,8 +700,16 @@ body {
   align-items: baseline;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-8 {
@@ -720,9 +728,25 @@ body {
   white-space: nowrap;
 }
 
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.bg-\[var\(--background-color\)\] {
+  background-color: var(--background-color);
+}
+
+.bg-\[var\(--summary-color\)\] {
+  background-color: var(--summary-color);
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .py-10 {
@@ -745,6 +769,11 @@ body {
 
 .text-center {
   text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl {
@@ -773,7 +802,24 @@ body {
   transition-duration: 150ms;
 }
 
+/* @import url(http://fonts.googleapis.com/earlyaccess/hanna.css); */
+
 :root {
   --background-color: #1d1e20;
   --text-color: #dadadb;
+  --summary-color: #2e2e33;
+}
+
+@media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:w-8\/12 {
+    width: 66.666667%;
+  }
+
+  .md\:w-9\/12 {
+    width: 75%;
+  }
 }
