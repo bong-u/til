@@ -26,8 +26,8 @@
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
-<main class="flex w-full">
-<aside class="flex flex-col w-80 px-5">
+<aside class="fixed left-0 hidden md:flex">
+<aside class="flex flex-col w-60">
 <a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
 <a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
 <a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
@@ -36,8 +36,10 @@
 <a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
 <a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
 </aside>
-<section class="w-full mx-20">
-<section class=w-full>
+</aside>
+<main class="flex w-full justify-center">
+<section class="w-full md:w-8/12">
+<section class="w-full px-4">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">2011 : 암호코드 (G5)</h1>
@@ -47,7 +49,7 @@
 </div>
 </div>
 </div>
-<article id=content class="markdown-body flex flex-col">
+<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>L <span style=color:#f92672>=</span> list(input())
 N <span style=color:#f92672>=</span> len(L)
 MOD <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>

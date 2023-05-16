@@ -2,26 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
-
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 :root {
     --background-color: #1d1e20;
     --text-color: #dadadb;
+    --summary-color: #2e2e33;
 }
 
 @layer base {
     * {
-        font-family: 'hana';
+        font-family: 'Ubuntu', sans-serif;
     }
 
     body {
         @apply text-[var(--text-color)] bg-[var(--background-color)];
     }
 
-    .summary_item {
-        @apply bg-[#2e2e33] p-6 rounded-lg;
-      }
-    #content {
-        @apply bg-[var(--background-color)];
+    .overflow-ellipsis-bundle {
+        @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
     }
 }
