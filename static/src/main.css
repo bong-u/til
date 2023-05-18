@@ -8,6 +8,7 @@
     --text-color: #dadadb;
     --summary-color: #2e2e33;
     --toc-hover-color: #9696a5;
+    --scroll-color: #52525b;
 }
 
 @layer base {
@@ -18,6 +19,19 @@
     body {
         @apply text-[var(--text-color)] bg-[var(--background-color)];
     }
+    
+    body::-webkit-scrollbar {
+        width: 15px;
+    }
+      
+    body::-webkit-scrollbar-track {
+        background: var(--background-color);
+    }
+    
+    body::-webkit-scrollbar-thumb {
+        background-color: var(--scroll-color);
+        border-radius: 14px;
+    };
 
     .overflow-ellipsis-bundle {
         @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
@@ -27,6 +41,10 @@
         height : calc(100vh - 150px);
         scrollbar-width: none;
         @apply w-full block pb-8 text-sm overflow-hidden hover:overflow-y-scroll;
+    }
+
+    #TableOfContents::-webkit-scrollbar {
+        width: 0px;
     }
     
     #TableOfContents ul {

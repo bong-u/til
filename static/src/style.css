@@ -431,6 +431,19 @@ body {
   color: var(--text-color);
 }
 
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-color);
+  border-radius: 14px;
+};
+
 .overflow-ellipsis-bundle {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -450,6 +463,10 @@ body {
 
 #TableOfContents:hover {
   overflow-y: scroll;
+}
+
+#TableOfContents::-webkit-scrollbar {
+  width: 0px;
 }
 
 #TableOfContents ul {
@@ -848,6 +865,7 @@ body {
   --text-color: #dadadb;
   --summary-color: #2e2e33;
   --toc-hover-color: #9696a5;
+  --scroll-color: #52525b;
 }
 
 @media (min-width: 768px) {
@@ -865,7 +883,13 @@ body {
     display: flex;
   }
 
-  .lg\:w-7\/12 {
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:w-7\/12 {
     width: 58.333333%;
   }
 }
