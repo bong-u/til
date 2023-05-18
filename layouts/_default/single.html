@@ -1,36 +1,51 @@
 {{ define "main" }}
+<aside class="fixed left-0 hidden md:flex">
+	{{ .Render "sidebar" }}
+</aside>
 
-<section class="w-full px-4">
-	<div class="mb-10">
-		<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-			<h1 id="title" class="overflow-hidden overflow-ellipsis text-3xl font-bold">{{ .Title }}</h1>
-			<div class="flex flex-col items-end">
-				<h4 id="date"> CREATED {{ .Date.Format "2006-01-02" }} </h4>
-				<h4 id="date"> MODIFIED {{ .Lastmod.Format "2006-01-02" }}</h4>
+<main class="flex w-full justify-center">
+	<section class="px-4 md:w-8/12">
+		<!-- title, created date, modified date -->
+		<div class="mb-10">
+			<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+				<h1 id="title" class="overflow-hidden overflow-ellipsis text-3xl font-bold">{{ .Title }}</h1>
+				<div class="flex flex-col items-end">
+					<h4 id="date"> CREATED {{ .Date.Format "2006-01-02" }} </h4>
+					<h4 id="date"> MODIFIED {{ .Lastmod.Format "2006-01-02" }}</h4>
+				</div>
 			</div>
 		</div>
-	</div>
-	<article id="content" class="bg-[var(--background-color)] markdown-body flex flex-col">
-		{{ .Content }}
-	</article>
-	</div>
-	<div id="meta" class="py-10">
-		<div>
-			{{ with .GetTerms "tags" }}
-			<ul id="tags">
-				{{ range . }}
-				<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+		<!--  -->
+
+		<!-- content -->
+		<article id="content" class="bg-[var(--background-color)] markdown-body flex flex-col">
+			{{ .Content }}
+		</article>
+		<!--  -->
+
+		<!-- tags, previous, next -->
+		<div id="meta" class="py-10">
+			<div>
+				{{ with .GetTerms "tags" }}
+				<ul id="tags">
+					{{ range . }}
+					<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+					{{ end }}
+				</ul>
 				{{ end }}
-			</ul>
-			{{ end }}
-			<div class="flex justify-between w-full whitespace-nowrap">
-				{{ with .PrevInSection }}
-				<a class="previous mr-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}"> {{.Title}}</a>
-				{{ end }}
-				{{ with .NextInSection }}
-				<a class="next ml-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}"> {{.Title}}</a>
-				{{ end }}
+				<div class="flex justify-between w-full whitespace-nowrap">
+					{{ with .PrevInSection }}
+					<a class="previous mr-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}">
+						{{.Title}}</a>
+					{{ end }}
+					{{ with .NextInSection }}
+					<a class="next ml-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}"> {{.Title}}</a>
+					{{ end }}
+				</div>
 			</div>
 		</div>
-</section>
+		<!--  -->
+
+	</section>
+</main>
 {{ end }}
