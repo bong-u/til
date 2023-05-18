@@ -438,11 +438,18 @@ body {
 }
 
 #TableOfContents {
+  height : calc(100vh - 150px);
+  scrollbar-width: none;
   display: block;
   width: 100%;
+  overflow: hidden;
   padding-bottom: 2rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#TableOfContents:hover {
+  overflow-y: scroll;
 }
 
 #TableOfContents ul {
@@ -450,7 +457,6 @@ body {
 }
 
 #TableOfContents ul:not(:first-child) {
-  /* @apply pl-4 text-sm; */
   padding-left: 1rem;
 }
 

@@ -24,7 +24,9 @@
     }
     
     #TableOfContents {
-        @apply w-full block pb-8 text-lg;
+        height : calc(100vh - 150px);
+        scrollbar-width: none;
+        @apply w-full block pb-8 text-sm overflow-hidden hover:overflow-y-scroll;
     }
     
     #TableOfContents ul {
@@ -32,7 +34,6 @@
     }
     
     #TableOfContents ul:not(:first-child) {
-        /* @apply pl-4 text-sm; */
         @apply pl-4;
     }
     
