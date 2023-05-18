@@ -45,7 +45,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">자료구조</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-05-11</h4>
+<h4 id=date> MODIFIED 2023-05-18</h4>
 </div>
 </div>
 </div>
@@ -399,13 +399,110 @@ levelorder : left -> right (from top level)</p>
 </li>
 <li>삽입 연산
 <blockquote>
-<p>분리 연산을 동반</p>
+<p>삽입 후 분리 연산을 수행</p>
 </blockquote>
 </li>
 <li>삭제 연산
 <blockquote>
+<p>삭제할 노드가 이파리 노드이면 그냥 삭제<br>
+삭제한 노드가 이파리 노드가 아니라면 교환 후 삭제
+이동 연산, 통합 연산 사용</p>
 </blockquote>
 </li>
+<li>이동 연산
+<blockquote>
+<p>빈 자리를 형제와 바꾼다<br>
+이동연산이 불가능하면 통합 연산 수행</p>
+</blockquote>
+</li>
+<li>통합 연산
+<blockquote>
+<p>삭제한 노드의 부모와 형제를 통합한다</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=2-3-트리의-수행시간>2-3 트리의 수행시간</h4>
+<ul>
+<li>탐색, 삽입, 삭제 연산 -> O($logn$) -> 트리의 높이에 비례</li>
+<li>분리 연산, 통합 연산 -> O(1)</li>
+<li>2-3트리가 가장 높은 경우 모든 노두가 2-노드인 경우
+<blockquote>
+<p>높이 : $ log_2(n+1) $</p>
+</blockquote>
+</li>
+<li>2-3트리가 가장 낮은 경우 모든 노드가 3-노드인 경우
+<blockquote>
+<p>높이 : $ log_3(n) $</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=54-2-3-4-트리>5.4 2-3-4 트리</h3>
+<blockquote>
+<p>2-3트리를 확장한 2-3-4 트리는 노드가 자식을 4개까지 가질 수 있는 완전균형트리</p>
+</blockquote>
+<ul>
+<li>이론적으로는 2-3트리와 동일하다 실제로는 더 빠름</li>
+</ul>
+<h3 id=55-b-트리>5.5 B-트리</h3>
+<h4 id=b-트리의-정의>B-트리의 정의</h4>
+<blockquote>
+<p>다수의 키를 가진 노드로 구성되어 다방향 탐색이 가능한 균현트리</p>
+</blockquote>
+<h4 id=b-트리의-연산>B-트리의 연산</h4>
+<ul>
+<li>탐색 연산
+<blockquote>
+<p>루트 부터 시작 각 노드에서 이진 탐색 수행</p>
+</blockquote>
+</li>
+<li>삽입 연산
+<blockquote>
+<p>이파리에 새 키를 수용할 공간이 있다면, 정렬된 상태를 유지하도록 삽입
+이미 M-1개의 키를 가지고 있으면, 분리 연산을 수행</p>
+</blockquote>
+</li>
+<li>삭제 연산
+<blockquote>
+<p>삭제할 노드가 이파리 노드이면 그냥 삭제
+삭제한 노드가 이파리 노드가 아니라면 교환 후 삭제
+이동 연산, 통합 연산 사용</p>
+</blockquote>
+</li>
+<li>이동 연산
+<blockquote>
+<p>키의 수가 M/2-1보다 작으면(underflow) 형제, 부모노드를 이능
+이동 연산이 불가능하면 통합 연산 수행</p>
+</blockquote>
+</li>
+<li>통합 연산
+<blockquote>
+<p>삭제한 노드의 부모와 형제를 통합한다</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=b-트리의-수행시간>B-트리의 수행시간</h4>
+<ul>
+<li>탐색, 삽입, 삭제 연산 -> O($log_{M/2}n$) -> 트리의 높이에 비례</li>
+</ul>
+<h2 id=제-6장--해시-테이블>제 6장 : 해시 테이블</h2>
+<h4 id=대표적인-해시-함수>대표적인 해시 함수</h4>
+<ul>
+<li>중간 제곱 함수 : 키를 제곱한 후, 적절한 크기의 중간 부분을 사용</li>
+<li>접기 함수 : 키를 여러 부분으로 나눈 후, 이들을 더한 값을 사용</li>
+</ul>
+<h4 id=자바의-hashcode>자바의 hashCode()</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hash</span><span style=color:#f92672>(</span>Key k<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+  <span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>k<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>&amp;</span> 0x7fffffff<span style=color:#f92672>)</span> <span style=color:#f92672>%</span> M<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h4 id=해시-테이블의-저장-방식>해시 테이블의 저장 방식</h4>
+<ul>
+<li>개방 주소 방식 : 충돌된 키를 일정한 방식에 따라 찾아낸 empty원소에 저장</li>
+<li>선형 조사, 이차조사, 이중해싱</li>
+</ul>
+<h4 id=선형-조사--충돌이-일어난-곳으로부터-순차적으로-탐색>선형 조사 : 충돌이 일어난 곳으로부터 순차적으로 탐색</h4>
+<ul>
+<li>1차 군집화 (키들이 뭉쳐지는 현상) 발생</li>
+<li>군집화는 군집된 키들을 순차적으로 방문해야하는 문제점을 일으킨다</li>
 </ul>
 </article>
 </div>
