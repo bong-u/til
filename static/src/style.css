@@ -437,6 +437,35 @@ body {
   white-space: nowrap;
 }
 
+#TableOfContents {
+  display: block;
+  width: 100%;
+  padding-bottom: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+#TableOfContents ul {
+  margin-left: 0px;
+}
+
+#TableOfContents ul:not(:first-child) {
+  padding-left: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#TableOfContents a:hover {
+  color: var(--toc-hover-color);
+}
+
+#TableOfContents ul > li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 1rem;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -599,6 +628,11 @@ body {
   margin-right: 2rem;
 }
 
+.mx-9 {
+  margin-left: 2.25rem;
+  margin-right: 2.25rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -664,6 +698,10 @@ body {
 
 .w-5 {
   width: 1.25rem;
+}
+
+.w-56 {
+  width: 14rem;
 }
 
 .w-60 {
@@ -804,6 +842,7 @@ body {
   --background-color: #1d1e20;
   --text-color: #dadadb;
   --summary-color: #2e2e33;
+  --toc-hover-color: #9696a5;
 }
 
 @media (min-width: 768px) {
@@ -814,13 +853,13 @@ body {
   .md\:w-6\/12 {
     width: 50%;
   }
-
-  .md\:w-8\/12 {
-    width: 66.666667%;
-  }
 }
 
 @media (min-width: 1024px) {
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:w-7\/12 {
     width: 58.333333%;
   }

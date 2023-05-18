@@ -1,10 +1,14 @@
 {{ define "main" }}
-<aside class="fixed left-0 hidden md:flex">
+<aside class="fixed left-0 hidden lg:flex">
 	{{ .Render "sidebar" }}
 </aside>
 
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+	{{ .TableOfContents }}
+</aside>
+
 <main class="flex w-full justify-center">
-	<section class="px-4 md:w-8/12">
+	<section class="px-4 w-11/12 lg:w-7/12">
 		<!-- title, created date, modified date -->
 		<div class="mb-10">
 			<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
@@ -48,4 +52,5 @@
 
 	</section>
 </main>
+
 {{ end }}

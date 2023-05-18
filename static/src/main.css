@@ -7,6 +7,7 @@
     --background-color: #1d1e20;
     --text-color: #dadadb;
     --summary-color: #2e2e33;
+    --toc-hover-color: #9696a5;
 }
 
 @layer base {
@@ -20,5 +21,25 @@
 
     .overflow-ellipsis-bundle {
         @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    }
+    
+    #TableOfContents {
+        @apply w-full block pb-8 text-lg;
+    }
+    
+    #TableOfContents ul {
+        @apply ml-0;
+    }
+    
+    #TableOfContents ul:not(:first-child) {
+        @apply pl-4 text-sm;
+    }
+    
+    #TableOfContents a:hover {
+        @apply text-[var(--toc-hover-color)];
+    }
+    
+    #TableOfContents ul > li {
+        @apply pl-4 overflow-ellipsis-bundle;
     }
 }
