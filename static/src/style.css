@@ -450,9 +450,8 @@ body {
 }
 
 #TableOfContents ul:not(:first-child) {
+  /* @apply pl-4 text-sm; */
   padding-left: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 #TableOfContents a:hover {

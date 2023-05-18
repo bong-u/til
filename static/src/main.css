@@ -32,7 +32,8 @@
     }
     
     #TableOfContents ul:not(:first-child) {
-        @apply pl-4 text-sm;
+        /* @apply pl-4 text-sm; */
+        @apply pl-4;
     }
     
     #TableOfContents a:hover {
