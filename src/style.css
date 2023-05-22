@@ -423,8 +423,6 @@ video {
 }
 
 * {
-  /* font-family: 'hana'; */
-  /* font-family: 'NotosansKR'; */
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -433,7 +431,57 @@ body {
   color: var(--text-color);
 }
 
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-color);
+  border-radius: 14px;
+};
+
 .overflow-ellipsis-bundle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#TableOfContents {
+  height : calc(100vh - 150px);
+  scrollbar-width: none;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#TableOfContents::-webkit-scrollbar {
+  width: 0px;
+}
+
+#TableOfContents ul {
+  margin-left: 0px;
+}
+
+#TableOfContents ul:not(:first-child) {
+  padding-left: 1rem;
+}
+
+#TableOfContents a.current {
+  font-weight: 700;
+}
+
+#TableOfContents a:hover {
+  color: var(--toc-hover-color);
+}
+
+#TableOfContents ul > li {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -601,6 +649,11 @@ body {
   margin-right: 2rem;
 }
 
+.mx-9 {
+  margin-left: 2.25rem;
+  margin-right: 2.25rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -666,6 +719,10 @@ body {
 
 .w-5 {
   width: 1.25rem;
+}
+
+.w-56 {
+  width: 14rem;
 }
 
 .w-60 {
@@ -802,12 +859,12 @@ body {
   transition-duration: 150ms;
 }
 
-/* @import url(http://fonts.googleapis.com/earlyaccess/hanna.css); */
-
 :root {
   --background-color: #1d1e20;
   --text-color: #dadadb;
   --summary-color: #2e2e33;
+  --toc-hover-color: #9696a5;
+  --scroll-color: #52525b;
 }
 
 @media (min-width: 768px) {
@@ -815,11 +872,23 @@ body {
     display: flex;
   }
 
-  .md\:w-8\/12 {
-    width: 66.666667%;
+  .md\:w-6\/12 {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex {
+    display: flex;
   }
 
-  .md\:w-9\/12 {
-    width: 75%;
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:w-7\/12 {
+    width: 58.333333%;
   }
 }

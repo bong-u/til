@@ -26,20 +26,87 @@
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
-<aside class="fixed left-0 hidden md:flex">
-<aside class="flex flex-col w-60">
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/school> school </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
-</aside>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#메시지패킷-프레임-계층>메시지(패킷, 프레임), 계층</a>
+<ul>
+<li><a href=#osi-7-model>OSI 7 Model</a></li>
+<li><a href=#tcpip-계층>TCP/IP 계층</a></li>
+<li><a href=#protocol-suite>Protocol Suite</a></li>
+<li><a href=#아날로그-신호---사인-함수>아날로그 신호 - 사인 함수</a></li>
+<li><a href=#아날로그-신호---용어>아날로그 신호 - 용어</a></li>
+</ul>
+</li>
+<li><a href=#analog---digital>Analog -> Digital</a>
+<ul>
+<li><a href=#pcm-pulse-code-modulation-펄스-부호-변조>PCM (Pulse-code modulation, 펄스 부호 변조)</a></li>
+<li><a href=#nyquist-sampling-theorem>Nyquist sampling theorem</a></li>
+<li><a href=#nyquist-bit-rate---무잡음-채널>Nyquist bit rate - 무잡음 채널</a></li>
+<li><a href=#섀넌-용량-shannon-capacity---잡음채널>섀넌 용량 (Shannon Capacity) - 잡음채널</a></li>
+</ul>
+</li>
+<li><a href=#digital---analog>Digital -> Analog</a>
+<ul>
+<li><a href=#ask-amplitude-shift-keying>ASK (Amplitude Shift Keying)</a></li>
+<li><a href=#fsk-frequency-shift-keying>FSK (Frequency Shift Keying)</a></li>
+<li><a href=#psk-phase-shift-keying>PSK (Phase Shift Keying)</a></li>
+<li><a href=#qam-quadrature-amplitude-modulation>QAM (Quadrature Amplitude Modulation)</a></li>
+<li><a href=#fourier-transfer>Fourier Transfer</a></li>
+<li><a href=#reed-solomonrs-code>Reed-Solomon(RS) Code</a></li>
+</ul>
+</li>
+<li><a href=#line-coding>Line coding</a>
+<ul>
+<li><a href=#unipolar-nrz-non-return-to-zero>Unipolar NRZ (Non return to Zero)</a></li>
+<li><a href=#polar-nrz-l>Polar NRZ-L</a></li>
+<li><a href=#polar-nrz-i>Polar NRZ-I</a></li>
+<li><a href=#rz-return-to-zero>RZ (Return to Zero)</a></li>
+<li><a href=#manchester>Manchester</a></li>
+<li><a href=#differential-manchester>Differential Manchester</a></li>
+</ul>
+</li>
+<li><a href=#cable>Cable</a>
+<ul>
+<li><a href=#전송-매체-transmission-media>전송 매체 (Transmission media)</a></li>
+<li><a href=#ethernet-cable-이더넷-케이블>Ethernet cable (이더넷 케이블)</a></li>
+<li><a href=#coaxial-cable-동축-케이블>Coaxial Cable (동축 케이블)</a></li>
+<li><a href=#fiber-optic-cable-광-케이블>Fiber-optic cable (광 케이블)</a></li>
+<li><a href=#무선-통신-기술>무선 통신 기술</a></li>
+</ul>
+</li>
+<li><a href=#다중화-기술>다중화 기술</a>
+<ul>
+<li><a href=#multiplexing>Multiplexing</a></li>
+<li><a href=#fdm-주파수분할다중화-frequency-division-multiplexing>FDM (주파수분할다중화: Frequency-division multiplexing)</a></li>
+<li><a href=#tdm시간분할다중화>TDM(시간분할다중화)</a></li>
+<li><a href=#t1-다중화>T1 다중화</a></li>
+</ul>
+</li>
+<li><a href=#switching>Switching</a>
+<ul>
+<li><a href=#회선-교환망-circuit-switched-network>회선 교환망 (Circuit-switched Network)</a></li>
+<li><a href=#패킷-교환망-packet-switched-network>패킷 교환망 (Packet-switched Network)</a></li>
+<li><a href=#패킷-교환기-라우터>패킷 교환기 (라우터)</a></li>
+<li><a href=#관련-명령어>관련 명령어</a></li>
+</ul>
+</li>
+<li><a href=#통신-속도>통신 속도</a>
+<ul>
+<li><a href=#처리율-throughput>처리율 (Throughput)</a></li>
+<li><a href=#통신-지연-시간>통신 지연 시간</a></li>
+<li><a href=#decibel-db>Decibel, dB</a></li>
+<li><a href=#전력-무선신호>전력, 무선신호</a></li>
+<li><a href=#신호를-방해하는-요소>신호를 방해하는 요소</a></li>
+</ul>
+</li>
+<li><a href=#데이터-링크-계층>데이터 링크 계층</a></li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
-<section class="w-full md:w-8/12">
-<section class="w-full px-4">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">데이터통신</h1>
@@ -539,14 +606,14 @@ $$ L_b = 10log {B \over A} |dB| $$</li>
 </li>
 </ul>
 </article>
-</div>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/basicprojectlab_design_thinking/> 230315 기프랩 Design Thinking 방법론 - 김재정 교수님</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/basicprojectlab_design_thinking/>
+230315 기프랩 Design Thinking 방법론 - 김재정 교수님</a>
 </div>
 </div>
-</section>
+</div>
 </section>
 </main>
 </body>

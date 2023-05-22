@@ -26,20 +26,22 @@
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
-<aside class="fixed left-0 hidden md:flex">
-<aside class="flex flex-col w-60">
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/school> school </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
-</aside>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#시도-1>시도 1</a></li>
+<li><a href=#해결-방법>해결 방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
-<section class="w-full md:w-8/12">
-<section class="w-full px-4">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">11003 : 최솟값 찾기 (P5)</h1>
@@ -133,15 +135,15 @@ print(<span style=color:#f92672>*</span>result)
 </li>
 </ul>
 </article>
-</div>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_17144/> 17144 : 미세먼지 안녕! (G4)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_17144/>
+17144 : 미세먼지 안녕! (G4)</a>
 <a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_1976/> 1976 : 여행 가자 (G4)</a>
 </div>
 </div>
-</section>
+</div>
 </section>
 </main>
 </body>

@@ -20,3 +20,4 @@ window.onload = () => {
         imgElement.src = imgElement.src.replace('/static/image', '/til-hugo/image');
     }
 }
+

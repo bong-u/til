@@ -26,31 +26,85 @@
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
-<aside class="fixed left-0 hidden md:flex">
-<aside class="flex flex-col w-60">
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/school> school </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
-</aside>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#제-1장--자료구조를-배우기-위한-준비-230302>제 1장 : 자료구조를 배우기 위한 준비 (230302)</a>
+<ul>
+<li><a href=#배열>배열</a></li>
+<li><a href=#추상데이터-타입>추상데이터 타입</a></li>
+</ul>
+</li>
+<li><a href=#1-2-수행시간의-분석>1-2 수행시간의 분석</a></li>
+<li><a href=#1-3-수행시간의-점근표기법>1-3 수행시간의 점근표기법</a>
+<ul>
+<li><a href=#o-big-oh-표기법>O (Big-Oh) 표기법</a></li>
+<li><a href=#ω-big-omega-표기법>Ω (Big-Omega) 표기법</a></li>
+<li><a href=#θ-theta-표기법>Θ (Theta) 표기법</a></li>
+<li><a href=#자주-사용되는-함수의-o-표기와-이름>자주 사용되는 함수의 O-표기와 이름</a></li>
+</ul>
+</li>
+<li><a href=#1-5-순환-recursion>1-5 순환 (Recursion)</a>
+<ul>
+<li><a href=#순환으로-구현된-메소드의-구성요소>순환으로 구현된 메소드의 구성요소</a></li>
+<li><a href=#꼬리-순환-tail-recursion>꼬리 순환 (Tail Recursion)</a></li>
+</ul>
+</li>
+<li><a href=#제-2장--리스트>제 2장 : 리스트</a>
+<ul>
+<li><a href=#리스트>리스트</a></li>
+<li><a href=#배열-1>배열</a></li>
+<li><a href=#배열로-리스트-구현-arrlist>배열로 리스트 구현 (ArrList)</a></li>
+<li><a href=#단순-연결-리스트singly-linked-list>단순 연결 리스트(Singly Linked List)</a></li>
+<li><a href=#이중-연결-리스트-doubly-linked-list>이중 연결 리스트 (Doubly Linked List)</a></li>
+<li><a href=#원형-연결-리스트circular-linked-list>원형 연결 리스트(Circular Linked List)</a></li>
+</ul>
+</li>
+<li><a href=#제-3장--스택과-큐>제 3장 : 스택과 큐</a>
+<ul>
+<li><a href=#스택>스택</a></li>
+</ul>
+</li>
+<li><a href=#제-4장--트리>제 4장 : 트리</a>
+<ul>
+<li><a href=#용어>용어</a></li>
+<li><a href=#왼쪽-자식-오른쪽-형제-left-child-right-sibling-표현>왼쪽 자식-오른쪽 형제 (Left Child-Right Sibling) 표현</a></li>
+<li><a href=#이진-트리-binary-tree>이진 트리 (Binary Tree)</a></li>
+<li><a href=#이진-트리의-순회>이진 트리의 순회</a></li>
+<li><a href=#수행-시간>수행 시간</a></li>
+<li><a href=#집합의-표현>집합의 표현</a></li>
+</ul>
+</li>
+<li><a href=#제-5장--탐색-트리>제 5장 : 탐색 트리</a>
+<ul>
+<li><a href=#52-avl-트리>5.2 AVL 트리</a></li>
+<li><a href=#53-2-3-트리>5.3 2-3 트리</a></li>
+<li><a href=#54-2-3-4-트리>5.4 2-3-4 트리</a></li>
+<li><a href=#55-b-트리>5.5 B-트리</a></li>
+</ul>
+</li>
+<li><a href=#제-6장--해시-테이블>제 6장 : 해시 테이블</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
-<section class="w-full md:w-8/12">
-<section class="w-full px-4">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">자료구조</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-05-18</h4>
+<h4 id=date> MODIFIED 2023-05-22</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
-<h1 id=제-1장--자료구조를-배우기-위한-준비-230302>제 1장 : 자료구조를 배우기 위한 준비 (230302)</h1>
+<h2 id=제-1장--자료구조를-배우기-위한-준비-230302>제 1장 : 자료구조를 배우기 위한 준비 (230302)</h2>
 <h3 id=배열>배열</h3>
 <ul>
 <li>배열(Array): 동일한 타입의 원소들이 <strong>연속적인 메모리 공간</strong>에 할당되어 있는 기초적인 자료구조</li>
@@ -130,7 +184,7 @@
     <span style=color:#66d9ef>return</span> factorial<span style=color:#f92672>(</span> <span style=color:#f92672>,);</span>
   <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><h1 id=제-2장--리스트>제 2장 : 리스트</h1>
+</code></pre></div><h2 id=제-2장--리스트>제 2장 : 리스트</h2>
 <h3 id=리스트>리스트</h3>
 <ul>
 <li>일련의 동일한 타입의 항목들이 나열된 것</li>
@@ -184,8 +238,8 @@
 </ul>
 </li>
 </ul>
-<h1 id=제-3장--스택과-큐>제 3장 : 스택과 큐</h1>
-<h2 id=스택>스택</h2>
+<h2 id=제-3장--스택과-큐>제 3장 : 스택과 큐</h2>
+<h3 id=스택>스택</h3>
 <ul>
 <li>배열로 구현 / LinkedList로 구현</li>
 <li>후위 표기 &lt;-> 중위 표기</li>
@@ -505,15 +559,15 @@ levelorder : left -> right (from top level)</p>
 <li>군집화는 군집된 키들을 순차적으로 방문해야하는 문제점을 일으킨다</li>
 </ul>
 </article>
-</div>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/probabilityandstatistics/> 확률과 통계</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/probabilityandstatistics/>
+확률과 통계</a>
 <a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/operatingsystem/> 운영체제</a>
 </div>
 </div>
-</section>
+</div>
 </section>
 </main>
 </body>

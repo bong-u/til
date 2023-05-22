@@ -26,55 +26,237 @@
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
-<aside class="fixed left-0 hidden md:flex">
-<aside class="flex flex-col w-60">
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/school> school </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
-</aside>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#글로벌-매너>글로벌 매너</a>
+<ul>
+<li><a href=#매너>매너</a></li>
+<li><a href=#매너와-에티켓의-차이>매너와 에티켓의 차이</a></li>
+<li><a href=#동양의-매너>동양의 매너</a></li>
+<li><a href=#서양의-매너-기원--성경>서양의 매너 (기원 : 성경)</a></li>
+<li><a href=#동서양-매너의-차이>동서양 매너의 차이</a></li>
+</ul>
+</li>
+<li><a href=#소개와-인사-1>소개와 인사 1</a>
+<ul>
+<li><a href=#자기소개>자기소개</a></li>
+<li><a href=#회사-직급>회사 직급</a></li>
+<li><a href=#소개-순서>소개 순서</a></li>
+<li><a href=#서신-소개>서신 소개</a></li>
+<li><a href=#인사>인사</a></li>
+<li><a href=#인사의-기능>인사의 기능</a></li>
+<li><a href=#공수>공수</a></li>
+<li><a href=#읍례-읍>읍례 (읍)</a></li>
+</ul>
+</li>
+<li><a href=#소개와-인사-2>소개와 인사 2</a>
+<ul>
+<li><a href=#우리나라-절의-종류>우리나라 절의 종류</a></li>
+<li><a href=#여성의-큰절>여성의 큰절</a></li>
+<li><a href=#여성의-평절>여성의 평절</a></li>
+<li><a href=#남성의-큰절>남성의 큰절</a></li>
+<li><a href=#남자의-평절>남자의 평절</a></li>
+<li><a href=#반평>반평</a></li>
+<li><a href=#경례>경례</a></li>
+<li><a href=#경례의-종류>경례의 종류</a></li>
+<li><a href=#목례>목례</a></li>
+<li><a href=#악수>악수</a></li>
+<li><a href=#적절한-인사말>적절한 인사말</a></li>
+</ul>
+</li>
+<li><a href=#세계-각-국의-인사법>세계 각 국의 인사법</a>
+<ul>
+<li><a href=#인도>인도</a></li>
+<li><a href=#중동>중동</a></li>
+<li><a href=#중국>중국</a></li>
+<li><a href=#태국>태국</a></li>
+</ul>
+</li>
+<li><a href=#명함-매너>명함 매너</a>
+<ul>
+<li><a href=#명함의-기능>명함의 기능</a></li>
+<li><a href=#명함의-종류>명함의 종류</a></li>
+<li><a href=#명함-교환-방법>명함 교환 방법</a></li>
+</ul>
+</li>
+<li><a href=#사교매너-방문-접대-임신-출산>사교매너 방문 접대 임신 출산</a>
+<ul>
+<li><a href=#방문>방문</a></li>
+<li><a href=#방문-시-기본-매너>방문 시 기본 매너</a></li>
+<li><a href=#가정으로의-방문>가정으로의 방문</a></li>
+<li><a href=#직장으로의-방문>직장으로의 방문</a></li>
+<li><a href=#병원으로의-방문>병원으로의 방문</a></li>
+<li><a href=#접대>접대</a></li>
+<li><a href=#접대매너>접대매너</a></li>
+<li><a href=#접대매너-직장>접대매너 (직장)</a></li>
+<li><a href=#임신-및-출산>임신 및 출산</a></li>
+<li><a href=#임신>임신</a></li>
+<li><a href=#출산>출산</a></li>
+</ul>
+</li>
+<li><a href=#경조사-생일-결혼>경조사 생일 결혼</a>
+<ul>
+<li><a href=#생일>생일</a></li>
+<li><a href=#성년의-날>성년의 날</a></li>
+<li><a href=#혼례-결혼식>혼례 (결혼식)</a></li>
+<li><a href=#전통혼례의-절차>전통혼례의 절차</a></li>
+<li><a href=#함-함진애비-납폐-봉채떡>함, 함진애비, 납폐, 봉채떡</a></li>
+<li><a href=#현대식-결혼식>현대식 결혼식</a></li>
+</ul>
+</li>
+<li><a href=#경조사-장례>경조사 장례</a>
+<ul>
+<li><a href=#서양의-장례식>서양의 장례식</a></li>
+<li><a href=#장례-절차>장례 절차</a></li>
+<li><a href=#장례-첫째날>장례 첫째날</a></li>
+<li><a href=#장례-둘째날>장례 둘째날</a></li>
+<li><a href=#장례-셋째날>장례 셋째날</a></li>
+<li><a href=#장례-후-제의>장례 후 제의</a></li>
+<li><a href=#조문-예절>조문 예절</a></li>
+<li><a href=#문상-시-복장>문상 시 복장</a></li>
+<li><a href=#조문-시-인사말>조문 시 인사말</a></li>
+<li><a href=#조문시-영전에-분향하는-방법>조문시 영전에 분향하는 방법</a></li>
+<li><a href=#조의금-전달>조의금 전달</a></li>
+</ul>
+</li>
+<li><a href=#경조사-제례>경조사 제례</a>
+<ul>
+<li><a href=#제례의-종류>제례의 종류</a></li>
+<li><a href=#차례상>차례상</a></li>
+<li><a href=#제사음식과-기본-상식>제사음식과 기본 상식</a></li>
+<li><a href=#신주-신위>신주 (신위)</a></li>
+</ul>
+</li>
+<li><a href=#청탁금지법>청탁금지법</a>
+<ul>
+<li><a href=#청탁금지법-김영란법>청탁금지법 (김영란법)</a></li>
+<li><a href=#1-부정청탁-금지>1. 부정청탁 금지</a></li>
+<li><a href=#2-금품수수-금지>2. 금품수수 금지</a></li>
+<li><a href=#연습문제>연습문제</a></li>
+</ul>
+</li>
+<li><a href=#저작권법>저작권법</a>
+<ul>
+<li><a href=#저작권>저작권</a></li>
+</ul>
+</li>
+<li><a href=#직장매너>직장매너</a>
+<ul>
+<li><a href=#호칭>호칭</a></li>
+<li><a href=#인사말>인사말</a></li>
+<li><a href=#바르게-앉는-자세>바르게 앉는 자세</a></li>
+<li><a href=#지시-받을-때>지시 받을 때</a></li>
+</ul>
+</li>
+<li><a href=#20대-자산형성>20대 자산형성</a>
+<ul>
+<li><a href=#종잣돈-모으기>종잣돈 모으기</a></li>
+</ul>
+</li>
+<li><a href=#재무목표-설정-방법>재무목표 설정 방법</a>
+<ul>
+<li><a href=#현명한-소비-생활>현명한 소비 생활</a></li>
+</ul>
+</li>
+<li><a href=#예산-생활>예산 생활</a>
+<ul>
+<li><a href=#재무-목표의-요건>재무 목표의 요건</a></li>
+</ul>
+</li>
+<li><a href=#블랙-컨슈머>블랙 컨슈머</a>
+<ul>
+<li><a href=#소비자-권익>소비자 권익</a></li>
+<li><a href=#블랙컨슈머>블랙컨슈머</a></li>
+<li><a href=#비매너-컨슈머>비매너 컨슈머</a></li>
+<li><a href=#윤리적-소비>윤리적 소비</a></li>
+<li><a href=#크라우드-펀딩>크라우드 펀딩</a></li>
+</ul>
+</li>
+<li><a href=#사회적-기업>사회적 기업</a>
+<ul>
+<li><a href=#사회적-기업-1>사회적 기업</a></li>
+</ul>
+</li>
+<li><a href=#커뮤니케이션-매너>커뮤니케이션 매너</a>
+<ul>
+<li><a href=#나-전달법-i-message>나 전달법 (I-Message)</a></li>
+<li><a href=#대화의-협력성>대화의 협력성</a></li>
+<li><a href=#남성의-결혼-후-가족간의-호칭>남성의 결혼 후 가족간의 호칭</a></li>
+<li><a href=#여성의-결혼-후-가족간의-호칭>여성의 결혼 후 가족간의 호칭</a></li>
+<li><a href=#토론-시-경청자의-매너>토론 시 경청자의 매너</a></li>
+<li><a href=#통신-매너-편지>통신 매너 (편지)</a></li>
+</ul>
+</li>
+<li><a href=#음주매너1>음주매너(1)</a>
+<ul>
+<li><a href=#적포도주>적포도주</a></li>
+<li><a href=#백포도주>백포도주</a></li>
+<li><a href=#로제>로제</a></li>
+<li><a href=#아이스와인>아이스와인</a></li>
+<li><a href=#디저트-와인>디저트 와인</a></li>
+<li><a href=#스파클링-와인>스파클링 와인</a></li>
+<li><a href=#포도주-라벨>포도주 라벨</a></li>
+<li><a href=#와인의-당도>와인의 당도</a></li>
+<li><a href=#와인잔의-종류-사진자료>와인잔의 종류 (사진자료)</a></li>
+<li><a href=#와인-따르는-방법>와인 따르는 방법</a></li>
+<li><a href=#와인-받는-방법>와인 받는 방법</a></li>
+</ul>
+</li>
+<li><a href=#음주매너2>음주매너(2)</a>
+<ul>
+<li><a href=#파티에서-와인을-따르는-매너>파티에서 와인을 따르는 매너</a></li>
+<li><a href=#남은-술-보관-방법>남은 술 보관 방법</a></li>
+<li><a href=#양주의-종류>양주의 종류</a></li>
+<li><a href=#중국-1>중국</a></li>
+<li><a href=#일본>일본</a></li>
+<li><a href=#프랑스>프랑스</a></li>
+<li><a href=#독일>독일</a></li>
+<li><a href=#영국>영국</a></li>
+<li><a href=#미국>미국</a></li>
+<li><a href=#러시아>러시아</a></li>
+</ul>
+</li>
+<li><a href=#흡연매너>흡연매너</a>
+<ul>
+<li><a href=#담배-속-유해물질>담배 속 유해물질</a></li>
+</ul>
+</li>
+<li><a href=#한국-음식>한국 음식</a>
+<ul>
+<li><a href=#특징>특징</a></li>
+<li><a href=#김치의-발효-원리>김치의 발효 원리</a></li>
+<li><a href=#우리나라-지역별-김치-종류>우리나라 지역별 김치 종류</a></li>
+<li><a href=#서양-음식과-비교>서양 음식과 비교</a></li>
+</ul>
+</li>
+<li><a href=#글로벌전통음식--브라질-중국>글로벌전통음식 : 브라질, 중국</a>
+<ul>
+<li><a href=#한국-일본-중국의-젓가락-비교>한국, 일본, 중국의 젓가락 비교</a></li>
+</ul>
+</li>
+<li><a href=#글로벌-전통음식--프랑스>글로벌 전통음식 : 프랑스</a>
+<ul>
+<li><a href=#프랑스에서-금기시-되는-행동>프랑스에서 금기시 되는 행동</a></li>
+<li><a href=#프랑스-코스-요리>프랑스 코스 요리</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
-<section class="w-full md:w-8/12">
-<section class="w-full px-4">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">현대인의 생활문화</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> MODIFIED 2023-05-22</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
-<h2 id=목차>목차</h2>
-<h3 id=1-글로벌-매너글로벌-매너><a href=#%EA%B8%80%EB%A1%9C%EB%B2%8C-%EB%A7%A4%EB%84%88>1. 글로벌 매너</a></h3>
-<h3 id=2-소개와-인사1소개와-인사-1><a href=#%EC%86%8C%EA%B0%9C%EC%99%80-%EC%9D%B8%EC%82%AC-1>2. 소개와 인사1</a></h3>
-<h3 id=3-소개와-인사2소개와-인사-2><a href=#%EC%86%8C%EA%B0%9C%EC%99%80-%EC%9D%B8%EC%82%AC-2>3. 소개와 인사2</a></h3>
-<h3 id=4-세계-각-국의-인사법세계-각-국의-인사법><a href=#%EC%84%B8%EA%B3%84-%EA%B0%81-%EA%B5%AD%EC%9D%98-%EC%9D%B8%EC%82%AC%EB%B2%95>4. 세계 각 국의 인사법</a></h3>
-<h3 id=5-명함매너명함-매너><a href=#%EB%AA%85%ED%95%A8-%EB%A7%A4%EB%84%88>5. 명함매너</a></h3>
-<h3 id=6-사교매너-방문-접대-임신-출산사교매너-방문-접대-임신-출산><a href=#%EC%82%AC%EA%B5%90%EB%A7%A4%EB%84%88-%EB%B0%A9%EB%AC%B8-%EC%A0%91%EB%8C%80-%EC%9E%84%EC%8B%A0-%EC%B6%9C%EC%82%B0>6. 사교매너 방문 접대 임신 출산</a></h3>
-<h3 id=7-경조사-생일-결혼경조사-생일-결혼><a href=#%EA%B2%BD%EC%A1%B0%EC%82%AC-%EC%83%9D%EC%9D%BC-%EA%B2%B0%ED%98%BC>7. 경조사 생일 결혼</a></h3>
-<h3 id=8-경조사-장례경조사-장례><a href=#%EA%B2%BD%EC%A1%B0%EC%82%AC-%EC%9E%A5%EB%A1%80>8. 경조사 장례</a></h3>
-<h3 id=9-경조사-제례경조사-제례><a href=#%EA%B2%BD%EC%A1%B0%EC%82%AC-%EC%A0%9C%EB%A1%80>9. 경조사 제례</a></h3>
-<h3 id=10-청탁금지법청탁금지법><a href=#%EC%B2%AD%ED%83%81%EA%B8%88%EC%A7%80%EB%B2%95>10. 청탁금지법</a></h3>
-<h3 id=11-저작권법저작권법><a href=#%EC%A0%80%EC%9E%91%EA%B6%8C%EB%B2%95>11. 저작권법</a></h3>
-<h3 id=12-직장매너직장매너><a href=#%EC%A7%81%EC%9E%A5%EB%A7%A4%EB%84%88>12. 직장매너</a></h3>
-<h3 id=13-20대-자산형성20대-자산형성><a href=#20%EB%8C%80-%EC%9E%90%EC%82%B0%ED%98%95%EC%84%B1>13. 20대 자산형성</a></h3>
-<h3 id=14-재무목표-설정-방법재무목표-설정-방법><a href=#%EC%9E%AC%EB%AC%B4%EB%AA%A9%ED%91%9C-%EC%84%A4%EC%A0%95-%EB%B0%A9%EB%B2%95>14. 재무목표 설정 방법</a></h3>
-<h3 id=15-블랙-컨슈머블랙-컨슈머><a href=#%EB%B8%94%EB%9E%99-%EC%BB%A8%EC%8A%88%EB%A8%B8>15. 블랙 컨슈머</a></h3>
-<h3 id=16-사회적-기업사회적-기업><a href=#%EC%82%AC%ED%9A%8C%EC%A0%81-%EA%B8%B0%EC%97%85>16. 사회적 기업</a></h3>
-<h3 id=17-커뮤니케이션-매너커뮤니케이션-매너><a href=#%EC%BB%A4%EB%AE%A4%EB%8B%88%EC%BC%80%EC%9D%B4%EC%85%98-%EB%A7%A4%EB%84%88>17. 커뮤니케이션 매너</a></h3>
-<h3 id=18-음주매너1음주매너1><a href=#%EC%9D%8C%EC%A3%BC%EB%A7%A4%EB%84%881>18. 음주매너1</a></h3>
-<h3 id=19-음주매너2음주매너2><a href=#%EC%9D%8C%EC%A3%BC%EB%A7%A4%EB%84%882>19. 음주매너2</a></h3>
-<h3 id=20-흡연매너흡연매너><a href=#%ED%9D%A1%EC%97%B0%EB%A7%A4%EB%84%88>20. 흡연매너</a></h3>
-<h3 id=21-한국음식한국-음식><a href=#%ED%95%9C%EA%B5%AD-%EC%9D%8C%EC%8B%9D>21. 한국음식</a></h3>
-<h3 id=22-글로벌전통음식--브라질-중국글로벌전통음식--브라질-중국><a href=#%EA%B8%80%EB%A1%9C%EB%B2%8C%EC%A0%84%ED%86%B5%EC%9D%8C%EC%8B%9D--%EB%B8%8C%EB%9D%BC%EC%A7%88-%EC%A4%91%EA%B5%AD>22. 글로벌전통음식 : 브라질, 중국</a></h3>
-<h3 id=23-글로벌전통음국--프랑스글로벌-전통음식--프랑스><a href=#%EA%B8%80%EB%A1%9C%EB%B2%8C-%EC%A0%84%ED%86%B5%EC%9D%8C%EC%8B%9D--%ED%94%84%EB%9E%91%EC%8A%A4>23. 글로벌전통음국 : 프랑스</a></h3>
-<hr>
 <h2 id=글로벌-매너>글로벌 매너</h2>
 <h3 id=매너>매너</h3>
 <blockquote>
@@ -1554,14 +1736,13 @@
 </li>
 </ul>
 </article>
-</div>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
 <a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/ood/> 객체지향설계</a>
 </div>
 </div>
-</section>
+</div>
 </section>
 </main>
 </body>

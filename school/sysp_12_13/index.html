@@ -26,35 +26,52 @@
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
 </header>
-<aside class="fixed left-0 hidden md:flex">
-<aside class="flex flex-col w-60">
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/algorithm> algorithm </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/javascript> javascript </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/lecture> lecture </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/school> school </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/kubernetes> kubernetes </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/spring> spring </a>
-<a class="mx-8 py-3 font-bold" href=https://bong-u.github.io/til-hugo/java> java </a>
-</aside>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#-12-memory-1>## 12-memory-1</a>
+<ul>
+<li><a href=#메모리에-관한-불편한-진실>메모리에 관한 불편한 진실</a></li>
+<li><a href=#동적-메모리-할당>동적 메모리 할당</a></li>
+<li><a href=#프로세스의-메모리-이미지>프로세스의 메모리 이미지</a></li>
+<li><a href=#malloc-package>Malloc package</a></li>
+<li><a href=#우수한-mallocfree-프로그램의-목표>우수한 malloc/free 프로그램의 목표</a></li>
+<li><a href=#성능-지표-1--처리량-throughput>성능 지표 1 : 처리량 (Throughput)</a></li>
+<li><a href=#성능-지표-2--최대-메모리-이용율-utilization>성능 지표 2 : 최대 메모리 이용율 (Utilization)</a></li>
+<li><a href=#내부-메모리-단편화-internal-fragmentation>내부 메모리 단편화 (Internal Fragmentation)</a></li>
+<li><a href=#외부-메모리-단편화-external-fragmentation>외부 메모리 단편화 (External Fragmentation)</a></li>
+<li><a href=#free-블럭-관리하기>Free 블럭 관리하기</a></li>
+<li><a href=#방법-1--간접-리스트-방식-implicit-list>방법 1 : 간접 리스트 방식 (Implicit List)</a></li>
+<li><a href=#간접-리스트--free-블록-찾기>간접 리스트 : Free 블록 찾기</a></li>
+<li><a href=#간접-리스트--결합-coalescing>간접 리스트 : 결합 (Coalescing)</a></li>
+<li><a href=#간접-리스트--양방향-연결>간접 리스트 : 양방향 연결</a></li>
+</ul>
+</li>
+<li><a href=#13-memory-2>13-memory-2</a>
+<ul>
+<li><a href=#직접-리스트>직접 리스트</a></li>
+<li><a href=#직접-리스트--free>직접 리스트 : Free</a></li>
+<li><a href=#직접리스트---간접리스트>직접리스트 &lt;-> 간접리스트</a></li>
+<li><a href=#구분-가용-리스트-segrated-free-list>구분 가용 리스트 (segrated free list)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
-<section class="w-full md:w-8/12">
-<section class="w-full px-4">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">221208 SYSP</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-04-20</h4>
+<h4 id=date> MODIFIED 2023-05-22</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
-<h2 id=목차>목차</h2>
-<h3 id=12---memory-112-memory-1><a href=#12-memory-1>12 - memory 1</a></h3>
-<h3 id=13---memory-213-memory-2><a href=#13-memory-2>13 - memory 2</a></h3>
-<hr>
-<h2 id=12-memory-1>12-memory-1</h2>
+<h2 id=-12-memory-1>## 12-memory-1</h2>
 <h3 id=메모리에-관한-불편한-진실>메모리에 관한 불편한 진실</h3>
 <ul>
 <li>메모리는 무한의 자원이 아니다</li>
@@ -253,15 +270,15 @@ $$ U*{k} = (max*{i&lt;=k}: P*{i}) / H*{k} $$</li>
 </li>
 </ul>
 </article>
-</div>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/ood/> 객체지향설계</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/ood/>
+객체지향설계</a>
 <a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/sysp_09_11/> 221207 SYSP</a>
 </div>
 </div>
-</section>
+</div>
 </section>
 </main>
 </body>
