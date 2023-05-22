@@ -2,44 +2,36 @@
 <html>
 
 <head>
-  <title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
-  <meta charset="utf-8" />
+	<title>{{ block "title" . }} {{ .Site.Title }} {{ end }}</title>
+	<meta charset="utf-8" />
 
-  <!-- my custom js -->
-  <script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
+	<!-- my custom js -->
+	<script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
 
-  <!-- my favicon -->
-  <link rel="icon" href="{{ .Site.BaseURL }}favicon16.png" sizes="16x16">
-  <link rel="icon" href="{{ .Site.BaseURL }}favicon32.png" sizes="32x32">
+	<!-- my favicon -->
+	<link rel="icon" href="{{ .Site.BaseURL }}favicon16.png" sizes="16x16">
+	<link rel="icon" href="{{ .Site.BaseURL }}favicon32.png" sizes="32x32">
 
-  <!-- github markdown css -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css"
-    rel="stylesheet">
+	<!-- github markdown css -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css"
+		rel="stylesheet">
 
-  <!-- my tailwind css -->
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}src/style.css" />
+	<!-- my tailwind css -->
+	<link rel="stylesheet" href="{{ .Site.BaseURL }}src/style.css" />
 
-  <!-- latex -->
-  {{ partial "latex.html" . }}
+	<!-- latex -->
+	{{ partial "latex.html" . }}
 
-  <!-- google analytics -->
-  {{ if .Site.Params.googleAnalytics }}
-  {{ partial "google-analytics.html" . }}{{ end }}
+	<!-- google analytics -->
+	{{ if .Site.Params.googleAnalytics }}
+	{{ partial "google-analytics.html" . }}{{ end }}
 </head>
 
 <body class="dark">
-  {{ .Render "topbar" }}
+	{{ .Render "topbar" }}
 
-  <aside class="fixed left-0 hidden md:flex">
-    {{ .Render "sidebar" }}
-  </aside>
-  <main class="flex w-full justify-center">
-    <section class="w-full md:w-8/12">
-      {{ block "main" . }} {{ end }}
-    </section>
-  </main>
-
-  {{ block "footer" . }} {{ end }}
+	{{ block "main" .}} {{ end }}
+	<!-- {{ block "footer" . }} {{ end }} -->
 </body>
 
 
