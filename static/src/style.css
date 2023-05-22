@@ -485,7 +485,6 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-left: 1rem;
 }
 
 *, ::before, ::after {

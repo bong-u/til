@@ -63,6 +63,6 @@
     }
     
     #TableOfContents ul > li {
-        @apply pl-4 overflow-ellipsis-bundle;
+        @apply overflow-ellipsis-bundle;
     }
 }
