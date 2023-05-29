@@ -1,0 +1,251 @@
+<!doctype html><html>
+<head>
+<title> bong-u's TIL </title>
+<meta charset=utf-8>
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
+<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
+<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=dark>
+<header class="w-full text-center pt-3 pb-9">
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
+<span class=toggleButton></span>
+</label>
+<h1 class="text-4xl font-bold">
+<a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
+</h1>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#directory>Directory</a>
+<ul>
+<li><a href=#file-directory>File Directory</a></li>
+<li><a href=#inode-index-node>inode (index node)</a></li>
+</ul>
+</li>
+<li><a href=#file-systems>File Systems</a>
+<ul>
+<li><a href=#파티션의-구조>파티션의 구조</a></li>
+<li><a href=#partition-control-block-super-block>Partition Control block (Super block)</a></li>
+<li><a href=#file-control-block-fcb>File Control Block (FCB)</a></li>
+</ul>
+</li>
+<li><a href=#management-of-data-blocks>Management of Data Blocks</a>
+<ul>
+<li><a href=#contiguous-allocation>Contiguous Allocation</a></li>
+<li><a href=#chained-allocation>Chained Allocation</a></li>
+<li><a href=#indexed-allocation-현대에-사용>Indexed Allocation (현대에 사용)</a></li>
+<li><a href=#free-space-management>Free-Space Management</a></li>
+</ul>
+</li>
+<li><a href=#file-system-example-unix>File System Example (UNIX)</a>
+<ul>
+<li><a href=#addresses-of-data-blocks>Addresses of Data Blocks</a></li>
+<li><a href=#data-block-addressing>Data Block Addressing</a></li>
+</ul>
+</li>
+<li><a href=#file-system-example-linux>File System Example (Linux)</a>
+<ul>
+<li><a href=#virtual-file-system-적용>Virtual File System 적용</a></li>
+<li><a href=#linux-inode>Linux Inode</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a href=#kernel-modules-for-io-management>Kernel Modules for IO Management</a>
+<ul>
+<li><a href=#kernel-io-management>Kernel I/O Management</a></li>
+</ul>
+</li>
+<li><a href=#interrupt-handling>Interrupt handling</a>
+<ul>
+<li><a href=#interrupt>Interrupt</a></li>
+<li><a href=#trap>Trap</a></li>
+<li><a href=#system-call>System Call</a></li>
+</ul>
+</li>
+<li><a href=#io-control--polling>I/O Control : Polling</a>
+<ul>
+<li><a href=#io-control>I/O Control</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">운영체제 - 기말범위</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-05-29 </h4>
+<h4 id=date> MODIFIED 2023-05-29</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
+<h1 id=06-file-management>06-File-Management</h1>
+<h2 id=directory>Directory</h2>
+<h3 id=file-directory>File Directory</h3>
+<ul>
+<li>Directory도 일종의 파일이다</li>
+<li>해당 파일 FCB의 식별자만 저장한다</li>
+</ul>
+<h3 id=inode-index-node>inode (index node)</h3>
+<ul>
+<li>Unix에서는 FCB와 inode가 같다</li>
+<li>모든 파일, 폴더가 Unique한 값을 가진다. (root는 2로 고정)</li>
+</ul>
+<h2 id=file-systems>File Systems</h2>
+<h3 id=파티션의-구조>파티션의 구조</h3>
+<ul>
+<li>boot block, super block, FCB list, data blocks</li>
+</ul>
+<h3 id=partition-control-block-super-block>Partition Control block (Super block)</h3>
+<ul>
+<li>blocks 개수, free data blocks 개수, free data blocks list 저장</li>
+<li>inode table, free inode 개수, free inode list 저장</li>
+</ul>
+<h3 id=file-control-block-fcb>File Control Block (FCB)</h3>
+<ul>
+<li>UNIX에서 128byte의 크기를 가진다</li>
+<li>파일 이름, 파일 크기, uid, gid, 파일 주소 등등 저장</li>
+</ul>
+<h2 id=management-of-data-blocks>Management of Data Blocks</h2>
+<h3 id=contiguous-allocation>Contiguous Allocation</h3>
+<ul>
+<li>각각의 파일을 연속적으로 저장</li>
+<li>Direct Access</li>
+<li>File grow problem 존재</li>
+<li><strong>External fragmentation</strong>, Internal fragmentation 발생</li>
+</ul>
+<h3 id=chained-allocation>Chained Allocation</h3>
+<ul>
+<li>Direct acess</li>
+<li>File grow problem X</li>
+<li>External fragmentation X</li>
+<li>Poor data safety (앞 블록에 문제가 생기면 뒤 블록도 사용 불가능)</li>
+</ul>
+<h3 id=indexed-allocation-현대에-사용>Indexed Allocation (현대에 사용)</h3>
+<ul>
+<li>Direct access</li>
+<li>File grow problem X</li>
+<li>External fragmentation X</li>
+<li>Medium level data safety (index block만 괜찮으면 된다)</li>
+<li>Index block이 추가로 필요하다</li>
+</ul>
+<h3 id=free-space-management>Free-Space Management</h3>
+<ul>
+<li>Counting
+<ul>
+<li>N-M&mldr;</li>
+<li>N번부터 M개의 블록이 비어있다.</li>
+</ul>
+</li>
+<li>Linked List
+<ul>
+<li>비어있는 블록들을 연결리스트로 관리한다.</li>
+</ul>
+</li>
+<li>Grouping
+<ul>
+<li>비어있는 블록들을 그룹으로 관리한다.</li>
+</ul>
+</li>
+<li>Bit Vector
+<ul>
+<li>모든 블록들을 비트로 관리한다. (0이면 사용 중, 1이면 비어있음)</li>
+<li>단점 : 용량을 많이 차지한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=file-system-example-unix>File System Example (UNIX)</h2>
+<h3 id=addresses-of-data-blocks>Addresses of Data Blocks</h3>
+<ul>
+<li>Index 블록 하나는 4096 byte</li>
+<li>4096 / 4 = 1024개의 블록 주소를 저장할 수 있다.</li>
+<li>10개의 data blocks는 inode내(direct block field)에 저장한다</li>
+</ul>
+<h3 id=data-block-addressing>Data Block Addressing</h3>
+<ul>
+<li>direct block 10개 : 40KB (10 X 4 X 2^10 bytes)</li>
+<li>single indirect block 1개 : 4MB (4KB X 2^10 = 2^22 bytes)</li>
+<li>double indirect block 1개 : 4GB (4KB X 2^10 X 2^10 = 2^32 bytes)</li>
+<li>triple indirect block 1개 : 4TB</li>
+</ul>
+<h2 id=file-system-example-linux>File System Example (Linux)</h2>
+<h3 id=virtual-file-system-적용>Virtual File System 적용</h3>
+<h3 id=linux-inode>Linux Inode</h3>
+<ul>
+<li>Inode의 크기 : 128 bytes (ext2, ext3), 256 bytes (ext4)</li>
+<li>Direct block <strong>12개</strong>, Indirect block 3개</li>
+</ul>
+<h1 id=07-io-management-disk-scheduling>07-IO-Management-Disk-Scheduling</h1>
+<h2 id=kernel-modules-for-io-management>Kernel Modules for IO Management</h2>
+<h3 id=kernel-io-management>Kernel I/O Management</h3>
+<ol>
+<li>Device Scheduling</li>
+<li>Error handling</li>
+<li>Buffering (copy semantics를 유지)</li>
+<li>Caching : 빠른 속도를 위해 사용</li>
+<li>Spooling : 보조 기억 장치에 임시로 저장 (여러 사람이 공유하기 때문)</li>
+</ol>
+<h2 id=interrupt-handling>Interrupt handling</h2>
+<h3 id=interrupt>Interrupt</h3>
+<ul>
+<li>주변 장치 -> OS : 비동기적 이벤트의 발생을 알림</li>
+<li>IDT (Interrupt Descriptor Table = IVT) : 인터럽트 번호와 ISR의 주소를 저장</li>
+<li>ISR (Interrupt Service Routine) : 인터럽트 발생 시 실행되는 함수</li>
+<li>Interrupt 처리 과정
+<ol>
+<li>Mode change</li>
+<li>IDT에서 ISR의 주소를 찾아서 실행</li>
+<li>ISR에서 급한 일 부터 처리, 필요하면 미룬다</li>
+<li>Scheduler가 할 일을 결정</li>
+</ol>
+</li>
+</ul>
+<h3 id=trap>Trap</h3>
+<ul>
+<li>OS에게 동기적 이벤트의 발생을 알림</li>
+<li>예) div_by_zero, seg_fault, protection_fault, page_fault</li>
+<li>Kernel은 Interrupt와 같은 방식으로 처리</li>
+</ul>
+<h3 id=system-call>System Call</h3>
+<ul>
+<li>Process -> OS : 동기적 이벤트의 발생을 알림</li>
+<li>System call 처리
+<ol>
+<li>Using system call table ex) int $0x80</li>
+<li>sysenter 명령</li>
+</ol>
+</li>
+</ul>
+<h2 id=io-control--polling>I/O Control : Polling</h2>
+<h3 id=io-control>I/O Control</h3>
+</article>
+<div id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/school/datacommunication/>
+데이터통신</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
