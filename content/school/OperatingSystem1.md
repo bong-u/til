@@ -1,5 +1,5 @@
 ---
-title: "운영체제"
+title: "운영체제 - 중간범위"
 date: 2023-03-06
 ---
 
@@ -93,11 +93,14 @@ date: 2023-03-06
 - **System Context : kernel stack, PCB**
 
 ### Virtual Address Space
-> 프로세스가 실행되면 서 접근(access, reference) 가능한 주소들의 범위
-* 32bit address computer : $2^{32}$ = 4G 번지, 3G~4G번지에는 커널이 들어간다
-* 보조기억장치의 VAS는 프로세스 개수만큼 존재
 
-* 구성
+> 프로세스가 실행되면 서 접근(access, reference) 가능한 주소들의 범위
+
+- 32bit address computer : $2^{32}$ = 4G 번지, 3G~4G번지에는 커널이 들어간다
+- 보조기억장치의 VAS는 프로세스 개수만큼 존재
+
+- 구성
+
   ```
   | kernel
   | stack (local var)
@@ -106,7 +109,6 @@ date: 2023-03-06
   | data (만들때 초기화 한 global var)
   | code
   ```
-
 
 ### Process Creation
 
@@ -498,31 +500,34 @@ date: 2023-03-06
 
   - binary semaphore를 이용해 구현된 동기화 방식
 
-
 ## Deadlock
 
 ### Deadlock이란
-* Starvation : 어떤 자원을 다른 프로세스가 이미 점유하고 있어서 실행할 수 없는 상황
-* Deadlock : 2개 이상의 process들이 서로 starvation인 상태
+
+- Starvation : 어떤 자원을 다른 프로세스가 이미 점유하고 있어서 실행할 수 없는 상황
+- Deadlock : 2개 이상의 process들이 서로 starvation인 상태
 
 ### Deadlock의 조건을 하나씩 깨보자
+
 1. Mutual exclusion : OS의 필수 기능
 2. Hold and wait : 시작부터 모든 자원을 받도록 구현 -> 비효율적
 3. No Preemption : 자원을 서로 뺏어감 -> 비효율적
 4. Circular Wait : 자원을 먼저 받아야 하는 경우 존재
 
 ### 해결방법
-* 최선의 방법 : deadlock이 발생했을 때, 한 개씩 죽여보기
+
+- 최선의 방법 : deadlock이 발생했을 때, 한 개씩 죽여보기
 
 ## File Management
 
 ### FCB
-* File Control block, 보조기억장치에 저장
-* 구성
+
+- File Control block, 보조기억장치에 저장
+- 구성
   > file name, file size, uid, gid, file operation, creation time, last modified, last access time, address of file data...
 
 ### Device file
-* 블록형 파일 (단위 : 4096byte)
-* file size 대신 major number, minor number 존재
-* Device I/O가 발생하면 해당 Device File과 I/O 하듯이 작동
-  
+
+- 블록형 파일 (단위 : 4096byte)
+- file size 대신 major number, minor number 존재
+- Device I/O가 발생하면 해당 Device File과 I/O 하듯이 작동
