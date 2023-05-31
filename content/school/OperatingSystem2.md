@@ -136,6 +136,116 @@ date: 2023-05-29
 
 ### I/O Control
 
-<!-- - Polling : 주기적으로 I/O 장치의 상태를 확인
+- Polling : 주기적으로 I/O 장치의 상태를 확인
 - Interrupt-driven I/O : I/O 장치가 인터럽트 발생
-- DMA(Direct Memory Access) : CPU의 개입 없이 메모리와 주변장치 사이의 데이터 전송 -->
+- DMA(Direct Memory Access) : CPU의 개입 없이 메모리와 주변장치 사이의 데이터 전송
+
+### Polling
+
+- Busy-wait cycle
+  - Host가 busy bit를 반복적으로 확인
+  - Host가 write bit 설정, data-out register에 데이터 저장
+  - Host가 command-ready bit 설정
+  - Controller가 command-ready bit 설정을 확인하면 busy bit 설정
+  - Controller가 control register (write command)를 읽고, data-out register의 데이터를 읽는다
+  - I/O가 끝나면 controller가 command-ready bit, busy bit 해제
+
+* 특징
+  - I/O가 빨리 끝나면 효율적, 늦게 끝나면 비효율적
+
+## I/O Control : Interrupt I/O, DMA
+
+### Interrupt-Driven I/O
+
+![Interrupt driven I/O](/static/image/os_interrupt_driven_io.png)
+
+- 1~3은 Polling과 동일
+- 4 : Process management를 통해 Context switch
+- 8 : IO가 끝나면 Interrupt ReQuest(IRQ)를 cpu에게 보낸다
+
+* 장점 : 주어진 시간안에 많은 프로세스 수용 가능, I/O가 느릴수록 효율적
+* 단점 : I/O가 빠르면 비효율적 (잦은 Context Switch, mode change)
+
+### DMA (Direct Memory Access)
+
+- 기존 방식은 무조건 processor를 거쳐가야한다
+- DMA 모듈이 I/O와 Memory 사이 역할 수행, 끝나면 Interrupt 발생
+- 장점 : CPU가 다른 작업 가능, 빠르다
+
+## Disk Scheduling
+
+### Disk Structure
+
+- Sector, Track, Cylinder
+- Disk는 logical block의 배열이다
+
+### Timing of a Disk I/O Transfer
+
+- Seek time : 성능에 큰 영향을 미친다
+- Rotational delay
+- Transfer time
+
+### Disk Scheduling Policies
+
+- FIFO
+  - 요청 순서대로 처리
+- SSTF (Shortest Seek Time First)
+  - 현재 위치에서 가장 가까운 요청을 처리
+  - starvation 문제 발생 (예를 들어 작은 숫자만 나오면?)
+- SCAN (Elevator Algorithm)
+  - 한 방향으로 훑으면서 처리
+- 성능 비교
+  - SSTF > SCAN > FIFO
+
+### Disk Cache
+
+- Main memory에 몇몇 섹터의 복사본을 저장
+- Replacement Policy
+  1. LRU (Least Recently Used)
+  - 가장 오랫동안 사용하지 않은 섹터를 교체
+  1. LFU (Least Frequently Used)
+  - 가장 적게 사용된 섹터를 교체
+
+## RAID
+
+### RAID
+
+> Redundant Array of Inexpensive Disks : 저렴한 여러 개의 디스크 묶음
+
+### RAID 0 (non-redundant)
+
+- 데이터를 여러 디스크에 분산 저장
+- 장점 : 용량이 4배
+- 단점 : 하나의 디스크가 고장나면 모든 데이터 손실
+
+### RAID 1 (mirrored)
+
+- RAID 0을 복제
+- 장점 : 신뢰성이 높다
+- 단점 : 디스크가 2배로 들어간다
+
+### RAID 3 (bit-interleaved parity)
+
+- 한 디스크에 parity bit를 저장 (같은 위치의 bit들의 parity)
+- 장점 : 하나의 디스크 복원 가능
+- 단점 : 어떤 디스크가 고장났는지 알 수 없다, 5개를 동시에 읽어서 느림
+
+### RAID 4 (block-level parity)
+
+- 한 디스크에 parity bit를 저장 (같은 위치의 **block**들의 parity)
+- 장점 : 블록 단위 -> 병렬적으로 IO 가능 (RAID 3보다 빠름)
+- 단점 : 어떤 디스크가 고장났는지 알 수 없다
+
+### RAID 5 (block-level distributed parity)
+
+- RAID 4와 동일하나 parity bit를 여러 디스크에 분산 저장
+
+### RAID 6 (dual redundancy)
+
+- RAID 5와 동일하나 parity bit를 2개 저장 (1개는 odd, 1개는 even)
+- 장점 : RAID5 보다 높은 신뢰성
+
+### RAID 01, RAID 10
+
+- RAID 0과 RAID 1을 합친 것
+- RAID 01 < RAID 10
