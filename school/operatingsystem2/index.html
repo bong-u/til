@@ -80,6 +80,33 @@
 <li><a href=#io-control--polling>I/O Control : Polling</a>
 <ul>
 <li><a href=#io-control>I/O Control</a></li>
+<li><a href=#polling>Polling</a></li>
+</ul>
+</li>
+<li><a href=#io-control--interrupt-io-dma>I/O Control : Interrupt I/O, DMA</a>
+<ul>
+<li><a href=#interrupt-driven-io>Interrupt-Driven I/O</a></li>
+<li><a href=#dma-direct-memory-access>DMA (Direct Memory Access)</a></li>
+</ul>
+</li>
+<li><a href=#disk-scheduling>Disk Scheduling</a>
+<ul>
+<li><a href=#disk-structure>Disk Structure</a></li>
+<li><a href=#timing-of-a-disk-io-transfer>Timing of a Disk I/O Transfer</a></li>
+<li><a href=#disk-scheduling-policies>Disk Scheduling Policies</a></li>
+<li><a href=#disk-cache>Disk Cache</a></li>
+</ul>
+</li>
+<li><a href=#raid>RAID</a>
+<ul>
+<li><a href=#raid-1>RAID</a></li>
+<li><a href=#raid-0-non-redundant>RAID 0 (non-redundant)</a></li>
+<li><a href=#raid-1-mirrored>RAID 1 (mirrored)</a></li>
+<li><a href=#raid-3-bit-interleaved-parity>RAID 3 (bit-interleaved parity)</a></li>
+<li><a href=#raid-4-block-level-parity>RAID 4 (block-level parity)</a></li>
+<li><a href=#raid-5-block-level-distributed-parity>RAID 5 (block-level distributed parity)</a></li>
+<li><a href=#raid-6-dual-redundancy>RAID 6 (dual redundancy)</a></li>
+<li><a href=#raid-01-raid-10>RAID 01, RAID 10</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +119,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">운영체제 - 기말범위</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-05-29 </h4>
-<h4 id=date> MODIFIED 2023-05-29</h4>
+<h4 id=date> MODIFIED 2023-05-31</h4>
 </div>
 </div>
 </div>
@@ -236,6 +263,146 @@
 </ul>
 <h2 id=io-control--polling>I/O Control : Polling</h2>
 <h3 id=io-control>I/O Control</h3>
+<ul>
+<li>Polling : 주기적으로 I/O 장치의 상태를 확인</li>
+<li>Interrupt-driven I/O : I/O 장치가 인터럽트 발생</li>
+<li>DMA(Direct Memory Access) : CPU의 개입 없이 메모리와 주변장치 사이의 데이터 전송</li>
+</ul>
+<h3 id=polling>Polling</h3>
+<ul>
+<li>Busy-wait cycle
+<ul>
+<li>Host가 busy bit를 반복적으로 확인</li>
+<li>Host가 write bit 설정, data-out register에 데이터 저장</li>
+<li>Host가 command-ready bit 설정</li>
+<li>Controller가 command-ready bit 설정을 확인하면 busy bit 설정</li>
+<li>Controller가 control register (write command)를 읽고, data-out register의 데이터를 읽는다</li>
+<li>I/O가 끝나면 controller가 command-ready bit, busy bit 해제</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>특징
+<ul>
+<li>I/O가 빨리 끝나면 효율적, 늦게 끝나면 비효율적</li>
+</ul>
+</li>
+</ul>
+<h2 id=io-control--interrupt-io-dma>I/O Control : Interrupt I/O, DMA</h2>
+<h3 id=interrupt-driven-io>Interrupt-Driven I/O</h3>
+<p><img src=/static/image/os_interrupt_driven_io.png alt="Interrupt driven I/O"></p>
+<ul>
+<li>1~3은 Polling과 동일</li>
+<li>4 : Process management를 통해 Context switch</li>
+<li>8 : IO가 끝나면 Interrupt ReQuest(IRQ)를 cpu에게 보낸다</li>
+</ul>
+<ul>
+<li>장점 : 주어진 시간안에 많은 프로세스 수용 가능, I/O가 느릴수록 효율적</li>
+<li>단점 : I/O가 빠르면 비효율적 (잦은 Context Switch, mode change)</li>
+</ul>
+<h3 id=dma-direct-memory-access>DMA (Direct Memory Access)</h3>
+<ul>
+<li>기존 방식은 무조건 processor를 거쳐가야한다</li>
+<li>DMA 모듈이 I/O와 Memory 사이 역할 수행, 끝나면 Interrupt 발생</li>
+<li>장점 : CPU가 다른 작업 가능, 빠르다</li>
+</ul>
+<h2 id=disk-scheduling>Disk Scheduling</h2>
+<h3 id=disk-structure>Disk Structure</h3>
+<ul>
+<li>Sector, Track, Cylinder</li>
+<li>Disk는 logical block의 배열이다</li>
+</ul>
+<h3 id=timing-of-a-disk-io-transfer>Timing of a Disk I/O Transfer</h3>
+<ul>
+<li>Seek time : 성능에 큰 영향을 미친다</li>
+<li>Rotational delay</li>
+<li>Transfer time</li>
+</ul>
+<h3 id=disk-scheduling-policies>Disk Scheduling Policies</h3>
+<ul>
+<li>FIFO
+<ul>
+<li>요청 순서대로 처리</li>
+</ul>
+</li>
+<li>SSTF (Shortest Seek Time First)
+<ul>
+<li>현재 위치에서 가장 가까운 요청을 처리</li>
+<li>starvation 문제 발생 (예를 들어 작은 숫자만 나오면?)</li>
+</ul>
+</li>
+<li>SCAN (Elevator Algorithm)
+<ul>
+<li>한 방향으로 훑으면서 처리</li>
+</ul>
+</li>
+<li>성능 비교
+<ul>
+<li>SSTF > SCAN > FIFO</li>
+</ul>
+</li>
+</ul>
+<h3 id=disk-cache>Disk Cache</h3>
+<ul>
+<li>Main memory에 몇몇 섹터의 복사본을 저장</li>
+<li>Replacement Policy
+<ol>
+<li>LRU (Least Recently Used)</li>
+</ol>
+<ul>
+<li>가장 오랫동안 사용하지 않은 섹터를 교체</li>
+</ul>
+<ol>
+<li>LFU (Least Frequently Used)</li>
+</ol>
+<ul>
+<li>가장 적게 사용된 섹터를 교체</li>
+</ul>
+</li>
+</ul>
+<h2 id=raid>RAID</h2>
+<h3 id=raid-1>RAID</h3>
+<blockquote>
+<p>Redundant Array of Inexpensive Disks : 저렴한 여러 개의 디스크 묶음</p>
+</blockquote>
+<h3 id=raid-0-non-redundant>RAID 0 (non-redundant)</h3>
+<ul>
+<li>데이터를 여러 디스크에 분산 저장</li>
+<li>장점 : 용량이 4배</li>
+<li>단점 : 하나의 디스크가 고장나면 모든 데이터 손실</li>
+</ul>
+<h3 id=raid-1-mirrored>RAID 1 (mirrored)</h3>
+<ul>
+<li>RAID 0을 복제</li>
+<li>장점 : 신뢰성이 높다</li>
+<li>단점 : 디스크가 2배로 들어간다</li>
+</ul>
+<h3 id=raid-3-bit-interleaved-parity>RAID 3 (bit-interleaved parity)</h3>
+<ul>
+<li>한 디스크에 parity bit를 저장 (같은 위치의 bit들의 parity)</li>
+<li>장점 : 하나의 디스크 복원 가능</li>
+<li>단점 : 어떤 디스크가 고장났는지 알 수 없다, 5개를 동시에 읽어서 느림</li>
+</ul>
+<h3 id=raid-4-block-level-parity>RAID 4 (block-level parity)</h3>
+<ul>
+<li>한 디스크에 parity bit를 저장 (같은 위치의 <strong>block</strong>들의 parity)</li>
+<li>장점 : 블록 단위 -> 병렬적으로 IO 가능 (RAID 3보다 빠름)</li>
+<li>단점 : 어떤 디스크가 고장났는지 알 수 없다</li>
+</ul>
+<h3 id=raid-5-block-level-distributed-parity>RAID 5 (block-level distributed parity)</h3>
+<ul>
+<li>RAID 4와 동일하나 parity bit를 여러 디스크에 분산 저장</li>
+</ul>
+<h3 id=raid-6-dual-redundancy>RAID 6 (dual redundancy)</h3>
+<ul>
+<li>RAID 5와 동일하나 parity bit를 2개 저장 (1개는 odd, 1개는 even)</li>
+<li>장점 : RAID5 보다 높은 신뢰성</li>
+</ul>
+<h3 id=raid-01-raid-10>RAID 01, RAID 10</h3>
+<ul>
+<li>RAID 0과 RAID 1을 합친 것</li>
+<li>RAID 01 &lt; RAID 10</li>
+</ul>
 </article>
 <div id=meta class=py-10>
 <div>
