@@ -111,7 +111,7 @@
 </li>
 </ul>
 <ul>
-<li><a href=#memory-management-1>Memory Management</a>
+<li><a href=#memory-management>Memory Management</a>
 <ul>
 <li><a href=#memory-management-requirements>Memory Management Requirements</a></li>
 <li><a href=#memory-partitioning>Memory Partitioning</a></li>
@@ -137,10 +137,50 @@
 <li><a href=#paging>Paging</a>
 <ul>
 <li><a href=#paging-1>Paging</a></li>
-<li><a href=#page-table><strong>Page Table</strong></a></li>
+<li><a href=#page-table>Page Table</a></li>
 <li><a href=#page-number-and-offset>Page number and offset</a></li>
 <li><a href=#address-translation-in-paging>Address translation in Paging</a></li>
 <li><a href=#segmentation>Segmentation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a href=#advantages-of-virtual-memory>Advantages of Virtual Memory</a>
+<ul>
+<li><a href=#virtual-memory>Virtual Memory</a></li>
+<li><a href=#types-of-memory>Types of Memory</a></li>
+<li><a href=#execution-of-a-program>Execution of a Program</a></li>
+<li><a href=#principle-of-locality>Principle of Locality</a></li>
+</ul>
+</li>
+<li><a href=#demand-paging>Demand paging</a>
+<ul>
+<li><a href=#demand-paging-1>Demand paging</a></li>
+<li><a href=#address-translation-in-demand-paging>Address Translation in demand paging</a></li>
+<li><a href=#page-table-entry>Page Table Entry</a></li>
+<li><a href=#modify-bit-in-page-table>Modify Bit in page table</a></li>
+<li><a href=#sharing-of-pages>Sharing of Pages</a></li>
+</ul>
+</li>
+<li><a href=#multi-level-page-table>Multi-level Page Table</a>
+<ul>
+<li><a href=#size-of-page-tabbles>Size of Page tabbles</a></li>
+<li><a href=#two-level-scheme-for-32-bit-address>Two-Level Scheme for 32-bit address</a></li>
+<li><a href=#two-level-paging-example>Two-Level Paging Example</a></li>
+<li><a href=#addres-translation-scheme>Addres-Translation Scheme</a></li>
+</ul>
+</li>
+<li><a href=#translation-lookaside-buffer>Translation Lookaside Buffer</a>
+<ul>
+<li><a href=#translation-lookaside-buffer-1>Translation Lookaside Buffer</a></li>
+<li><a href=#effective-access-time>Effective Access Time</a></li>
+</ul>
+</li>
+<li><a href=#page-replacement>Page Replacement</a>
+<ul>
+<li><a href=#replacement-policy>Replacement Policy</a></li>
+<li><a href=#basic-replacement-algorithms>Basic Replacement Algorithms</a></li>
+<li><a href=#performance-of-demand-paging>Performance of Demand Paging</a></li>
 </ul>
 </li>
 </ul>
@@ -283,6 +323,7 @@
 <ul>
 <li>OS에게 동기적 이벤트의 발생을 알림</li>
 <li>예) div_by_zero, seg_fault, protection_fault, page_fault</li>
+<li>page fault만 프로세스를 종료 시키지 않음</li>
 <li>Kernel은 Interrupt와 같은 방식으로 처리</li>
 </ul>
 <h3 id=system-call>System Call</h3>
@@ -437,8 +478,8 @@
 <li>RAID 0과 RAID 1을 합친 것</li>
 <li>RAID 01 &lt; RAID 10</li>
 </ul>
-<h1 id=memory-management>Memory Management</h1>
-<h2 id=memory-management-1>Memory Management</h2>
+<h1 id=08-memory-management>08-Memory-Management</h1>
+<h2 id=memory-management>Memory Management</h2>
 <h3 id=memory-management-requirements>Memory Management Requirements</h3>
 <ul>
 <li>Memory Allocation : 프로세스별로 메모리 할당</li>
@@ -550,7 +591,7 @@
 <li>page size = frame size = disk block size = 4KB</li>
 <li>Internal fragmentation 발생 (무시 가능)</li>
 </ul>
-<h3 id=page-table><strong>Page Table</strong></h3>
+<h3 id=page-table>Page Table</h3>
 <p><img src=/static/image/os_page_table.png alt="page table"></p>
 <ul>
 <li>PCB에 저장 되어서 관리</li>
@@ -576,6 +617,184 @@
 </ul>
 <ul>
 <li>논리적으로 비슷한 것들을 묶는다.</li>
+</ul>
+<h1 id=09-virtual-memory>09-Virtual-Memory</h1>
+<h2 id=advantages-of-virtual-memory>Advantages of Virtual Memory</h2>
+<h3 id=virtual-memory>Virtual Memory</h3>
+<ul>
+<li>전체 프로세스가 메모리에 올라갈 필요가 없다</li>
+<li>더 많은 프로세스 수용 가능 -> swap 빈도 감소, 좋은 반응성</li>
+<li>전체 메모리 보다 큰 프로세스도 실행 가능</li>
+</ul>
+<h3 id=types-of-memory>Types of Memory</h3>
+<ul>
+<li>Real Memory
+<ul>
+<li>address : Real address, Physical address, Absolute address</li>
+</ul>
+</li>
+<li>Virtual Memory
+<ul>
+<li>address : Logical address, Virtual address</li>
+</ul>
+</li>
+</ul>
+<h3 id=execution-of-a-program>Execution of a Program</h3>
+<ul>
+<li>Resident set : Main memory에 존재하는 프로세스 집합</li>
+<li>Main Memory에 없는 Page가 필요한 경우 -> Page fault (interrupt)</li>
+<li>해당 프로세스 block -> 다른 프로세스 실행 -> Disk I/O 끝나면 다시 ready</li>
+</ul>
+<h3 id=principle-of-locality>Principle of Locality</h3>
+<ul>
+<li>프로세스의 프로그램 및 데이터 참조는 뭉친다는 성질</li>
+<li>Virtual Memory가 효율적인 이유 중 한 가지</li>
+</ul>
+<h2 id=demand-paging>Demand paging</h2>
+<h3 id=demand-paging-1>Demand paging</h3>
+<ul>
+<li>Virtual Memory의 두가지 방법
+<ol>
+<li>Demand paging</li>
+<li>Demand segmentation : 느려서 사용 하지 않는다</li>
+</ol>
+</li>
+</ul>
+<h3 id=address-translation-in-demand-paging>Address Translation in demand paging</h3>
+<ul>
+<li><em>Page table base register</em>에 page table 시작 주소를 저장</li>
+<li>매번 2번씩 Main memory를 access할 필요 없음</li>
+</ul>
+<h3 id=page-table-entry>Page Table Entry</h3>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>P</th>
+<th>M</th>
+<th>R</th>
+<th>U</th>
+<th>W</th>
+<th>COW</th>
+<th>page frame number (p`)</th>
+</tr>
+</thead>
+</table>
+</li>
+</ul>
+<ul>
+<li>P : present(valid) bit : Main memory에 존재하는지 여부</li>
+<li>M : modified bit : 페이지가 수정되었는지 여부</li>
+<li>R : referenced bit : 페이지를 접근한적 있는지 여부</li>
+<li>U : user mode : User context에 해당하는지 여부</li>
+<li>W : writable : 페이지가 쓰기 가능한지 여부</li>
+<li>COW : copy-on-write : 페이지를 부모랑 공유하는지 여부</li>
+</ul>
+<h3 id=modify-bit-in-page-table>Modify Bit in page table</h3>
+<ul>
+<li>M bit가 0이면 디스크에 반영하지 않고 삭제 가능</li>
+</ul>
+<h3 id=sharing-of-pages>Sharing of Pages</h3>
+<ul>
+<li>같은 페이지를 공유해야할 때, Page table에 같은 주소를 저장</li>
+</ul>
+<h2 id=multi-level-page-table>Multi-level Page Table</h2>
+<h3 id=size-of-page-tabbles>Size of Page tabbles</h3>
+<ul>
+<li>큰 프로세스는 1개의 page table로 처리불가</li>
+<li>-> Multi-level apge table</li>
+</ul>
+<h3 id=two-level-scheme-for-32-bit-address>Two-Level Scheme for 32-bit address</h3>
+<ul>
+<li>1개의 Page Table이 수용하는 페이지수는 = 1K개</li>
+<li>4GB User address space = 1M개의 페이지</li>
+<li>-> 페이지 테이블이 더 필요</li>
+</ul>
+<h3 id=two-level-paging-example>Two-Level Paging Example</h3>
+<ul>
+<li>Page number가 2개 존재</li>
+<li>page number1 : 10bit</li>
+<li>page number2 : 10bit</li>
+<li>page offset : 12bit</li>
+</ul>
+<h3 id=addres-translation-scheme>Addres-Translation Scheme</h3>
+<ul>
+<li>Page 크기 4096B / Page table크기 4B = 1024</li>
+<li>-> page number의 개수 = 10bit (2^10=1024)</li>
+<li>페이지의 크기 4096B이기 때문에</li>
+<li>-> Offset bit = 12bit (2^12=4096)</li>
+</ul>
+<h2 id=translation-lookaside-buffer>Translation Lookaside Buffer</h2>
+<h3 id=translation-lookaside-buffer-1>Translation Lookaside Buffer</h3>
+<ul>
+<li>계층이 많아지면 시간이 오래걸린다</li>
+<li>TLB에 access한 순서대로 저장</li>
+<li>TLB는 병렬로 탐색, O(1)로 탐색가능</li>
+<li>TLB 확인 -> 없으면 Page table 확인 -> 없으면 Page fault</li>
+</ul>
+<h3 id=effective-access-time>Effective Access Time</h3>
+<ul>
+<li>Memory cycle = 1이라고 가정</li>
+<li>TLB 읽는 시간 = $\varepsilon$</li>
+<li>TLB hit ratio = $\alpha$</li>
+<li>EAT = TLB에 있을 때 걸리는 시간 + 없을때 걸리는 시간
+$$ EAT = (\varepsilon+1)\alpha + (\varepsilon+1+1)(1-\alpha) = 2+\varepsilon-\alpha $$</li>
+</ul>
+<h2 id=page-replacement>Page Replacement</h2>
+<h3 id=replacement-policy>Replacement Policy</h3>
+<ul>
+<li>Main Memory가 꽉차면 page를 swap out 시켜야한다</li>
+</ul>
+<h3 id=basic-replacement-algorithms>Basic Replacement Algorithms</h3>
+<ul>
+<li>FIFO
+<ul>
+<li>가장 오래된 페이지를 교체</li>
+<li>비효율적</li>
+</ul>
+</li>
+<li>Optimal policy
+<ul>
+<li>가장 나중에 사용될 페이지를 교체</li>
+<li>나중에 어떤 page가 필요할지 아는 경우 사용가능</li>
+</ul>
+</li>
+<li>Least Recently Used (LRU)
+<ul>
+<li>가장 오래전에 사용된 페이지를 교체</li>
+<li>마지막으로 언제 쓰였는지 항상 찾아야 한다 -> Overhead 발생</li>
+</ul>
+</li>
+<li>Clock Policy (Second change algorithm)
+<ul>
+<li>돌아가면서 user bit -= 1</li>
+<li>user == 0이면 교체</li>
+<li>페이지를 사용하면 user 비트 = 1</li>
+</ul>
+</li>
+<li>성능 비교
+<ul>
+<li>FIFO &lt; Clock &lt; LRU &lt; OPT</li>
+</ul>
+</li>
+<li>Enhanced Clock Policy
+<ul>
+<li>U비트와 M비트에 따라 우선순위 부여</li>
+</ul>
+<ol>
+<li>U = 0, M = 0</li>
+<li>U = 0, M = 1</li>
+<li>U = 1, M = 0</li>
+<li>U = 1, M = 1</li>
+</ol>
+</li>
+</ul>
+<h3 id=performance-of-demand-paging>Performance of Demand Paging</h3>
+<ul>
+<li>Page Fault Rate = page fault 횟수 / page 불러오는 횟수</li>
+<li>Effective Access Time(EAT)</li>
+<li>= (1-p) x memory access + p x (page fault overhead + swap page out + swap page in + restart overhead)</li>
 </ul>
 </article>
 <div id=meta class=py-10>
