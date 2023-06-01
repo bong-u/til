@@ -110,6 +110,40 @@
 </ul>
 </li>
 </ul>
+<ul>
+<li><a href=#memory-management-1>Memory Management</a>
+<ul>
+<li><a href=#memory-management-requirements>Memory Management Requirements</a></li>
+<li><a href=#memory-partitioning>Memory Partitioning</a></li>
+<li><a href=#buddy-system>Buddy System</a></li>
+</ul>
+</li>
+<li><a href=#virtual-address-space>Virtual Address Space</a>
+<ul>
+<li><a href=#type-of-memory-addresses>Type of Memory Addresses</a></li>
+<li><a href=#virtual-address-space-1>Virtual Address Space</a></li>
+</ul>
+</li>
+<li><a href=#address-binding>Address Binding</a>
+<ul>
+<li><a href=#address-binding-1>Address binding</a></li>
+<li><a href=#compile-time-binding>Compile time binding</a></li>
+<li><a href=#load-time-binding>Load time binding</a></li>
+<li><a href=#execution-time-binding>Execution time binding</a></li>
+<li><a href=#relocation>Relocation</a></li>
+<li><a href=#hardware-for-execution-time-binding>Hardware for Execution Time Binding</a></li>
+</ul>
+</li>
+<li><a href=#paging>Paging</a>
+<ul>
+<li><a href=#paging-1>Paging</a></li>
+<li><a href=#page-table><strong>Page Table</strong></a></li>
+<li><a href=#page-number-and-offset>Page number and offset</a></li>
+<li><a href=#address-translation-in-paging>Address translation in Paging</a></li>
+<li><a href=#segmentation>Segmentation</a></li>
+</ul>
+</li>
+</ul>
 </nav>
 </aside>
 <main class="flex w-full justify-center">
@@ -119,7 +153,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">운영체제 - 기말범위</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-05-29 </h4>
-<h4 id=date> MODIFIED 2023-05-31</h4>
+<h4 id=date> MODIFIED 2023-06-01</h4>
 </div>
 </div>
 </div>
@@ -402,6 +436,146 @@
 <ul>
 <li>RAID 0과 RAID 1을 합친 것</li>
 <li>RAID 01 &lt; RAID 10</li>
+</ul>
+<h1 id=memory-management>Memory Management</h1>
+<h2 id=memory-management-1>Memory Management</h2>
+<h3 id=memory-management-requirements>Memory Management Requirements</h3>
+<ul>
+<li>Memory Allocation : 프로세스별로 메모리 할당</li>
+<li>Memory Protection : 각 프로세스가 허용된 영역만 접근 가능</li>
+<li>Relocation : 흩어진 작은 공간을 합치기</li>
+<li>Sharing : 부모 자식 프로세스 간 shared memory</li>
+</ul>
+<h3 id=memory-partitioning>Memory Partitioning</h3>
+<ul>
+<li>
+<p>Fixed Partitioning : 같은 크기의 공간으로 나눠서 할당</p>
+<ul>
+<li>장점 : 간단하다</li>
+<li>단점 : 내부 단편화 발생</li>
+</ul>
+</li>
+<li>
+<p>Dynamic Partitioning : 프로세스 크기에 맞게 할당</p>
+<ul>
+<li>장점 : 내부 단편화 발생 X</li>
+<li>단점 : 외부 단편화 발생 (compaction을 통해 해결 가능 but, overhead가 크다)</li>
+</ul>
+</li>
+<li>
+<p>Dynamic Partition Placement Algorithm</p>
+<ul>
+<li>First-fit : 처음으로 맞는 공간에 넣는다
+<ul>
+<li>장점 : 빠르다</li>
+<li>단점 : 메모리 효율이 좋지 않다</li>
+</ul>
+</li>
+<li>Best-fit : 끝까지 조사해서 가장 비슷한 곳에 할당
+<ul>
+<li>장점 : 느리다</li>
+<li>단점 : 메모리 효율이 좋다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=buddy-system>Buddy System</h3>
+<ul>
+<li>Allocation
+<ul>
+<li>2^k 크기의 공간을 할당</li>
+</ul>
+</li>
+<li>Deallocation
+<ul>
+<li>Buddy 한 쌍이 모두 free인 경우, 합친다 (탐색 Overhead를 줄이기 위해)</li>
+</ul>
+</li>
+<li>장점 : 외부 단편화가 거의 없다</li>
+<li>단점 : 내부 단편화 발생</li>
+</ul>
+<h2 id=virtual-address-space>Virtual Address Space</h2>
+<h3 id=type-of-memory-addresses>Type of Memory Addresses</h3>
+<ul>
+<li>Physical address : 실제 메모리 주소</li>
+<li>Logical address : 프로세스가 보는 주소</li>
+<li>Virtual address : Virtaul memory의 Logical address</li>
+<li>Relative address (주소 계산 방식) : 상대적인 주소</li>
+</ul>
+<h3 id=virtual-address-space-1>Virtual Address Space</h3>
+<ul>
+<li>크기 : 4GB (32bit 컴퓨터) : 0x00000000 ~ 0xFFFFFFFF</li>
+<li>kernel - stack - heap - bss - data - code</li>
+</ul>
+<h2 id=address-binding>Address Binding</h2>
+<h3 id=address-binding-1>Address binding</h3>
+<ul>
+<li>instruction과 데이터의 Physical address를 알아내는 것</li>
+<li>3가지 상황에 일어날 수 있다 (Compile time, Load time, Execution time)</li>
+</ul>
+<h3 id=compile-time-binding>Compile time binding</h3>
+<ul>
+<li>Compile할때, base address를 알려줌으로써 미리 physical address를 넣어놓는다</li>
+<li>Logical address = Physical address</li>
+<li>문제점 : Relocation 불가 (base address가 바뀌면 다시 compile 해야함)</li>
+</ul>
+<h3 id=load-time-binding>Load time binding</h3>
+<ul>
+<li>Load할때, physical address를 계산</li>
+<li>Logical address = Physical address</li>
+<li>문제점 : Relocation 불가</li>
+</ul>
+<h3 id=execution-time-binding>Execution time binding</h3>
+<ul>
+<li>실행할 때, physical address를 계산</li>
+<li>Logical address != Physical address</li>
+</ul>
+<h3 id=relocation>Relocation</h3>
+<ul>
+<li>일어나는 이유 : Swapping, Compaction</li>
+</ul>
+<h3 id=hardware-for-execution-time-binding>Hardware for Execution Time Binding</h3>
+<ul>
+<li>Base register : 시작 주소</li>
+<li>Bounds register (limit register) : 끝 주소</li>
+<li>Adder가 Base Register + releative address 계산</li>
+<li>Comparato가 Bounds Register와 비교</li>
+<li>영역 밖인 경우 Segementation Fault(Trap) 발생</li>
+</ul>
+<h2 id=paging>Paging</h2>
+<h3 id=paging-1>Paging</h3>
+<ul>
+<li>프로세스를 같은 크기의 페이지로 나눈다</li>
+<li>page size = frame size = disk block size = 4KB</li>
+<li>Internal fragmentation 발생 (무시 가능)</li>
+</ul>
+<h3 id=page-table><strong>Page Table</strong></h3>
+<p><img src=/static/image/os_page_table.png alt="page table"></p>
+<ul>
+<li>PCB에 저장 되어서 관리</li>
+<li>Virtual Memory 사용 시 N과 frame number가 섞여서 존재</li>
+</ul>
+<h3 id=page-number-and-offset>Page number and offset</h3>
+<ul>
+<li>Logical address = Page number + offset</li>
+<li>Page size 16 Bytes (128bit), 8 bit address인 경우</li>
+<li>필요한 주소 개수 = 128 / 8 = 16개</li>
+<li>offset = 4bit (2 ^ 4 = 16)</li>
+<li>page number = 8 - 4 = 4bit (남는 거)</li>
+</ul>
+<h3 id=address-translation-in-paging>Address translation in Paging</h3>
+<ul>
+<li>Logical address -> Physical address</li>
+<li>offset은 그대로, page 번호만 frame 번호로 바꾼다</li>
+</ul>
+<h3 id=segmentation>Segmentation</h3>
+<ul>
+<li>프로세스를 다른 크기의 논리적 단위인 세그먼트로 나눈다</li>
+<li>Dynamic partitioning과 유사</li>
+</ul>
+<ul>
+<li>논리적으로 비슷한 것들을 묶는다.</li>
 </ul>
 </article>
 <div id=meta class=py-10>
