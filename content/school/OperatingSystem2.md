@@ -249,3 +249,128 @@ date: 2023-05-29
 
 - RAID 0과 RAID 1을 합친 것
 - RAID 01 < RAID 10
+
+# Memory Management
+
+## Memory Management
+
+### Memory Management Requirements
+
+- Memory Allocation : 프로세스별로 메모리 할당
+- Memory Protection : 각 프로세스가 허용된 영역만 접근 가능
+- Relocation : 흩어진 작은 공간을 합치기
+- Sharing : 부모 자식 프로세스 간 shared memory
+
+### Memory Partitioning
+
+- Fixed Partitioning : 같은 크기의 공간으로 나눠서 할당
+
+  - 장점 : 간단하다
+  - 단점 : 내부 단편화 발생
+
+- Dynamic Partitioning : 프로세스 크기에 맞게 할당
+
+  - 장점 : 내부 단편화 발생 X
+  - 단점 : 외부 단편화 발생 (compaction을 통해 해결 가능 but, overhead가 크다)
+
+- Dynamic Partition Placement Algorithm
+  - First-fit : 처음으로 맞는 공간에 넣는다
+    - 장점 : 빠르다
+    - 단점 : 메모리 효율이 좋지 않다
+  - Best-fit : 끝까지 조사해서 가장 비슷한 곳에 할당
+    - 장점 : 느리다
+    - 단점 : 메모리 효율이 좋다
+
+### Buddy System
+
+- Allocation
+  - 2^k 크기의 공간을 할당
+- Deallocation
+  - Buddy 한 쌍이 모두 free인 경우, 합친다 (탐색 Overhead를 줄이기 위해)
+- 장점 : 외부 단편화가 거의 없다
+- 단점 : 내부 단편화 발생
+
+## Virtual Address Space
+
+### Type of Memory Addresses
+
+- Physical address : 실제 메모리 주소
+- Logical address : 프로세스가 보는 주소
+- Virtual address : Virtaul memory의 Logical address
+- Relative address (주소 계산 방식) : 상대적인 주소
+
+### Virtual Address Space
+
+- 크기 : 4GB (32bit 컴퓨터) : 0x00000000 ~ 0xFFFFFFFF
+- kernel - stack - heap - bss - data - code
+
+## Address Binding
+
+### Address binding
+
+- instruction과 데이터의 Physical address를 알아내는 것
+- 3가지 상황에 일어날 수 있다 (Compile time, Load time, Execution time)
+
+### Compile time binding
+
+- Compile할때, base address를 알려줌으로써 미리 physical address를 넣어놓는다
+- Logical address = Physical address
+- 문제점 : Relocation 불가 (base address가 바뀌면 다시 compile 해야함)
+
+### Load time binding
+
+- Load할때, physical address를 계산
+- Logical address = Physical address
+- 문제점 : Relocation 불가
+
+### Execution time binding
+
+- 실행할 때, physical address를 계산
+- Logical address != Physical address
+
+### Relocation
+
+- 일어나는 이유 : Swapping, Compaction
+
+### Hardware for Execution Time Binding
+
+- Base register : 시작 주소
+- Bounds register (limit register) : 끝 주소
+- Adder가 Base Register + releative address 계산
+- Comparato가 Bounds Register와 비교
+- 영역 밖인 경우 Segementation Fault(Trap) 발생
+
+## Paging
+
+### Paging
+
+- 프로세스를 같은 크기의 페이지로 나눈다
+- page size = frame size = disk block size = 4KB
+- Internal fragmentation 발생 (무시 가능)
+
+### **Page Table**
+
+![page table](/static/image/os_page_table.png)
+
+- PCB에 저장 되어서 관리
+- Virtual Memory 사용 시 N과 frame number가 섞여서 존재
+
+### Page number and offset
+
+- Logical address = Page number + offset
+- Page size 16 Bytes (128bit), 8 bit address인 경우
+- 필요한 주소 개수 = 128 / 8 = 16개
+- offset = 4bit (2 ^ 4 = 16)
+- page number = 8 - 4 = 4bit (남는 거)
+
+### Address translation in Paging
+
+- Logical address -> Physical address
+- offset은 그대로, page 번호만 frame 번호로 바꾼다
+
+### Segmentation
+
+- 프로세스를 다른 크기의 논리적 단위인 세그먼트로 나눈다
+- Dynamic partitioning과 유사
+
+* 논리적으로 비슷한 것들을 묶는다.
