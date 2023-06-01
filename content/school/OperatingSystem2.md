@@ -123,6 +123,7 @@ date: 2023-05-29
 
 - OS에게 동기적 이벤트의 발생을 알림
 - 예) div_by_zero, seg_fault, protection_fault, page_fault
+- page fault만 프로세스를 종료 시키지 않음
 - Kernel은 Interrupt와 같은 방식으로 처리
 
 ### System Call
@@ -250,7 +251,7 @@ date: 2023-05-29
 - RAID 0과 RAID 1을 합친 것
 - RAID 01 < RAID 10
 
-# Memory Management
+# 08-Memory-Management
 
 ## Memory Management
 
@@ -348,7 +349,7 @@ date: 2023-05-29
 - page size = frame size = disk block size = 4KB
 - Internal fragmentation 발생 (무시 가능)
 
-### **Page Table**
+### Page Table
 
 ![page table](/static/image/os_page_table.png)
 
@@ -374,3 +375,144 @@ date: 2023-05-29
 - Dynamic partitioning과 유사
 
 * 논리적으로 비슷한 것들을 묶는다.
+
+# 09-Virtual-Memory
+
+## Advantages of Virtual Memory
+
+### Virtual Memory
+
+- 전체 프로세스가 메모리에 올라갈 필요가 없다
+- 더 많은 프로세스 수용 가능 -> swap 빈도 감소, 좋은 반응성
+- 전체 메모리 보다 큰 프로세스도 실행 가능
+
+### Types of Memory
+
+- Real Memory
+  - address : Real address, Physical address, Absolute address
+- Virtual Memory
+  - address : Logical address, Virtual address
+
+### Execution of a Program
+
+- Resident set : Main memory에 존재하는 프로세스 집합
+- Main Memory에 없는 Page가 필요한 경우 -> Page fault (interrupt)
+- 해당 프로세스 block -> 다른 프로세스 실행 -> Disk I/O 끝나면 다시 ready
+
+### Principle of Locality
+
+- 프로세스의 프로그램 및 데이터 참조는 뭉친다는 성질
+- Virtual Memory가 효율적인 이유 중 한 가지
+
+## Demand paging
+
+### Demand paging
+
+- Virtual Memory의 두가지 방법
+  1. Demand paging
+  2. Demand segmentation : 느려서 사용 하지 않는다
+
+### Address Translation in demand paging
+
+- *Page table base register*에 page table 시작 주소를 저장
+- 매번 2번씩 Main memory를 access할 필요 없음
+
+### Page Table Entry
+
+- | P   | M   | R   | U   | W   | COW | page frame number (p`) |
+  | --- | --- | --- | --- | --- | --- | ---------------------- |
+
+* P : present(valid) bit : Main memory에 존재하는지 여부
+* M : modified bit : 페이지가 수정되었는지 여부
+* R : referenced bit : 페이지를 접근한적 있는지 여부
+* U : user mode : User context에 해당하는지 여부
+* W : writable : 페이지가 쓰기 가능한지 여부
+* COW : copy-on-write : 페이지를 부모랑 공유하는지 여부
+
+### Modify Bit in page table
+
+- M bit가 0이면 디스크에 반영하지 않고 삭제 가능
+
+### Sharing of Pages
+
+- 같은 페이지를 공유해야할 때, Page table에 같은 주소를 저장
+
+## Multi-level Page Table
+
+### Size of Page tabbles
+
+- 큰 프로세스는 1개의 page table로 처리불가
+- -> Multi-level apge table
+
+### Two-Level Scheme for 32-bit address
+
+- 1개의 Page Table이 수용하는 페이지수는 = 1K개
+- 4GB User address space = 1M개의 페이지
+- -> 페이지 테이블이 더 필요
+
+### Two-Level Paging Example
+
+- Page number가 2개 존재
+- page number1 : 10bit
+- page number2 : 10bit
+- page offset : 12bit
+
+### Addres-Translation Scheme
+
+- Page 크기 4096B / Page table크기 4B = 1024
+- -> page number의 개수 = 10bit (2^10=1024)
+- 페이지의 크기 4096B이기 때문에
+- -> Offset bit = 12bit (2^12=4096)
+
+## Translation Lookaside Buffer
+
+### Translation Lookaside Buffer
+
+- 계층이 많아지면 시간이 오래걸린다
+- TLB에 access한 순서대로 저장
+- TLB는 병렬로 탐색, O(1)로 탐색가능
+- TLB 확인 -> 없으면 Page table 확인 -> 없으면 Page fault
+
+### Effective Access Time
+
+- Memory cycle = 1이라고 가정
+- TLB 읽는 시간 = $\varepsilon$
+- TLB hit ratio = $\alpha$
+- EAT = TLB에 있을 때 걸리는 시간 + 없을때 걸리는 시간
+  $$ EAT = (\varepsilon+1)\alpha + (\varepsilon+1+1)(1-\alpha) = 2+\varepsilon-\alpha $$
+
+## Page Replacement
+
+### Replacement Policy
+
+- Main Memory가 꽉차면 page를 swap out 시켜야한다
+
+### Basic Replacement Algorithms
+
+- FIFO
+  - 가장 오래된 페이지를 교체
+  - 비효율적
+- Optimal policy
+  - 가장 나중에 사용될 페이지를 교체
+  - 나중에 어떤 page가 필요할지 아는 경우 사용가능
+- Least Recently Used (LRU)
+  - 가장 오래전에 사용된 페이지를 교체
+  - 마지막으로 언제 쓰였는지 항상 찾아야 한다 -> Overhead 발생
+- Clock Policy (Second change algorithm)
+  - 돌아가면서 user bit -= 1
+  - user == 0이면 교체
+  - 페이지를 사용하면 user 비트 = 1
+- 성능 비교
+  - FIFO < Clock < LRU < OPT
+- Enhanced Clock Policy
+  - U비트와 M비트에 따라 우선순위 부여
+  1. U = 0, M = 0
+  2. U = 0, M = 1
+  3. U = 1, M = 0
+  4. U = 1, M = 1
+
+### Performance of Demand Paging
+
+- Page Fault Rate = page fault 횟수 / page 불러오는 횟수
+- Effective Access Time(EAT)
+- = (1-p) x memory access + p x (page fault overhead + swap page out + swap page in + restart overhead)
