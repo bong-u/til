@@ -402,3 +402,32 @@ public void createHeap() {
 ### 수행 시간
 
 - 접근, 삽입, 삭제 : O(logn)
+
+## 제 8장 : 정렬
+
+### 선택 정렬 (Selection Sort)
+
+- 항상 O(n^2)
+
+### 삽입 정렬 (Insertion Sort)
+
+- 최악 : O(n^2)
+- 최선 : O(n) : 이미 정렬된 경우
+
+### 힙 정렬 (Heap Sort)
+
+- 항상 : O(nlogn)
+
+### 합병 정렬 (Merge Sort)
+
+- 항상 : O(nlogn)
+- Stable Sort : 같은 값의 키를 가진 레코드의 순서가 정렬 후에도 유지되는 정렬
+
+### 퀵 정렬 (Quick Sort)
+
+- 최악 : O(n^2)
+- 최선 : O(nlogn)
+
+- 성능 향상 방법
+  - Median of Three : 첫번째, 마지막, 중간값 중에서 중간값을 피벗으로 선택
+  - 입력이 작은 크기가 되었을때 삽입 정렬을 사용
