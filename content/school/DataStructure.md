@@ -249,6 +249,23 @@ levelorder : left -> right (from top level)
 
 ## 제 5장 : 탐색 트리
 
+### 5.1 이진탐색트리
+
+#### min 함수
+
+#### deleteMin 함수
+
+#### delete 함수
+
+- CASE 1 : 삭제할 노드의 두 자식이 모두 null
+- CASE 2 : 삭제할 노드의 오른쪽 자식만 null
+- CASE 3 : 삭제할 노드의 왼쪽 자식만 null
+- CASE 4 : 삭제할 노드의 자식이 둘다 존재
+
+### 시간 복잡도
+
+- O($logn$)
+
 ### 5.2 AVL 트리
 
 #### AVL트리의 정의
