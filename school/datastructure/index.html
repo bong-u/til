@@ -78,6 +78,8 @@
 </li>
 <li><a href=#제-5장--탐색-트리>제 5장 : 탐색 트리</a>
 <ul>
+<li><a href=#51-이진탐색트리>5.1 이진탐색트리</a></li>
+<li><a href=#시간-복잡도>시간 복잡도</a></li>
 <li><a href=#52-avl-트리>5.2 AVL 트리</a></li>
 <li><a href=#53-2-3-트리>5.3 2-3 트리</a></li>
 <li><a href=#54-2-3-4-트리>5.4 2-3-4 트리</a></li>
@@ -117,7 +119,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">자료구조</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-06-04</h4>
+<h4 id=date> MODIFIED 2023-06-10</h4>
 </div>
 </div>
 </div>
@@ -423,6 +425,20 @@ levelorder : left -> right (from top level)</p>
 </li>
 </ul>
 <h2 id=제-5장--탐색-트리>제 5장 : 탐색 트리</h2>
+<h3 id=51-이진탐색트리>5.1 이진탐색트리</h3>
+<h4 id=min-함수>min 함수</h4>
+<h4 id=deletemin-함수>deleteMin 함수</h4>
+<h4 id=delete-함수>delete 함수</h4>
+<ul>
+<li>CASE 1 : 삭제할 노드의 두 자식이 모두 null</li>
+<li>CASE 2 : 삭제할 노드의 오른쪽 자식만 null</li>
+<li>CASE 3 : 삭제할 노드의 왼쪽 자식만 null</li>
+<li>CASE 4 : 삭제할 노드의 자식이 둘다 존재</li>
+</ul>
+<h3 id=시간-복잡도>시간 복잡도</h3>
+<ul>
+<li>O($logn$)</li>
+</ul>
 <h3 id=52-avl-트리>5.2 AVL 트리</h3>
 <h4 id=avl트리의-정의>AVL트리의 정의</h4>
 <blockquote>
