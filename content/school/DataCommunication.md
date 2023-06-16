@@ -498,7 +498,8 @@ $$ U\_{sender} = {L/R \over RTT+L/R} $$
 - 전파지연 = 전송거리 / 전파속도
 - 전송지연 = 패킷크기 / 대역폭
 - a = 전파지연 / 전송지연
-- Efficiency = 1 / (1 + 6.4 \* a)
+- Efficiency
+  $$ 1 \over (1 + 6.4 \times a) $$
 
 ### 현대 이더넷
 
@@ -511,7 +512,7 @@ $$ U\_{sender} = {L/R \over RTT+L/R} $$
 - 물리적으로 떨어진 LAN을 같은 LAN으로 구성하는 기술
 - VirtualBox, Docker에서 활용
 
-### LAN에서의 루프 문제
+### LAN에서의 사이클 문제
 
 - 이더넷은 TTL필드가 없음 -> 루프 발생시 트래픽이 폭주
 - Spanning Tree Protocol (STP) 사용
@@ -568,7 +569,7 @@ $$ U\_{sender} = {L/R \over RTT+L/R} $$
 - IFS 기다린 뒤에도 idle 상태라면 Contention Window 내 slot time만큼 대기
 - RTS/CTS 도입 (현재 메시지를 보내도 되는지 확인) -> Hidden station problem 해결
 - NAV (Network Allocation Vector)
-  > 매체를 얼마나 사용할지를 알려주는 값
+  > 매체를 얼마나 사용할지를 알려주는 값 -> 충돌회피를 돕는다
 - Exposed Station Problem
   > 다른 노드 쌍의 전송으로 인해 전송을 하지 못하는 상황
 
@@ -603,3 +604,48 @@ $$ U\_{sender} = {L/R \over RTT+L/R} $$
 ### Wifi 응용 기술
 
 - MIMO (Multiple Input Multiple Output) : 안테나 개수 증가 -> 성능 증가
+
+## 전화망, 케이블망, 광테워크
+
+### 전화망
+
+- SS7(Signaling System 7)
+  > 전화망의 제어를 위한 프로토콜
+- DSL
+  > 전화망크 이용한 고속 통신 기술
+
+### 케이블망
+
+- HFC
+  > 광케이블 + 동축케이블
+
+### 광네트워크
+
+- SONET (Synchronous Optical Network)
+
+  > 광케이블을 이용한 네트워크
+
+- ATM (Asynchronous Transfer Mode)
+  > 가상회선 이용 비동기 통신 기술 : 회선 + 패킷 교환망 기술  
+  > 패킷(셀) : 고정 53Byte
+
+## 이동통신
+
+### 블루투스
+
+- 2.4Ghz 무선 채널 사용
+- FHSS
+- RTLS (Real Time Location System) : 실시간 위치 추적 시스템
+
+### Zigbee
+
+- 소형, 저전력 무선 네트워크를 위한 기술
+
+### 이동통신망
+
+- 코어네트워크 + 액세스 네트워크
+
+### 3G 네트워크
+
+- GGSN (Gateway GPRS Support Node)
+  > GPRS 네트워크와 외부 네트워크를 연결하는 라우터
