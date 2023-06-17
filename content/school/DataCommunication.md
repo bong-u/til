@@ -517,7 +517,7 @@ $$ U\_{sender} = {L/R \over RTT+L/R} $$
 - 이더넷은 TTL필드가 없음 -> 루프 발생시 트래픽이 폭주
 - Spanning Tree Protocol (STP) 사용
 
-## MAC - CSMA/CD
+## MAC - CSMA/CD (IEEE 802.3)
 
 ### 매체접근제어 기술
 
@@ -529,14 +529,18 @@ $$ U\_{sender} = {L/R \over RTT+L/R} $$
 - Slotter aloha : 슬롯을 나눠서 보낸다
 - 이후에 이더넷으로 발전하는데 기여
 - G = 프레임 1개 전송하는데 걸리는 시간 (ms)
-- S = $G \times e^{-2G}$
+- slotted aloha의 처리율
+  $$ S = G \times e^{-G} $$
+- aloha의 처리율
+  $$ S = G \times e^{-2G} $$
 
 ### CSMA/CD (Carrier Sense Multiple Access with Collision Detection)
 
 1. 전송 프레임 준비
 2. 매체 사용이 가능할때까지 대기 (carrier sensing)
 3. 전송 시작 (multiple access)
-4. 충돌이 일어났다면 충돌 탐지 절차로 이동 (collision detection)5. 재전송 카운터를 초기화하고 프레임 전송 종료
+4. 충돌이 일어났다면 충돌 탐지 절차로 이동 (collision detection
+5. 재전송 카운터를 초기화하고 프레임 전송 종료
 
 - 충돌 발생 시
   1. 잼 신호를 모두에게 전달되도록 최소 패킷 전송 시간까지 계속 전송
