@@ -143,7 +143,7 @@
 <li><a href=#lan에서의-사이클-문제>LAN에서의 사이클 문제</a></li>
 </ul>
 </li>
-<li><a href=#mac---csmacd>MAC - CSMA/CD</a>
+<li><a href=#mac---csmacd-ieee-8023>MAC - CSMA/CD (IEEE 802.3)</a>
 <ul>
 <li><a href=#매체접근제어-기술>매체접근제어 기술</a></li>
 <li><a href=#aloha>Aloha</a></li>
@@ -190,7 +190,7 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">데이터통신</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-26 </h4>
-<h4 id=date> MODIFIED 2023-06-16</h4>
+<h4 id=date> MODIFIED 2023-06-17</h4>
 </div>
 </div>
 </div>
@@ -915,7 +915,7 @@ $$ 1 \over (1 + 6.4 \times a) $$</li>
 <li>이더넷은 TTL필드가 없음 -> 루프 발생시 트래픽이 폭주</li>
 <li>Spanning Tree Protocol (STP) 사용</li>
 </ul>
-<h2 id=mac---csmacd>MAC - CSMA/CD</h2>
+<h2 id=mac---csmacd-ieee-8023>MAC - CSMA/CD (IEEE 802.3)</h2>
 <h3 id=매체접근제어-기술>매체접근제어 기술</h3>
 <ul>
 <li>여러 송신자 - 여러 수신자에서 공유 매체를 사용할 때, 충돌을 방지하기 위한 기술</li>
@@ -926,14 +926,18 @@ $$ 1 \over (1 + 6.4 \times a) $$</li>
 <li>Slotter aloha : 슬롯을 나눠서 보낸다</li>
 <li>이후에 이더넷으로 발전하는데 기여</li>
 <li>G = 프레임 1개 전송하는데 걸리는 시간 (ms)</li>
-<li>S = $G \times e^{-2G}$</li>
+<li>slotted aloha의 처리율
+$$ S = G \times e^{-G} $$</li>
+<li>aloha의 처리율
+$$ S = G \times e^{-2G} $$</li>
 </ul>
 <h3 id=csmacd-carrier-sense-multiple-access-with-collision-detection>CSMA/CD (Carrier Sense Multiple Access with Collision Detection)</h3>
 <ol>
 <li>전송 프레임 준비</li>
 <li>매체 사용이 가능할때까지 대기 (carrier sensing)</li>
 <li>전송 시작 (multiple access)</li>
-<li>충돌이 일어났다면 충돌 탐지 절차로 이동 (collision detection)5. 재전송 카운터를 초기화하고 프레임 전송 종료</li>
+<li>충돌이 일어났다면 충돌 탐지 절차로 이동 (collision detection</li>
+<li>재전송 카운터를 초기화하고 프레임 전송 종료</li>
 </ol>
 <ul>
 <li>충돌 발생 시
