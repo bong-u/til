@@ -452,6 +452,10 @@ ul {
   list-style-type: disc;
 }
 
+tr {
+  background-color: inherit !important;
+}
+
 .overflow-ellipsis-bundle {
   overflow: hidden;
   text-overflow: ellipsis;
