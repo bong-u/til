@@ -423,7 +423,7 @@ video {
 }
 
 * {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 body {
@@ -442,7 +442,15 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: var(--scroll-color);
   border-radius: 14px;
-};
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ul {
+  list-style-type: disc;
+}
 
 .overflow-ellipsis-bundle {
   overflow: hidden;
@@ -451,7 +459,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #TableOfContents {
-  height : calc(100vh - 150px);
+  height: calc(100vh - 150px);
   scrollbar-width: none;
   display: block;
   width: 100%;
@@ -641,6 +649,10 @@ body::-webkit-scrollbar-thumb {
   margin: 0px;
 }
 
+.m-1 {
+  margin: 0.25rem;
+}
+
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -703,6 +715,10 @@ body::-webkit-scrollbar-thumb {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .hidden {
   display: none;
 }
@@ -741,6 +757,10 @@ body::-webkit-scrollbar-thumb {
 
 .w-full {
   width: 100%;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .resize {
