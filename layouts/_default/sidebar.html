@@ -1,5 +1,12 @@
 <div class="flex flex-col w-60">
     {{ range .Site.Sections }}
-    <a class="mx-8 py-3 font-bold" href="{{ .Site.BaseURL }}{{ .Section }}"> {{ .Section }} </a>
+    {{ $section := . }}
+    {{ with .Pages }}
+    {{ $indexPage := index . 0 }}
+    <a class="mx-8 py-3 font-bold" href="{{ $section.RelPermalink }}">
+        <span>{{ index (split $section.Title "|") 0 }}</span>
+        <span>{{ index (split $section.Title "|") 1 }}</span>
+    </a>
+    {{ end }}
     {{ end }}
 </div>
