@@ -1,0 +1,78 @@
+<!doctype html><html>
+<head>
+<title> bong-u's TIL </title>
+<meta charset=utf-8>
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
+<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
+<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=dark>
+<header class="w-full text-center pt-3 pb-9">
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
+<span class=toggleButton></span>
+</label>
+<h1 class="text-4xl font-bold">
+<a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
+</h1>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#나의-목표>나의 목표</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#sw-academy-교육과정---backend>SW Academy 교육과정 - Backend</a></li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">[모각코] 00 : 목표</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-06-26 </h4>
+<h4 id=date> MODIFIED 2023-06-26</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
+<h2 id=나의-목표>나의 목표</h2>
+<h4 id=1-성실한-포스팅으로-1일-1커밋을-향해-노력하겠다>1. 성실한 포스팅으로 1일 1커밋을 향해 노력하겠다.</h4>
+<h4 id=2-sw-academy에서-배운-spring-boot-기술을-상세하게-정리할-것이다>2. SW Academy에서 배운 Spring boot 기술을 상세하게 정리할 것이다.</h4>
+<h4 id=2-현재-기술-블로그의-디자인을-개선시킬-것이다>2. 현재 기술 블로그의 디자인을 개선시킬 것이다.</h4>
+<h2 id=sw-academy-교육과정---backend>SW Academy 교육과정 - Backend</h2>
+<ol>
+<li>프레임워크를 위환 Java 심화</li>
+<li>실리콘밸리에서 날아온 DataBase</li>
+<li>Spring Boot Basic 1</li>
+<li>Spring Boot Basic 2</li>
+<li>Spring Boot Basic 3</li>
+<li>Spring Data Security 1</li>
+<li>Spring Data Security 2</li>
+</ol>
+</article>
+<div id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
