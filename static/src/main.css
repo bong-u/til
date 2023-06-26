@@ -40,6 +40,9 @@
   ul {
     @apply list-disc;
   }
+  tr {
+    @apply bg-inherit !important;
+  }
 
   .overflow-ellipsis-bundle {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
