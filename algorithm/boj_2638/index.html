@@ -1,0 +1,135 @@
+<!doctype html><html>
+<head>
+<title> bong-u's TIL </title>
+<meta charset=utf-8>
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
+<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
+<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=dark>
+<header class="w-full text-center pt-3 pb-9">
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
+<span class=toggleButton></span>
+</label>
+<h1 class="text-4xl font-bold">
+<a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
+</h1>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+<li><a href=#고찰>고찰</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">2638 : 치즈 (G3)</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-06-26 </h4>
+<h4 id=date> MODIFIED 2023-06-26</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+
+dx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
+dy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
+
+N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check</span>():
+    q <span style=color:#f92672>=</span> deque()
+    q<span style=color:#f92672>.</span>append((<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>))
+
+    visited <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+    visited[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+
+    <span style=color:#66d9ef>while</span> q:
+        curX, curY <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+
+        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+            nX <span style=color:#f92672>=</span> curX <span style=color:#f92672>+</span> dx[i]
+            nY <span style=color:#f92672>=</span> curY <span style=color:#f92672>+</span> dy[i]
+
+            <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nX <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nY <span style=color:#f92672>&lt;</span> M:
+                <span style=color:#66d9ef>if</span> L[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> visited[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+                    q<span style=color:#f92672>.</span>append((nX, nY))
+                    visited[nX][nY] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+                <span style=color:#66d9ef>elif</span> L[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
+                    visited[nX][nY] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+    melted <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+            <span style=color:#66d9ef>if</span> visited[i][j] <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span>:
+                melted<span style=color:#f92672>.</span>append((i, j))
+    
+    <span style=color:#66d9ef>return</span> melted
+
+result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+
+<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+    isAnyCheese <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+
+    melted <span style=color:#f92672>=</span> check()
+
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> melted:
+        <span style=color:#66d9ef>break</span>
+        
+    <span style=color:#66d9ef>for</span> x, y <span style=color:#f92672>in</span> melted:
+        L[x][y] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+
+    result <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+        
+print (result)
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>N X M 크기의 판 위에 치즈가 표시되어 있다</li>
+<li>2변 이상의 실외의 공기와 접촉하면 해당 치즈는 녹는다</li>
+<li>치즈가 모두 녹을 때까지 걸리는 시간을 구하라</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>외부공기를 따라 BFS를 수행한다</li>
+<li>두 번이상 visit된 치즈는 melted 리스트에 넣었다가 한번에 녹인다</li>
+<li>녹은 치즈가 없다면 모든 치즈가 녹은 것으로 간주한다</li>
+</ul>
+<h3 id=고찰>고찰</h3>
+<ul>
+<li>여러 시도 이후 메모리 초과를 해결하지 못해 답을 찾아보았다.</li>
+</ul>
+</article>
+<div id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/boj_11444/>
+11444 : 피보나치 수 6</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
