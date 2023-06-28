@@ -3,8 +3,8 @@
     {{ $section := . }}
     {{ with .Pages }}
     {{ $indexPage := index . 0 }}
-    <a class="mx-8 py-3 font-bold" href="{{ $section.RelPermalink }}">
-        <span>{{ index (split $section.Title "|") 0 }}</span>
+    <a class="mx-8 py-3 hover-bold" href="{{ $section.RelPermalink }}">
+        <span class="mr-3">{{ index (split $section.Title "|") 0 }}</span>
         <span>{{ index (split $section.Title "|") 1 }}</span>
     </a>
     {{ end }}
