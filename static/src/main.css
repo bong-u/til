@@ -76,4 +76,8 @@
   #TableOfContents ul > li {
     @apply overflow-ellipsis-bundle my-2;
   }
+
+  .hover-bold {
+    @apply hover:font-bold;
+  }
 }

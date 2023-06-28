@@ -501,6 +501,10 @@ tr {
   margin-bottom: 0.5rem;
 }
 
+.hover-bold:hover {
+  font-weight: 700;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -691,12 +695,16 @@ tr {
   margin-bottom: 2.5rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
+.mb-7 {
+  margin-bottom: 1.75rem;
 }
 
 .ml-5 {
   margin-left: 1.25rem;
+}
+
+.mr-3 {
+  margin-right: 0.75rem;
 }
 
 .mr-5 {
