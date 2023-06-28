@@ -691,12 +691,12 @@ tr {
   margin-bottom: 2.5rem;
 }
 
-.ml-5 {
-  margin-left: 1.25rem;
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
-.mr-3 {
-  margin-right: 0.75rem;
+.ml-5 {
+  margin-left: 1.25rem;
 }
 
 .mr-5 {
@@ -727,10 +727,6 @@ tr {
   height: 1.25rem;
 }
 
-.h-8 {
-  height: 2rem;
-}
-
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -745,14 +741,6 @@ tr {
 
 .w-60 {
   width: 15rem;
-}
-
-.w-8 {
-  width: 2rem;
-}
-
-.w-96 {
-  width: 24rem;
 }
 
 .w-full {
@@ -914,6 +902,10 @@ tr {
 
   .lg\:w-1\/2 {
     width: 50%;
+  }
+
+  .lg\:w-4\/12 {
+    width: 33.333333%;
   }
 }
 

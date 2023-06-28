@@ -1,21 +1,24 @@
 {{ define "main" }}
-<div class="w-96">
-  <article>
-    <header>
-      <img class="w-8 h-8 mr-3 inline" src="{{ .Site.BaseURL }}icon/{{ .Section }}.png" alt="{{ .Section }}" />
-      <h1 class="inline">{{ .Section }}</h1>
-    </header>
-    <!-- {{ .Content }} -->
-  </article>
-  <ul>
-    {{ range .Data.Pages.ByLastmod.Reverse }}
-    <li class="m-0 my-3 whitespace-nowrap overflow-ellipsis overflow-hidden">
-      <a class="" href="{{.RelPermalink}}">
-        {{.Title }}
-        <!-- <span>{{.Date.Format "2006-01-02"}}</span> -->
-      </a>
-    </li>
-    {{ end }}
-  </ul>
-</div>
+<main class="flex w-full justify-center">
+	<section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12 lg:w-4/12">
+
+    <div class="flex flex-col justify-center">
+      <h1 class="text-3xl text-center mb-5">
+        <span class="text-4xl">{{ index (split .Page.Title "|") 0 }}</span>
+        <span> {{ index (split .Page.Title "|") 1 }}</span>
+      </h1>
+      
+      {{ range .Data.Pages.ByLastmod.Reverse }}
+        <a class="m-0 my-3" href="{{.RelPermalink}}">
+          <div class="flex justify-between">
+
+            <span class="overflow-ellipsis-bundle">{{ .Title }}</span>
+            <span class="whitespace-nowrap">{{.Date.Format "2006-01-02"}}</span>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+</main>
+
 {{ end }}
