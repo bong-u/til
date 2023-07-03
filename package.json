@@ -2,7 +2,6 @@
   "name": "til-hugo",
   "version": "1.0.0",
   "description": "![example workflow](https://github.com/bong-u/til-hugo/actions/workflows/hugo.yml/badge.svg)",
-  "main": "index.js",
   "scripts": {
     "build-tw": "npx tailwindcss -i ./static/src/main.css -o ./static/src/style.css --watch"
   },
