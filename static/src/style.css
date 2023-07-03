@@ -16,7 +16,7 @@
   /* 2 */
   border-style: solid;
   /* 2 */
-  border-color: currentColor;
+  border-color: #e5e7eb;
   /* 2 */
 }
 
@@ -427,10 +427,17 @@ video {
 }
 
 body {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 30 32 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(218 218 219 / var(--tw-text-opacity));
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(228 228 231 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(63 63 70 / var(--tw-text-opacity)) !important;
+}
+
+:is(.dark body) {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(39 39 42 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
 }
 
 body::-webkit-scrollbar {
@@ -439,13 +446,13 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
   --tw-bg-opacity: 1;
-  background-color: rgb(29 30 32 / var(--tw-bg-opacity));
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
 body::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(82 82 91 / var(--tw-bg-opacity));
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 ol {
@@ -458,12 +465,6 @@ ul {
 
 tr {
   background-color: inherit !important;
-}
-
-.overflow-ellipsis-bundle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 #TableOfContents {
@@ -493,21 +494,22 @@ tr {
   font-weight: 700;
 }
 
-#TableOfContents a:hover {
+#TableOfContents a:hover:hover {
   --tw-text-opacity: 1;
-  color: rgb(150 150 165 / var(--tw-text-opacity));
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+:is(.dark #TableOfContents a:hover:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 #TableOfContents ul > li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.hover-bold:hover {
-  font-weight: 700;
 }
 
 *, ::before, ::after {
@@ -824,9 +826,9 @@ tr {
   background-color: var(--background-color);
 }
 
-.bg-dark-summary {
+.bg-zinc-300 {
   --tw-bg-opacity: 1;
-  background-color: rgb(46 46 51 / var(--tw-bg-opacity));
+  background-color: rgb(212 212 216 / var(--tw-bg-opacity));
 }
 
 .p-5 {
@@ -889,6 +891,21 @@ tr {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.hover-bold:hover {
+  font-weight: 700;
+}
+
+.overflow-ellipsis-bundle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:is(.dark .dark\:bg-zinc-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {

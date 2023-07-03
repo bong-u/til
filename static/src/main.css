@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply text-dark-text bg-dark-bg;
+    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800 !important;
   }
 
   body::-webkit-scrollbar {
@@ -18,11 +18,11 @@
   }
 
   body::-webkit-scrollbar-track {
-    @apply bg-dark-scroll-track;
+    @apply bg-gray-900;
   }
 
   body::-webkit-scrollbar-thumb {
-    @apply bg-dark-scroll-thumb rounded-lg;
+    @apply bg-gray-800 rounded-lg;
   }
 
   ol {
@@ -34,11 +34,7 @@
   }
 
   tr {
-    background-color: inherit !important;
-  }
-
-  .overflow-ellipsis-bundle {
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    @apply bg-inherit !important;
   }
 
   #TableOfContents {
@@ -63,14 +59,19 @@
     @apply font-bold;
   }
   #TableOfContents a:hover {
-    @apply text-dark-toc-hover;
+    @apply hover:text-gray-400 dark:hover:text-gray-500;
   }
 
   #TableOfContents ul > li {
     @apply overflow-ellipsis-bundle my-2;
   }
+}
 
+@layer utilities {
   .hover-bold {
     @apply hover:font-bold;
+  }
+  .overflow-ellipsis-bundle {
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
 }
