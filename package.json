@@ -4,7 +4,7 @@
   "description": "![example workflow](https://github.com/bong-u/til-hugo/actions/workflows/hugo.yml/badge.svg)",
   "main": "index.js",
   "scripts": {
-    "build-tw": "npx tailwindcss -i ./static/src/main.css -o ./static/src/style.css"
+    "build-tw": "npx tailwindcss -i ./static/src/main.css -o ./static/src/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,5 @@
   "homepage": "https://github.com/bong-u/til-hugo#readme",
   "devDependencies": {
     "tailwindcss": "^3.3.0"
-  },
-  "dependencies": {}
+  }
 }

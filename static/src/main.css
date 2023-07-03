@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap");
-:root {
-  --background-color: #1d1e20;
-  --text-color: #dadadb;
-  --summary-color: #2e2e33;
-  --toc-hover-color: #9696a5;
-  --scroll-color: #52525b;
-}
 
 @layer base {
   * {
@@ -17,7 +10,7 @@
   }
 
   body {
-    @apply text-[var(--text-color)] bg-[var(--background-color)];
+    @apply text-dark-text bg-dark-bg;
   }
 
   body::-webkit-scrollbar {
@@ -25,12 +18,11 @@
   }
 
   body::-webkit-scrollbar-track {
-    background: var(--background-color);
+    @apply bg-dark-scroll-track;
   }
 
   body::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color);
-    border-radius: 14px;
+    @apply bg-dark-scroll-thumb rounded-lg;
   }
 
   ol {
@@ -40,8 +32,9 @@
   ul {
     @apply list-disc;
   }
+
   tr {
-    @apply bg-inherit !important;
+    background-color: inherit !important;
   }
 
   .overflow-ellipsis-bundle {
@@ -70,7 +63,7 @@
     @apply font-bold;
   }
   #TableOfContents a:hover {
-    @apply text-[var(--toc-hover-color)];
+    @apply text-dark-toc-hover;
   }
 
   #TableOfContents ul > li {
