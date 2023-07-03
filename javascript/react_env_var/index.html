@@ -5,8 +5,7 @@
 <script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
 <link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
 <link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
-<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
-<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
 <script type=text/x-mathjax-config>
   MathJax.Hub.Config({
@@ -16,11 +15,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
-<body class=dark>
+<body>
 <header class="w-full text-center pt-3 pb-9">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
-<span class=toggleButton></span>
+<label class="absolute right-0 my-2 mx-4 text-2xl" for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
 </label>
 <h1 class="text-4xl font-bold">
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>

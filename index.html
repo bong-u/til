@@ -6,8 +6,7 @@
 <script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
 <link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
 <link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
-<link href=https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css rel=stylesheet>
-<link rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
 <script type=text/x-mathjax-config>
   MathJax.Hub.Config({
@@ -17,11 +16,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
-<body class=dark>
+<body>
 <header class="w-full text-center pt-3 pb-9">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 toggleSwitch" for=toggleDarkMode>
-<span class=toggleButton></span>
+<label class="absolute right-0 my-2 mx-4 text-2xl" for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
 </label>
 <h1 class="text-4xl font-bold">
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
@@ -65,7 +64,7 @@
 </aside>
 <main class="flex w-full justify-center">
 <section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12">
-<a href=/til-hugo/java/stream/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/java/stream/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>♨</span>
@@ -80,7 +79,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_11000/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_11000/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -95,7 +94,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/mogako23/mogako00/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/mogako23/mogako00/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>👨‍💻</span>
@@ -110,7 +109,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_2638/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_2638/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -125,7 +124,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/datacommunication/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/datacommunication/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -140,7 +139,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/datastructure/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/datastructure/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -155,7 +154,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/operatingsystem2/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/operatingsystem2/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -170,7 +169,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/operatingsystem1/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/operatingsystem1/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -185,7 +184,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/sysp_12_13/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/sysp_12_13/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -200,7 +199,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/mplc/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/mplc/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -215,7 +214,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/sysp_09_11/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/sysp_09_11/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -230,7 +229,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_11444/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_11444/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -245,7 +244,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/probabilityandstatistics/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/school/probabilityandstatistics/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -260,7 +259,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_1976/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_1976/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -275,7 +274,7 @@ Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/lecture/kakao_spring_boot/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/lecture/kakao_spring_boot/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>👨‍🏫</span>
@@ -290,7 +289,7 @@ KAKAO 김가연 선배님 - Spring Boot Framework
 </h1>
 </div>
 </a>
-<a href=/til-hugo/javascript/arguments_object/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/javascript/arguments_object/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🍌</span>
@@ -305,7 +304,7 @@ JS: Arguments object
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_11003/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_11003/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -320,7 +319,7 @@ JS: Arguments object
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_1918/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_1918/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -335,7 +334,7 @@ JS: Arguments object
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_2448/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/algorithm/boj_2448/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -350,7 +349,7 @@ JS: Arguments object
 </h1>
 </div>
 </a>
-<a href=/til-hugo/lecture/line_collaborative_process/ class="bg-[var(--summary-color)] p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href=/til-hugo/lecture/line_collaborative_process/ class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>👨‍🏫</span>

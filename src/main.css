@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap");
-:root {
-  --background-color: #1d1e20;
-  --text-color: #dadadb;
-  --summary-color: #2e2e33;
-  --toc-hover-color: #9696a5;
-  --scroll-color: #52525b;
-}
 
 @layer base {
   * {
@@ -17,7 +10,7 @@
   }
 
   body {
-    @apply text-[var(--text-color)] bg-[var(--background-color)];
+    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800 !important;
   }
 
   body::-webkit-scrollbar {
@@ -25,12 +18,11 @@
   }
 
   body::-webkit-scrollbar-track {
-    background: var(--background-color);
+    @apply bg-gray-900;
   }
 
   body::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color);
-    border-radius: 14px;
+    @apply bg-gray-800 rounded-lg;
   }
 
   ol {
@@ -40,12 +32,9 @@
   ul {
     @apply list-disc;
   }
+
   tr {
     @apply bg-inherit !important;
-  }
-
-  .overflow-ellipsis-bundle {
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
 
   #TableOfContents {
@@ -70,14 +59,19 @@
     @apply font-bold;
   }
   #TableOfContents a:hover {
-    @apply text-[var(--toc-hover-color)];
+    @apply hover:text-gray-400 dark:hover:text-gray-500;
   }
 
   #TableOfContents ul > li {
     @apply overflow-ellipsis-bundle my-2;
   }
+}
 
+@layer utilities {
   .hover-bold {
     @apply hover:font-bold;
+  }
+  .overflow-ellipsis-bundle {
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
 }
