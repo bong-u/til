@@ -427,8 +427,17 @@ video {
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(228 228 231 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(63 63 70 / var(--tw-text-opacity)) !important;
+}
+
+:is(.dark body) {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(39 39 42 / var(--tw-bg-opacity)) !important;
+  --tw-text-opacity: 1 !important;
+  color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
 }
 
 body::-webkit-scrollbar {
@@ -436,12 +445,14 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--background-color);
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-color);
-  border-radius: 14px;
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 ol {
@@ -454,12 +465,6 @@ ul {
 
 tr {
   background-color: inherit !important;
-}
-
-.overflow-ellipsis-bundle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 #TableOfContents {
@@ -489,20 +494,22 @@ tr {
   font-weight: 700;
 }
 
-#TableOfContents a:hover {
-  color: var(--toc-hover-color);
+#TableOfContents a:hover:hover {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+:is(.dark #TableOfContents a:hover:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 #TableOfContents ul > li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.hover-bold:hover {
-  font-weight: 700;
 }
 
 *, ::before, ::after {
@@ -819,8 +826,9 @@ tr {
   background-color: var(--background-color);
 }
 
-.bg-\[var\(--summary-color\)\] {
-  background-color: var(--summary-color);
+.bg-zinc-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 216 / var(--tw-bg-opacity));
 }
 
 .p-5 {
@@ -885,12 +893,19 @@ tr {
   transition-duration: 150ms;
 }
 
-:root {
-  --background-color: #1d1e20;
-  --text-color: #dadadb;
-  --summary-color: #2e2e33;
-  --toc-hover-color: #9696a5;
-  --scroll-color: #52525b;
+.hover-bold:hover {
+  font-weight: 700;
+}
+
+.overflow-ellipsis-bundle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:is(.dark .dark\:bg-zinc-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
