@@ -18,7 +18,7 @@
 <body>
 <header class="w-full text-center pt-3 pb-9">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 text-2xl" for=toggleDarkMode>
+<label class="absolute right-0 my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
 <h1 class="text-4xl font-bold">
@@ -78,7 +78,7 @@
 </div>
 </div>
 </div>
-<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
+<article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=디자인-씽킹이란>디자인 씽킹이란</h3>
 <ul>
 <li><strong>공감</strong>의 과정을 통해 문제점을 찾아내고, 아이디어를 발산하고, 프로토타입을 만들어 검증 과정을 거치는, 반복적 프로세스에 대한 방법론 및 사고방식</li>

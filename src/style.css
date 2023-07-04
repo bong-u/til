@@ -427,32 +427,27 @@ video {
 }
 
 body {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(228 228 231 / var(--tw-bg-opacity)) !important;
-  --tw-text-opacity: 1 !important;
-  color: rgb(63 63 70 / var(--tw-text-opacity)) !important;
+  --tw-bg-opacity: 1;
+  background-color: rgb(228 228 231 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
 :is(.dark body) {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(39 39 42 / var(--tw-bg-opacity)) !important;
-  --tw-text-opacity: 1 !important;
-  color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+  --tw-bg-opacity: 1;
+  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
 body::-webkit-scrollbar {
   width: 15px;
 }
 
-body::-webkit-scrollbar-track {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
 body::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  background-color: rgb(113 113 122 / var(--tw-bg-opacity));
 }
 
 ol {
@@ -465,6 +460,11 @@ ul {
 
 tr {
   background-color: inherit !important;
+}
+
+pre {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity)) !important;
 }
 
 #TableOfContents {
@@ -766,6 +766,10 @@ tr {
   flex-grow: 1;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .resize {
   resize: both;
 }
@@ -822,8 +826,8 @@ tr {
   border-radius: 0.5rem;
 }
 
-.bg-\[var\(--background-color\)\] {
-  background-color: var(--background-color);
+.bg-inherit {
+  background-color: inherit;
 }
 
 .bg-zinc-300 {

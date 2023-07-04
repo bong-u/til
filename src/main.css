@@ -10,19 +10,15 @@
   }
 
   body {
-    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800 !important;
+    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800;
   }
 
   body::-webkit-scrollbar {
     width: 15px;
   }
 
-  body::-webkit-scrollbar-track {
-    @apply bg-gray-900;
-  }
-
   body::-webkit-scrollbar-thumb {
-    @apply bg-gray-800 rounded-lg;
+    @apply bg-zinc-500 rounded-lg;
   }
 
   ol {
@@ -35,6 +31,10 @@
 
   tr {
     @apply bg-inherit !important;
+  }
+
+  pre {
+    @apply bg-zinc-900 !important;
   }
 
   #TableOfContents {
@@ -58,6 +58,7 @@
   #TableOfContents a.current {
     @apply font-bold;
   }
+
   #TableOfContents a:hover {
     @apply hover:text-gray-400 dark:hover:text-gray-500;
   }
@@ -71,6 +72,7 @@
   .hover-bold {
     @apply hover:font-bold;
   }
+
   .overflow-ellipsis-bundle {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }

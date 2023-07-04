@@ -18,7 +18,7 @@
 <body>
 <header class="w-full text-center pt-3 pb-9">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 text-2xl" for=toggleDarkMode>
+<label class="absolute right-0 my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
 <h1 class="text-4xl font-bold">
@@ -51,7 +51,7 @@
 </div>
 </div>
 </div>
-<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
+<article id=content class="bg-inherit markdown-body flex flex-col">
 <h2 id=table에-있는-데이터들을-column별로-정렬해야-한다>Table에 있는 데이터들을 column별로 정렬해야 한다</h2>
 <h3 id=데이터의-형식에-따라-comparator를-따로-구현하였다>데이터의 형식에 따라 comparator를 따로 구현하였다</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorStr</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {

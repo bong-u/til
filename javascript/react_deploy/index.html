@@ -18,7 +18,7 @@
 <body>
 <header class="w-full text-center pt-3 pb-9">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 text-2xl" for=toggleDarkMode>
+<label class="absolute right-0 my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
 <h1 class="text-4xl font-bold">
@@ -48,7 +48,7 @@
 </div>
 </div>
 </div>
-<article id=content class="bg-[var(--background-color)] markdown-body flex flex-col">
+<article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=build-결과물을-돌리면-빈-화면만-나오는-문제>build 결과물을 돌리면 빈 화면만 나오는 문제</h3>
 <ol>
 <li>static files 로딩에 성공했는지 확인하자
