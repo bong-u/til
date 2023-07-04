@@ -17,12 +17,8 @@
     width: 15px;
   }
 
-  body::-webkit-scrollbar-track {
-    @apply bg-gray-900;
-  }
-
   body::-webkit-scrollbar-thumb {
-    @apply bg-gray-800 rounded-lg;
+    @apply bg-zinc-500 rounded-lg;
   }
 
   ol {
@@ -58,6 +54,7 @@
   #TableOfContents a.current {
     @apply font-bold;
   }
+
   #TableOfContents a:hover {
     @apply hover:text-gray-400 dark:hover:text-gray-500;
   }
@@ -71,6 +68,7 @@
   .hover-bold {
     @apply hover:font-bold;
   }
+
   .overflow-ellipsis-bundle {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
