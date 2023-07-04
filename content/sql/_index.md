@@ -1,3 +1,3 @@
 ---
-title: "🗃|SQL"
+title: "🥞|SQL"
 ---
