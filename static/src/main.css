@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800 !important;
+    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800;
   }
 
   body::-webkit-scrollbar {
@@ -31,6 +31,10 @@
 
   tr {
     @apply bg-inherit !important;
+  }
+
+  pre {
+    @apply bg-zinc-900 !important;
   }
 
   #TableOfContents {
