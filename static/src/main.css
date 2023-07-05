@@ -66,6 +66,10 @@
   #TableOfContents ul > li {
     @apply overflow-ellipsis-bundle my-2;
   }
+
+  .preview {
+    @apply text-black !important;
+  }
 }
 
 @layer utilities {
