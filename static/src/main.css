@@ -38,13 +38,8 @@
   }
 
   #TableOfContents {
-    height: calc(100vh - 150px);
-    scrollbar-width: none;
-    @apply w-full block pb-8 text-sm overflow-hidden;
-  }
-
-  #TableOfContents::-webkit-scrollbar {
-    width: 0px;
+    height: calc(100vh - 8rem);
+    @apply text-sm overflow-hidden;
   }
 
   #TableOfContents ul {
@@ -68,7 +63,7 @@
   }
 
   .preview {
-    @apply text-zinc-700 dark:text-gray-300  !important;
+    @apply text-zinc-700 dark:text-gray-300 !important;
   }
 }
 
@@ -76,6 +71,7 @@
   .highlight {
     @apply bg-zinc-100 dark:bg-stone-900;
   }
+
   .hover-bold {
     @apply hover:font-bold;
   }
