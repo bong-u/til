@@ -768,6 +768,10 @@ pre {
   display: none;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -958,12 +962,12 @@ pre {
   transition-duration: 150ms;
 }
 
-.highlight {
+.box {
   --tw-bg-opacity: 1;
   background-color: rgb(244 244 245 / var(--tw-bg-opacity));
 }
 
-:is(.dark .highlight) {
+:is(.dark .box) {
   --tw-bg-opacity: 1;
   background-color: rgb(28 25 23 / var(--tw-bg-opacity));
 }

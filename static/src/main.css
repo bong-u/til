@@ -68,7 +68,7 @@
 }
 
 @layer utilities {
-  .highlight {
+  .box {
     @apply bg-zinc-100 dark:bg-stone-900;
   }
 
