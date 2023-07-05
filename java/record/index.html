@@ -1,0 +1,121 @@
+<!doctype html><html>
+<head>
+<title> bong-u's TIL </title>
+<meta charset=utf-8>
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body>
+<header class="w-full text-center pt-3 pb-9">
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="absolute right-0 my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+<h1 class="text-4xl font-bold">
+<a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
+</h1>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#레코드란>레코드란</a></li>
+<li><a href=#예제>예제</a></li>
+<li><a href=#record에서-지원하는-것>Record에서 지원하는 것</a></li>
+<li><a href=#record의-제약-사항>Record의 제약 사항</a></li>
+<li><a href=#record에서-할-수-있는-것>Record에서 할 수 있는 것</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Record</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-05 </h4>
+<h4 id=date> MODIFIED 2023-07-05</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=레코드란>레코드란</h3>
+<ul>
+<li>불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스</li>
+<li>JDK16부터 지원</li>
+</ul>
+<h3 id=예제>예제</h3>
+<ul>
+<li>
+<p>Record 적용 전</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String name<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> name<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>age</span> <span style=color:#f92672>=</span> age<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getName</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> name<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>getAge</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> age<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+<li>
+<p>Record 적용 후</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> record <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{}</span>
+</code></pre></div></li>
+</ul>
+<h3 id=record에서-지원하는-것>Record에서 지원하는 것</h3>
+<ul>
+<li><strong>Constructor</strong>, <strong>Getter</strong>, equals(), hashcode(), toString()</li>
+</ul>
+<h3 id=record의-제약-사항>Record의 제약 사항</h3>
+<ul>
+<li>다른 클래스를 상속 받을 수 없다, 구현(implements)는 가능</li>
+<li>static field만 선언 가능하다 (instance field 불가능)</li>
+<li>각 field는 private final로 정의된다</li>
+</ul>
+<h3 id=record에서-할-수-있는-것>Record에서 할 수 있는 것</h3>
+<ul>
+<li>컴팩트 생성자 : 매개변수가 없는 생성자, validate 사용시 적합
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> record <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> Person <span style=color:#f92672>{</span>
+        Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>name<span style=color:#f92672>);</span>
+        Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>age<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/java/stream/>
+Stream, Optional</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
