@@ -668,6 +668,10 @@ pre {
   margin: 0.25rem;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -696,6 +700,16 @@ pre {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
 }
 
 .mb-10 {
@@ -742,6 +756,10 @@ pre {
   height: 1.25rem;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -758,8 +776,25 @@ pre {
   width: 15rem;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .w-full {
   width: 100%;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.w-40 {
+  width: 10rem;
+}
+
+.w-max {
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .grow {
@@ -798,6 +833,10 @@ pre {
   justify-content: space-between;
 }
 
+.justify-items-end {
+  justify-items: end;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -826,6 +865,19 @@ pre {
   border-radius: 0.5rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .bg-inherit {
   background-color: inherit;
 }
@@ -835,8 +887,26 @@ pre {
   background-color: rgb(212 212 216 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#\#0d1117\] {
+  background-color: ##0d1117;
+}
+
+.bg-\[\#0d1117\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 17 23 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .px-4 {
@@ -881,8 +951,17 @@ pre {
   line-height: 2.5rem;
 }
 
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-bold {
   font-weight: 700;
+}
+
+.no-underline {
+  text-decoration-line: none;
 }
 
 .filter {
@@ -910,6 +989,11 @@ pre {
 :is(.dark .dark\:bg-zinc-700) {
   --tw-bg-opacity: 1;
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-\[\#0d1117\]) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 17 23 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
