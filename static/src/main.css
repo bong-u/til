@@ -74,7 +74,7 @@
 
 @layer utilities {
   .highlight {
-    @apply bg-zinc-100 dark:bg-zinc-900;
+    @apply bg-zinc-100 dark:bg-stone-900;
   }
   .hover-bold {
     @apply hover:font-bold;
