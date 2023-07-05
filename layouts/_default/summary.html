@@ -1,19 +1,22 @@
 {{ $section_emoji := index (split .Parent.Title "|") 0 }}
 {{ $section_name := index (split .Parent.Title "|") 1 }}
 
-<a href="{{ .RelPermalink }}" class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
-    <div class="flex justify-between">
-        <div class="flex items-center gap-2">
-            <span class="text-2xl">{{ $section_emoji }}</span>
-            <span>{{ $section_name }}</span>
+
+<div class="flex flex-col gap-3 rounded-lg highlight w-full ">
+    <a href="{{ .RelPermalink }}" class=" p-5 hover-bold">
+        <div class="flex justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">{{ $section_emoji }}</span>
+                <span>{{ $section_name }}</span>
+            </div>
+            <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
         </div>
-        <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
-    </div>
-    <div class="w-full">
-        <h1 class="text-2xl overflow-ellipsis-bundle">
-            <img onload="checkRecentPost(event, '{{ .Lastmod.YearDay }}')" class="w-5 h-5 inline hidden"
-                src="{{ .Site.BaseURL }}asset/new.png" alt="new" />
-            {{ .Title }}
-        </h1>
-    </div>
-</a>
+        <div class="w-full">
+            <h1 class="text-2xl overflow-ellipsis-bundle">
+                <img onload="checkRecentPost(event, '{{ .Lastmod.YearDay }}')" class="h-5 inline hidden"
+                    src="{{ .Site.BaseURL }}asset/new.png" alt="new" />
+                {{ .Title }}
+            </h1>
+        </div>
+    </a>
+</div>

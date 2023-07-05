@@ -26,12 +26,12 @@
 	{{ partial "google-analytics.html" . }}{{ end }}
 </head>
 
-<body>
-	{{ .Render "topbar" }}
+<body class="flex justify-center my-16">
+	{{ .Render "header" }}
 
 	{{ block "main" .}} {{ end }}
+
 	<!-- {{ block "footer" . }} {{ end }} -->
 </body>
-
 
 </html>

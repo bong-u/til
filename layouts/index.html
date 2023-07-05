@@ -1,15 +1,22 @@
 {{ define "main" }}
-<aside class="fixed left-0 hidden md:flex">
-	{{ .Render "sidebar" }}
-</aside>
-<main class="flex w-full justify-center">
-	<section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12">
+
+<div class="flex flex-col gap-8 w-11/12 sm:w-9/12 md:w-10/12">
+	<section>
+		<img src="{{ .Site.BaseURL }}asset\profile.jpg" alt="profile" class="rounded-full w-64 h-64 mx-auto my-4" />
+		<h1 class="text-center text-4xl font-bold mt-12">
+			<a href="{{ .Site.BaseURL }}">Bong-u's TIL</a>
+		</h1>
+	</section>
+
+	{{ .Render "navigator" }}
+
+	<main class="flex flex-col">
+		<section class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 			<!-- 최근에 commit한 20개 페이지 -->
 			{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 			{{ .Render "summary" }}
 			{{ end }}
-	</section>
-</main>
-<!-- {{ block "footer" . }} {{ end }} -->
+		</section>
+	</main>
 </div>
 {{ end }}
