@@ -3,9 +3,12 @@
     {{ $section := . }}
     {{ with .Pages }}
     {{ $indexPage := index . 0 }}
+    {{ $section_emoji := index (split $section.Title "|") 0 }}
+    {{ $section_name := index (split $section.Title "|") 1 }}
+
     <a class="mx-8 py-3 hover-bold" href="{{ $section.RelPermalink }}">
-        <span class="mr-3">{{ index (split $section.Title "|") 0 }}</span>
-        <span>{{ index (split $section.Title "|") 1 }}</span>
+        <span class="mr-3">{{ $section_emoji }}</span>
+        <span>{{ $section_name }}</span>
     </a>
     {{ end }}
     {{ end }}
