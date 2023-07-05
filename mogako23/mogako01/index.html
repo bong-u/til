@@ -29,12 +29,12 @@
 <aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#나의-목표>나의 목표</a>
+<li>
 <ul>
-<li></li>
+<li><a href=#1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</a></li>
+<li><a href=#2-java의-record-개념-정리하기>2. Java의 record 개념 정리하기</a></li>
 </ul>
 </li>
-<li><a href=#sw-academy-교육과정---backend>SW Academy 교육과정 - Backend</a></li>
 </ul>
 </nav>
 </aside>
@@ -42,33 +42,58 @@
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">[모각코] 00 : 목표</h1>
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">[모각코] 01 : 결과</h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-06-26 </h4>
-<h4 id=date> MODIFIED 2023-06-26</h4>
+<h4 id=date> CREATED 2023-07-05 </h4>
+<h4 id=date> MODIFIED 2023-07-05</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=나의-목표>나의 목표</h2>
-<h4 id=1-성실한-포스팅으로-1일-1커밋을-향해-노력하겠다>1. 성실한 포스팅으로 1일 1커밋을 향해 노력하겠다.</h4>
-<h4 id=2-sw-academy에서-배운-spring-boot-기술을-상세하게-정리할-것이다>2. SW Academy에서 배운 Spring boot 기술을 상세하게 정리할 것이다.</h4>
-<h4 id=2-현재-기술-블로그의-디자인을-개선시킬-것이다>2. 현재 기술 블로그의 디자인을 개선시킬 것이다.</h4>
-<h2 id=sw-academy-교육과정---backend>SW Academy 교육과정 - Backend</h2>
-<ol>
-<li>프레임워크를 위환 Java 심화</li>
-<li>실리콘밸리에서 날아온 DataBase</li>
-<li>Spring Boot Basic 1</li>
-<li>Spring Boot Basic 2</li>
-<li>Spring Boot Basic 3</li>
-<li>Spring Data Security 1</li>
-<li>Spring Data Security 2</li>
-</ol>
+<h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
+<a href=https://bong-u.github.io/til-hugo/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class=preview>
+<div class="flex p-3 bg-white dark:bg-[#0d1117] rounded-2xl cursor-pointer">
+<div class="flex items-center mx-3 w-32 w-32 text-center">
+<span class="w-full text-7xl">🧠</span>
+</div>
+<div class="w-full mx-5">
+<div class="flex justify-between items-center">
+<h1>두 원 사이의 정수 쌍(L2)</h1>
+<div>
+<span>2023-07-05</span>
+<p>Algorithm</p>
+</div>
+</div>
+<p>import math def calc1(r): result = 0 for i in range(1, r): result += math.floor(math.sqrt(r**2 - i**2)) return result*4 + r*4 + 1 def calc2(r): result = 0 for i in range(1, r): a = math.sqrt(r**2 - i**2) result += math.floor(a) if a % 1 == 0: result -= 1 return result*4 + r*4 + 1 def solution(r1, r2): return calc1(r2)-calc2(r1)+4 문제 두 원의 반지름 r1, r2가 주어진다. 두 원 사이의 공간에 x좌표와 y좌표가 모두 정수인 점의 개수를 구하라 이</p>
+</div>
+</div>
+</a>
+<h3 id=2-java의-record-개념-정리하기>2. Java의 record 개념 정리하기</h3>
+<a href=https://bong-u.github.io/til-hugo/java/record/ class=preview>
+<div class="flex p-3 bg-white dark:bg-[#0d1117] rounded-2xl cursor-pointer">
+<div class="flex items-center mx-3 w-32 w-32 text-center">
+<span class="w-full text-7xl">♨</span>
+</div>
+<div class="w-full mx-5">
+<div class="flex justify-between items-center">
+<h1>Record</h1>
+<div>
+<span>2023-07-05</span>
+<p>Java</p>
+</div>
+</div>
+<p>레코드란 불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스 JDK16부터 지원 예제 Record 적용 전
+public class Person { private final String name; private final int age; public Person(String name, int age) { this.name = name; this.age = age; } public String getName() { return name; } public int getAge() { return age; } } Record 적용 후
+public record Person(String name, int age) {} Record에서 지원하는 것 Constructor</p>
+</div>
+</div>
+</a>
 </article>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/mogako23/mogako01_plan/> [모각코] 01 : 계획</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/mogako23/mogako01_plan/>
+[모각코] 01 : 계획</a>
 </div>
 </div>
 </div>
