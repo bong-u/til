@@ -16,9 +16,10 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
 <body class="flex justify-center my-16">
-<header class="absolute top-0 right-0 p-4">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center text-3xl">
+<a href=https://github.com/bong-u/til-hugo>🐈</a>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
+<label class="my-2 mx-4 cursor-pointer" for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
 </header>
@@ -48,43 +49,50 @@
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
-<a href=https://bong-u.github.io/til-hugo/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class=preview>
-<div class="flex p-3 highlight rounded-2xl">
+<div class="h-40 flex p-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til-hugo/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="preview flex">
 <div class="flex items-center mx-3 w-32 w-32 text-center">
 <span class="w-full text-7xl">🧠</span>
 </div>
-<div class="w-full mx-5">
-<div class="flex justify-between items-center">
-<h1>두 원 사이의 정수 쌍(L2)</h1>
+<div class="flex flex-col w-full mx-5">
+<div class="flex justify-between">
+<span class="font-bold text-2xl">두 원 사이의 정수 쌍(L2)</span>
 <div>
 <span>2023-07-05</span>
 <p>Algorithm</p>
 </div>
 </div>
-<p>import math def calc1(r): result = 0 for i in range(1, r): result += math.floor(math.sqrt(r**2 - i**2)) return result*4 + r*4 + 1 def calc2(r): result = 0 for i in range(1, r): a = math.sqrt(r**2 - i**2) result += math.floor(a) if a % 1 == 0: result -= 1 return result*4 + r*4 + 1 def solution(r1, r2): return calc1(r2)-calc2(r1)+4 문제 두 원의 반지름 r1, r2가 주어진다. 두 원 사이의 공간에 x좌표와 y좌표가 모두 정수인 점의 개수를 구하라 이</p>
+<div class="overflow-hidden overflow-ellipsis">
+<div>
+import math def calc1(r): result = 0 for i in range(1, r): result += math.floor(math.sqrt(r**2 - i**2)) return result*4 + r*4 + 1 def calc2(r): result = 0 for i in range(1, r): a = math.sqrt(r**2 - i**2) result += math.floor(a) if a % 1 == 0: result -= 1 return result*4 + r*4 + 1 def solution(r1, r2
+</div>
 </div>
 </div>
 </a>
+</div>
 <h3 id=2-java의-record-개념-정리하기>2. Java의 record 개념 정리하기</h3>
-<a href=https://bong-u.github.io/til-hugo/java/record/ class=preview>
-<div class="flex p-3 highlight rounded-2xl">
+<div class="h-40 flex p-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til-hugo/java/record/ class="preview flex">
 <div class="flex items-center mx-3 w-32 w-32 text-center">
 <span class="w-full text-7xl">♨</span>
 </div>
-<div class="w-full mx-5">
-<div class="flex justify-between items-center">
-<h1>Record</h1>
+<div class="flex flex-col w-full mx-5">
+<div class="flex justify-between">
+<span class="font-bold text-2xl">Record</span>
 <div>
 <span>2023-07-05</span>
 <p>Java</p>
 </div>
 </div>
-<p>레코드란 불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스 JDK16부터 지원 예제 Record 적용 전
-public class Person { private final String name; private final int age; public Person(String name, int age) { this.name = name; this.age = age; } public String getName() { return name; } public int getAge() { return age; } } Record 적용 후
-public record Person(String name, int age) {} Record에서 지원하는 것 Constructor</p>
+<div class="overflow-hidden overflow-ellipsis">
+<div>
+레코드란 불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스 JDK16부터 지원 예제 Record 적용 전
+public class Person { private final String name; private final int age; public Person(String name, int age) { this.name = name; this.age = age; } public String getName() { return name; } public int getAge() { return
+</div>
 </div>
 </div>
 </a>
+</div>
 </article>
 <div id=meta class=py-10>
 <div>
