@@ -15,19 +15,15 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
-<body>
-<header class="w-full text-center pt-3 py-9">
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
+<label class="my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
-<h1 class="text-4xl font-bold">
-<a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
-</h1>
-<img src=https://bong-u.github.io/til-hugo/asset\profile.jpg alt=profile class="rounded-full w-64 h-64 mx-auto my-4">
 </header>
 <script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
-<aside class="fixed right-0 w-56 gap-3 mx-9 hidden lg:flex">
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
 <li><a href=#운영체제-개요>운영체제 개요</a>

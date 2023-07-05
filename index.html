@@ -16,19 +16,21 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
-<body>
-<header class="w-full text-center pt-3 py-9">
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4">
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class="absolute right-0 my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
+<label class="my-2 mx-4 text-2xl cursor-pointer" for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
-<h1 class="text-4xl font-bold">
+</header>
+<div class="flex flex-col gap-8 w-11/12 sm:w-9/12 md:w-10/12">
+<section>
+<img src=https://bong-u.github.io/til-hugo/asset\profile.jpg alt=profile class="rounded-full w-64 h-64 mx-auto my-4">
+<h1 class="text-center text-4xl font-bold mt-12">
 <a href=https://bong-u.github.io/til-hugo/>Bong-u's TIL</a>
 </h1>
-<img src=https://bong-u.github.io/til-hugo/asset\profile.jpg alt=profile class="rounded-full w-64 h-64 mx-auto my-4">
-</header>
-<aside class="fixed left-0 hidden md:flex">
-<div class="flex flex-col w-60">
+</section>
+<nav class="grid justify-center grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
 <a class="mx-8 py-3 hover-bold" href=/til-hugo/kubernetes/>
 <span class="text-xl mr-3">☁</span>
 <span>Kubernetes</span>
@@ -65,11 +67,11 @@
 <span class="text-xl mr-3">🧠</span>
 <span>Algorithm</span>
 </a>
-</div>
-</aside>
-<main class="flex w-full justify-center">
-<section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12">
-<a href=/til-hugo/mogako23/mogako01/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</nav>
+<main class="flex flex-col">
+<section class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/mogako23/mogako01/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>👨‍💻</span>
@@ -79,12 +81,14 @@
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'186')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'186')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 [모각코] 01 : 결과
 </h1>
 </div>
 </a>
-<a href=/til-hugo/mogako23/mogako01_plan/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/mogako23/mogako01_plan/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>👨‍💻</span>
@@ -94,12 +98,14 @@
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'186')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'186')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 [모각코] 01 : 계획
 </h1>
 </div>
 </a>
-<a href=/til-hugo/java/record/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/java/record/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>♨</span>
@@ -109,12 +115,14 @@
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'186')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'186')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 Record
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -124,12 +132,14 @@ Record
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'186')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'186')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 두 원 사이의 정수 쌍(L2)
 </h1>
 </div>
 </a>
-<a href=/til-hugo/spring/maven/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/spring/maven/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🍃</span>
@@ -139,12 +149,14 @@ Record
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'185')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'185')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 Spring - Maven
 </h1>
 </div>
 </a>
-<a href=/til-hugo/sql/database/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/sql/database/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🥞</span>
@@ -154,12 +166,14 @@ Spring - Maven
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'185')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'185')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 Database
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_11444/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/algorithm/boj_11444/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -169,12 +183,14 @@ Database
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'185')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'185')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 11444 : 피보나치 수 6 (G2)
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/pgs_%EC%9A%94%EA%B2%A9_%EC%8B%9C%EC%8A%A4%ED%85%9C/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/algorithm/pgs_%EC%9A%94%EA%B2%A9_%EC%8B%9C%EC%8A%A4%ED%85%9C/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -184,12 +200,14 @@ Database
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'185')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'185')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 요격 시스템 (L2)
 </h1>
 </div>
 </a>
-<a href=/til-hugo/java/stream/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/java/stream/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>♨</span>
@@ -199,12 +217,14 @@ Database
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'184')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'184')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 Stream, Optional
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_11000/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/algorithm/boj_11000/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -214,12 +234,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'179')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'179')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 11000 : 강의실 배정 (G5)
 </h1>
 </div>
 </a>
-<a href=/til-hugo/mogako23/mogako00/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/mogako23/mogako00/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>👨‍💻</span>
@@ -229,12 +251,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'177')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'177')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 [모각코] 00 : 목표
 </h1>
 </div>
 </a>
-<a href=/til-hugo/algorithm/boj_2638/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/algorithm/boj_2638/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🧠</span>
@@ -244,12 +268,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'177')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'177')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 2638 : 치즈 (G3)
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/datacommunication/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/datacommunication/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -259,12 +285,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'168')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'168')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 데이터통신
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/datastructure/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/datastructure/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -274,12 +302,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'161')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'161')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 자료구조
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/operatingsystem2/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/operatingsystem2/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -289,12 +319,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'152')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'152')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 운영체제 - 기말범위
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/operatingsystem1/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/operatingsystem1/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -304,12 +336,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'149')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'149')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 운영체제 - 중간범위
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/sysp_12_13/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/sysp_12_13/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -319,12 +353,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'142')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'142')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 221208 SYSP
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/mplc/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/mplc/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -334,12 +370,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'142')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'142')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 현대인의 생활문화
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/sysp_09_11/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/sysp_09_11/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -349,12 +387,14 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'142')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'142')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 221207 SYSP
 </h1>
 </div>
 </a>
-<a href=/til-hugo/school/probabilityandstatistics/ class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+</div>
+<div class="flex flex-col gap-3 rounded-lg highlight w-full">
+<a href=/til-hugo/school/probabilityandstatistics/ class="p-5 hover-bold">
 <div class="flex justify-between">
 <div class="flex items-center gap-2">
 <span class=text-2xl>🏫</span>
@@ -364,11 +404,12 @@ Stream, Optional
 </div>
 <div class=w-full>
 <h1 class="text-2xl overflow-ellipsis-bundle">
-<img onload="checkRecentPost(event,'113')" class="w-5 h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
+<img onload="checkRecentPost(event,'113')" class="h-5 inline hidden" src=https://bong-u.github.io/til-hugo/asset/new.png alt=new>
 확률과 통계
 </h1>
 </div>
 </a>
+</div>
 </section>
 </main>
 </div>
