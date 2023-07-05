@@ -68,11 +68,14 @@
   }
 
   .preview {
-    @apply text-black !important;
+    @apply text-zinc-700 dark:text-gray-300  !important;
   }
 }
 
 @layer utilities {
+  .highlight {
+    @apply bg-zinc-100 dark:bg-zinc-900;
+  }
   .hover-bold {
     @apply hover:font-bold;
   }
