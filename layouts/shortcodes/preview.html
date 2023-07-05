@@ -3,10 +3,10 @@
 {{ $emoji := index (split $page.Parent.Title "|") 0 }}
 {{ $section := index (split $page.Parent.Title "|") 1 }}
 
-<a href={{$page.Permalink}} class="no-underline">
+<a href={{$page.Permalink}} class="preview">
     <div class="flex p-3 bg-white dark:bg-[#0d1117] rounded-2xl cursor-pointer">
-        <div class="flex items-center">
-            <image class="w-32" alt="thumbnail" src="https://emoji.beeimg.com/{{$emoji}}/128/apple" />
+        <div class="flex items-center mx-3">
+            <image class="w-32" alt="thumbnail" src="https://emoji.beeimg.com/{{$emoji}}/128/google" />
         </div>
         <div class="w-full mx-5">
             <div class="flex justify-between items-center">
