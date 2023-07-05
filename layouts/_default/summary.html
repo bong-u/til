@@ -1,7 +1,7 @@
 {{ $section_emoji := index (split .Parent.Title "|") 0 }}
 {{ $section_name := index (split .Parent.Title "|") 1 }}
 
-<a href="{{ .RelPermalink }}" class="bg-zinc-300 dark:bg-zinc-700 p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
+<a href="{{ .RelPermalink }}" class="highlight p-5 rounded-lg flex flex-col gap-3 w-full hover-bold">
     <div class="flex justify-between">
         <div class="flex items-center gap-2">
             <span class="text-2xl">{{ $section_emoji }}</span>

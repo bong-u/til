@@ -4,7 +4,7 @@
 {{ $section := index (split $page.Parent.Title "|") 1 }}
 
 <a href={{$page.Permalink}} class="preview">
-    <div class="flex p-3 bg-white dark:bg-[#0d1117] rounded-2xl cursor-pointer">
+    <div class="flex p-3 highlight rounded-2xl">
         <div class="flex items-center mx-3 w-32 w-32 text-center">
             <span class="w-full text-7xl">{{ $emoji }}</span>
         </div>
