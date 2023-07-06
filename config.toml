@@ -1,7 +1,7 @@
 baseURL = 'https://bong-u.github.io/til-hugo/'
 languageCode = 'en-us'
 
-title = "bong-u's TIL"
+title = "Bong-u's TIL"
 enableGitInfo = true
 [frontmatter]
 	date = ['date']
