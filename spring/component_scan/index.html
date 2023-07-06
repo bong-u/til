@@ -29,7 +29,9 @@
 <ul>
 <li>
 <ul>
-<li><a href=#component-scan>@Component scan</a></li>
+<li><a href=#개념>개념</a></li>
+<li><a href=#componentscan>@ComponentScan</a></li>
+<li><a href=#예제>예제</a></li>
 </ul>
 </li>
 </ul>
@@ -39,46 +41,60 @@
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">05_Component_scan</h1>
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Component Scan</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-07 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> MODIFIED 2023-07-06</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=component-scan>@Component scan</h3>
+<h3 id=개념>개념</h3>
+<ul>
+<li>Component Scan은 스프링이 직접 클래스를 검색해서 빈으로 등록해주는 기능이다</li>
+<li>xml 또는 annotation을 통해 사용 가능하다</li>
+</ul>
+<h3 id=componentscan>@ComponentScan</h3>
+<ol>
+<li>
+<p>basePacakges : 패키지 이름을 통해 스캔할 범위를 지정한다</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;org.academy.order&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>={</span><span style=color:#e6db74>&#34;org.academy.order&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;org.academy.voucher&#34;</span><span style=color:#f92672>})</span>
+</code></pre></div></li>
+<li>
+<p>basePackageClasses : 해당 클래스가 들어있는 패키지를 범위로 지정한다</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackageClasses<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Order.class&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>={</span><span style=color:#e6db74>&#34;Order.class&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Voucher.class&#34;</span><span style=color:#f92672>})</span>
+</code></pre></div></li>
+</ol>
+<h3 id=예제>예제</h3>
 <ul>
 <li>
-<p>Component Scan은 스프링이 직접 클래스를 검색해서 빈으로 등록해주는 기능이다</p>
-</li>
-<li>
 <p>AppCtx.java</p>
-</li>
-</ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
 <span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;spring&#34;</span><span style=color:#f92672>})</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{...}</span>
-</code></pre></div><ul>
-<li>MemberInfoPrinter.java</li>
-</ul>
+</code></pre></div></li>
+<li>
+<p>MemberInfoPrinter.java</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>)</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MemberInfoPrinter</span> <span style=color:#f92672>{...}</span>
-</code></pre></div><ul>
-<li>효과</li>
-</ul>
+</code></pre></div></li>
+<li>
+<p>효과</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// before
 </span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>,</span> MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
 <span style=color:#75715e>// after
 </span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
-</code></pre></div>
+</code></pre></div></li>
+</ul>
 </article>
 <div id=meta class=py-10>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/spring/09_spring_mvc/>
-09_spring_MVC</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/spring/06_bean_lifecycle_scope/> 05_bean_lifecycle_scope</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/spring/di/>
+DI (Dependency Injection)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til-hugo/spring/09_spring_mvc/> 09_spring_MVC</a>
 </div>
 </div>
 </div>
