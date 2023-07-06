@@ -1,5 +1,5 @@
 ---
-title: "03_DI"
+title: "DI (Dependency Injection)"
 date: 2023-01-07
 ---
 
@@ -42,7 +42,7 @@ date: 2023-01-07
    }
    ```
 
-### DI방식
+### DI 방식
 
 1. Constructor 방식
    ```java
