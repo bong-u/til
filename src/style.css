@@ -468,7 +468,7 @@ tr{
 
 pre{
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(24 24 27 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(28 25 23 / var(--tw-bg-opacity)) !important;
 }
 
 code *{
@@ -766,6 +766,14 @@ code *{
   margin-top: 3rem;
 }
 
+.mt-32{
+  margin-top: 8rem;
+}
+
+.mt-24{
+  margin-top: 6rem;
+}
+
 .block{
   display: block;
 }
@@ -876,6 +884,10 @@ code *{
 
 .gap-8{
   gap: 2rem;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .overflow-hidden{
