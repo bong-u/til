@@ -1,0 +1,143 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til-hugo/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til-hugo/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til-hugo/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til-hugo/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center text-3xl">
+<a href=https://github.com/bong-u/til-hugo>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class="my-2 mx-4 cursor-pointer" for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#내-답안>내 답안</a></li>
+<li><a href=#다른-사람-답안>다른 사람 답안</a></li>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법-다른-사람-답안-기준>해결방법 (다른 사람 답안 기준)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">과제 진행하기 (L2)</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-07 </h4>
+<h4 id=date> MODIFIED 2023-07-07</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=내-답안>내 답안</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(plans):
+    q <span style=color:#f92672>=</span> []
+    answer <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> plan <span style=color:#f92672>in</span> plans:
+        h, m <span style=color:#f92672>=</span> map(int, plan[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;:&#39;</span>))
+        plan[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> h<span style=color:#f92672>*</span><span style=color:#ae81ff>60</span> <span style=color:#f92672>+</span> m
+        plan[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> int(plan[<span style=color:#ae81ff>2</span>])
+    plans<span style=color:#f92672>.</span>sort(key <span style=color:#f92672>=</span> <span style=color:#66d9ef>lambda</span> x: x[<span style=color:#ae81ff>1</span>])
+    
+    <span style=color:#66d9ef>for</span> plan <span style=color:#f92672>in</span> plans:
+        <span style=color:#66d9ef>if</span> q:
+            free_time <span style=color:#f92672>=</span> plan[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]
+        <span style=color:#66d9ef>while</span> q:
+            q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>-=</span> free_time
+            free_time <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>]
+            
+            print (free_time, q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>])
+            <span style=color:#66d9ef>if</span> free_time <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>:
+                <span style=color:#66d9ef>break</span>
+            
+            <span style=color:#66d9ef>if</span> q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>:
+                answer<span style=color:#f92672>.</span>append(q<span style=color:#f92672>.</span>pop()[<span style=color:#ae81ff>0</span>])
+
+        q<span style=color:#f92672>.</span>append(plan)
+    <span style=color:#66d9ef>while</span> q:
+        answer<span style=color:#f92672>.</span>append(q<span style=color:#f92672>.</span>pop()[<span style=color:#ae81ff>0</span>])
+        
+    <span style=color:#66d9ef>return</span> answer   
+</code></pre></div><h3 id=다른-사람-답안>다른 사람 답안</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(plans):
+    plans <span style=color:#f92672>=</span> sorted(map(<span style=color:#66d9ef>lambda</span> x: [x[<span style=color:#ae81ff>0</span>], int(x[<span style=color:#ae81ff>1</span>][:<span style=color:#ae81ff>2</span>]) <span style=color:#f92672>*</span> <span style=color:#ae81ff>60</span> <span style=color:#f92672>+</span> int(x[<span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>:]), int(x[<span style=color:#ae81ff>2</span>])], plans), key<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: <span style=color:#f92672>-</span>x[<span style=color:#ae81ff>1</span>])
+    q <span style=color:#f92672>=</span> []
+    
+    <span style=color:#66d9ef>while</span> plans:
+        cur <span style=color:#f92672>=</span> plans<span style=color:#f92672>.</span>pop()
+        
+        <span style=color:#66d9ef>for</span> idx, item <span style=color:#f92672>in</span> enumerate(q):
+            <span style=color:#66d9ef>if</span> item[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;</span> cur[<span style=color:#ae81ff>1</span>]:
+                q[idx][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+=</span> cur[<span style=color:#ae81ff>2</span>]
+        
+        q<span style=color:#f92672>.</span>append([cur[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>cur[<span style=color:#ae81ff>2</span>], cur[<span style=color:#ae81ff>0</span>]])
+        
+    q<span style=color:#f92672>.</span>sort()
+    <span style=color:#66d9ef>return</span> list(map(<span style=color:#66d9ef>lambda</span> x: x[<span style=color:#ae81ff>1</span>], q))
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>과제 정보 리스트가 주어진다. (과제 : [이름, 시작시간, 걸리는 시간])</li>
+<li>진행 중인 과제와 상관없이 과제 시작 시간이 되면 무조건 시작한다</li>
+<li>진행 중인 과제를 끝냈을때 이전에 멈춰두었던 과제를 순차적으로 진행한다</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>[[&ldquo;korean&rdquo;, &ldquo;11:40&rdquo;, &ldquo;30&rdquo;], [&ldquo;english&rdquo;, &ldquo;12:10&rdquo;, &ldquo;20&rdquo;], [&ldquo;math&rdquo;, &ldquo;12:30&rdquo;, &ldquo;40&rdquo;]]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>[&ldquo;korean&rdquo;, &ldquo;english&rdquo;, &ldquo;math&rdquo;]</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법-다른-사람-답안-기준>해결방법 (다른 사람 답안 기준)</h3>
+<ul>
+<li>과제 시간 전처리 후 시작시간 기준 내림차순으로 정렬한다</li>
+<li>가장 먼저 시작하는 과제부터 pop한다</li>
+<li>큐에 저장하는데, 비어있으면 시작시간+걸리는 시간 (끝나는 시간)을 바로 저장한다</li>
+<li>큐에 원소가 있으면 큐를 순회하면서 현재 pop한 과제보다 늦게 끝나는 과제에 진행시간을 더해준다</li>
+<li>위 반복문을 다 돌면 [끝나는 시간, 과제 이름]의 형태로 과제들이 저장되어있을 것이다</li>
+<li>끝나는 시간 기준으로 정렬해서 과제 이름만 뽑아낸다</li>
+</ul>
+</article>
+<div id=meta class=py-10>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til-hugo/algorithm/pgs_%EC%97%B0%EC%86%8D%EB%90%9C_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4%EC%9D%98_%ED%95%A9/>
+연속된 부분 수열의 합 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
