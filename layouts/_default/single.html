@@ -27,16 +27,16 @@
 		<!--  -->
 
 		<!-- tags, previous, next -->
-		<div id="meta" class="py-10">
+		<div id="meta" class="mt-24">
 			<div>
-				{{ with .GetTerms "tags" }}
+				<!-- {{ with .GetTerms "tags" }}
 				<ul id="tags">
 					{{ range . }}
 					<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
 					{{ end }}
 				</ul>
-				{{ end }}
-				<div class="flex justify-between w-full whitespace-nowrap">
+				{{ end }} -->
+				<div class="flex justify-between w-full whitespace-nowrap hover-bold">
 					{{ with .PrevInSection }}
 					<a class="previous mr-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}">
 						{{.Title}}</a>

@@ -1,7 +1,8 @@
-<header class="absolute top-0 right-0 p-4 z-10 flex items-center text-3xl">
-    <a href="https://github.com/bong-u/til-hugo">🐈</a>
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+    <a href="{{ .Site.BaseURL }}">🏠</a>
+    <a href="https://github.com/bong-u/til">🐈</a>
     <input type="checkbox" id="toggleDarkMode" onchange="toggleDarkModeHandler()" hidden />
-    <label class=" my-2 mx-4 cursor-pointer" for="toggleDarkMode">
+    <label class="cursor-pointer" for="toggleDarkMode">
         <span id="toggleButton">☀️</span>
     </label>
 </header>
