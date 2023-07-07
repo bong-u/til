@@ -1,13 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap");
+
 @layer base {
   * {
-    @apply font-base !important;
+    font-family: "Ubuntu", sans-serif;
   }
 
   body {
@@ -35,11 +34,7 @@
   }
 
   pre {
-    @apply bg-stone-900 !important;
-  }
-
-  code * {
-    @apply font-code !important;
+    @apply bg-zinc-900 !important;
   }
 
   #TableOfContents {
