@@ -1,14 +1,7 @@
 ---
-title: "04_DI_automatic"
+title: "Autowired"
 date: 2023-01-07
 ---
-
-### Maven project 만들기 복습
-
-1. pom.xml을 만든다.
-2. 프로젝트 구조를 만든다
-   - 구조는 프로젝트폴더/src/main/java/패키지/클래스 이다.
-3. eclipse에서 import maven project로 Maven dependencies를 인식시킨다
 
 ### @Autowired를 이용한 자동 객체 주입
 
