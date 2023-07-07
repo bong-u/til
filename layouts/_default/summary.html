@@ -2,9 +2,13 @@
 {{ $section_name := index (split .Parent.Title "|") 1 }}
 
 
-<div class="box flex flex-col gap-3 rounded-lg w-full ">
-    <a href="{{ .RelPermalink }}" class=" p-5">
-        <div class="flex justify-between">
+<div class="box flex flex-col gap-3 rounded-lg w-full">
+    <div class="h-0 relative top-[-10px] left-[-10px]">
+        <img onload="checkRecentPost(event, '{{ .Lastmod.YearDay }}')" class="h-8 hidden"
+            src="{{ .Site.BaseURL }}asset/new.png" alt="new" />
+    </div>
+    <a href="{{ .RelPermalink }}" class="mx-6 mb-5">
+        <div class="flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <span class="text-2xl">{{ $section_emoji }}</span>
                 <span>{{ $section_name }}</span>
@@ -13,8 +17,6 @@
         </div>
         <div class="w-full">
             <h1 class="text-2xl overflow-ellipsis-bundle">
-                <img onload="checkRecentPost(event, '{{ .Lastmod.YearDay }}')" class="h-5 inline hidden"
-                    src="{{ .Site.BaseURL }}asset/new.png" alt="new" />
                 {{ .Title }}
             </h1>
         </div>
