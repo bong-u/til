@@ -23,7 +23,7 @@ const modifyImagePath = () => {
     const imgElementList = document.querySelectorAll('img');
 
     for (const imgElement of imgElementList) {
-        imgElement.src = imgElement.src.replace('/static/image', '/til-hugo/image');
+        imgElement.src = imgElement.src.replace('/static/image', '/til/image');
     }
 };
 
