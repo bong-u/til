@@ -1,0 +1,113 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#환경변수를-설정-방법>환경변수를 설정 방법</a></li>
+<li><a href=#환경변수를-가져오는-방법>환경변수를 가져오는 방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Environment</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-07 </h4>
+<h4 id=date> MODIFIED 2023-07-07</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=환경변수를-설정-방법>환경변수를 설정 방법</h3>
+<ol>
+<li>XXX.properties 파일을 작성한다</li>
+</ol>
+<ul>
+<li>파일 위치 : reousrces/XXX.properties</li>
+<li>파일 내용 예시 : key = value 형태
+<pre tabindex=0><code>app.name = spring
+</code></pre></li>
+</ul>
+<ol start=2>
+<li>Configuration에 설정한다</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
+<span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;application.properties&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{...}</span>
+</code></pre></div><h3 id=환경변수를-가져오는-방법>환경변수를 가져오는 방법</h3>
+<h4 id=applicationcontext-활용하는-방법>ApplicationContext 활용하는 방법</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var environment <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getEnvironment</span><span style=color:#f92672>();</span>
+var property <span style=color:#f92672>=</span> environment<span style=color:#f92672>.</span><span style=color:#a6e22e>getProperty</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;app.name&#34;</span><span style=color:#f92672>)</span>
+</code></pre></div><h4 id=value-annotation-활용>@Value Annotation 활용</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Value</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;${app.name}&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
+</code></pre></div><h4 id=별도의-클래스-정의>별도의 클래스 정의</h4>
+<ul>
+<li>클래스 정의
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
+<span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version.properties&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>VersionProvider</span> <span style=color:#f92672>{</span>
+  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String version<span style=color:#f92672>;</span>
+
+  <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>VersionProvider</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Value</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;${version:v0.0.0}&#34;</span><span style=color:#f92672>)</span> String version<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> version<span style=color:#f92672>;</span>
+  <span style=color:#f92672>}</span>
+
+  <span style=color:#66d9ef>public</span>  String <span style=color:#a6e22e>getVersion</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> version<span style=color:#f92672>;</span>
+  <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+<li>사용
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> VersionProvider versionProvider<span style=color:#f92672>;</span>
+versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>();</span>
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/ioc/>
+IoC (Inversion of Control)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
