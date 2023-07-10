@@ -3,10 +3,12 @@ title: "Environment"
 date: 2023-07-07
 ---
 
-### 환경변수를 설정 방법
+## application.properties
 
-1. XXX.properties 파일을 작성한다
-- 파일 위치 : reousrces/XXX.properties
+### 환경변수 설정
+
+1. application.properties 파일을 작성한다
+- 파일 위치 : reousrces/application.properties
 - 파일 내용 예시 : key = value 형태
   ```
   app.name = spring
@@ -19,7 +21,7 @@ date: 2023-07-07
   public class AppConfiguration {...}
   ```
 
-### 환경변수를 가져오는 방법
+### 환경변수 가져오기
 
 #### ApplicationContext 활용하는 방법
 ```java
@@ -56,3 +58,36 @@ private String name;
   versionProvider.getVersion();
   ```
 
+## application.yaml
+
+### 장점
+- 계층적인 구조이기 때문에 반복되는 부분이 적고, 직관적이다
+
+### 환경변수 설정
+1. application.yml 작성
+    ```yml
+    env:
+      version: "v1.0.0"
+    ```
+### 환경변수 가져오기
+- AppConfiguration.java
+  ```java
+  @Component
+  @ConfigurationProperties(prefix="env")
+  public class AppConfiguration {
+      private String version;
+
+      public String getVersion() {
+          return version;
+      }
+
+      public void setVersion(String version) {
+          this.version = version;
+      }
+  }
+  ```
+- main
+  ```java
+  var appConfiguration = applicationContext.getBean(AppConfiguration.class);
+  System.out.println(appConfiguration.getVersion());
+  ```
