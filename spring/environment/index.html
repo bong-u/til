@@ -32,10 +32,17 @@
 <aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li>
+<li><a href=#applicationproperties>application.properties</a>
 <ul>
-<li><a href=#환경변수를-설정-방법>환경변수를 설정 방법</a></li>
-<li><a href=#환경변수를-가져오는-방법>환경변수를 가져오는 방법</a></li>
+<li><a href=#환경변수-설정>환경변수 설정</a></li>
+<li><a href=#환경변수-가져오기>환경변수 가져오기</a></li>
+</ul>
+</li>
+<li><a href=#applicationyaml>application.yaml</a>
+<ul>
+<li><a href=#장점>장점</a></li>
+<li><a href=#환경변수-설정-1>환경변수 설정</a></li>
+<li><a href=#환경변수-가져오기-1>환경변수 가져오기</a></li>
 </ul>
 </li>
 </ul>
@@ -48,17 +55,18 @@
 <h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Environment</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-07 </h4>
-<h4 id=date> MODIFIED 2023-07-07</h4>
+<h4 id=date> MODIFIED 2023-07-10</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=환경변수를-설정-방법>환경변수를 설정 방법</h3>
+<h2 id=applicationproperties>application.properties</h2>
+<h3 id=환경변수-설정>환경변수 설정</h3>
 <ol>
-<li>XXX.properties 파일을 작성한다</li>
+<li>application.properties 파일을 작성한다</li>
 </ol>
 <ul>
-<li>파일 위치 : reousrces/XXX.properties</li>
+<li>파일 위치 : reousrces/application.properties</li>
 <li>파일 내용 예시 : key = value 형태
 <pre tabindex=0><code>app.name = spring
 </code></pre></li>
@@ -69,7 +77,7 @@
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
 <span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;application.properties&#34;</span><span style=color:#f92672>)</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{...}</span>
-</code></pre></div><h3 id=환경변수를-가져오는-방법>환경변수를 가져오는 방법</h3>
+</code></pre></div><h3 id=환경변수-가져오기>환경변수 가져오기</h3>
 <h4 id=applicationcontext-활용하는-방법>ApplicationContext 활용하는 방법</h4>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var environment <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getEnvironment</span><span style=color:#f92672>();</span>
 var property <span style=color:#f92672>=</span> environment<span style=color:#f92672>.</span><span style=color:#a6e22e>getProperty</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;app.name&#34;</span><span style=color:#f92672>)</span>
@@ -98,12 +106,47 @@ var property <span style=color:#f92672>=</span> environment<span style=color:#f9
 versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>();</span>
 </code></pre></div></li>
 </ul>
+<h2 id=applicationyaml>application.yaml</h2>
+<h3 id=장점>장점</h3>
+<ul>
+<li>계층적인 구조이기 때문에 반복되는 부분이 적고, 직관적이다</li>
+</ul>
+<h3 id=환경변수-설정-1>환경변수 설정</h3>
+<ol>
+<li>application.yml 작성
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>env</span>:
+  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0&#34;</span>
+</code></pre></div></li>
+</ol>
+<h3 id=환경변수-가져오기-1>환경변수 가져오기</h3>
+<ul>
+<li>AppConfiguration.java
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
+<span style=color:#a6e22e>@ConfigurationProperties</span><span style=color:#f92672>(</span>prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;env&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> String version<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getVersion</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> version<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setVersion</span><span style=color:#f92672>(</span>String version<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> version<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+<li>main
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var appConfiguration <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>AppConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>appConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>());</span>
+</code></pre></div></li>
+</ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap hover-bold">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/ioc/>
 IoC (Inversion of Control)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/spring/profile/> Profile</a>
 </div>
 </div>
 </div>

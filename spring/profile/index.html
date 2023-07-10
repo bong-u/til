@@ -1,0 +1,102 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#profile>Profile</a></li>
+<li><a href=#환경-변수>환경 변수</a></li>
+<li><a href=#profile-1>@Profile</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Profile</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-10 </h4>
+<h4 id=date> MODIFIED 2023-07-10</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=profile>Profile</h3>
+<ul>
+<li>프로그램을 개발, 테스트, 배포 환경으로 나눠서 실행해야할때가 있다</li>
+<li>환경 설정을 위해 spring boot에서는 profile을 사용할 수 있다.</li>
+</ul>
+<h3 id=환경-변수>환경 변수</h3>
+<h4 id=applicationyml>application.yml</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>dev</span>
+<span style=color:#f92672>env</span>:
+    <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 dev&#34;</span>
+---
+<span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>local</span>
+<span style=color:#f92672>env</span>:
+    <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 local&#34;</span>
+---
+</code></pre></div><ul>
+<li>yml 파일에서는 &mdash;를 이용해 파일 분할이 가능하다</li>
+<li>spring.config.active.on-profile을 설정해서 특정 프로필에 적용하고 싶은 환경변수를 설정 할 수 있다.</li>
+</ul>
+<h4 id=application-profileproperties>application-&lt;profile>.properties</h4>
+<ul>
+<li>.properties파일에서는 여러 파일로 분할하여 설정한다</li>
+<li>예를 들어 &ldquo;dev"프로파일에서 적용될 파일은 &ldquo;application-dev.properties"이다.</li>
+</ul>
+<h3 id=profile-1>@Profile</h3>
+<ul>
+<li>프로파일마다 Bean객체를 다르게 등록할 수 있다.</li>
+<li>아래의 코드에서는 test 환경에서만 TestBean을 등록한다</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
+<span style=color:#a6e22e>@Profile</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;test&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestBean</span> <span style=color:#f92672>{</span> <span style=color:#f92672>...</span> <span style=color:#f92672>}</span>
+</code></pre></div>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/environment/>
+Environment</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
