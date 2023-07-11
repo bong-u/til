@@ -72,4 +72,4 @@ logger.info("version -> {}", logger.getName());
         ```java
         // MainClass.java
         AnsiOutput.setEnabled(AnsiOutput.Enabled.ALWAYS);
-    ```
+        ```
