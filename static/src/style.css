@@ -695,6 +695,30 @@ code,
   top: -10px;
 }
 
+.bottom-0{
+  bottom: 0px;
+}
+
+.bottom-3{
+  bottom: 0.75rem;
+}
+
+.bottom-10{
+  bottom: 2.5rem;
+}
+
+.right-10{
+  right: 2.5rem;
+}
+
+.bottom-5{
+  bottom: 1.25rem;
+}
+
+.bottom-4{
+  bottom: 1rem;
+}
+
 .z-10{
   z-index: 10;
 }
@@ -705,6 +729,10 @@ code,
 
 .m-1{
   margin: 0.25rem;
+}
+
+.m-4{
+  margin: 1rem;
 }
 
 .mx-3{
@@ -840,6 +868,10 @@ code,
   width: 100%;
 }
 
+.w-\[inherit\]{
+  width: inherit;
+}
+
 .grow{
   flex-grow: 1;
 }
@@ -938,6 +970,10 @@ code,
 
 .p-4{
   padding: 1rem;
+}
+
+.p-5{
+  padding: 1.25rem;
 }
 
 .px-4{

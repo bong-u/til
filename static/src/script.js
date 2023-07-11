@@ -1,6 +1,5 @@
 `use strict`;
 
-// 이미지 경로 변경
 window.onload = () => {
     checkDarkMode();
     modifyImagePath();
@@ -29,6 +28,7 @@ const modifyImagePath = () => {
     }
 };
 
+// 현재 다크모드 여부에 따라 CSS 변경
 const checkDarkMode = () => {
     const linkEl = document.createElement("link");
     linkEl.id = "github-markdown-css";
@@ -71,3 +71,9 @@ const toggleDarkModeHandler = () => {
 
     checkDarkMode();
 };
+
+
+// 스크롤 최상단 이동
+const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
