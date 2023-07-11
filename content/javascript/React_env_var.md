@@ -1,5 +1,5 @@
 ---
-title: "React: environment variable"
+title: "React - environment variable 설정하기"
 date: 2023-01-19
 ---
 

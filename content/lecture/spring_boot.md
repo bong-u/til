@@ -1,5 +1,5 @@
 ---
-title: "KAKAO 김가연 선배님 - Spring Boot Framework"
+title: "Spring Boot Framework - KAKAO 김가연 선배님"
 date: 2023-04-03
 ---
 

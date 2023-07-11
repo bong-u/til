@@ -1,5 +1,5 @@
 ---
-title: "React: useEffect"
+title: "React - useEffect 사용법"
 date: 2023-01-19
 ---
 

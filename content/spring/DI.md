@@ -1,5 +1,5 @@
 ---
-title: "DI (Dependency Injection)"
+title: "Spring 개념 - DI (Dependency Injection)"
 date: 2023-01-07
 ---
 

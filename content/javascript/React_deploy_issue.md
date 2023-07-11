@@ -1,5 +1,5 @@
 ---
-title: "React: deploy"
+title: "React - build 이후 빈 화면만 나오는 문제"
 date: 2023-01-19
 ---
 
