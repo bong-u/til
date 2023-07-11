@@ -11,7 +11,7 @@
 	{{ .Render "navigator" }}
 
 	<main class="flex flex-col">
-		<section class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+		<section class="grid gap-16 xl:grid-cols-2">
 			<!-- 최근에 commit한 20개 페이지 -->
 			{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 			{{ .Render "summary" }}
