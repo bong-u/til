@@ -1,0 +1,146 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#java-logging-framework>Java Logging Framework</a></li>
+<li><a href=#slf4j-simple-loggin-facade-for-java>SLF4J (Simple Loggin Facade for Java)</a></li>
+<li><a href=#log-level>Log Level</a></li>
+<li><a href=#logger>Logger</a></li>
+<li><a href=#logback>logback</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Logging</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-06 </h4>
+<h4 id=date> MODIFIED 2023-07-11</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=java-logging-framework>Java Logging Framework</h3>
+<ul>
+<li>java.util.logging</li>
+<li>Apache Commons logging</li>
+<li>Log4J</li>
+<li><strong>Logback</strong></li>
+<li><strong>SLF4J</strong></li>
+</ul>
+<h3 id=slf4j-simple-loggin-facade-for-java>SLF4J (Simple Loggin Facade for Java)</h3>
+<ul>
+<li>Loggin Framework들을 추상화시켜 놓은 것</li>
+<li>Facade Pattern을 이용한 Logging framework</li>
+</ul>
+<h3 id=log-level>Log Level</h3>
+<blockquote>
+<p>trace - debug - info - warn - error</p>
+</blockquote>
+<h3 id=logger>Logger</h3>
+<h4 id=logger-만들기>Logger 만들기</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LoggerFactory<span style=color:#f92672>.</span><span style=color:#a6e22e>getLogger</span><span style=color:#f92672>(</span>OrderTester<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+</code></pre></div><ul>
+<li>Logger 이름은 보통 FQCN (상위 패키지 + 클래스)으로 사용한다</li>
+</ul>
+<h4 id=logger-사용>Logger 사용</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>logger<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version -&gt; {}&#34;</span><span style=color:#f92672>,</span> logger<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+</code></pre></div><h3 id=logback>logback</h3>
+<h4 id=logback-설정파일-우선순위>logback 설정파일 우선순위</h4>
+<blockquote>
+<p>logback-test.yml -> logback.groovy -> logback.xml -> 기본 설정</p>
+</blockquote>
+<h4 id=logbackxml---기본-설정>logback.xml - 기본 설정</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;configuration&gt;</span>
+<span style=color:#f92672>&lt;property</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;LOG_PATTERN&#34;</span> <span style=color:#a6e22e>value=</span><span style=color:#e6db74>&#34;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{10} - %msg%n&#34;</span> <span style=color:#f92672>/&gt;</span>
+
+<span style=color:#f92672>&lt;appender</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;STDOUT&#34;</span> <span style=color:#a6e22e>class=</span><span style=color:#e6db74>&#34;ch.qos.logback.core.ConsoleAppender&#34;</span><span style=color:#f92672>&gt;</span>
+    <span style=color:#f92672>&lt;encoder&gt;</span>
+        <span style=color:#f92672>&lt;pattern&gt;</span>${LOG_PATTERN}<span style=color:#f92672>&lt;/pattern&gt;</span>
+    <span style=color:#f92672>&lt;/encoder&gt;</span>
+<span style=color:#f92672>&lt;/appender&gt;</span>
+    <span style=color:#f92672>&lt;root</span> <span style=color:#a6e22e>level=</span><span style=color:#e6db74>&#34;debug&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;appender-ref</span> <span style=color:#a6e22e>ref=</span><span style=color:#e6db74>&#34;STDOUT&#34;</span> <span style=color:#f92672>/&gt;</span>
+    <span style=color:#f92672>&lt;/root&gt;</span>
+<span style=color:#f92672>&lt;/configuration&gt;</span>
+</code></pre></div><ul>
+<li>FileAppender를 사용하여 파일에 저장 가능</li>
+<li>RollingFileappender를 사용하여 일자별로 파일에 저장 가능</li>
+<li>이외에도 다양한 설정 가능</li>
+</ul>
+<h4 id=conversion>Conversion</h4>
+<ul>
+<li>
+<p>로깅 포맷을 바꾸는 방법이다</p>
+</li>
+<li>
+<p>json으로 형식을 바꾼다던가, 콘솔에서 로그에 색을 입힐수 있다.</p>
+</li>
+<li>
+<p>Color Converter 사용 예제</p>
+<ol>
+<li>logback.xml 설정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;!-- logback.xml --&gt;</span>
+    <span style=color:#f92672>&lt;conversionRule</span>
+            <span style=color:#a6e22e>conversionWord=</span><span style=color:#e6db74>&#34;clr&#34;</span>
+            <span style=color:#a6e22e>converterClass=</span><span style=color:#e6db74>&#34;org.springframework.boot.logging.logback.ColorConverter&#34;</span> <span style=color:#f92672>/&gt;</span>
+    {...}
+    <span style=color:#f92672>&lt;pattern&gt;</span>%clr(%d{HH:mm:ss.SSS}){cyan} [%thread] %clr(%-5level)<span style=color:#f92672>&lt;/pattern&gt;</span>
+</code></pre></div></li>
+<li>Ansi문자 출력 설정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// MainClass.java
+</span><span style=color:#75715e></span>AnsiOutput<span style=color:#f92672>.</span><span style=color:#a6e22e>setEnabled</span><span style=color:#f92672>(</span>AnsiOutput<span style=color:#f92672>.</span><span style=color:#a6e22e>Enabled</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ALWAYS</span><span style=color:#f92672>);</span>
+</code></pre></div></li>
+</ol>
+<pre tabindex=0><code></code></pre></li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/maven/>
+Spring - Maven</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/spring/ioc/> IoC (Inversion of Control)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
