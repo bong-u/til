@@ -38,8 +38,9 @@
     @apply bg-stone-900 !important;
   }
 
+  code,
   code * {
-    @apply font-code !important;
+    @apply font-code text-base !important;
   }
 
   #TableOfContents {
