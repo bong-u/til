@@ -1,0 +1,106 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#상황>상황</a></li>
+<li><a href=#해결>해결</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-11 </h4>
+<h4 id=date> MODIFIED 2023-07-11</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=상황>상황</h3>
+<ul>
+<li>개발 환경에서는 ClassPathResource를 문제없이 불러온다</li>
+<li>jar로 package해서 실행했을 때 오류가 발생한다
+<pre tabindex=0><code>Caused by: java.lang.RuntimeException: Cannot read blacklist file
+        at org.academy.springorder.blacklist.BlacklistRepository.list(BlacklistRepository.java:25)
+        at org.academy.springorder.blacklist.BlacklistService.list(BlacklistService.java:16)
+        at org.academy.springorder.CommandLineApplication.main(CommandLineApplication.java:66)
+        ... 8 more
+</code></pre></li>
+<li>문제의 코드
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
+
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        list <span style=color:#f92672>=</span> Files<span style=color:#f92672>.</span><span style=color:#a6e22e>readAllLines</span><span style=color:#f92672>(</span>blacklist<span style=color:#f92672>.</span><span style=color:#a6e22e>getFile</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toPath</span><span style=color:#f92672>());</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>IOException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Cannot read blacklist file&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ul>
+<h3 id=해결>해결</h3>
+<ul>
+<li>readAllLines를 사용하지 않고 InputStreamReader와 BufferedRearder를 사용하여 해결하였다.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
+
+<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+    InputStreamReader isr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> InputStreamReader<span style=color:#f92672>(</span>blacklist<span style=color:#f92672>.</span><span style=color:#a6e22e>getInputStream</span><span style=color:#f92672>());</span>
+    BufferedReader br <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BufferedReader<span style=color:#f92672>(</span>isr<span style=color:#f92672>);</span>
+
+    String line<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>while</span> <span style=color:#f92672>((</span>line <span style=color:#f92672>=</span> br<span style=color:#f92672>.</span><span style=color:#a6e22e>readLine</span><span style=color:#f92672>())</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+        list<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>line<span style=color:#f92672>);</span>
+    isr<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+    br<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/profile/>
+Profile</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
