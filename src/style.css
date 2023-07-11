@@ -676,36 +676,16 @@ code *{
   position: relative;
 }
 
+.left-\[-10px\]{
+  left: -10px;
+}
+
 .right-0{
   right: 0px;
 }
 
 .top-0{
   top: 0px;
-}
-
-.top-\[-1px\]{
-  top: -1px;
-}
-
-.top-\[-5px\]{
-  top: -5px;
-}
-
-.left-\[-5px\]{
-  left: -5px;
-}
-
-.left-\[-8px\]{
-  left: -8px;
-}
-
-.top-\[-8px\]{
-  top: -8px;
-}
-
-.left-\[-10px\]{
-  left: -10px;
 }
 
 .top-\[-10px\]{
@@ -732,6 +712,11 @@ code *{
 .mx-5{
   margin-left: 1.25rem;
   margin-right: 1.25rem;
+}
+
+.mx-6{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .mx-8{
@@ -764,13 +749,12 @@ code *{
   margin-bottom: 1rem;
 }
 
-.mx-6{
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
 .mb-10{
   margin-bottom: 2.5rem;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
 }
 
 .mb-7{
@@ -797,24 +781,8 @@ code *{
   margin-top: 6rem;
 }
 
-.mb-5{
-  margin-bottom: 1.25rem;
-}
-
-.mt-2{
-  margin-top: 0.5rem;
-}
-
-.mt-3{
-  margin-top: 0.75rem;
-}
-
 .block{
   display: block;
-}
-
-.inline{
-  display: inline;
 }
 
 .flex{
@@ -833,32 +801,20 @@ code *{
   display: none;
 }
 
-.h-40{
-  height: 10rem;
+.h-0{
+  height: 0px;
 }
 
-.h-5{
-  height: 1.25rem;
+.h-40{
+  height: 10rem;
 }
 
 .h-64{
   height: 16rem;
 }
 
-.h-6{
-  height: 1.5rem;
-}
-
-.h-0{
-  height: 0px;
-}
-
 .h-8{
   height: 2rem;
-}
-
-.h-7{
-  height: 1.75rem;
 }
 
 .w-11\/12{
@@ -879,10 +835,6 @@ code *{
 
 .w-full{
   width: 100%;
-}
-
-.w-5{
-  width: 1.25rem;
 }
 
 .grow{
@@ -977,12 +929,16 @@ code *{
   padding: 1rem;
 }
 
-.p-5{
-  padding: 1.25rem;
+.p-1{
+  padding: 0.25rem;
 }
 
-.p-2{
-  padding: 0.5rem;
+.p-0{
+  padding: 0px;
+}
+
+.p-0\.5{
+  padding: 0.125rem;
 }
 
 .px-4{
@@ -998,27 +954,6 @@ code *{
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.px-5{
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-.pt-3{
-  padding-top: 0.75rem;
-}
-
-.pb-4{
-  padding-bottom: 1rem;
-}
-
-.pb-5{
-  padding-bottom: 1.25rem;
-}
-
-.pt-2{
-  padding-top: 0.5rem;
 }
 
 .text-center{
@@ -1123,14 +1058,6 @@ code *{
   .md\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
-  .md\:grid-cols-4{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-5{
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
 }
 
 @media (min-width: 1024px){
@@ -1146,16 +1073,8 @@ code *{
     width: 33.333333%;
   }
 
-  .lg\:grid-cols-3{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .lg\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-5{
-    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -1166,10 +1085,6 @@ code *{
 
   .xl\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .xl\:grid-cols-4{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .xl\:grid-cols-5{

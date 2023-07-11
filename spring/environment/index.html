@@ -52,10 +52,10 @@
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Environment</h1>
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold p-1">Spring 개념 - Environment</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-07 </h4>
-<h4 id=date> MODIFIED 2023-07-10</h4>
+<h4 id=date> MODIFIED 2023-07-11</h4>
 </div>
 </div>
 </div>
@@ -86,7 +86,8 @@ var property <span style=color:#f92672>=</span> environment<span style=color:#f9
 <span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
 </code></pre></div><h4 id=별도의-클래스-정의>별도의 클래스 정의</h4>
 <ul>
-<li>클래스 정의
+<li>
+<p>클래스 정의</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
 <span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version.properties&#34;</span><span style=color:#f92672>)</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>VersionProvider</span> <span style=color:#f92672>{</span>
@@ -101,7 +102,8 @@ var property <span style=color:#f92672>=</span> environment<span style=color:#f9
   <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
 </code></pre></div></li>
-<li>사용
+<li>
+<p>사용</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> VersionProvider versionProvider<span style=color:#f92672>;</span>
 versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>();</span>
 </code></pre></div></li>
@@ -120,7 +122,8 @@ versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVe
 </ol>
 <h3 id=환경변수-가져오기-1>환경변수 가져오기</h3>
 <ul>
-<li>AppConfiguration.java
+<li>
+<p>AppConfiguration.java</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
 <span style=color:#a6e22e>@ConfigurationProperties</span><span style=color:#f92672>(</span>prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;env&#34;</span><span style=color:#f92672>)</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{</span>
@@ -135,7 +138,8 @@ versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVe
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
 </code></pre></div></li>
-<li>main
+<li>
+<p>main</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var appConfiguration <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>AppConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
 System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>appConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>());</span>
 </code></pre></div></li>
@@ -145,8 +149,8 @@ System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><spa
 <div>
 <div class="flex justify-between w-full whitespace-nowrap hover-bold">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/ioc/>
-IoC (Inversion of Control)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/spring/profile/> Profile</a>
+Spring 개념 - IoC (Inversion of Control)</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/spring/profile/> Spring 개념 - Profile</a>
 </div>
 </div>
 </div>

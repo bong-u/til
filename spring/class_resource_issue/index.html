@@ -45,7 +45,7 @@
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class=mb-10>
 <div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold">Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제</h1>
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold p-1">Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제</h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-11 </h4>
 <h4 id=date> MODIFIED 2023-07-11</h4>
@@ -55,15 +55,19 @@
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=상황>상황</h3>
 <ul>
-<li>개발 환경에서는 ClassPathResource를 문제없이 불러온다</li>
-<li>jar로 package해서 실행했을 때 오류가 발생한다
+<li>
+<p>개발 환경에서는 ClassPathResource를 문제없이 불러온다</p>
+</li>
+<li>
+<p>jar로 package해서 실행했을 때 오류가 발생한다</p>
 <pre tabindex=0><code>Caused by: java.lang.RuntimeException: Cannot read blacklist file
         at org.academy.springorder.blacklist.BlacklistRepository.list(BlacklistRepository.java:25)
         at org.academy.springorder.blacklist.BlacklistService.list(BlacklistService.java:16)
         at org.academy.springorder.CommandLineApplication.main(CommandLineApplication.java:66)
         ... 8 more
 </code></pre></li>
-<li>문제의 코드
+<li>
+<p>문제의 코드</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
 
     <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
@@ -76,7 +80,8 @@
 </ul>
 <h3 id=해결>해결</h3>
 <ul>
-<li>readAllLines를 사용하지 않고 InputStreamReader와 BufferedRearder를 사용하여 해결하였다.
+<li>
+<p>readAllLines를 사용하지 않고 InputStreamReader와 BufferedRearder를 사용하여 해결하였다.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
 
 <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
@@ -96,7 +101,7 @@
 <div>
 <div class="flex justify-between w-full whitespace-nowrap hover-bold">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/spring/profile/>
-Profile</a>
+Spring 개념 - Profile</a>
 </div>
 </div>
 </div>
