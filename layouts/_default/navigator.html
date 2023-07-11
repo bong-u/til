@@ -1,15 +1,13 @@
-<nav class="grid justify-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-    {{ range .Site.Sections }}
-    {{ $section := . }}
-    {{ with .Pages }}
-    {{ $indexPage := index . 0 }}
-    {{ $section_emoji := index (split $section.Title "|") 0 }}
-    {{ $section_name := index (split $section.Title "|") 1 }}
+{{ range .Site.Sections }}
+{{ $section := . }}
+{{ with .Pages }}
+{{ $indexPage := index . 0 }}
+{{ $section_emoji := index (split $section.Title "|") 0 }}
+{{ $section_name := index (split $section.Title "|") 1 }}
 
-    <a class="flex justify-center mx-8 py-3 hover-bold" href="{{ $section.RelPermalink }}">
-        <span class="text-xl mr-3">{{ $section_emoji }}</span>
-        <span>{{ $section_name }} ({{ len $section.Pages }})</span>
-    </a>
-    {{ end }}
-    {{ end }}
-</nav>
+<a class="flex mx-8 py-3 hover-bold" href="{{ $section.RelPermalink }}">
+    <span class="text-xl mr-3">{{ $section_emoji }}</span>
+    <span>{{ $section_name }} ({{ len $section.Pages }})</span>
+</a>
+{{ end }}
+{{ end }}

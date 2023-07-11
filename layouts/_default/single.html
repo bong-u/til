@@ -15,7 +15,9 @@
 		<!-- title, created date, modified date -->
 		<div class="mb-10">
 			<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
-				<h1 id="title" class="overflow-hidden overflow-ellipsis text-3xl font-bold p-1">{{ .Title }}</h1>
+				<h1 id="title" class="overflow-hidden overflow-ellipsis text-3xl font-bold p-1">
+					{{ .Title }}
+				</h1>
 				<div class="flex flex-col items-end">
 					<h4 id="date"> CREATED {{ .Date.Format "2006-01-02" }} </h4>
 					<h4 id="date"> MODIFIED {{ .Lastmod.Format "2006-01-02" }}</h4>
