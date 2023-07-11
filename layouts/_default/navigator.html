@@ -8,7 +8,7 @@
 
     <a class="flex justify-center mx-8 py-3 hover-bold" href="{{ $section.RelPermalink }}">
         <span class="text-xl mr-3">{{ $section_emoji }}</span>
-        <span>{{ $section_name }}</span>
+        <span>{{ $section_name }} ({{ len $section.Pages }})</span>
     </a>
     {{ end }}
     {{ end }}
