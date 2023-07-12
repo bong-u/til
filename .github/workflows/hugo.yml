@@ -23,7 +23,7 @@ jobs:
           # extended: true
 
       - name: Add google analytics id
-        run: echo -e "\n[params]\ngoogleAnalytics = \"$GA_TRACKING_ID\"" >> config.toml
+        run: echo -e "\nparams:\n    googleAnalytics = \"$GA_TRACKING_ID\"" >> config.yaml
         env:
           GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
 
