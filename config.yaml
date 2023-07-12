@@ -4,11 +4,6 @@ languageCode: "en-us"
 title: "Bong-u's TIL"
 enableGitInfo: true
 
-sitemap:
-  changefreq: weekly
-  filename: sitemap.xml
-  priority: 0.5
-
 frontmatter:
   date: ["date"]
   lastmod: ["lastmode", ":git", "date"]
