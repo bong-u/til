@@ -1,0 +1,113 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#unit-test-단위-테스트>Unit Test (단위 테스트)</a>
+<ul>
+<li><a href=#관련-용어>관련 용어</a></li>
+</ul>
+</li>
+<li><a href=#integration-test-통합-테스트>Integration Test (통합 테스트)</a></li>
+<li><a href=#junit>JUnit</a>
+<ul>
+<li><a href=#junit5>JUnit5</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class=mb-10>
+<div class="flex justify-between items-baseline my-4 whitespace-nowrap gap-8">
+<h1 id=title class="overflow-hidden overflow-ellipsis text-3xl font-bold p-1">
+Spring 개념 - Testing
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-01-07 </h4>
+<h4 id=date> MODIFIED 2023-07-12</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=unit-test-단위-테스트>Unit Test (단위 테스트)</h2>
+<blockquote>
+<p>가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식</p>
+</blockquote>
+<h3 id=관련-용어>관련 용어</h3>
+<h4 id=sut-sytem-under-test>SUT (Sytem Under Test)</h4>
+<blockquote>
+<p>테스트하고자하는 주요 대상이 되는 Unit</p>
+</blockquote>
+<h4 id=doc-depended-on-component>DOC (Depended On Component)</h4>
+<blockquote>
+<p>SUT가 의존하는 객체</p>
+</blockquote>
+<h4 id=테스트-더블>테스트 더블</h4>
+<blockquote>
+<p>DOC를 대신해 줄 수 있는 객체</p>
+</blockquote>
+<h2 id=integration-test-통합-테스트>Integration Test (통합 테스트)</h2>
+<blockquote>
+<p>여러 개의 Unit을 통합해서 테스트하는 방식</p>
+</blockquote>
+<h2 id=junit>JUnit</h2>
+<ul>
+<li>매 단위 테스트마다 테스트 클래스가 생성 -> 독립적인 테스트 가능</li>
+<li>Annotation 제공 -> 테스트 life cycle 관리</li>
+<li>assert 메소드 제공 -> 테스트 결과 판별</li>
+</ul>
+<h3 id=junit5>JUnit5</h3>
+<blockquote>
+<p>= JUnit Platform + JUnit Jupiter + JUnit Vintage</p>
+</blockquote>
+<ul>
+<li>JUnit Platform : JVM 기반 테스팅 프레임워크를 실행시키기 위한 기반 모듈</li>
+<li>JUnit Jupiter : JUnit5를 위한 Test Engine API 제공</li>
+<li>JUnit Vintage : JUnit3, JUnit4를 위한 Test Engine API 제공</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/spring/di/> Spring 개념 - DI (Dependency Injection)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
