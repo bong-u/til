@@ -1,0 +1,134 @@
+<!doctype html><html>
+<head>
+<title> Bong-u's TIL </title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#기존-코드---try-catch-finally-사용>기존 코드 - try-catch-finally 사용</a></li>
+<li><a href=#개선-코드---try-with-resource-사용>개선 코드 - try with resource 사용</a></li>
+<li><a href=#try-with-resources>Try with resources</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Try with resources로 간결하게 반납하기
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-13 </h4>
+<h4 id=date> MODIFIED 2023-07-13</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=기존-코드---try-catch-finally-사용>기존 코드 - try-catch-finally 사용</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>       Connection connection <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+        Statement statement <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+        ResultSet resultSet <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+
+        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+            connection <span style=color:#f92672>=</span> DriverManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>(</span><span style=color:#75715e>/* SECRET */</span><span style=color:#f92672>);</span>
+            statement <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>createStatement</span><span style=color:#f92672>();</span>
+
+            resultSet <span style=color:#f92672>=</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;select * from customers&#34;</span><span style=color:#f92672>);</span>
+
+            <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+                var name <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
+                var customerId <span style=color:#f92672>=</span> UUID<span style=color:#f92672>.</span><span style=color:#a6e22e>nameUUIDFromBytes</span><span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customer_id&#34;</span><span style=color:#f92672>));</span>
+                logger<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer id:{}, name: {}&#34;</span><span style=color:#f92672>,</span> customerId<span style=color:#f92672>,</span> name<span style=color:#f92672>);</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+            <span style=color:#66d9ef>throw</span> e<span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>finally</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>connection <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>statement <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>resultSet <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+            <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+                logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Error while closing connection&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+</code></pre></div><h3 id=개선-코드---try-with-resource-사용>개선 코드 - try with resource 사용</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>
+        var connection <span style=color:#f92672>=</span> DriverManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>(</span><span style=color:#75715e>/* SECRET */</span><span style=color:#f92672>);</span>
+        var statement <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>createStatement</span><span style=color:#f92672>();</span>
+        var resultSet <span style=color:#f92672>=</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;select * from customers&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            var name <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
+            var customerId <span style=color:#f92672>=</span> UUID<span style=color:#f92672>.</span><span style=color:#a6e22e>nameUUIDFromBytes</span><span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customer_id&#34;</span><span style=color:#f92672>));</span>
+            logger<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer id:{}, name: {}&#34;</span><span style=color:#f92672>,</span> customerId<span style=color:#f92672>,</span> name<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span>  <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>throw</span> e<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>위 코드는 JDBC를 이용해 DB와 연결해서 데이터를 가져오는 코드이다.</li>
+<li>기존 코드보다 훨씬 간결해진 것을 확인할 수 있다.</li>
+</ul>
+<h3 id=try-with-resources>Try with resources</h3>
+<ul>
+<li>사용법</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span><span style=color:#75715e>/* 자원 생성 */</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>/* 자원 사용 */</span>
+<span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(...)</span> <span style=color:#f92672>{</span>
+    <span style=color:#f92672>...</span>
+<span style=color:#f92672>}</span>
+<span style=color:#75715e>/* 자원 자동 반납 */</span>
+</code></pre></div><ul>
+<li>try with resources문에서 사용되는 자원은 반드시 <strong>AutoCloseble interface</strong>를 구현해야한다.</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/java/record/>
+Record</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
