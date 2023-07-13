@@ -56,5 +56,3 @@ date: 2023-01-07
 - equalTo, is, not
 - anyOf, everyItem
 - hasSize, containsInAnyOrder, hasItem (collection에 대해 강력하게 지원한다)
-
-
