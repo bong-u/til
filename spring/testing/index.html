@@ -40,6 +40,9 @@
 <li><a href=#junit>JUnit</a>
 <ul>
 <li><a href=#junit5>JUnit5</a></li>
+<li><a href=#orgjunitjupiterapiassertions>org.junit.jupiter.api.Assertions.*</a></li>
+<li><a href=#orghamcrestmatcherassert>org.hamcrest.MatcherAssert.*</a></li>
+<li><a href=#orghamcrestmatchers>org.hamcrest.Matchers.*</a></li>
 </ul>
 </li>
 </ul>
@@ -57,7 +60,7 @@ Spring 개념 - Testing
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-07 </h4>
-<h4 id=date> MODIFIED 2023-07-12</h4>
+<h4 id=date> MODIFIED 2023-07-13</h4>
 </div>
 </div>
 </div>
@@ -75,10 +78,22 @@ Spring 개념 - Testing
 <blockquote>
 <p>SUT가 의존하는 객체</p>
 </blockquote>
-<h4 id=테스트-더블>테스트 더블</h4>
+<h4 id=test-double>Test double</h4>
 <blockquote>
 <p>DOC를 대신해 줄 수 있는 객체</p>
 </blockquote>
+<ul>
+<li>Test double의 종류 : Mock, Stub</li>
+</ul>
+<h4 id=mock>Mock</h4>
+<ul>
+<li>행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용</li>
+<li>test framework : Mockito, JMock, EasyMock</li>
+</ul>
+<h4 id=stub>Stub</h4>
+<ul>
+<li>상태 검증 (객체의 상태를 확인하여 검정) 사용</li>
+</ul>
 <h2 id=integration-test-통합-테스트>Integration Test (통합 테스트)</h2>
 <blockquote>
 <p>여러 개의 Unit을 통합해서 테스트하는 방식</p>
@@ -97,6 +112,26 @@ Spring 개념 - Testing
 <li>JUnit Platform : JVM 기반 테스팅 프레임워크를 실행시키기 위한 기반 모듈</li>
 <li>JUnit Jupiter : JUnit5를 위한 Test Engine API 제공</li>
 <li>JUnit Vintage : JUnit3, JUnit4를 위한 Test Engine API 제공</li>
+</ul>
+<h3 id=orgjunitjupiterapiassertions>org.junit.jupiter.api.Assertions.*</h3>
+<ul>
+<li>assertEquals
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>assertEquals<span style=color:#f92672>(</span>0<span style=color:#f92672>,</span> 1<span style=color:#f92672>+</span>1<span style=color:#f92672>);</span>
+</code></pre></div></li>
+<li>assertThrows, assertAll</li>
+</ul>
+<h3 id=orghamcrestmatcherassert>org.hamcrest.MatcherAssert.*</h3>
+<ul>
+<li>assertThat
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// assertEquals 보다 가독성이 좋다
+</span><span style=color:#75715e></span>assertThat<span style=color:#f92672>(</span>1<span style=color:#f92672>+</span>1<span style=color:#f92672>,</span> equalTo<span style=color:#f92672>(</span>2<span style=color:#f92672>));</span>
+</code></pre></div></li>
+</ul>
+<h3 id=orghamcrestmatchers>org.hamcrest.Matchers.*</h3>
+<ul>
+<li>equalTo, is, not</li>
+<li>anyOf, everyItem</li>
+<li>hasSize, containsInAnyOrder, hasItem (collection에 대해 강력하게 지원한다)</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
