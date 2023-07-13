@@ -67,4 +67,5 @@ try (
     }
     /* 자원 자동 반납 */
     ```
-- try with resources문에서 사용되는 자원은 반드시 **AutoCloseble interface**를 구현해야한다.
+- 조건
+    > try with resources문에서 사용되는 자원은 반드시 **AutoCloseble interface**를 구현해야한다.
