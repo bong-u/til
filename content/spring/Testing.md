@@ -13,8 +13,16 @@ date: 2023-01-07
 #### DOC (Depended On Component)
 > SUT가 의존하는 객체
 
-#### 테스트 더블
+#### Test double 
 > DOC를 대신해 줄 수 있는 객체
+- Test double의 종류 : Mock, Stub
+
+#### Mock
+- 행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용
+- test framework : Mockito, JMock, EasyMock
+
+#### Stub
+- 상태 검증 (객체의 상태를 확인하여 검정) 사용
 
 ## Integration Test (통합 테스트)
 > 여러 개의 Unit을 통합해서 테스트하는 방식
@@ -29,3 +37,24 @@ date: 2023-01-07
 - JUnit Platform : JVM 기반 테스팅 프레임워크를 실행시키기 위한 기반 모듈
 - JUnit Jupiter : JUnit5를 위한 Test Engine API 제공
 - JUnit Vintage : JUnit3, JUnit4를 위한 Test Engine API 제공
+
+### org.junit.jupiter.api.Assertions.*
+- assertEquals
+    ```java
+    assertEquals(0, 1+1);
+    ```
+- assertThrows, assertAll
+
+### org.hamcrest.MatcherAssert.*
+- assertThat
+    ```java
+    // assertEquals 보다 가독성이 좋다
+    assertThat(1+1, equalTo(2));
+    ```
+
+### org.hamcrest.Matchers.*
+- equalTo, is, not
+- anyOf, everyItem
+- hasSize, containsInAnyOrder, hasItem (collection에 대해 강력하게 지원한다)
+
+
