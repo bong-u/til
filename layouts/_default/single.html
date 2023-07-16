@@ -35,13 +35,14 @@
 		<!-- tags, previous, next -->
 		<div id="meta" class="mt-24">
 			<div>
-				<div class="flex justify-between w-full whitespace-nowrap hover-bold">
+				<div class="flex justify-between w-full whitespace-nowrap">
 					{{ with .PrevInSection }}
-					<a class="previous mr-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}">
+					<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=" {{.RelPermalink}}">
 						{{.Title}}</a>
 					{{ end }}
 					{{ with .NextInSection }}
-					<a class="next ml-5 overflow-hidden overflow-ellipsis" href="{{.RelPermalink}}"> {{.Title}}</a>
+					<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href="{{.RelPermalink}}">
+						{{.Title}}</a>
 					{{ end }}
 				</div>
 			</div>
