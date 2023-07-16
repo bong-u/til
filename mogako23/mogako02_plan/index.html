@@ -31,12 +31,7 @@
 <aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li>
-<ul>
-<li><a href=#1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</a></li>
-<li><a href=#2-java의-record-개념-정리하기>2. Java의 record 개념 정리하기</a></li>
-</ul>
-</li>
+<li><a href=#오늘의-목표>오늘의 목표</a></li>
 </ul>
 </nav>
 <div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
@@ -48,67 +43,27 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-[모각코] 01 : 결과
+[모각코] 02 : 계획
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-07-05 </h4>
-<h4 id=date> MODIFIED 2023-07-05</h4>
+<h4 id=date> CREATED 2023-07-12 </h4>
+<h4 id=date> MODIFIED 2023-07-16</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
-<div class="h-40 flex p-3 box rounded-2xl">
-<a href=https://bong-u.github.io/til/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="preview flex">
-<div class="flex items-center mx-3 w-32 w-32 text-center">
-<span class="w-full text-7xl">🧠</span>
-</div>
-<div class="flex flex-col w-full mx-5">
-<div class="flex justify-between">
-<span class="font-bold text-2xl">두 원 사이의 정수 쌍 (L2)</span>
-<div>
-<span>2023-07-05</span>
-<p>Algorithm</p>
-</div>
-</div>
-<div class="overflow-hidden overflow-ellipsis">
-<div>
-import math def calc1(r): result = 0 for i in range(1, r): result += math.floor(math.sqrt(r**2 - i**2)) return result*4 + r*4 + 1 def calc2(r): result = 0 for i in range(1, r): a = math.sqrt(r**2 - i**2) result += math.floor(a) if a % 1 == 0: result -= 1 return result*4 + r*4 + 1 def solution(r1, r2
-</div>
-</div>
-</div>
-</a>
-</div>
-<h3 id=2-java의-record-개념-정리하기>2. Java의 record 개념 정리하기</h3>
-<div class="h-40 flex p-3 box rounded-2xl">
-<a href=https://bong-u.github.io/til/java/record/ class="preview flex">
-<div class="flex items-center mx-3 w-32 w-32 text-center">
-<span class="w-full text-7xl">♨</span>
-</div>
-<div class="flex flex-col w-full mx-5">
-<div class="flex justify-between">
-<span class="font-bold text-2xl">Record</span>
-<div>
-<span>2023-07-05</span>
-<p>Java</p>
-</div>
-</div>
-<div class="overflow-hidden overflow-ellipsis">
-<div>
-레코드란 불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스 JDK16부터 지원 예제 Record 적용 전
-public class Person { private final String name; private final int age; public Person(String name, int age) { this.name = name; this.age = age; } public String getName() { return name; } public int getAge() { return
-</div>
-</div>
-</div>
-</a>
-</div>
+<h2 id=오늘의-목표>오늘의 목표</h2>
+<ol>
+<li>프로그래머스 한 문제 풀기</li>
+<li>Springboot Testing 공부하기</li>
+</ol>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap hover-bold">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/mogako23/mogako01_plan/>
-[모각코] 01 : 계획</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/mogako23/mogako02_plan/> [모각코] 02 : 계획</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis" href=/til/mogako23/mogako01/>
+[모각코] 01 : 결과</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis" href=/til/mogako23/mogako02/> [모각코] 02 : 결과</a>
 </div>
 </div>
 </div>
