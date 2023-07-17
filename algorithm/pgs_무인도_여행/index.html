@@ -1,0 +1,129 @@
+<!doctype html><html>
+<head>
+<title>무인도 여행 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+무인도 여행 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-17 </h4>
+<h4 id=date> MODIFIED 2023-07-17</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+
+vx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
+vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(maps):
+    N <span style=color:#f92672>=</span> len(maps)
+    M <span style=color:#f92672>=</span> len(maps[<span style=color:#ae81ff>0</span>])
+    answer <span style=color:#f92672>=</span> []
+    
+    visited <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+            <span style=color:#66d9ef>if</span> maps[i][j] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;X&#39;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[i][j]:
+                cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+                q <span style=color:#f92672>=</span> deque()
+                q<span style=color:#f92672>.</span>append((j, i))
+                visited[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+                <span style=color:#66d9ef>while</span> q:
+                    cx, cy <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+                    cnt <span style=color:#f92672>+=</span> int(maps[cy][cx])
+                    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+                        nx <span style=color:#f92672>=</span> cx <span style=color:#f92672>+</span> vx[k]
+                        ny <span style=color:#f92672>=</span> cy <span style=color:#f92672>+</span> vy[k]
+                        <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>and</span> maps[ny][nx] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;X&#39;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[ny][nx]:
+                            q<span style=color:#f92672>.</span>append((nx, ny))
+                            visited[ny][nx] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+                answer<span style=color:#f92672>.</span>append(cnt)
+    <span style=color:#66d9ef>if</span> len(answer) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+        <span style=color:#66d9ef>return</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+    <span style=color:#66d9ef>return</span> sorted(answer)
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>문자열 배열 maps가 주어진다</li>
+<li>바다는 &lsquo;X&rsquo;, 섬은 숫자로 표현되는데, 숫자는 섬에서 최대한 보낼수 있는 날짜 수이다</li>
+<li>각 섬에서 최대한 며칠씩 머무를 수 있는지 오름차순으로 정렬해서 반환하라</li>
+<li>없다면 -1을 배열에 담아 반환하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>[&ldquo;X591X&rdquo;,&ldquo;X1X5X&rdquo;,&ldquo;X231X&rdquo;, &ldquo;1XXX1&rdquo;]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>[1, 1, 27]</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>BFS로 간단하게 풀었다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%ED%98%B8%ED%85%94_%EB%8C%80%EC%8B%A4/>
+호텔 대실 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
