@@ -1,5 +1,5 @@
 ---
-title: "무인도 여행 (L2)"
+title: "프로그래머스 - 무인도 여행 (L2)"
 date: 2023-07-17
 ---
 
@@ -13,9 +13,9 @@ def solution(maps):
     N = len(maps)
     M = len(maps[0])
     answer = []
-    
+
     visited = [[False]*M for _ in range(N)]
-    
+
     for i in range(N):
         for j in range(M):
             if maps[i][j] != 'X' and not visited[i][j]:
