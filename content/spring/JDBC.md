@@ -88,8 +88,11 @@ public Optional<Customer> findById(UUID customerId) {
 ### JdbcTemplate
 - 위 예제와 같은 방법으로 개발을 하다보면 중복되는 코드가 엄청 많아진다
 - 반복되는 코드를 줄이기 위해 JdbcTemplate를 사용할 수 있다.
-
-- DataSource 주입
+- 사용법
+    - queryForObject : 단일 결과 행을 처리하기 위해 사용
+    - query : 다수 결과 행을 처리하기 위해 사용
+    - insert, update, delete
+- 사용하기 위해서는 DataSource를 주입받아야 한다
     ```java
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
@@ -97,7 +100,18 @@ public Optional<Customer> findById(UUID customerId) {
     }
     ```
 
-- 예제 - JdbcTemplate 사용
+
+### RowMapper
+- 기존에 사용하던 ResultSet은 resultSet.next()로 순회하면서 객체의 setter를 호출하였다
+- JdbcTemplate을 사용하기 위해서는 RowMapper<T>를 사용하여야 한다
+    ```java
+    RowMapper<Customer> customerRowMapper = (resultSet, i) -> {
+        var customerName = resultSet.getString("name");
+        var email = resultSet.getString("email");
+        return new Customer(customerName, email)
+    }
+    ```
+- 예제 - JdbcTemplate, queryForObject, RowMapper 사용
     ```java
     @Override
     public Optional<Customer> findById(UUID customerId) {
@@ -108,4 +122,20 @@ public Optional<Customer> findById(UUID customerId) {
             return Optional.empty();
         }
     }
+    ```
+
+### NamedParameterJdbcTemplate
+- 기존의 jdbcTemplate에서는 query에 ?를 사용하여 인자를 치환하였다
+- 가독성을 위해서, 순서를 헷갈리지 않기 위해서 NamedParameterJdbcTemplate을 사용한다
+- NamedParameterJdbcTemplate에서는 ":변수명"을 이용하여 처리한다
+- 예제 - NamedParameterJdbcTemplate 사용
+    ```java
+    var update = jdbcTemplate.update("UPDATE customers SET name=:name, email=:email, last_login_at=:lastLoginAt WHERE customer_id = UUID_TO_BIN(:customerId)",
+        new HashMap<>() {{
+            put("customerId", customer.getCustomerId().toString().getBytes());
+            put("name", customer.getName());
+            put("email", customer.getEmail());
+            put("lastLoginAt", customer.getLastLoginAt() != null ? Timestamp.valueOf(customer.getLastLoginAt()) : null);
+            put("createdAt", Timestamp.valueOf(customer.getCreatedAt()));
+        }});
     ```
