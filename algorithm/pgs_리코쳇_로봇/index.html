@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>리코쳇 로봇 (L2)</title>
+<title>프로그래머스 - 리코쳇 로봇 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -48,7 +48,7 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-리코쳇 로봇 (L2)
+프로그래머스 - 리코쳇 로봇 (L2)
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-11 </h4>
@@ -66,7 +66,7 @@ vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span s
     <span style=color:#66d9ef>global</span> visited
     q <span style=color:#f92672>=</span> deque()
     q<span style=color:#f92672>.</span>append(sp<span style=color:#f92672>+</span>[<span style=color:#ae81ff>1</span>])
-    
+
     <span style=color:#66d9ef>while</span> q:
         cy, cx, cnt <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
         visited[cy][cx] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
@@ -85,18 +85,18 @@ vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span s
             <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[y][x]:
                 q<span style=color:#f92672>.</span>append([y, x, cnt<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>])
     <span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
-        
+
 <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(board):
     <span style=color:#66d9ef>global</span> visited
     N <span style=color:#f92672>=</span> len(board[<span style=color:#ae81ff>0</span>])
     M <span style=color:#f92672>=</span> len(board)
-    
+
     visited <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>False</span>] <span style=color:#f92672>*</span> len(board[<span style=color:#ae81ff>0</span>]) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(len(board))]
     <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
         <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(N):
             <span style=color:#66d9ef>if</span> board[i][j] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;R&#39;</span>:
                 sp <span style=color:#f92672>=</span> [i, j]
-                
+
     <span style=color:#66d9ef>return</span> bfs(board, N, M, sp)
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
@@ -129,9 +129,9 @@ vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span s
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EA%B4%91%EB%AC%BC_%EC%BA%90%EA%B8%B0/>
-광물 캐기 (L2)</a>
+프로그래머스 - 광물 캐기 (L2)</a>
 <a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/>
-당구 연습 (L2)</a>
+프로그래머스 - 당구 연습 (L2)</a>
 </div>
 </div>
 </div>

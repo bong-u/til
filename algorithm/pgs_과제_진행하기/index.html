@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>과제 진행하기 (L2)</title>
+<title>프로그래머스 - 과제 진행하기 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -50,7 +50,7 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-과제 진행하기 (L2)
+프로그래머스 - 과제 진행하기 (L2)
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-07 </h4>
@@ -68,40 +68,40 @@
         plan[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> h<span style=color:#f92672>*</span><span style=color:#ae81ff>60</span> <span style=color:#f92672>+</span> m
         plan[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> int(plan[<span style=color:#ae81ff>2</span>])
     plans<span style=color:#f92672>.</span>sort(key <span style=color:#f92672>=</span> <span style=color:#66d9ef>lambda</span> x: x[<span style=color:#ae81ff>1</span>])
-    
+
     <span style=color:#66d9ef>for</span> plan <span style=color:#f92672>in</span> plans:
         <span style=color:#66d9ef>if</span> q:
             free_time <span style=color:#f92672>=</span> plan[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]
         <span style=color:#66d9ef>while</span> q:
             q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>-=</span> free_time
             free_time <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>]
-            
+
             print (free_time, q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>])
             <span style=color:#66d9ef>if</span> free_time <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>:
                 <span style=color:#66d9ef>break</span>
-            
+
             <span style=color:#66d9ef>if</span> q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>:
                 answer<span style=color:#f92672>.</span>append(q<span style=color:#f92672>.</span>pop()[<span style=color:#ae81ff>0</span>])
 
         q<span style=color:#f92672>.</span>append(plan)
     <span style=color:#66d9ef>while</span> q:
         answer<span style=color:#f92672>.</span>append(q<span style=color:#f92672>.</span>pop()[<span style=color:#ae81ff>0</span>])
-        
-    <span style=color:#66d9ef>return</span> answer   
+
+    <span style=color:#66d9ef>return</span> answer
 </code></pre></div><h3 id=다른-사람-답안>다른 사람 답안</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(plans):
     plans <span style=color:#f92672>=</span> sorted(map(<span style=color:#66d9ef>lambda</span> x: [x[<span style=color:#ae81ff>0</span>], int(x[<span style=color:#ae81ff>1</span>][:<span style=color:#ae81ff>2</span>]) <span style=color:#f92672>*</span> <span style=color:#ae81ff>60</span> <span style=color:#f92672>+</span> int(x[<span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>3</span>:]), int(x[<span style=color:#ae81ff>2</span>])], plans), key<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: <span style=color:#f92672>-</span>x[<span style=color:#ae81ff>1</span>])
     q <span style=color:#f92672>=</span> []
-    
+
     <span style=color:#66d9ef>while</span> plans:
         cur <span style=color:#f92672>=</span> plans<span style=color:#f92672>.</span>pop()
-        
+
         <span style=color:#66d9ef>for</span> idx, item <span style=color:#f92672>in</span> enumerate(q):
             <span style=color:#66d9ef>if</span> item[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;</span> cur[<span style=color:#ae81ff>1</span>]:
                 q[idx][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+=</span> cur[<span style=color:#ae81ff>2</span>]
-        
+
         q<span style=color:#f92672>.</span>append([cur[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>cur[<span style=color:#ae81ff>2</span>], cur[<span style=color:#ae81ff>0</span>]])
-        
+
     q<span style=color:#f92672>.</span>sort()
     <span style=color:#66d9ef>return</span> list(map(<span style=color:#66d9ef>lambda</span> x: x[<span style=color:#ae81ff>1</span>], q))
 </code></pre></div><h3 id=문제>문제</h3>
@@ -138,9 +138,9 @@
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%97%B0%EC%86%8D%EB%90%9C_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4%EC%9D%98_%ED%95%A9/>
-연속된 부분 수열의 합 (L2)</a>
+프로그래머스 - 연속된 부분 수열의 합 (L2)</a>
 <a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EA%B4%91%EB%AC%BC_%EC%BA%90%EA%B8%B0/>
-광물 캐기 (L2)</a>
+프로그래머스 - 광물 캐기 (L2)</a>
 </div>
 </div>
 </div>

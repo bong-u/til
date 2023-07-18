@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>혼자서 하는 틱택토 (L2)</title>
+<title>프로그래머스 - 혼자서 하는 틱택토 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -48,7 +48,7 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-혼자서 하는 틱택토 (L2)
+프로그래머스 - 혼자서 하는 틱택토 (L2)
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-13 </h4>
@@ -64,7 +64,7 @@ P <span style=color:#f92672>=</span> [[(<span style=color:#ae81ff>1</span>, <spa
     answer <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
     o_line <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
     x_line <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    
+
     <span style=color:#66d9ef>for</span> i, p_list <span style=color:#f92672>in</span> enumerate(P):
         <span style=color:#66d9ef>for</span> p <span style=color:#f92672>in</span> p_list:
             <span style=color:#66d9ef>if</span> board[p[<span style=color:#ae81ff>0</span>]][p[<span style=color:#ae81ff>1</span>]] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;.&#39;</span> <span style=color:#f92672>and</span> board[p[<span style=color:#ae81ff>0</span>]][p[<span style=color:#ae81ff>1</span>]]<span style=color:#f92672>==</span> board[p[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>+</span>V[i][<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>]][p[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>V[i][<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>]] <span style=color:#f92672>==</span> board[p[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>+</span>V[i][<span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]][p[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>V[i][<span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]]:
@@ -72,17 +72,17 @@ P <span style=color:#f92672>=</span> [[(<span style=color:#ae81ff>1</span>, <spa
                     o_line <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
                 <span style=color:#66d9ef>elif</span> board[p[<span style=color:#ae81ff>0</span>]][p[<span style=color:#ae81ff>1</span>]] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;X&#39;</span>:
                     x_line <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-    
+
     o_cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
     x_cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    
-    
+
+
     <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(board):
         <span style=color:#66d9ef>if</span> i <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;O&#39;</span>:
             o_cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
         <span style=color:#66d9ef>elif</span> i <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;X&#39;</span>:
             x_cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-    
+
     <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> (<span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> o_cnt <span style=color:#f92672>-</span> x_cnt <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>):
         <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>
     <span style=color:#66d9ef>if</span> o_line <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
@@ -128,9 +128,9 @@ P <span style=color:#f92672>=</span> [[(<span style=color:#ae81ff>1</span>, <spa
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/>
-당구 연습 (L2)</a>
+프로그래머스 - 당구 연습 (L2)</a>
 <a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%AF%B8%EB%A1%9C_%ED%83%88%EC%B6%9C/>
-미로 탈출 (L2)</a>
+프로그래머스 - 미로 탈출 (L2)</a>
 </div>
 </div>
 </div>
