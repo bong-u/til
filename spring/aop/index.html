@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>07_AOP</title>
+<title>Spring 개념 - AOP (Aspect Oriented Programming)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -34,6 +34,7 @@
 <li>
 <ul>
 <li><a href=#aop-aspect-oriented-programming>AOP (Aspect Oriented Programming)</a></li>
+<li><a href=#aop-주요-용어>AOP 주요 용어</a></li>
 <li><a href=#spring-aop-구현>Spring AOP 구현</a></li>
 <li><a href=#프록시-생성-방식>프록시 생성 방식</a></li>
 <li><a href=#advice-적용-순서>Advice 적용 순서</a></li>
@@ -52,11 +53,11 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-07_AOP
+Spring 개념 - AOP (Aspect Oriented Programming)
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> MODIFIED 2023-07-19</h4>
 </div>
 </div>
 </div>
@@ -65,23 +66,40 @@
 <ul>
 <li>여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법</li>
 <li>기본 개념 : 핵심 기능에 공통 기능을 삽입</li>
-<li>이를 구현하는 3가지 방법
+<li>구현하는 3가지 방법
 <ol>
 <li>컴파일 시점에 코드에 공통 기능을 삽입하는 방법</li>
 <li>클래스 로딩 시점에 바이트 코드에 공통 기능을 삽입하는 방법</li>
 <li>런타임에 프록시 객체를 생성해서 공통 기능을 삽입하는 방법</li>
 </ol>
 </li>
-<li>주요 용어
-<ul>
-<li>Advice : 언제 공통 관심 기능을 핵심 로직에 적용할 지</li>
-<li>Joinpoint : Advice를 적용 가능한 지점</li>
-<li>Pointcut : Joinpoint의 부분 집합으로서 실제 Advice가 적용되는 Joinpoint를 나타낸다</li>
-<li>Weaving : Advice를 핵심 로직 코드에 적용하는 것</li>
-<li>Aspect : 여러 객체에 공통으로 적용되는 기능</li>
 </ul>
-</li>
-</ul>
+<h3 id=aop-주요-용어>AOP 주요 용어</h3>
+<h4 id=target>Target</h4>
+<blockquote>
+<p>부가 기능을 부여할 대상</p>
+</blockquote>
+<h4 id=advice>Advice</h4>
+<blockquote>
+<p>부가기능을 담고 있는 모듈</p>
+</blockquote>
+<h4 id=join-point>Join Point</h4>
+<blockquote>
+<p>Advice를 적용 가능한 지점</p>
+</blockquote>
+<h4 id=pointcut>Pointcut</h4>
+<blockquote>
+<p>Joinpoint의 부분 집합으로서 실제 Advice가 적용되는 Joinpoint를 나타낸다</p>
+</blockquote>
+<h4 id=aspect>Aspect</h4>
+<blockquote>
+<p>Advice + Pointcut<br>
+여러 객체에 공통으로 적용되는 기능</p>
+</blockquote>
+<h4 id=weaving>Weaving</h4>
+<blockquote>
+<p>Join Point에 Advice를 적용하는 과정</p>
+</blockquote>
 <h3 id=spring-aop-구현>Spring AOP 구현</h3>
 <ul>
 <li>MainAspect.java</li>
