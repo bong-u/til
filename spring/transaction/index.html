@@ -1,0 +1,134 @@
+<!doctype html><html>
+<head>
+<title>Spring 개념 - Transaction (트랜잭션)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#상황>상황</a></li>
+<li><a href=#transaction-관리의-종류>Transaction 관리의 종류</a></li>
+<li><a href=#transaction-propagation-트랜잭션-전파>Transaction Propagation (트랜잭션 전파)</a></li>
+<li><a href=#transaction-isolation-level-트랜잭션-격리-수준>Transaction Isolation Level (트랜잭션 격리 수준)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Spring 개념 - Transaction (트랜잭션)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-20 </h4>
+<h4 id=date> MODIFIED 2023-07-20</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=상황>상황</h3>
+<ul>
+<li>소비자가 판매자의 물건을 구매하는 함수를 구현 중이라고 하자</li>
+<li>물건을 샀을때, 물건의 가격만큼 판매자의 돈은 증가시키고, 소비자의 돈은 감소시켜야한다</li>
+<li>판매자의 돈은 증가시켰는데, 소비자의 돈을 감소시키는 중 오류가 났다</li>
+<li>오류가 난 경우, 판매자의 돈을 증가시키기 이전으로 <strong>Rollback</strong> 해야 한다</li>
+<li>위의 두가지 연산은 하나의 <strong>Transaction</strong>으로 묶여서 한번에 처리되어야 한다</li>
+</ul>
+<h3 id=transaction-관리의-종류>Transaction 관리의 종류</h3>
+<ol>
+<li>
+<p>Programmatic transaction management (프로그래밍적 트랜잭션 관리)</p>
+<ul>
+<li>Transaction 관련 코드를 직접 작성</li>
+<li>예제 - TransactionManager 사용
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Bean 등록
+</span><span style=color:#75715e></span><span style=color:#a6e22e>@Bean</span>
+<span style=color:#66d9ef>public</span> PlatformTransactionManager <span style=color:#a6e22e>platformTransactionManager</span><span style=color:#f92672>(</span>DataSource dataSource<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> DataSourceTransactionManager<span style=color:#f92672>(</span>dataSource<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+<span style=color:#75715e>// 사용할 때
+</span><span style=color:#75715e>// 새로운 트랜잭션을 시작한다
+</span><span style=color:#75715e></span>var transaction <span style=color:#f92672>=</span> transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getTransaction</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> DefaultTransactionDefinition<span style=color:#f92672>());</span>
+<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>/* Business Logic */</span>
+
+    <span style=color:#75715e>// Commit하여 db에 반영한다
+</span><span style=color:#75715e></span>    transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>(</span>transaction<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>DataAccessException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got error&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+    <span style=color:#75715e>// 예외 발생시 이전 상태로 Rollback 한다
+</span><span style=color:#75715e></span>    transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>rollback</span><span style=color:#f92672>(</span>transaction<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Declarative transaction management (선언적 트랜잭션 관리)</p>
+<ul>
+<li>Transactino 관련 로직을 Business logic과 완전히 분리</li>
+<li>예제 - @Transactional 사용</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// configuration 클래스에 붙여준다
+</span><span style=color:#75715e></span><span style=color:#a6e22e>@EnableTransactionManagement</span>
+
+<span style=color:#75715e>// 트랜잭션을 적용하고 싶은 메소드에 붙여준다
+</span><span style=color:#75715e></span><span style=color:#a6e22e>@Transactional</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createCustomers</span><span style=color:#f92672>(</span>List<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> customers<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    customers<span style=color:#f92672>.</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>customerRepository<span style=color:#f92672>::</span>insert<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ol>
+<h3 id=transaction-propagation-트랜잭션-전파>Transaction Propagation (트랜잭션 전파)</h3>
+<ul>
+<li>추후 기술</li>
+</ul>
+<h3 id=transaction-isolation-level-트랜잭션-격리-수준>Transaction Isolation Level (트랜잭션 격리 수준)</h3>
+<ul>
+<li>추후 기술</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/jdbc/>
+Spring 개념 - JDBC, DBCP, JdbcTemplate</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
