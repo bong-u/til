@@ -29,69 +29,40 @@ date: 2023-01-09
 > Join Point에 Advice를 적용하는 과정
 
 
-### Spring AOP 구현
+### Advice
 
-- MainAspect.java
-```java
-public class MainAspect {
-	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx =
-				new AnnotationConfigApplicationContext(AppCtx.class);
+- Advice의 종류
+	- @Before : 조인 포인트 실행 이전에 실행
+	- @After : 조인 포인트 실행 이후에 무조건 실행
+	- @AfterReturning : 조인 포인트가 정상 실행 후 실행
+	- @AfterThrowing : 메서드가 예외를 던지는 경우 실행
+	- @Around : 위 4가지 Annotation을 포함, 반환값 조작가능, 예외 조작 가능
 
-		Calculator cal = ctx.getBean("calculator", Calculator.class);
-		long fiveFact = cal.factorial(5);
-		System.out.println("calfactorial(5) = " + fiveFact);
-		System.out.println(cal.getClass().getName());
-		ctx.close();
-	}
-}
-```
+- 예시 - @Around 사용
+	```java
+	@Around("execution(public * org.academy..*Service.*(..))")
+		public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
+			log.info("Before method called. {}", joinPoint.getSignature().toString());
+			var result = joinPoint.proceed();
+			log.info("After method called with result => {}", result);
 
-- AppCtx.java
-```java
-@Configuration
-@EnableAspectJAutoProxy
-public class AppCtx {
-	@Bean
-	public ExeTimeAspect exeTimeAspect() {
-		return new ExeTimeAspect();
-	}
-
-	@Bean
-	public Calculator calculator() {
-		return new RecCalculator();
-	}
-}
-```
-
-- ExeTimeAspect.java
-```java
-// Aspect -> Advice, Pointcut 제공
-@Aspect
-public class ExeTimeAspect {
-    // 공통 기능을 적용할 대상을 설정
-	@Pointcut("execution(public * chap07..*(..))")
-	private void publicTarget() {}
-
-    // Around Advice 설정
-	@Around("publicTarget()")
-	public Object measure(ProceedingJoinPoint joinPoint) throws Throwable {
-		long start = System.nanoTime();
-		try {
-			Object result = joinPoint.proceed();
 			return result;
 		}
-		finally {
-			long finish = System.nanoTime();
-			Signature sig  = joinPoint.getSignature();
-			System.out.printf("%s.%s(%s) Execution time = %dns\n",
-				joinPoint.getTarget().getClass().getSimpleName(),
-				sig.getName(), Arrays.toString(joinPoint.getArgs()),
-				(finish - start));
-		}
-	}
-}
-```
+	```
+### Pointcut
+- 앞의 코드에서 @Around 안에 포인트컷을 지정해서 사용하는 것을 확인할 수 있다
+- 보통 Pointcut끼리 모아놓고 Around와 분리해서 사용한다고 한다
+
+- 예시 - pointcut
+	```java
+	// PointCut 정의
+	@Pointcut("execution(public * org.academy..*Service.*(..))")
+	public void servicePublicMethodPointcut() {}
+	// Advice에 적용
+	@Around("org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()")
+	...
+	```
+
 
 ### 프록시 생성 방식
 ```java
@@ -105,7 +76,7 @@ Calculator cal = ctx.getBean("calculator", Calculator.class);
 RecCalculator cal = ctx.getBean("calculator", RecCalculator.class);
 ```
 
-- proxyTargetClass 속성을 지정하여 인터페이스가 아닌 자바 클래스를 상속받아 프록시를 생성할 수 있다.
+- proxyTargetClass 속성을 지정하여 인터페이스가 아닌 자바 클래스를 상속받아 프록시를 생성할 수 있다
 
 ### Advice 적용 순서
 ```java
@@ -114,8 +85,7 @@ RecCalculator cal = ctx.getBean("calculator", RecCalculator.class);
 public class CacheAspect {...}
 ```
 
-- @Order annotation을 이용하여 적용순서를 지정할 수 있다.
-- 숫자가 높은 것이 먼저 실행되는 것 같다..
+- @Order annotation을 이용하여 적용순서를 지정할 수 있다
 
 ### @Around의 Pointcut 설정
 ```java
@@ -123,7 +93,7 @@ public class CacheAspect {...}
 public Object execute(...) {...}
 ```
 
-- @Pointcut publicTarget() 메소드를 사용하지 않을 수 있다.
+- @Pointcut publicTarget() 메소드를 사용하지 않을 수 있다
 
 ### @Pointcut 재사용
 ```java
