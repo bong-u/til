@@ -1,0 +1,140 @@
+<!doctype html><html>
+<head>
+<title>Spring 개념 - Servlet (서블릿)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#servlet-개념>Servlet 개념</a></li>
+<li><a href=#servlet-conainer의-역할>Servlet Conainer의 역할</a></li>
+<li><a href=#예제---servlet-구현>예제 - Servlet 구현</a></li>
+<li><a href=#servlet-context-등록>Servlet Context 등록</a></li>
+<li><a href=#webapplicationinitializer-구현>WebApplicationInitializer 구현</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Spring 개념 - Servlet (서블릿)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-21 </h4>
+<h4 id=date> MODIFIED 2023-07-21</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=servlet-개념>Servlet 개념</h3>
+<blockquote>
+<p>클라이언트의 요청을 처리하고, 그 결과를 반환하는 자바 웹 프로그래밍 기술</p>
+</blockquote>
+<ul>
+<li>웹페이지를 동적으로 생성하는 역할을 수행한다</li>
+</ul>
+<h3 id=servlet-conainer의-역할>Servlet Conainer의 역할</h3>
+<ul>
+<li>Servlet의 생명주기를 관리한다</li>
+<li>웹서버와의 통신지원</li>
+<li>멀티쓰레드 지원, 관리</li>
+<li>선언적인 보안 관리</li>
+</ul>
+<h3 id=예제---servlet-구현>예제 - Servlet 구현</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestServlet</span> <span style=color:#66d9ef>extends</span> HttpServlet <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LoggerFactory<span style=color:#f92672>.</span><span style=color:#a6e22e>getLogger</span><span style=color:#f92672>(</span>TestServlet<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> ServletException <span style=color:#f92672>{}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>doGet, doPost 등의 메소드를 구현해서 http 요청을 처리할 수 있다</li>
+</ul>
+<h3 id=servlet-context-등록>Servlet Context 등록</h3>
+<h4 id=webxml-작성>web.xml 작성</h4>
+<ul>
+<li>web.xml
+<blockquote>
+<p>web application의 설정을 위한 deployment descriptor (배포 지정자)</p>
+</blockquote>
+</li>
+<li>가장 기본적인 방법이다</li>
+<li>src/webapp/WEB-INF/web.xml에 위치한다</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style=color:#f92672>&lt;web-app</span> <span style=color:#a6e22e>version=</span><span style=color:#e6db74>&#34;2.5&#34;</span> <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;http://java.sun.com/xml/ns/javaee&#34;</span>
+         <span style=color:#a6e22e>xmlns:xsi=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+            <span style=color:#a6e22e>xsi:schemaLocation=</span><span style=color:#e6db74>&#34;http://java.sun.com/xml/ns/javaee
+</span><span style=color:#e6db74>            http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&#34;</span><span style=color:#f92672>&gt;</span>
+    <span style=color:#f92672>&lt;servlet&gt;</span>
+        <span style=color:#f92672>&lt;servlet-name&gt;</span>myServlet<span style=color:#f92672>&lt;/servlet-name&gt;</span>
+        <span style=color:#f92672>&lt;servlet-class&gt;</span>org.academy.abc.servlet.MyServlet<span style=color:#f92672>&lt;/servlet-class&gt;</span>
+    <span style=color:#f92672>&lt;/servlet&gt;</span>
+    <span style=color:#f92672>&lt;servlet-mapping&gt;</span>
+        <span style=color:#f92672>&lt;servlet-name&gt;</span>myServlet<span style=color:#f92672>&lt;/servlet-name&gt;</span>
+        <span style=color:#f92672>&lt;url-pattern&gt;</span>/*<span style=color:#f92672>&lt;/url-pattern&gt;</span>
+    <span style=color:#f92672>&lt;/servlet-mapping&gt;</span>
+<span style=color:#f92672>&lt;/web-app&gt;</span>
+</code></pre></div><h4 id=webservet-사용>@WebServet 사용</h4>
+<ul>
+<li>Servlet을 선언하면서 사용한다</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@WebServlet</span><span style=color:#f92672>(</span>value<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/*&#34;</span><span style=color:#f92672>,</span> loadOnStartup <span style=color:#f92672>=</span> 1<span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestServlet</span> <span style=color:#66d9ef>extends</span> HttpServlet <span style=color:#f92672>{...}</span>
+</code></pre></div><h3 id=webapplicationinitializer-구현>WebApplicationInitializer 구현</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>OrderWebApplicationInitializer</span> <span style=color:#66d9ef>implements</span> WebApplicationInitializer <span style=color:#f92672>{</span>
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>onStartup</span><span style=color:#f92672>(</span>ServletContext servletContext<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> ServletException <span style=color:#f92672>{</span>
+        var servletRegistration <span style=color:#f92672>=</span> servletContext<span style=color:#f92672>.</span><span style=color:#a6e22e>addServlet</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;test&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> TestServlet<span style=color:#f92672>());</span>
+        servletRegistration<span style=color:#f92672>.</span><span style=color:#a6e22e>addMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/*&#34;</span><span style=color:#f92672>);</span>
+        servletRegistration<span style=color:#f92672>.</span><span style=color:#a6e22e>setLoadOnStartup</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/transaction/>
+Spring 개념 - Transaction (트랜잭션)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>

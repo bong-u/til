@@ -58,7 +58,7 @@ Spring 개념 - AOP (Aspect Oriented Programming)
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-07-20</h4>
+<h4 id=date> MODIFIED 2023-07-21</h4>
 </div>
 </div>
 </div>
@@ -116,13 +116,13 @@ Spring 개념 - AOP (Aspect Oriented Programming)
 <li>
 <p>예시 - @Around 사용</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Around</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;execution(public * org.academy..*Service.*(..))&#34;</span><span style=color:#f92672>)</span>
-	<span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>log</span><span style=color:#f92672>(</span>ProceedingJoinPoint joinPoint<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Throwable <span style=color:#f92672>{</span>
-		log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Before method called. {}&#34;</span><span style=color:#f92672>,</span> joinPoint<span style=color:#f92672>.</span><span style=color:#a6e22e>getSignature</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
-		var result <span style=color:#f92672>=</span> joinPoint<span style=color:#f92672>.</span><span style=color:#a6e22e>proceed</span><span style=color:#f92672>();</span>
-		log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;After method called with result =&gt; {}&#34;</span><span style=color:#f92672>,</span> result<span style=color:#f92672>);</span>
+<span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>log</span><span style=color:#f92672>(</span>ProceedingJoinPoint joinPoint<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Throwable <span style=color:#f92672>{</span>
+	log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Before method called. {}&#34;</span><span style=color:#f92672>,</span> joinPoint<span style=color:#f92672>.</span><span style=color:#a6e22e>getSignature</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+	var result <span style=color:#f92672>=</span> joinPoint<span style=color:#f92672>.</span><span style=color:#a6e22e>proceed</span><span style=color:#f92672>();</span>
+	log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;After method called with result =&gt; {}&#34;</span><span style=color:#f92672>,</span> result<span style=color:#f92672>);</span>
 
-		<span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
-	<span style=color:#f92672>}</span>
+	<span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><pre tabindex=0><code></code></pre></li>
 </ul>
 <h3 id=pointcut-1>Pointcut</h3>
@@ -137,12 +137,11 @@ Spring 개념 - AOP (Aspect Oriented Programming)
 <p>예시 - pointcut</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// PointCut 정의
 </span><span style=color:#75715e></span><span style=color:#a6e22e>@Pointcut</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;execution(public * org.academy..*Service.*(..))&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>servicePublicMethodPointcut</span><span style=color:#f92672>()</span> <span style=color:#f92672>{}</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>servicePublicMethodPointcut</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
 <span style=color:#75715e>// Advice에 적용
 </span><span style=color:#75715e></span><span style=color:#a6e22e>@Around</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#f92672>...</span>
+<span style=color:#66d9ef>public</span> <span style=color:#f92672>...</span> <span style=color:#f92672>{...}</span>
 </code></pre></div><pre tabindex=0><code>
-
 </code></pre></li>
 </ul>
 <h3 id=프록시-생성-방식>프록시 생성 방식</h3>
