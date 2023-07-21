@@ -30,7 +30,6 @@ date: 2023-01-09
 
 
 ### Advice
-
 - Advice의 종류
 	- @Before : 조인 포인트 실행 이전에 실행
 	- @After : 조인 포인트 실행 이후에 무조건 실행
@@ -41,13 +40,13 @@ date: 2023-01-09
 - 예시 - @Around 사용
 	```java
 	@Around("execution(public * org.academy..*Service.*(..))")
-		public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
-			log.info("Before method called. {}", joinPoint.getSignature().toString());
-			var result = joinPoint.proceed();
-			log.info("After method called with result => {}", result);
+	public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
+		log.info("Before method called. {}", joinPoint.getSignature().toString());
+		var result = joinPoint.proceed();
+		log.info("After method called with result => {}", result);
 
-			return result;
-		}
+		return result;
+	}
 	```
 ### Pointcut
 - 앞의 코드에서 @Around 안에 포인트컷을 지정해서 사용하는 것을 확인할 수 있다
@@ -57,12 +56,11 @@ date: 2023-01-09
 	```java
 	// PointCut 정의
 	@Pointcut("execution(public * org.academy..*Service.*(..))")
-	public void servicePublicMethodPointcut() {}
+	public void servicePublicMethodPointcut() {...}
 	// Advice에 적용
 	@Around("org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()")
-	...
+	public ... {...}
 	```
-
 
 ### 프록시 생성 방식
 ```java
