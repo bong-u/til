@@ -24,7 +24,7 @@ public class TestServlet extends HttpServlet {
 ```
 - doGet, doPost 등의 메소드를 구현해서 http 요청을 처리할 수 있다
 
-### Servlet Context 등록
+### Servlet Context를 등록하는 방법
 #### web.xml 작성
 - web.xml
     > web application의 설정을 위한 deployment descriptor (배포 지정자)
@@ -54,7 +54,7 @@ public class TestServlet extends HttpServlet {
 public class TestServlet extends HttpServlet {...}
 ```
 
-### WebApplicationInitializer 구현
+#### WebApplicationInitializer 구현
 ```java
 public class OrderWebApplicationInitializer implements WebApplicationInitializer {
     @Override

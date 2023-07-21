@@ -28,7 +28,6 @@ date: 2023-01-09
 #### Weaving
 > Join Point에 Advice를 적용하는 과정
 
-
 ### Advice
 - Advice의 종류
 	- @Before : 조인 포인트 실행 이전에 실행
@@ -40,6 +39,7 @@ date: 2023-01-09
 - 예시 - @Around 사용
 	```java
 	@Around("execution(public * org.academy..*Service.*(..))")
+	
 	public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 		log.info("Before method called. {}", joinPoint.getSignature().toString());
 		var result = joinPoint.proceed();
@@ -47,7 +47,8 @@ date: 2023-01-09
 
 		return result;
 	}
-	```
+	```    
+
 ### Pointcut
 - 앞의 코드에서 @Around 안에 포인트컷을 지정해서 사용하는 것을 확인할 수 있다
 - 보통 Pointcut끼리 모아놓고 Around와 분리해서 사용한다고 한다
@@ -60,7 +61,8 @@ date: 2023-01-09
 	// Advice에 적용
 	@Around("org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()")
 	public ... {...}
-	```
+	```    
+
 
 ### 프록시 생성 방식
 ```java
