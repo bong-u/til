@@ -1,5 +1,5 @@
 ---
-title: "Spring 개념 - Servlet (서블릿)"
+title: "Spring 개념 - MVC 패턴, Servlet (서블릿)"
 date: 2023-07-21
 ---
 
@@ -65,3 +65,14 @@ public class OrderWebApplicationInitializer implements WebApplicationInitializer
     }
 }
 ```
+
+### DispatcherServlet
+> HTTP요청을 중앙집중식으로 처리하는 프론트 컨트롤러이다
+
+
+### MVC 패턴
+ ![MVC](/static/image/spring_mvc.png)
+ - DispatcherServlet이 Handler mapping을 통해 Handler를 찾는다
+ - Handler adapter가 DispatcherServlet과 handler 사이의 중간다리 역할을 수행한다
+ - Controller는 business logic을 처리하고 model과 view name을 반환한다
+ - Dispatcher servlet은 model을 view로 넘겨서 view 결과를 클라이언트에게 반환한다
