@@ -47,7 +47,7 @@ date: 2023-01-09
 
 		return result;
 	}
-	```    
+    ```
 
 ### Pointcut
 - 앞의 코드에서 @Around 안에 포인트컷을 지정해서 사용하는 것을 확인할 수 있다
@@ -61,7 +61,7 @@ date: 2023-01-09
 	// Advice에 적용
 	@Around("org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()")
 	public ... {...}
-	```    
+    ```
 
 
 ### 프록시 생성 방식
