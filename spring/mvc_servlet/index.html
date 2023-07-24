@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>Spring 개념 - Servlet (서블릿)</title>
+<title>Spring 개념 - MVC 패턴, Servlet (서블릿)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -37,6 +37,8 @@
 <li><a href=#servlet-conainer의-역할>Servlet Conainer의 역할</a></li>
 <li><a href=#예제---servlet-구현>예제 - Servlet 구현</a></li>
 <li><a href=#servlet-context를-등록하는-방법>Servlet Context를 등록하는 방법</a></li>
+<li><a href=#dispatcherservlet>DispatcherServlet</a></li>
+<li><a href=#mvc-패턴>MVC 패턴</a></li>
 </ul>
 </li>
 </ul>
@@ -50,11 +52,11 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Spring 개념 - Servlet (서블릿)
+Spring 개념 - MVC 패턴, Servlet (서블릿)
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-21 </h4>
-<h4 id=date> MODIFIED 2023-07-21</h4>
+<h4 id=date> MODIFIED 2023-07-24</h4>
 </div>
 </div>
 </div>
@@ -123,7 +125,18 @@ Spring 개념 - Servlet (서블릿)
         servletRegistration<span style=color:#f92672>.</span><span style=color:#a6e22e>setLoadOnStartup</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div>
+</code></pre></div><h3 id=dispatcherservlet>DispatcherServlet</h3>
+<blockquote>
+<p>HTTP요청을 중앙집중식으로 처리하는 프론트 컨트롤러이다</p>
+</blockquote>
+<h3 id=mvc-패턴>MVC 패턴</h3>
+<p><img src=/static/image/spring_mvc.png alt=MVC></p>
+<ul>
+<li>DispatcherServlet이 Handler mapping을 통해 Handler를 찾는다</li>
+<li>Handler adapter가 DispatcherServlet과 handler 사이의 중간다리 역할을 수행한다</li>
+<li>Controller는 business logic을 처리하고 model과 view name을 반환한다</li>
+<li>Dispatcher servlet은 model을 view로 넘겨서 view 결과를 클라이언트에게 반환한다</li>
+</ul>
 </article>
 <div id=meta class=mt-24>
 <div>
