@@ -1,0 +1,111 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 테이블 해시 함수 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 테이블 해시 함수 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-25 </h4>
+<h4 id=date> MODIFIED 2023-07-25</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(data, col, row_begin, row_end):
+    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+    data<span style=color:#f92672>.</span>sort(key<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: (x[col<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], <span style=color:#f92672>-</span>x[<span style=color:#ae81ff>0</span>]))
+    s <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(row_begin<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, row_end):
+        s<span style=color:#f92672>.</span>append(sum(map(<span style=color:#66d9ef>lambda</span> x: x<span style=color:#f92672>%</span>(i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>), data[i]))) 
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> s:
+        answer <span style=color:#f92672>^=</span> i
+    <span style=color:#66d9ef>return</span> answer
+</code></pre></div><h3 id=문제>문제</h3>
+<ol>
+<li>해시 함수는 col, row_begin, row_end을 입력으로 받는다</li>
+<li>테이블의 튜플을 col번째 컬럼의 값을 기준으로 오름차순 정렬을 하되, 만약 그 값이 동일하면 기본키인 첫 번째 컬럼의 값을 기준으로 내림차순 정렬한다</li>
+<li>정렬된 데이터에서 S_i를 i 번째 행의 튜플에 대해 각 컬럼의 값을 i 로 나눈 나머지들의 합으로 정의한다</li>
+<li>row_begin ≤ i ≤ row_end 인 모든 S_i를 누적하여 bitwise XOR 한 값을 해시 값으로서 반환하라</li>
+</ol>
+<ul>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>data: [[2,2,6],[1,5,10],[4,2,9],[3,8,3]]<br>
+col: 2, row_begin: 2, row_end: 3</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>4</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>구현해서 해결하였다</li>
+<li>lambda문이 많은 코드를 줄여주었다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%A7%88%EB%B2%95%EC%9D%98_%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0/>
+프로그래머스 - 마법의 엘리베이터 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
