@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>[모각코] 04 : 계획</title>
+<title>[모각코] 04 : 결과</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -31,7 +31,12 @@
 <aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#오늘의-목표>오늘의 목표</a></li>
+<li>
+<ul>
+<li><a href=#1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</a></li>
+<li><a href=#2-restcontroller-정리>2. @RestController 정리</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 <div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
@@ -43,7 +48,7 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-[모각코] 04 : 계획
+[모각코] 04 : 결과
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-07-26 </h4>
@@ -52,19 +57,58 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=오늘의-목표>오늘의 목표</h2>
-<ol>
-<li>프로그래머스 한 문제 풀기</li>
-<li>@RestController 정리</li>
-</ol>
+<h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
+<div class="h-40 flex p-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til/algorithm/pgs_%EB%94%94%ED%8E%9C%EC%8A%A4_%EA%B2%8C%EC%9E%84/ class="preview flex">
+<div class="flex items-center mx-3 w-32 w-32 text-center">
+<span class="w-full text-7xl">🧠</span>
+</div>
+<div class="flex flex-col w-full mx-5">
+<div class="flex justify-between">
+<span class="font-bold text-2xl">프로그래머스 - 디펜스 게임 (L2)</span>
+<div>
+<span>2023-07-26</span>
+<p>Algorithm</p>
+</div>
+</div>
+<div class="overflow-hidden overflow-ellipsis">
+<div>
+import heapq def solution(n, k, enemy): heap = [] cnt = 0 for i in enemy: n -= i heapq.heappush(heap, -i) while n &amp;lt; 0: k -= 1 if not heap or k &amp;lt; 0: return cnt tmp = -heapq.heappop(heap) n += tmp cnt += 1 return cnt 문제 n: 가지고 있는 병사 수 k: 사용할 수 있는 무적권 스킬 수 enemy: 라운드마다 존재하는 적 수의 배열 라운드마다 enemy[i
+</div>
+</div>
+</div>
+</a>
+</div>
+<h3 id=2-restcontroller-정리>2. @RestController 정리</h3>
+<div class="h-40 flex p-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til/spring/jdbc/ class="preview flex">
+<div class="flex items-center mx-3 w-32 w-32 text-center">
+<span class="w-full text-7xl">🍃</span>
+</div>
+<div class="flex flex-col w-full mx-5">
+<div class="flex justify-between">
+<span class="font-bold text-2xl">Spring 개념 - JDBC, DBCP, JdbcTemplate</span>
+<div>
+<span>2023-07-19</span>
+<p>Spring</p>
+</div>
+</div>
+<div class="overflow-hidden overflow-ellipsis">
+<div>
+JDBC 자바 프로그램을 DB와 연결해주는 API
+JDBC 드라이버 DBMS와 통신을 담당하는 자바 클래스
+JDBC 드라이버는 4가지 종류가 있다 (Type 1~4) Mysql은 Type 4를 지원한다 예제 - Connection을 직접 연결 public List&amp;lt;UUID&amp;gt; findAllIds() { List&amp;lt;UUID&amp;gt; uuids = new ArrayList&amp;lt;&amp;gt;(); try ( var connection = DriverManager.getConnection(url, username, pass
+</div>
+</div>
+</div>
+</a>
+</div>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/mogako23/mogako03/>
-[모각코] 03 : 결과</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/mogako23/mogako04/>
-[모각코] 04 : 결과</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/mogako23/mogako04_plan/>
+[모각코] 04 : 계획</a>
 </div>
 </div>
 </div>
