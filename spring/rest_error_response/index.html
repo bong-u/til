@@ -79,7 +79,7 @@ Spring - RESTful API에서 내맘대로 에러 응답하기
     <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ResponseEntity<span style=color:#f92672>&lt;&gt;(</span>response<span style=color:#f92672>,</span> status<span style=color:#f92672>);</span>
 <span style=color:#f92672>}</span>
 </code></pre></div><ul>
-<li>예외 처리할때마다 ExceptionResponse객체를 만들면 반복되는 코드가 많이 생겨 함수로 만들었다</li>
+<li>예외 처리할 때마다 ExceptionResponse 객체를 만들면 반복되는 코드가 많이 생겨 함수로 만들었다</li>
 <li>예외가 발생한 상황에 따라서 HttpStatus를 다르게 지정할 수 있도록 함수의 인자로 받았다</li>
 </ul>
 <h3 id=3-예외-처리>3. 예외 처리</h3>
@@ -93,9 +93,8 @@ Spring - RESTful API에서 내맘대로 에러 응답하기
 </ul>
 <h3 id=정리>정리</h3>
 <ul>
-<li>위의 예시는 NoSuchElemnetException이 발생했을 때,</li>
-<li>HTTP 상태코드는 404, body는 내가 정의한대로 응답하는 코드이다</li>
-<li>REST Api에서 일관성있고 간결한 응답을 보내기 위해 정리해보았다</li>
+<li>위의 예시는 NoSuchElementException이 발생했을 때, HTTP 상태코드는 404, body는 내가 정의한대로 응답하는 코드이다</li>
+<li>REST Api에서 일관성있고 간결한 응답을 보내기 위해 한번 정리해보았다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
