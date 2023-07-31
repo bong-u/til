@@ -1,0 +1,146 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 숫자 카드 나누기 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 숫자 카드 나누기 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-31 </h4>
+<h4 id=date> MODIFIED 2023-07-31</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<ul>
+<li>
+<p>첫번째 통과한 풀이</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> math
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcd</span>(a, b):
+    <span style=color:#66d9ef>while</span> b <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+        a, b <span style=color:#f92672>=</span> b, a<span style=color:#f92672>%</span>b
+    <span style=color:#66d9ef>return</span> a
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcdOfArr</span>(l):
+    result <span style=color:#f92672>=</span> l[<span style=color:#ae81ff>0</span>]
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(l)):
+        result <span style=color:#f92672>=</span> gcd(result, l[i])
+    <span style=color:#66d9ef>return</span> result
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arrayA, arrayB):
+    a1 <span style=color:#f92672>=</span> gcdOfArr(arrayA)
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayB:
+        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> a1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+            a1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+            <span style=color:#66d9ef>break</span>
+    a2 <span style=color:#f92672>=</span> gcdOfArr(arrayB)
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayA:
+        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> a2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+            a2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+            <span style=color:#66d9ef>break</span>
+    <span style=color:#66d9ef>return</span> max(a1, a2)
+</code></pre></div></li>
+<li>
+<p>개선한 풀이</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> math
+<span style=color:#f92672>from</span> functools <span style=color:#f92672>import</span> reduce
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcd</span>(a, b):
+    <span style=color:#66d9ef>while</span> b <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+        a, b <span style=color:#f92672>=</span> b, a<span style=color:#f92672>%</span>b
+    <span style=color:#66d9ef>return</span> a
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arrayA, arrayB):
+    a1 <span style=color:#f92672>=</span> reduce(gcd, arrayA)
+    a1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> any(i <span style=color:#f92672>%</span> a1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayB) <span style=color:#66d9ef>else</span> a1
+    a2 <span style=color:#f92672>=</span> reduce(gcd, arrayB)
+    a2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> any(i <span style=color:#f92672>%</span> a2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayA) <span style=color:#66d9ef>else</span> a2
+    <span style=color:#66d9ef>return</span> max(a1, a2)
+</code></pre></div></li>
+</ul>
+<h3 id=문제>문제</h3>
+<ul>
+<li>철수가 가진 숫자의 배열 arrayA, 영희가 가진 숫자의 배열 arrayB가 주어진다</li>
+<li>철수가 가진 카드들의 모든 숫자를 나눌 수 있고, 영희가 가진 숫자는 하나도 나눌 수 없는 양의 정수 a</li>
+<li>영희가 가진 카드들의 모든 숫자를 나눌 수 있고, 철수가 가진 숫자는 하나도 나눌 수 없는 양의 정수 a</li>
+<li>가장 큰 양의 정수 a를 구하라, 없다면 0을 반환하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>[14, 35, 119]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>7</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>프로그래머스에서 지원하는 파이썬이 3.8이라서 내장함수 math.gcd(3.9부터 지원)를 사용하지 못했다</li>
+<li>유클리드 호제법 기억이 나지 않아서 약간의 구글링을 통해 해결하였다</li>
+<li>reduce와 any함수를 통해 코드의 길이를 대폭 감소 시킬 수 있었다, 자주 활용하자</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EA%B7%A4_%EA%B3%A0%EB%A5%B4%EA%B8%B0/>
+프로그래머스 - 귤 고르기 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
