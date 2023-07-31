@@ -25,7 +25,7 @@ private ResponseEntity<ExceptionResponse> handleException(HttpStatus status, Exc
     return new ResponseEntity<>(response, status);
 }
 ```
-- 예외 처리할때마다 ExceptionResponse객체를 만들면 반복되는 코드가 많이 생겨 함수로 만들었다
+- 예외 처리할 때마다 ExceptionResponse 객체를 만들면 반복되는 코드가 많이 생겨 함수로 만들었다
 - 예외가 발생한 상황에 따라서 HttpStatus를 다르게 지정할 수 있도록 함수의 인자로 받았다
 
 ### 3. 예외 처리
@@ -39,6 +39,5 @@ public ResponseEntity<ExceptionResponse> handleNoSuchElementException(NoSuchElem
 - 직접 정의한 함수를 호출해서 ResponseEntity를 만들어 반환한다
 
 ### 정리
-- 위의 예시는 NoSuchElemnetException이 발생했을 때,
-- HTTP 상태코드는 404, body는 내가 정의한대로 응답하는 코드이다
-- REST Api에서 일관성있고 간결한 응답을 보내기 위해 정리해보았다
+- 위의 예시는 NoSuchElementException이 발생했을 때, HTTP 상태코드는 404, body는 내가 정의한대로 응답하는 코드이다
+- REST Api에서 일관성있고 간결한 응답을 보내기 위해 한번 정리해보았다
