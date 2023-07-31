@@ -1,5 +1,5 @@
 ---
-title: "Spring - RESTFul API에서 내맘대로 에러 응답하기"
+title: "Spring - RESTful API에서 내맘대로 에러 응답하기"
 date: 2023-07-31
 ---
 
