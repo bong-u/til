@@ -1,0 +1,112 @@
+<!doctype html><html>
+<head>
+<title>Spring - RESTFul API에서 내맘대로 에러 응답하기</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#1-클래스-정의>1. 클래스 정의</a></li>
+<li><a href=#2-responseentity-만드는-함수-정의>2. ResponseEntity 만드는 함수 정의</a></li>
+<li><a href=#3-예외-처리>3. 예외 처리</a></li>
+<li><a href=#정리>정리</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Spring - RESTFul API에서 내맘대로 에러 응답하기
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-07-31 </h4>
+<h4 id=date> MODIFIED 2023-08-01</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=1-클래스-정의>1. 클래스 정의</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Getter</span>
+<span style=color:#a6e22e>@RequiredArgsConstructor</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExceptionResponse</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> LocalDateTime timestamp <span style=color:#f92672>=</span> LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 2023-08-01T00:00:57.5995502
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> status<span style=color:#f92672>;</span> <span style=color:#75715e>// 400
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String error<span style=color:#f92672>;</span> <span style=color:#75715e>// MethodArumentNotValidException
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String message<span style=color:#f92672>;</span> <span style=color:#75715e>// 이메일 형식이 아닙니다
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String path<span style=color:#f92672>;</span> <span style=color:#75715e>// /api/customer
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>내가 원하는 방식대로 클래스를 정의한다, 주석에는 해당 필드의 예시를 적어놓았다</li>
+</ul>
+<h3 id=2-responseentity-만드는-함수-정의>2. ResponseEntity 만드는 함수 정의</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> ResponseEntity<span style=color:#f92672>&lt;</span>ExceptionResponse<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>handleException</span><span style=color:#f92672>(</span>HttpStatus status<span style=color:#f92672>,</span> Exception e<span style=color:#f92672>,</span> HttpServletRequest request<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    ExceptionResponse response <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ExceptionResponse<span style=color:#f92672>(</span>
+            status<span style=color:#f92672>.</span><span style=color:#a6e22e>value</span><span style=color:#f92672>(),</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getSimpleName</span><span style=color:#f92672>(),</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getMessage</span><span style=color:#f92672>(),</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getRequestURI</span><span style=color:#f92672>());</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ResponseEntity<span style=color:#f92672>&lt;&gt;(</span>response<span style=color:#f92672>,</span> status<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>예외 처리할때마다 ExceptionResponse객체를 만들면 반복되는 코드가 많이 생겨 함수로 만들었다</li>
+<li>예외가 발생한 상황에 따라서 HttpStatus를 다르게 지정할 수 있도록 함수의 인자로 받았다</li>
+</ul>
+<h3 id=3-예외-처리>3. 예외 처리</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ExceptionHandler</span><span style=color:#f92672>(</span>NoSuchElementException<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>ExceptionResponse<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>handleNoSuchElementException</span><span style=color:#f92672>(</span>NoSuchElementException e<span style=color:#f92672>,</span> HttpServletRequest request<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> handleException<span style=color:#f92672>(</span>HttpStatus<span style=color:#f92672>.</span><span style=color:#a6e22e>NOT_FOUND</span><span style=color:#f92672>,</span> e<span style=color:#f92672>,</span> request<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><ul>
+<li>본 함수는 @RestControllerAdvice가 붙은 클래스에 정의되었다</li>
+<li>직접 정의한 함수를 호출해서 ResponseEntity를 만들어 반환한다</li>
+</ul>
+<h3 id=정리>정리</h3>
+<ul>
+<li>위의 예시는 NoSuchElemnetException이 발생했을 때,</li>
+<li>HTTP 상태코드는 404, body는 내가 정의한대로 응답하는 코드이다</li>
+<li>REST Api에서 일관성있고 간결한 응답을 보내기 위해 정리해보았다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/responseentity/>
+Spring - ResponseEntity 정리</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
