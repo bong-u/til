@@ -1,0 +1,145 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 우박수열 정적분 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 우박수열 정적분 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-01 </h4>
+<h4 id=date> MODIFIED 2023-08-01</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(k, ranges):
+    answer <span style=color:#f92672>=</span> []
+    seq <span style=color:#f92672>=</span> [k]
+    section <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>]
+    <span style=color:#66d9ef>while</span> k <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span>:
+        <span style=color:#66d9ef>if</span> k<span style=color:#f92672>%</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+            k <span style=color:#f92672>=</span> k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>
+        <span style=color:#66d9ef>else</span>:
+            k <span style=color:#f92672>=</span> k<span style=color:#f92672>*</span><span style=color:#ae81ff>3</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+        seq<span style=color:#f92672>.</span>append(k)
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(seq)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
+        a, b <span style=color:#f92672>=</span> seq[i], seq[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]
+        <span style=color:#66d9ef>if</span> a <span style=color:#f92672>&gt;</span> b:
+            a, b <span style=color:#f92672>=</span> b, a
+            
+        section<span style=color:#f92672>.</span>append((b<span style=color:#f92672>-</span>a)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span><span style=color:#f92672>+</span>a)
+        <span style=color:#66d9ef>if</span> len(section) <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+            section[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+=</span> section[<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]
+            
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> ranges:
+        a, b <span style=color:#f92672>=</span> i[<span style=color:#ae81ff>0</span>], len(seq)<span style=color:#f92672>+</span>i[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+        <span style=color:#66d9ef>if</span> a <span style=color:#f92672>&gt;</span> b:
+            answer<span style=color:#f92672>.</span>append(<span style=color:#f92672>-</span><span style=color:#ae81ff>1.0</span>)
+        <span style=color:#66d9ef>else</span>:
+            answer<span style=color:#f92672>.</span>append(section[b]<span style=color:#f92672>-</span>section[a])
+    <span style=color:#66d9ef>return</span> answer
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>
+<p>어떤 수 K에 대해 다음과 같은 작업을 반복하면 항상 1을 만들 수 있다.</p>
+<ol>
+<li>입력된 수가 짝수라면 2로 나누고, 홀수라면 3을 곱하고 1을 더합니다.</li>
+<li>결과로 나온 수가 1보다 크다면 1번 작업을 반복합니다.</li>
+</ol>
+</li>
+<li>
+<p>주어진 수가 5라면 5 => 16 => 8 => 4 => 2 => 1 과 같이 만들 수 있다.</p>
+</li>
+<li>
+<p>이러한 수열을 우박수열이라고 하는데, 이 수열을 좌표평면으로 옮겨서 점을 찍는다</p>
+</li>
+<li>
+<p>주어진 수가 5라면 (0, 5), (1, 16), (2, 8), (3, 4), (4, 2), (5, 1)에 점을 찍는다</p>
+</li>
+<li>
+<p>[시작하는 x좌표, 끝나는 점의 x에 대한 오프셋]이 주어질 때, 해당 구간의 정적분을 구하라</p>
+</li>
+<li>
+<p>시작점보다 끝점이 큰 경우 정적분 결과는 -1로 정의한다</p>
+</li>
+<li>
+<p>TC</p>
+<ul>
+<li>input
+<blockquote>
+<p>k:5, ranges:[[0,0],[0,-1],[2,-3],[3,-3]]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>[33.0,31.5,0.0,-1.0]</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>seq에는 주어진 k에 대한 우박 수열을 저장한다</li>
+<li>section에는 seq의 각 구간의 정적분을 누적합으로 저장한다</li>
+<li>ranges를 순회하면서 누적합 배열에서 해당 구간의 정적분을 구한다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EC%B9%B4%EB%93%9C_%EB%82%98%EB%88%84%EA%B8%B0/>
+프로그래머스 - 숫자 카드 나누기 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
