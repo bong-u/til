@@ -1,0 +1,215 @@
+<!doctype html><html>
+<head>
+<title>Spring - Bean Validation : Annotation으로 Validation하기</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#bean-validation>Bean Validation</a></li>
+<li><a href=#jakartavalidation에서-지원하는-annotation>jakarta.validation에서 지원하는 annotation</a></li>
+<li><a href=#hibernatevalidator에서-지원하는-annotation>hibernate.validator에서 지원하는 annotation</a></li>
+<li><a href=#rest-controller에서-사용>Rest Controller에서 사용</a></li>
+<li><a href=#수동-validation>수동 Validation</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Spring - Bean Validation : Annotation으로 Validation하기
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-01 </h4>
+<h4 id=date> MODIFIED 2023-08-02</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=bean-validation>Bean Validation</h3>
+<ul>
+<li>Annotation을 달아서 Validation을 수행할 수 있다.</li>
+<li>주로 jakarta.validation과 hibernate.validator 두 패키지를 사용한다.</li>
+<li>Dependency Diagram 구조
+<blockquote>
+<p>spring-boot-starter-validation -> hibernate-validator -> jakarta.validation-api</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=jakartavalidation에서-지원하는-annotation>jakarta.validation에서 지원하는 annotation</h3>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@NotNull</td>
+<td>null이 아닌가 ("", " " => 통과)</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td>null이 아니고, size가 0인가 (" " => 통과)</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td>null이 아니고, trim한 결과가 empty인가</td>
+</tr>
+<tr>
+<td>@Size</td>
+<td>문자열, 배열의 길이가 해당 범위에 있는가</td>
+</tr>
+<tr>
+<td>@Min</td>
+<td>숫자가 해당 범위에 있는가</td>
+</tr>
+<tr>
+<td>@Max</td>
+<td>숫자가 해당 범위에 있는가</td>
+</tr>
+<tr>
+<td>@Email</td>
+<td>이메일 형식에 맞는가</td>
+</tr>
+<tr>
+<td>@Pattern</td>
+<td>Regex(정규식)에 맞는가</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td>과거의 날짜인가</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td>미래의 날짜인가</td>
+</tr>
+<tr>
+<td>@Digits</td>
+<td>정수, 소수 자릿수가 해당 범위에 있는가</td>
+</tr>
+<tr>
+<td>@DecimalMin, @DecimalMax</td>
+<td>자릿수가 해당 범위에 있는가 (소수 이하 자릿수 포함)</td>
+</tr>
+<tr>
+<td>@Positive, @PositiveOrZero, @Negative, @NegativeOrZero</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id=hibernatevalidator에서-지원하는-annotation>hibernate.validator에서 지원하는 annotation</h3>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Range</td>
+<td>숫자가 해당 범위에 있는가 (소수 이하 자릿수 포함)</td>
+</tr>
+<tr>
+<td>@Length</td>
+<td>문자열, 배열의 길이가 해당 범위에 있는가</td>
+</tr>
+<tr>
+<td>@URL</td>
+<td>URL 형식에 맞는가</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>언급한 Annotation말고 다른 Annotation도 있다.</li>
+</ul>
+<h3 id=rest-controller에서-사용>Rest Controller에서 사용</h3>
+<ul>
+<li>
+<p>Controller</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>postCustomer</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@RequestBody</span> <span style=color:#a6e22e>@Valid</span> CustomerDTO customerDTO<span style=color:#f92672>)</span> <span style=color:#f92672>{...}</span>
+</code></pre></div><ul>
+<li><strong>@Valid</strong> Annotation을 붙여서 CustomerDTO 객체에 대한 Validation을 수행한다</li>
+<li>@Valid Annotation을 붙이는 것을 깜빡하지 말자</li>
+</ul>
+</li>
+<li>
+<p>예외 처리</p>
+<ul>
+<li>위 코드의 Validation에서 실패하면, MethodArgumentNotValidException이 발생한다</li>
+<li>해당 예외는 필드별 모든 에러를 담고 있다</li>
+<li>그대로 반환하면 엄청 길기 때문에, 보통 아래 코드와 같이 필요한 정보만 추출해서 반환한다
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>processValidationErrors<span style=color:#f92672>(</span>MethodArgumentNotValidException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> errors <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getBindingResult</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getFieldErrors</span><span style=color:#f92672>().</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>()</span>
+                            <span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>error <span style=color:#f92672>-&gt;</span> error<span style=color:#f92672>.</span><span style=color:#a6e22e>getField</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;: &#34;</span> <span style=color:#f92672>+</span> error<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefaultMessage</span><span style=color:#f92672>())</span>
+                            <span style=color:#f92672>.</span><span style=color:#a6e22e>collect</span><span style=color:#f92672>(</span>Collectors<span style=color:#f92672>.</span><span style=color:#a6e22e>toList</span><span style=color:#f92672>());</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ResponseEntity<span style=color:#f92672>&lt;&gt;(</span>errors<span style=color:#f92672>,</span> HttpStatus<span style=color:#f92672>.</span><span style=color:#a6e22e>BAD_REQUEST</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id=수동-validation>수동 Validation</h3>
+<ul>
+<li>Controller에서 Validation을 수행하지 못하는 경우, 수동으로 Validation을 수행할 수 있다</li>
+<li>이때, Validator 객체를 주입받아서 사용한다
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> jakarta.validation.Validator<span style=color:#f92672>;</span>
+<span style=color:#f92672>...</span>
+<span style=color:#a6e22e>@Autowired</span>
+<span style=color:#66d9ef>private</span> Validator validator<span style=color:#f92672>;</span>
+<span style=color:#f92672>...</span>
+var violations <span style=color:#f92672>=</span> validator<span style=color:#f92672>.</span><span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>voucher<span style=color:#f92672>);</span>
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>violations<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span>
+    <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> IllegalArgumentException<span style=color:#f92672>(</span>violations<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>().</span><span style=color:#a6e22e>findFirst</span><span style=color:#f92672>().</span><span style=color:#a6e22e>get</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getMessage</span><span style=color:#f92672>());</span>
+</code></pre></div></li>
+<li>코드에서는 voucher 객체에 대한 Validation을 수행하고, 발생한 에러가 있다면 IllegalArgumentException을 발생시킨다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/rest_error_response/>
+Spring - RESTful API에서 내맘대로 에러 응답하기</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
