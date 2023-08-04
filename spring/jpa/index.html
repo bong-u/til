@@ -1,0 +1,190 @@
+<!doctype html><html>
+<head>
+<title>Spring 개념 - JPA (Java Persistence API)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<a href=https://bong-u.github.io/til/>🏠</a>
+<a href=https://github.com/bong-u/til>🐈</a>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<label class=cursor-pointer for=toggleDarkMode>
+<span id=toggleButton>☀️</span>
+</label>
+</header>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#entitymanager>EntityManager</a></li>
+</ul>
+</li>
+<li><a href=#영속성-컨텍스트>영속성 컨텍스트</a>
+<ul>
+<li><a href=#entity의-life-cycle>Entity의 Life cycle</a></li>
+<li><a href=#저장>저장</a></li>
+<li><a href=#조회>조회</a></li>
+<li><a href=#수정>수정</a></li>
+<li><a href=#삭제>삭제</a></li>
+</ul>
+</li>
+<li><a href=#entity-mapping>Entity Mapping</a>
+<ul>
+<li><a href=#단일-엔티티매핑>단일 엔티티매핑</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
+🛆
+</div>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Spring 개념 - JPA (Java Persistence API)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-04 </h4>
+<h4 id=date> MODIFIED 2023-08-04</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=entitymanager>EntityManager</h3>
+<ul>
+<li>Entity : RDB의 Table과 매핑되는 객체</li>
+<li>EntityManagerFactory
+<ul>
+<li>Entity를 관리하는 EntityManager를 생산하는 공장</li>
+<li>Thread safe: O</li>
+</ul>
+</li>
+<li>EntityManager
+<ul>
+<li>Entity의 CRUD등 모든 일을 처리</li>
+<li>Thread safe: X</li>
+</ul>
+</li>
+</ul>
+<h2 id=영속성-컨텍스트>영속성 컨텍스트</h2>
+<ul>
+<li>Entity를 영구 저장하는 환경</li>
+<li>EntityManager는 Entity를 영속성 컨텍스트에 보관하고 관리한다</li>
+<li>영속성 컨텍스트에서 관리되는 Entity는 식별자값을 가져야 한다 (ID)
+<ul>
+<li>-> key-value로 Entity를 관리하기 때문</li>
+</ul>
+</li>
+<li>flush: 영속성 컨텍스트에 변경 내용들을 DB에 동기화하는 작업</li>
+<li>영속성 컨텍스트의 이점
+<ul>
+<li>1차 캐시</li>
+<li>동일성 보장</li>
+<li>트랜잭션을 지원하는 쓰기 지연</li>
+<li>변경 감지</li>
+<li>지연 로딩</li>
+</ul>
+</li>
+</ul>
+<h3 id=entity의-life-cycle>Entity의 Life cycle</h3>
+<p><img src=/static/image/entity_life_cycle.png alt=image></p>
+<ul>
+<li>비영속 (New / Transient): 영속성 컨텍스트와 전혀 관계가 없는 상태</li>
+<li>영속 (Managed): 영속성 컨텍스트에 저장된 상태</li>
+<li>준영속 (Detached): 영속성 컨텍스트에 저장되었다가 분리된 상태</li>
+<li>삭제 (Removed): 삭제된 상태</li>
+</ul>
+<h3 id=저장>저장</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>EntityManager em <span style=color:#f92672>=</span> emf<span style=color:#f92672>.</span><span style=color:#a6e22e>createEntityManager</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Entity manger 생성
+</span><span style=color:#75715e></span>EntityTransaction transaction <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>getTransaction</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Transaction 획득
+</span><span style=color:#75715e></span>transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>begin</span><span style=color:#f92672>();</span>
+
+Customer customer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Customer<span style=color:#f92672>();</span> <span style=color:#75715e>// 비영속 상태
+</span><span style=color:#75715e></span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setId</span><span style=color:#f92672>(</span>1L<span style=color:#f92672>);</span>
+customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setFirstName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;John&#34;</span><span style=color:#f92672>);</span>
+customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setLastName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Doe&#34;</span><span style=color:#f92672>);</span>
+
+em<span style=color:#f92672>.</span><span style=color:#a6e22e>persist</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>);</span> <span style=color:#75715e>// 영속화
+</span><span style=color:#75715e></span>
+transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Transaction commit
+</span></code></pre></div><h3 id=조회>조회</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Customer(1L) 만들어서 commit
+</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span> <span style=color:#75715e>// 1차 캐시에서 조회, query 실행 X
+</span><span style=color:#75715e></span>em<span style=color:#f92672>.</span><span style=color:#a6e22e>clear</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 영속성 컨텍스트를 초기화
+</span><span style=color:#75715e></span>Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span> <span style=color:#75715e>// DB에서 조회, query 실행 O
+</span></code></pre></div><h3 id=수정>수정</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Customer(1L) 만들어서 commit
+</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span>
+entity<span style=color:#f92672>.</span><span style=color:#a6e22e>setFirstName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;guppy&#34;</span><span style=color:#f92672>);</span>
+entity<span style=color:#f92672>.</span><span style=color:#a6e22e>setLastName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hong&#34;</span><span style=color:#f92672>);</span>
+
+transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// update!
+</span></code></pre></div><h4 id=변경감지-dirty-checking>변경감지 (dirty checking)</h4>
+<ul>
+<li>JPA는 Entity를 영속화할 때의 최초 상태를 스냅샷으로 저장해둔다</li>
+<li>flush 시점에 스냅샷과 비교해서 변경된 Entity에 대해 update query를 수행한다</li>
+</ul>
+<h3 id=삭제>삭제</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Customer(1L) 만들어서 commit
+</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span>
+em<span style=color:#f92672>.</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span>entity<span style=color:#f92672>);</span>
+
+transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// delete!
+</span></code></pre></div><h2 id=entity-mapping>Entity Mapping</h2>
+<h3 id=단일-엔티티매핑>단일 엔티티매핑</h3>
+<ul>
+<li>@Entity : 기본 생성자 필수</li>
+<li>@Table : name으로 매핑할 테이블 이름 지정</li>
+<li>@Id
+<ul>
+<li>GenerationType - AUTO, IDENTITY, SEQUENCE, TABLE</li>
+</ul>
+</li>
+<li>@Column
+<ul>
+<li>name, length, unique, columnDefinition&mldr;</li>
+<li>insertable=updatable, nullable</li>
+</ul>
+</li>
+<li>@Enumerated
+<ul>
+<li>EnumType - ORDINAL, STRING</li>
+</ul>
+</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/bean_validation/>
+Spring - Bean Validation : Annotation으로 Validation하기</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
