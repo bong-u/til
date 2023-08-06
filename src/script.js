@@ -3,6 +3,7 @@
 window.onload = () => {
     checkDarkMode();
     modifyImagePath();
+    scrollHandler();
     window.addEventListener('scroll', scrollHandler);
 };
 
