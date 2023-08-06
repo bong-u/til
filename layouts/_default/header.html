@@ -1,4 +1,4 @@
-<header class="fixed w-full top-0 p-4 text-3xl">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
     <div class="flex gap-3 float-right">
         <a href="{{ .Site.BaseURL }}">🏠</a>
         <a href="https://github.com/bong-u/til">🐈</a>
@@ -6,5 +6,6 @@
         <label class="cursor-pointer" for="toggleDarkMode">
             <span id="toggleButton">☀️</span>
         </label>
+        <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bold"></a>
     </div>
 </header>
