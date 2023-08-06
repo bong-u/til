@@ -3,6 +3,7 @@
 window.onload = () => {
     checkDarkMode();
     modifyImagePath();
+    window.addEventListener('scroll', scrollHandler);
 };
 
 // 최근 게시물인 경우 "hidden" 클래스 제거
@@ -76,4 +77,23 @@ const toggleDarkModeHandler = () => {
 // 스크롤 최상단 이동
 const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+};
+
+// 스크롤 최하단 이동
+const scrollToBottom = () => {
+    window.scrollTo({ top: document.body.clientHeight, behavior: 'smooth' });
+};
+
+const scrollHandler = () => {
+    const scrollButton = document.getElementById('scrollButton');
+    if (window.scrollY / (document.body.clientHeight - window.innerHeight) > 0.5) {
+        scrollButton.innerText = '🔼';
+        scrollButton.removeEventListener('click', scrollToBottom);
+        scrollButton.addEventListener('click', scrollToTop);
+    }
+    else {
+        scrollButton.innerText = '🔽';
+        scrollButton.removeEventListener('click', scrollToTop);
+        scrollButton.addEventListener('click', scrollToBottom);
+    }
+};

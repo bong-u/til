@@ -19,16 +19,57 @@
 </script>
 </head>
 <body class="flex justify-center my-16">
-<header class="absolute top-0 right-0 p-4 z-10 flex items-center gap-3 text-3xl">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
 <a href=https://bong-u.github.io/til/>🏠</a>
 <a href=https://github.com/bong-u/til>🐈</a>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <label class=cursor-pointer for=toggleDarkMode>
 <span id=toggleButton>☀️</span>
 </label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bold"></a>
+</div>
 </header>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 justify-center gap-3 p-7">
+<a class="flex py-3 hover-bold" href=/til/kubernetes/>
+<span class="text-xl mr-3">☁</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/java/>
+<span class="text-xl mr-3">♨</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (26)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (6)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (10)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (9)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (77)</span>
+</a>
+</nav>
 <script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
-<aside class="fixed top-0 right-0 py-16 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
 <li>
@@ -40,9 +81,6 @@
 </li>
 </ul>
 </nav>
-<div onclick=scrollToTop() class="fixed p-5 right-0 bottom-0 text-center text-2xl cursor-pointer hover-bold">
-🛆
-</div>
 </aside>
 <main class="flex w-full justify-center">
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
