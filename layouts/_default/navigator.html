@@ -5,7 +5,7 @@
 {{ $section_emoji := index (split $section.Title "|") 0 }}
 {{ $section_name := index (split $section.Title "|") 1 }}
 
-<a class="flex mx-8 py-3 hover-bold" href="{{ $section.RelPermalink }}">
+<a class="flex py-3 hover-bold" href="{{ $section.RelPermalink }}">
     <span class="text-xl mr-3">{{ $section_emoji }}</span>
     <span>{{ $section_name }} ({{ len $section.Pages }})</span>
 </a>
