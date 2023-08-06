@@ -10,20 +10,12 @@
     @apply font-base !important;
   }
 
-  .bgColor {
-    @apply bg-zinc-200 dark:bg-zinc-800;
-  }
-
-  .textColor {
-    @apply text-zinc-700 dark:text-gray-300;
-  }
-
   header {
-    @apply bg-gradient-to-b from-30% from-zinc-200 to-transparent dark:from-zinc-800 dark:to-transparent;
+    @apply bg-gradient-to-b from-30% from-bg to-transparent dark:from-dark-bg dark:to-transparent;
   }
 
   body {
-    @apply bgColor textColor;
+    @apply text-text bg-bg dark:text-dark-text dark:bg-dark-bg;
   }
 
   body::-webkit-scrollbar {
@@ -31,7 +23,7 @@
   }
 
   body::-webkit-scrollbar-thumb {
-    @apply bg-zinc-500 rounded-lg;
+    @apply bg-scroll-thumb rounded-lg;
   }
 
   ol {
@@ -47,7 +39,7 @@
   }
 
   pre {
-    @apply bg-stone-900 !important;
+    @apply bg-code-bg !important;
   }
 
   code,
@@ -73,7 +65,7 @@
   }
 
   #TableOfContents a:hover {
-    @apply hover:text-gray-400 dark:hover:text-gray-500;
+    @apply hover:text-toc-hover dark:hover:text-dark-toc-hover;
   }
 
   #TableOfContents ul > li {
@@ -81,17 +73,17 @@
   }
 
   .preview {
-    @apply text-zinc-700 dark:text-gray-300 hover:no-underline !important;
+    @apply text-text dark:text-dark-text hover:no-underline !important;
   }
 }
 
 @layer utilities {
   .box {
-    @apply bg-zinc-100 dark:bg-stone-900;
+    @apply bg-hl-bg dark:bg-hl-dark-bg;
   }
 
   .box:hover {
-    @apply bg-zinc-300 dark:bg-stone-950;
+    @apply bg-hl-hover-bg dark:bg-hl-dark-hover-bg;
   }
 
   .hover-bold {
