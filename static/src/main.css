@@ -10,8 +10,20 @@
     @apply font-base !important;
   }
 
+  .bgColor {
+    @apply bg-zinc-200 dark:bg-zinc-800;
+  }
+
+  .textColor {
+    @apply text-zinc-700 dark:text-gray-300;
+  }
+
+  header {
+    @apply bg-gradient-to-b from-30% from-zinc-200 to-transparent dark:from-zinc-800 dark:to-transparent;
+  }
+
   body {
-    @apply text-zinc-700 bg-zinc-200 dark:text-gray-300 dark:bg-zinc-800;
+    @apply bgColor textColor;
   }
 
   body::-webkit-scrollbar {

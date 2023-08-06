@@ -430,16 +430,38 @@ video {
   font-family: Noto Sans KR, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
 }
 
+header{
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  --tw-gradient-from: #e4e4e7 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(228 228 231 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-from-position: 30%;
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+
+:is(.dark header){
+  --tw-gradient-from: #27272a var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(39 39 42 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+
 body{
   --tw-bg-opacity: 1;
   background-color: rgb(228 228 231 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
 :is(.dark body){
   --tw-bg-opacity: 1;
   background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+}
+
+body{
+  --tw-text-opacity: 1;
+  color: rgb(63 63 70 / var(--tw-text-opacity));
+}
+
+:is(.dark body){
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
@@ -679,6 +701,10 @@ code,
   bottom: 0px;
 }
 
+.left-0{
+  left: 0px;
+}
+
 .left-\[-10px\]{
   left: -10px;
 }
@@ -695,12 +721,8 @@ code,
   top: -10px;
 }
 
-.left-0{
-  left: 0px;
-}
-
-.z-10{
-  z-index: 10;
+.float-right{
+  float: right;
 }
 
 .m-0{
@@ -911,10 +933,6 @@ code,
   gap: 2rem;
 }
 
-.gap-5{
-  gap: 1.25rem;
-}
-
 .overflow-hidden{
   overflow: hidden;
 }
@@ -976,21 +994,6 @@ code,
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.px-3{
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.py-5{
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
-
-.px-5{
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
 }
 
 .text-center{
@@ -1080,10 +1083,6 @@ code,
 }
 
 @media (min-width: 768px){
-  .md\:flex{
-    display: flex;
-  }
-
   .md\:w-10\/12{
     width: 83.333333%;
   }
@@ -1112,10 +1111,6 @@ code,
 }
 
 @media (min-width: 1280px){
-  .xl\:flex{
-    display: flex;
-  }
-
   .xl\:w-7\/12{
     width: 58.333333%;
   }
