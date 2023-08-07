@@ -1,7 +1,11 @@
 ---
-title: "Spring 개념 - JPA (Java Persistence API)"
+title: "Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑"
 date: 2023-08-04
 ---
+
+## JPA (Java Persistence API)
+- JAVA진영의 ORM 기술 표준, interface 모음
+- Hibernate, EclipseLink, DataNucleus 등의 구현체가 존재
 
 ### EntityManager
 - Entity : RDB의 Table과 매핑되는 객체
@@ -94,3 +98,54 @@ transaction.commit(); // delete!
 	- insertable=updatable, nullable
 - @Enumerated
 	- EnumType - ORDINAL, STRING
+
+## 연관관계 매핑
+
+- 테이블은 외래키로 연관 관계를 맺는다
+- 객체는 **참조**를 통해 연관 관계를 맺는다
+
+### 1. 참조의 방향
+> 단방향, 양방향
+- 테이블은 항상 양방향이다
+
+### 2. 연관 관계 주인
+	- 객체가 양방향 연관 관계를 맺을 때, 연관 관계의 주인을 정해야 한다
+	- 주인만 외래 키를 관리(등록, 수정) 할 수 있다, 주인이 아닌 쪽은 읽기만 가능
+	- mappedBy를 통해 주인이 아닌 엔티티에서 주인을 지정한다
+
+### 3. 다중성
+> ManyToOne, OneToMany, OneToOne, ManyToMany
+
+- JoinColumn(name="", referencedColumnName="")
+	- 외래 키를 매핑할 때 사용
+	- name: 매핑할 외래 키 이름
+	- referencedColumnName: 외래 키가 참조하는 대상 테이블의 컬럼명
+
+#### 예제 - 연관관계 편의 메소드
+- 양방향 연관관계에서 한쪽에만 설정하면 양쪽 다 설정해주는 메소드를 만들 수 있다
+- 양방향 연관관계와 그 편의메소드를 정의한 코드이다
+- Member.java
+	```java
+	@OneToMany(mappedBy = "member")
+	private List<Order> orders = new ArrayList<>();
+
+	public void addOrder(Order order) {
+		this.orders.add(order);
+		order.setMember(this);
+	}
+	```
+- Order.java
+	```java
+	@ManyToOne
+	@JoinColumn(name="member_id", referencedColumnName = "id")
+	private Member member;
+
+	public void setMember(Member member) {
+		if (this.member != null) {
+			this.member.getOrders().remove(this);
+		}
+		this.member = member;
+		member.getOrders().add(this);
+	}
+	```
+
