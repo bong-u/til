@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url("./colors.css");
+@import url("./content.css");
 
 @tailwind base;
 @tailwind components;
@@ -11,11 +13,11 @@
   }
 
   header {
-    @apply bg-gradient-to-b from-30% from-bg to-transparent dark:from-dark-bg dark:to-transparent;
+    @apply bg-gradient-to-b from-30% from-bg to-transparent;
   }
 
   body {
-    @apply text-text bg-bg dark:text-dark-text dark:bg-dark-bg;
+    @apply text-text bg-bg;
   }
 
   body::-webkit-scrollbar {
@@ -23,67 +25,21 @@
   }
 
   body::-webkit-scrollbar-thumb {
-    @apply bg-scroll-thumb rounded-lg;
-  }
-
-  ol {
-    @apply list-decimal;
-  }
-
-  ul {
-    @apply list-disc;
-  }
-
-  tr {
-    @apply bg-inherit !important;
-  }
-
-  pre {
-    @apply bg-code-bg !important;
-  }
-
-  code,
-  code * {
-    @apply font-code text-base !important;
-  }
-
-  #TableOfContents {
-    height: calc(100vh - 10rem);
-    @apply text-sm overflow-hidden;
-  }
-
-  #TableOfContents ul {
-    @apply ml-0;
-  }
-
-  #TableOfContents ul:not(:first-child) {
-    @apply pl-4;
-  }
-
-  #TableOfContents a.current {
-    @apply font-bold;
-  }
-
-  #TableOfContents a:hover {
-    @apply hover:text-toc-hover dark:hover:text-dark-toc-hover;
-  }
-
-  #TableOfContents ul > li {
-    @apply overflow-ellipsis-bundle my-2;
+    @apply bg-scroll_thumb rounded-lg;
   }
 
   .preview {
-    @apply text-text dark:text-dark-text hover:no-underline !important;
+    @apply text-text hover:no-underline !important;
   }
 }
 
 @layer utilities {
   .box {
-    @apply bg-hl-bg dark:bg-hl-dark-bg;
+    @apply bg-box_bg;
   }
 
   .box:hover {
-    @apply bg-hl-hover-bg dark:bg-hl-dark-hover-bg;
+    @apply bg-box_hover_bg;
   }
 
   .hover-bold {
