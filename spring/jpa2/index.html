@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>프로그래머스 - 택배 배달과 수거하기 (L2)</title>
+<title>Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -74,8 +74,9 @@
 <ul>
 <li>
 <ul>
-<li><a href=#문제>문제</a></li>
-<li><a href=#해결방법>해결방법</a></li>
+<li><a href=#프록시-객체>프록시 객체</a></li>
+<li><a href=#영속성-전이>영속성 전이</a></li>
+<li><a href=#고아-객체>고아 객체</a></li>
 </ul>
 </li>
 </ul>
@@ -86,61 +87,73 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-프로그래머스 - 택배 배달과 수거하기 (L2)
+Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-07-21 </h4>
-<h4 id=date> MODIFIED 2023-07-21</h4>
+<h4 id=date> CREATED 2023-08-07 </h4>
+<h4 id=date> MODIFIED 2023-08-07</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(cap, n, deliveries, pickups):
-    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    tempD <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    tempP <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(n<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
-        tempD <span style=color:#f92672>+=</span> deliveries[i]
-        tempP <span style=color:#f92672>+=</span> pickups[i]
-        
-        <span style=color:#66d9ef>while</span> tempD <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>or</span> tempP <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
-            tempD <span style=color:#f92672>-=</span> cap
-            tempP <span style=color:#f92672>-=</span> cap
-            answer <span style=color:#f92672>+=</span> (i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span>
-    <span style=color:#66d9ef>return</span> answer
-</code></pre></div><h3 id=문제>문제</h3>
+<h3 id=프록시-객체>프록시 객체</h3>
 <ul>
-<li>트럭에 실을 수 있는 재활용 택배 상자의 최대개수 cap, 배달할 집의 개수 n</li>
-<li>택배 상자의 개수를 담은 deliveries, 재활용 택배 상자의 개수를 담은 pickups가 주어진다</li>
-<li>트럭하나로 모든 배달과 수거를 마치고 돌아올 수 있는 최소 이동 거리를 구하라</li>
-<li>TC
+<li>프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다</li>
+<li>em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다</li>
+<li>JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다
 <ul>
-<li>input (cap, n, deliveries, pickups)
-<blockquote>
-<p>4, 5, [1, 0, 3, 1, 2], [0, 3, 0, 4, 0]</p>
-</blockquote>
-</li>
-<li>ouput
-<blockquote>
-<p>16</p>
-</blockquote>
-</li>
+<li>FetchType.EAGER (즉시 로딩)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Order order <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Order<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> orderId<span style=color:#f92672>);</span>
+Member member <span style=color:#f92672>=</span> order<span style=color:#f92672>.</span><span style=color:#a6e22e>getMember</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 지금 member는 실제 객체이다
+</span><span style=color:#75715e></span>String name <span style=color:#f92672>=</span> member<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 1차 캐시에서 조회한다
+</span></code></pre></div></li>
+<li>FetchType.LAZY (지연 로딩)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Order order <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Order<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> orderId<span style=color:#f92672>);</span>
+Member member <span style=color:#f92672>=</span> order<span style=color:#f92672>.</span><span style=color:#a6e22e>getMember</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 지금 member는 프록시 객체이다
+</span><span style=color:#75715e></span>String name <span style=color:#f92672>=</span> member<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span> <span style=color:#75715e>// db에서 조회한다 (프록시 -&gt; 실제 객체)
+</span></code></pre></div></li>
 </ul>
 </li>
 </ul>
-<h3 id=해결방법>해결방법</h3>
+<h3 id=영속성-전이>영속성 전이</h3>
+<blockquote>
+<p>특정 Entity가 영속될때 연관된 Entity도 함께 영속화하는 것</p>
+</blockquote>
 <ul>
-<li>배열을 거꾸로 순회하면서 배달, 수거 상자의 수를 더한다</li>
-<li>해당 값이 0보다 크면 트럭에 실을 수 있는 최대 개수인 cap을 빼주고 거리를 계산해준다</li>
+<li>CascadeType종류
+<ul>
+<li><strong>ALL</strong> : 모든 Cascade를 적용한다</li>
+<li><strong>PERSIST</strong> : 저장될 때 적용</li>
+<li><strong>REMOVE</strong> : 삭제될 때 적용</li>
+<li>MERGE : 병합될 때 적용</li>
+<li>REFRESH : REFRESH될 때 적용</li>
+<li>DETACH : DETACH될 때 적용</li>
+</ul>
+</li>
+</ul>
+<h3 id=고아-객체>고아 객체</h3>
+<blockquote>
+<p>부모 엔티티와 연관관계가 끊어진 자식 Entity</p>
+</blockquote>
+<ul>
+<li>
+<p>orphanRemoval 속성을 지정해서 자동 삭제할 수 있다</p>
+</li>
+<li>
+<p>orphanRemoval과 CascadeType.REMOVE와 차이점</p>
+<ul>
+<li>CascadeType.REMOVE는 부모가 삭제되면 자식도 함께 삭제</li>
+<li>orphanRemoval은 부모와 관계만 끊기면 자식을 삭제</li>
+<li>orphanRemoval은 CascadeType.REMOVE를 포함한다</li>
+</ul>
+</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%8B%9C%EC%86%8C_%EC%A7%9D%EA%BF%8D/>
-프로그래머스 - 시소 짝꿍 (L2)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98_%ED%95%A0%EC%9D%B8%ED%96%89%EC%82%AC/>
-프로그래머스 - 이모티콘 할인행사 (L2)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/jpa1/>
+Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑</a>
 </div>
 </div>
 </div>

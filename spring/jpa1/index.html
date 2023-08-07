@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>Spring 개념 - JPA (Java Persistence API)</title>
+<title>Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -41,7 +41,7 @@
 </a>
 <a class="flex py-3 hover-bold" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
-<span>Spring (26)</span>
+<span>Spring (27)</span>
 </a>
 <a class="flex py-3 hover-bold" href=/til/javascript/>
 <span class="text-xl mr-3">🍌</span>
@@ -72,7 +72,7 @@
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li>
+<li><a href=#jpa-java-persistence-api>JPA (Java Persistence API)</a>
 <ul>
 <li><a href=#entitymanager>EntityManager</a></li>
 </ul>
@@ -91,6 +91,13 @@
 <li><a href=#단일-엔티티매핑>단일 엔티티매핑</a></li>
 </ul>
 </li>
+<li><a href=#연관관계-매핑>연관관계 매핑</a>
+<ul>
+<li><a href=#1-참조의-방향>1. 참조의 방향</a></li>
+<li><a href=#2-연관-관계-주인>2. 연관 관계 주인</a></li>
+<li><a href=#3-다중성>3. 다중성</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -99,15 +106,20 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Spring 개념 - JPA (Java Persistence API)
+Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-08-04 </h4>
-<h4 id=date> MODIFIED 2023-08-04</h4>
+<h4 id=date> MODIFIED 2023-08-07</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=jpa-java-persistence-api>JPA (Java Persistence API)</h2>
+<ul>
+<li>JAVA진영의 ORM 기술 표준, interface 모음</li>
+<li>Hibernate, EclipseLink, DataNucleus 등의 구현체가 존재</li>
+</ul>
 <h3 id=entitymanager>EntityManager</h3>
 <ul>
 <li>Entity : RDB의 Table과 매핑되는 객체</li>
@@ -213,12 +225,72 @@ transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</s
 </ul>
 </li>
 </ul>
+<h2 id=연관관계-매핑>연관관계 매핑</h2>
+<ul>
+<li>테이블은 외래키로 연관 관계를 맺는다</li>
+<li>객체는 <strong>참조</strong>를 통해 연관 관계를 맺는다</li>
+</ul>
+<h3 id=1-참조의-방향>1. 참조의 방향</h3>
+<blockquote>
+<p>단방향, 양방향</p>
+</blockquote>
+<ul>
+<li>테이블은 항상 양방향이다</li>
+</ul>
+<h3 id=2-연관-관계-주인>2. 연관 관계 주인</h3>
+<pre><code>- 객체가 양방향 연관 관계를 맺을 때, 연관 관계의 주인을 정해야 한다
+- 주인만 외래 키를 관리(등록, 수정) 할 수 있다, 주인이 아닌 쪽은 읽기만 가능
+- mappedBy를 통해 주인이 아닌 엔티티에서 주인을 지정한다
+</code></pre>
+<h3 id=3-다중성>3. 다중성</h3>
+<blockquote>
+<p>ManyToOne, OneToMany, OneToOne, ManyToMany</p>
+</blockquote>
+<ul>
+<li>JoinColumn(name="", referencedColumnName="")
+<ul>
+<li>외래 키를 매핑할 때 사용</li>
+<li>name: 매핑할 외래 키 이름</li>
+<li>referencedColumnName: 외래 키가 참조하는 대상 테이블의 컬럼명</li>
+</ul>
+</li>
+</ul>
+<h4 id=예제---연관관계-편의-메소드>예제 - 연관관계 편의 메소드</h4>
+<ul>
+<li>양방향 연관관계에서 한쪽에만 설정하면 양쪽 다 설정해주는 메소드를 만들 수 있다</li>
+<li>양방향 연관관계와 그 편의메소드를 정의한 코드이다</li>
+<li>Member.java
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@OneToMany</span><span style=color:#f92672>(</span>mappedBy <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;member&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>private</span> List<span style=color:#f92672>&lt;</span>Order<span style=color:#f92672>&gt;</span> orders <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addOrder</span><span style=color:#f92672>(</span>Order order<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>orders</span><span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>order<span style=color:#f92672>);</span>
+	order<span style=color:#f92672>.</span><span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><pre tabindex=0><code></code></pre></li>
+<li>Order.java
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ManyToOne</span>
+<span style=color:#a6e22e>@JoinColumn</span><span style=color:#f92672>(</span>name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member_id&#34;</span><span style=color:#f92672>,</span> referencedColumnName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;id&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>private</span> Member member<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span>Member member<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+	<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+	<span style=color:#f92672>}</span>
+	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>=</span> member<span style=color:#f92672>;</span>
+	member<span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><pre tabindex=0><code>
+</code></pre></li>
+</ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/bean_validation/>
 Spring - Bean Validation : Annotation으로 Validation하기</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/spring/jpa2/>
+Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체</a>
 </div>
 </div>
 </div>
