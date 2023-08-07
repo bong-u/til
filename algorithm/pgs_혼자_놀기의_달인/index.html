@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>2502 : 떡 먹는 호랑이 (S1)</title>
+<title>프로그래머스 - 혼자 놀기의 달인 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -74,6 +74,7 @@
 <ul>
 <li>
 <ul>
+<li><a href=#문제>문제</a></li>
 <li><a href=#해결방법>해결방법</a></li>
 </ul>
 </li>
@@ -85,48 +86,66 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-2502 : 떡 먹는 호랑이 (S1)
+프로그래머스 - 혼자 놀기의 달인 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-02-10 </h4>
-<h4 id=date> MODIFIED 2023-02-10</h4>
+<h4 id=date> CREATED 2023-08-07 </h4>
+<h4 id=date> MODIFIED 2023-08-07</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>D, K <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-L <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, D):
-    L<span style=color:#f92672>.</span>append((L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>][<span style=color:#ae81ff>0</span>]<span style=color:#f92672>+</span>L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>][<span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]))
-
-A <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-B <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>
-
-<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-    <span style=color:#66d9ef>if</span> A<span style=color:#f92672>*</span>L[D<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> B<span style=color:#f92672>*</span>L[D<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> K:
-        <span style=color:#66d9ef>break</span>
-
-    <span style=color:#66d9ef>if</span> A<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>==</span> B:
-        B <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-        A <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-    <span style=color:#66d9ef>else</span>:
-        A <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-
-print (A,<span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#39;</span>,B, sep<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;&#39;</span>)
-</code></pre></div><h3 id=해결방법>해결방법</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(cards):
+    length <span style=color:#f92672>=</span> len(cards)
+    visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>] <span style=color:#f92672>*</span> length
+    answer <span style=color:#f92672>=</span> []
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
+        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+        cur <span style=color:#f92672>=</span> i
+        <span style=color:#66d9ef>while</span> <span style=color:#f92672>not</span> visited[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+            visited[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+            cur <span style=color:#f92672>=</span> cards[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+            cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+        <span style=color:#66d9ef>if</span> cnt <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+            answer<span style=color:#f92672>.</span>append(cnt)
+    
+    <span style=color:#66d9ef>if</span> len(answer) <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>:
+        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>
+    answer<span style=color:#f92672>.</span>sort(reverse<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+    <span style=color:#66d9ef>return</span> answer[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>answer[<span style=color:#ae81ff>1</span>]
+</code></pre></div><h3 id=문제>문제</h3>
 <ul>
-<li>N번째날 떡 개수를 구하기 위해 첫째날 떡, 둘째날 떡을 각각 몇번 더해야하는지 리스트에 구한다</li>
-<li>첫째, 둘째 날 떡을 하나하나 넣어보면서 브루트 포스를 수행한다</li>
+<li>주어진 배열 cards를 순회한다</li>
+<li>cards[i]번째 원소를 방문한다, 이미 방문한 원소인 경우 그만한다</li>
+<li>한번 이어서 방문한 원소를 그룹화한다고 할 때, 두 그룹의 원소개수의 곱의 최대값을 구하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>[8,6,3,7,2,5,1,4]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>12</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>while문을 한번 돌면서, 원소의 방문여부를 체크하고, 방문한 원소의 개수를 센다</li>
+<li>그룹화된 원소를 answer에 추가한다</li>
+<li>answer를 내림차순으로 정렬하고, 첫번째 두번째 원소의 곱을 반환한다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_13398/>
-13398 : 연속합 2 (G5)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_15681/>
-15681 : 트리와 쿼리 (G5)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%97%B0%EC%86%8D_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4_%ED%95%A9%EC%9D%98_%EA%B0%9C%EC%88%98/>
+프로그래머스 - 연속 수열 합의 개수 (L2)</a>
 </div>
 </div>
 </div>
