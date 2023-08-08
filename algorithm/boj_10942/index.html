@@ -21,49 +21,55 @@
 <body class="flex justify-center my-16">
 <header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
 <div class="flex gap-3 float-right">
-<a href=https://bong-u.github.io/til/>🏠</a>
-<a href=https://github.com/bong-u/til>🐈</a>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<label class=cursor-pointer for=toggleDarkMode>
-<span id=toggleButton>☀️</span>
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
 </label>
-<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bold"></a>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
 </div>
 </header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 justify-center gap-3 p-7">
-<a class="flex py-3 hover-bold" href=/til/kubernetes/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
 <span class="text-xl mr-3">☁</span>
 <span>Kubernetes (4)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/java/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
 <span class="text-xl mr-3">♨</span>
 <span>Java (6)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/spring/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
 <span>Spring (27)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/javascript/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
 <span class="text-xl mr-3">🍌</span>
 <span>Javascript (6)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/school/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
 <span class="text-xl mr-3">🏫</span>
 <span>학과 공부 (10)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/lecture/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
 <span class="text-xl mr-3">👨‍🏫</span>
 <span>특강 (4)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/mogako23/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
 <span class="text-xl mr-3">👨‍💻</span>
 <span>23-모각코 (9)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/sql/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
 <span class="text-xl mr-3">🥞</span>
 <span>SQL (1)</span>
 </a>
-<a class="flex py-3 hover-bold" href=/til/algorithm/>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
 <span class="text-xl mr-3">🧠</span>
 <span>Algorithm (79)</span>
 </a>
