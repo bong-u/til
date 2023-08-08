@@ -1,4 +1,4 @@
-@layer {
+@layer base {
   ol {
     @apply list-decimal;
   }
