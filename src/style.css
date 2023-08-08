@@ -2,62 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
-@layer {
-  ol{
-    list-style-type: decimal;
-  }
-
-  ul{
-    list-style-type: disc;
-  }
-
-  tr{
-    background-color: inherit !important;
-  }
-
-  pre{
-    background-color: var(--color-code-bg) !important;
-  }
-
-  code,
-  code *{
-    font-family: Ubuntu !important;
-    font-size: 1rem !important;
-    line-height: 1.5rem !important;
-  }
-
-  #TableOfContents {
-    height: calc(100vh - 10rem);
-    overflow: hidden;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  #TableOfContents ul{
-    margin-left: 0px;
-  }
-
-  #TableOfContents ul:not(:first-child){
-    padding-left: 1rem;
-  }
-
-  #TableOfContents a.current{
-    font-weight: 700;
-  }
-
-  #TableOfContents a:hover:hover{
-    color: var(--color-toc-hover);
-  }
-
-  #TableOfContents ul > li{
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
 /*
 ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */
@@ -510,6 +454,60 @@ video {
   /* stone-900 */
   --color-box-hover-bg: #0c0a09;
   /* stone-950 */
+}
+
+ol{
+  list-style-type: decimal;
+}
+
+ul{
+  list-style-type: disc;
+}
+
+tr{
+  background-color: inherit !important;
+}
+
+pre{
+  background-color: var(--color-code-bg) !important;
+}
+
+code,
+  code *{
+  font-family: Ubuntu !important;
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+#TableOfContents {
+  height: calc(100vh - 10rem);
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#TableOfContents ul{
+  margin-left: 0px;
+}
+
+#TableOfContents ul:not(:first-child){
+  padding-left: 1rem;
+}
+
+#TableOfContents a.current{
+  font-weight: 700;
+}
+
+#TableOfContents a:hover:hover{
+  color: var(--color-toc-hover);
+}
+
+#TableOfContents ul > li{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 *{
