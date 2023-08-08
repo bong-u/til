@@ -1,0 +1,47 @@
+@layer {
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  tr {
+    @apply bg-inherit !important;
+  }
+
+  pre {
+    @apply bg-code_bg !important;
+  }
+
+  code,
+  code * {
+    @apply font-code text-base !important;
+  }
+
+  #TableOfContents {
+    height: calc(100vh - 10rem);
+    @apply text-sm overflow-hidden;
+  }
+
+  #TableOfContents ul {
+    @apply ml-0;
+  }
+
+  #TableOfContents ul:not(:first-child) {
+    @apply pl-4;
+  }
+
+  #TableOfContents a.current {
+    @apply font-bold;
+  }
+
+  #TableOfContents a:hover {
+    @apply hover:text-toc_hover;
+  }
+
+  #TableOfContents ul > li {
+    @apply overflow-ellipsis-bundle my-2;
+  }
+}
