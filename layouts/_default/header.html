@@ -1,11 +1,18 @@
 <header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
     <div class="flex gap-3 float-right">
-        <a href="{{ .Site.BaseURL }}">🏠</a>
-        <a href="https://github.com/bong-u/til">🐈</a>
-        <input type="checkbox" id="toggleDarkMode" onchange="toggleDarkModeHandler()" hidden />
-        <label class="cursor-pointer" for="toggleDarkMode">
-            <span id="toggleButton">☀️</span>
+        <a class="hover-bigger" href="{{ .Site.BaseURL }}">
+            🏠
+        </a>
+        <a class="hover-bigger" href="https://github.com/bong-u/til">
+            🐈
+        </a>
+        <label id="toggleButton" class="cursor-pointer hover-bigger" for="toggleDarkMode">
+            ☀️
         </label>
-        <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bold"></a>
+        <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bigger">
+            🔽
+        </a>
     </div>
 </header>
+
+<input type="checkbox" id="toggleDarkMode" onchange="toggleDarkModeHandler()" hidden />
