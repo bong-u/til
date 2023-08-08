@@ -49,4 +49,8 @@
   .overflow-ellipsis-bundle {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
+
+  .hover-bigger {
+    @apply hover:scale-110;
+  }
 }
