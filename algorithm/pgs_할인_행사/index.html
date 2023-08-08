@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>11003 : 최솟값 찾기 (P5)</title>
+<title>프로그래머스 - 할인 행사 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -75,8 +75,7 @@
 <li>
 <ul>
 <li><a href=#문제>문제</a></li>
-<li><a href=#시도-1>시도 1</a></li>
-<li><a href=#해결-방법>해결 방법</a></li>
+<li><a href=#해결방법>해결방법</a></li>
 </ul>
 </li>
 </ul>
@@ -87,105 +86,74 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-11003 : 최솟값 찾기 (P5)
+프로그래머스 - 할인 행사 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-04-03 </h4>
-<h4 id=date> MODIFIED 2023-04-03</h4>
+<h4 id=date> CREATED 2023-08-08 </h4>
+<h4 id=date> MODIFIED 2023-08-08</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
-N, L <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-A <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
 
-Q <span style=color:#f92672>=</span> deque([(A[<span style=color:#ae81ff>0</span>], <span style=color:#ae81ff>0</span>)])
-result <span style=color:#f92672>=</span> [A[<span style=color:#ae81ff>0</span>]]
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
-<span style=color:#66d9ef>if</span> Q[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> i<span style=color:#f92672>-</span>L:
-Q<span style=color:#f92672>.</span>popleft()
-<span style=color:#66d9ef>while</span> Q <span style=color:#f92672>and</span> Q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;=</span> A[i]:
-Q<span style=color:#f92672>.</span>pop()
-Q<span style=color:#f92672>.</span>append((A[i], i))
-result<span style=color:#f92672>.</span>append(Q[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>])
-
-print(<span style=color:#f92672>*</span>result)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(want, number, discount):
+    want_dict <span style=color:#f92672>=</span> dict()
+    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(want)):
+        want_dict[want[i]] <span style=color:#f92672>=</span> number[i]
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> discount[:<span style=color:#ae81ff>10</span>]:
+        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>in</span> want_dict:
+            want_dict[i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+    
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(discount)<span style=color:#f92672>-</span><span style=color:#ae81ff>9</span>):
+        <span style=color:#66d9ef>if</span> all(map(<span style=color:#66d9ef>lambda</span> x: x <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>, want_dict<span style=color:#f92672>.</span>values())):
+        	answer <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+        
+        <span style=color:#66d9ef>if</span> discount[i] <span style=color:#f92672>in</span> want_dict:
+        	want_dict[discount[i]] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+        <span style=color:#66d9ef>if</span> i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span> <span style=color:#f92672>&lt;</span> len(discount) <span style=color:#f92672>and</span> discount[i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span>] <span style=color:#f92672>in</span> want_dict:
+            want_dict[discount[i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span>]] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+    
+    <span style=color:#66d9ef>return</span> answer
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
-<li>N개의 수 A1, A2, &mldr;, AN 과 L이 주어진다.</li>
-<li>Di = Ai-L+1 ~ Ai 중의 최솟값이라고 할 때, D에 저장된 수를 출력하는 프로그램을 작성하시오.</li>
-</ul>
-<ul>
+<li>XYZ마트에서는 회원에 가입하면 10일동안 할인혜택을 받는다</li>
+<li>할인하는 제품은 하루에 하나씩만 구매할 수 있다</li>
+<li>정현이가 원하는 제품 리스트, 원하는 제품의 수량 리스트, 마트에서 할인하는 제품 리스트가 주어진다</li>
+<li>정현이가 원하는 제품을 모두 할인 받을 수 있는 회원 등록 날짜의 수를 구하라</li>
 <li>TC
 <ul>
 <li>input
 <blockquote>
-<p>12 3<br>
-1 5 2 3 6 2 3 7 3 5 2 6</p>
+<p>want: [&ldquo;banana&rdquo;, &ldquo;apple&rdquo;, &ldquo;rice&rdquo;, &ldquo;pork&rdquo;, &ldquo;pot&rdquo;]<br>
+number: [3, 2, 2, 2, 1]<br>
+discount: [&ldquo;chicken&rdquo;, &ldquo;apple&rdquo;, &ldquo;apple&rdquo;, &ldquo;banana&rdquo;, &ldquo;rice&rdquo;, &ldquo;apple&rdquo;, &ldquo;pork&rdquo;, &ldquo;banana&rdquo;, &ldquo;pork&rdquo;, &ldquo;rice&rdquo;, &ldquo;pot&rdquo;, &ldquo;banana&rdquo;, &ldquo;apple&rdquo;, &ldquo;banana&rdquo;]</p>
 </blockquote>
 </li>
-<li>output
+<li>ouput
 <blockquote>
-<p>1 1 1 2 2 2 2 2 3 3 2 2</p>
+<p>5</p>
 </blockquote>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id=시도-1>시도 1</h3>
+<h3 id=해결방법>해결방법</h3>
 <ul>
-<li>deque을 통해서 슬라이딩 윈도우 방식으로 접근하였다.
-<ul>
-<li>deque의 구조 [수1, 수2, &mldr;]</li>
-</ul>
-</li>
-<li>최솟값을 구할 때 min(queue) 와 같이 구해보았다.</li>
-<li>L의 최댓값이 5,000,000 이기 때문에 시간이 초과될 수 밖에 없다.</li>
-</ul>
-<h3 id=해결-방법>해결 방법</h3>
-<ul>
-<li>
-<p>deque을 사용하는 방식은 시도 1과 같다.</p>
-</li>
-<li>
-<p>조건</p>
-<ul>
-<li>최솟값을 바로바로 얻어내기 위해 deque이 정렬된 상태를 유지하도록 한다.</li>
-<li>정렬된 상태를 유지하는 경우 index가 뒤죽박죽 되기 때문에, index도 deque에 저장한다.
-<ul>
-<li>deque의 구조 [(수1, index1), (수2, index2), &mldr;]</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>구현
-<ul>
-<li>deque의 맨 왼쪽에 있는 수의 index를 보고 빼야하는 경우 popleft를 한다</li>
-<li>필요 없는 수(새로 들어오는 수보다 큰 수) 를 지운다
-<ul>
-<li>예 : deque(1, 5) 새로운 원소(2) 필요없는 원소 = 5</li>
-</ul>
-</li>
-<li>새로운 수를 deque의 오른쪽에 넣는다</li>
-</ul>
-<ul>
-<li>deque의 왼쪽에 있는 값을 결과리스트에 추가한다.</li>
-<li>위 작업을 반복한다.</li>
-</ul>
-</li>
+<li>원하는 제품을 dict로 만든다 (key: 제품이름, value: 수량)</li>
+<li>원하는 제품 - 첫날에 가입했을 때 할인하는 제품을 계산한다</li>
+<li>반복문을 순회하면서 할인하는 제품을 빼고, 할인하는 제품을 더한다 (제품이 더 필요하면 양수, 덜 필요하면 음수)</li>
+<li>0보다 큰 수가 있으면 answer에 1을 더한다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_17144/>
-17144 : 미세먼지 안녕! (G4)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_1976/>
-1976 : 여행 가자 (G4)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%ED%98%BC%EC%9E%90_%EB%86%80%EA%B8%B0%EC%9D%98_%EB%8B%AC%EC%9D%B8/>
+프로그래머스 - 혼자 놀기의 달인 (L2)</a>
 </div>
 </div>
 </div>
