@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
 /*
-! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.0 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -494,12 +494,8 @@ code,
   padding-left: 1rem;
 }
 
-#TableOfContents a.current{
+#TableOfContents a.current, a:hover{
   font-weight: 700;
-}
-
-#TableOfContents a:hover:hover{
-  color: var(--color-toc-hover);
 }
 
 #TableOfContents ul > li{
@@ -517,10 +513,12 @@ code,
 header{
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: var(--color-bg) var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-from-position:  ;
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-from-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
   --tw-gradient-from-position: 30%;
   --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  --tw-gradient-to-position:  ;
 }
 
 body{
@@ -559,9 +557,6 @@ body::-webkit-scrollbar-thumb{
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -609,9 +604,6 @@ body::-webkit-scrollbar-thumb{
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -737,11 +729,6 @@ body::-webkit-scrollbar-thumb{
   margin-right: 1.25rem;
 }
 
-.mx-6{
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
 .mx-9{
   margin-left: 2.25rem;
   margin-right: 2.25rem;
@@ -769,10 +756,6 @@ body::-webkit-scrollbar-thumb{
 
 .mb-10{
   margin-bottom: 2.5rem;
-}
-
-.mb-5{
-  margin-bottom: 1.25rem;
 }
 
 .mb-7{
@@ -976,6 +959,11 @@ body::-webkit-scrollbar-thumb{
   padding-right: 1rem;
 }
 
+.px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
@@ -994,11 +982,6 @@ body::-webkit-scrollbar-thumb{
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.px-6{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .pb-5{
