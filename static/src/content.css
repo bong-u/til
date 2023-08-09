@@ -33,7 +33,8 @@
     @apply pl-4;
   }
 
-  #TableOfContents a.current, a:hover {
+  #TableOfContents a.current,
+  #TableOfContents a:hover {
     @apply font-bold;
   }
 
