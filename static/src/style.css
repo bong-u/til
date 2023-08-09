@@ -507,6 +507,30 @@ code,
   white-space: nowrap;
 }
 
+#content h1{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+#content h2{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+#content h3{
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+#content h4{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
 *{
   font-family: Noto Sans KR, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
 }
@@ -791,6 +815,10 @@ body::-webkit-scrollbar-thumb{
   display: block;
 }
 
+.inline{
+  display: inline;
+}
+
 .flex{
   display: flex;
 }
@@ -1029,6 +1057,10 @@ body::-webkit-scrollbar-thumb{
 
 .font-bold{
   font-weight: 700;
+}
+
+.italic{
+  font-style: italic;
 }
 
 .filter{

@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 @import url("./colors.css");
 @import url("./content.css");
+@import url("./markdown.css");
 
 @tailwind base;
 @tailwind components;

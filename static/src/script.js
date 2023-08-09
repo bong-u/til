@@ -39,22 +39,12 @@ const checkDarkMode = () => {
     // dark -> light
     if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.remove("dark");
-        linkEl.href = "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css"
     }
     // light -> dark
     else {
         document.documentElement.classList.add("dark");
-        linkEl.href = "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css";
     }
 
-    const prevEl = document.getElementById("github-markdown-css");
-
-    if (prevEl) {
-        document.head.replaceChild(linkEl, prevEl);
-    } else {
-        let twCSS = document.getElementById("twCSS");
-        document.head.insertBefore(linkEl, twCSS);
-    }
 };
 
 // 다크모드 toggle
