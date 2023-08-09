@@ -1,16 +1,4 @@
 @layer base {
-  ol {
-    @apply list-decimal;
-  }
-
-  ul {
-    @apply list-disc;
-  }
-
-  tr {
-    @apply bg-inherit !important;
-  }
-
   pre {
     @apply bg-code_bg !important;
   }

@@ -456,18 +456,6 @@ video {
   /* stone-950 */
 }
 
-ol{
-  list-style-type: decimal;
-}
-
-ul{
-  list-style-type: disc;
-}
-
-tr{
-  background-color: inherit !important;
-}
-
 pre{
   background-color: var(--color-code-bg) !important;
 }
@@ -529,6 +517,57 @@ code,
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
+}
+
+#content h5{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+#content h6{
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+#content h1,
+  #content h2,
+  #content h3,
+  #content h4,
+  #content h5,
+  #content h6{
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+#content hr{
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+#content blockquote{
+  margin: 0.75rem;
+  margin-left: 1.25rem;
+  border-left-width: 2px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+#content ul{
+  list-style-position: inside;
+  list-style-type: disc;
+}
+
+#content ol{
+  list-style-position: inside;
+  list-style-type: decimal;
+}
+
+#content li p{
+  display: inline;
 }
 
 *{
