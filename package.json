@@ -4,7 +4,7 @@
   "description": "bong-u's til blog with hugo",
   "scripts": {
     "start": "hugo server -b 'http://localhost/til' --bind '0.0.0.0' --port=1313",
-    "build-tw": "npx tailwindcss -i ./static/src/main.css -o ./static/src/style.css --watch"
+    "watch": "npx tailwindcss -i ./static/src/main.css -o ./static/src/style.css --watch"
   },
   "repository": {
     "type": "git",
