@@ -33,12 +33,8 @@
     @apply pl-4;
   }
 
-  #TableOfContents a.current {
+  #TableOfContents a.current, a:hover {
     @apply font-bold;
-  }
-
-  #TableOfContents a:hover {
-    @apply hover:text-toc_hover;
   }
 
   #TableOfContents ul > li {
