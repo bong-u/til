@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>10942 : 팰린드롬? (G4)</title>
+<title>프로그래머스 - 두 큐 합 같게 만들기 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -76,148 +76,86 @@
 </nav>
 <script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-10942 : 팰린드롬? (G4)
+프로그래머스 - 두 큐 합 같게 만들기 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-02-01 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> CREATED 2023-08-09 </h4>
+<h4 id=date> MODIFIED 2023-08-09</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
-input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
 
-N <span style=color:#f92672>=</span> int(input())
-L <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(queue1, queue2):
+    sum1, sum2 <span style=color:#f92672>=</span> sum(queue1), sum(queue2)
+    dq1 <span style=color:#f92672>=</span> deque(queue1)
+    dq2 <span style=color:#f92672>=</span> deque(queue2)
+    cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
 
-dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>N <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
-    dp[i][i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-    <span style=color:#66d9ef>if</span> i <span style=color:#f92672>&lt;</span> N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> L[i] <span style=color:#f92672>==</span> L[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]:
-        dp[i][i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
-    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, N):
-        <span style=color:#66d9ef>if</span> dp[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>and</span> L[i] <span style=color:#f92672>==</span> L[j]:
-            dp[i][j] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(int(input())):
-    S, E <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-    print (dp[S<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][E<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
-</code></pre></div><ul>
-<li>
-<p>인터넷을 참고했다 쉽지 않은 문제였다</p>
+    <span style=color:#66d9ef>while</span> cnt <span style=color:#f92672>&lt;=</span> len(queue1)<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> sum1 <span style=color:#f92672>!=</span> sum2:
+        <span style=color:#66d9ef>if</span> sum1 <span style=color:#f92672>&gt;</span> sum2:
+            tmp <span style=color:#f92672>=</span> dq1<span style=color:#f92672>.</span>popleft()
+            dq2<span style=color:#f92672>.</span>append(tmp)
+            sum1 <span style=color:#f92672>-=</span> tmp
+            sum2 <span style=color:#f92672>+=</span> tmp
+        <span style=color:#66d9ef>elif</span> sum1 <span style=color:#f92672>&lt;</span> sum2:
+            tmp <span style=color:#f92672>=</span> dq2<span style=color:#f92672>.</span>popleft()
+            dq1<span style=color:#f92672>.</span>append(tmp)
+            sum1 <span style=color:#f92672>+=</span> tmp
+            sum2 <span style=color:#f92672>-=</span> tmp
+        cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+        
+    <span style=color:#66d9ef>return</span> cnt <span style=color:#66d9ef>if</span> sum1 <span style=color:#f92672>==</span> sum2 <span style=color:#66d9ef>else</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>길이가 같은 두 큐가 주어진다</li>
+<li>두 큐의 합이 같아지도록 큐의 원소를 교환할 수 있는 최소 횟수를 구하라</li>
+<li>큐의 pop은 왼쪽에서, push는 오른쪽에서 이루어진다</li>
+<li></li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>queue1 : [3, 2, 7, 2], queue2 : [4 ,6, 5, 1]</p>
+</blockquote>
 </li>
-<li>
-<p>dp표를 만들어서 해결했다</p>
-<table>
-<thead>
-<tr>
-<th>S\E</th>
-<th>1</th>
-<th>2</th>
-<th>1</th>
-<th>3</th>
-<th>1</th>
-<th>2</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td></td>
-<td></td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
+<li>ouput
+<blockquote>
+<p>2</p>
+</blockquote>
 </li>
-<li>
-<p>22, 33 등 길이가 2인 펠린드롬도 존재한다는 것을 염두해두어야 한다</p>
+</ul>
 </li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>deque를 이요해서 큐를 구현하였다</li>
+<li>두 큐의 합이 같아질때까지, 합이 큰 큐에서 작은 큐로 원소를 이동시킨다</li>
+<li>방법이 존재하지 않는 경우 무한루프가 발생하기 때문에, (큐의 길이)*2+1 만큼만 반복한다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_5582/>
-5582 : 공통 부분 문자열 (G5)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_9252/>
-9252 : LCS 2 (G4)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%ED%95%A0%EC%9D%B8_%ED%96%89%EC%82%AC/>
+프로그래머스 - 할인 행사 (L2)</a>
 </div>
 </div>
 </div>
