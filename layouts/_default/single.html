@@ -1,11 +1,11 @@
 {{ define "main" }}
 
-<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 justify-center gap-3 p-7">
-	{{ .Render "navigator" }}
-</nav>
 
 {{ partial "toc.html" .}}
 
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+	{{ .Render "navigator" }}
+</nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 	{{ .TableOfContents }}
 </aside>
