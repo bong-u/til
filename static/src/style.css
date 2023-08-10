@@ -557,17 +557,18 @@ code,
 }
 
 #content ul{
-  list-style-position: inside;
   list-style-type: disc;
+  padding-left: 2rem;
 }
 
 #content ol{
-  list-style-position: inside;
   list-style-type: decimal;
+  padding-left: 2rem;
 }
 
-#content li p{
-  display: inline;
+#content li{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 *{
