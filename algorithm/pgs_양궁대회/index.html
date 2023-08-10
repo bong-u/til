@@ -1,0 +1,183 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 양궁대회 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
+  });
+</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☁</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">♨</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (27)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (10)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (11)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (81)</span>
+</a>
+</nav>
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 양궁대회 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-10 </h4>
+<h4 id=date> MODIFIED 2023-08-10</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(n, info):
+    <span style=color:#75715e># 각각 몇 번 맞춰야 점수를 얻는지 저장하였다</span>
+    goal_list <span style=color:#f92672>=</span> [i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> info]
+
+    cases <span style=color:#f92672>=</span> []
+
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(score, cnt, case):
+        <span style=color:#75715e># 몇 번째 점수인지 나타낸다 (0:10점, 1:9점, ...)</span>
+        length <span style=color:#f92672>=</span> len(case)
+        <span style=color:#66d9ef>if</span> length <span style=color:#f92672>==</span> <span style=color:#ae81ff>11</span>:
+            <span style=color:#75715e># 화살 개수가 남았다면 0점에 채워준다</span>
+            <span style=color:#66d9ef>if</span> cnt <span style=color:#f92672>!=</span> n:
+                case[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+=</span> n<span style=color:#f92672>-</span>cnt
+            cases<span style=color:#f92672>.</span>append((score, case))
+            <span style=color:#66d9ef>return</span>
+        <span style=color:#75715e># 현재 단계에서 몇 점 맞아야 점수를 따는지를 나타낸다</span>
+        goal <span style=color:#f92672>=</span> goal_list[length]
+
+        <span style=color:#75715e># 점수를 따는 경우</span>
+        <span style=color:#66d9ef>if</span> cnt <span style=color:#f92672>+</span> goal <span style=color:#f92672>&lt;=</span> n:
+            <span style=color:#75715e># 딴 점수를 더해준다</span>
+            dfs(score<span style=color:#f92672>+</span>(<span style=color:#ae81ff>10</span><span style=color:#f92672>-</span>length), cnt<span style=color:#f92672>+</span>goal, case<span style=color:#f92672>+</span>[goal])
+        <span style=color:#75715e># 상대가 점수를 따는 경우</span>
+        <span style=color:#66d9ef>if</span> goal <span style=color:#f92672>!=</span> <span style=color:#ae81ff>1</span>:
+            <span style=color:#75715e># 상대가 딴 점수를 빼준다</span>
+            dfs(score<span style=color:#f92672>-</span>(<span style=color:#ae81ff>10</span><span style=color:#f92672>-</span>length), cnt, case<span style=color:#f92672>+</span>[<span style=color:#ae81ff>0</span>])
+        <span style=color:#75715e># 아무도 못 맞추는 경우</span>
+        <span style=color:#66d9ef>else</span>:
+            dfs(score, cnt, case<span style=color:#f92672>+</span>[<span style=color:#ae81ff>0</span>])
+            
+    dfs(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, [])
+    <span style=color:#75715e># 점수가 같다면, 낮은 점수를 더 많이 맞춘 경우를 반환하기 위해 역순으로 정렬하였다</span>
+    cases<span style=color:#f92672>.</span>sort(key<span style=color:#f92672>=</span> <span style=color:#66d9ef>lambda</span> x: (x[<span style=color:#ae81ff>0</span>], x[<span style=color:#ae81ff>1</span>][::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]))
+
+    <span style=color:#66d9ef>if</span> cases[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+        <span style=color:#66d9ef>return</span> cases[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>]
+    <span style=color:#75715e># 가장 우선순위가 높은 case의 점수가 음수인 경우, 무조건 지는 경우로 간주한다    </span>
+    <span style=color:#66d9ef>return</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>1대1로 양궁 경기를 한다, 점수는 10점~0점까지 있다</li>
+<li>상대보다 같은 점수를 많이 맞춰야 점수를 얻는다.</li>
+<li>예를 들어, 상대가 10점을 3번 맞췄다고하자, 이때 10점을 4번 맞추면 10점을 얻을 수 있고, 2번 맞추면 상대가 10점을 얻는다</li>
+<li>화살의 개수 n, 상대 선수가 맞힌 과녁 점수의 개수를 10점부터 0까지 담은 정수배열 info가 주어진다</li>
+<li>가장 큰 점수 차이로 이기기 위해 어떤 점수를 몇 번 맞혀야 하는지 정수 배열로 구하라</li>
+<li>만약 무조건 지는 경우 -1을 반환하라</li>
+<li>만약 점수 차이가 같다면, 가장 낮은 점수를 더 많이 맞힌 경우를 return 하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>5, [2,1,1,1,0,0,0,0,0,0,0]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>[0,2,2,0,1,0,0,0,0,0,0]</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>DFS를 이용하여 모든 경우의 수를 구하여 해결하였다</li>
+<li>자세한 설명은 주석으로 대체하였다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%91%90_%ED%81%90_%ED%95%A9_%EA%B0%99%EA%B2%8C_%EB%A7%8C%EB%93%A4%EA%B8%B0/>
+프로그래머스 - 두 큐 합 같게 만들기 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
