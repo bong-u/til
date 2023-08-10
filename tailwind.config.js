@@ -21,6 +21,7 @@ module.exports = {
       toc_hover: "var(--color-toc-hover)",
       box_bg: "var(--color-box-bg)",
       box_hover_bg: "var(--color-box-hover-bg)",
+      link: "var(--color-link)",
     },
     extend: {
       fontFamily: {

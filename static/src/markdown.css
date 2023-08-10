@@ -70,4 +70,8 @@
   #content * {
     @apply my-1;
   }
+
+  #content a {
+    @apply text-link;
+  }
 }
