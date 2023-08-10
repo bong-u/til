@@ -3,6 +3,14 @@ module.exports = {
   content: ["./content/**/*.md", "./layouts/**/*.html"],
   plugins: [],
   theme: {
+    listStyleType: {
+      disc: 'disc',
+      circle: 'circle',
+      square: 'square',
+      decimal: 'decimal',
+      alpha: 'lower-alpha',
+      roman: 'upper-roman',
+    },
     colors: {
       inherit: 'inherit',
       transparent: 'transparent',

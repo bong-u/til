@@ -1,30 +1,21 @@
 @layer base {
   #content h1 {
-    @apply text-4xl font-bold;
+    @apply text-4xl font-bold mt-7 mb-2;
   }
   #content h2 {
-    @apply text-3xl font-bold;
+    @apply text-3xl font-bold mt-6 mb-2;
   }
   #content h3 {
-    @apply text-2xl font-bold;
+    @apply text-2xl font-bold mt-5 mb-2;
   }
   #content h4 {
-    @apply text-xl font-bold;
+    @apply text-xl font-bold mt-4 mb-2;
   }
   #content h5 {
-    @apply text-lg font-bold;
+    @apply text-lg font-bold mt-3 mb-2;
   }
   #content h6 {
-    @apply text-base font-bold;
-  }
-
-  #content h1,
-  #content h2,
-  #content h3,
-  #content h4,
-  #content h5,
-  #content h6 {
-    @apply my-5;
+    @apply text-base font-bold mt-2 mb-2;
   }
 
   #content hr {
@@ -40,13 +31,13 @@
   }
   #content ul ul,
   #content ol ul {
-    list-style-type: circle;
+    @apply list-circle;
   }
   #content ul ul ul,
   #content ul ol ul,
   #content ol ul ul,
   #content ol ol ul {
-    list-style-type: square;
+    @apply list-square;
   }
 
   #content ol {
@@ -54,13 +45,13 @@
   }
   #content ol ol,
   #content ul ol {
-    list-style-type: lower-alpha;
+    @apply list-alpha;
   }
   #content ol ol ol,
   #content ol ul ol,
   #content ul ol ol,
   #content ul ul ol {
-    list-style-type: lower-roman;
+    @apply list-roman;
   }
 
   #content li {
@@ -69,5 +60,14 @@
 
   #content pre {
     @apply p-5 rounded-md whitespace-pre-wrap;
+  }
+
+  #content table td,
+  #content table th {
+    @apply border px-3 py-1;
+  }
+
+  #content * {
+    @apply my-1;
   }
 }
