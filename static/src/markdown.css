@@ -24,7 +24,7 @@
   #content h4,
   #content h5,
   #content h6 {
-    @apply my-3;
+    @apply my-5;
   }
 
   #content hr {
@@ -43,5 +43,9 @@
   }
   #content li {
     @apply my-1;
+  }
+
+  #content pre {
+    @apply p-5 rounded-md whitespace-pre-wrap;
   }
 }

@@ -537,8 +537,8 @@ code,
   #content h4,
   #content h5,
   #content h6{
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 #content hr{
@@ -569,6 +569,12 @@ code,
 #content li{
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+}
+
+#content pre{
+  white-space: pre-wrap;
+  border-radius: 0.375rem;
+  padding: 1.25rem;
 }
 
 *{
