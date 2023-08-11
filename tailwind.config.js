@@ -34,7 +34,7 @@ module.exports = {
           "Noto Color Emoji"
         ],
         "code": [
-          "Ubuntu"
+          "Roboto Mono",
         ]
       }
     }

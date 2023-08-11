@@ -1,10 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 
-/*
-! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
-*/
+:root {
+  --color-text: #3f3f46;
+  /* zinc-700 */
+  --color-bg: #e4e4e7;
+  /* zinc-200 */
+  --color-toc-hover: #9ca3af;
+  /* gray-400 */
+  --color-box-bg: #f4f4f5;
+  /* zinc-100 */
+  --color-box-hover-bg: #d4d4d8;
+  /* zinc-300 */
+  /* common */
+  --color-code-bg: #1c1917;
+  /* stone-900 */
+  --color-scroll-thumb: #71717a;
+  /* zinc-500 */
+  --color-quote-bar: #059669;
+  /* emerald-600 */
+  --color-link: #059669;
+  /* emerald-600 */
+}
+
+:root[class~="dark"] {
+  --color-text: #d1d5db;
+  /* gray-300 */
+  --color-bg: #27272a;
+  /* zinc-800 */
+  --color-toc-hover: #71717a;
+  /* gray-500 */
+  --color-box-bg: #1c1917;
+  /* stone-900 */
+  --color-box-hover-bg: #0c0a09;
+  /* stone-950 */
+}
+
+/* ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -426,80 +459,6 @@ video {
   display: none;
 }
 
-:root {
-  --color-text: #3f3f46;
-  /* zinc-700 */
-  --color-bg: #e4e4e7;
-  /* zinc-200 */
-  --color-toc-hover: #9ca3af;
-  /* gray-400 */
-  --color-box-bg: #f4f4f5;
-  /* zinc-100 */
-  --color-box-hover-bg: #d4d4d8;
-  /* zinc-300 */
-  /* common */
-  --color-code-bg: #1c1917;
-  /* stone-900 */
-  --color-scroll-thumb: #71717a;
-  /* zinc-500 */
-  --color-quote-bar: #059669;
-  /* emerald-600 */
-  --color-link: #059669;
-  /* emerald-600 */
-}
-
-:root[class~="dark"] {
-  --color-text: #d1d5db;
-  /* gray-300 */
-  --color-bg: #27272a;
-  /* zinc-800 */
-  --color-toc-hover: #71717a;
-  /* gray-500 */
-  --color-box-bg: #1c1917;
-  /* stone-900 */
-  --color-box-hover-bg: #0c0a09;
-  /* stone-950 */
-}
-
-pre{
-  background-color: var(--color-code-bg) !important;
-}
-
-code,
-  code *{
-  font-family: Ubuntu !important;
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
-}
-
-#TableOfContents {
-  height: calc(100vh - 10rem);
-  overflow: hidden;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-#TableOfContents ul{
-  margin-left: 0px;
-}
-
-#TableOfContents ul:not(:first-child){
-  padding-left: 1rem;
-}
-
-#TableOfContents a.current,
-  #TableOfContents a:hover{
-  font-weight: 700;
-}
-
-#TableOfContents ul > li{
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 #content h1{
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
@@ -604,11 +563,17 @@ code,
 }
 
 #content pre{
+  background-color: var(--color-code-bg) !important;
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
   white-space: pre-wrap;
   border-radius: 0.375rem;
   padding: 1.25rem;
+}
+
+#content code,
+  #content code *{
+  font-family: Roboto Mono !important;
 }
 
 #content table td,
@@ -800,6 +765,58 @@ body::-webkit-scrollbar-thumb{
   .container{
     max-width: 1536px;
   }
+}
+
+#TableOfContents {
+  height: calc(100vh - 10rem);
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#TableOfContents ul{
+  margin-left: 0px;
+}
+
+#TableOfContents ul:not(:first-child){
+  padding-left: 1rem;
+}
+
+#TableOfContents a.current,
+  #TableOfContents a:hover{
+  font-weight: 700;
+}
+
+#TableOfContents ul > li{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.box{
+  background-color: var(--color-box-bg);
+}
+
+.box:hover{
+  background-color: var(--color-box-hover-bg);
+}
+
+.hover-bold:hover{
+  font-weight: 700;
+}
+
+.overflow-ellipsis-bundle{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hover-bigger:hover{
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .static{
@@ -1167,30 +1184,6 @@ body::-webkit-scrollbar-thumb{
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.box{
-  background-color: var(--color-box-bg);
-}
-
-.box:hover{
-  background-color: var(--color-box-hover-bg);
-}
-
-.hover-bold:hover{
-  font-weight: 700;
-}
-
-.overflow-ellipsis-bundle{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.hover-bigger:hover{
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 @media (min-width: 640px){

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 @import url("./colors.css");
-@import url("./content.css");
+@import url("./toc.css");
 @import url("./markdown.css");
 
 @tailwind base;
@@ -34,7 +34,7 @@
   }
 }
 
-@layer utilities {
+@layer components {
   .box {
     @apply bg-box_bg;
   }

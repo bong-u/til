@@ -1,22 +1,20 @@
-@layer base {
-  :root {
-    --color-text: #3f3f46; /* zinc-700 */
-    --color-bg: #e4e4e7; /* zinc-200 */
-    --color-toc-hover: #9ca3af; /* gray-400 */
-    --color-box-bg: #f4f4f5; /* zinc-100 */
-    --color-box-hover-bg: #d4d4d8; /* zinc-300 */
+:root {
+  --color-text: #3f3f46; /* zinc-700 */
+  --color-bg: #e4e4e7; /* zinc-200 */
+  --color-toc-hover: #9ca3af; /* gray-400 */
+  --color-box-bg: #f4f4f5; /* zinc-100 */
+  --color-box-hover-bg: #d4d4d8; /* zinc-300 */
 
-    /* common */
-    --color-code-bg: #1c1917; /* stone-900 */
-    --color-scroll-thumb: #71717a; /* zinc-500 */
-    --color-quote-bar: #059669; /* emerald-600 */
-    --color-link: #059669; /* emerald-600 */
-  }
-  :root[class~="dark"] {
-    --color-text: #d1d5db; /* gray-300 */
-    --color-bg: #27272a; /* zinc-800 */
-    --color-toc-hover: #71717a; /* gray-500 */
-    --color-box-bg: #1c1917; /* stone-900 */
-    --color-box-hover-bg: #0c0a09; /* stone-950 */
-  }
+  /* common */
+  --color-code-bg: #1c1917; /* stone-900 */
+  --color-scroll-thumb: #71717a; /* zinc-500 */
+  --color-quote-bar: #059669; /* emerald-600 */
+  --color-link: #059669; /* emerald-600 */
+}
+:root[class~="dark"] {
+  --color-text: #d1d5db; /* gray-300 */
+  --color-bg: #27272a; /* zinc-800 */
+  --color-toc-hover: #71717a; /* gray-500 */
+  --color-box-bg: #1c1917; /* stone-900 */
+  --color-box-hover-bg: #0c0a09; /* stone-950 */
 }

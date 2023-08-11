@@ -59,7 +59,13 @@
   }
 
   #content pre {
+    @apply bg-code_bg !important;
     @apply my-3 p-5 rounded-md whitespace-pre-wrap;
+  }
+
+  #content code,
+  #content code * {
+    @apply font-code !important;
   }
 
   #content table td,
