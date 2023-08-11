@@ -92,21 +92,21 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>S1 <span style=color:#f92672>=</span> list(input())
-S2 <span style=color:#f92672>=</span> list(input())
-L1 <span style=color:#f92672>=</span> len(S1)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
-L2 <span style=color:#f92672>=</span> len(S2)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
-
-dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>L1 <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(L2)]
-result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, L2):
-    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, L1):
-        <span style=color:#66d9ef>if</span> S1[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> S2[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
-            dp[i][j] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
-            result <span style=color:#f92672>=</span> max(result, dp[i][j])
-
-print (result)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>S1 <span style=color:#f92672>=</span> list(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>S2 <span style=color:#f92672>=</span> list(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>L1 <span style=color:#f92672>=</span> len(S1)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>L2 <span style=color:#f92672>=</span> len(S2)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>L1 <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(L2)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, L2):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, L1):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>if</span> S1[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> S2[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            dp[i][j] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            result <span style=color:#f92672>=</span> max(result, dp[i][j])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>print (result)
 </code></pre></div><ul>
 <li>혼자 힘으로 해결!</li>
 <li>깔끔한 풀이가 나와 기분이 좋다</li>

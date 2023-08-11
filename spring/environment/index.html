@@ -122,38 +122,38 @@ Spring 개념 - Environment
 <ol start=2>
 <li>Configuration에 설정한다</li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
-<span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;application.properties&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{...}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;application.properties&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{...}</span>
 </code></pre></div><h3 id=환경변수-가져오기>환경변수 가져오기</h3>
 <h4 id=applicationcontext-활용하는-방법>ApplicationContext 활용하는 방법</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var environment <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getEnvironment</span><span style=color:#f92672>();</span>
-var property <span style=color:#f92672>=</span> environment<span style=color:#f92672>.</span><span style=color:#a6e22e>getProperty</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;app.name&#34;</span><span style=color:#f92672>)</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>var environment <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getEnvironment</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>var property <span style=color:#f92672>=</span> environment<span style=color:#f92672>.</span><span style=color:#a6e22e>getProperty</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;app.name&#34;</span><span style=color:#f92672>)</span>
 </code></pre></div><h4 id=value-annotation-활용>@Value Annotation 활용</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Value</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;${app.name}&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Value</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;${app.name}&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
 </code></pre></div><h4 id=별도의-클래스-정의>별도의 클래스 정의</h4>
 <ul>
 <li>
 <p>클래스 정의</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
-<span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version.properties&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>VersionProvider</span> <span style=color:#f92672>{</span>
-  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String version<span style=color:#f92672>;</span>
-
-  <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>VersionProvider</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Value</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;${version:v0.0.0}&#34;</span><span style=color:#f92672>)</span> String version<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> version<span style=color:#f92672>;</span>
-  <span style=color:#f92672>}</span>
-
-  <span style=color:#66d9ef>public</span>  String <span style=color:#a6e22e>getVersion</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> version<span style=color:#f92672>;</span>
-  <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Component</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#a6e22e>@PropertySource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version.properties&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>VersionProvider</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String version<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>  <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>VersionProvider</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Value</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;${version:v0.0.0}&#34;</span><span style=color:#f92672>)</span> String version<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> version<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>  <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>  <span style=color:#66d9ef>public</span>  String <span style=color:#a6e22e>getVersion</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>return</span> version<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>  <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>사용</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> VersionProvider versionProvider<span style=color:#f92672>;</span>
-versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>();</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> VersionProvider versionProvider<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>();</span>
 </code></pre></div></li>
 </ul>
 <h2 id=applicationyaml>application.yaml</h2>
@@ -164,32 +164,32 @@ versionProvider<span style=color:#f92672>.</span><span style=color:#a6e22e>getVe
 <h3 id=환경변수-설정-1>환경변수 설정</h3>
 <ol>
 <li>application.yml 작성
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>env</span>:
-  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0&#34;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>env</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0&#34;</span>
 </code></pre></div></li>
 </ol>
 <h3 id=환경변수-가져오기-1>환경변수 가져오기</h3>
 <ul>
 <li>
 <p>AppConfiguration.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
-<span style=color:#a6e22e>@ConfigurationProperties</span><span style=color:#f92672>(</span>prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;env&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> String version<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getVersion</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> version<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setVersion</span><span style=color:#f92672>(</span>String version<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> version<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Component</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#a6e22e>@ConfigurationProperties</span><span style=color:#f92672>(</span>prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;env&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>private</span> String version<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getVersion</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>return</span> version<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setVersion</span><span style=color:#f92672>(</span>String version<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> version<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>main</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var appConfiguration <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>AppConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
-System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>appConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>());</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>var appConfiguration <span style=color:#f92672>=</span> applicationContext<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>AppConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>appConfiguration<span style=color:#f92672>.</span><span style=color:#a6e22e>getVersion</span><span style=color:#f92672>());</span>
 </code></pre></div></li>
 </ul>
 </article>

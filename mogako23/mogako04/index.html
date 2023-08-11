@@ -117,7 +117,7 @@
 </div>
 <div class="overflow-hidden overflow-ellipsis">
 <div>
-import heapq def solution(n, k, enemy): heap = [] cnt = 0 for i in enemy: n -= i heapq.heappush(heap, -i) while n &amp;lt; 0: k -= 1 if not heap or k &amp;lt; 0: return cnt tmp = -heapq.heappop(heap) n += tmp cnt += 1 return cnt 문제 n: 가지고 있는 병사 수 k: 사용할 수 있는 무적권 스킬 수 enemy: 라운드마다 존재하는 적 수의 배열 라운드마다 enemy[i
+1import heapq 2 3def solution(n, k, enemy): 4 heap = [] 5 cnt = 0 6 for i in enemy: 7 n -= i 8 heapq.heappush(heap, -i) 9 while n &amp;lt; 0: 10 k -= 1 11 if not heap or k &amp;lt; 0: 12 return cnt 13 tmp = -heapq.heappop(heap) 14 n += tmp 15 cnt += 1 16 return cnt 문제 n: 가지고 있는 병사 수 k: 사용할 수 있는 무적권 스킬 수 en
 </div>
 </div>
 </div>
@@ -141,7 +141,7 @@ import heapq def solution(n, k, enemy): heap = [] cnt = 0 for i in enemy: n -= i
 <div>
 JDBC 자바 프로그램을 DB와 연결해주는 API
 JDBC 드라이버 DBMS와 통신을 담당하는 자바 클래스
-JDBC 드라이버는 4가지 종류가 있다 (Type 1~4) Mysql은 Type 4를 지원한다 예제 - Connection을 직접 연결 public List&amp;lt;UUID&amp;gt; findAllIds() { List&amp;lt;UUID&amp;gt; uuids = new ArrayList&amp;lt;&amp;gt;(); try ( var connection = DriverManager.getConnection(url, username, pass
+JDBC 드라이버는 4가지 종류가 있다 (Type 1~4) Mysql은 Type 4를 지원한다 예제 - Connection을 직접 연결 1public List&amp;lt;UUID&amp;gt; findAllIds() { 2 List&amp;lt;UUID&amp;gt; uuids = new ArrayList&amp;lt;&amp;gt;(); 3 try ( 4 var connection = DriverManager.getConnection(url, usernam
 </div>
 </div>
 </div>

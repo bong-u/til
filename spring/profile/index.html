@@ -109,14 +109,14 @@ Spring 개념 - Profile
 </ul>
 <h3 id=환경-변수>환경 변수</h3>
 <h4 id=applicationyml>application.yml</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>dev</span>
-<span style=color:#f92672>env</span>:
-  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 dev&#34;</span>
----
-<span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>local</span>
-<span style=color:#f92672>env</span>:
-  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 local&#34;</span>
----
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>dev</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>env</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 dev&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>---
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>local</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#f92672>env</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 local&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>---
 </code></pre></div><ul>
 <li>yml 파일에서는 &mdash;를 이용해 파일 분할이 가능하다</li>
 <li>spring.config.active.on-profile을 설정해서 특정 프로필에 적용하고 싶은 환경변수를 설정 할 수 있다.</li>
@@ -131,9 +131,9 @@ Spring 개념 - Profile
 <li>프로파일마다 Bean객체를 다르게 등록할 수 있다.</li>
 <li>아래의 코드에서는 test 환경에서만 TestBean을 등록한다</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span>
-<span style=color:#a6e22e>@Profile</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;test&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestBean</span> <span style=color:#f92672>{</span> <span style=color:#f92672>...</span> <span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Component</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@Profile</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;test&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestBean</span> <span style=color:#f92672>{</span> <span style=color:#f92672>...</span> <span style=color:#f92672>}</span>
 </code></pre></div>
 </article>
 <div id=meta class=mt-24>

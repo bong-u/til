@@ -123,30 +123,30 @@ Spring 개념 - Logging
 </blockquote>
 <h3 id=logger>Logger</h3>
 <h4 id=logger-만들기>Logger 만들기</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LoggerFactory<span style=color:#f92672>.</span><span style=color:#a6e22e>getLogger</span><span style=color:#f92672>(</span>OrderTester<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LoggerFactory<span style=color:#f92672>.</span><span style=color:#a6e22e>getLogger</span><span style=color:#f92672>(</span>OrderTester<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
 </code></pre></div><ul>
 <li>Logger 이름은 보통 FQCN (상위 패키지 + 클래스)으로 사용한다</li>
 </ul>
 <h4 id=logger-사용>Logger 사용</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>logger<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version -&gt; {}&#34;</span><span style=color:#f92672>,</span> logger<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>logger<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;version -&gt; {}&#34;</span><span style=color:#f92672>,</span> logger<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
 </code></pre></div><h3 id=logback>logback</h3>
 <h4 id=logback-설정파일-우선순위>logback 설정파일 우선순위</h4>
 <blockquote>
 <p>logback-test.yml -> logback.groovy -> logback.xml -> 기본 설정</p>
 </blockquote>
 <h4 id=logbackxml---기본-설정>logback.xml - 기본 설정</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;configuration&gt;</span>
-<span style=color:#f92672>&lt;property</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;LOG_PATTERN&#34;</span> <span style=color:#a6e22e>value=</span><span style=color:#e6db74>&#34;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{10} - %msg%n&#34;</span> <span style=color:#f92672>/&gt;</span>
-
-<span style=color:#f92672>&lt;appender</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;STDOUT&#34;</span> <span style=color:#a6e22e>class=</span><span style=color:#e6db74>&#34;ch.qos.logback.core.ConsoleAppender&#34;</span><span style=color:#f92672>&gt;</span>
-    <span style=color:#f92672>&lt;encoder&gt;</span>
-        <span style=color:#f92672>&lt;pattern&gt;</span>${LOG_PATTERN}<span style=color:#f92672>&lt;/pattern&gt;</span>
-    <span style=color:#f92672>&lt;/encoder&gt;</span>
-<span style=color:#f92672>&lt;/appender&gt;</span>
-    <span style=color:#f92672>&lt;root</span> <span style=color:#a6e22e>level=</span><span style=color:#e6db74>&#34;debug&#34;</span><span style=color:#f92672>&gt;</span>
-        <span style=color:#f92672>&lt;appender-ref</span> <span style=color:#a6e22e>ref=</span><span style=color:#e6db74>&#34;STDOUT&#34;</span> <span style=color:#f92672>/&gt;</span>
-    <span style=color:#f92672>&lt;/root&gt;</span>
-<span style=color:#f92672>&lt;/configuration&gt;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>&lt;configuration&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>&lt;property</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;LOG_PATTERN&#34;</span> <span style=color:#a6e22e>value=</span><span style=color:#e6db74>&#34;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{10} - %msg%n&#34;</span> <span style=color:#f92672>/&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>&lt;appender</span> <span style=color:#a6e22e>name=</span><span style=color:#e6db74>&#34;STDOUT&#34;</span> <span style=color:#a6e22e>class=</span><span style=color:#e6db74>&#34;ch.qos.logback.core.ConsoleAppender&#34;</span><span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#f92672>&lt;encoder&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#f92672>&lt;pattern&gt;</span>${LOG_PATTERN}<span style=color:#f92672>&lt;/pattern&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>&lt;/encoder&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#f92672>&lt;/appender&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#f92672>&lt;root</span> <span style=color:#a6e22e>level=</span><span style=color:#e6db74>&#34;debug&#34;</span><span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#f92672>&lt;appender-ref</span> <span style=color:#a6e22e>ref=</span><span style=color:#e6db74>&#34;STDOUT&#34;</span> <span style=color:#f92672>/&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#f92672>&lt;/root&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#f92672>&lt;/configuration&gt;</span>
 </code></pre></div><ul>
 <li>FileAppender를 사용하여 파일에 저장 가능</li>
 <li>RollingFileappender를 사용하여 일자별로 파일에 저장 가능</li>
@@ -164,16 +164,16 @@ Spring 개념 - Logging
 <p>Color Converter 사용 예제</p>
 <ol>
 <li>logback.xml 설정
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;!-- logback.xml --&gt;</span>
-    <span style=color:#f92672>&lt;conversionRule</span>
-            <span style=color:#a6e22e>conversionWord=</span><span style=color:#e6db74>&#34;clr&#34;</span>
-            <span style=color:#a6e22e>converterClass=</span><span style=color:#e6db74>&#34;org.springframework.boot.logging.logback.ColorConverter&#34;</span> <span style=color:#f92672>/&gt;</span>
-    {...}
-    <span style=color:#f92672>&lt;pattern&gt;</span>%clr(%d{HH:mm:ss.SSS}){cyan} [%thread] %clr(%-5level)<span style=color:#f92672>&lt;/pattern&gt;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>&lt;!-- logback.xml --&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>&lt;conversionRule</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>            <span style=color:#a6e22e>conversionWord=</span><span style=color:#e6db74>&#34;clr&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>            <span style=color:#a6e22e>converterClass=</span><span style=color:#e6db74>&#34;org.springframework.boot.logging.logback.ColorConverter&#34;</span> <span style=color:#f92672>/&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    {...}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#f92672>&lt;pattern&gt;</span>%clr(%d{HH:mm:ss.SSS}){cyan} [%thread] %clr(%-5level)<span style=color:#f92672>&lt;/pattern&gt;</span>
 </code></pre></div></li>
 <li>Ansi문자 출력 설정
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// MainClass.java
-</span><span style=color:#75715e></span>AnsiOutput<span style=color:#f92672>.</span><span style=color:#a6e22e>setEnabled</span><span style=color:#f92672>(</span>AnsiOutput<span style=color:#f92672>.</span><span style=color:#a6e22e>Enabled</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ALWAYS</span><span style=color:#f92672>);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// MainClass.java
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>AnsiOutput<span style=color:#f92672>.</span><span style=color:#a6e22e>setEnabled</span><span style=color:#f92672>(</span>AnsiOutput<span style=color:#f92672>.</span><span style=color:#a6e22e>Enabled</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ALWAYS</span><span style=color:#f92672>);</span>
 </code></pre></div></li>
 </ol>
 </li>

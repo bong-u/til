@@ -318,10 +318,10 @@
 </ul>
 <ul>
 <li>관련 함수
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># start에서 end까지 step 증가</span>
-numpy<span style=color:#f92672>.</span>arange(start, stop, step)
-<span style=color:#75715e># start에서 end까지 step개로 나눔</span>
-numpy<span style=color:#f92672>.</span>linspace(start, stop, step)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e># start에서 end까지 step 증가</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>numpy<span style=color:#f92672>.</span>arange(start, stop, step)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e># start에서 end까지 step개로 나눔</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>numpy<span style=color:#f92672>.</span>linspace(start, stop, step)
 </code></pre></div></li>
 </ul>
 <h2 id=analog---digital>Analog -> Digital</h2>
@@ -536,21 +536,21 @@ $$ SNR = 10^{\frac{SNR(dB)}{10}} $$</li>
 </li>
 </ul>
 <h3 id=관련-명령어>관련 명령어</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 라우팅 테이블, 연결된 포트번호 확인</span>
-netstat -rn
-<span style=color:#75715e># 활성화된 네트워크 인터페이스의 세부사항 표시</span>
-ifconfig
-<span style=color:#75715e># NAT테이블에서 vn이라는 이름의 체인에 대한 규칙 조회</span>
-iptables -t nat -L -vn
-
-<span style=color:#75715e># Router view 서비스를 제공하는 호스트에 접속</span>
-telnet route-views.routeviews.org
-<span style=color:#75715e># 현재 장비에서 사용가능 한 모든 인터페이스의 요약 정보 출력</span>
-show interface summary
-<span style=color:#75715e># BGP 프로토콜을 사용하는 장비의 요약 정보 출력</span>
-show ip bgp summary
-<span style=color:#75715e># 외국 라우터에서 충남대까지 가능한 길</span>
-show ip bgp 168.188.0.0/16
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e># 라우팅 테이블, 연결된 포트번호 확인</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>netstat -rn
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e># 활성화된 네트워크 인터페이스의 세부사항 표시</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>ifconfig
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e># NAT테이블에서 vn이라는 이름의 체인에 대한 규칙 조회</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>iptables -t nat -L -vn
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e># Router view 서비스를 제공하는 호스트에 접속</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>telnet route-views.routeviews.org
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e># 현재 장비에서 사용가능 한 모든 인터페이스의 요약 정보 출력</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>show interface summary
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#75715e># BGP 프로토콜을 사용하는 장비의 요약 정보 출력</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>show ip bgp summary
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#75715e># 외국 라우터에서 충남대까지 가능한 길</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>show ip bgp 168.188.0.0/16
 </code></pre></div><ul>
 <li>NAT (Network Address Translation : 네트워크 주소 변환)
 <blockquote>
@@ -570,8 +570,8 @@ show ip bgp 168.188.0.0/16
 <blockquote>
 <p>A -> B로 전송하는 단위 시간당 디지털 전송률</p>
 </blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 서버 networks.cnu.ac.kr:8080 으로 시험 패킷을 전송</span>
-iperf3 -c networks.cnu.ac.kr -p <span style=color:#ae81ff>8080</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e># 서버 networks.cnu.ac.kr:8080 으로 시험 패킷을 전송</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>iperf3 -c networks.cnu.ac.kr -p <span style=color:#ae81ff>8080</span>
 </code></pre></div><ul>
 <li>각종 전송 비트 전송률 계산 (강의 자료 참고)</li>
 </ul>
@@ -606,8 +606,8 @@ iperf3 -c networks.cnu.ac.kr -p <span style=color:#ae81ff>8080</span>
 <ul>
 <li>
 <p>테스트 명령어</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ping www.google.com
-traceroute www.eurecom.fr
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>ping www.google.com
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>traceroute www.eurecom.fr
 </code></pre></div></li>
 </ul>
 <h3 id=decibel-db>Decibel, dB</h3>

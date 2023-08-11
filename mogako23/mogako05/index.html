@@ -117,7 +117,7 @@
 </div>
 <div class="overflow-hidden overflow-ellipsis">
 <div>
-from collections import deque def solution(queue1, queue2): sum1, sum2 = sum(queue1), sum(queue2) dq1 = deque(queue1) dq2 = deque(queue2) cnt = 0 while cnt &amp;lt;= len(queue1)*2+1 and sum1 != sum2: if sum1 &amp;gt; sum2: tmp = dq1.popleft() dq2.append(tmp) sum1 -= tmp sum2 += tmp elif sum1 &amp;lt; sum2: tmp
+1from collections import deque 2 3def solution(queue1, queue2): 4 sum1, sum2 = sum(queue1), sum(queue2) 5 dq1 = deque(queue1) 6 dq2 = deque(queue2) 7 cnt = 0 8 9 while cnt &amp;lt;= len(queue1)*2+1 and sum1 != sum2: 10 if sum1 &amp;gt; sum2: 11 tmp = dq1.popleft() 12 dq2.append(tmp) 13 sum1 -= tmp 14 sum2 +
 </div>
 </div>
 </div>
@@ -139,7 +139,7 @@ from collections import deque def solution(queue1, queue2): sum1, sum2 = sum(que
 </div>
 <div class="overflow-hidden overflow-ellipsis">
 <div>
-프록시 객체 프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다 em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다 JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다 FetchType.EAGER (즉시 로딩) Order order = em.find(Order.class, orderId); Member member = order.getMember(); // 지금 member는 실제 객체이다 String name = member.getName(); // 1차 캐시에서
+프록시 객체 프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다 em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다 JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다 FetchType.EAGER (즉시 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 실제 객체이다 3String name = member.getName(); // 1차 캐시
 </div>
 </div>
 </div>

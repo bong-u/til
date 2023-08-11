@@ -119,24 +119,24 @@ Spring 개념 - JDBC, DBCP, JdbcTemplate
 <li>JDBC 드라이버는 4가지 종류가 있다 (Type 1~4)</li>
 <li>Mysql은 Type 4를 지원한다</li>
 <li>예제 - Connection을 직접 연결
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> List<span style=color:#f92672>&lt;</span>UUID<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findAllIds</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    List<span style=color:#f92672>&lt;</span>UUID<span style=color:#f92672>&gt;</span> uuids <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
-    <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>
-            var connection <span style=color:#f92672>=</span> DriverManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>(</span>url<span style=color:#f92672>,</span> username<span style=color:#f92672>,</span> password<span style=color:#f92672>);</span>
-            var statement <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>createStatement</span><span style=color:#f92672>();</span>
-            var resultSet <span style=color:#f92672>=</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>(</span>SELECT_ALL_SQL<span style=color:#f92672>);</span>
-    <span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-            var customerName <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
-            var customerId <span style=color:#f92672>=</span> toUUID<span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customer_id&#34;</span><span style=color:#f92672>));</span>
-            var createdAt <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getTimestamp</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;created_at&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>toLocalDateTime</span><span style=color:#f92672>();</span>
-            uuids<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>customerId<span style=color:#f92672>);</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>return</span> uuids<span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> List<span style=color:#f92672>&lt;</span>UUID<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findAllIds</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    List<span style=color:#f92672>&lt;</span>UUID<span style=color:#f92672>&gt;</span> uuids <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>            var connection <span style=color:#f92672>=</span> DriverManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>(</span>url<span style=color:#f92672>,</span> username<span style=color:#f92672>,</span> password<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>            var statement <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>createStatement</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            var resultSet <span style=color:#f92672>=</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>(</span>SELECT_ALL_SQL<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            var customerName <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            var customerId <span style=color:#f92672>=</span> toUUID<span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customer_id&#34;</span><span style=color:#f92672>));</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            var createdAt <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getTimestamp</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;created_at&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>toLocalDateTime</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            uuids<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>customerId<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#66d9ef>return</span> uuids<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=dbcp-database-connection-pool>DBCP (DataBase Connection Pool)</h3>
@@ -149,25 +149,25 @@ Spring 개념 - JDBC, DBCP, JdbcTemplate
 <ul>
 <li>DataSource는 Spring에서 DBCP 역할을 하는 인터페이스이다</li>
 <li>예제 - DataSource 사용
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Override</span>
-<span style=color:#66d9ef>public</span> Optional<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findById</span><span style=color:#f92672>(</span>UUID customerId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    List<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> allCustomers <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
-    <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>
-        var connection <span style=color:#f92672>=</span> dataSource<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>();</span>
-        var statement <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>prepareStatement</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;select * from customers where customer_id = UUID_TO_BIN(?)&#34;</span><span style=color:#f92672>)</span>
-    <span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        statement<span style=color:#f92672>.</span><span style=color:#a6e22e>setBytes</span><span style=color:#f92672>(</span>1<span style=color:#f92672>,</span> customerId<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
-        <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>var resultSet <span style=color:#f92672>=</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-            <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-                mapToCustomer<span style=color:#f92672>(</span>allCustomers<span style=color:#f92672>,</span> resultSet<span style=color:#f92672>);</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got eror while closing connection&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
-        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException<span style=color:#f92672>(</span>e<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>return</span> allCustomers<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>().</span><span style=color:#a6e22e>findFirst</span><span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> Optional<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findById</span><span style=color:#f92672>(</span>UUID customerId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    List<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> allCustomers <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        var connection <span style=color:#f92672>=</span> dataSource<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        var statement <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>prepareStatement</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;select * from customers where customer_id = UUID_TO_BIN(?)&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        statement<span style=color:#f92672>.</span><span style=color:#a6e22e>setBytes</span><span style=color:#f92672>(</span>1<span style=color:#f92672>,</span> customerId<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>try</span> <span style=color:#f92672>(</span>var resultSet <span style=color:#f92672>=</span> statement<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>                mapToCustomer<span style=color:#f92672>(</span>allCustomers<span style=color:#f92672>,</span> resultSet<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>SQLException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got eror while closing connection&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException<span style=color:#f92672>(</span>e<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#66d9ef>return</span> allCustomers<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>().</span><span style=color:#a6e22e>findFirst</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=hikaricp>HikariCP</h3>
@@ -177,15 +177,15 @@ Spring 개념 - JDBC, DBCP, JdbcTemplate
 <li>Spring Boot 2.0부터 Tomcat JDBC 대신에 Hikari를 사용한다</li>
 <li>타 CP라이브러리보다 빠르다</li>
 <li>Hikari 설정
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
-<span style=color:#66d9ef>public</span> DataSource <span style=color:#a6e22e>dataSource</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> DataSourceBuilder<span style=color:#f92672>.</span><span style=color:#a6e22e>create</span><span style=color:#f92672>()</span>
-    <span style=color:#f92672>.</span><span style=color:#a6e22e>url</span><span style=color:#f92672>(</span>url<span style=color:#f92672>)</span>
-    <span style=color:#f92672>.</span><span style=color:#a6e22e>username</span><span style=color:#f92672>(</span>username<span style=color:#f92672>)</span>
-    <span style=color:#f92672>.</span><span style=color:#a6e22e>password</span><span style=color:#f92672>(</span>password<span style=color:#f92672>)</span>
-    <span style=color:#f92672>.</span><span style=color:#a6e22e>type</span><span style=color:#f92672>(</span>HikariDataSource<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-    <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> DataSource <span style=color:#a6e22e>dataSource</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> DataSourceBuilder<span style=color:#f92672>.</span><span style=color:#a6e22e>create</span><span style=color:#f92672>()</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>url</span><span style=color:#f92672>(</span>url<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>username</span><span style=color:#f92672>(</span>username<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>password</span><span style=color:#f92672>(</span>password<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>type</span><span style=color:#f92672>(</span>HikariDataSource<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=jdbctemplate>JdbcTemplate</h3>
@@ -200,32 +200,32 @@ Spring 개념 - JDBC, DBCP, JdbcTemplate
 </ul>
 </li>
 <li>사용하기 위해서는 DataSource를 주입받아야 한다
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
-<span style=color:#66d9ef>public</span> JdbcTemplate <span style=color:#a6e22e>jdbcTemplate</span><span style=color:#f92672>(</span>DataSource dataSource<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> JdbcTemplate<span style=color:#f92672>(</span>dataSource<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> JdbcTemplate <span style=color:#a6e22e>jdbcTemplate</span><span style=color:#f92672>(</span>DataSource dataSource<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> JdbcTemplate<span style=color:#f92672>(</span>dataSource<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=rowmapper>RowMapper</h3>
 <ul>
 <li>기존에 사용하던 ResultSet은 resultSet.next()로 순회하면서 객체의 setter를 호출하였다</li>
 <li>JdbcTemplate을 사용하기 위해서는 RowMapper를 사용하여야 한다
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>RowMapper<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> customerRowMapper <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>,</span> i<span style=color:#f92672>)</span> <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
-    var customerName <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
-    var email <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>);</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Customer<span style=color:#f92672>(</span>customerName<span style=color:#f92672>,</span> email<span style=color:#f92672>)</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>RowMapper<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> customerRowMapper <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>resultSet<span style=color:#f92672>,</span> i<span style=color:#f92672>)</span> <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    var customerName <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    var email <span style=color:#f92672>=</span> resultSet<span style=color:#f92672>.</span><span style=color:#a6e22e>getString</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Customer<span style=color:#f92672>(</span>customerName<span style=color:#f92672>,</span> email<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>예제 - JdbcTemplate, queryForObject, RowMapper 사용
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Override</span>
-<span style=color:#66d9ef>public</span> Optional<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findById</span><span style=color:#f92672>(</span>UUID customerId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>ofNullable</span><span style=color:#f92672>(</span>jdbcTemplate<span style=color:#f92672>.</span><span style=color:#a6e22e>queryForObject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;select * from customers where customer_id = UUID_TO_BIN(?)&#34;</span><span style=color:#f92672>,</span> customerRowMapper<span style=color:#f92672>,</span> customerId<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>()));</span>
-    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>EmptyResultDataAccessException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got empty result&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
-        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> Optional<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findById</span><span style=color:#f92672>(</span>UUID customerId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>ofNullable</span><span style=color:#f92672>(</span>jdbcTemplate<span style=color:#f92672>.</span><span style=color:#a6e22e>queryForObject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;select * from customers where customer_id = UUID_TO_BIN(?)&#34;</span><span style=color:#f92672>,</span> customerRowMapper<span style=color:#f92672>,</span> customerId<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>()));</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>EmptyResultDataAccessException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got empty result&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        <span style=color:#66d9ef>return</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>empty</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=namedparameterjdbctemplate>NamedParameterJdbcTemplate</h3>
@@ -234,14 +234,14 @@ Spring 개념 - JDBC, DBCP, JdbcTemplate
 <li>가독성을 위해서, 순서를 헷갈리지 않기 위해서 NamedParameterJdbcTemplate을 사용한다</li>
 <li>NamedParameterJdbcTemplate에서는 &ldquo;:변수명"을 이용하여 처리한다</li>
 <li>예제 - NamedParameterJdbcTemplate 사용
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>var update <span style=color:#f92672>=</span> jdbcTemplate<span style=color:#f92672>.</span><span style=color:#a6e22e>update</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;UPDATE customers SET name=:name, email=:email, last_login_at=:lastLoginAt WHERE customer_id = UUID_TO_BIN(:customerId)&#34;</span><span style=color:#f92672>,</span>
-    <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;()</span> <span style=color:#f92672>{{</span>
-        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customerId&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCustomerId</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
-        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
-        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;lastLoginAt&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getLastLoginAt</span><span style=color:#f92672>()</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>?</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getLastLoginAt</span><span style=color:#f92672>())</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>);</span>
-        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;createdAt&#34;</span><span style=color:#f92672>,</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCreatedAt</span><span style=color:#f92672>()));</span>
-    <span style=color:#f92672>}});</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>var update <span style=color:#f92672>=</span> jdbcTemplate<span style=color:#f92672>.</span><span style=color:#a6e22e>update</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;UPDATE customers SET name=:name, email=:email, last_login_at=:lastLoginAt WHERE customer_id = UUID_TO_BIN(:customerId)&#34;</span><span style=color:#f92672>,</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;()</span> <span style=color:#f92672>{{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customerId&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCustomerId</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;lastLoginAt&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getLastLoginAt</span><span style=color:#f92672>()</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>?</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getLastLoginAt</span><span style=color:#f92672>())</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;createdAt&#34;</span><span style=color:#f92672>,</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCreatedAt</span><span style=color:#f92672>()));</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#f92672>}});</span>
 </code></pre></div></li>
 </ul>
 </article>

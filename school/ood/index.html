@@ -146,14 +146,14 @@
 <p>receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다</p>
 </li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>// from parent class : Employee
-</span><span style=color:#75715e></span><span style=color:#66d9ef>virtual</span> std<span style=color:#f92672>::</span>string GetInfo() {
-  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Employee: &#34;</span> <span style=color:#f92672>+</span> name_ ;
-}
-<span style=color:#75715e>// from child class : Developer
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>string GetInfo() {
-  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Developer: &#34;</span> <span style=color:#f92672>+</span> name_;
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// from parent class : Employee
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>virtual</span> std<span style=color:#f92672>::</span>string GetInfo() {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Employee: &#34;</span> <span style=color:#f92672>+</span> name_ ;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e>// from child class : Developer
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>string GetInfo() {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Developer: &#34;</span> <span style=color:#f92672>+</span> name_;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>}
 </code></pre></div></li>
 </ul>
 <h3 id=_override_-keyword><strong><em>override</em></strong> keyword</h3>
@@ -211,8 +211,8 @@
 <ul>
 <li>상속과 반대 순서로 호출 된다</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Developer</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Citizen, <span style=color:#66d9ef>public</span> Employee {}
-<span style=color:#75715e>// 순서 : Developer -&gt; Employee -&gt; Citizen
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Developer</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Citizen, <span style=color:#66d9ef>public</span> Employee {}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e>// 순서 : Developer -&gt; Employee -&gt; Citizen
 </span></code></pre></div></li>
 </ul>
 <h3 id=diamond-problem-in-multiple-inheritance>Diamond problem in multiple inheritance</h3>
@@ -259,7 +259,7 @@
 <ul>
 <li>
 <p>clone 함수는 부모에서는 pure virtual, 자식에서 구현</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp>Shape<span style=color:#f92672>*</span> <span style=color:#a6e22e>Clone</span>() <span style=color:#66d9ef>const</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Circle(color_, radius_); }
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>Shape<span style=color:#f92672>*</span> <span style=color:#a6e22e>Clone</span>() <span style=color:#66d9ef>const</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Circle(color_, radius_); }
 </code></pre></div></li>
 </ul>
 </li>
@@ -313,51 +313,51 @@
 <ul>
 <li>
 <p>array</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;array&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>array<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#ae81ff>3</span><span style=color:#f92672>&gt;</span> arr;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;array&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>array<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#ae81ff>3</span><span style=color:#f92672>&gt;</span> arr;
 </code></pre></div></li>
 <li>
 <p>vector : 메모리 상 데이터가 연속적이어야한다 -> random access 지원
 push_back 가능</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> vec;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> vec;
 </code></pre></div></li>
 <li>
 <p>list : linked-list 같은 느낌, 띄엄 띄엄 있어도 연결이 된다
 push_front, push_back 가능
 begin()+4 -> XXX<br>
 std::next(std::next(std::next))&mldr; -> OOO</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;list&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>list<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> lst;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;list&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>list<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> lst;
 </code></pre></div></li>
 <li>
 <p>deque : random access 지원, 포인터 연산 불가
 push_front 가능</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;deque&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>deque<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> deq;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;deque&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>deque<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> deq;
 </code></pre></div></li>
 <li>
 <p>stack : LIFO
 top(), pop() 가능</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stack&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>stack<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> std;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stack&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>stack<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> std;
 </code></pre></div></li>
 <li>
 <p>queue : FIFO
 front(), pop() 가능</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;queue&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>queue<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> que;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;queue&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>queue<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> que;
 </code></pre></div></li>
 <li>
 <p>set : stores unique elements following a specific order
 insert()</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#inclue &lt;set&gt;
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>set<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, FunctorClass<span style=color:#f92672>&gt;</span> s;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#inclue &lt;set&gt;
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>set<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, FunctorClass<span style=color:#f92672>&gt;</span> s;
 </code></pre></div></li>
 <li>
 <p>map : stores elements as a combination of a key value and a mapped vlaue, following a specific order</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;map&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>map<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>string, <span style=color:#66d9ef>int</span>, FunctorClass<span style=color:#f92672>&gt;</span> m;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;map&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>map<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>string, <span style=color:#66d9ef>int</span>, FunctorClass<span style=color:#f92672>&gt;</span> m;
 </code></pre></div></li>
 </ul>
 <h2 id=introduction-to-template>Introduction to template</h2>
@@ -386,15 +386,15 @@ insert()</p>
 <p>Primitive template parameter</p>
 </li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T, <span style=color:#66d9ef>int</span> kSize<span style=color:#f92672>&gt;</span>
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Array</span> { ... }
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T, <span style=color:#66d9ef>int</span> kSize<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Array</span> { ... }
 </code></pre></div><ol start=4>
 <li>linking error가 발생할 수 있다
 solution 1. header파일 안에 멤버 함수들을 정의한다
 solution 2. cc파일 상단에 정의 해준다</li>
 </ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T, <span style=color:#66d9ef>typename</span> N<span style=color:#f92672>&gt;</span>
-Pair<span style=color:#f92672>&lt;</span>T, N<span style=color:#f92672>&gt;::</span>Pair(T fst, N snd) <span style=color:#f92672>:</span> fst_(fst), snd_(snd) {}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T, <span style=color:#66d9ef>typename</span> N<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>Pair<span style=color:#f92672>&lt;</span>T, N<span style=color:#f92672>&gt;::</span>Pair(T fst, N snd) <span style=color:#f92672>:</span> fst_(fst), snd_(snd) {}
 </code></pre></div><ul>
 <li>Function Template</li>
 </ul>
@@ -422,10 +422,10 @@ Pair<span style=color:#f92672>&lt;</span>T, N<span style=color:#f92672>&gt;::</s
 </ol>
 <h2 id=exception-handling>Exception handling</h2>
 <h3 id=ranges-of-data-types>ranges of data types</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;limits&gt;</span><span style=color:#75715e>
-</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>lowest()
-std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>min()
-std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>max()
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;limits&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>lowest()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>min()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;::</span>max()
 </code></pre></div><ul>
 <li><strong>lowest()와 min()의 차이점</strong></li>
 </ul>
@@ -444,30 +444,30 @@ std<span style=color:#f92672>::</span>number_limits<span style=color:#f92672>&lt
 <ul>
 <li>
 <p>detection for integer overflow</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> y <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
-  <span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&gt;</span> kMax <span style=color:#f92672>-</span> y) <span style=color:#75715e>//overflow
-</span><span style=color:#75715e></span>}
-<span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> y <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {
-  <span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&lt;</span> kMin <span style=color:#f92672>-</span> y) <span style=color:#75715e>//overflow
-</span><span style=color:#75715e></span>}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> y <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&gt;</span> kMax <span style=color:#f92672>-</span> y) <span style=color:#75715e>//overflow
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> y <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#66d9ef>if</span> (x <span style=color:#f92672>&lt;</span> kMin <span style=color:#f92672>-</span> y) <span style=color:#75715e>//overflow
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>}
 </code></pre></div></li>
 <li>
 <p>Wrap around for overflow</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>WrapAroundForMax</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
-  <span style=color:#66d9ef>return</span> kMin <span style=color:#f92672>+</span> (x <span style=color:#f92672>-</span> (kMax <span style=color:#f92672>-</span> y <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>));
-}
-<span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>WrapAroundForMin</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
-  <span style=color:#66d9ef>return</span> kMax <span style=color:#f92672>+</span> (x <span style=color:#f92672>-</span> (kMin <span style=color:#f92672>-</span> y <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>));
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>WrapAroundForMax</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>return</span> kMin <span style=color:#f92672>+</span> (x <span style=color:#f92672>-</span> (kMax <span style=color:#f92672>-</span> y <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>));
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>WrapAroundForMin</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#66d9ef>return</span> kMax <span style=color:#f92672>+</span> (x <span style=color:#f92672>-</span> (kMin <span style=color:#f92672>-</span> y <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>));
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>}
 </code></pre></div></li>
 <li>
 <p>Saturation for overflow</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>SaturateForOverflow</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
-  <span style=color:#66d9ef>return</span> kMax;
-}
-<span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>SaturateForUnderflow</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
-  <span style=color:#66d9ef>return</span> kMin;
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>SaturateForOverflow</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>return</span> kMax;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>SaturateForUnderflow</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#66d9ef>return</span> kMin;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>}
 </code></pre></div></li>
 </ul>
 <p>Standard exception class hierarchy라는 것 이있다.
@@ -477,22 +477,22 @@ catch의 match는 포함관계에 의해 이루어진다
 <ul>
 <li>
 <p>c style :</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
-<span style=color:#66d9ef>if</span> (flag <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
-  Normal
-<span style=color:#66d9ef>else</span>
-  Abnormal
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>if</span> (flag <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  Normal
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>else</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  Abnormal
 </code></pre></div></li>
 <li>
 <p>C++ style :</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>throw</span> <span style=color:#a6e22e>WrapAroundForMax</span>(x, y);
-<span style=color:#66d9ef>try</span> {
-  res <span style=color:#f92672>=</span> SafeMath<span style=color:#f92672>::</span>Add(x, <span style=color:#ae81ff>1</span>);
-  Normal
-}
-<span style=color:#66d9ef>catch</span> (<span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> res_value) {
-  Abnormal
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>throw</span> <span style=color:#a6e22e>WrapAroundForMax</span>(x, y);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>try</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  res <span style=color:#f92672>=</span> SafeMath<span style=color:#f92672>::</span>Add(x, <span style=color:#ae81ff>1</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  Normal
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#66d9ef>catch</span> (<span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> res_value) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  Abnormal
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>}
 </code></pre></div></li>
 </ul>
 <ul>
@@ -536,10 +536,10 @@ catch의 match는 포함관계에 의해 이루어진다
 -> 간접적으로 exception이 throw된 경우 compile warning을 띄워주지 않는다.</p>
 </li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>public</span> NonExistFileException : <span style=color:#66d9ef>public</span> std<span style=color:#f92672>::</span>runtime_error {
- <span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-  NonExistFileException(std<span style=color:#f92672>::</span>string msg) <span style=color:#f92672>:</span> std<span style=color:#f92672>::</span>runtime_error(msg) {}
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> NonExistFileException : <span style=color:#66d9ef>public</span> std<span style=color:#f92672>::</span>runtime_error {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span> <span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  NonExistFileException(std<span style=color:#f92672>::</span>string msg) <span style=color:#f92672>:</span> std<span style=color:#f92672>::</span>runtime_error(msg) {}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
 </code></pre></div>
 </article>
 <div id=meta class=mt-24>

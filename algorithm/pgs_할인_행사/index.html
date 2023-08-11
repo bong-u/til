@@ -101,29 +101,29 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(want, number, discount):
-    want_dict <span style=color:#f92672>=</span> dict()
-    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(want)):
-        want_dict[want[i]] <span style=color:#f92672>=</span> number[i]
-    
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> discount[:<span style=color:#ae81ff>10</span>]:
-        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>in</span> want_dict:
-            want_dict[i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
-    
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(discount)<span style=color:#f92672>-</span><span style=color:#ae81ff>9</span>):
-        <span style=color:#66d9ef>if</span> all(map(<span style=color:#66d9ef>lambda</span> x: x <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>, want_dict<span style=color:#f92672>.</span>values())):
-        	answer <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-        
-        <span style=color:#66d9ef>if</span> discount[i] <span style=color:#f92672>in</span> want_dict:
-        	want_dict[discount[i]] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-        <span style=color:#66d9ef>if</span> i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span> <span style=color:#f92672>&lt;</span> len(discount) <span style=color:#f92672>and</span> discount[i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span>] <span style=color:#f92672>in</span> want_dict:
-            want_dict[discount[i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span>]] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
-    
-    <span style=color:#66d9ef>return</span> answer
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(want, number, discount):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    want_dict <span style=color:#f92672>=</span> dict()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(want)):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        want_dict[want[i]] <span style=color:#f92672>=</span> number[i]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> discount[:<span style=color:#ae81ff>10</span>]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>in</span> want_dict:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            want_dict[i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(discount)<span style=color:#f92672>-</span><span style=color:#ae81ff>9</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>if</span> all(map(<span style=color:#66d9ef>lambda</span> x: x <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>, want_dict<span style=color:#f92672>.</span>values())):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        	answer <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        <span style=color:#66d9ef>if</span> discount[i] <span style=color:#f92672>in</span> want_dict:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        	want_dict[discount[i]] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        <span style=color:#66d9ef>if</span> i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span> <span style=color:#f92672>&lt;</span> len(discount) <span style=color:#f92672>and</span> discount[i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span>] <span style=color:#f92672>in</span> want_dict:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>            want_dict[discount[i<span style=color:#f92672>+</span><span style=color:#ae81ff>10</span>]] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    <span style=color:#66d9ef>return</span> answer
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>XYZ마트에서는 회원에 가입하면 10일동안 할인혜택을 받는다</li>

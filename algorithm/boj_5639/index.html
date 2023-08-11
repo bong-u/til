@@ -102,82 +102,82 @@
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=풀이방법-1--직접-구현>풀이방법 1 : 직접 구현</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
-
-sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
-    <span style=color:#66d9ef>def</span> __init__(self, value):
-        self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
-        self<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-        self<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BinaryTree</span>:
-    <span style=color:#66d9ef>def</span> __init__(self, root):
-        self<span style=color:#f92672>.</span>root <span style=color:#f92672>=</span> root
-    
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>insert</span>(self, value):
-        cur_node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>root
-        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-            <span style=color:#66d9ef>if</span> value <span style=color:#f92672>&lt;</span> cur_node<span style=color:#f92672>.</span>value:
-                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-                    cur_node <span style=color:#f92672>=</span>  cur_node<span style=color:#f92672>.</span>left
-                <span style=color:#66d9ef>else</span>:
-                    cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> Node(value)
-                    <span style=color:#66d9ef>break</span>
-            <span style=color:#66d9ef>else</span>:
-                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-                    cur_node <span style=color:#f92672>=</span> cur_node<span style=color:#f92672>.</span>right
-                <span style=color:#66d9ef>else</span>:
-                    cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> Node(value)
-                    <span style=color:#66d9ef>break</span>
-    
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(self, node):
-        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>left)
-        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>right)
-        print (node<span style=color:#f92672>.</span>value)
-<span style=color:#66d9ef>try</span>:
-    tree <span style=color:#f92672>=</span> BinaryTree(Node(int(input())))
-<span style=color:#66d9ef>except</span>:
-    exit()
-
-<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-    <span style=color:#66d9ef>try</span>:    
-        tree<span style=color:#f92672>.</span>insert(int(input()))
-    <span style=color:#66d9ef>except</span>:
-        <span style=color:#66d9ef>break</span>
-
-tree<span style=color:#f92672>.</span>traverse(tree<span style=color:#f92672>.</span>root)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>def</span> __init__(self, value):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        self<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        self<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BinaryTree</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> __init__(self, root):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        self<span style=color:#f92672>.</span>root <span style=color:#f92672>=</span> root
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>insert</span>(self, value):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        cur_node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>root
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            <span style=color:#66d9ef>if</span> value <span style=color:#f92672>&lt;</span> cur_node<span style=color:#f92672>.</span>value:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>                    cur_node <span style=color:#f92672>=</span>  cur_node<span style=color:#f92672>.</span>left
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>                <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>                    cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> Node(value)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>                    <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                    cur_node <span style=color:#f92672>=</span> cur_node<span style=color:#f92672>.</span>right
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>                <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>                    cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> Node(value)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>                    <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(self, node):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>left)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>right)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>        print (node<span style=color:#f92672>.</span>value)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>    tree <span style=color:#f92672>=</span> BinaryTree(Node(int(input())))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span style=color:#66d9ef>except</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>    exit()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    <span style=color:#66d9ef>try</span>:    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>        tree<span style=color:#f92672>.</span>insert(int(input()))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>    <span style=color:#66d9ef>except</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>        <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>tree<span style=color:#f92672>.</span>traverse(tree<span style=color:#f92672>.</span>root)
 </code></pre></div><ul>
 <li>직접 트리를 구현하여 해결하였다</li>
 </ul>
 <h3 id=풀이방법-2>풀이방법 2</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
-sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-
-L <span style=color:#f92672>=</span> []
-<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-    <span style=color:#66d9ef>try</span>:
-        L<span style=color:#f92672>.</span>append(int(input()))
-    <span style=color:#66d9ef>except</span>:
-        <span style=color:#66d9ef>break</span>
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(root, end):
-    <span style=color:#66d9ef>if</span> root <span style=color:#f92672>&gt;</span> end:
-        <span style=color:#66d9ef>return</span>
-    mid <span style=color:#f92672>=</span> end <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
-
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, end<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
-        <span style=color:#66d9ef>if</span> L[root] <span style=color:#f92672>&lt;</span> L[i]:
-            mid <span style=color:#f92672>=</span> i
-            <span style=color:#66d9ef>break</span>
-    
-    traverse(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-    traverse(mid, end)
-    print (L[root])
-
-traverse(<span style=color:#ae81ff>0</span>, len(L)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>L <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        L<span style=color:#f92672>.</span>append(int(input()))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>except</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(root, end):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>if</span> root <span style=color:#f92672>&gt;</span> end:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>return</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    mid <span style=color:#f92672>=</span> end <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, end<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#66d9ef>if</span> L[root] <span style=color:#f92672>&lt;</span> L[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            mid <span style=color:#f92672>=</span> i
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    traverse(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    traverse(mid, end)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    print (L[root])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>traverse(<span style=color:#ae81ff>0</span>, len(L)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
 </code></pre></div><ul>
 <li>트리를 구현하지 않고 푸는 풀이는 인터넷을 참고하였다</li>
 <li>전위 순회한 결과를 리스트에 저장한 후, root 기준으로 나눠지는 mid를 찾아</li>

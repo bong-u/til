@@ -171,44 +171,44 @@ Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 <li>삭제 (Removed): 삭제된 상태</li>
 </ul>
 <h3 id=저장>저장</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>EntityManager em <span style=color:#f92672>=</span> emf<span style=color:#f92672>.</span><span style=color:#a6e22e>createEntityManager</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Entity manger 생성
-</span><span style=color:#75715e></span>EntityTransaction transaction <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>getTransaction</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Transaction 획득
-</span><span style=color:#75715e></span>transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>begin</span><span style=color:#f92672>();</span>
-
-Customer customer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Customer<span style=color:#f92672>();</span> <span style=color:#75715e>// 비영속 상태
-</span><span style=color:#75715e></span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setId</span><span style=color:#f92672>(</span>1L<span style=color:#f92672>);</span>
-customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setFirstName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;John&#34;</span><span style=color:#f92672>);</span>
-customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setLastName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Doe&#34;</span><span style=color:#f92672>);</span>
-
-em<span style=color:#f92672>.</span><span style=color:#a6e22e>persist</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>);</span> <span style=color:#75715e>// 영속화
-</span><span style=color:#75715e></span>
-transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Transaction commit
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>EntityManager em <span style=color:#f92672>=</span> emf<span style=color:#f92672>.</span><span style=color:#a6e22e>createEntityManager</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Entity manger 생성
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span>EntityTransaction transaction <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>getTransaction</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Transaction 획득
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e></span>transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>begin</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>Customer customer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Customer<span style=color:#f92672>();</span> <span style=color:#75715e>// 비영속 상태
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e></span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setId</span><span style=color:#f92672>(</span>1L<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setFirstName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;John&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>setLastName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Doe&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>em<span style=color:#f92672>.</span><span style=color:#a6e22e>persist</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>);</span> <span style=color:#75715e>// 영속화
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// Transaction commit
 </span></code></pre></div><h3 id=조회>조회</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Customer(1L) 만들어서 commit
-</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
-Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span> <span style=color:#75715e>// 1차 캐시에서 조회, query 실행 X
-</span><span style=color:#75715e></span>em<span style=color:#f92672>.</span><span style=color:#a6e22e>clear</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 영속성 컨텍스트를 초기화
-</span><span style=color:#75715e></span>Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span> <span style=color:#75715e>// DB에서 조회, query 실행 O
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// Customer(1L) 만들어서 commit
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span> <span style=color:#75715e>// 1차 캐시에서 조회, query 실행 X
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>em<span style=color:#f92672>.</span><span style=color:#a6e22e>clear</span><span style=color:#f92672>();</span> <span style=color:#75715e>// 영속성 컨텍스트를 초기화
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e></span>Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span> <span style=color:#75715e>// DB에서 조회, query 실행 O
 </span></code></pre></div><h3 id=수정>수정</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Customer(1L) 만들어서 commit
-</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
-Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span>
-entity<span style=color:#f92672>.</span><span style=color:#a6e22e>setFirstName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;guppy&#34;</span><span style=color:#f92672>);</span>
-entity<span style=color:#f92672>.</span><span style=color:#a6e22e>setLastName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hong&#34;</span><span style=color:#f92672>);</span>
-
-transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// update!
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// Customer(1L) 만들어서 commit
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>entity<span style=color:#f92672>.</span><span style=color:#a6e22e>setFirstName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;guppy&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>entity<span style=color:#f92672>.</span><span style=color:#a6e22e>setLastName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hong&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// update!
 </span></code></pre></div><h4 id=변경감지-dirty-checking>변경감지 (dirty checking)</h4>
 <ul>
 <li>JPA는 Entity를 영속화할 때의 최초 상태를 스냅샷으로 저장해둔다</li>
 <li>flush 시점에 스냅샷과 비교해서 변경된 Entity에 대해 update query를 수행한다</li>
 </ul>
 <h3 id=삭제>삭제</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Customer(1L) 만들어서 commit
-</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
-Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span>
-em<span style=color:#f92672>.</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span>entity<span style=color:#f92672>);</span>
-
-transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// delete!
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// Customer(1L) 만들어서 commit
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>Customer entity <span style=color:#f92672>=</span> em<span style=color:#f92672>.</span><span style=color:#a6e22e>find</span><span style=color:#f92672>(</span>Customer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> 1L<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>em<span style=color:#f92672>.</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span>entity<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>();</span> <span style=color:#75715e>// delete!
 </span></code></pre></div><h2 id=entity-mapping>Entity Mapping</h2>
 <h3 id=단일-엔티티매핑>단일 엔티티매핑</h3>
 <ul>
@@ -266,26 +266,26 @@ transaction<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</s
 <li>양방향 연관관계에서 한쪽에만 설정하면 양쪽 다 설정해주는 메소드를 만들 수 있다</li>
 <li>양방향 연관관계와 그 편의메소드를 정의한 코드이다</li>
 <li>Member.java
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@OneToMany</span><span style=color:#f92672>(</span>mappedBy <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;member&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>private</span> List<span style=color:#f92672>&lt;</span>Order<span style=color:#f92672>&gt;</span> orders <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
-
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addOrder</span><span style=color:#f92672>(</span>Order order<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>orders</span><span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>order<span style=color:#f92672>);</span>
-	order<span style=color:#f92672>.</span><span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@OneToMany</span><span style=color:#f92672>(</span>mappedBy <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;member&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>private</span> List<span style=color:#f92672>&lt;</span>Order<span style=color:#f92672>&gt;</span> orders <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addOrder</span><span style=color:#f92672>(</span>Order order<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>orders</span><span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>order<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>	order<span style=color:#f92672>.</span><span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>}</span>
 </code></pre></div><pre tabindex=0><code></code></pre></li>
 <li>Order.java
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ManyToOne</span>
-<span style=color:#a6e22e>@JoinColumn</span><span style=color:#f92672>(</span>name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member_id&#34;</span><span style=color:#f92672>,</span> referencedColumnName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;id&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>private</span> Member member<span style=color:#f92672>;</span>
-
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span>Member member<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-	<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-		<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
-	<span style=color:#f92672>}</span>
-	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>=</span> member<span style=color:#f92672>;</span>
-	member<span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@ManyToOne</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#a6e22e>@JoinColumn</span><span style=color:#f92672>(</span>name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member_id&#34;</span><span style=color:#f92672>,</span> referencedColumnName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;id&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>private</span> Member member<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span>Member member<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>	<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>		<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>	<span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>=</span> member<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>	member<span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>}</span>
 </code></pre></div><pre tabindex=0><code>
 </code></pre></li>
 </ul>

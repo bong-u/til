@@ -92,11 +92,11 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>N <span style=color:#f92672>=</span> int(input())
-dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, N):
-    dp[i] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]<span style=color:#f92672>+</span>dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-print (dp[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>N <span style=color:#f92672>=</span> int(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    dp[i] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]<span style=color:#f92672>+</span>dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>print (dp[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
 </code></pre></div><ul>
 <li>피보나치였다</li>
 </ul>

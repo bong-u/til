@@ -92,37 +92,37 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
-sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
-
-V <span style=color:#f92672>=</span> int(input())
-G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(V)]
-<span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(V):
-    token <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(token), <span style=color:#ae81ff>2</span>):
-        G[token[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append((token[i]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, token[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]))
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node, dist):
-    <span style=color:#66d9ef>global</span> max_node, max_dist
-    visited[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-    <span style=color:#66d9ef>if</span> dist <span style=color:#f92672>&gt;</span> max_dist:
-        max_node <span style=color:#f92672>=</span> node
-        max_dist <span style=color:#f92672>=</span> dist
-    <span style=color:#66d9ef>for</span> n_node, n_dist <span style=color:#f92672>in</span> G[node]:
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[n_node]:
-            dfs(n_node, dist<span style=color:#f92672>+</span>n_dist)
-
-max_node <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-
-max_dist <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>V
-dfs(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>)
-max_dist <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>V
-dfs(max_node, <span style=color:#ae81ff>0</span>)
-
-print (max_dist)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>V <span style=color:#f92672>=</span> int(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(V)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(V):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    token <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(token), <span style=color:#ae81ff>2</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        G[token[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append((token[i]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, token[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node, dist):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#66d9ef>global</span> max_node, max_dist
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    visited[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#66d9ef>if</span> dist <span style=color:#f92672>&gt;</span> max_dist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        max_node <span style=color:#f92672>=</span> node
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        max_dist <span style=color:#f92672>=</span> dist
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#66d9ef>for</span> n_node, n_dist <span style=color:#f92672>in</span> G[node]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[n_node]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            dfs(n_node, dist<span style=color:#f92672>+</span>n_dist)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>max_node <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>max_dist <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>V
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>dfs(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>max_dist <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>V
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>dfs(max_node, <span style=color:#ae81ff>0</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>print (max_dist)
 </code></pre></div><ul>
 <li>최근에 푼 &ldquo;1967: 트리의 지름&rdquo; 덕분에 쉽게 해결할 수 있었다</li>
 <li>기억하자 트리의 지름 = (어떤 한 정점에서 가장 먼 점 P)에서 가장 먼 점 사이의 거리</li>

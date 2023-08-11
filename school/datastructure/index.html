@@ -247,13 +247,13 @@
 <li>메소드의 마지막 부분에서 순환 (호출 후 되돌아 왔을때 수행할 연산이 없는 경우)</li>
 <li>꼬리 순환은 반복문으로 변환하는 것이 효율적이다</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TailRecursion</span> <span style=color:#f92672>{</span>
-  <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>factorial</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> n<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> fact<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>n<span style=color:#f92672>==</span>1<span style=color:#f92672>)</span>
-      <span style=color:#66d9ef>return</span> fact<span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>return</span> factorial<span style=color:#f92672>(</span> <span style=color:#f92672>,);</span>
-  <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TailRecursion</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>factorial</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> n<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> fact<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>n<span style=color:#f92672>==</span>1<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>      <span style=color:#66d9ef>return</span> fact<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>return</span> factorial<span style=color:#f92672>(</span> <span style=color:#f92672>,);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>  <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>}</span>
 </code></pre></div><h2 id=제-2장--리스트>제 2장 : 리스트</h2>
 <h3 id=리스트>리스트</h3>
 <ul>
@@ -274,10 +274,10 @@
 </ul>
 <ul>
 <li>자기참조변수
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span> <span style=color:#f92672>&lt;</span>E<span style=color:#f92672>&gt;</span> <span style=color:#f92672>{</span>
-  <span style=color:#66d9ef>private</span> Node<span style=color:#f92672>&lt;</span>E<span style=color:#f92672>&gt;</span> next<span style=color:#f92672>;</span> <span style=color:#75715e>// 자기 참조 변수
-</span><span style=color:#75715e></span>  <span style=color:#f92672>...</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span> <span style=color:#f92672>&lt;</span>E<span style=color:#f92672>&gt;</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>private</span> Node<span style=color:#f92672>&lt;</span>E<span style=color:#f92672>&gt;</span> next<span style=color:#f92672>;</span> <span style=color:#75715e>// 자기 참조 변수
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>  <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>수행시간
 <ul>
@@ -371,18 +371,18 @@
 <ul>
 <li>
 <p>트리</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>A
-├── B
-│   ├-─ D
-│   │   ├── H
-│   │   └── I
-│   └-─ E
-│       ├── J
-│       └── K
-└── C
-    ├── F
-    └── G
-
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>A
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>├── B
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>│   ├-─ D
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>│   │   ├── H
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>│   │   └── I
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>│   └-─ E
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>│       ├── J
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>│       └── K
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>└── C
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    ├── F
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    └── G
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -453,19 +453,19 @@ levelorder : left -> right (from top level)</p>
 <ul>
 <li>집합 1</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#ae81ff>7</span>
-├── <span style=color:#ae81ff>2</span>
-│   ├-─ <span style=color:#ae81ff>1</span>
-│   └-─ <span style=color:#ae81ff>6</span>
-├── <span style=color:#ae81ff>8</span>
-└── <span style=color:#ae81ff>3</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#ae81ff>7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── <span style=color:#ae81ff>2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>│   ├-─ <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>│   └-─ <span style=color:#ae81ff>6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>├── <span style=color:#ae81ff>8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>└── <span style=color:#ae81ff>3</span>
 </code></pre></div><ul>
 <li>집합2</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#ae81ff>4</span>
-├── <span style=color:#ae81ff>0</span>
-├── <span style=color:#ae81ff>5</span>
-└── <span style=color:#ae81ff>9</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#ae81ff>4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>├── <span style=color:#ae81ff>5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>└── <span style=color:#ae81ff>9</span>
 </code></pre></div><ul>
 <li>수행 시간
 <ul>
@@ -629,9 +629,9 @@ levelorder : left -> right (from top level)</p>
 <li>접기 함수 : 키를 여러 부분으로 나눈 후, 이들을 더한 값을 사용</li>
 </ul>
 <h4 id=자바의-hashcode>자바의 hashCode()</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hash</span><span style=color:#f92672>(</span>Key k<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-  <span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>k<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>&amp;</span> 0x7fffffff<span style=color:#f92672>)</span> <span style=color:#f92672>%</span> M<span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hash</span><span style=color:#f92672>(</span>Key k<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>k<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>&amp;</span> 0x7fffffff<span style=color:#f92672>)</span> <span style=color:#f92672>%</span> M<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#f92672>}</span>
 </code></pre></div><h4 id=해시-테이블의-저장-방식>해시 테이블의 저장 방식</h4>
 <ul>
 <li>개방 주소 방식 : 충돌된 키를 일정한 방식에 따라 찾아낸 empty원소에 저장</li>
@@ -664,11 +664,11 @@ levelorder : left -> right (from top level)</p>
 <li>upheap 수행 : 루트로 비교하면서 올라감</li>
 </ul>
 <h3 id=상향식-힙>상향식 힙</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createHeap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-  <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> N<span style=color:#f92672>/</span>2<span style=color:#f92672>;</span> i<span style=color:#f92672>&gt;</span>0<span style=color:#f92672>;</span> i<span style=color:#f92672>--)</span> <span style=color:#f92672>{</span>
-    downheap<span style=color:#f92672>(</span>i<span style=color:#f92672>);</span>
-  <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createHeap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> N<span style=color:#f92672>/</span>2<span style=color:#f92672>;</span> i<span style=color:#f92672>&gt;</span>0<span style=color:#f92672>;</span> i<span style=color:#f92672>--)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    downheap<span style=color:#f92672>(</span>i<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>O(n)</li>
 </ul>

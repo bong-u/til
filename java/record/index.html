@@ -113,27 +113,27 @@ Record
 <ul>
 <li>
 <p>Record 적용 전</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String name<span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> name<span style=color:#f92672>;</span>
-        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>age</span> <span style=color:#f92672>=</span> age<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getName</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> name<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>getAge</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> age<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String name<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> name<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>age</span> <span style=color:#f92672>=</span> age<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getName</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>return</span> name<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>getAge</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>return</span> age<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>Record 적용 후</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> record <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> record <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=record에서-지원하는-것>Record에서 지원하는 것</h3>
@@ -149,12 +149,12 @@ Record
 <h3 id=record에서-할-수-있는-것>Record에서 할 수 있는 것</h3>
 <ul>
 <li>컴팩트 생성자 : 매개변수가 없는 생성자, validate 사용시 적합
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> record <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>public</span> Person <span style=color:#f92672>{</span>
-        Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>name<span style=color:#f92672>);</span>
-        Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>age<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> record <span style=color:#a6e22e>Person</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>public</span> Person <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>        Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>name<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>age<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 </article>

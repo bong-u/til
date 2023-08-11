@@ -111,34 +111,34 @@ Spring 개념 - Component Scan
 <ol>
 <li>
 <p>basePacakges : 패키지 이름을 통해 스캔할 범위를 지정한다</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;org.academy.order&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>={</span><span style=color:#e6db74>&#34;org.academy.order&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;org.academy.voucher&#34;</span><span style=color:#f92672>})</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;org.academy.order&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>={</span><span style=color:#e6db74>&#34;org.academy.order&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;org.academy.voucher&#34;</span><span style=color:#f92672>})</span>
 </code></pre></div></li>
 <li>
 <p>basePackageClasses : 해당 클래스가 들어있는 패키지를 범위로 지정한다</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackageClasses<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Order.class&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>={</span><span style=color:#e6db74>&#34;Order.class&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Voucher.class&#34;</span><span style=color:#f92672>})</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackageClasses<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Order.class&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages<span style=color:#f92672>={</span><span style=color:#e6db74>&#34;Order.class&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Voucher.class&#34;</span><span style=color:#f92672>})</span>
 </code></pre></div></li>
 </ol>
 <h3 id=예제>예제</h3>
 <ul>
 <li>
 <p>AppCtx.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
-<span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;spring&#34;</span><span style=color:#f92672>})</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{...}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@ComponentScan</span><span style=color:#f92672>(</span>basePackages <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;spring&#34;</span><span style=color:#f92672>})</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{...}</span>
 </code></pre></div></li>
 <li>
 <p>MemberInfoPrinter.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Component</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MemberInfoPrinter</span> <span style=color:#f92672>{...}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Component</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MemberInfoPrinter</span> <span style=color:#f92672>{...}</span>
 </code></pre></div></li>
 <li>
 <p>효과</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// before
-</span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>,</span> MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
-<span style=color:#75715e>// after
-</span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// before
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;infoPrinter&#34;</span><span style=color:#f92672>,</span> MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e>// after
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>MemberInfoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
 </code></pre></div></li>
 </ul>
 </article>

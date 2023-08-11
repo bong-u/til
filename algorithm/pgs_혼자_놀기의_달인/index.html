@@ -101,25 +101,25 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(cards):
-    length <span style=color:#f92672>=</span> len(cards)
-    visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>] <span style=color:#f92672>*</span> length
-    answer <span style=color:#f92672>=</span> []
-    
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
-        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-        cur <span style=color:#f92672>=</span> i
-        <span style=color:#66d9ef>while</span> <span style=color:#f92672>not</span> visited[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
-            visited[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-            cur <span style=color:#f92672>=</span> cards[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-            cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-        <span style=color:#66d9ef>if</span> cnt <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
-            answer<span style=color:#f92672>.</span>append(cnt)
-    
-    <span style=color:#66d9ef>if</span> len(answer) <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>:
-        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>
-    answer<span style=color:#f92672>.</span>sort(reverse<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-    <span style=color:#66d9ef>return</span> answer[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>answer[<span style=color:#ae81ff>1</span>]
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(cards):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    length <span style=color:#f92672>=</span> len(cards)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>] <span style=color:#f92672>*</span> length
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    answer <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        cur <span style=color:#f92672>=</span> i
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>while</span> <span style=color:#f92672>not</span> visited[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            visited[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            cur <span style=color:#f92672>=</span> cards[cur<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>if</span> cnt <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>            answer<span style=color:#f92672>.</span>append(cnt)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>if</span> len(answer) <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    answer<span style=color:#f92672>.</span>sort(reverse<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#66d9ef>return</span> answer[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>answer[<span style=color:#ae81ff>1</span>]
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>주어진 배열 cards를 순회한다</li>

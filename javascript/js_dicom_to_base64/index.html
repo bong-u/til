@@ -125,28 +125,28 @@ JS - Dicom to base64
 <h3 id=구현>구현</h3>
 <ul>
 <li>dicom파일 -> base64
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Encode a file to BASE64
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>readFileAsync</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>file</span>) =&gt; {
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>, <span style=color:#a6e22e>reject</span>) =&gt; {
-      <span style=color:#75715e>// 비동기적으로 파일을 읽어오기 위해 FileReader 객체를 생성
-</span><span style=color:#75715e></span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reader</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FileReader</span>();
-
-      <span style=color:#75715e>// 읽기가 끝나면 수행
-</span><span style=color:#75715e></span>      <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>onload</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>evt</span>) =&gt; {
-        <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>evt</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>result</span>);
-      };
-
-      <span style=color:#75715e>// 에러가 발생하면 reject
-</span><span style=color:#75715e></span>      <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>onerror</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reject</span>;
-
-      <span style=color:#75715e>// 파일을 Base64로 인코딩된 데이터 URL 형식으로 읽어온다
-</span><span style=color:#75715e></span>      <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>readAsDataURL</span>(<span style=color:#a6e22e>file</span>);
-    });
-  };
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// Encode a file to BASE64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>readFileAsync</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>file</span>) =&gt; {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>, <span style=color:#a6e22e>reject</span>) =&gt; {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>      <span style=color:#75715e>// 비동기적으로 파일을 읽어오기 위해 FileReader 객체를 생성
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reader</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>FileReader</span>();
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>      <span style=color:#75715e>// 읽기가 끝나면 수행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e></span>      <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>onload</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>evt</span>) =&gt; {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>evt</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>result</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>      };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>      <span style=color:#75715e>// 에러가 발생하면 reject
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e></span>      <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>onerror</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reject</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>      <span style=color:#75715e>// 파일을 Base64로 인코딩된 데이터 URL 형식으로 읽어온다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#75715e></span>      <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>readAsDataURL</span>(<span style=color:#a6e22e>file</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    });
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>  };
 </code></pre></div></li>
 <li>위 함수는 파일을 base64로 인코딩하여 promise를 반환한다</li>
 <li>결과
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>data:application/octet-stream;base64,AAAAAAAAAAAAAAAAA...
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>data:application/octet-stream;base64,AAAAAAAAAAAAAAAAA...
 </code></pre></div></li>
 </ul>
 </article>

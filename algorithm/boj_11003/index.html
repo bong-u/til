@@ -102,22 +102,22 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
-N, L <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-A <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
-
-Q <span style=color:#f92672>=</span> deque([(A[<span style=color:#ae81ff>0</span>], <span style=color:#ae81ff>0</span>)])
-result <span style=color:#f92672>=</span> [A[<span style=color:#ae81ff>0</span>]]
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
-<span style=color:#66d9ef>if</span> Q[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> i<span style=color:#f92672>-</span>L:
-Q<span style=color:#f92672>.</span>popleft()
-<span style=color:#66d9ef>while</span> Q <span style=color:#f92672>and</span> Q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;=</span> A[i]:
-Q<span style=color:#f92672>.</span>pop()
-Q<span style=color:#f92672>.</span>append((A[i], i))
-result<span style=color:#f92672>.</span>append(Q[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>])
-
-print(<span style=color:#f92672>*</span>result)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>N, L <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>A <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>Q <span style=color:#f92672>=</span> deque([(A[<span style=color:#ae81ff>0</span>], <span style=color:#ae81ff>0</span>)])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>result <span style=color:#f92672>=</span> [A[<span style=color:#ae81ff>0</span>]]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>if</span> Q[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> i<span style=color:#f92672>-</span>L:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>Q<span style=color:#f92672>.</span>popleft()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>while</span> Q <span style=color:#f92672>and</span> Q[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;=</span> A[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>Q<span style=color:#f92672>.</span>pop()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>Q<span style=color:#f92672>.</span>append((A[i], i))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>result<span style=color:#f92672>.</span>append(Q[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>print(<span style=color:#f92672>*</span>result)
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>N개의 수 A1, A2, &mldr;, AN 과 L이 주어진다.</li>

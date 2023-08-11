@@ -108,15 +108,15 @@ JS - Arguments object 관련 이슈
 <li>나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.</li>
 <li>구글에서 제공하는 태그 소스 중 일부이다.</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>gtag</span>() {
-  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arguments</span>);
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>gtag</span>() {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arguments</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>}
 </code></pre></div><ul>
 <li>나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다.</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gtag</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
-  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>args</span>);
-};
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gtag</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>args</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
 </code></pre></div><ul>
 <li>하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다.</li>
 <li>이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.</li>
@@ -126,11 +126,11 @@ JS - Arguments object 관련 이슈
 <li>Arguments 객체는 함수에 전달되는 유사 Array 형태이다.</li>
 <li>함수 parameter에 어떻게 명시되어있건 상관없이 동작한다.</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>func1</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>) {
-  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>]);
-  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>1</span>]);
-  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>2</span>]);
-}
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>func1</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>]);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>1</span>]);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>2</span>]);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
 </code></pre></div><ul>
 <li>arguments 객체는 3가지로 구성된다.</li>
 </ul>
@@ -145,9 +145,9 @@ JS - Arguments object 관련 이슈
 <li>대신 &mldr;args와 같은 문법으로 아래와 같이 사용할 수 있다.</li>
 <li>여기서는 Arguments 객체가 아닌 진짜 Array로 가져온다.</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>func2</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
-  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>0</span>]);
-};
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>func2</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>0</span>]);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
 </code></pre></div><h3 id=정리>정리</h3>
 <ul>
 <li>Google analytics가 정상적으로 동작하기 위해서는 dataLayer에 Arguments object가 push 되었어야 하는데,</li>

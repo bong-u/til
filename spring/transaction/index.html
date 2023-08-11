@@ -118,24 +118,24 @@ Spring 개념 - Transaction (트랜잭션)
 <ul>
 <li>Transaction 관련 코드를 직접 작성</li>
 <li>예제 - TransactionManager 사용
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Bean 등록
-</span><span style=color:#75715e></span><span style=color:#a6e22e>@Bean</span>
-<span style=color:#66d9ef>public</span> PlatformTransactionManager <span style=color:#a6e22e>platformTransactionManager</span><span style=color:#f92672>(</span>DataSource dataSource<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> DataSourceTransactionManager<span style=color:#f92672>(</span>dataSource<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
-<span style=color:#75715e>// 사용할 때
-</span><span style=color:#75715e>// 새로운 트랜잭션을 시작한다
-</span><span style=color:#75715e></span>var transaction <span style=color:#f92672>=</span> transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getTransaction</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> DefaultTransactionDefinition<span style=color:#f92672>());</span>
-<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-    <span style=color:#75715e>/* Business Logic */</span>
-
-    <span style=color:#75715e>// Commit하여 db에 반영한다
-</span><span style=color:#75715e></span>    transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>(</span>transaction<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>DataAccessException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got error&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
-    <span style=color:#75715e>// 예외 발생시 이전 상태로 Rollback 한다
-</span><span style=color:#75715e></span>    transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>rollback</span><span style=color:#f92672>(</span>transaction<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// Bean 등록
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>public</span> PlatformTransactionManager <span style=color:#a6e22e>platformTransactionManager</span><span style=color:#f92672>(</span>DataSource dataSource<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> DataSourceTransactionManager<span style=color:#f92672>(</span>dataSource<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e>// 사용할 때
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e>// 새로운 트랜잭션을 시작한다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e></span>var transaction <span style=color:#f92672>=</span> transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getTransaction</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> DefaultTransactionDefinition<span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#75715e>/* Business Logic */</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#75715e>// Commit하여 db에 반영한다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e></span>    transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>commit</span><span style=color:#f92672>(</span>transaction<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>DataAccessException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    logger<span style=color:#f92672>.</span><span style=color:#a6e22e>error</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Got error&#34;</span><span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#75715e>// 예외 발생시 이전 상태로 Rollback 한다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#75715e></span>    transactionManager<span style=color:#f92672>.</span><span style=color:#a6e22e>rollback</span><span style=color:#f92672>(</span>transaction<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -145,14 +145,14 @@ Spring 개념 - Transaction (트랜잭션)
 <li>Transactino 관련 로직을 Business logic과 완전히 분리</li>
 <li>예제 - @Transactional 사용</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// configuration 클래스에 붙여준다
-</span><span style=color:#75715e></span><span style=color:#a6e22e>@EnableTransactionManagement</span>
-
-<span style=color:#75715e>// 트랜잭션을 적용하고 싶은 메소드에 붙여준다
-</span><span style=color:#75715e></span><span style=color:#a6e22e>@Transactional</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createCustomers</span><span style=color:#f92672>(</span>List<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> customers<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    customers<span style=color:#f92672>.</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>customerRepository<span style=color:#f92672>::</span>insert<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// configuration 클래스에 붙여준다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#a6e22e>@EnableTransactionManagement</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e>// 트랜잭션을 적용하고 싶은 메소드에 붙여준다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e></span><span style=color:#a6e22e>@Transactional</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createCustomers</span><span style=color:#f92672>(</span>List<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> customers<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    customers<span style=color:#f92672>.</span><span style=color:#a6e22e>forEach</span><span style=color:#f92672>(</span>customerRepository<span style=color:#f92672>::</span>insert<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ol>
 <h3 id=transaction-propagation-트랜잭션-전파>Transaction Propagation (트랜잭션 전파)</h3>

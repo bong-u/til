@@ -113,17 +113,17 @@ Spring - @RestController 정리
 <ul>
 <li>@Controller</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@GetMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@ResponseBody</span> List<span style=color:#f92672>&lt;</span>Voucher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getVouchers</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> voucherRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>list</span><span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@GetMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@ResponseBody</span> List<span style=color:#f92672>&lt;</span>Voucher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getVouchers</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> voucherRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>list</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>@RestController</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@GetMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> List<span style=color:#f92672>&lt;</span>Voucher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getVouchers</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> voucherRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>list</span><span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@GetMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> List<span style=color:#f92672>&lt;</span>Voucher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getVouchers</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> voucherRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>list</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div><h3 id=restcontrolleradvice>@RestControllerAdvice</h3>
 <ul>
 <li>@ControllerAdvice와 같이 @Controller에서 발생한 예외를 전역적으로 처리하는 Annotation이다</li>
@@ -133,14 +133,14 @@ Spring - @RestController 정리
 <ul>
 <li>필자는 Controller에서 발생한 IllegalArgumentException을 400 Bad Request로 처리하였다</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@RestControllerAdvice</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ControllerExceptionHandler</span> <span style=color:#f92672>{</span>
-
-    <span style=color:#a6e22e>@ExceptionHandler</span><span style=color:#f92672>(</span>IllegalArgumentException<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-    <span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>handleIllegalArgumentException</span><span style=color:#f92672>(</span>IllegalArgumentException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> ResponseEntity<span style=color:#f92672>.</span><span style=color:#a6e22e>status</span><span style=color:#f92672>(</span>HttpStatus<span style=color:#f92672>.</span><span style=color:#a6e22e>BAD_REQUEST</span><span style=color:#f92672>.</span><span style=color:#a6e22e>value</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>body</span><span style=color:#f92672>(</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>getMessage</span><span style=color:#f92672>());</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@RestControllerAdvice</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ControllerExceptionHandler</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#a6e22e>@ExceptionHandler</span><span style=color:#f92672>(</span>IllegalArgumentException<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>handleIllegalArgumentException</span><span style=color:#f92672>(</span>IllegalArgumentException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        <span style=color:#66d9ef>return</span> ResponseEntity<span style=color:#f92672>.</span><span style=color:#a6e22e>status</span><span style=color:#f92672>(</span>HttpStatus<span style=color:#f92672>.</span><span style=color:#a6e22e>BAD_REQUEST</span><span style=color:#f92672>.</span><span style=color:#a6e22e>value</span><span style=color:#f92672>()).</span><span style=color:#a6e22e>body</span><span style=color:#f92672>(</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>getMessage</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span style=color:#f92672>}</span>
 </code></pre></div>
 </article>
 <div id=meta class=mt-24>

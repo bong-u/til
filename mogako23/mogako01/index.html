@@ -117,7 +117,7 @@
 </div>
 <div class="overflow-hidden overflow-ellipsis">
 <div>
-import math def calc1(r): result = 0 for i in range(1, r): result += math.floor(math.sqrt(r**2 - i**2)) return result*4 + r*4 + 1 def calc2(r): result = 0 for i in range(1, r): a = math.sqrt(r**2 - i**2) result += math.floor(a) if a % 1 == 0: result -= 1 return result*4 + r*4 + 1 def solution(r1, r2
+1import math 2 3def calc1(r): 4 result = 0 5 for i in range(1, r): 6 result += math.floor(math.sqrt(r**2 - i**2)) 7 return result*4 + r*4 + 1 8 9def calc2(r): 10 result = 0 11 for i in range(1, r): 12 a = math.sqrt(r**2 - i**2) 13 result += math.floor(a) 14 if a % 1 == 0: 15 result -= 1 16 return re
 </div>
 </div>
 </div>
@@ -140,7 +140,7 @@ import math def calc1(r): result = 0 for i in range(1, r): result += math.floor(
 <div class="overflow-hidden overflow-ellipsis">
 <div>
 레코드란 불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스 JDK16부터 지원 예제 Record 적용 전
-public class Person { private final String name; private final int age; public Person(String name, int age) { this.name = name; this.age = age; } public String getName() { return name; } public int getAge() { return
+1public class Person { 2 private final String name; 3 private final int age; 4 5 public Person(String name, int age) { 6 this.name = name; 7 this.age = age; 8 } 9 10 public String getName() { 11 return name; 12 } 13
 </div>
 </div>
 </div>

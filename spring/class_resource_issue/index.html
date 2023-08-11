@@ -116,32 +116,32 @@ Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문�
 </code></pre></li>
 <li>
 <p>문제의 코드</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
-
-    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-        list <span style=color:#f92672>=</span> Files<span style=color:#f92672>.</span><span style=color:#a6e22e>readAllLines</span><span style=color:#f92672>(</span>blacklist<span style=color:#f92672>.</span><span style=color:#a6e22e>getFile</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toPath</span><span style=color:#f92672>());</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>IOException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Cannot read blacklist file&#34;</span><span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        list <span style=color:#f92672>=</span> Files<span style=color:#f92672>.</span><span style=color:#a6e22e>readAllLines</span><span style=color:#f92672>(</span>blacklist<span style=color:#f92672>.</span><span style=color:#a6e22e>getFile</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toPath</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>IOException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Cannot read blacklist file&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=해결>해결</h3>
 <ul>
 <li>
 <p>readAllLines를 사용하지 않고 InputStreamReader와 BufferedRearder를 사용하여 해결하였다.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
-
-<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-    InputStreamReader isr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> InputStreamReader<span style=color:#f92672>(</span>blacklist<span style=color:#f92672>.</span><span style=color:#a6e22e>getInputStream</span><span style=color:#f92672>());</span>
-    BufferedReader br <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BufferedReader<span style=color:#f92672>(</span>isr<span style=color:#f92672>);</span>
-
-    String line<span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>while</span> <span style=color:#f92672>((</span>line <span style=color:#f92672>=</span> br<span style=color:#f92672>.</span><span style=color:#a6e22e>readLine</span><span style=color:#f92672>())</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
-        list<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>line<span style=color:#f92672>);</span>
-    isr<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
-    br<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    InputStreamReader isr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> InputStreamReader<span style=color:#f92672>(</span>blacklist<span style=color:#f92672>.</span><span style=color:#a6e22e>getInputStream</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    BufferedReader br <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BufferedReader<span style=color:#f92672>(</span>isr<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    String line<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>while</span> <span style=color:#f92672>((</span>line <span style=color:#f92672>=</span> br<span style=color:#f92672>.</span><span style=color:#a6e22e>readLine</span><span style=color:#f92672>())</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        list<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>line<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    isr<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    br<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 </article>

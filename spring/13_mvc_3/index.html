@@ -112,52 +112,52 @@ MVC 3 : Session, Interceptor, Cookies
 <h3 id=로그인-할-때-세션에-등록>로그인 할 때 세션에 등록</h3>
 <ul>
 <li>LoginController.java
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@PostMapping</span>
-<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>submit</span><span style=color:#f92672>(</span>LoginCommand loginCommand<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>,</span> HttpSession session<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style=color:#66d9ef>new</span> LoginCommandValidator<span style=color:#f92672>().</span><span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>loginCommand<span style=color:#f92672>,</span> errors<span style=color:#f92672>);</span>
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>errors<span style=color:#f92672>.</span><span style=color:#a6e22e>hasErrors</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span><span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
-
-<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-    AuthInfo authInfo <span style=color:#f92672>=</span> authService<span style=color:#f92672>.</span><span style=color:#a6e22e>authenticate</span><span style=color:#f92672>(</span>loginCommand<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>(),</span> loginCommand<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>());</span>
-
-    session<span style=color:#f92672>.</span><span style=color:#a6e22e>setAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>,</span> authInfo<span style=color:#f92672>);</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginSuccess&#34;</span><span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
-<span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>WrongIdPasswordException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    errors<span style=color:#f92672>.</span><span style=color:#a6e22e>reject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;idPasswordNotMatching&#34;</span><span style=color:#f92672>);</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span><span style=color:#f92672>;</span>            
-<span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@PostMapping</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>submit</span><span style=color:#f92672>(</span>LoginCommand loginCommand<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>,</span> HttpSession session<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>new</span> LoginCommandValidator<span style=color:#f92672>().</span><span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>loginCommand<span style=color:#f92672>,</span> errors<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>errors<span style=color:#f92672>.</span><span style=color:#a6e22e>hasErrors</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span><span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    AuthInfo authInfo <span style=color:#f92672>=</span> authService<span style=color:#f92672>.</span><span style=color:#a6e22e>authenticate</span><span style=color:#f92672>(</span>loginCommand<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>(),</span> loginCommand<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    session<span style=color:#f92672>.</span><span style=color:#a6e22e>setAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>,</span> authInfo<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginSuccess&#34;</span><span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>WrongIdPasswordException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    errors<span style=color:#f92672>.</span><span style=color:#a6e22e>reject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;idPasswordNotMatching&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span><span style=color:#f92672>;</span>            
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=로그아웃-할때-세션에서-삭제>로그아웃 할때 세션에서 삭제</h3>
 <ul>
 <li>LogoutController.java
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@RequestMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/logout&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>logout</span><span style=color:#f92672>(</span>HttpSession session<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    session<span style=color:#f92672>.</span><span style=color:#a6e22e>invalidate</span><span style=color:#f92672>();</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/main&#34;</span><span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@RequestMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/logout&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>logout</span><span style=color:#f92672>(</span>HttpSession session<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    session<span style=color:#f92672>.</span><span style=color:#a6e22e>invalidate</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/main&#34;</span><span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 <h3 id=로그인-상태-여부에-따라-다르게-보여주기>로그인 상태 여부에 따라 다르게 보여주기</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>&lt;</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${ empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>환영합니다<span style=color:#f92672>.&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
-    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>register<span style=color:#f92672>/</span>step1<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>회원 가입하기<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>login<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그인<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;/</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
-
-<span style=color:#f92672>&lt;</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${! empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>$<span style=color:#f92672>{</span>authInfo<span style=color:#f92672>.</span><span style=color:#a6e22e>name</span><span style=color:#f92672>}</span>님<span style=color:#f92672>,</span> 환영합니다<span style=color:#f92672>.&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
-    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>edit<span style=color:#f92672>/</span>changePassword<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>비밀번호 변경<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>logout<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그아웃<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style=color:#f92672>&lt;/</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>&lt;</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${ empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>환영합니다<span style=color:#f92672>.&lt;/</span>p<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>register<span style=color:#f92672>/</span>step1<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>회원 가입하기<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>login<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그인<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#f92672>&lt;/</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#f92672>&lt;</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${! empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>$<span style=color:#f92672>{</span>authInfo<span style=color:#f92672>.</span><span style=color:#a6e22e>name</span><span style=color:#f92672>}</span>님<span style=color:#f92672>,</span> 환영합니다<span style=color:#f92672>.&lt;/</span>p<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>edit<span style=color:#f92672>/</span>changePassword<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>비밀번호 변경<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>logout<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그아웃<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#f92672>&lt;/</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
 </code></pre></div><h2 id=interceptor>Interceptor</h2>
 <ul>
 <li>
@@ -168,11 +168,11 @@ MVC 3 : Session, Interceptor, Cookies
 </li>
 <li>
 <p>ChnagePwdController.java > public String form()</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>AuthInfo authInfo <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>AuthInfo<span style=color:#f92672>)</span> session<span style=color:#f92672>.</span><span style=color:#a6e22e>getAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>);</span>
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>authInfo <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/login&#34;</span><span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
-<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;edit/changePwdForm&#34;</span><span style=color:#f92672>;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>AuthInfo authInfo <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>AuthInfo<span style=color:#f92672>)</span> session<span style=color:#f92672>.</span><span style=color:#a6e22e>getAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>authInfo <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/login&#34;</span><span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;edit/changePwdForm&#34;</span><span style=color:#f92672>;</span>
 </code></pre></div></li>
 <li>
 <p>하지만 여러 부분에서 이런 로직을 일일이 적용하는 것은 불편하다</p>
@@ -182,33 +182,33 @@ MVC 3 : Session, Interceptor, Cookies
 </li>
 <li>
 <p>AuthCheckInterceptor.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AuthCheckInterceptor</span> <span style=color:#66d9ef>implements</span> HandlerInterceptor <span style=color:#f92672>{</span>
-    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>preHandle</span><span style=color:#f92672>(</span>HttpServletRequest request<span style=color:#f92672>,</span> HttpServletResponse response<span style=color:#f92672>,</span> Object handler<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-        HttpSession session <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getSession</span><span style=color:#f92672>(</span><span style=color:#66d9ef>false</span><span style=color:#f92672>);</span>
-        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>session <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-            Object authInfo <span style=color:#f92672>=</span> session<span style=color:#f92672>.</span><span style=color:#a6e22e>getAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>);</span>
-            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>authInfo <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
-            <span style=color:#f92672>}</span>
-        <span style=color:#f92672>}</span>
-        response<span style=color:#f92672>.</span><span style=color:#a6e22e>sendRedirect</span><span style=color:#f92672>(</span>request<span style=color:#f92672>.</span><span style=color:#a6e22e>getContextPath</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/login&#34;</span><span style=color:#f92672>);</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AuthCheckInterceptor</span> <span style=color:#66d9ef>implements</span> HandlerInterceptor <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>preHandle</span><span style=color:#f92672>(</span>HttpServletRequest request<span style=color:#f92672>,</span> HttpServletResponse response<span style=color:#f92672>,</span> Object handler<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        HttpSession session <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getSession</span><span style=color:#f92672>(</span><span style=color:#66d9ef>false</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>session <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            Object authInfo <span style=color:#f92672>=</span> session<span style=color:#f92672>.</span><span style=color:#a6e22e>getAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>authInfo <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        response<span style=color:#f92672>.</span><span style=color:#a6e22e>sendRedirect</span><span style=color:#f92672>(</span>request<span style=color:#f92672>.</span><span style=color:#a6e22e>getContextPath</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/login&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>MvcConfig.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
-<span style=color:#66d9ef>public</span> AuthCheckInterceptor <span style=color:#a6e22e>authCheckInterceptor</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> AuthCheckInterceptor<span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
-
-<span style=color:#a6e22e>@Override</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addInterceptors</span><span style=color:#f92672>(</span>InterceptorRegistry registry<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    registry<span style=color:#f92672>.</span><span style=color:#a6e22e>addInterceptor</span><span style=color:#f92672>(</span>authCheckInterceptor<span style=color:#f92672>())</span>
-    <span style=color:#f92672>.</span><span style=color:#a6e22e>addPathPatterns</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/edit/**&#34;</span><span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> AuthCheckInterceptor <span style=color:#a6e22e>authCheckInterceptor</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> AuthCheckInterceptor<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addInterceptors</span><span style=color:#f92672>(</span>InterceptorRegistry registry<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    registry<span style=color:#f92672>.</span><span style=color:#a6e22e>addInterceptor</span><span style=color:#f92672>(</span>authCheckInterceptor<span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>addPathPatterns</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/edit/**&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>/edit/** 패턴으로 요청이 들어오면 authCheckInterceptor로 연결되는 것을 볼 수 있다.</p>

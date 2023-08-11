@@ -101,38 +101,38 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
-
-vx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
-vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(maps):
-    N <span style=color:#f92672>=</span> len(maps)
-    M <span style=color:#f92672>=</span> len(maps[<span style=color:#ae81ff>0</span>])
-    answer <span style=color:#f92672>=</span> []
-
-    visited <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
-        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
-            <span style=color:#66d9ef>if</span> maps[i][j] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;X&#39;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[i][j]:
-                cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-                q <span style=color:#f92672>=</span> deque()
-                q<span style=color:#f92672>.</span>append((j, i))
-                visited[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-                <span style=color:#66d9ef>while</span> q:
-                    cx, cy <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
-                    cnt <span style=color:#f92672>+=</span> int(maps[cy][cx])
-                    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
-                        nx <span style=color:#f92672>=</span> cx <span style=color:#f92672>+</span> vx[k]
-                        ny <span style=color:#f92672>=</span> cy <span style=color:#f92672>+</span> vy[k]
-                        <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>and</span> maps[ny][nx] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;X&#39;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[ny][nx]:
-                            q<span style=color:#f92672>.</span>append((nx, ny))
-                            visited[ny][nx] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-                answer<span style=color:#f92672>.</span>append(cnt)
-    <span style=color:#66d9ef>if</span> len(answer) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-        <span style=color:#66d9ef>return</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-    <span style=color:#66d9ef>return</span> sorted(answer)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>vx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(maps):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    N <span style=color:#f92672>=</span> len(maps)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    M <span style=color:#f92672>=</span> len(maps[<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    answer <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    visited <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            <span style=color:#66d9ef>if</span> maps[i][j] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;X&#39;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[i][j]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>                cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>                q <span style=color:#f92672>=</span> deque()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>                q<span style=color:#f92672>.</span>append((j, i))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>                visited[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>                <span style=color:#66d9ef>while</span> q:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>                    cx, cy <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>                    cnt <span style=color:#f92672>+=</span> int(maps[cy][cx])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>                    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>                        nx <span style=color:#f92672>=</span> cx <span style=color:#f92672>+</span> vx[k]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                        ny <span style=color:#f92672>=</span> cy <span style=color:#f92672>+</span> vy[k]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>                        <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>and</span> maps[ny][nx] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;X&#39;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[ny][nx]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>                            q<span style=color:#f92672>.</span>append((nx, ny))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>                            visited[ny][nx] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>                answer<span style=color:#f92672>.</span>append(cnt)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#66d9ef>if</span> len(answer) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>return</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#66d9ef>return</span> sorted(answer)
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>문자열 배열 maps가 주어진다</li>

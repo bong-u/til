@@ -1,25 +1,4 @@
-@layer base {
-  ol {
-    @apply list-decimal;
-  }
-
-  ul {
-    @apply list-disc;
-  }
-
-  tr {
-    @apply bg-inherit !important;
-  }
-
-  pre {
-    @apply bg-code_bg !important;
-  }
-
-  code,
-  code * {
-    @apply font-code text-base !important;
-  }
-
+@layer components {
   #TableOfContents {
     height: calc(100vh - 10rem);
     @apply text-sm overflow-hidden;

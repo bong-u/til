@@ -101,50 +101,50 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> math
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>diff</span>(start, end):
-    sh, sm <span style=color:#f92672>=</span> map(int, start<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;:&#39;</span>))
-    eh, em <span style=color:#f92672>=</span> map(int, end<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;:&#39;</span>))
-    
-    <span style=color:#66d9ef>return</span> (eh<span style=color:#f92672>*</span><span style=color:#ae81ff>60</span><span style=color:#f92672>+</span>em) <span style=color:#f92672>-</span> (sh<span style=color:#f92672>*</span><span style=color:#ae81ff>60</span><span style=color:#f92672>+</span>sm)
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calc</span>(time, baseTime, baseFee, unitTime, unitFee):
-    <span style=color:#66d9ef>if</span> time <span style=color:#f92672>&lt;</span> baseTime:
-        <span style=color:#66d9ef>return</span> baseFee
-    time <span style=color:#f92672>-=</span> baseTime
-    <span style=color:#66d9ef>return</span> baseFee <span style=color:#f92672>+</span> math<span style=color:#f92672>.</span>ceil(time<span style=color:#f92672>/</span>unitTime)<span style=color:#f92672>*</span>unitFee
-    
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(fees, records):
-    cars <span style=color:#f92672>=</span> {}
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> records:
-        time, car_num, _ <span style=color:#f92672>=</span> i<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39; &#39;</span>)
-        <span style=color:#75715e># 새로 입차 한 경우</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> car_num <span style=color:#f92672>in</span> cars:
-            cars[car_num] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, time]
-        <span style=color:#66d9ef>else</span>:
-            <span style=color:#75715e># 출차 후 다시 입차한 경우</span>
-            <span style=color:#66d9ef>if</span> cars[car_num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;&#39;</span>:
-                cars[car_num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> time
-            <span style=color:#75715e># 출차한 경우</span>
-            <span style=color:#66d9ef>else</span>:
-                cars[car_num][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+=</span> diff(cars[car_num][<span style=color:#ae81ff>1</span>], time)
-                cars[car_num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
-    
-    <span style=color:#75715e># 아직 출차하지 않은 차량들에 대해 23:59에 출차한 것으로 간주</span>
-    <span style=color:#66d9ef>for</span> num <span style=color:#f92672>in</span> cars:
-        <span style=color:#66d9ef>if</span> cars[num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;&#39;</span>:
-            cars[num][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+=</span> diff(cars[num][<span style=color:#ae81ff>1</span>], <span style=color:#e6db74>&#39;23:59&#39;</span>)
-            cars[num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
-    
-    <span style=color:#75715e># 요금 계산</span>
-    <span style=color:#66d9ef>for</span> num <span style=color:#f92672>in</span> cars:
-        cars[num] <span style=color:#f92672>=</span> calc(cars[num][<span style=color:#ae81ff>0</span>], fees[<span style=color:#ae81ff>0</span>], fees[<span style=color:#ae81ff>1</span>], fees[<span style=color:#ae81ff>2</span>], fees[<span style=color:#ae81ff>3</span>])
-    
-    <span style=color:#75715e># 차량 번호 순으로 정렬</span>
-    sorted_keys <span style=color:#f92672>=</span> sorted(cars<span style=color:#f92672>.</span>keys())
-    <span style=color:#75715e># 요금만 추출해서 반환</span>
-    <span style=color:#66d9ef>return</span> [cars[key] <span style=color:#66d9ef>for</span> key <span style=color:#f92672>in</span> sorted_keys]
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> math
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>diff</span>(start, end):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    sh, sm <span style=color:#f92672>=</span> map(int, start<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;:&#39;</span>))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    eh, em <span style=color:#f92672>=</span> map(int, end<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;:&#39;</span>))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>return</span> (eh<span style=color:#f92672>*</span><span style=color:#ae81ff>60</span><span style=color:#f92672>+</span>em) <span style=color:#f92672>-</span> (sh<span style=color:#f92672>*</span><span style=color:#ae81ff>60</span><span style=color:#f92672>+</span>sm)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calc</span>(time, baseTime, baseFee, unitTime, unitFee):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>if</span> time <span style=color:#f92672>&lt;</span> baseTime:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>return</span> baseFee
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    time <span style=color:#f92672>-=</span> baseTime
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#66d9ef>return</span> baseFee <span style=color:#f92672>+</span> math<span style=color:#f92672>.</span>ceil(time<span style=color:#f92672>/</span>unitTime)<span style=color:#f92672>*</span>unitFee
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(fees, records):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    cars <span style=color:#f92672>=</span> {}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> records:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        time, car_num, _ <span style=color:#f92672>=</span> i<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39; &#39;</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        <span style=color:#75715e># 새로 입차 한 경우</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> car_num <span style=color:#f92672>in</span> cars:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>            cars[car_num] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, time]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            <span style=color:#75715e># 출차 후 다시 입차한 경우</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>            <span style=color:#66d9ef>if</span> cars[car_num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;&#39;</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                cars[car_num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> time
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>            <span style=color:#75715e># 출차한 경우</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>            <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>                cars[car_num][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+=</span> diff(cars[car_num][<span style=color:#ae81ff>1</span>], time)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>                cars[car_num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    <span style=color:#75715e># 아직 출차하지 않은 차량들에 대해 23:59에 출차한 것으로 간주</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#66d9ef>for</span> num <span style=color:#f92672>in</span> cars:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        <span style=color:#66d9ef>if</span> cars[num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;&#39;</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>            cars[num][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+=</span> diff(cars[num][<span style=color:#ae81ff>1</span>], <span style=color:#e6db74>&#39;23:59&#39;</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>            cars[num][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>    <span style=color:#75715e># 요금 계산</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>    <span style=color:#66d9ef>for</span> num <span style=color:#f92672>in</span> cars:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>        cars[num] <span style=color:#f92672>=</span> calc(cars[num][<span style=color:#ae81ff>0</span>], fees[<span style=color:#ae81ff>0</span>], fees[<span style=color:#ae81ff>1</span>], fees[<span style=color:#ae81ff>2</span>], fees[<span style=color:#ae81ff>3</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>    <span style=color:#75715e># 차량 번호 순으로 정렬</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    sorted_keys <span style=color:#f92672>=</span> sorted(cars<span style=color:#f92672>.</span>keys())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>    <span style=color:#75715e># 요금만 추출해서 반환</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>    <span style=color:#66d9ef>return</span> [cars[key] <span style=color:#66d9ef>for</span> key <span style=color:#f92672>in</span> sorted_keys]
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>기본 시간, 기본 요금, 단위 시간, 단위 요금</li>

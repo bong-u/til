@@ -115,10 +115,10 @@ Spring 개념 - Maven
 <li>validate, compile, test, package, verify, install, deploy</li>
 </ul>
 <h3 id=trnsitive-dependencies>Trnsitive Dependencies</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>A
-├── B
-│   └─ C
-└── D
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>A
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── B
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>│   └─ C
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>└── D
 </code></pre></div><ul>
 <li>C는 A의 transitive 의존성</li>
 </ul>
@@ -131,31 +131,31 @@ Spring 개념 - Maven
 <li>system: provided와 비슷하지만, 사용자가 jar파일의 위치를 지정</li>
 </ul>
 <h3 id=example>example</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;project</span> <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style=color:#a6e22e>xmlns:xsi=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-  <span style=color:#a6e22e>xsi:schemaLocation=</span><span style=color:#e6db74>&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style=color:#f92672>&gt;</span>
-  <span style=color:#f92672>&lt;modelVersion&gt;</span>4.0.0<span style=color:#f92672>&lt;/modelVersion&gt;</span>
-
-  <span style=color:#f92672>&lt;groupId&gt;</span>org.prgms<span style=color:#f92672>&lt;/groupId&gt;</span>
-  <span style=color:#f92672>&lt;artifactId&gt;</span>academy-maven<span style=color:#f92672>&lt;/artifactId&gt;</span>
-  <span style=color:#f92672>&lt;version&gt;</span>1.0-SNAPSHOT<span style=color:#f92672>&lt;/version&gt;</span>
-  <span style=color:#f92672>&lt;packaging&gt;</span>jar<span style=color:#f92672>&lt;/packaging&gt;</span>
-
-  <span style=color:#f92672>&lt;name&gt;</span>academy-maven<span style=color:#f92672>&lt;/name&gt;</span>
-  <span style=color:#f92672>&lt;url&gt;</span>http://maven.apache.org<span style=color:#f92672>&lt;/url&gt;</span>
-
-  <span style=color:#f92672>&lt;properties&gt;</span>
-    <span style=color:#f92672>&lt;project.build.sourceEncoding&gt;</span>UTF-8<span style=color:#f92672>&lt;/project.build.sourceEncoding&gt;</span>
-  <span style=color:#f92672>&lt;/properties&gt;</span>
-
-  <span style=color:#f92672>&lt;dependencies&gt;</span>
-    <span style=color:#f92672>&lt;dependency&gt;</span>
-      <span style=color:#f92672>&lt;groupId&gt;</span>junit<span style=color:#f92672>&lt;/groupId&gt;</span>
-      <span style=color:#f92672>&lt;artifactId&gt;</span>junit<span style=color:#f92672>&lt;/artifactId&gt;</span>
-      <span style=color:#f92672>&lt;version&gt;</span>3.8.1<span style=color:#f92672>&lt;/version&gt;</span>
-      <span style=color:#f92672>&lt;scope&gt;</span>test<span style=color:#f92672>&lt;/scope&gt;</span>
-    <span style=color:#f92672>&lt;/dependency&gt;</span>
-  <span style=color:#f92672>&lt;/dependencies&gt;</span>
-<span style=color:#f92672>&lt;/project&gt;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>&lt;project</span> <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style=color:#a6e22e>xmlns:xsi=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>  <span style=color:#a6e22e>xsi:schemaLocation=</span><span style=color:#e6db74>&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>  <span style=color:#f92672>&lt;modelVersion&gt;</span>4.0.0<span style=color:#f92672>&lt;/modelVersion&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>  <span style=color:#f92672>&lt;groupId&gt;</span>org.prgms<span style=color:#f92672>&lt;/groupId&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>  <span style=color:#f92672>&lt;artifactId&gt;</span>academy-maven<span style=color:#f92672>&lt;/artifactId&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>  <span style=color:#f92672>&lt;version&gt;</span>1.0-SNAPSHOT<span style=color:#f92672>&lt;/version&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>  <span style=color:#f92672>&lt;packaging&gt;</span>jar<span style=color:#f92672>&lt;/packaging&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>  <span style=color:#f92672>&lt;name&gt;</span>academy-maven<span style=color:#f92672>&lt;/name&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>  <span style=color:#f92672>&lt;url&gt;</span>http://maven.apache.org<span style=color:#f92672>&lt;/url&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>  <span style=color:#f92672>&lt;properties&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#f92672>&lt;project.build.sourceEncoding&gt;</span>UTF-8<span style=color:#f92672>&lt;/project.build.sourceEncoding&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>  <span style=color:#f92672>&lt;/properties&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>  <span style=color:#f92672>&lt;dependencies&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#f92672>&lt;dependency&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>      <span style=color:#f92672>&lt;groupId&gt;</span>junit<span style=color:#f92672>&lt;/groupId&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>      <span style=color:#f92672>&lt;artifactId&gt;</span>junit<span style=color:#f92672>&lt;/artifactId&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>      <span style=color:#f92672>&lt;version&gt;</span>3.8.1<span style=color:#f92672>&lt;/version&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>      <span style=color:#f92672>&lt;scope&gt;</span>test<span style=color:#f92672>&lt;/scope&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    <span style=color:#f92672>&lt;/dependency&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>  <span style=color:#f92672>&lt;/dependencies&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span style=color:#f92672>&lt;/project&gt;</span>
 </code></pre></div>
 </article>
 <div id=meta class=mt-24>

@@ -108,55 +108,55 @@ Spring 개념 - DI (Dependency Injection)
 <ol>
 <li>
 <p>Assembler라는 별도의 클래스 생성</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assembler</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> MemberDao memberDao<span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>private</span> MemberRegisterService regSvc<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Assembler</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        memberDao <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberDao<span style=color:#f92672>();</span>
-        regSvc <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberRegisterService<span style=color:#f92672>(</span>memberDao<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> MemberDao <span style=color:#a6e22e>getMemberDao</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> memberDao<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-
-    <span style=color:#66d9ef>public</span> MemberRegisterService <span style=color:#a6e22e>getMemberRegisterService</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> regSvc<span style=color:#f92672>;</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assembler</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>private</span> MemberDao memberDao<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>private</span> MemberRegisterService regSvc<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Assembler</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        memberDao <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberDao<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        regSvc <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberRegisterService<span style=color:#f92672>(</span>memberDao<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>public</span> MemberDao <span style=color:#a6e22e>getMemberDao</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>return</span> memberDao<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>public</span> MemberRegisterService <span style=color:#a6e22e>getMemberRegisterService</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>return</span> regSvc<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>Spring에서 지원하는 DI 사용</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{</span>
-    <span style=color:#a6e22e>@Bean</span>
-    <span style=color:#66d9ef>public</span> MemberDao <span style=color:#a6e22e>memberDao</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberDao<span style=color:#f92672>();</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#a6e22e>@Bean</span>
-    <span style=color:#66d9ef>public</span> MemberRegisterService <span style=color:#a6e22e>memberRegSvc</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberRegisterService<span style=color:#f92672>(</span>memberDao<span style=color:#f92672>());</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>public</span> MemberDao <span style=color:#a6e22e>memberDao</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberDao<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>public</span> MemberRegisterService <span style=color:#a6e22e>memberRegSvc</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberRegisterService<span style=color:#f92672>(</span>memberDao<span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ol>
 <h3 id=di-방식>DI 방식</h3>
 <ol>
 <li>Constructor 방식
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
-    <span style=color:#66d9ef>public</span> MemberListPrinter <span style=color:#a6e22e>listPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberListPrinter<span style=color:#f92672>(</span>memberDao<span style=color:#f92672>(),</span> memberPrinter<span style=color:#f92672>());</span>
-    <span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>public</span> MemberListPrinter <span style=color:#a6e22e>listPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> MemberListPrinter<span style=color:#f92672>(</span>memberDao<span style=color:#f92672>(),</span> memberPrinter<span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>Setter method 방식
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span>
-<span style=color:#66d9ef>public</span> MemberInfoPrinter <span style=color:#a6e22e>infoPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-	MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberInfoPrinter<span style=color:#f92672>();</span>
-	infoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>setMemberDao</span><span style=color:#f92672>(</span>memberDao<span style=color:#f92672>());</span>
-	infoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>setPrinter</span><span style=color:#f92672>(</span>memberPrinter<span style=color:#f92672>());</span>
-	<span style=color:#66d9ef>return</span> infoPrinter<span style=color:#f92672>;</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> MemberInfoPrinter <span style=color:#a6e22e>infoPrinter</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>	MemberInfoPrinter infoPrinter <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberInfoPrinter<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>	infoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>setMemberDao</span><span style=color:#f92672>(</span>memberDao<span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>	infoPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>setPrinter</span><span style=color:#f92672>(</span>memberPrinter<span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>	<span style=color:#66d9ef>return</span> infoPrinter<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ol>
 <ul>
@@ -167,28 +167,28 @@ Spring 개념 - DI (Dependency Injection)
 <ul>
 <li>
 <p>AppConf1.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConf1</span> <span style=color:#f92672>{</span>
-	<span style=color:#f92672>...</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConf1</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>	<span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>AppConf2.java</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.springframework.beans.factory.annotation.Autowired<span style=color:#f92672>;</span>
-
-<span style=color:#a6e22e>@Configuration</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConf2</span> <span style=color:#f92672>{</span>
-	<span style=color:#a6e22e>@Autowired</span>
-	<span style=color:#66d9ef>private</span> MemberDao memberDao<span style=color:#f92672>;</span>
-	<span style=color:#a6e22e>@Autowired</span>
-	<span style=color:#66d9ef>private</span> MemberPrinter memberPrinter<span style=color:#f92672>;</span>
-
-	<span style=color:#f92672>...</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> org.springframework.beans.factory.annotation.Autowired<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConf2</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>	<span style=color:#a6e22e>@Autowired</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>	<span style=color:#66d9ef>private</span> MemberDao memberDao<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>	<span style=color:#a6e22e>@Autowired</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>	<span style=color:#66d9ef>private</span> MemberPrinter memberPrinter<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>	<span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>MainForSpring.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>ctx <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> AnnotationConfigApplicationContext<span style=color:#f92672>(</span>AppConf1<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> AppConf2<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>ctx <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> AnnotationConfigApplicationContext<span style=color:#f92672>(</span>AppConf1<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> AppConf2<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
 </code></pre></div></li>
 <li>
 <p>Autowired annotation을 통해 다른 설정 파일의 객체를 가져올 수 있다.</p>
@@ -198,20 +198,20 @@ Spring 개념 - DI (Dependency Injection)
 <ul>
 <li>
 <p>AppConfImport.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> org.springframework.context.annotation.Import<span style=color:#f92672>;</span>
-
-<span style=color:#a6e22e>@Configuration</span>
-<span style=color:#a6e22e>@Import</span><span style=color:#f92672>(</span>AppConf2<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfImport</span> <span style=color:#f92672>{</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>import</span> org.springframework.context.annotation.Import<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#a6e22e>@Import</span><span style=color:#f92672>(</span>AppConf2<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfImport</span> <span style=color:#f92672>{</span>
 </code></pre></div></li>
 <li>
 <p>MainForSpring.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>ctx <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> AnnotationConfigApplicationContext<span style=color:#f92672>(</span>AppConfImport<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
-<span style=color:#75715e>// 클래스 한 개만 명시해줘도 가능
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>ctx <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> AnnotationConfigApplicationContext<span style=color:#f92672>(</span>AppConfImport<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e>// 클래스 한 개만 명시해줘도 가능
 </span></code></pre></div></li>
 </ul>
 <h3 id=타입만으로-빈을-구할-수-있다>타입만으로 빈을 구할 수 있다</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>VersionPrinter versionPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>MemberPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>VersionPrinter versionPrinter <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span>MemberPrinter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
 </code></pre></div><ul>
 <li>다만, 같은 타입의 빈 객체가 2개 이상 존재한다면 에러 발생</li>
 </ul>

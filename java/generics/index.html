@@ -107,35 +107,35 @@ Generics
 <li>효과 : 타입안정성, 간결한 코드</li>
 </ul>
 <h3 id=generic-class>Generic class</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Box</span><span style=color:#f92672>&lt;</span>M<span style=color:#f92672>,</span> I<span style=color:#f92672>&gt;</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>private</span> M material<span style=color:#f92672>;</span>
-    <span style=color:#66d9ef>private</span> I item<span style=color:#f92672>;</span>
-    <span style=color:#f92672>...</span>
-<span style=color:#f92672>}</span>
-
-Box<span style=color:#f92672>&lt;</span>Paper<span style=color:#f92672>,</span> String<span style=color:#f92672>&gt;</span> box <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Box<span style=color:#f92672>&lt;</span>Paper<span style=color:#f92672>,</span> String<span style=color:#f92672>&gt;();</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Box</span><span style=color:#f92672>&lt;</span>M<span style=color:#f92672>,</span> I<span style=color:#f92672>&gt;</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>private</span> M material<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>private</span> I item<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>Box<span style=color:#f92672>&lt;</span>Paper<span style=color:#f92672>,</span> String<span style=color:#f92672>&gt;</span> box <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Box<span style=color:#f92672>&lt;</span>Paper<span style=color:#f92672>,</span> String<span style=color:#f92672>&gt;();</span>
 </code></pre></div><h3 id=generic-function>Generic Function</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CoffeeMachine</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> Coffee <span style=color:#a6e22e>makeCoffee</span><span style=color:#f92672>(</span>T capsule<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Coffee<span style=color:#f92672>(</span>capsule<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
-CoffeeMachine coffeeMachine <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> CoffeeMachine<span style=color:#f92672>();</span>
-Colombian capsule <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Colombian<span style=color:#f92672>();</span>
-coffeeMachine<span style=color:#f92672>.&lt;</span>Colombian<span style=color:#f92672>&gt;</span>makeCoffee<span style=color:#f92672>(</span>capsule<span style=color:#f92672>);</span>
-coffeeMachine<span style=color:#f92672>.</span><span style=color:#a6e22e>makeCoffee</span><span style=color:#f92672>(</span>capsule<span style=color:#f92672>);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CoffeeMachine</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>public</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> Coffee <span style=color:#a6e22e>makeCoffee</span><span style=color:#f92672>(</span>T capsule<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Coffee<span style=color:#f92672>(</span>capsule<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>CoffeeMachine coffeeMachine <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> CoffeeMachine<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>Colombian capsule <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Colombian<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>coffeeMachine<span style=color:#f92672>.&lt;</span>Colombian<span style=color:#f92672>&gt;</span>makeCoffee<span style=color:#f92672>(</span>capsule<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>coffeeMachine<span style=color:#f92672>.</span><span style=color:#a6e22e>makeCoffee</span><span style=color:#f92672>(</span>capsule<span style=color:#f92672>);</span>
 </code></pre></div><h3 id=restrictions-on-generics>Restrictions on Generics</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// BoxMaterial을 상속 받았으면서 Hard(인터페이스)를 구현한 클래스만 가능
-</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Box</span><span style=color:#f92672>&lt;</span>M <span style=color:#66d9ef>extends</span> BoxMaterial <span style=color:#f92672>&amp;</span> Hard<span style=color:#f92672>&gt;</span>
-<span style=color:#75715e>// BoxMaterial의 조상 클래스만 가능
-</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Box</span><span style=color:#f92672>&lt;</span>T <span style=color:#66d9ef>super</span> BoxMaterial<span style=color:#f92672>&gt;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// BoxMaterial을 상속 받았으면서 Hard(인터페이스)를 구현한 클래스만 가능
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Box</span><span style=color:#f92672>&lt;</span>M <span style=color:#66d9ef>extends</span> BoxMaterial <span style=color:#f92672>&amp;</span> Hard<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e>// BoxMaterial의 조상 클래스만 가능
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Box</span><span style=color:#f92672>&lt;</span>T <span style=color:#66d9ef>super</span> BoxMaterial<span style=color:#f92672>&gt;</span>
 </code></pre></div><h3 id=whild-card>Whild Card</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// T와 그 자손만 가능
-</span><span style=color:#75715e></span><span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>extends</span> T<span style=color:#f92672>&gt;</span>
-<span style=color:#75715e>// T와 그 조상만 가능
-</span><span style=color:#75715e></span><span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>super</span> T<span style=color:#f92672>&gt;</span>
-<span style=color:#75715e>// 모두 가능
-</span><span style=color:#75715e></span><span style=color:#f92672>&lt;?&gt;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// T와 그 자손만 가능
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>extends</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e>// T와 그 조상만 가능
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span><span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>super</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e>// 모두 가능
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span><span style=color:#f92672>&lt;?&gt;</span>
 </code></pre></div>
 </article>
 <div id=meta class=mt-24>

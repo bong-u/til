@@ -108,47 +108,47 @@ Spring 개념 - Bean Lifecycle & Scope
 <ol>
 <li>
 <p>@PostConstruct, @PreDestroy Annotation 사용</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Bean 객체 생성될 때 실행
-</span><span style=color:#75715e></span><span style=color:#a6e22e>@PostConstruct</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>postConstruct</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
-
-<span style=color:#75715e>// Bean 객체 소멸될 때 실행
-</span><span style=color:#75715e></span><span style=color:#a6e22e>@PreDestroy</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>preDestroy</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// Bean 객체 생성될 때 실행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#a6e22e>@PostConstruct</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>postConstruct</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e>// Bean 객체 소멸될 때 실행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span><span style=color:#a6e22e>@PreDestroy</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>preDestroy</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
 </code></pre></div></li>
 <li>
 <p>InitializingBean, DisposableBean 구현</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Client</span> <span style=color:#66d9ef>implements</span> InitializingBean<span style=color:#f92672>,</span> DisposableBean <span style=color:#f92672>{</span>
-    <span style=color:#75715e>// Bean 객체 생성될 때 실행
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterPropertiesSet</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{...}</span>
-
-    <span style=color:#75715e>// Bean 객체 소멸될 때 실행
-</span><span style=color:#75715e></span>    <span style=color:#a6e22e>@Override</span>
-    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>destroy</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{...}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Client</span> <span style=color:#66d9ef>implements</span> InitializingBean<span style=color:#f92672>,</span> DisposableBean <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#75715e>// Bean 객체 생성될 때 실행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>    <span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>afterPropertiesSet</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{...}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#75715e>// Bean 객체 소멸될 때 실행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#75715e></span>    <span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>destroy</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{...}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 <li>
 <p>@Bean Annotation에서 설정</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Bean</span><span style=color:#f92672>(</span>initMethod <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;init&#34;</span><span style=color:#f92672>,</span> destroyMethod<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;close&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Client2</span><span style=color:#f92672>{</span>
-    <span style=color:#75715e>// Bean 객체 생성될 때 실행
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
-    <span style=color:#75715e>// Bean 객체 소멸될 때 실행
-</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>close</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Bean</span><span style=color:#f92672>(</span>initMethod <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;init&#34;</span><span style=color:#f92672>,</span> destroyMethod<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;close&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Client2</span><span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#75715e>// Bean 객체 생성될 때 실행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#75715e>// Bean 객체 소멸될 때 실행
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>close</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ol>
 <h3 id=bean-객체의-scope>Bean 객체의 Scope</h3>
 <ul>
 <li>기본적으로 Bean 객체는 Singleton scope를 갖는다</li>
 <li>하지만 임의로 Prototype scope를 갖게 할 수 있다.
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Configuration</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{</span>
-    <span style=color:#a6e22e>@Bean</span>
-    <span style=color:#a6e22e>@Scope</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;prototype&#34;</span><span style=color:#f92672>)</span>
-    <span style=color:#66d9ef>public</span> Client <span style=color:#a6e22e>client</span><span style=color:#f92672>()</span> <span style=color:#f92672>{}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Configuration</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppCtx</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#a6e22e>@Bean</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#a6e22e>@Scope</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;prototype&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>public</span> Client <span style=color:#a6e22e>client</span><span style=color:#f92672>()</span> <span style=color:#f92672>{}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 </article>

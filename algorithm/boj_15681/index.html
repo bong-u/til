@@ -92,31 +92,31 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sys
-sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
-N, R, Q <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-cnt <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
-visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>N
-
-<span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
-    a, b <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-    G[a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append(b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-    G[b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append(a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node):
-    visited[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> G[node]:
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[i]:
-            cnt[node] <span style=color:#f92672>+=</span> dfs(i)
-    <span style=color:#66d9ef>return</span> cnt[node]
-
-dfs(R<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-
-<span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(Q):
-    print (cnt[int(input())<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>N, R, Q <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>cnt <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>N
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    a, b <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    G[a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append(b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    G[b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append(a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    visited[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> G[node]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            cnt[node] <span style=color:#f92672>+=</span> dfs(i)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#66d9ef>return</span> cnt[node]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>dfs(R<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(Q):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    print (cnt[int(input())<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
 </code></pre></div><ul>
 <li>
 <p>혼자 풀었다!</p>

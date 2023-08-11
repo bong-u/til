@@ -207,7 +207,7 @@ Spring - Bean Validation : Annotation으로 Validation하기
 <ul>
 <li>
 <p>Controller</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>postCustomer</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@RequestBody</span> <span style=color:#a6e22e>@Valid</span> CustomerDTO customerDTO<span style=color:#f92672>)</span> <span style=color:#f92672>{...}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>Customer<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>postCustomer</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@RequestBody</span> <span style=color:#a6e22e>@Valid</span> CustomerDTO customerDTO<span style=color:#f92672>)</span> <span style=color:#f92672>{...}</span>
 </code></pre></div><ul>
 <li><strong>@Valid</strong> Annotation을 붙여서 CustomerDTO 객체에 대한 Validation을 수행한다</li>
 <li>@Valid Annotation을 붙이는 것을 깜빡하지 말자</li>
@@ -219,12 +219,12 @@ Spring - Bean Validation : Annotation으로 Validation하기
 <li>위 코드의 Validation에서 실패하면, MethodArgumentNotValidException이 발생한다</li>
 <li>해당 예외는 필드별 모든 에러를 담고 있다</li>
 <li>그대로 반환하면 엄청 길기 때문에, 보통 아래 코드와 같이 필요한 정보만 추출해서 반환한다
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>processValidationErrors<span style=color:#f92672>(</span>MethodArgumentNotValidException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> errors <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getBindingResult</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getFieldErrors</span><span style=color:#f92672>().</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>()</span>
-                            <span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>error <span style=color:#f92672>-&gt;</span> error<span style=color:#f92672>.</span><span style=color:#a6e22e>getField</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;: &#34;</span> <span style=color:#f92672>+</span> error<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefaultMessage</span><span style=color:#f92672>())</span>
-                            <span style=color:#f92672>.</span><span style=color:#a6e22e>collect</span><span style=color:#f92672>(</span>Collectors<span style=color:#f92672>.</span><span style=color:#a6e22e>toList</span><span style=color:#f92672>());</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ResponseEntity<span style=color:#f92672>&lt;&gt;(</span>errors<span style=color:#f92672>,</span> HttpStatus<span style=color:#f92672>.</span><span style=color:#a6e22e>BAD_REQUEST</span><span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>processValidationErrors<span style=color:#f92672>(</span>MethodArgumentNotValidException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> errors <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getBindingResult</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getFieldErrors</span><span style=color:#f92672>().</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>()</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>                            <span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>error <span style=color:#f92672>-&gt;</span> error<span style=color:#f92672>.</span><span style=color:#a6e22e>getField</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;: &#34;</span> <span style=color:#f92672>+</span> error<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefaultMessage</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>                            <span style=color:#f92672>.</span><span style=color:#a6e22e>collect</span><span style=color:#f92672>(</span>Collectors<span style=color:#f92672>.</span><span style=color:#a6e22e>toList</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ResponseEntity<span style=color:#f92672>&lt;&gt;(</span>errors<span style=color:#f92672>,</span> HttpStatus<span style=color:#f92672>.</span><span style=color:#a6e22e>BAD_REQUEST</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#f92672>}</span>
 </code></pre></div></li>
 </ul>
 </li>
@@ -233,14 +233,14 @@ Spring - Bean Validation : Annotation으로 Validation하기
 <ul>
 <li>Controller에서 Validation을 수행하지 못하는 경우, 수동으로 Validation을 수행할 수 있다</li>
 <li>이때, Validator 객체를 주입받아서 사용한다
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> jakarta.validation.Validator<span style=color:#f92672>;</span>
-<span style=color:#f92672>...</span>
-<span style=color:#a6e22e>@Autowired</span>
-<span style=color:#66d9ef>private</span> Validator validator<span style=color:#f92672>;</span>
-<span style=color:#f92672>...</span>
-var violations <span style=color:#f92672>=</span> validator<span style=color:#f92672>.</span><span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>voucher<span style=color:#f92672>);</span>
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>violations<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span>
-    <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> IllegalArgumentException<span style=color:#f92672>(</span>violations<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>().</span><span style=color:#a6e22e>findFirst</span><span style=color:#f92672>().</span><span style=color:#a6e22e>get</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getMessage</span><span style=color:#f92672>());</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>import</span> jakarta.validation.Validator<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#a6e22e>@Autowired</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>private</span> Validator validator<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>var violations <span style=color:#f92672>=</span> validator<span style=color:#f92672>.</span><span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>voucher<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>violations<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> IllegalArgumentException<span style=color:#f92672>(</span>violations<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>().</span><span style=color:#a6e22e>findFirst</span><span style=color:#f92672>().</span><span style=color:#a6e22e>get</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getMessage</span><span style=color:#f92672>());</span>
 </code></pre></div></li>
 <li>코드에서는 voucher 객체에 대한 Validation을 수행하고, 발생한 에러가 있다면 IllegalArgumentException을 발생시킨다</li>
 </ul>

@@ -92,46 +92,46 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
-
-wheels <span style=color:#f92672>=</span> [deque(map(int, list(input()))) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>)]
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>rotate</span>(wheel, direction):
-    <span style=color:#66d9ef>if</span> direction <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
-        wheel<span style=color:#f92672>.</span>appendleft(wheel<span style=color:#f92672>.</span>pop())
-    <span style=color:#66d9ef>else</span>:
-        wheel<span style=color:#f92672>.</span>append(wheel<span style=color:#f92672>.</span>popleft())
-    <span style=color:#66d9ef>return</span> wheel
-
-K <span style=color:#f92672>=</span> int(input())
-vd <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-res <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-
-<span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(K):
-    N, D <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-    q <span style=color:#f92672>=</span> deque()
-    q<span style=color:#f92672>.</span>append((N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, D))
-    visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>] <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>
-    tmp <span style=color:#f92672>=</span> []
-
-    <span style=color:#66d9ef>while</span> q:
-        cur, curD <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
-        tmp<span style=color:#f92672>.</span>append((cur, curD))
-        visited[cur] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-
-        <span style=color:#66d9ef>for</span> v <span style=color:#f92672>in</span> vd:
-            nxt <span style=color:#f92672>=</span> cur<span style=color:#f92672>+</span>v
-            <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nxt <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>4</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[nxt]:
-                <span style=color:#66d9ef>if</span> (v <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> wheels[cur][<span style=color:#ae81ff>6</span>] <span style=color:#f92672>!=</span> wheels[nxt][<span style=color:#ae81ff>2</span>]
-                <span style=color:#f92672>or</span> v <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> wheels[nxt][<span style=color:#ae81ff>6</span>] <span style=color:#f92672>!=</span> wheels[cur][<span style=color:#ae81ff>2</span>]):
-                    q<span style=color:#f92672>.</span>append((nxt, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#66d9ef>if</span> curD <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>1</span>))
-                    visited[nxt] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-    <span style=color:#66d9ef>for</span> cur, curD <span style=color:#f92672>in</span> tmp:
-        rotate(wheels[cur], curD)
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
-    res <span style=color:#f92672>+=</span> wheels[i][<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(pow(<span style=color:#ae81ff>2</span>, i))
-print (res)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>wheels <span style=color:#f92672>=</span> [deque(map(int, list(input()))) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>rotate</span>(wheel, direction):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>if</span> direction <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        wheel<span style=color:#f92672>.</span>appendleft(wheel<span style=color:#f92672>.</span>pop())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        wheel<span style=color:#f92672>.</span>append(wheel<span style=color:#f92672>.</span>popleft())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>return</span> wheel
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>K <span style=color:#f92672>=</span> int(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>vd <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>res <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(K):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    N, D <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    q <span style=color:#f92672>=</span> deque()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    q<span style=color:#f92672>.</span>append((N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, D))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>] <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    tmp <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    <span style=color:#66d9ef>while</span> q:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>        cur, curD <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>        tmp<span style=color:#f92672>.</span>append((cur, curD))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        visited[cur] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>        <span style=color:#66d9ef>for</span> v <span style=color:#f92672>in</span> vd:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>            nxt <span style=color:#f92672>=</span> cur<span style=color:#f92672>+</span>v
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>            <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nxt <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>4</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[nxt]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>                <span style=color:#66d9ef>if</span> (v <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> wheels[cur][<span style=color:#ae81ff>6</span>] <span style=color:#f92672>!=</span> wheels[nxt][<span style=color:#ae81ff>2</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>                <span style=color:#f92672>or</span> v <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> wheels[nxt][<span style=color:#ae81ff>6</span>] <span style=color:#f92672>!=</span> wheels[cur][<span style=color:#ae81ff>2</span>]):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>                    q<span style=color:#f92672>.</span>append((nxt, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#66d9ef>if</span> curD <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>1</span>))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>                    visited[nxt] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#66d9ef>for</span> cur, curD <span style=color:#f92672>in</span> tmp:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>        rotate(wheels[cur], curD)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>    res <span style=color:#f92672>+=</span> wheels[i][<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(pow(<span style=color:#ae81ff>2</span>, i))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>print (res)
 </code></pre></div><ul>
 <li>문제를 제대로 이해하는데 오래걸렸다</li>
 <li>혼자 힘으로 풀어서 뿌듯하다</li>

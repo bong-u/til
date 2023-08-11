@@ -111,44 +111,44 @@ Spring - JPA : getReferenceById vs findById
 <li>두 방식의 장단점을 파악해보았다</li>
 </ul>
 <h3 id=getreferencebyid-사용>getReferenceById 사용</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> Post <span style=color:#a6e22e>createPost</span><span style=color:#f92672>(</span>PostDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>Request</span> postDTO<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> userId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#75715e>// 프록시 객체를 가져온다
-</span><span style=color:#75715e></span>    User user <span style=color:#f92672>=</span> userRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>getReferenceById</span><span style=color:#f92672>(</span>userId<span style=color:#f92672>);</span>
-
-    Post post <span style=color:#f92672>=</span> Post<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>title</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getTitle</span><span style=color:#f92672>())</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>content</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getContent</span><span style=color:#f92672>())</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>created_at</span><span style=color:#f92672>(</span>LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>().</span><span style=color:#a6e22e>truncatedTo</span><span style=color:#f92672>(</span>ChronoUnit<span style=color:#f92672>.</span><span style=color:#a6e22e>MILLIS</span><span style=color:#f92672>))</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>author</span><span style=color:#f92672>(</span>user<span style=color:#f92672>)</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
-
-    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>return</span> postRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>save</span><span style=color:#f92672>(</span>post<span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>DataIntegrityViolationException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> EntityNotFoundException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;해당 유저가 없습니다.&#34;</span><span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> Post <span style=color:#a6e22e>createPost</span><span style=color:#f92672>(</span>PostDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>Request</span> postDTO<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> userId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#75715e>// 프록시 객체를 가져온다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e></span>    User user <span style=color:#f92672>=</span> userRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>getReferenceById</span><span style=color:#f92672>(</span>userId<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    Post post <span style=color:#f92672>=</span> Post<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>title</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getTitle</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>content</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getContent</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>created_at</span><span style=color:#f92672>(</span>LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>().</span><span style=color:#a6e22e>truncatedTo</span><span style=color:#f92672>(</span>ChronoUnit<span style=color:#f92672>.</span><span style=color:#a6e22e>MILLIS</span><span style=color:#f92672>))</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>author</span><span style=color:#f92672>(</span>user<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>return</span> postRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>save</span><span style=color:#f92672>(</span>post<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>DataIntegrityViolationException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> EntityNotFoundException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;해당 유저가 없습니다.&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>장점 : 쿼리 한번으로 Post entity를 생성할 수 있다</li>
 <li>단점 : insert 쿼리 실행 중 발생한 예외를 잡기 때문에 안정적이지 않다</li>
 </ul>
 <h3 id=findbyid-사용>findById 사용</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> Post <span style=color:#a6e22e>createPost</span><span style=color:#f92672>(</span>PostDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>Request</span> postDTO<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> userId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#75715e>// 실제 객체를 가져온다
-</span><span style=color:#75715e></span>    Optional<span style=color:#f92672>&lt;</span>User<span style=color:#f92672>&gt;</span> user <span style=color:#f92672>=</span> userRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>findById</span><span style=color:#f92672>(</span>userId<span style=color:#f92672>);</span>
-
-    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span>
-        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> EntityNotFoundException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;해당 유저가 없습니다.&#34;</span><span style=color:#f92672>);</span>
-
-    Post post <span style=color:#f92672>=</span> Post<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>title</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getTitle</span><span style=color:#f92672>())</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>content</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getContent</span><span style=color:#f92672>())</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>created_at</span><span style=color:#f92672>(</span>LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>().</span><span style=color:#a6e22e>truncatedTo</span><span style=color:#f92672>(</span>ChronoUnit<span style=color:#f92672>.</span><span style=color:#a6e22e>MILLIS</span><span style=color:#f92672>))</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>author</span><span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>())</span>
-            <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
-
-    <span style=color:#66d9ef>return</span> postRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>save</span><span style=color:#f92672>(</span>post<span style=color:#f92672>);</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> Post <span style=color:#a6e22e>createPost</span><span style=color:#f92672>(</span>PostDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>Request</span> postDTO<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> userId<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#75715e>// 실제 객체를 가져온다
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e></span>    Optional<span style=color:#f92672>&lt;</span>User<span style=color:#f92672>&gt;</span> user <span style=color:#f92672>=</span> userRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>findById</span><span style=color:#f92672>(</span>userId<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> EntityNotFoundException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;해당 유저가 없습니다.&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    Post post <span style=color:#f92672>=</span> Post<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>title</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getTitle</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>content</span><span style=color:#f92672>(</span>postDTO<span style=color:#f92672>.</span><span style=color:#a6e22e>getContent</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>created_at</span><span style=color:#f92672>(</span>LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>().</span><span style=color:#a6e22e>truncatedTo</span><span style=color:#f92672>(</span>ChronoUnit<span style=color:#f92672>.</span><span style=color:#a6e22e>MILLIS</span><span style=color:#f92672>))</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>author</span><span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#66d9ef>return</span> postRepository<span style=color:#f92672>.</span><span style=color:#a6e22e>save</span><span style=color:#f92672>(</span>post<span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>장점: insert 쿼리 실행 전에 미리 예외를 처리하기 때문에 안정적이다</li>
 <li>단점: 쿼리 두번으로 인한 성능 저하가 발생한다</li>

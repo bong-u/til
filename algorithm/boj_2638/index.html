@@ -102,58 +102,58 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
-
-dx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
-dy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
-
-N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check</span>():
-    q <span style=color:#f92672>=</span> deque()
-    q<span style=color:#f92672>.</span>append((<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>))
-
-    visited <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-    visited[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-
-    <span style=color:#66d9ef>while</span> q:
-        curX, curY <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
-
-        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
-            nX <span style=color:#f92672>=</span> curX <span style=color:#f92672>+</span> dx[i]
-            nY <span style=color:#f92672>=</span> curY <span style=color:#f92672>+</span> dy[i]
-
-            <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nX <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nY <span style=color:#f92672>&lt;</span> M:
-                <span style=color:#66d9ef>if</span> L[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> visited[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-                    q<span style=color:#f92672>.</span>append((nX, nY))
-                    visited[nX][nY] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
-                <span style=color:#66d9ef>elif</span> L[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
-                    visited[nX][nY] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-    melted <span style=color:#f92672>=</span> []
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
-        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
-            <span style=color:#66d9ef>if</span> visited[i][j] <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span>:
-                melted<span style=color:#f92672>.</span>append((i, j))
-    
-    <span style=color:#66d9ef>return</span> melted
-
-result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-
-<span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-    isAnyCheese <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
-
-    melted <span style=color:#f92672>=</span> check()
-
-    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> melted:
-        <span style=color:#66d9ef>break</span>
-        
-    <span style=color:#66d9ef>for</span> x, y <span style=color:#f92672>in</span> melted:
-        L[x][y] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-
-    result <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-        
-print (result)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>dx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>dy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check</span>():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    q <span style=color:#f92672>=</span> deque()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    q<span style=color:#f92672>.</span>append((<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    visited <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    visited[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>while</span> q:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        curX, curY <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            nX <span style=color:#f92672>=</span> curX <span style=color:#f92672>+</span> dx[i]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>            nY <span style=color:#f92672>=</span> curY <span style=color:#f92672>+</span> dy[i]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nX <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nY <span style=color:#f92672>&lt;</span> M:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>                <span style=color:#66d9ef>if</span> L[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> visited[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                    q<span style=color:#f92672>.</span>append((nX, nY))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>                    visited[nX][nY] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>                <span style=color:#66d9ef>elif</span> L[nX][nY] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>                    visited[nX][nY] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    melted <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>            <span style=color:#66d9ef>if</span> visited[i][j] <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>                melted<span style=color:#f92672>.</span>append((i, j))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#66d9ef>return</span> melted
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>    isAnyCheese <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    melted <span style=color:#f92672>=</span> check()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> melted:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>        <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>        
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>    <span style=color:#66d9ef>for</span> x, y <span style=color:#f92672>in</span> melted:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span>        L[x][y] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span>    result <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span>        
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span>print (result)
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>N X M 크기의 판 위에 치즈가 표시되어 있다</li>

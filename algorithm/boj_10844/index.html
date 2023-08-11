@@ -97,15 +97,15 @@
 <li>수의 길이가 i이면서 마지막 숫자가 j인 계단 수의 개수를 저장하는 것이 핵심이다.</li>
 <li>점화식은 L[i][j] = L[i-1][j-1]+L[i-1][j+1] 이다.</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>N <span style=color:#f92672>=</span> int(input())
-L <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span><span style=color:#ae81ff>12</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>100</span>)]
-L[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
-    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>11</span>):
-        L[i][j] <span style=color:#f92672>=</span> L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]
-
-print (sum(L[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>%</span><span style=color:#ae81ff>1000000000</span>)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>N <span style=color:#f92672>=</span> int(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>L <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span><span style=color:#ae81ff>12</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>100</span>)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>L[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>11</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        L[i][j] <span style=color:#f92672>=</span> L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>print (sum(L[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>%</span><span style=color:#ae81ff>1000000000</span>)
 </code></pre></div>
 </article>
 <div id=meta class=mt-24>

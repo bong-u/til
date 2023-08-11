@@ -102,37 +102,37 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>N <span style=color:#f92672>=</span> int(input())
-M <span style=color:#f92672>=</span> int(input())
-
-parent <span style=color:#f92672>=</span> [i <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N)]
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>find</span>(node):
-    <span style=color:#66d9ef>if</span> parent[node] <span style=color:#f92672>!=</span> node:
-        parent[node] <span style=color:#f92672>=</span> find(parent[node])
-    <span style=color:#66d9ef>return</span> parent[node]
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>union</span>(a, b):
-    a <span style=color:#f92672>=</span> find(a)
-    b <span style=color:#f92672>=</span> find(b)
-    <span style=color:#66d9ef>if</span> a <span style=color:#f92672>&lt;</span> b:
-        parent[b] <span style=color:#f92672>=</span> a
-    <span style=color:#66d9ef>else</span>:
-        parent[a] <span style=color:#f92672>=</span> b
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
-    <span style=color:#66d9ef>for</span> j, item <span style=color:#f92672>in</span> enumerate(map(int, input()<span style=color:#f92672>.</span>split())):
-        <span style=color:#66d9ef>if</span> item:
-            union(i, j)
-
-path <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
-start <span style=color:#f92672>=</span> parent[path[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, M):
-    <span style=color:#66d9ef>if</span> parent[path[i]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>!=</span> start:
-        print(<span style=color:#e6db74>&#34;NO&#34;</span>)
-        <span style=color:#66d9ef>break</span>
-<span style=color:#66d9ef>else</span>:
-    print(<span style=color:#e6db74>&#39;YES&#39;</span>)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>N <span style=color:#f92672>=</span> int(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>M <span style=color:#f92672>=</span> int(input())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>parent <span style=color:#f92672>=</span> [i <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>find</span>(node):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>if</span> parent[node] <span style=color:#f92672>!=</span> node:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        parent[node] <span style=color:#f92672>=</span> find(parent[node])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>return</span> parent[node]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>union</span>(a, b):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    a <span style=color:#f92672>=</span> find(a)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    b <span style=color:#f92672>=</span> find(b)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>if</span> a <span style=color:#f92672>&lt;</span> b:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        parent[b] <span style=color:#f92672>=</span> a
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        parent[a] <span style=color:#f92672>=</span> b
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#66d9ef>for</span> j, item <span style=color:#f92672>in</span> enumerate(map(int, input()<span style=color:#f92672>.</span>split())):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>if</span> item:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>            union(i, j)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>path <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>start <span style=color:#f92672>=</span> parent[path[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, M):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>    <span style=color:#66d9ef>if</span> parent[path[i]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>!=</span> start:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>        print(<span style=color:#e6db74>&#34;NO&#34;</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>        <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    print(<span style=color:#e6db74>&#39;YES&#39;</span>)
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>서로 연결 된 도시에 대한 정보와 여행 계획에 있는 도시의 정보가 주어진다</li>

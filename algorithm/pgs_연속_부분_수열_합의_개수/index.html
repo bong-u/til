@@ -103,29 +103,29 @@
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <ul>
 <li>첫번째 풀이
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(elements):
-    result <span style=color:#f92672>=</span> set()
-    length <span style=color:#f92672>=</span> len(elements)
-    elements <span style=color:#f92672>=</span> elements<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span>
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
-        temp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(length):
-            temp <span style=color:#f92672>+=</span> elements[i<span style=color:#f92672>+</span>j]
-            result<span style=color:#f92672>.</span>add(temp)
-
-    <span style=color:#66d9ef>return</span> len(result)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(elements):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    result <span style=color:#f92672>=</span> set()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    length <span style=color:#f92672>=</span> len(elements)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    elements <span style=color:#f92672>=</span> elements<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        temp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            temp <span style=color:#f92672>+=</span> elements[i<span style=color:#f92672>+</span>j]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            result<span style=color:#f92672>.</span>add(temp)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>return</span> len(result)
 </code></pre></div></li>
 <li>개선한 풀이
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(elements):
-result <span style=color:#f92672>=</span> set()
-length <span style=color:#f92672>=</span> len(elements)
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
-    temp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(length):
-        temp <span style=color:#f92672>+=</span> elements[(i<span style=color:#f92672>+</span>j)<span style=color:#f92672>%</span>length]
-        result<span style=color:#f92672>.</span>add(temp)
-
-<span style=color:#66d9ef>return</span> len(result)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(elements):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>result <span style=color:#f92672>=</span> set()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>length <span style=color:#f92672>=</span> len(elements)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    temp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        temp <span style=color:#f92672>+=</span> elements[(i<span style=color:#f92672>+</span>j)<span style=color:#f92672>%</span>length]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        result<span style=color:#f92672>.</span>add(temp)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#66d9ef>return</span> len(result)
 </code></pre></div></li>
 </ul>
 <h3 id=문제>문제</h3>

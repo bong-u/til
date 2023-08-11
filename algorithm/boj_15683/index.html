@@ -92,49 +92,49 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> copy<span style=color:#f92672>,</span> sys
-
-N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-cctv <span style=color:#f92672>=</span> []
-direction <span style=color:#f92672>=</span> [[[(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)]],
-[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]],
-[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)]],
-[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)]],
-[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]]]
-res <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>maxsize
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
-    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
-        <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;=</span> L[i][j] <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>5</span>:
-            cctv<span style=color:#f92672>.</span>append((L[i][j]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, i, j))
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(map_, depth):
-    <span style=color:#66d9ef>global</span> res
-
-    <span style=color:#66d9ef>if</span> depth <span style=color:#f92672>==</span> len(cctv):
-        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
-            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
-                <span style=color:#66d9ef>if</span> map_[i][j] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-        res <span style=color:#f92672>=</span> min(cnt, res)
-        <span style=color:#66d9ef>return</span>
-    ctype, cx, cy <span style=color:#f92672>=</span> cctv[depth]
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> direction[ctype]:
-        new_map <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(map_)
-        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> i:
-            nx, ny <span style=color:#f92672>=</span> cx, cy
-            <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-                nx <span style=color:#f92672>+=</span> j[<span style=color:#ae81ff>0</span>]
-                ny <span style=color:#f92672>+=</span> j[<span style=color:#ae81ff>1</span>]
-
-                <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>or</span> map_[nx][ny] <span style=color:#f92672>==</span> <span style=color:#ae81ff>6</span>:
-                    <span style=color:#66d9ef>break</span>
-                new_map[nx][ny] <span style=color:#f92672>=</span> <span style=color:#ae81ff>7</span>
-        dfs(new_map, depth<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
-
-dfs(L, <span style=color:#ae81ff>0</span>)
-print (res)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> copy<span style=color:#f92672>,</span> sys
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>cctv <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>direction <span style=color:#f92672>=</span> [[[(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)]],
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]],
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)]],
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)], [(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)], [(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)]],
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>[[(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)]]]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>res <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>maxsize
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;=</span> L[i][j] <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>5</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            cctv<span style=color:#f92672>.</span>append((L[i][j]<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, i, j))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(map_, depth):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#66d9ef>global</span> res
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#66d9ef>if</span> depth <span style=color:#f92672>==</span> len(cctv):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(M):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                <span style=color:#66d9ef>if</span> map_[i][j] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        res <span style=color:#f92672>=</span> min(cnt, res)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        <span style=color:#66d9ef>return</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>    ctype, cx, cy <span style=color:#f92672>=</span> cctv[depth]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> direction[ctype]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>        new_map <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(map_)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> i:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>            nx, ny <span style=color:#f92672>=</span> cx, cy
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>            <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>                nx <span style=color:#f92672>+=</span> j[<span style=color:#ae81ff>0</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>                ny <span style=color:#f92672>+=</span> j[<span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>                <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>or</span> map_[nx][ny] <span style=color:#f92672>==</span> <span style=color:#ae81ff>6</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>                    <span style=color:#66d9ef>break</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>                new_map[nx][ny] <span style=color:#f92672>=</span> <span style=color:#ae81ff>7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>        dfs(new_map, depth<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>dfs(L, <span style=color:#ae81ff>0</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>print (res)
 </code></pre></div><ul>
 <li>구현 문제는 늘 시간이 오래걸린다</li>
 <li>오늘도 혼자 힘으로 풀어버렸다!</li>

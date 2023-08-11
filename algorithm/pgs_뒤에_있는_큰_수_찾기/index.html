@@ -102,18 +102,18 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(numbers):
-    stack <span style=color:#f92672>=</span> []
-    answer <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> len(numbers)
-
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(numbers)):
-        <span style=color:#66d9ef>while</span> stack <span style=color:#f92672>and</span> stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&lt;</span> numbers[i]:
-            answer[stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>=</span> numbers[i]
-            stack<span style=color:#f92672>.</span>pop()
-        stack<span style=color:#f92672>.</span>append((i, numbers[i]))
-        print(stack)
-
-    <span style=color:#66d9ef>return</span> answer
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(numbers):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    stack <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    answer <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> len(numbers)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(numbers)):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#66d9ef>while</span> stack <span style=color:#f92672>and</span> stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&lt;</span> numbers[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>            answer[stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>=</span> numbers[i]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            stack<span style=color:#f92672>.</span>pop()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        stack<span style=color:#f92672>.</span>append((i, numbers[i]))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        print(stack)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>return</span> answer
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
 <li>정수로 이루어진 배열 numbers가 주어진다</li>
@@ -144,16 +144,16 @@
 <ul>
 <li>
 <p>stack에 index만 저장하여 그때그때 numbers에서 값을 가져온다</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(numbers):
-    answer <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> len(numbers)
-    stack <span style=color:#f92672>=</span> []
-
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(numbers)):
-        <span style=color:#66d9ef>while</span> stack <span style=color:#f92672>and</span> numbers[stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]] <span style=color:#f92672>&lt;</span> numbers[i]:
-            answer[stack<span style=color:#f92672>.</span>pop()] <span style=color:#f92672>=</span> numbers[i]
-        stack<span style=color:#f92672>.</span>append(i)
-
-    <span style=color:#66d9ef>return</span> answer
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(numbers):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    answer <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> len(numbers)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    stack <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(numbers)):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#66d9ef>while</span> stack <span style=color:#f92672>and</span> numbers[stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]] <span style=color:#f92672>&lt;</span> numbers[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>            answer[stack<span style=color:#f92672>.</span>pop()] <span style=color:#f92672>=</span> numbers[i]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        stack<span style=color:#f92672>.</span>append(i)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>return</span> answer
 </code></pre></div></li>
 </ul>
 </article>

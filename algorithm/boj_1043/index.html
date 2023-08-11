@@ -92,37 +92,37 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-T <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
-T <span style=color:#f92672>=</span> set(T[<span style=color:#ae81ff>1</span>:])
-
-member <span style=color:#f92672>=</span> [set() <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-party <span style=color:#f92672>=</span> []
-visit <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M
-
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>explore</span>(n):
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> member[n]:
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visit[i]:
-            visit[i] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> party[i]:
-                explore(j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-    
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
-    lst <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
-    lst <span style=color:#f92672>=</span> lst[<span style=color:#ae81ff>1</span>:]
-    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> lst:
-        member[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>add(i)
-    party<span style=color:#f92672>.</span>append(set(lst))
-
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> T:
-    explore(i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-
-cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> visit:
-    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> i:
-        cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-
-print (cnt)
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>T <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>T <span style=color:#f92672>=</span> set(T[<span style=color:#ae81ff>1</span>:])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>member <span style=color:#f92672>=</span> [set() <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>party <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>visit <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>explore</span>(n):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> member[n]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visit[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            visit[i] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> party[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>                explore(j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    lst <span style=color:#f92672>=</span> list(map(int, input()<span style=color:#f92672>.</span>split()))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    lst <span style=color:#f92672>=</span> lst[<span style=color:#ae81ff>1</span>:]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> lst:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        member[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>add(i)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    party<span style=color:#f92672>.</span>append(set(lst))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> T:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>    explore(i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> visit:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> i:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>        cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>print (cnt)
 </code></pre></div><ul>
 <li>내방식대로 푸는데 오래걸렸다</li>
 <li>유니온 파인드로 푸는 사람도 있었다</li>

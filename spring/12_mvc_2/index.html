@@ -110,10 +110,10 @@ MVC 2 : Messages, Validate command object
 <li>label.properties</li>
 </ul>
 <pre tabindex=0><code>member.register=회원가입
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#960050;background-color:#1e0010>&lt;</span>%@ taglib prefix=&#34;spring&#34; uri=&#34;http://www.springframework.org/tags&#34; %&gt;
-&lt;<span style=color:#f92672>head</span>&gt;
-  &lt;<span style=color:#f92672>title</span>&gt;&lt;<span style=color:#f92672>spring:message</span> <span style=color:#a6e22e>code</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member.register&#34;</span> /&gt;&lt;/<span style=color:#f92672>title</span>&gt;
-&lt;/<span style=color:#f92672>head</span>&gt;
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#960050;background-color:#1e0010>&lt;</span>%@ taglib prefix=&#34;spring&#34; uri=&#34;http://www.springframework.org/tags&#34; %&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>&lt;<span style=color:#f92672>head</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  &lt;<span style=color:#f92672>title</span>&gt;&lt;<span style=color:#f92672>spring:message</span> <span style=color:#a6e22e>code</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member.register&#34;</span> /&gt;&lt;/<span style=color:#f92672>title</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>&lt;/<span style=color:#f92672>head</span>&gt;
 </code></pre></div><ul>
 <li>사이트가 여러 언어를 지원해야할 때 label_ko.properties, label_en.properties와 같이 만든다고 한다</li>
 <li>http헤더의 Accept-Launguage를 자동으로 인식한다고 하니까 편할 것 같다</li>
@@ -123,31 +123,31 @@ MVC 2 : Messages, Validate command object
 <ul>
 <li>RegisterRequestValidator</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Override</span>
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>Object target<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    RegisterRequest regReq <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>RegisterRequest<span style=color:#f92672>)</span> target<span style=color:#f92672>;</span>
-
-    <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>()</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>|</span> regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>().</span><span style=color:#a6e22e>trim</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-        errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;bad&#34;</span><span style=color:#f92672>);</span>
-    <span style=color:#f92672>}</span>
-    <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
-        Matcher matcher <span style=color:#f92672>=</span> pattern<span style=color:#f92672>.</span><span style=color:#a6e22e>matcher</span><span style=color:#f92672>(</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
-        <span style=color:#66d9ef>if</span><span style=color:#f92672>(!</span>matcher<span style=color:#f92672>.</span><span style=color:#a6e22e>matches</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-            errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;bad&#34;</span><span style=color:#f92672>);</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-
-    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmptyOrWhitespace</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
-    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmpty</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;password&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
-    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmpty</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;confirmPassword&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
-    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>isPasswordEqualToConfirmPassword</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-            errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;confirmPassword&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;nomatch&#34;</span><span style=color:#f92672>);</span>
-        <span style=color:#f92672>}</span>
-    <span style=color:#f92672>}</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>Object target<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    RegisterRequest regReq <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>RegisterRequest<span style=color:#f92672>)</span> target<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>()</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>|</span> regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>().</span><span style=color:#a6e22e>trim</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;bad&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        Matcher matcher <span style=color:#f92672>=</span> pattern<span style=color:#f92672>.</span><span style=color:#a6e22e>matcher</span><span style=color:#f92672>(</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#66d9ef>if</span><span style=color:#f92672>(!</span>matcher<span style=color:#f92672>.</span><span style=color:#a6e22e>matches</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;bad&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmptyOrWhitespace</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmpty</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;password&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    ValidationUtils<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectIfEmpty</span><span style=color:#f92672>(</span>errors<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;confirmPassword&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;required&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isEmpty</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>regReq<span style=color:#f92672>.</span><span style=color:#a6e22e>isPasswordEqualToConfirmPassword</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            errors<span style=color:#f92672>.</span><span style=color:#a6e22e>rejectValue</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;confirmPassword&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;nomatch&#34;</span><span style=color:#f92672>);</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    <span style=color:#f92672>}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span style=color:#f92672>}</span>
 </code></pre></div><h3 id=print-error-message>Print Error Message</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>form:errors</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span> /&gt;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>&lt;<span style=color:#f92672>form:errors</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span> /&gt;
 </code></pre></div><ul>
 <li>만약 errors.rejectValue(&ldquo;email&rdquo;, &ldquo;requireed&rdquo;) 코드로 에러코드를 추가했고 커맨드 객체가 registerRequest인 경우,
 <ol>
@@ -163,17 +163,17 @@ MVC 2 : Messages, Validate command object
 <ul>
 <li>MvcConfig.java</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@Override</span>
-<span style=color:#66d9ef>public</span> Validator <span style=color:#a6e22e>getValidator</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> RegisterRequestValidator<span style=color:#f92672>();</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Override</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> Validator <span style=color:#a6e22e>getValidator</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> RegisterRequestValidator<span style=color:#f92672>();</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>RegisterController.java</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step3&#34;</span><span style=color:#f92672>)</span>
-<span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep3</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Valid</span> RegisterRequest regReq<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>errors<span style=color:#f92672>.</span><span style=color:#a6e22e>hasErrors</span><span style=color:#f92672>())</span>
-        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step2&#34;</span><span style=color:#f92672>;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/register/step3&#34;</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>handleStep3</span><span style=color:#f92672>(</span><span style=color:#a6e22e>@Valid</span> RegisterRequest regReq<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>errors<span style=color:#f92672>.</span><span style=color:#a6e22e>hasErrors</span><span style=color:#f92672>())</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;register/step2&#34;</span><span style=color:#f92672>;</span>
 </code></pre></div><ul>
 <li>global 범위 validator를 사용할 수 있다.</li>
 </ul>
@@ -181,10 +181,10 @@ MVC 2 : Messages, Validate command object
 <ul>
 <li>RegisterController.java</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#a6e22e>@InitBinder</span>
-<span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initBinder</span><span style=color:#f92672>(</span>WebDataBinder binder<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-    binder<span style=color:#f92672>.</span><span style=color:#a6e22e>setValidator</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> RegisterRequestValidator<span style=color:#f92672>());</span>
-<span style=color:#f92672>}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@InitBinder</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>protected</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initBinder</span><span style=color:#f92672>(</span>WebDataBinder binder<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    binder<span style=color:#f92672>.</span><span style=color:#a6e22e>setValidator</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> RegisterRequestValidator<span style=color:#f92672>());</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
 </code></pre></div><ul>
 <li>우선순위
 <ul>
@@ -197,22 +197,22 @@ MVC 2 : Messages, Validate command object
 <ul>
 <li>RegisterRequest.java</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> javax.validation.constraints.Size<span style=color:#f92672>;</span>
-
-<span style=color:#f92672>import</span> org.hibernate.validator.constraints.Email<span style=color:#f92672>;</span>
-<span style=color:#f92672>import</span> org.hibernate.validator.constraints.NotBlank<span style=color:#f92672>;</span>
-<span style=color:#f92672>import</span> org.hibernate.validator.constraints.NotEmpty<span style=color:#f92672>;</span>
-
-<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RegisterRequest</span> <span style=color:#f92672>{</span>
-	<span style=color:#a6e22e>@NotBlank</span>
-	<span style=color:#a6e22e>@Email</span>
-	<span style=color:#66d9ef>private</span> String email<span style=color:#f92672>;</span>
-	<span style=color:#a6e22e>@Size</span><span style=color:#f92672>(</span>min <span style=color:#f92672>=</span> 6<span style=color:#f92672>)</span>
-	<span style=color:#66d9ef>private</span> String password<span style=color:#f92672>;</span>
-	<span style=color:#a6e22e>@NotEmpty</span>
-	<span style=color:#66d9ef>private</span> String confirmPassword<span style=color:#f92672>;</span>
-	<span style=color:#a6e22e>@NotEmpty</span>
-	<span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> javax.validation.constraints.Size<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>import</span> org.hibernate.validator.constraints.Email<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>import</span> org.hibernate.validator.constraints.NotBlank<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>import</span> org.hibernate.validator.constraints.NotEmpty<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RegisterRequest</span> <span style=color:#f92672>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>	<span style=color:#a6e22e>@NotBlank</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>	<span style=color:#a6e22e>@Email</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>	<span style=color:#66d9ef>private</span> String email<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>	<span style=color:#a6e22e>@Size</span><span style=color:#f92672>(</span>min <span style=color:#f92672>=</span> 6<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>	<span style=color:#66d9ef>private</span> String password<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>	<span style=color:#a6e22e>@NotEmpty</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>	<span style=color:#66d9ef>private</span> String confirmPassword<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>	<span style=color:#a6e22e>@NotEmpty</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>	<span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
 </code></pre></div><ul>
 <li>
 <p>bean validation을 사용하기 위해</p>
