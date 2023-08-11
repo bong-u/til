@@ -1,5 +1,5 @@
-baseURL: 'https://bong-u.github.io/til/'
-languageCode: 'en-us'
+baseURL: "https://bong-u.github.io/til/"
+languageCode: "en-us"
 title: "Bong-u's TIL"
 enableGitInfo: true
 
@@ -8,10 +8,15 @@ sitemap:
   filename: "sitemap.xml"
   priority: 0.5
 
+markup:
+  highlight:
+    lineNos: true
+    lineNumbersInTable: false
+
 frontmatter:
   date:
-    - 'date'
+    - "date"
   lastmod:
-    - 'lastmode'
-    - ':git'
-    - 'date'
+    - "lastmode"
+    - ":git"
+    - "date"
