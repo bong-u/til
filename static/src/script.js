@@ -30,22 +30,17 @@ const modifyImagePath = () => {
     }
 };
 
-// 현재 다크모드 여부에 따라 CSS 변경
+// 현재 다크모드 여부에 따라 class 추가
 const checkDarkMode = () => {
-    const linkEl = document.createElement("link");
-    linkEl.id = "github-markdown-css";
-    linkEl.rel = "stylesheet";
 
-    // dark -> light
-    if (localStorage.getItem("theme") === "dark") {
+    if (localStorage.getItem("theme") === "dark")
         document.documentElement.classList.remove("dark");
-    }
     // light -> dark
     else {
         document.documentElement.classList.add("dark");
-    }
 
-};
+    };
+}
 
 // 다크모드 toggle
 const toggleDarkModeHandler = () => {
