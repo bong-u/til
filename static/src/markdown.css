@@ -23,7 +23,7 @@
   }
 
   #content blockquote {
-    @apply m-3 border-l-[5px] ml-4 pl-6 py-1 border-quote_bar rounded-sm;
+    @apply m-3 border-l-[5px] ml-4 pl-6 py-2 border-quote_bar rounded-sm;
   }
 
   #content ul {
@@ -59,7 +59,7 @@
   }
 
   #content pre {
-    @apply p-5 rounded-md whitespace-pre-wrap;
+    @apply my-3 p-5 rounded-md whitespace-pre-wrap;
   }
 
   #content table td,
@@ -72,6 +72,6 @@
   }
 
   #content a {
-    @apply text-link;
+    @apply text-link hover:underline;
   }
 }

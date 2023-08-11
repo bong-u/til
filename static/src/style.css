@@ -559,8 +559,8 @@ code,
   border-radius: 0.125rem;
   border-left-width: 5px;
   border-color: var(--color-quote-bar);
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   padding-left: 1.5rem;
 }
 
@@ -604,6 +604,8 @@ code,
 }
 
 #content pre{
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
   white-space: pre-wrap;
   border-radius: 0.375rem;
   padding: 1.25rem;
@@ -625,6 +627,10 @@ code,
 
 #content a{
   color: var(--color-link);
+}
+
+#content a:hover{
+  text-decoration-line: underline;
 }
 
 *{
