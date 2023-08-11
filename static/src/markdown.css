@@ -23,7 +23,7 @@
   }
 
   #content blockquote {
-    @apply m-3 border-l-2 ml-5 px-3 py-1;
+    @apply m-3 border-l-[5px] ml-4 pl-6 py-1 border-quote_bar rounded-sm;
   }
 
   #content ul {

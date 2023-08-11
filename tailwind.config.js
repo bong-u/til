@@ -22,6 +22,7 @@ module.exports = {
       box_bg: "var(--color-box-bg)",
       box_hover_bg: "var(--color-box-hover-bg)",
       link: "var(--color-link)",
+      quote_bar: "var(--color-quote-bar)",
     },
     extend: {
       fontFamily: {

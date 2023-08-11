@@ -442,8 +442,10 @@ video {
   /* stone-900 */
   --color-scroll-thumb: #71717a;
   /* zinc-500 */
-  --color-link: #22c55e;
-  /* green-500 */
+  --color-quote-bar: #059669;
+  /* emerald-600 */
+  --color-link: #059669;
+  /* emerald-600 */
 }
 
 :root[class~="dark"] {
@@ -553,12 +555,13 @@ code,
 
 #content blockquote{
   margin: 0.75rem;
-  margin-left: 1.25rem;
-  border-left-width: 2px;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  margin-left: 1rem;
+  border-radius: 0.125rem;
+  border-left-width: 5px;
+  border-color: var(--color-quote-bar);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  padding-left: 1.5rem;
 }
 
 #content ul{
