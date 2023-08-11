@@ -3,6 +3,14 @@ module.exports = {
   content: ["./content/**/*.md", "./layouts/**/*.html"],
   plugins: [],
   theme: {
+    listStyleType: {
+      disc: 'disc',
+      circle: 'circle',
+      square: 'square',
+      decimal: 'decimal',
+      alpha: 'lower-alpha',
+      roman: 'upper-roman',
+    },
     colors: {
       inherit: 'inherit',
       transparent: 'transparent',
@@ -13,6 +21,8 @@ module.exports = {
       toc_hover: "var(--color-toc-hover)",
       box_bg: "var(--color-box-bg)",
       box_hover_bg: "var(--color-box-hover-bg)",
+      link: "var(--color-link)",
+      quote_bar: "var(--color-quote-bar)",
     },
     extend: {
       fontFamily: {
@@ -24,7 +34,7 @@ module.exports = {
           "Noto Color Emoji"
         ],
         "code": [
-          "Ubuntu"
+          "Roboto Mono",
         ]
       }
     }
