@@ -1,0 +1,154 @@
+<!doctype html><html>
+<head>
+<title>React - 로그인 상태와 중첩 라우팅</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☁</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">♨</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (28)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (7)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (10)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (11)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (83)</span>
+</a>
+</nav>
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#배경>배경</a></li>
+<li><a href=#코드>코드</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+React - 로그인 상태와 중첩 라우팅
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-12 </h4>
+<h4 id=date> MODIFIED 2023-08-12</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=배경>배경</h3>
+<ul>
+<li>학부연구생 업무 중에, 로그인 여부에 따라 다른 페이지를 보여주는 기능을 구현해야 했다.</li>
+<li>로그인을 하지 않았을때는 &ldquo;/login"으로, 로그인을 했을 때는 &ldquo;/&ldquo;으로 리다이렉트 했다</li>
+<li>path가 달라도 공통적으로 적용되는 레이아웃은 중첩 라우팅을 이용하여 구현했다</li>
+<li>구조는 다음과 같다
+<img src=/static/image/react_router_structure.png alt=route_structure></li>
+</ul>
+<h3 id=코드>코드</h3>
+<ul>
+<li>
+<p>Router.js</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>&lt;<span style=color:#f92672>BrowserRouter</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    &lt;<span style=color:#f92672>Routes</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        <span style=color:#75715e>&lt;!-- isAuthorized를 prop으로 넘겨서 이미 login한 경우 redirect --&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        &lt;<span style=color:#f92672>Route</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/login&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span><span style=color:#e6db74>{&lt;Login</span> <span style=color:#a6e22e>isAuthorized</span><span style=color:#f92672>=</span><span style=color:#e6db74>{isAuthorized}</span> /&gt;}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        /&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#75715e>&lt;!-- 로그인을 하지 않았는데 &#34;/&#34;로 접근시 redirect --&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        {!isAuthorized ? (
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        &lt;<span style=color:#f92672>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span><span style=color:#e6db74>{&lt;Navigate</span> <span style=color:#a6e22e>to</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/login&#34;</span> /&gt;} /&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        ) : (
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#75715e>&lt;!-- 공통 요소인 MainLayout에 대해 아래와 같이 중첩라우팅을 사용할 수 있다 --&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        &lt;<span style=color:#f92672>Route</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span><span style=color:#e6db74>{&lt;MainLayout</span> /&gt;}&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>            &lt;<span style=color:#f92672>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span><span style=color:#e6db74>{&lt;MainDashboard</span> /&gt;} /&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            &lt;<span style=color:#f92672>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/file&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span><span style=color:#e6db74>{&lt;FileManager</span> /&gt;} /&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            &lt;<span style=color:#f92672>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/job&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span><span style=color:#e6db74>{&lt;JobManager</span> /&gt;} /&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        &lt;/<span style=color:#f92672>Route</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        )}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    &lt;/<span style=color:#f92672>Routes</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>&lt;/<span style=color:#f92672>BrowserRouter</span>&gt;
+</code></pre></div></li>
+<li>
+<p>MainLayout.js</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>&lt;<span style=color:#f92672>Container</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    &lt;<span style=color:#f92672>Sidebar</span>/&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#75715e>&lt;!-- Outlet을 이용하여 자식 컴포넌트를 보여준다 --&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    &lt;<span style=color:#f92672>Outlet</span> /&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>&lt;/<span style=color:#f92672>Container</span>&gt;
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/javascript/js_dicom_to_base64/>
+JS - Dicom to base64</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
