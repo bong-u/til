@@ -80,4 +80,8 @@
   #content a {
     @apply text-link hover:underline;
   }
+
+  #content .MathJax svg {
+    @apply inline;
+  }
 }

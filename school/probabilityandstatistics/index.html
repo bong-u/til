@@ -11,12 +11,8 @@
 <link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
 <link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
 <link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-<script type=text/x-mathjax-config>
-  MathJax.Hub.Config({
-    tex2jax: {inlineMath: [['$','$']], displayMath: [['$$','$$']]},
-  });
-</script>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
 </head>
 <body class="flex justify-center my-16">
 <header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
@@ -126,7 +122,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-04-23</h4>
+<h4 id=date> MODIFIED 2023-08-12</h4>
 </div>
 </div>
 </div>
@@ -415,7 +411,7 @@ $$ f(x)=p^xq^{1-x}\ (x=0, 1) $$</li>
 <p>이항분포 B(n, p)</p>
 <ul>
 <li>n회의 베르누이 시행에서 성공할 횟수 X의 확률분포
-$$ f(x) = {}<em>{n}C</em>{x} p^xq^{(n-x)} $$</li>
+$$ f(x) = _nC_x p^xq^{(n-x)} $$</li>
 <li>$E(X) = np$</li>
 <li>$V(X) = npq$</li>
 </ul>
