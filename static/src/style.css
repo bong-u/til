@@ -562,10 +562,11 @@ video {
   margin-bottom: 0.25rem;
 }
 
-#content pre{
+#content code{
   background-color: var(--color-code-bg) !important;
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+  display: block;
   white-space: pre-wrap;
   border-radius: 0.375rem;
   padding: 1.25rem;
@@ -574,6 +575,10 @@ video {
 #content code,
   #content code *{
   font-family: Roboto Mono !important;
+}
+
+#content code:not(:has(span)){
+  display: none;
 }
 
 #content table td,
