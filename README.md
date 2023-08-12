@@ -8,17 +8,17 @@
 # Execute hugo server
 npm start
 # Build tailwind css
-npm run build-tw
+npm run watch
 ```
 
 ### Link
 
-- Deploy https://bong-u.github.io/til
-- Develop http://localhost:1313/til
+- Deploy : https://bong-u.github.io/til
+- Develop : http://localhost:1313/til
 
 ### Dependency
 
-- github-markdown-css : https://cdnjs.com/libraries/github-markdown-css
+- MathJax v3 : https://github.com/mathjax/MathJax/releases/latest
 
 ### Commit Convention
 
