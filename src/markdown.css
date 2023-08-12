@@ -58,14 +58,16 @@
     @apply my-1;
   }
 
-  #content pre {
+  #content code {
     @apply bg-code_bg !important;
-    @apply my-3 p-5 rounded-md whitespace-pre-wrap;
+    @apply block my-3 p-5 rounded-md whitespace-pre-wrap;
   }
-
   #content code,
   #content code * {
     @apply font-code !important;
+  }
+  #content code:not(:has(span)) {
+    @apply hidden;
   }
 
   #content table td,
