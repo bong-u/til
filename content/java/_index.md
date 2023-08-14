@@ -1,3 +1,4 @@
 ---
-title: "♨|Java"
+title: "Java"
+emoji: "☕"
 ---

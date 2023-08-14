@@ -1,3 +1,4 @@
 ---
-title: "🍃|Spring"
+title: "Spring"
+emoji: "🍃"
 ---

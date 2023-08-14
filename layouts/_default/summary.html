@@ -1,5 +1,5 @@
-{{ $section_emoji := index (split .Parent.Title "|") 0 }}
-{{ $section_name := index (split .Parent.Title "|") 1 }}
+{{ $section_emoji := .Parent.Params.emoji }}
+{{ $section_name := .Parent.Title }}
 
 
 <div class="box flex flex-col gap-3 rounded-lg w-full min-w-0">

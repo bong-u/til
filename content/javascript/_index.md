@@ -1,3 +1,4 @@
 ---
-title: "🍌|Javascript"
+title: "Javascript"
+emoji: "🍌"
 ---
