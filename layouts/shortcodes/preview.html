@@ -3,23 +3,15 @@
 {{ $emoji := index (split $page.Parent.Title "|") 0 }}
 {{ $section := index (split $page.Parent.Title "|") 1 }}
 
-<div class="h-40 flex p-3 box rounded-2xl">
+<div class="h-40 flex px-3 box rounded-2xl">
     <a href={{$page.Permalink}} class="preview flex">
-        <div class="flex items-center mx-3 w-32 w-32 text-center">
-            <span class="w-full text-7xl">{{ $emoji }}</span>
-        </div>
-        <div class="flex flex-col w-full mx-5">
+        <div class="flex flex-col w-full mx-5 justify-around">
             <div class="flex justify-between">
-                <span class="font-bold text-2xl">{{ $page.Title }}</span>
-                <div>
-                    <span>{{ $page.Date.Format "2006-01-02" }}</span>
-                    <p>{{ $section }}</p>
-                </div>
+                <span class="text-2xl">{{ $page.Title }}</span>
+                <p>{{ $emoji }} {{ $section }}</p>
             </div>
-            <div class="overflow-hidden overflow-ellipsis">
-                <div>
-                    {{ substr $page.Summary 0 300 }}
-                </div>
+            <div class="line-clamp-3">
+                {{ substr $page.Summary 0 500 }}
             </div>
         </div>
     </a>

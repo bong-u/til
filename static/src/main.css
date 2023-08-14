@@ -36,7 +36,7 @@
 
 @layer components {
   .box {
-    @apply bg-box_bg;
+    @apply bg-box_bg hover-bold;
   }
 
   .box:hover {
