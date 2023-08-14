@@ -98,45 +98,29 @@
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=프로그래머스-한-문제-풀기>프로그래머스 한 문제 풀기</h3>
-<div class="h-40 flex p-3 box rounded-2xl">
+<div class="h-40 flex px-3 box rounded-2xl">
 <a href=https://bong-u.github.io/til/algorithm/pgs_%EB%91%90_%ED%81%90_%ED%95%A9_%EA%B0%99%EA%B2%8C_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="preview flex">
-<div class="flex items-center mx-3 w-32 w-32 text-center">
-<span class="w-full text-7xl">🧠</span>
-</div>
-<div class="flex flex-col w-full mx-5">
+<div class="flex flex-col w-full mx-5 justify-around">
 <div class="flex justify-between">
-<span class="font-bold text-2xl">프로그래머스 - 두 큐 합 같게 만들기 (L2)</span>
-<div>
-<span>2023-08-09</span>
-<p>Algorithm</p>
+<span class=text-2xl>프로그래머스 - 두 큐 합 같게 만들기 (L2)</span>
+<p>🧠 Algorithm</p>
 </div>
-</div>
-<div class="overflow-hidden overflow-ellipsis">
-<div>
-1from collections import deque 2 3def solution(queue1, queue2): 4 sum1, sum2 = sum(queue1), sum(queue2) 5 dq1 = deque(queue1) 6 dq2 = deque(queue2) 7 cnt = 0 8 9 while cnt &amp;lt;= len(queue1)*2+1 and sum1 != sum2: 10 if sum1 &amp;gt; sum2: 11 tmp = dq1.popleft() 12 dq2.append(tmp) 13 sum1 -= tmp 14 sum2 +
-</div>
+<div class=line-clamp-3>
+1from collections import deque 2 3def solution(queue1, queue2): 4 sum1, sum2 = sum(queue1), sum(queue2) 5 dq1 = deque(queue1) 6 dq2 = deque(queue2) 7 cnt = 0 8 9 while cnt &amp;lt;= len(queue1)*2+1 and sum1 != sum2: 10 if sum1 &amp;gt; sum2: 11 tmp = dq1.popleft() 12 dq2.append(tmp) 13 sum1 -= tmp 14 sum2 += tmp 15 elif sum1 &amp;lt; sum2: 16 tmp = dq2.popleft() 17 dq1.append(tmp) 18 sum1 += tmp 19 sum2 -= tmp 20 cnt += 1 21 22 return cnt if sum1 == sum2 else -1 문제 길이가 같은 두 큐가 주어진다 두 큐의 합이 같아지도록 큐의 원소를 교환할
 </div>
 </div>
 </a>
 </div>
 <h3 id=jpa-정리하기>JPA 정리하기</h3>
-<div class="h-40 flex p-3 box rounded-2xl">
+<div class="h-40 flex px-3 box rounded-2xl">
 <a href=https://bong-u.github.io/til/spring/jpa2/ class="preview flex">
-<div class="flex items-center mx-3 w-32 w-32 text-center">
-<span class="w-full text-7xl">🍃</span>
-</div>
-<div class="flex flex-col w-full mx-5">
+<div class="flex flex-col w-full mx-5 justify-around">
 <div class="flex justify-between">
-<span class="font-bold text-2xl">Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체</span>
-<div>
-<span>2023-08-07</span>
-<p>Spring</p>
+<span class=text-2xl>Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체</span>
+<p>🍃 Spring</p>
 </div>
-</div>
-<div class="overflow-hidden overflow-ellipsis">
-<div>
-프록시 객체 프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다 em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다 JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다 FetchType.EAGER (즉시 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 실제 객체이다 3String name = member.getName(); // 1차 캐시
-</div>
+<div class=line-clamp-3>
+프록시 객체 프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다 em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다 JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다 FetchType.EAGER (즉시 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 실제 객체이다 3String name = member.getName(); // 1차 캐시에서 조회한다 FetchType.LAZY (지연 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 프록시 객체이다 3String name = member.
 </div>
 </div>
 </a>

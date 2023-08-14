@@ -804,6 +804,10 @@ body::-webkit-scrollbar-thumb{
   margin-bottom: 0.5rem;
 }
 
+.box:hover{
+  font-weight: 700;
+}
+
 .box{
   background-color: var(--color-box-bg);
 }
@@ -939,6 +943,13 @@ body::-webkit-scrollbar-thumb{
   margin-top: 6rem;
 }
 
+.line-clamp-3{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .block{
   display: block;
 }
@@ -1047,6 +1058,10 @@ body::-webkit-scrollbar-thumb{
   justify-content: space-between;
 }
 
+.justify-around{
+  justify-content: space-around;
+}
+
 .justify-items-center{
   justify-items: center;
 }
@@ -1103,12 +1118,13 @@ body::-webkit-scrollbar-thumb{
   padding: 0.25rem;
 }
 
-.p-3{
-  padding: 0.75rem;
-}
-
 .p-7{
   padding: 1.75rem;
+}
+
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-4{
@@ -1164,8 +1180,8 @@ body::-webkit-scrollbar-thumb{
   line-height: 2.5rem;
 }
 
-.text-7xl{
-  font-size: 4.5rem;
+.text-6xl{
+  font-size: 3.75rem;
   line-height: 1;
 }
 
@@ -1181,6 +1197,10 @@ body::-webkit-scrollbar-thumb{
 
 .font-bold{
   font-weight: 700;
+}
+
+.opacity-70{
+  opacity: 0.7;
 }
 
 .filter{

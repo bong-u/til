@@ -98,49 +98,33 @@
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
-<div class="h-40 flex p-3 box rounded-2xl">
+<div class="h-40 flex px-3 box rounded-2xl">
 <a href=https://bong-u.github.io/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/ class="preview flex">
-<div class="flex items-center mx-3 w-32 w-32 text-center">
-<span class="w-full text-7xl">🧠</span>
-</div>
-<div class="flex flex-col w-full mx-5">
+<div class="flex flex-col w-full mx-5 justify-around">
 <div class="flex justify-between">
-<span class="font-bold text-2xl">프로그래머스 - 당구 연습 (L2)</span>
-<div>
-<span>2023-07-12</span>
-<p>Algorithm</p>
+<span class=text-2xl>프로그래머스 - 당구 연습 (L2)</span>
+<p>🧠 Algorithm</p>
 </div>
-</div>
-<div class="overflow-hidden overflow-ellipsis">
-<div>
-1def solution(m, n, startX, startY, balls): 2 answer = [] 3 for bx, by in balls: 4 tmp = [] 5 for x, y in [(-1*startX, startY), (startX, -1*startY), (startX, 2*n-startY), (2*m-startX, startY)]: 6 if bx==x and (y &amp;lt; 0 &amp;lt; by &amp;lt; startY or startY &amp;lt; by &amp;lt; n &amp;lt; y): 7 continue 8 if by==y and (
-</div>
+<div class=line-clamp-3>
+1def solution(m, n, startX, startY, balls): 2 answer = [] 3 for bx, by in balls: 4 tmp = [] 5 for x, y in [(-1*startX, startY), (startX, -1*startY), (startX, 2*n-startY), (2*m-startX, startY)]: 6 if bx==x and (y &amp;lt; 0 &amp;lt; by &amp;lt; startY or startY &amp;lt; by &amp;lt; n &amp;lt; y): 7 continue 8 if by==y and (x &amp;lt; 0 &amp;lt; bx &amp;lt; startX or startX &amp;lt; bx &amp;lt; m &amp;lt; x): 9 continue 10 tmp.
 </div>
 </div>
 </a>
 </div>
 <h3 id=2-java의-testing-공부하기>2. Java의 Testing 공부하기</h3>
-<div class="h-40 flex p-3 box rounded-2xl">
+<div class="h-40 flex px-3 box rounded-2xl">
 <a href=https://bong-u.github.io/til/spring/testing/ class="preview flex">
-<div class="flex items-center mx-3 w-32 w-32 text-center">
-<span class="w-full text-7xl">🍃</span>
-</div>
-<div class="flex flex-col w-full mx-5">
+<div class="flex flex-col w-full mx-5 justify-around">
 <div class="flex justify-between">
-<span class="font-bold text-2xl">Spring 개념 - Testing</span>
-<div>
-<span>2023-01-07</span>
-<p>Spring</p>
+<span class=text-2xl>Spring 개념 - Testing</span>
+<p>🍃 Spring</p>
 </div>
-</div>
-<div class="overflow-hidden overflow-ellipsis">
-<div>
+<div class=line-clamp-3>
 Unit Test (단위 테스트) 가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식
 관련 용어 SUT (Sytem Under Test) 테스트하고자하는 주요 대상이 되는 Unit
 DOC (Depended On Component) SUT가 의존하는 객체
 Test double DOC를 대신해 줄 수 있는 객체
-Test double의 종류 : Mock, Stub Mock 행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용 test framework : Mockito, JMock, EasyMock
-</div>
+Test double의 종류 : Mock, Stub Mock 행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용 test framework : Mockito, JMock, EasyMock Stub 상태 검증 (객체의 상태를 확인하여 검정) 사용 Integration Test (통합 테스트) 여러 개의 Unit을 통합해서 테스트하는 방식
 </div>
 </div>
 </a>
