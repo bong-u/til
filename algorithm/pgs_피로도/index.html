@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>프로그래머스 - 연속된 부분 수열의 합 (L2)</title>
+<title>프로그래머스 - 피로도 (L2)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -78,6 +78,7 @@
 <ul>
 <li><a href=#문제>문제</a></li>
 <li><a href=#해결방법>해결방법</a></li>
+<li><a href=#배운-점>배운 점</a></li>
 </ul>
 </li>
 </ul>
@@ -88,49 +89,50 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-프로그래머스 - 연속된 부분 수열의 합 (L2)
+프로그래머스 - 피로도 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-07-06 </h4>
-<h4 id=date> MODIFIED 2023-07-06</h4>
+<h4 id=date> CREATED 2023-08-14 </h4>
+<h4 id=date> MODIFIED 2023-08-14</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(sequence, k):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    answer <span style=color:#f92672>=</span> []
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    e <span style=color:#f92672>=</span> len(sequence)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    s <span style=color:#f92672>=</span> len(sequence)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    cur <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>while</span> s <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#66d9ef>if</span> cur <span style=color:#f92672>&lt;</span> k:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            s <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            cur <span style=color:#f92672>+=</span> sequence[s]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>elif</span> cur <span style=color:#f92672>&gt;</span> k:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            cur <span style=color:#f92672>-=</span> sequence[e]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            e <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            answer<span style=color:#f92672>.</span>append((s, e))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            s <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            cur <span style=color:#f92672>+=</span> sequence[s]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    answer<span style=color:#f92672>.</span>sort(key<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: (x[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>-</span>x[<span style=color:#ae81ff>0</span>], x[<span style=color:#ae81ff>0</span>]))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#66d9ef>return</span> answer[<span style=color:#ae81ff>0</span>]
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(k, dungeons):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    length <span style=color:#f92672>=</span> len(dungeons)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(cur, visited, cnt):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>nonlocal</span> result
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        visit <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[i] <span style=color:#f92672>and</span> cur <span style=color:#f92672>&gt;=</span> dungeons[i][<span style=color:#ae81ff>0</span>]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>                visit <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>                visited[i] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>                dfs(cur<span style=color:#f92672>-</span>dungeons[i][<span style=color:#ae81ff>1</span>], visited, cnt<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>                visited[i] <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visit:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            result <span style=color:#f92672>=</span> max(result, cnt)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    dfs(k, [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>length, <span style=color:#ae81ff>0</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#66d9ef>return</span> result
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
-<li>수열과 k가 주어진다</li>
-<li>수열의 부분합이 k가 되게 하는 시작인덱스와 끝인덱스를 구하라</li>
-<li>이때, <strong>길이가 짧은 수열을 찾는다, 길이가 같은것이 여러가지라면 시작인덱스가 작은 것을 찾는다</strong></li>
+<li>유저의 현재 피로도 k, 던전별 [&ldquo;최소 필요 피로도&rdquo;, &ldquo;소모 피로도&rdquo;]를 담은 2차원 배열 dungeons가 주어진다</li>
+<li>던전을 탐험하기 위해서는 유저의 현재 남은 피로도가 최소 필요 피로도 이상이어야 한다</li>
+<li>던전을 클리어하면 &ldquo;소모 피로도"만큼 피로도가 소모된다</li>
+<li>던전을 탐험할 수 있는 최대 던전 수를 구하라</li>
 <li>TC
 <ul>
 <li>input
 <blockquote>
-<p>[1, 2, 3, 4, 5], 7</p>
+<p>k:80, dungeons:[[80,20],[50,40],[30,10]]</p>
 </blockquote>
 </li>
 <li>ouput
 <blockquote>
-<p>[2, 3]</p>
+<p>3</p>
 </blockquote>
 </li>
 </ul>
@@ -138,17 +140,18 @@
 </ul>
 <h3 id=해결방법>해결방법</h3>
 <ul>
-<li>투포인터를 활용해 답이 되는 모든 경우를 answer에 저장한다</li>
-<li>answer를 문제의 우선순위에 따라 정렬한뒤 첫번째 원소를 반환한다</li>
+<li>visited에 방문한 던전을 체크하면서 DFS 탐색하였다</li>
+</ul>
+<h3 id=배운-점>배운 점</h3>
+<ul>
+<li>nonlocal 키워드를 알게 되었다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/>
-프로그래머스 - 두 원 사이의 정수 쌍 (L2)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EA%B3%BC%EC%A0%9C_%EC%A7%84%ED%96%89%ED%95%98%EA%B8%B0/>
-프로그래머스 - 과제 진행하기 (L2)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C_%EC%86%8C%EC%88%98_%EA%B0%9C%EC%88%98_%EA%B5%AC%ED%95%98%EA%B8%B0/>
+프로그래머스 - k진수에서 소수 개수 구하기 (L2)</a>
 </div>
 </div>
 </div>
