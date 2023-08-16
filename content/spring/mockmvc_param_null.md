@@ -28,28 +28,31 @@ date: 2023-08-17
                 .age(20)
                 .hobby("swimming")
                 .build();
-        UserRequest userReq = new UserRequest(user.getName(), user.getAge(), user.getHobby());
-        when(userService.createUser(any())).thenReturn(new UserResponse(user));
+        UserRequest userReq = new UserRequest(
+            user.getName(),
+            user.getAge(),
+            user.getHobby());
 
         // When // Then
         mockMvc.perform(
-                        post("/user")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                // userReq객체가 json string으로 정상적으로 변환된 것을 확인
-                                .content(objectMapper.writeValueAsString(userReq)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.content.name").value(user.getName()))
-                .andExpect(jsonPath("$.content.age").value(user.getAge()))
-                .andExpect(jsonPath("$.content.hobby").value(user.getHobby()))
-                .andExpect(jsonPath("$.serverDatetime").exists())
-                .andDo(print());
+                post("/user")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    // userReq객체가 json string으로 정상적으로 변환된 것을 확인
+                    .content(objectMapper.writeValueAsString(userReq)))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.content.name").value(user.getName()))
+            .andExpect(jsonPath("$.content.age").value(user.getAge()))
+            .andExpect(jsonPath("$.content.hobby").value(user.getHobby()))
+            .andExpect(jsonPath("$.serverDatetime").exists())
+            .andDo(print());
     }
     ```
 - Debug log
-    ```
-    ...
-    createUser(com.academy.board.dto.UserRequest): [Field error in object 'userRequest' on field 'age': rejected value [null];
-    ...
+    ```text
+    ...(생략)
+    createUser(com.academy.board.dto.UserRequest):
+    [Field error in object 'userRequest' on field 'age': rejected value [null];
+    ...(생략)
     ```
 
 - UserRequest.java (DTO)
