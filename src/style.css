@@ -562,7 +562,7 @@ video {
   margin-bottom: 0.25rem;
 }
 
-#content code{
+#content pre{
   background-color: var(--color-code-bg) !important;
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
