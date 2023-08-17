@@ -58,7 +58,7 @@
     @apply my-1;
   }
 
-  #content code {
+  #content pre {
     @apply bg-code_bg !important;
     @apply block my-3 p-5 rounded-md whitespace-pre-wrap;
   }
