@@ -1,0 +1,175 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 교점에 별 만들기 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (13)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (86)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (7)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☸</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (29)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (10)</span>
+</a>
+</nav>
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 교점에 별 만들기 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-17 </h4>
+<h4 id=date> MODIFIED 2023-08-17</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calc</span>(a1, b1, c1, a2, b2, c2):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>if</span> a1<span style=color:#f92672>*</span>b2<span style=color:#f92672>-</span>a2<span style=color:#f92672>*</span>b1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        <span style=color:#66d9ef>return</span> (<span style=color:#ae81ff>0.1</span>, <span style=color:#ae81ff>0.1</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>return</span> ((b1<span style=color:#f92672>*</span>c2<span style=color:#f92672>-</span>b2<span style=color:#f92672>*</span>c1)<span style=color:#f92672>/</span>(a1<span style=color:#f92672>*</span>b2<span style=color:#f92672>-</span>a2<span style=color:#f92672>*</span>b1), (c1<span style=color:#f92672>*</span>a2<span style=color:#f92672>-</span>a1<span style=color:#f92672>*</span>c2)<span style=color:#f92672>/</span>(a1<span style=color:#f92672>*</span>b2<span style=color:#f92672>-</span>a2<span style=color:#f92672>*</span>b1))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(line):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    answer <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    length <span style=color:#f92672>=</span> len(line)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    points <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    size <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1e15</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1e15</span>, <span style=color:#ae81ff>1e15</span>,<span style=color:#f92672>-</span> <span style=color:#ae81ff>1e15</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(length):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>            point <span style=color:#f92672>=</span> calc(line[i][<span style=color:#ae81ff>0</span>],line[i][<span style=color:#ae81ff>1</span>], line[i][<span style=color:#ae81ff>2</span>], line[j][<span style=color:#ae81ff>0</span>], line[j][<span style=color:#ae81ff>1</span>], line[j][<span style=color:#ae81ff>2</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            <span style=color:#66d9ef>if</span> point[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>%</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>or</span> point[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>%</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>                <span style=color:#66d9ef>continue</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            x <span style=color:#f92672>=</span> int(point[<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            y <span style=color:#f92672>=</span> int(point[<span style=color:#ae81ff>1</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            points<span style=color:#f92672>.</span>append((x, y))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            size[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> min(size[<span style=color:#ae81ff>0</span>], x)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>            size[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> max(size[<span style=color:#ae81ff>1</span>], x)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>            size[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> min(size[<span style=color:#ae81ff>2</span>], y)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            size[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> max(size[<span style=color:#ae81ff>3</span>], y)                
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    answer <span style=color:#f92672>=</span> [[<span style=color:#e6db74>&#39;.&#39;</span>] <span style=color:#f92672>*</span> (size[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>-</span>size[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(size[<span style=color:#ae81ff>3</span>]<span style=color:#f92672>-</span>size[<span style=color:#ae81ff>2</span>]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>    <span style=color:#66d9ef>for</span> x, y <span style=color:#f92672>in</span> points:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        answer[size[<span style=color:#ae81ff>3</span>]<span style=color:#f92672>-</span>y][x<span style=color:#f92672>-</span>size[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;*&#39;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#66d9ef>return</span> [<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(i) <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> answer]
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>Ax + By + C = 0으로 표현할 수 있는 n개의 직선이 주어진다</li>
+<li>이 직선들이 만나는 교점을 문자열 배열로 표현하라</li>
+<li>빈공간은 &lsquo;.&rsquo;, 점은 &lsquo;*&lsquo;로 표현한다</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>[[2, -1, 4], [-2, -1, 4], [0, -1, 1], [5, -8, -12], [5, 8, 12]]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>["&mldr;.<em>&mldr;.", &ldquo;&mldr;&mldr;&mldr;&rdquo;, &ldquo;&mldr;&mldr;&mldr;&rdquo;, &ldquo;</em>&mldr;&mldr;.<em>&rdquo;, &ldquo;&mldr;&mldr;&mldr;&rdquo;, &ldquo;&mldr;&mldr;&mldr;&rdquo;, &ldquo;&mldr;&mldr;&mldr;&rdquo;, &ldquo;&mldr;&mldr;&mldr;&rdquo;, &ldquo;</em>&mldr;&mldr;.*"]</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>교점을 구하는 공식은 문제에서 주어진다
+<ul>
+<li>Ax + By + E = 0, Cx + Dy + F = 0 일 때
+$$ x = {BF-ED \over AD-BC}, y = {AF-EC \over AD-BC} $$</li>
+<li>이때 $(AD-BC)$가 0이면 두 직선은 평행하므로 계산을 하지 말아야한다 (그러지 않으면 DivideByZero 예외가 발생한다)</li>
+</ul>
+</li>
+<li>좌표평면의 크기를 size라는 리스트에 저장했는데, int값을 초과할 수 있으므로 충분히 크고 작은 수로 초기화해야한다</li>
+<li>좌표평면의 좌표를 2차원 배열인덱스로 변환할 때, 다음과 같이 계산하였다
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>array[최대높이<span style=color:#f92672>-</span>y][x<span style=color:#f92672>-</span>최소넓이] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;*&#39;</span>
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/>
+프로그래머스 - n^2 배열 자르기 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
