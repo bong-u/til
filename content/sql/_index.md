@@ -1,3 +1,4 @@
 ---
-title: "🥞|SQL"
+title: "SQL"
+emoji: "🥞"
 ---

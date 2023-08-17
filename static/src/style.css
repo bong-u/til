@@ -804,6 +804,10 @@ body::-webkit-scrollbar-thumb{
   margin-bottom: 0.5rem;
 }
 
+.box:hover{
+  font-weight: 700;
+}
+
 .box{
   background-color: var(--color-box-bg);
 }
@@ -876,11 +880,6 @@ body::-webkit-scrollbar-thumb{
   margin: 0.25rem;
 }
 
-.mx-3{
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-}
-
 .mx-5{
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -939,6 +938,13 @@ body::-webkit-scrollbar-thumb{
   margin-top: 6rem;
 }
 
+.line-clamp-3{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .block{
   display: block;
 }
@@ -985,10 +991,6 @@ body::-webkit-scrollbar-thumb{
 
 .w-2\/12{
   width: 16.666667%;
-}
-
-.w-32{
-  width: 8rem;
 }
 
 .w-64{
@@ -1047,6 +1049,10 @@ body::-webkit-scrollbar-thumb{
   justify-content: space-between;
 }
 
+.justify-around{
+  justify-content: space-around;
+}
+
 .justify-items-center{
   justify-items: center;
 }
@@ -1103,12 +1109,13 @@ body::-webkit-scrollbar-thumb{
   padding: 0.25rem;
 }
 
-.p-3{
-  padding: 0.75rem;
-}
-
 .p-7{
   padding: 1.75rem;
+}
+
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-4{
@@ -1162,11 +1169,6 @@ body::-webkit-scrollbar-thumb{
 .text-4xl{
   font-size: 2.25rem;
   line-height: 2.5rem;
-}
-
-.text-7xl{
-  font-size: 4.5rem;
-  line-height: 1;
 }
 
 .text-sm{
