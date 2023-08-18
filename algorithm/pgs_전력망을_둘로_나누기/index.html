@@ -1,0 +1,173 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 전력망을 둘로 나누기 (L2)</title>
+<meta charset=utf-8>
+<meta http-equiv=permissions-policy content="interest-cohort=()">
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (13)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (87)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (7)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☸</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (29)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (10)</span>
+</a>
+</nav>
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 전력망을 둘로 나누기 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-08-18 </h4>
+<h4 id=date> MODIFIED 2023-08-18</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(n, wires):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    tower <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(n)]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>for</span> wire <span style=color:#f92672>in</span> wires:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        wire[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        wire[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        tower[wire[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>.</span>append(wire[<span style=color:#ae81ff>1</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        tower[wire[<span style=color:#ae81ff>1</span>]]<span style=color:#f92672>.</span>append(wire[<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(visited, start):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        visited[start] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> tower[start]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visited[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>                traverse(visited, i)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#66d9ef>for</span> wire <span style=color:#f92672>in</span> wires:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        tower[wire[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>.</span>remove(wire[<span style=color:#ae81ff>1</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        tower[wire[<span style=color:#ae81ff>1</span>]]<span style=color:#f92672>.</span>remove(wire[<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>n
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        a <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        traverse(visited, wire[<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(n):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            <span style=color:#66d9ef>if</span> visited[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>                a <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        visited <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>n
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        b <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>        traverse(visited, wire[<span style=color:#ae81ff>1</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(n):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>            <span style=color:#66d9ef>if</span> visited[i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>                b <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>        answer <span style=color:#f92672>=</span> min(answer, abs(a<span style=color:#f92672>-</span>b))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        tower[wire[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>.</span>append(wire[<span style=color:#ae81ff>1</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>        tower[wire[<span style=color:#ae81ff>1</span>]]<span style=color:#f92672>.</span>append(wire[<span style=color:#ae81ff>0</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#66d9ef>return</span> answer
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>n개의 송전탑이 전선을 통해 트리 형태로 연결되어 있다</li>
+<li>전선 중 하나를 끊어서 전력망 네트워크를 2개로 분할하여 두 전력망이 갖게되는 송전탑의 개수를 최대한 비슷하게 맞추고자 한다</li>
+<li>송전탑의 개수 n, 전선 정보를 담은 2차원 배열 wires가 주어진다</li>
+<li>두 전력망이 가지는 송전탑의 개수 차이의 최솟값을 구하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>n:9, wires:[[1,3],[2,3],[3,4],[4,5],[4,6],[4,7],[7,8],[7,9]]</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>3</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>전선을 한개씩 끊어보면서 끊어진 두 위치를 시작으로 dfs탐색을 하여 visited 배열을 만들었다</li>
+<li>visited 배열을 이용하여 두 전력망이 가지는 송전탑의 개수 차이를 구하였다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EA%B5%90%EC%A0%90%EC%97%90_%EB%B3%84_%EB%A7%8C%EB%93%A4%EA%B8%B0/>
+프로그래머스 - 교점에 별 만들기 (L2)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
