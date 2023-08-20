@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>1915 : 가장 큰 정사각형 (G4)</title>
+<title>Issue - yaml 문자열 속 colon(콜론)</title>
 <meta charset=utf-8>
 <meta http-equiv=permissions-policy content="interest-cohort=()">
 <meta property="og:title" content="Bong-u's til">
@@ -76,54 +76,62 @@
 </a>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제상황>문제상황</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-1915 : 가장 큰 정사각형 (G4)
+Issue - yaml 문자열 속 colon(콜론)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-02-03 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> CREATED 2023-08-20 </h4>
+<h4 id=date> MODIFIED 2023-08-20</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>L <span style=color:#f92672>=</span> [list(map(int, input())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(M<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>result <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, M<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        dp[i][j] <span style=color:#f92672>=</span> L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>if</span> L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>            dp[i][j] <span style=color:#f92672>=</span> min(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j], dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        result <span style=color:#f92672>=</span> max(result, dp[i][j])
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> dp:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    print (i)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>print (result<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>)
-</code></pre></div><ul>
-<li>조금 시간이 걸렸지만 혼자 힘으로 풀었다</li>
-<li>점화식은 dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])+1이다.</li>
-<li>모두 0이면 0, 하나라도 1이면 1이 답이라는 것을 생각해야 한다.</li>
+<h3 id=문제상황>문제상황</h3>
+<ul>
+<li>
+<p>TIL 블로그 자동 배포 github action 코드에 yaml 파일에 내용을 추가하는 부분이 있다</p>
+</li>
+<li>
+<p>추가하는 문자열에 콜론이 포함되어 있어서 action에서 에러를 띄웠다</p>
+</li>
+<li>
+<p>문제의 코드</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Add google analytics id</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>run</span>: <span style=color:#ae81ff>echo -e &#34;\nparams:\n    googleAnalytics : \&#34;$GA_TRACKING_ID\&#34;&#34; &gt;&gt; config.yaml</span>
+</code></pre></div></li>
+<li>
+<p>에러 메시지
+<img src=/static/image/error_ghaction_yaml.png alt=error></p>
+</li>
 </ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>우여곡절 끝에 위와 같이 2줄로 나누어서 해결했다</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Add google analytics id</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#e6db74>        echo -e &#34;\nparams:&#34; &gt;&gt; config.yaml
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#e6db74>        echo -e &#34;  googleAnalytics:\&#34;$GA_TRACKING_ID\&#34;&#34; &gt;&gt; config.yaml</span>        
+</code></pre></div>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_1918/>
-1918 : 후위 표기식 (G2)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_2631/>
-2631 : 줄세우기 (G4)</a>
 </div>
 </div>
 </div>
