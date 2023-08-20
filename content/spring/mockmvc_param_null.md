@@ -75,6 +75,6 @@ date: 2023-08-17
     ```
 
 ### 해결방법
-- UserRequest 클래스의 age의 타입을 int에서 Integer로 바꾸니까 해결되었다
-- int는 변수의 타입으로, null을 허용하지 않고, Integer는 Wrapper class로, null을 허용한다는 특징은 이해를 하겠다
-- 하지만 createUser가 호출되는 과정에서 age에 왜 null 값이 들어가는지는 아직 이해를 하지 못했다
+- UserRequest 클래스의 age의 타입을 **int에서 Integer**로 바꾸니까 해결되었다
+- int는 변수의 타입으로, null을 허용하지 않고, Integer는 Wrapper class로, null을 허용한다는 특징을 가진다
+- Spring에서 Wrapper클래스가 아닌 타입의 변수를 인자로 받는 행위를 금지시키는 것으로 보인다.
