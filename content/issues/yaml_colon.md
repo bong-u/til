@@ -21,5 +21,5 @@ date: 2023-08-20
  - name: Add google analytics id
     run: |
         echo -e "\nparams:" >> config.yaml
-        echo -e "  googleAnalytics:\"$GA_TRACKING_ID\"" >> config.yaml
+        echo -e "  googleAnalytics: \"$GA_TRACKING_ID\"" >> config.yaml
 ```
