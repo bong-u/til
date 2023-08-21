@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>15486 : 퇴사 2 (G5)</title>
+<title>프로그래머스 - 모음사전 (L2)</title>
 <meta charset=utf-8>
 <meta property="og:title" content="Bong-u's til">
 <meta property="og:type" content="blog">
@@ -77,53 +77,77 @@
 </a>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-15486 : 퇴사 2 (G5)
+프로그래머스 - 모음사전 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-02-07 </h4>
-<h4 id=date> MODIFIED 2023-02-07</h4>
+<h4 id=date> CREATED 2023-08-21 </h4>
+<h4 id=date> MODIFIED 2023-08-21</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>input <span style=color:#f92672>=</span> sys<span style=color:#f92672>.</span>stdin<span style=color:#f92672>.</span>readline
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>N <span style=color:#f92672>=</span> int(input())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>T <span style=color:#f92672>=</span> []
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>P <span style=color:#f92672>=</span> []
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    a, b <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    T<span style=color:#f92672>.</span>append(a)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    P<span style=color:#f92672>.</span>append(b)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>if</span> i<span style=color:#f92672>+</span>T[i] <span style=color:#f92672>&gt;</span> N:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        dp[i] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        dp[i] <span style=color:#f92672>=</span> max(P[i]<span style=color:#f92672>+</span>dp[i<span style=color:#f92672>+</span>T[i]], dp[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>])
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>print (dp[<span style=color:#ae81ff>0</span>])
-</code></pre></div><ul>
-<li>dp라는 변수를 만들어야하는데 안 만들고 리스트 P만 가지고 memoization 하려다 실패했다</li>
-<li>점화식은 잘 적었으나 조건문이 잘 못되어서 다른 풀이를 참고했다</li>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(word):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    char <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#39;A&#39;</span>, <span style=color:#e6db74>&#39;E&#39;</span>, <span style=color:#e6db74>&#39;I&#39;</span>, <span style=color:#e6db74>&#39;O&#39;</span>, <span style=color:#e6db74>&#39;U&#39;</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(cur):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>nonlocal</span> char, cnt, word
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#66d9ef>if</span> cur <span style=color:#f92672>==</span> word:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#66d9ef>return</span> cnt
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>if</span> len(cur) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>5</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            <span style=color:#66d9ef>for</span> ch <span style=color:#f92672>in</span> char:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>                cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>                <span style=color:#66d9ef>if</span> traverse(cur<span style=color:#f92672>+</span>ch) <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>                    <span style=color:#66d9ef>return</span> cnt
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>return</span> traverse(<span style=color:#e6db74>&#39;&#39;</span>)
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>사전에 A,E,I,O,U만 사용하여 만들 수 있는 길이 5이하의 모든 단어가 수록되어있다</li>
+<li>단어 하나 word가 주어질때 사전에서 몇번째 단어인지 구하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>&lsquo;I&rsquo;</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>1563</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>DFS로 풀었다</li>
+<li>그냥 반복문으로 풀걸 그랬다는 생각이 든다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_2631/>
-2631 : 줄세우기 (G4)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_13398/>
-13398 : 연속합 2 (G5)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EB%B9%9B%EC%9D%98_%EA%B2%BD%EB%A1%9C_%EC%82%AC%EC%9D%B4%ED%81%B4/>
+프로그래머스 - 빛의 경로 사이클 (L2)</a>
 </div>
 </div>
 </div>
