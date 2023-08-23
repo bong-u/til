@@ -2,6 +2,7 @@ baseURL: "https://bong-u.github.io/til/"
 languageCode: "en-us"
 title: "Bong-u's TIL"
 enableGitInfo: true
+timezone: "Asia/Seoul"
 
 sitemap:
   changefreq: "weekly"

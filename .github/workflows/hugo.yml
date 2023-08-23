@@ -23,7 +23,9 @@ jobs:
           # extended: true
 
       - name: Add google analytics id
-        run: echo -e "\nparams:\n    googleAnalytics = \"$GA_TRACKING_ID\"" >> config.yaml
+        run: |
+          echo -e "\nparams:" >> config.yaml
+          echo -e "  googleAnalytics: \"$GA_TRACKING_ID\"" >> config.yaml
         env:
           GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
 
