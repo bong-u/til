@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>프로그래머스 - 두 큐 합 같게 만들기 (L2)</title>
+<title>프로그래머스 - 쿼드압축 후 개수 세기 (L2)</title>
 <meta charset=utf-8>
 <meta property="og:title" content="Bong-u's til">
 <meta property="og:type" content="blog">
@@ -93,52 +93,54 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-프로그래머스 - 두 큐 합 같게 만들기 (L2)
+프로그래머스 - 쿼드압축 후 개수 세기 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-08-09 </h4>
-<h4 id=date> MODIFIED 2023-08-09</h4>
+<h4 id=date> CREATED 2023-09-07 </h4>
+<h4 id=date> MODIFIED 2023-09-07</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>answer <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(queue1, queue2):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    sum1, sum2 <span style=color:#f92672>=</span> sum(queue1), sum(queue2)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    dq1 <span style=color:#f92672>=</span> deque(queue1)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    dq2 <span style=color:#f92672>=</span> deque(queue2)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>while</span> cnt <span style=color:#f92672>&lt;=</span> len(queue1)<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span><span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> sum1 <span style=color:#f92672>!=</span> sum2:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#66d9ef>if</span> sum1 <span style=color:#f92672>&gt;</span> sum2:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            tmp <span style=color:#f92672>=</span> dq1<span style=color:#f92672>.</span>popleft()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            dq2<span style=color:#f92672>.</span>append(tmp)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            sum1 <span style=color:#f92672>-=</span> tmp
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>            sum2 <span style=color:#f92672>+=</span> tmp
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>elif</span> sum1 <span style=color:#f92672>&lt;</span> sum2:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            tmp <span style=color:#f92672>=</span> dq2<span style=color:#f92672>.</span>popleft()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            dq1<span style=color:#f92672>.</span>append(tmp)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            sum1 <span style=color:#f92672>+=</span> tmp
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            sum2 <span style=color:#f92672>-=</span> tmp
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    <span style=color:#66d9ef>return</span> cnt <span style=color:#66d9ef>if</span> sum1 <span style=color:#f92672>==</span> sum2 <span style=color:#66d9ef>else</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arr):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>recursion</span>(sx, sy, k):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>global</span> answer
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        origin <span style=color:#f92672>=</span> arr[sy][sx]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(sx, sx<span style=color:#f92672>+</span>k):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(sy, sy<span style=color:#f92672>+</span>k):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>                <span style=color:#66d9ef>if</span> origin <span style=color:#f92672>!=</span> arr[j][i]:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>                    recursion(sx, sy, k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>                    recursion(sx<span style=color:#f92672>+</span>k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>, sy, k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>                    recursion(sx, sy<span style=color:#f92672>+</span>k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>, k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>                    recursion(sx<span style=color:#f92672>+</span>k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>, sy<span style=color:#f92672>+</span>k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>, k<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>                    <span style=color:#66d9ef>return</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        answer[origin] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    recursion(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, len(arr))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#66d9ef>return</span> answer
 </code></pre></div><h3 id=문제>문제</h3>
 <ul>
-<li>길이가 같은 두 큐가 주어진다</li>
-<li>두 큐의 합이 같아지도록 큐의 원소를 교환할 수 있는 최소 횟수를 구하라</li>
-<li>큐의 pop은 왼쪽에서, push는 오른쪽에서 이루어진다</li>
+<li>0과 1로 이루어진 2^n x 2^n 크기의 2차원 정수 배열 arr을 압축하려 한다</li>
+<li>압축하는 방법은
+<ol>
+<li>당신이 압축하고자 하는 특정 영역을 S라고 정의한다</li>
+<li>만약 S 내부에 있는 모든 수가 같은 값이라면, S를 해당 수 하나로 압축시킨다</li>
+<li>그렇지 않다면, S를 정확히 4개의 균일한 정사각형 영역으로 쪼갠 뒤, 각 정사각형 영역에 대해 같은 방식의 압축을 시도한다</li>
+</ol>
+</li>
 <li>TC
 <ul>
 <li>input
 <blockquote>
-<p>queue1 : [3, 2, 7, 2], queue2 : [4 ,6, 5, 1]</p>
+<p>[[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]]</p>
 </blockquote>
 </li>
 <li>ouput
 <blockquote>
-<p>2</p>
+<p>[4,9]</p>
 </blockquote>
 </li>
 </ul>
@@ -146,18 +148,15 @@
 </ul>
 <h3 id=해결방법>해결방법</h3>
 <ul>
-<li>deque를 이요해서 큐를 구현하였다</li>
-<li>두 큐의 합이 같아질때까지, 합이 큰 큐에서 작은 큐로 원소를 이동시킨다</li>
-<li>방법이 존재하지 않는 경우 무한루프가 발생하기 때문에, (큐의 길이)*2+1 만큼만 반복한다</li>
+<li>recursion함수를 만들어서 재귀적으로 풀었다</li>
+<li>recursion함수 인자의 k는 현재 영역의 길이를 의미한다</li>
 </ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%ED%95%A0%EC%9D%B8_%ED%96%89%EC%82%AC/>
-프로그래머스 - 할인 행사 (L2)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%96%91%EA%B6%81%EB%8C%80%ED%9A%8C/>
-프로그래머스 - 양궁대회 (L2)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/>
+프로그래머스 - 이진 변환 반복하기 (L2)</a>
 </div>
 </div>
 </div>
