@@ -17,9 +17,11 @@ date: 2023-09-01
 
 #### 컴파일러 vs 인터프리터
 
-### 컴파일러의 처리 과정
-- <자료>
+### 프로그램 처리과정
+![program_process](/../../static/image/program_process.png)
 
+### 컴파일러의 처리 과정
+![compile_process](/../../static/image/compile_process.png)
 - Lexical analysis (어휘 분석)
   - token을 생성하는일, token은 어휘의 최소 단위
 - Syntax analysis (구문 분석)
