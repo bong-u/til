@@ -82,6 +82,7 @@
 <li>
 <ul>
 <li><a href=#컴퓨터와-인간이-소통하는-방법>컴퓨터와 인간이 소통하는 방법</a></li>
+<li><a href=#프로그램-처리과정>프로그램 처리과정</a></li>
 <li><a href=#컴파일러의-처리-과정>컴파일러의 처리 과정</a></li>
 </ul>
 </li>
@@ -97,7 +98,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-09-01</h4>
+<h4 id=date> MODIFIED 2023-09-09</h4>
 </div>
 </div>
 </div>
@@ -120,43 +121,37 @@
 <li>1952년 그레이스 호퍼(Grace Hopper)가 UNIVAC용 프로그래밍언어 A-0 컴파일러를 제작</li>
 </ul>
 <h4 id=컴파일러-vs-인터프리터>컴파일러 vs 인터프리터</h4>
+<h3 id=프로그램-처리과정>프로그램 처리과정</h3>
+<p><img src=/../../static/image/program_process.png alt=program_process></p>
 <h3 id=컴파일러의-처리-과정>컴파일러의 처리 과정</h3>
+<p><img src=/../../static/image/compile_process.png alt=compile_process></p>
 <ul>
-<li>
-<p>&lt;자료></p>
-</li>
-<li>
-<p>Lexical analysis (어휘 분석)</p>
+<li>Lexical analysis (어휘 분석)
 <ul>
 <li>token을 생성하는일, token은 어휘의 최소 단위</li>
 </ul>
 </li>
-<li>
-<p>Syntax analysis (구문 분석)</p>
+<li>Syntax analysis (구문 분석)
 <ul>
 <li>token을 읽어서 오류를 검색, 구문 구조를 만든다 (주로 트리형태)</li>
 </ul>
 </li>
-<li>
-<p>Semantic analysis (의미 분석)</p>
+<li>Semantic analysis (의미 분석)
 <ul>
 <li>type checking</li>
 </ul>
 </li>
-<li>
-<p>Intermediate code generation (중간 코드 생성)</p>
+<li>Intermediate code generation (중간 코드 생성)
 <ul>
 <li>중간 코드로 변환</li>
 </ul>
 </li>
-<li>
-<p>Code optimization (코드 최적화)</p>
+<li>Code optimization (코드 최적화)
 <ul>
 <li>중간 코드를 더 효율적으로 변환</li>
 </ul>
 </li>
-<li>
-<p>Code generation (코드 생성)</p>
+<li>Code generation (코드 생성)
 <ul>
 <li>목적 코드 생성</li>
 </ul>
