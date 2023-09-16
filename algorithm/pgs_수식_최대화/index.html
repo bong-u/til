@@ -1,0 +1,174 @@
+<!doctype html><html>
+<head>
+<title>프로그래머스 - 수식 최대화 (L2)</title>
+<meta charset=utf-8>
+<meta property="og:title" content="Bong-u's til">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (13)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (99)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (7)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☸</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (29)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/issues/>
+<span class="text-xl mr-3">🧐</span>
+<span>기타 Issues (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (12)</span>
+</a>
+</nav>
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+<li><a href=#막혔던-부분>막혔던 부분</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래머스 - 수식 최대화 (L2)
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-09-16 </h4>
+<h4 id=date> MODIFIED 2023-09-16</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> itertools <span style=color:#f92672>import</span> permutations
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(expression):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    answer <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    operations <span style=color:#f92672>=</span> list(filter(<span style=color:#66d9ef>lambda</span> x: <span style=color:#f92672>not</span> x<span style=color:#f92672>.</span>isdigit(), expression))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    numbers <span style=color:#f92672>=</span> expression<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#39;-&#39;</span>,<span style=color:#e6db74>&#39;+&#39;</span>)<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#39;*&#39;</span>,<span style=color:#e6db74>&#39;+&#39;</span>)<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;+&#39;</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    expression <span style=color:#f92672>=</span> [int(numbers[<span style=color:#ae81ff>0</span>])]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(len(operations)):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        expression<span style=color:#f92672>.</span>append(operations[i])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        expression<span style=color:#f92672>.</span>append(int(numbers[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>for</span> case <span style=color:#f92672>in</span> permutations((<span style=color:#e6db74>&#39;+&#39;</span>, <span style=color:#e6db74>&#39;-&#39;</span>, <span style=color:#e6db74>&#39;*&#39;</span>), <span style=color:#ae81ff>3</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        temp <span style=color:#f92672>=</span> expression[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>for</span> op <span style=color:#f92672>in</span> case:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            stack <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            <span style=color:#66d9ef>while</span> temp:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>                <span style=color:#66d9ef>if</span> temp[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> op:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>                    temp<span style=color:#f92672>.</span>pop()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>                    a <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>                    b <span style=color:#f92672>=</span> temp<span style=color:#f92672>.</span>pop()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>                    stack<span style=color:#f92672>.</span>append(eval(str(a)<span style=color:#f92672>+</span>op<span style=color:#f92672>+</span>str(b)))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>                <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>                    stack<span style=color:#f92672>.</span>append(temp<span style=color:#f92672>.</span>pop())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>            temp <span style=color:#f92672>=</span> stack[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>        answer <span style=color:#f92672>=</span> max(answer, abs(temp[<span style=color:#ae81ff>0</span>]))
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>    <span style=color:#66d9ef>return</span> answer
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>숫자와 3가지 연산문자(+, -, *)만으로 이루어진 수식이 주어진다</li>
+<li>연산자의 수식을 재배치하여 얻을 수 있는 결과값의 절대값 중 가장 큰 값을 구하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>&ldquo;100-200*300-500+20&rdquo;</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>60420</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>itertools.permutation을 이용하여 연산자의 우선순위를 재배치하는 6가지 경우를 구한다</li>
+<li>expression에 연산자와 숫자를 분리하여 저장한다</li>
+<li>expression을 뒤집어서 연산자 우선순위에 따라 eval함수를 이용해 계산한다</li>
+<li>계산 결과값의 절대값 중 가장 큰 값을 구한다</li>
+</ul>
+<h3 id=막혔던-부분>막혔던 부분</h3>
+<ul>
+<li>한번 계산하고 난 후 temp를 stack에 저장할 때 뒤집어서 저장해야하는데 그냥 저장해서 계속 틀렸다</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/hrk_the_minion_game/>
+HackerRank - The Minion Game</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
