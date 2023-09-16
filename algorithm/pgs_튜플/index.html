@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>10844 : 쉬운 계단 수 (S1)</title>
+<title>프로그래머스 - 튜플 (L2)</title>
 <meta charset=utf-8>
 <meta property="og:title" content="Bong-u's til">
 <meta property="og:type" content="blog">
@@ -77,45 +77,72 @@
 </a>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-10844 : 쉬운 계단 수 (S1)
+프로그래머스 - 튜플 (L2)
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> CREATED 2023-09-16 </h4>
+<h4 id=date> MODIFIED 2023-09-16</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> defaultdict
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(s):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    count <span style=color:#f92672>=</span> defaultdict(int)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> s[<span style=color:#ae81ff>1</span>:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#39;},{&#39;</span>, <span style=color:#e6db74>&#39;} {&#39;</span>)<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39; &#39;</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> i[<span style=color:#ae81ff>1</span>:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39;,&#39;</span>):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>            count[j] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>    <span style=color:#66d9ef>return</span> [int(i[<span style=color:#ae81ff>0</span>]) <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> sorted(count<span style=color:#f92672>.</span>items(), key<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: x[<span style=color:#ae81ff>1</span>], reverse<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)]
+</code></pre></div><h3 id=문제>문제</h3>
 <ul>
-<li>접근이 어려워 인터넷을 참고했다. 코드는 보지 않았다.</li>
-<li>수의 길이가 i이면서 마지막 숫자가 j인 계단 수의 개수를 저장하는 것이 핵심이다.</li>
-<li>점화식은 L[i][j] = L[i-1][j-1]+L[i-1][j+1] 이다.</li>
+<li>특정 튜플을 포현하는 집합이 담긴 문자열 s가 매개변수로 주어진다</li>
+<li>s가 표현하는 튜플을 배열에 담아 반환하라</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>&ldquo;{{2},{2,1},{2,1,3},{2,1,3,4}}&rdquo;</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>[2, 1, 3, 4]</p>
+</blockquote>
+</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>N <span style=color:#f92672>=</span> int(input())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>L <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span><span style=color:#ae81ff>12</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>100</span>)]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>L[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>11</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        L[i][j] <span style=color:#f92672>=</span> L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>print (sum(L[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>%</span><span style=color:#ae81ff>1000000000</span>)
-</code></pre></div>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>문제에서 원하는 튜플의 순서는 원소의 개수가 자주 등장하는 순서이다</li>
+<li>각 원소의 개수를 세어 count라는 defaultdict에 넣는다</li>
+<li>count를 value 기준으로 정렬하여 key값을 list의 형태로 반환하라</li>
+</ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_11048/>
-11048 : 이동하기 (S2)</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/boj_1010/>
-1010 : 다리놓기 (S5)</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/hrk_the_minion_game/>
+HackerRank - The Minion Game</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%88%98%EC%8B%9D_%EC%B5%9C%EB%8C%80%ED%99%94/>
+프로그래머스 - 수식 최대화 (L2)</a>
 </div>
 </div>
 </div>
