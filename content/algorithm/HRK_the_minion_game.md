@@ -18,9 +18,9 @@ def minion_game(string):
     if stuart > kevin:
         print ('Stuart', stuart)
     elif stuart < kevin:
-        print ('Kevin', kevin);
+        print ('Kevin', kevin)
     else:
-        print ('Draw'
+        print ('Draw')
 ```
 
 ### 문제
