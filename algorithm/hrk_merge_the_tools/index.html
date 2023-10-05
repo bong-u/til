@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>Issue - yaml 문자열 속 colon(콜론)</title>
+<title>HackerRank - Merge the Tools</title>
 <meta charset=utf-8>
 <meta property="og:title" content="Bong-u's til">
 <meta property="og:type" content="blog">
@@ -81,7 +81,7 @@
 <ul>
 <li>
 <ul>
-<li><a href=#문제상황>문제상황</a></li>
+<li><a href=#문제>문제</a></li>
 <li><a href=#해결방법>해결방법</a></li>
 </ul>
 </li>
@@ -93,46 +93,55 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Issue - yaml 문자열 속 colon(콜론)
+HackerRank - Merge the Tools
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-08-20 </h4>
-<h4 id=date> MODIFIED 2023-08-20</h4>
+<h4 id=date> CREATED 2023-10-04 </h4>
+<h4 id=date> MODIFIED 2023-10-05</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=문제상황>문제상황</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>merge_the_tools</span>(string, k):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, len(string), k):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    temp <span style=color:#f92672>=</span> []
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i, i<span style=color:#f92672>+</span>k):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>      <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> string[j] <span style=color:#f92672>in</span> temp:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        temp<span style=color:#f92672>.</span>append(string[j])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    print (<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(temp))
+</code></pre></div><h3 id=문제>문제</h3>
 <ul>
-<li>
-<p>TIL 블로그 자동 배포 github action 코드에 yaml 파일에 내용을 추가하는 부분이 있다</p>
+<li>문자열 S와 정수 k가 주어졌을 때, S를 k 길이의 부분 문자열로 나누고, 각 부분 문자열에서 중복되는 문자를 제거한 뒤 출력한다</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>s = &lsquo;AABCAAADA&rsquo;, k = 3</p>
+</blockquote>
 </li>
-<li>
-<p>추가하는 문자열에 콜론이 포함되어 있어서 action에서 에러를 띄웠다</p>
+<li>ouput
+<blockquote>
+<p>AB<br>
+CA<br>
+AD</p>
+</blockquote>
 </li>
-<li>
-<p>문제의 코드</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Add google analytics id</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>run</span>: <span style=color:#ae81ff>echo -e &#34;\nparams:\n    googleAnalytics : \&#34;$GA_TRACKING_ID\&#34;&#34; &gt;&gt; config.yaml</span>
-</code></pre></div></li>
-<li>
-<p>에러 메시지
-<img src=/static/image/error_ghaction_yaml.png alt=error></p>
+</ul>
 </li>
 </ul>
 <h3 id=해결방법>해결방법</h3>
 <ul>
-<li>우여곡절 끝에 위와 같이 2줄로 나누어서 해결했다</li>
+<li>각 부분문자열을 변수 i를 이용해 k만큼씩 증가시키며 순회한다</li>
+<li>부분문자열에서 한 문자씩 j를 이용해 순회한다</li>
+<li>부분문자열을 순회할 때마다 리스트 temp를 초기화하고, temp에 문자가 없으면 추가한다</li>
+<li>부분문자열 순회가 끝나면 temp를 출력한다</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Add google analytics id</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#e6db74>        echo -e &#34;\nparams:&#34; &gt;&gt; config.yaml
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#e6db74>        echo -e &#34;  googleAnalytics: \&#34;$GA_TRACKING_ID\&#34;&#34; &gt;&gt; config.yaml</span>        
-</code></pre></div>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/pgs_%EC%88%98%EC%8B%9D_%EC%B5%9C%EB%8C%80%ED%99%94/>
+프로그래머스 - 수식 최대화 (L2)</a>
 </div>
 </div>
 </div>
