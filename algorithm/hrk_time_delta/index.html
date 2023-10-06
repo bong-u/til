@@ -1,6 +1,6 @@
 <!doctype html><html>
 <head>
-<title>[모각코] 04 : 계획</title>
+<title>HackerRank - Time Delta</title>
 <meta charset=utf-8>
 <meta property="og:title" content="Bong-u's til">
 <meta property="og:type" content="blog">
@@ -79,7 +79,12 @@
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#오늘의-목표>오늘의 목표</a></li>
+<li>
+<ul>
+<li><a href=#문제>문제</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -88,28 +93,61 @@
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-[모각코] 04 : 계획
+HackerRank - Time Delta
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-07-26 </h4>
-<h4 id=date> MODIFIED 2023-07-26</h4>
+<h4 id=date> CREATED 2023-10-06 </h4>
+<h4 id=date> MODIFIED 2023-10-06</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=오늘의-목표>오늘의 목표</h2>
-<ol>
-<li>프로그래머스 한 문제 풀기</li>
-<li>@RestController 정리</li>
-</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>time_delta</span>(t1, t2):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    DATE_FORMAT <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;</span><span style=color:#e6db74>%a</span><span style=color:#e6db74> </span><span style=color:#e6db74>%d</span><span style=color:#e6db74> %b %Y %H:%M:%S %z&#39;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    start <span style=color:#f92672>=</span> datetime<span style=color:#f92672>.</span>strptime(t1, DATE_FORMAT)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    end <span style=color:#f92672>=</span> datetime<span style=color:#f92672>.</span>strptime(t2, DATE_FORMAT)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>return</span> str(int(abs(start<span style=color:#f92672>-</span>end)<span style=color:#f92672>.</span>total_seconds()))
+</code></pre></div><h3 id=문제>문제</h3>
+<ul>
+<li>정수 T가 주어지고, &ldquo;Sun 10 May 2015 13:54:36 -0700"과 같은 형식의 두 시간이 T개 주어진다</li>
+<li>두 시간의 차이를 초 단위로 출력한다</li>
+<li>이때, 마지막 +0530, -0700과 같은 숫자는 UTC와의 차이를 나타낸다</li>
+<li>TC
+<ul>
+<li>input
+<blockquote>
+<p>2<br>
+Sun 10 May 2015 13:54:36 -0700<br>
+Sun 10 May 2015 13:54:36 -0000<br>
+Sat 02 May 2015 19:54:36 +0530<br>
+Fri 01 May 2015 13:54:36 -0000</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>25200
+88200</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>datetime 모듈의 strptime() 메서드를 이용해 문자열을 datetime 객체로 변환한다</li>
+<li>total_seconds 함수를 이용해 두 시간의 차이를 초 단위로 구한다</li>
+</ul>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
-<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/mogako23/mogako03/>
-[모각코] 03 : 결과</a>
-<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/mogako23/mogako04/>
-[모각코] 04 : 결과</a>
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/algorithm/hrk_merge_the_tools/>
+HackerRank - Merge the Tools</a>
 </div>
 </div>
 </div>
