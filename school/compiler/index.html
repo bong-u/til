@@ -3,7 +3,7 @@
 <title>컴파일러개론 - 조은선교수님</title>
 <meta charset=utf-8>
 <meta property="og:title" content="컴파일러개론 - 조은선교수님">
-<meta property="og:description" content="컴퓨터와 인간이 소통하는 방법 어셈블리어  어셈블리어의 번역기는 어셈블러(Assembler)라고 한다 cpu칩셋이 바뀔때마다 어셈블리어가 바뀐다  고급언어  고급언어의 번역기는 컴 …">
+<meta property="og:description" content="개요 컴퓨터와 인간이 소통하는 방법 어셈블리어  어셈블리어의 번역기는 어셈블러(Assembler)라고 한다 cpu칩셋이 바뀔때마다 어셈블리어가 바뀐다  고급언어  고급언어의 번역기 …">
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://github.com/bong-u/til-hugo">
 <meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
@@ -80,11 +80,27 @@
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li>
+<li><a href=#개요>개요</a>
 <ul>
 <li><a href=#컴퓨터와-인간이-소통하는-방법>컴퓨터와 인간이 소통하는 방법</a></li>
 <li><a href=#프로그램-처리과정>프로그램 처리과정</a></li>
 <li><a href=#컴파일러의-처리-과정>컴파일러의 처리 과정</a></li>
+</ul>
+</li>
+<li><a href=#lexical-analysis-어휘-분석>Lexical analysis (어휘 분석)</a>
+<ul>
+<li><a href=#fsa-finite-state-automata-유한-상태-오토마타>FSA (Finite State Automata, 유한 상태 오토마타)</a></li>
+<li><a href=#dfa-deterministic-finite-automata>DFA (Deterministic Finite Automata)</a></li>
+<li><a href=#분석한-토큰을-표현하는-방법>분석한 토큰을 표현하는 방법</a></li>
+</ul>
+</li>
+<li><a href=#syntax-analysis-구문-분석>Syntax analysis (구문 분석)</a>
+<ul>
+<li><a href=#cfg-context-free-grammer>CFG (Context Free Grammer)</a></li>
+<li><a href=#여러가지-cfg-표현법>여러가지 CFG 표현법</a></li>
+<li><a href=#유도-derivation>유도 (derivation)</a></li>
+<li><a href=#모호성-ambiguity>모호성 (ambiguity)</a></li>
+<li><a href=#구문-분석>구문 분석</a></li>
 </ul>
 </li>
 </ul>
@@ -99,11 +115,12 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-09-09</h4>
+<h4 id=date> MODIFIED 2023-10-11</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=개요>개요</h2>
 <h3 id=컴퓨터와-인간이-소통하는-방법>컴퓨터와 인간이 소통하는 방법</h3>
 <h4 id=어셈블리어>어셈블리어</h4>
 <ul>
@@ -123,9 +140,9 @@
 </ul>
 <h4 id=컴파일러-vs-인터프리터>컴파일러 vs 인터프리터</h4>
 <h3 id=프로그램-처리과정>프로그램 처리과정</h3>
-<p><img src=/../../static/image/program_process.png alt=program_process></p>
+<p><img src=../../static/image/program_process.png alt=program_process></p>
 <h3 id=컴파일러의-처리-과정>컴파일러의 처리 과정</h3>
-<p><img src=/../../static/image/compile_process.png alt=compile_process></p>
+<p><img src=../../static/image/compile_process.png alt=compile_process></p>
 <ul>
 <li>Lexical analysis (어휘 분석)
 <ul>
@@ -155,6 +172,110 @@
 <li>Code generation (코드 생성)
 <ul>
 <li>목적 코드 생성</li>
+</ul>
+</li>
+</ul>
+<h2 id=lexical-analysis-어휘-분석>Lexical analysis (어휘 분석)</h2>
+<ul>
+<li>token : 문법적으로 의미있는 최소 단위</li>
+</ul>
+<h3 id=fsa-finite-state-automata-유한-상태-오토마타>FSA (Finite State Automata, 유한 상태 오토마타)</h3>
+<p><img src=../../static/image/fsa_integer.png alt=fsa_integer></p>
+<ul>
+<li>token을 인식하는 방법</li>
+<li>시작 상태 한 개와 끝 상태 여러 개를 가짐</li>
+</ul>
+<h3 id=dfa-deterministic-finite-automata>DFA (Deterministic Finite Automata)</h3>
+<p><img src=../../static/image/dfa_example.png alt=dfa_example></p>
+<ul>
+<li>FSA의 한 종류</li>
+<li>각 상태에서 뻗어나가는 edge가 하나씩만 존재</li>
+<li>ε가 붙은 edge 없음</li>
+</ul>
+<h3 id=분석한-토큰을-표현하는-방법>분석한 토큰을 표현하는 방법</h3>
+<blockquote>
+<p>Lexeme = &lt;토큰번호, 토큰 값></p>
+</blockquote>
+<ul>
+<li>예시
+<ul>
+<li>if X &lt; Y &mldr;</li>
+<li>(29, 0) (1, X) (18, 0) (1, Y) &mldr;</li>
+<li>식별자의 토큰번호는 1번, 상수는 2번 등으로 고정</li>
+</ul>
+</li>
+</ul>
+<h2 id=syntax-analysis-구문-분석>Syntax analysis (구문 분석)</h2>
+<ul>
+<li>token을 읽어서 오류를 검색, parse tree를 만든다</li>
+</ul>
+<h3 id=cfg-context-free-grammer>CFG (Context Free Grammer)</h3>
+<ul>
+<li>구문을 표현하는 방법</li>
+<li>G = (N, T, P, S)
+<ul>
+<li>N = nonterminal symbol
+<ul>
+<li>알파벳 대문자로 표현</li>
+</ul>
+</li>
+<li>T = terminal symbol (token)
+<ul>
+<li>알파벳 소문자+숫자, 연산자, 구분자, 키워드 등</li>
+</ul>
+</li>
+<li>P = production rule
+<ul>
+<li>예) S -> T+T, T -> &lsquo;0&rsquo;|&lsquo;1&rsquo;|&lsquo;2&rsquo;</li>
+</ul>
+</li>
+<li>S = start symbol</li>
+</ul>
+</li>
+<li>L(G) : 이 문법으로 생성되는 언어</li>
+</ul>
+<h3 id=여러가지-cfg-표현법>여러가지 CFG 표현법</h3>
+<ul>
+<li>BNF (Backus-Naur Form)</li>
+<li>EBNF (Extended BNF)</li>
+</ul>
+<h3 id=유도-derivation>유도 (derivation)</h3>
+<ul>
+<li>생성 규칙를 적용하여 문장을 생성하는 과정</li>
+<li>유도를 하는 과정에서 하나씩 골라서 바꿈</li>
+<li>유도 트리 : 유도 경로를 추상화 시켜 표현한 것</li>
+<li>좌측 유도(leftmost derivation)
+<ul>
+<li>가장 왼쪽에 있는 nonterminal을 먼저 대치</li>
+</ul>
+</li>
+<li>우측 유도(rightmost derivation)
+<ul>
+<li>가장 오른쪽에 있는 nonterminal을 먼저 대치</li>
+</ul>
+</li>
+</ul>
+<h3 id=모호성-ambiguity>모호성 (ambiguity)</h3>
+<ul>
+<li>문법 G에 의해 생성되는 어떤 문장이 두개 이상의 유도트리를 갖는다면 문법 G는 모호하다고 한다</li>
+<li>모호하지 않은 문법은 좌측 유도와 우측 유도가 같다</li>
+<li>모호성 해결
+<ol>
+<li><strong>연산자 우선순위 도입</strong></li>
+<li><strong>결합 법칙 도입</strong></li>
+</ol>
+</li>
+</ul>
+<h3 id=구문-분석>구문 분석</h3>
+<ul>
+<li>Top-down 방식
+<ul>
+<li>좌측 유도와 같은 순선의 생성 규칙 적용</li>
+</ul>
+</li>
+<li>Bottom-up 방식
+<ul>
+<li>우측 유도의 역순의 생성 규칙 적용</li>
 </ul>
 </li>
 </ul>
