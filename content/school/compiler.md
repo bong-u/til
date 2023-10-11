@@ -36,6 +36,7 @@ date: 2023-09-01
 - Code generation (코드 생성)
   - 목적 코드 생성
 
+
 ## Lexical analysis (어휘 분석)
 - token : 문법적으로 의미있는 최소 단위
 ### FSA (Finite State Automata, 유한 상태 오토마타)
@@ -56,6 +57,7 @@ date: 2023-09-01
   - (29, 0) (1, X) (18, 0) (1, Y) ...
   - 식별자의 토큰번호는 1번, 상수는 2번 등으로 고정
 
+
 ## Syntax analysis (구문 분석)
 - token을 읽어서 오류를 검색, parse tree를 만든다
 
@@ -70,7 +72,6 @@ date: 2023-09-01
     - 예) S -> T+T, T -> '0'|'1'|'2'
   - S = start symbol
 - L(G) : 이 문법으로 생성되는 언어
-
 
 ### 여러가지 CFG 표현법
 - BNF (Backus-Naur Form)
@@ -92,8 +93,37 @@ date: 2023-09-01
   1. **연산자 우선순위 도입**
   2. **결합 법칙 도입**
 
-### 구문 분석
-- Top-down 방식
+### 구문 분석의 2가지 방식
+- top-down,  bottom-up
+
+
+## Top-down parsing
+### Top-down 방식
   - 좌측 유도와 같은 순선의 생성 규칙 적용
-- Bottom-up 방식
+  - backtracking : 유도된 문자열과 입력 문자열이 같지 않으면 다른 생성규칙 적용
+
+### Bottom-up 방식
   - 우측 유도의 역순의 생성 규칙 적용
+  - 
+### LL 파싱
+- 왼쪽->오른쪽으로 읽어서 좌파스 생성
+- backtracking X, 빠르다
+
+### 사용된 정의
+1. ε-생성규칙
+  - Nonterminal A가 ε를 유도할 수 있으면 A를 nullable하다고 부른다
+2. lhs, rhs
+  - A->XXX에서 lhs는 A, rhs는 XXX
+3. ⊕ (Ring Sum)
+  $$
+  if \ \epsilon \notin A \ then \ A \bigoplus B = A
+  $$
+  $$
+  if \ \epsilon \in A \ then \ A \bigoplus B = (A-\{\epsilon\}) \bigcup B
+  $$
+#### First
+ - nonterminal A로 부터 유도되어 첫번째로 나타날 수 있는 terminal의 집합
+
+#### Follow
+- A 다음에 나오는 terminal의 집합
+
