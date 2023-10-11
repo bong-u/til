@@ -16,7 +16,7 @@ def time_delta(t1, t2):
     return str(int(abs(start-end).total_seconds()))
 ```
 
-### 문제
+### [문제](https://www.hackerrank.com/challenges/python-time-delta/problem)
 
 - 정수 T가 주어지고, "Sun 10 May 2015 13:54:36 -0700"과 같은 형식의 두 시간이 T개 주어진다
 - 두 시간의 차이를 초 단위로 출력한다

@@ -23,7 +23,7 @@ def minion_game(string):
         print ('Draw')
 ```
 
-### 문제
+### [문제](https://www.hackerrank.com/challenges/the-minion-game/problem)
 
 - Kevin과 Stuart가 The Minion 게임을 한다
 - 게임의 규칙은 다음과 같다

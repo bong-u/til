@@ -13,8 +13,7 @@ def merge_the_tools(string, k):
     print (''.join(temp))
 ```
 
-### 문제
-
+### [문제](https://www.hackerrank.com/challenges/merge-the-tools/problem)
 - 문자열 S와 정수 k가 주어졌을 때, S를 k 길이의 부분 문자열로 나누고, 각 부분 문자열에서 중복되는 문자를 제거한 뒤 출력한다
 - TC
   - input
