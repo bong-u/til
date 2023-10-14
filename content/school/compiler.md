@@ -92,6 +92,10 @@ date: 2023-09-01
 - 모호성 해결
   1. **연산자 우선순위 도입**
   2. **결합 법칙 도입**
+    - Left Recursion은 좌측 결합에 사용
+      - ex) A -> A+a | a
+    - Right Recursion은 우측 결합에 사용
+      - ex) A -> a+A | a 
 
 ### 구문 분석의 2가지 방식
 - top-down,  bottom-up
@@ -126,4 +130,18 @@ date: 2023-09-01
 
 #### Follow
 - A 다음에 나오는 terminal의 집합
+
+### LL조건
+$$ First(\alpha) \bigcap First(\beta) = \emptyset $$
+$$ if \ \epsilon \in First(\alpha) \ then \ Follow(A) \bigcap First(\beta) = \emptyset $$
+- LL 조건을 만족하는 문법 = LL 파싱 되는 문법
+
+### LOOKAHEAD
+- 어떤 규칙이 적용되었을때 맨 처음 나올 수 있는 terminal 집합
+- Selnium
+
+### LL문법을 구하는 방법
+#### 모호성 제거
+#### left-factoring
+#### left-recursion 제거
 
