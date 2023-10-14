@@ -108,6 +108,9 @@
 <li><a href=#top-down-방식>Top-down 방식</a></li>
 <li><a href=#bottom-up-방식>Bottom-up 방식</a></li>
 <li><a href=#사용된-정의>사용된 정의</a></li>
+<li><a href=#ll조건>LL조건</a></li>
+<li><a href=#lookahead>LOOKAHEAD</a></li>
+<li><a href=#ll문법을-구하는-방법>LL문법을 구하는 방법</a></li>
 </ul>
 </li>
 </ul>
@@ -122,7 +125,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-11</h4>
+<h4 id=date> MODIFIED 2023-10-14</h4>
 </div>
 </div>
 </div>
@@ -271,6 +274,18 @@
 <li><strong>연산자 우선순위 도입</strong></li>
 <li><strong>결합 법칙 도입</strong></li>
 </ol>
+<ul>
+<li>Left Recursion은 좌측 결합에 사용
+<ul>
+<li>ex) A -> A+a | a</li>
+</ul>
+</li>
+<li>Right Recursion은 우측 결합에 사용
+<ul>
+<li>ex) A -> a+A | a</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 <h3 id=구문-분석의-2가지-방식>구문 분석의 2가지 방식</h3>
@@ -320,6 +335,21 @@ $$</li>
 <ul>
 <li>A 다음에 나오는 terminal의 집합</li>
 </ul>
+<h3 id=ll조건>LL조건</h3>
+<p>$$ First(\alpha) \bigcap First(\beta) = \emptyset $$
+$$ if \ \epsilon \in First(\alpha) \ then \ Follow(A) \bigcap First(\beta) = \emptyset $$</p>
+<ul>
+<li>LL 조건을 만족하는 문법 = LL 파싱 되는 문법</li>
+</ul>
+<h3 id=lookahead>LOOKAHEAD</h3>
+<ul>
+<li>어떤 규칙이 적용되었을때 맨 처음 나올 수 있는 terminal 집합</li>
+<li>Selnium</li>
+</ul>
+<h3 id=ll문법을-구하는-방법>LL문법을 구하는 방법</h3>
+<h4 id=모호성-제거>모호성 제거</h4>
+<h4 id=left-factoring>left-factoring</h4>
+<h4 id=left-recursion-제거>left-recursion 제거</h4>
 </article>
 <div id=meta class=mt-24>
 <div>
