@@ -119,17 +119,19 @@ date: 2023-09-01
 2. lhs, rhs
   - A->XXX에서 lhs는 A, rhs는 XXX
 3. ⊕ (Ring Sum)
-  $$
-  if \ \epsilon \notin A \ then \ A \bigoplus B = A
-  $$
-  $$
-  if \ \epsilon \in A \ then \ A \bigoplus B = (A-\{\epsilon\}) \bigcup B
-  $$
+  - A에 ε가 있으면, A⊕B = (A에서 ε빼고 A 합집합 B)
+  - A에 ε가 없으면, A⊕B = A
 #### First
  - nonterminal A로 부터 유도되어 첫번째로 나타날 수 있는 terminal의 집합
+ - X->Y1Y2Y3일때,
+    > FIRST(X) = FIRST(X) U FIRST(Y1) ⊕ FIRST(Y2) ⊕ FIRST(Y3)
 
 #### Follow
 - A 다음에 나오는 terminal의 집합
+- A->αBβ, β != ε 일때,
+  > FOLLOW(B) = FIRST(B) U (FIRST(β)-{ε})
+- A->αB 또는 A->αBβ, FIRST(β)에 ε가 속할 때,
+  > FOLLOW(B) = FOLLOW(B) U FOLLOW(A)
 
 ### LL조건
 $$ First(\alpha) \bigcap First(\beta) = \emptyset $$
