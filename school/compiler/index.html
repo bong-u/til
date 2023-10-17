@@ -112,7 +112,7 @@
 <li><a href=#ll1-문법>LL(1) 문법</a></li>
 <li><a href=#lookahead>LOOKAHEAD</a></li>
 <li><a href=#strong-ll1>Strong LL(1)</a></li>
-<li><a href=#ll문법을-구하는-방법>LL문법을 구하는 방법</a></li>
+<li><a href=#ll1-파서-구현-방법>LL(1) 파서 구현 방법</a></li>
 </ul>
 </li>
 </ul>
@@ -127,7 +127,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-17</h4>
+<h4 id=date> MODIFIED 2023-10-18</h4>
 </div>
 </div>
 </div>
@@ -396,10 +396,87 @@
 <li><strong>LL(1)과 항상 동일</strong> (1이 아닐때는 다름)</li>
 <li>LOOKAHEAD(A->α)와 LOOKAHEAD(A->β)가 겹치지 않는 문법</li>
 </ul>
-<h3 id=ll문법을-구하는-방법>LL문법을 구하는 방법</h3>
-<h4 id=모호성-제거>모호성 제거</h4>
-<h4 id=left-factoring>left-factoring</h4>
-<h4 id=left-recursion-제거>left-recursion 제거</h4>
+<h3 id=ll1-파서-구현-방법>LL(1) 파서 구현 방법</h3>
+<h4 id=recursive-descent-parser>Recursive descent parser</h4>
+<ul>
+<li>장점 : 직관적 쉽다</li>
+<li>단점 : 생성 규칙이 바뀌면 구문 분석기를 고쳐야 한다</li>
+</ul>
+<h4 id=predictive-parser>Predictive parser</h4>
+<ul>
+<li>
+<p>PDA(PushDown Automata)에 기반</p>
+</li>
+<li>
+<p>생성 규칙이 바뀌면 파싱 테이블만 수정</p>
+</li>
+<li>
+<p>파싱테이블 예시 (?에는 규칙번호가 들어간다)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td>A</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>파싱테이블에 두개 이상의 생성 규칙이 들어가는 경우 -> NOT LL(1)</p>
+</li>
+<li>
+<p>스택의 예시</p>
+<table>
+<thead>
+<tr>
+<th>Stack</th>
+<th style=text-align:right>Input String</th>
+<th>Action</th>
+<th>Parse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$S</td>
+<td style=text-align:right>aab$</td>
+<td>expand 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>$Sa</td>
+<td style=text-align:right>aab$</td>
+<td>pop & advance</td>
+<td>1</td>
+</tr>
+<tr>
+<td>$S</td>
+<td style=text-align:right>ab$</td>
+<td>expand 1</td>
+<td>11</td>
+</tr>
+<tr>
+<td>&mldr;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 </article>
 <div id=meta class=mt-24>
 <div>
