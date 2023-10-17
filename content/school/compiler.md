@@ -134,13 +134,30 @@ date: 2023-09-01
   > FOLLOW(B) = FOLLOW(B) U FOLLOW(A)
 
 ### LL조건
-$$ First(\alpha) \bigcap First(\beta) = \emptyset $$
-$$ if \ \epsilon \in First(\alpha) \ then \ Follow(A) \bigcap First(\beta) = \emptyset $$
+- FIRST(α)와 FIRST(β)가 겹치면 안된다
+- FIRST(α)에 ε가 있으면, Follow(α)와 FIRST(β)가 겹치면 안된다
 - LL 조건을 만족하는 문법 = LL 파싱 되는 문법
+
+### LL(1) 문법
+- 임의의 문법에 대하여 LL 조건을 만족하는 CFG
+- 1 : LOOKAHEAD가 1이라는 의미
+- 다음과 같은 경우 LL(1)문법이 되지 않는다
+  1. 모호한 문법
+    - 우선순위 주기, 결합법칙 반영으로 해결
+  2. left-factoring이 되는 경우
+    - 공통 앞부분을 새로운 nonterminal로 만들어 해결
+  3. left-recursive한 경우
+    - 직접 recursion : A -> Aε 인경우
+    - 간접 recursion : A -> B, B -> A 인경우
 
 ### LOOKAHEAD
 - 어떤 규칙이 적용되었을때 맨 처음 나올 수 있는 terminal 집합
-- Selnium
+- A->X1X2X3일때,
+    > LOOKAHEAD(A) = FIRST(X1) ⊕ FIRST(X2) ... ⊕ FOLLOW(A)
+
+### Strong LL(1)
+- **LL(1)과 항상 동일** (1이 아닐때는 다름)
+- LOOKAHEAD(A->α)와 LOOKAHEAD(A->β)가 겹치지 않는 문법
 
 ### LL문법을 구하는 방법
 #### 모호성 제거
