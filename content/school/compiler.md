@@ -159,8 +159,26 @@ date: 2023-09-01
 - **LL(1)과 항상 동일** (1이 아닐때는 다름)
 - LOOKAHEAD(A->α)와 LOOKAHEAD(A->β)가 겹치지 않는 문법
 
-### LL문법을 구하는 방법
-#### 모호성 제거
-#### left-factoring
-#### left-recursion 제거
+### LL(1) 파서 구현 방법
+#### Recursive descent parser 
+- 장점 : 직관적 쉽다
+- 단점 : 생성 규칙이 바뀌면 구문 분석기를 고쳐야 한다
+
+#### Predictive parser
+- PDA(PushDown Automata)에 기반
+- 생성 규칙이 바뀌면 파싱 테이블만 수정
+
+- 파싱테이블 예시 (?에는 규칙번호가 들어간다)
+  |   | a | b |
+  |---|---|---|
+  | S | ? | ? |
+  | A | ? | ? |
+- 파싱테이블에 두개 이상의 생성 규칙이 들어가는 경우 -> NOT LL(1)
+- 스택의 예시
+  | Stack | Input String | Action | Parse |
+  | ----- | -----------: | ------ | ----- |
+  | $S  | aab$ | expand 1      | 1   |
+  | $Sa | aab$ | pop & advance | 1   |
+  | $S  | ab$  | expand 1      | 11  |
+  | ... |
 
