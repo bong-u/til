@@ -108,23 +108,24 @@ date: 2023-09-01
 
 ### Bottom-up 방식
   - 우측 유도의 역순의 생성 규칙 적용
-  - 
+
 ### LL 파싱
 - 왼쪽->오른쪽으로 읽어서 좌파스 생성
 - backtracking X, 빠르다
 
 ### 사용된 정의
 1. ε-생성규칙
-  - Nonterminal A가 ε를 유도할 수 있으면 A를 nullable하다고 부른다
+   - Nonterminal A가 ε를 유도할 수 있으면 A를 nullable하다고 부른다
+
 2. lhs, rhs
-  - A->XXX에서 lhs는 A, rhs는 XXX
+   - A->XXX에서 lhs는 A, rhs는 XXX
 3. ⊕ (Ring Sum)
-  - A에 ε가 있으면, A⊕B = (A에서 ε빼고 A 합집합 B)
-  - A에 ε가 없으면, A⊕B = A
+   - A에 ε가 있으면, A⊕B = (A에서 ε빼고 A 합집합 B)
+   - A에 ε가 없으면, A⊕B = A
 #### First
- - nonterminal A로 부터 유도되어 첫번째로 나타날 수 있는 terminal의 집합
- - X->Y1Y2Y3일때,
-    > FIRST(X) = FIRST(X) U FIRST(Y1) ⊕ FIRST(Y2) ⊕ FIRST(Y3)
+- nonterminal A로 부터 유도되어 첫번째로 나타날 수 있는 terminal의 집합
+- X->Y1Y2Y3일때,
+  > FIRST(X) = FIRST(X) U FIRST(Y1) ⊕ FIRST(Y2) ⊕ FIRST(Y3)
 
 #### Follow
 - A 다음에 나오는 terminal의 집합
@@ -174,11 +175,64 @@ date: 2023-09-01
   | S | ? | ? |
   | A | ? | ? |
 - 파싱테이블에 두개 이상의 생성 규칙이 들어가는 경우 -> NOT LL(1)
-- 스택의 예시
-  | Stack | Input String | Action | Parse |
-  | ----- | -----------: | ------ | ----- |
-  | $S  | aab$ | expand 1      | 1   |
-  | $Sa | aab$ | pop & advance | 1   |
-  | $S  | ab$  | expand 1      | 11  |
-  | ... |
+- Stack의 예시
+  ![topdown_stack](../../static/image/topdown_stack.png)
+## Bottom-up parsing
+- left-recursive 문법도 파싱 가능
+
+#### LL(k)
+- 좌측유도 기반
+- k개의 symbol을 lookahead
+- Top-down parsing, recursive descent parsing, predictive  parsing, LL parser
+- 파스트리를 pre-roder로 순회 및 생성
+
+#### LR(k)
+- 우측유도 기반
+- k개의 symbol을 lookahead
+- Bottom-up parsing, shift-reduce parsing, LR parser
+- 파스트리를 post-order로 순회 및 생성
+
+#### Reduce
+- S=>αβω이고 A->β이면 β를 A로 대치하는 것 : S=>αAω
+- 시작 symbol이 나올 때까지 reduce 한다
+
+#### Handle
+- S=>αβω이고 A->β이면 β를 αβω의 handle이라고 한다
+- 두 개 이상의 handle이 존재할때 -> 모호하다
+
+### Shift와 Reduce로 Parsing 하기
+#### Stack의 예시
+  ![bottomup_stack](../../static/image/bottomup_stack.png)
+
+#### Issue
+1. Shift와 Reduce 중 어느 것을 할까?
+2. Stack의 top에서 얼마만큼을 handle로 볼 것인가?
+- 해결방법: LR Parsing Table
+
+#### LR Parsing Table
+- Action table : Action + Parser 상태
+- Goto table : Parser 상태
+
+### LR(0) 파싱 테이블 만들기
+#### LR(0) 아이템
+- rhs에 점('.') symbol을 가진 생성 규칙
+- ex) A->α.β, A->.
+#### closure
+- 점('.')뒤에 non-terminal이 오면 재귀적으로 추가
+- S' -> S, S -> (L)|id, L -> S | L,S
+  - closure({[S'->.S]}) = {[S'->.S], [S->.(L)], [S->.id]}
+
+#### goto
+- goto(I, X)이면 점을 X뒤로 옮기고 closure를 취한다
+- X가 없으면 넣지 않는다
+- I={[G->E=E], [E->E.+T]} 일때,
+  - goto(I, +) = closure({E->E+.T}) : 점을 +뒤로 옮김
+
+#### C0
+- 생성규칙 S'->S에서부터 차례로 closure와 goto를 적용하여 얻은 모든 타당한 LR(0)의 아이템 집합들
+
+- Item의 종류
+  - [A->X.Y] : X!=ε일때 kernel item
+  - [A->.X] : closure item
+  - [A->X.] : reduce item
 
