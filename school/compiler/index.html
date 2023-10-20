@@ -107,12 +107,20 @@
 <ul>
 <li><a href=#top-down-방식>Top-down 방식</a></li>
 <li><a href=#bottom-up-방식>Bottom-up 방식</a></li>
+<li><a href=#ll-파싱>LL 파싱</a></li>
 <li><a href=#사용된-정의>사용된 정의</a></li>
 <li><a href=#ll조건>LL조건</a></li>
 <li><a href=#ll1-문법>LL(1) 문법</a></li>
 <li><a href=#lookahead>LOOKAHEAD</a></li>
 <li><a href=#strong-ll1>Strong LL(1)</a></li>
 <li><a href=#ll1-파서-구현-방법>LL(1) 파서 구현 방법</a></li>
+</ul>
+</li>
+<li><a href=#bottom-up-parsing>Bottom-up parsing</a>
+<ul>
+<li></li>
+<li><a href=#shift와-reduce로-parsing-하기>Shift와 Reduce로 Parsing 하기</a></li>
+<li><a href=#lr0-파싱-테이블-만들기>LR(0) 파싱 테이블 만들기</a></li>
 </ul>
 </li>
 </ul>
@@ -127,7 +135,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-18</h4>
+<h4 id=date> MODIFIED 2023-10-20</h4>
 </div>
 </div>
 </div>
@@ -303,30 +311,34 @@
 <h3 id=bottom-up-방식>Bottom-up 방식</h3>
 <ul>
 <li>우측 유도의 역순의 생성 규칙 적용</li>
-<li></li>
+</ul>
+<h3 id=ll-파싱>LL 파싱</h3>
+<ul>
 <li>왼쪽->오른쪽으로 읽어서 좌파스 생성</li>
 <li>backtracking X, 빠르다</li>
 </ul>
 <h3 id=사용된-정의>사용된 정의</h3>
 <ol>
-<li>ε-생성규칙</li>
-</ol>
+<li>
+<p>ε-생성규칙</p>
 <ul>
 <li>Nonterminal A가 ε를 유도할 수 있으면 A를 nullable하다고 부른다</li>
 </ul>
-<ol start=2>
-<li>lhs, rhs</li>
-</ol>
+</li>
+<li>
+<p>lhs, rhs</p>
 <ul>
 <li>A->XXX에서 lhs는 A, rhs는 XXX</li>
 </ul>
-<ol start=3>
-<li>⊕ (Ring Sum)</li>
-</ol>
+</li>
+<li>
+<p>⊕ (Ring Sum)</p>
 <ul>
 <li>A에 ε가 있으면, A⊕B = (A에서 ε빼고 A 합집합 B)</li>
 <li>A에 ε가 없으면, A⊕B = A</li>
 </ul>
+</li>
+</ol>
 <h4 id=first>First</h4>
 <ul>
 <li>nonterminal A로 부터 유도되어 첫번째로 나타날 수 있는 terminal의 집합</li>
@@ -438,43 +450,91 @@
 <p>파싱테이블에 두개 이상의 생성 규칙이 들어가는 경우 -> NOT LL(1)</p>
 </li>
 <li>
-<p>스택의 예시</p>
-<table>
-<thead>
-<tr>
-<th>Stack</th>
-<th style=text-align:right>Input String</th>
-<th>Action</th>
-<th>Parse</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$S</td>
-<td style=text-align:right>aab$</td>
-<td>expand 1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>$Sa</td>
-<td style=text-align:right>aab$</td>
-<td>pop & advance</td>
-<td>1</td>
-</tr>
-<tr>
-<td>$S</td>
-<td style=text-align:right>ab$</td>
-<td>expand 1</td>
-<td>11</td>
-</tr>
-<tr>
-<td>&mldr;</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>Stack의 예시
+<img src=../../static/image/topdown_stack.png alt=topdown_stack></p>
+</li>
+</ul>
+<h2 id=bottom-up-parsing>Bottom-up parsing</h2>
+<ul>
+<li>left-recursive 문법도 파싱 가능</li>
+</ul>
+<h4 id=llk>LL(k)</h4>
+<ul>
+<li>좌측유도 기반</li>
+<li>k개의 symbol을 lookahead</li>
+<li>Top-down parsing, recursive descent parsing, predictive parsing, LL parser</li>
+<li>파스트리를 pre-roder로 순회 및 생성</li>
+</ul>
+<h4 id=lrk>LR(k)</h4>
+<ul>
+<li>우측유도 기반</li>
+<li>k개의 symbol을 lookahead</li>
+<li>Bottom-up parsing, shift-reduce parsing, LR parser</li>
+<li>파스트리를 post-order로 순회 및 생성</li>
+</ul>
+<h4 id=reduce>Reduce</h4>
+<ul>
+<li>S=>αβω이고 A->β이면 β를 A로 대치하는 것 : S=>αAω</li>
+<li>시작 symbol이 나올 때까지 reduce 한다</li>
+</ul>
+<h4 id=handle>Handle</h4>
+<ul>
+<li>S=>αβω이고 A->β이면 β를 αβω의 handle이라고 한다</li>
+<li>두 개 이상의 handle이 존재할때 -> 모호하다</li>
+</ul>
+<h3 id=shift와-reduce로-parsing-하기>Shift와 Reduce로 Parsing 하기</h3>
+<h4 id=stack의-예시>Stack의 예시</h4>
+<p><img src=../../static/image/bottomup_stack.png alt=bottomup_stack></p>
+<h4 id=issue>Issue</h4>
+<ol>
+<li>Shift와 Reduce 중 어느 것을 할까?</li>
+<li>Stack의 top에서 얼마만큼을 handle로 볼 것인가?</li>
+</ol>
+<ul>
+<li>해결방법: LR Parsing Table</li>
+</ul>
+<h4 id=lr-parsing-table>LR Parsing Table</h4>
+<ul>
+<li>Action table : Action + Parser 상태</li>
+<li>Goto table : Parser 상태</li>
+</ul>
+<h3 id=lr0-파싱-테이블-만들기>LR(0) 파싱 테이블 만들기</h3>
+<h4 id=lr0-아이템>LR(0) 아이템</h4>
+<ul>
+<li>rhs에 점('.') symbol을 가진 생성 규칙</li>
+<li>ex) A->α.β, A->.</li>
+</ul>
+<h4 id=closure>closure</h4>
+<ul>
+<li>점('.')뒤에 non-terminal이 오면 재귀적으로 추가</li>
+<li>S' -> S, S -> (L)|id, L -> S | L,S
+<ul>
+<li>closure({[S'->.S]}) = {[S'->.S], [S->.(L)], [S->.id]}</li>
+</ul>
+</li>
+</ul>
+<h4 id=goto>goto</h4>
+<ul>
+<li>goto(I, X)이면 점을 X뒤로 옮기고 closure를 취한다</li>
+<li>X가 없으면 넣지 않는다</li>
+<li>I={[G->E=E], [E->E.+T]} 일때,
+<ul>
+<li>goto(I, +) = closure({E->E+.T}) : 점을 +뒤로 옮김</li>
+</ul>
+</li>
+</ul>
+<h4 id=c0>C0</h4>
+<ul>
+<li>
+<p>생성규칙 S'->S에서부터 차례로 closure와 goto를 적용하여 얻은 모든 타당한 LR(0)의 아이템 집합들</p>
+</li>
+<li>
+<p>Item의 종류</p>
+<ul>
+<li>[A->X.Y] : X!=ε일때 kernel item</li>
+<li>[A->.X] : closure item</li>
+<li>[A->X.] : reduce item</li>
+</ul>
 </li>
 </ul>
 </article>
