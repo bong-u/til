@@ -121,6 +121,9 @@
 <li></li>
 <li><a href=#shift와-reduce로-parsing-하기>Shift와 Reduce로 Parsing 하기</a></li>
 <li><a href=#lr0-파싱-테이블-만들기>LR(0) 파싱 테이블 만들기</a></li>
+<li><a href=#yacc>YACC</a></li>
+<li><a href=#slr-파싱-테이블-만들기>SLR 파싱 테이블 만들기</a></li>
+<li><a href=#lalr-parsing>LALR Parsing</a></li>
 </ul>
 </li>
 </ul>
@@ -135,7 +138,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-20</h4>
+<h4 id=date> MODIFIED 2023-10-21</h4>
 </div>
 </div>
 </div>
@@ -535,6 +538,42 @@
 <li>[A->.X] : closure item</li>
 <li>[A->X.] : reduce item</li>
 </ul>
+</li>
+</ul>
+<h3 id=yacc>YACC</h3>
+<ul>
+<li>LALR 파서 생성기</li>
+<li>foo.y &ndash;(yacc)&ndash;> y.tab.c &ndash;(gcc)&ndash;> a.out</li>
+<li>*.y 파일 구조
+<pre tabindex=0><code>&lt;선언부&gt;
+...
+%%
+...
+exp : exp '+' term;
+factor : ident;
+...
+%%
+&lt;여러 함수&gt;
+</code></pre></li>
+<li>모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결</li>
+</ul>
+<h3 id=slr-파싱-테이블-만들기>SLR 파싱 테이블 만들기</h3>
+<ul>
+<li>reduce Item이 [X->α.]일때, FOLLOW(X)의 모든 terminal에만 reduce action을 넣는다</li>
+<li>나머지는 LR(0)과 똑같다</li>
+<li>LR(0)보다 conflict가 적어, 더 정교하다고 할 수 있다.</li>
+</ul>
+<h3 id=lalr-parsing>LALR Parsing</h3>
+<ul>
+<li>정교한 순서
+<blockquote>
+<p>LR(0) &lt; SLR &lt; LALR(1) &lt; LR(1)</p>
+</blockquote>
+</li>
+<li>파서 상태의 개수
+<blockquote>
+<p>SLR = LALR &#171; LR(1)</p>
+</blockquote>
 </li>
 </ul>
 </article>
