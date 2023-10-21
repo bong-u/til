@@ -236,3 +236,30 @@ date: 2023-09-01
   - [A->.X] : closure item
   - [A->X.] : reduce item
 
+### YACC
+- LALR 파서 생성기
+- foo.y --(yacc)--> y.tab.c --(gcc)--> a.out
+- *.y 파일 구조
+  ```
+  <선언부>
+  ...
+  %%
+  ...
+  exp : exp '+' term;
+  factor : ident;
+  ...
+  %%
+  <여러 함수>
+  ```
+- 모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결
+
+### SLR 파싱 테이블 만들기
+- reduce Item이 [X->α.]일때, FOLLOW(X)의 모든 terminal에만 reduce action을 넣는다
+- 나머지는 LR(0)과 똑같다
+- LR(0)보다 conflict가 적어, 더 정교하다고 할 수 있다.
+
+### LALR Parsing
+- 정교한 순서
+  > LR(0) < SLR < LALR(1) < LR(1)
+- 파서 상태의 개수
+  > SLR = LALR << LR(1)
