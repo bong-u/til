@@ -62,7 +62,7 @@ date: 2023-10-16
 #### IPv4
 - 32bit
 ### IPv6
-- 128bit
+- 128bit (64bit : network prefix, 64bit : host network identifier)
 - Network identifier + Interface identifier
 - 종류 : unicast, anycast, link-local, multicast
 - ::1/128 : loopback address
@@ -143,3 +143,87 @@ date: 2023-10-16
 - SNI (Server Name Indication) : 도메인 정보
 - TLS에서는 SNI를 암호화하지 않음
 
+## 신뢰성 있는 전송계층
+### TCP
+- 신뢰성: 오류 탐지/복구, 순서 전송, 중복 제거
+- 흐름제어: 수신자의 상태에 따른 전송량 조절
+- 혼잡제어: 네트워크+수신자의 혼잡상태에 따른 전송량 조절
+- 연결관리
+### UDP
+- 연결을 만들지 않는다, 빠르다, 단순한다
+- checksum : 오류 검출 가능
+### 공통
+- 지연시간, 대역폭은 보장이 되지 않는다
+
+### Stop-and-Wait ARQ
+- 송신자 윈도우 크기: 0 or 1
+- 수신자 윈도우 크기 : 1
+### Go-Back-N ARQ
+- 송신자 윈도우 크기 : $2^m - 1$
+- 수신자 윈도우 크기 : 1
+### Selective Repeat ARQ
+- 송신자 윈도우 크기 : $2^{m - 1}$
+- 수신자 윈도우 크기 : $2^{m - 1}$
+
+## FTP, SMTP
+- SMTP: 이메일 서버 전송 프로토콜
+- POP3, IMAP, HTTP: 이메일 서버 접근 프로토콜
+
+## P2P
+### 두 방식의 비교
+- 1개의 서버 N개의 peer
+- $u_s$: 서버 업로드 대역폭
+- $d_i$: i번째 peer의 다운로드 대역폭
+### Client-Server 방식
+- 배포 시간
+$$ d_{cs} = max(\frac{NF}{u_s},\ \frac{F}{d_i}) $$
+
+### P2P 방식
+- 서버에 업로드하는 시간
+$$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
+
+### BitTorrent
+- 파일을 256KB chunks로 분할
+
+### Distributed Hash Table (DHT)
+- 분산 P2P DB
+- key: hash(content), value: IP address
+- 인접한 이웃에게 키를 할당
+- Circular DHT
+  - 각 피어는 인접 노드만 알고있음
+
+### Skype
+  - 사용자 간 P2P통신
+
+## Socket Programming
+
+### 소켓
+- 응용 프로세스와 전송 계층 사이의 API
+
+### 여러개의 클라이언트와 통신
+#### Multiprocess
+- context switch 비용 발생, IPC 통신
+#### Multithread
+- context switch 비용 발생
+#### Select
+- 여러 Socket I/O 동시 처리
+- 비효율적이다
+#### Async
+- 빠르다
+- 복잡한 코드, 어려운 디버깅
+
+## TCP
+### TCP 개요
+- 연결 지향적
+- 신뢰성 있는 전송
+- pipelining : 병렬 전송
+- Full duplex data : 동일 연결에서 양방향 데이터 전송
+- flow control
+
+### TCP Segment
+![tcp_segment](../../static/image/tcp_segment.png)
+
+### TCP 신뢰성 있는 전송
+- cumulative acks
+- timeout -> 재전송
+- duplicate acks -> 재전송
