@@ -149,6 +149,31 @@
 <li><a href=#tcp-신뢰성-있는-전송>TCP 신뢰성 있는 전송</a></li>
 </ul>
 </li>
+<li><a href=#data-link-계층>Data Link 계층</a>
+<ul>
+<li><a href=#링크-계층의-역할>링크 계층의 역할</a></li>
+<li><a href=#mac-주소>MAC 주소</a></li>
+<li><a href=#cidr>CIDR</a></li>
+</ul>
+</li>
+<li><a href=#network-계층---ip>Network 계층 - IP</a>
+<ul>
+<li><a href=#network-계층의-역할>Network 계층의 역할</a></li>
+<li><a href=#fragmentation>Fragmentation</a></li>
+<li><a href=#ttl>TTL</a></li>
+<li><a href=#ipv4-1>IPv4</a></li>
+<li><a href=#dhcp>DHCP</a></li>
+<li><a href=#nat>NAT</a></li>
+<li><a href=#ipv6-1>Ipv6</a></li>
+<li><a href=#middlebox>MiddleBox</a></li>
+</ul>
+</li>
+<li><a href=#network-계층---routing>Network 계층 - Routing</a>
+<ul>
+<li><a href=#switching-fabrics>Switching fabrics</a></li>
+</ul>
+</li>
+<li><a href=#transport-계층---혼잡-제어>Transport 계층 - 혼잡 제어</a></li>
 </ul>
 </nav>
 </aside>
@@ -161,7 +186,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-10-16 </h4>
-<h4 id=date> MODIFIED 2023-10-21</h4>
+<h4 id=date> MODIFIED 2023-10-23</h4>
 </div>
 </div>
 </div>
@@ -361,7 +386,7 @@
 <h3 id=dns-query-type>DNS Query Type</h3>
 <ul>
 <li>A : IPv4 주소</li>
-<li>AAAA : IPv6 주소</li>
+<li>AAAA : IPv6 주소r</li>
 <li>CNAME : 별칭</li>
 </ul>
 <h3 id=tld-top-level-domain>TLD (Top Level Domain)</h3>
@@ -503,13 +528,141 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$</li>
 <li>flow control</li>
 </ul>
 <h3 id=tcp-segment>TCP Segment</h3>
-<p><img src=../../static/image/tcp_segment.png alt=tcp_segment></p>
+<p><img src=/static/image/tcp_segment.png alt=tcp_segment></p>
 <h3 id=tcp-신뢰성-있는-전송>TCP 신뢰성 있는 전송</h3>
 <ul>
 <li>cumulative acks</li>
 <li>timeout -> 재전송</li>
 <li>duplicate acks -> 재전송</li>
 </ul>
+<h2 id=data-link-계층>Data Link 계층</h2>
+<h3 id=링크-계층의-역할>링크 계층의 역할</h3>
+<ul>
+<li>데이터 프레임의 주고 받기</li>
+</ul>
+<h3 id=mac-주소>MAC 주소</h3>
+<ul>
+<li>디바이스 고유의 식별자, 48bit</li>
+</ul>
+<h3 id=cidr>CIDR</h3>
+<ul>
+<li>사용하는 이유
+<ul>
+<li>Class(A, B, C) 단위 할당에 따른 비효율적인 주소 관리</li>
+<li>BGP 라우팅 테이블 개수 최소화</li>
+</ul>
+</li>
+</ul>
+<h4 id=예시-1721615011522>예시 (172.16.150.115/22)</h4>
+<ul>
+<li>주소 개수 : $2^{32-22}-2$ = 1024 - 2 = 1022
+<ul>
+<li>첫번째와 마지막 주소는 특수목적 IP라서 사용 불가</li>
+</ul>
+</li>
+<li>네트워크 주소 : 172.16.148.0/22</li>
+<li>주소 공간 : 172.16.148.0 ~ 172.16.151.255</li>
+<li>브로드캐스트 주소 : 172.16.151.255</li>
+</ul>
+<h2 id=network-계층---ip>Network 계층 - IP</h2>
+<h3 id=network-계층의-역할>Network 계층의 역할</h3>
+<ul>
+<li>IP 패킷 송수신, IP 패킷 전달, IP 경로 찾기</li>
+</ul>
+<h3 id=fragmentation>Fragmentation</h3>
+<ul>
+<li>MTU(Maximum Transfer Unit) : 링크 계층 프레임 크기 제한
+<ul>
+<li>Ethernet : 1500B</li>
+</ul>
+</li>
+<li>MTU 보다 큰 IP 패킷을 파편화, 목적지에서 재조립</li>
+</ul>
+<h3 id=ttl>TTL</h3>
+<ul>
+<li>라우팅 루프 방지, 0이 되면 폐기</li>
+<li>traceroute : TTL을 이용한 도구</li>
+</ul>
+<h3 id=ipv4-1>IPv4</h3>
+<ul>
+<li>IPv4 datagram format
+<img src=/static/image/ipv4_datagram.png alt=ipv4_datagram></li>
+<li>IHL(Header Length): IP 헤더 길이</li>
+<li>IP Record Route Option: IP 주소 기록하는 옵션</li>
+<li>서브넷 (Subnets)
+<blockquote>
+<p>라우터를 거치지 않고 도착할 수 있는 인터페이스의 집합</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=dhcp>DHCP</h3>
+<ul>
+<li>클라이언트의 IP 주소를 자동으로 할당, 관리하는 프로토콜</li>
+</ul>
+<h3 id=nat>NAT</h3>
+<ul>
+<li>사설 IP 주소를 공인 IP 주소로 변환</li>
+</ul>
+<h3 id=ipv6-1>Ipv6</h3>
+<ul>
+<li>Ipv6 datagram format
+<img src=/static/image/ipv6_datagram.png alt=ipv6_datagram></li>
+<li>IPv4와 비교
+<ul>
+<li>no checksum</li>
+<li>no fragmentation / reassembly</li>
+<li>no options</li>
+</ul>
+</li>
+</ul>
+<h4 id=ipv4---ipv6-변환>Ipv4 -> Ipv6 변환</h4>
+<ul>
+<li>tunneling : IPv6 패킷을 IPv4 패킷에 캡슐화</li>
+</ul>
+<h3 id=middlebox>MiddleBox</h3>
+<ul>
+<li>출발지와 목적지 사이에서 ip router의 기능을 제외한 기능을 수행하는 중간 상자</li>
+<li>NAT, Firewalls, Load balancers, Caches</li>
+</ul>
+<h2 id=network-계층---routing>Network 계층 - Routing</h2>
+<ul>
+<li>Routing: 길 찾기 기능
+<ul>
+<li>Routing table : Trie 자료구조 사용</li>
+</ul>
+</li>
+<li>Forwarding: 패킷 전달 기능
+<ul>
+<li>Forwarding table : 가장 긴 공통 prefix를 찾아서 패킷 전달</li>
+</ul>
+</li>
+</ul>
+<h3 id=switching-fabrics>Switching fabrics</h3>
+<blockquote>
+<p>라우터 내부에서 패킷을 전달하는 방식</p>
+</blockquote>
+<ul>
+<li>3가지 종류 : Memory, Bus, Crossbar</li>
+<li>입력 포트에서의 문제
+<ul>
+<li>입력 포트의 속도 > 스위치 속도 -> 큐잉 지연 발생</li>
+<li>Head-of-line(HoL) blocking : 큐잉 지연으로 인해 다른 패킷들도 지연되는 현상</li>
+</ul>
+</li>
+<li><strong>출력 포트에서의 문제</strong>
+<ul>
+<li>스위치 속도 > 출력 포트의 속도 -> 패킷 손실 발생</li>
+<li>해결방법
+<ol>
+<li>이미 대기 중인 패킷을 폐기</li>
+<li>새로 도착한 패킷을 폐기</li>
+</ol>
+</li>
+<li>scheduling policy : FIFO, Round Robin 등등</li>
+</ul>
+</li>
+</ul>
+<h2 id=transport-계층---혼잡-제어>Transport 계층 - 혼잡 제어</h2>
 </article>
 <div id=meta class=mt-24>
 <div>

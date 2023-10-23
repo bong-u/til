@@ -171,7 +171,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-03-02 </h4>
-<h4 id=date> MODIFIED 2023-06-10</h4>
+<h4 id=date> MODIFIED 2023-10-23</h4>
 </div>
 </div>
 </div>
@@ -373,7 +373,7 @@
 <ul>
 <li>
 <p>트리</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>A
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>A
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>├── B
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>│   ├-─ D
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>│   │   ├── H
@@ -392,8 +392,8 @@
 <ul>
 <li>
 <p>위 트리를 배열에 저장하면 (인덱스 1부터 시작)</p>
-<pre tabindex=0><code>A = [A, B, C, D, E, F, G, H, I, J, K]
-</code></pre><ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>A = [A, B, C, D, E, F, G, H, I, J, K]
+</code></pre></div><ul>
 <li>a[i]의 부모는 <strong>a[i/2]</strong>, 단 i>1</li>
 <li>a[i]의 왼쪽 자식은 <strong>a[2i]</strong>, 단 2i &lt;= n</li>
 <li>a[i]의 오른쪽 자식은 <strong>a[2i+1]</strong>, 단 2i+1 &lt;= n</li>
@@ -455,19 +455,19 @@ levelorder : left -> right (from top level)</p>
 <ul>
 <li>집합 1</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#ae81ff>7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── <span style=color:#ae81ff>2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>│   ├-─ <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>│   └-─ <span style=color:#ae81ff>6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>├── <span style=color:#ae81ff>8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>└── <span style=color:#ae81ff>3</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>7
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── 2
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>│   ├-─ 1
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>│   └-─ 6
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>├── 8
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>└── 3
 </code></pre></div><ul>
 <li>집합2</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#ae81ff>4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>├── <span style=color:#ae81ff>5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>└── <span style=color:#ae81ff>9</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>4
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── 0
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>├── 5
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>└── 9
 </code></pre></div><ul>
 <li>수행 시간
 <ul>

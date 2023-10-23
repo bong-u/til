@@ -138,7 +138,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-21</h4>
+<h4 id=date> MODIFIED 2023-10-23</h4>
 </div>
 </div>
 </div>
@@ -163,9 +163,9 @@
 </ul>
 <h4 id=컴파일러-vs-인터프리터>컴파일러 vs 인터프리터</h4>
 <h3 id=프로그램-처리과정>프로그램 처리과정</h3>
-<p><img src=../../static/image/program_process.png alt=program_process></p>
+<p><img src=/static/image/program_process.png alt=program_process></p>
 <h3 id=컴파일러의-처리-과정>컴파일러의 처리 과정</h3>
-<p><img src=../../static/image/compile_process.png alt=compile_process></p>
+<p><img src=/static/image/compile_process.png alt=compile_process></p>
 <ul>
 <li>Lexical analysis (어휘 분석)
 <ul>
@@ -203,13 +203,13 @@
 <li>token : 문법적으로 의미있는 최소 단위</li>
 </ul>
 <h3 id=fsa-finite-state-automata-유한-상태-오토마타>FSA (Finite State Automata, 유한 상태 오토마타)</h3>
-<p><img src=../../static/image/fsa_integer.png alt=fsa_integer></p>
+<p><img src=/static/image/fsa_integer.png alt=fsa_integer></p>
 <ul>
 <li>token을 인식하는 방법</li>
 <li>시작 상태 한 개와 끝 상태 여러 개를 가짐</li>
 </ul>
 <h3 id=dfa-deterministic-finite-automata>DFA (Deterministic Finite Automata)</h3>
-<p><img src=../../static/image/dfa_example.png alt=dfa_example></p>
+<p><img src=/static/image/dfa_example.png alt=dfa_example></p>
 <ul>
 <li>FSA의 한 종류</li>
 <li>각 상태에서 뻗어나가는 edge가 하나씩만 존재</li>
@@ -454,7 +454,7 @@
 </li>
 <li>
 <p>Stack의 예시
-<img src=../../static/image/topdown_stack.png alt=topdown_stack></p>
+<img src=/static/image/topdown_stack.png alt=topdown_stack></p>
 </li>
 </ul>
 <h2 id=bottom-up-parsing>Bottom-up parsing</h2>
@@ -487,7 +487,7 @@
 </ul>
 <h3 id=shift와-reduce로-parsing-하기>Shift와 Reduce로 Parsing 하기</h3>
 <h4 id=stack의-예시>Stack의 예시</h4>
-<p><img src=../../static/image/bottomup_stack.png alt=bottomup_stack></p>
+<p><img src=/static/image/bottomup_stack.png alt=bottomup_stack></p>
 <h4 id=issue>Issue</h4>
 <ol>
 <li>Shift와 Reduce 중 어느 것을 할까?</li>
@@ -545,16 +545,16 @@
 <li>LALR 파서 생성기</li>
 <li>foo.y &ndash;(yacc)&ndash;> y.tab.c &ndash;(gcc)&ndash;> a.out</li>
 <li>*.y 파일 구조
-<pre tabindex=0><code>&lt;선언부&gt;
-...
-%%
-...
-exp : exp '+' term;
-factor : ident;
-...
-%%
-&lt;여러 함수&gt;
-</code></pre></li>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>&lt;</span>선언부<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#f92672>%%</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>exp <span style=color:#f92672>:</span> exp <span style=color:#e6db74>&#39;+&#39;</span> term<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>factor <span style=color:#f92672>:</span> ident<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span style=color:#f92672>%%</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>&lt;</span>여러 함수<span style=color:#f92672>&gt;</span>
+</code></pre></div></li>
 <li>모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결</li>
 </ul>
 <h3 id=slr-파싱-테이블-만들기>SLR 파싱 테이블 만들기</h3>
