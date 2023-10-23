@@ -19,10 +19,10 @@ date: 2023-09-01
 #### 컴파일러 vs 인터프리터
 
 ### 프로그램 처리과정
-![program_process](../../static/image/program_process.png)
+![program_process](/static/image/program_process.png)
 
 ### 컴파일러의 처리 과정
-![compile_process](../../static/image/compile_process.png)
+![compile_process](/static/image/compile_process.png)
 - Lexical analysis (어휘 분석)
   - token을 생성하는일, token은 어휘의 최소 단위
 - Syntax analysis (구문 분석)
@@ -40,12 +40,12 @@ date: 2023-09-01
 ## Lexical analysis (어휘 분석)
 - token : 문법적으로 의미있는 최소 단위
 ### FSA (Finite State Automata, 유한 상태 오토마타)
-![fsa_integer](../../static/image/fsa_integer.png)
+![fsa_integer](/static/image/fsa_integer.png)
 - token을 인식하는 방법
 - 시작 상태 한 개와 끝 상태 여러 개를 가짐
 
 ### DFA (Deterministic Finite Automata)
-![dfa_example](../../static/image/dfa_example.png)
+![dfa_example](/static/image/dfa_example.png)
 - FSA의 한 종류
 - 각 상태에서 뻗어나가는 edge가 하나씩만 존재
 - ε가 붙은 edge 없음
@@ -176,7 +176,7 @@ date: 2023-09-01
   | A | ? | ? |
 - 파싱테이블에 두개 이상의 생성 규칙이 들어가는 경우 -> NOT LL(1)
 - Stack의 예시
-  ![topdown_stack](../../static/image/topdown_stack.png)
+  ![topdown_stack](/static/image/topdown_stack.png)
 ## Bottom-up parsing
 - left-recursive 문법도 파싱 가능
 
@@ -202,7 +202,7 @@ date: 2023-09-01
 
 ### Shift와 Reduce로 Parsing 하기
 #### Stack의 예시
-  ![bottomup_stack](../../static/image/bottomup_stack.png)
+  ![bottomup_stack](/static/image/bottomup_stack.png)
 
 #### Issue
 1. Shift와 Reduce 중 어느 것을 할까?
@@ -240,7 +240,7 @@ date: 2023-09-01
 - LALR 파서 생성기
 - foo.y --(yacc)--> y.tab.c --(gcc)--> a.out
 - *.y 파일 구조
-  ```
+  ```java
   <선언부>
   ...
   %%

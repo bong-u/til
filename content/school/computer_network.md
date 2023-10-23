@@ -115,7 +115,7 @@ date: 2023-10-16
 
 ### DNS Query Type
 - A : IPv4 주소
-- AAAA : IPv6 주소
+- AAAA : IPv6 주소r
 - CNAME : 별칭
 
 ### TLD (Top Level Domain)
@@ -221,9 +221,90 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
 - flow control
 
 ### TCP Segment
-![tcp_segment](../../static/image/tcp_segment.png)
+![tcp_segment](/static/image/tcp_segment.png)
 
 ### TCP 신뢰성 있는 전송
 - cumulative acks
 - timeout -> 재전송
 - duplicate acks -> 재전송
+
+## Data Link 계층
+
+### 링크 계층의 역할
+- 데이터 프레임의 주고 받기
+### MAC 주소
+- 디바이스 고유의 식별자, 48bit
+### CIDR
+- 사용하는 이유
+  - Class(A, B, C) 단위 할당에 따른 비효율적인 주소 관리
+  - BGP 라우팅 테이블 개수 최소화
+
+#### 예시 (172.16.150.115/22)
+- 주소 개수 : $2^{32-22}-2$ = 1024 - 2 = 1022
+  - 첫번째와 마지막 주소는 특수목적 IP라서 사용 불가
+- 네트워크 주소 : 172.16.148.0/22
+- 주소 공간 : 172.16.148.0 ~ 172.16.151.255
+- 브로드캐스트 주소 : 172.16.151.255
+
+## Network 계층 - IP
+### Network 계층의 역할
+- IP 패킷 송수신, IP 패킷 전달, IP 경로 찾기
+
+### Fragmentation
+- MTU(Maximum Transfer Unit) : 링크 계층 프레임 크기 제한
+  - Ethernet : 1500B
+- MTU 보다 큰 IP 패킷을 파편화, 목적지에서 재조립
+
+ ### TTL
+ - 라우팅 루프 방지, 0이 되면 폐기
+ - traceroute : TTL을 이용한 도구
+
+### IPv4
+- IPv4 datagram format
+  ![ipv4_datagram](/static/image/ipv4_datagram.png)
+- IHL(Header Length): IP 헤더 길이
+- IP Record Route Option: IP 주소 기록하는 옵션
+- 서브넷 (Subnets)
+  > 라우터를 거치지 않고 도착할 수 있는 인터페이스의 집합
+
+### DHCP
+- 클라이언트의 IP 주소를 자동으로 할당, 관리하는 프로토콜
+
+### NAT
+- 사설 IP 주소를 공인 IP 주소로 변환
+
+### Ipv6
+- Ipv6 datagram format
+  ![ipv6_datagram](/static/image/ipv6_datagram.png)
+- IPv4와 비교
+  - no checksum
+  - no fragmentation / reassembly
+  - no options
+
+#### Ipv4 -> Ipv6 변환
+- tunneling : IPv6 패킷을 IPv4 패킷에 캡슐화
+
+### MiddleBox
+- 출발지와 목적지 사이에서 ip router의 기능을 제외한 기능을 수행하는 중간 상자
+- NAT, Firewalls, Load balancers, Caches
+
+## Network 계층 - Routing
+- Routing: 길 찾기 기능
+  - Routing table : Trie 자료구조 사용
+- Forwarding: 패킷 전달 기능
+  - Forwarding table : 가장 긴 공통 prefix를 찾아서 패킷 전달
+
+### Switching fabrics
+> 라우터 내부에서 패킷을 전달하는 방식
+- 3가지 종류 : Memory, Bus, Crossbar
+- 입력 포트에서의 문제
+  - 입력 포트의 속도 > 스위치 속도 -> 큐잉 지연 발생
+  - Head-of-line(HoL) blocking : 큐잉 지연으로 인해 다른 패킷들도 지연되는 현상
+- **출력 포트에서의 문제**
+  - 스위치 속도 > 출력 포트의 속도 -> 패킷 손실 발생
+  - 해결방법
+    1. 이미 대기 중인 패킷을 폐기
+    2. 새로 도착한 패킷을 폐기
+  - scheduling policy : FIFO, Round Robin 등등 
+
+## Transport 계층 - 혼잡 제어

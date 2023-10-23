@@ -177,7 +177,7 @@ public class TailRecursion {
 
   - 트리
 
-    ```bash
+    ```text
     A
     ├── B
     │   ├-─ D
@@ -194,7 +194,7 @@ public class TailRecursion {
 
 - 위 트리를 배열에 저장하면 (인덱스 1부터 시작)
 
-  ```
+  ```text
   A = [A, B, C, D, E, F, G, H, I, J, K]
   ```
 
@@ -225,7 +225,7 @@ levelorder : left -> right (from top level)
 
 * 집합 1
 
-```bash
+```text
 7
 ├── 2
 │   ├-─ 1
@@ -236,7 +236,7 @@ levelorder : left -> right (from top level)
 
 - 집합2
 
-```bash
+```text
 4
 ├── 0
 ├── 5
