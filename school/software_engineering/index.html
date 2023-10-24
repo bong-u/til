@@ -1,0 +1,677 @@
+<!doctype html><html>
+<head>
+<title>소프트웨어공학</title>
+<meta charset=utf-8>
+<meta property="og:title" content="소프트웨어공학">
+<meta property="og:description" content="1장 소프트웨어 공학 개요 소프트웨어의 종류  주문형, 패키지형, 임베디드 시스템 실시간 소프트웨어, 자료처리 소프트웨어  소프트웨어 공학의 정의  IEEE : 소프트웨어의 개발, …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class="flex justify-center my-16">
+<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3 float-right">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
+<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (13)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (102)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (7)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☸</span>
+<span>Kubernetes (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (29)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/issues/>
+<span class="text-xl mr-3">🧐</span>
+<span>기타 Issues (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (14)</span>
+</a>
+</nav>
+<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#1장-소프트웨어-공학-개요>1장 소프트웨어 공학 개요</a>
+<ul>
+<li><a href=#소프트웨어의-종류>소프트웨어의 종류</a></li>
+<li><a href=#소프트웨어-공학의-정의>소프트웨어 공학의 정의</a></li>
+<li><a href=#소프트웨어-품질>소프트웨어 품질</a></li>
+<li><a href=#소프트웨어-프로젝트-작업>소프트웨어 프로젝트 작업</a></li>
+</ul>
+</li>
+<li><a href=#2장-소프트웨어-프로세스>2장 소프트웨어 프로세스</a>
+<ul>
+<li><a href=#폭포수-모델-waterfall-model>폭포수 모델 (Waterfall Model)</a></li>
+<li><a href=#프로토타입-모델-prototyping-model>프로토타입 모델 (Prototyping Model)</a></li>
+<li><a href=#점증적-모델-incremental-model>점증적 모델 (Incremental Model)</a></li>
+<li><a href=#나선형-모델-spiral-model>나선형 모델 (Spiral Model)</a></li>
+<li><a href=#진화적-모델-evolutionary-model>진화적 모델 (Evolutionary Model)</a></li>
+<li><a href=#애자일-프로세스-agile-process>애자일 프로세스 (Agile Process)</a></li>
+<li><a href=#프로세스-모델-선정>프로세스 모델 선정</a></li>
+<li><a href=#프로세스-활동>프로세스 활동</a></li>
+</ul>
+</li>
+<li><a href=#프로젝트-관리>프로젝트 관리</a>
+<ul>
+<li><a href=#프로젝트-관리-활동>프로젝트 관리 활동</a></li>
+<li><a href=#프로젝트-개발-노력-추정>프로젝트 개발 노력 추정</a></li>
+<li><a href=#프로젝트-일정-관리>프로젝트 일정 관리</a></li>
+<li><a href=#프로젝트-인적-자원-관리>프로젝트 인적 자원 관리</a></li>
+<li><a href=#프로젝트-위험-관리>프로젝트 위험 관리</a></li>
+<li><a href=#위험-대처-계획-수립>위험 대처 계획 수립</a></li>
+</ul>
+</li>
+<li><a href=#요구사항-개발-및-정의>요구사항 개발 및 정의</a>
+<ul>
+<li><a href=#요구사항-분석과정>요구사항 분석과정</a></li>
+<li><a href=#도메인-분석>도메인 분석</a></li>
+<li><a href=#문제-정의와-범위-설정>문제 정의와 범위 설정</a></li>
+<li><a href=#요구사항-추출>요구사항 추출</a></li>
+<li><a href=#브레인스토밍>브레인스토밍</a></li>
+<li><a href=#프로토타이핑>프로토타이핑</a></li>
+<li><a href=#요구사항-문서-구성>요구사항 문서 구성</a></li>
+</ul>
+</li>
+<li><a href=#유스케이스-모델링>유스케이스 모델링</a>
+<ul>
+<li><a href=#유스케이스>유스케이스</a></li>
+<li><a href=#유스케이스-다이어그램>유스케이스 다이어그램</a></li>
+<li><a href=#유스케이스-간의-관계>유스케이스 간의 관계</a></li>
+<li><a href=#유스케이스-검증>유스케이스 검증</a></li>
+<li><a href=#유스케이스-실현>유스케이스 실현</a></li>
+</ul>
+</li>
+<li><a href=#클래스-모델링>클래스 모델링</a>
+<ul>
+<li><a href=#uml>UML</a></li>
+<li><a href=#ocl-object-constraint-language>OCL (Object Constraint Language)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<main class="flex w-full justify-center">
+<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+소프트웨어공학
+</h1>
+<div class="flex flex-col items-end">
+<h4 id=date> CREATED 2023-10-24 </h4>
+<h4 id=date> MODIFIED 2023-10-24</h4>
+</div>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=1장-소프트웨어-공학-개요>1장 소프트웨어 공학 개요</h2>
+<h3 id=소프트웨어의-종류>소프트웨어의 종류</h3>
+<ul>
+<li>주문형, 패키지형, 임베디드 시스템</li>
+<li>실시간 소프트웨어, 자료처리 소프트웨어</li>
+</ul>
+<h3 id=소프트웨어-공학의-정의>소프트웨어 공학의 정의</h3>
+<ul>
+<li>IEEE : 소프트웨어의 개발, 운용, 유지보수 및 파기에 대한 체계적인 접근</li>
+<li>W.Humphrey : 질 좋은 소프트웨어를 경제적으로 생산하기 위하여 공학, 과학, 수학적 원리에 의하여 소프트웨어를 개발해야한다</li>
+</ul>
+<h3 id=소프트웨어-품질>소프트웨어 품질</h3>
+<ul>
+<li>사용용이성(usability)</li>
+<li>효율성(efficiency)</li>
+<li>신뢰성(reliability)</li>
+<li>유지보수성(maintainability)</li>
+<li>재사용성(reusability)</li>
+</ul>
+<h3 id=소프트웨어-프로젝트-작업>소프트웨어 프로젝트 작업</h3>
+<ol>
+<li>요구분석과 명세화</li>
+</ol>
+<ul>
+<li>도메인 분석, 문제 정의, 요구 추출, 요구 분석, 요구 명세화</li>
+</ul>
+<ol start=2>
+<li>설계 : 가용한 기술로 어떻게 구현되어야하는지 기술</li>
+</ol>
+<ul>
+<li>시스템 엔지니어링, 소프트웨어 아키텍쳐</li>
+<li>UI 설계, DB 설계</li>
+</ul>
+<ol start=3>
+<li>모델링 : 도메인이나 소프트웨어의 표현을 만들어 나가는 과정</li>
+</ol>
+<ul>
+<li>유스케이스 모델링</li>
+<li>정적 모델링, 동적 모델링, 행위 모델링</li>
+</ul>
+<ol start=4>
+<li>프로그래밍</li>
+<li>품질보증</li>
+</ol>
+<ul>
+<li>리뷰, 인스펙션, 테스트</li>
+</ul>
+<ol start=6>
+<li>배포</li>
+<li>프로세스 관리</li>
+</ol>
+<h2 id=2장-소프트웨어-프로세스>2장 소프트웨어 프로세스</h2>
+<h3 id=폭포수-모델-waterfall-model>폭포수 모델 (Waterfall Model)</h3>
+<p><img src=/static/image/waterfall_model.png alt=waterfall_model></p>
+<ul>
+<li>각 단계가 다음 시작 전에 끝나야 함 -> 느림</li>
+<li>프로토타입과 재사용의 기회가 줄어듦</li>
+</ul>
+<h3 id=프로토타입-모델-prototyping-model>프로토타입 모델 (Prototyping Model)</h3>
+<p><img src=/static/image/prototyping_model.png alt=prototyping_model></p>
+<ul>
+<li>인간-기계 상호작용 프로토타입</li>
+<li>프로토타입을 만든다 - 프로토타입을 평가한다</li>
+</ul>
+<h3 id=점증적-모델-incremental-model>점증적 모델 (Incremental Model)</h3>
+<p><img src=/static/image/incremental_model.png alt=incremental_model></p>
+<ul>
+<li>점증적 방법: 기능별로 릴리즈</li>
+<li>반복적 방법: 릴리즈 할때마다 기능의 완성도를 높인다</li>
+<li>기능이 부족하더라도 빨리 릴리즈 가능</li>
+</ul>
+<h3 id=나선형-모델-spiral-model>나선형 모델 (Spiral Model)</h3>
+<p><img src=/static/image/spiral_model.png alt=spiral_model></p>
+<ul>
+<li>진화 단계
+<ol>
+<li>계획 수립</li>
+<li>위험 분석</li>
+<li>개발</li>
+<li>평가</li>
+</ol>
+</li>
+<li>반복적인 개발 및 테스트 -> 강인성 향상</li>
+<li>관리, 위험 분석이 중요</li>
+</ul>
+<h3 id=진화적-모델-evolutionary-model>진화적 모델 (Evolutionary Model)</h3>
+<p><img src=/static/image/evolutionary_model.png alt=evolutionary_model></p>
+<ul>
+<li>초기에 요구사항을 파악하기 힘들고 구현이 어려운 경우, 요구사항 분석을 한 번이상 반복</li>
+<li>UP (Unified Process)
+<ul>
+<li>도입 단계 : 프로젝트의 범위를 설정, 목표를 명확히</li>
+<li>정련 단계 : 요구를 찾아내어 설계를 완성</li>
+<li>구축 단계 : 제조 단계, 요구의 테스트 마무리</li>
+<li>전환 단계 : 릴리즈</li>
+</ul>
+</li>
+</ul>
+<h3 id=애자일-프로세스-agile-process>애자일 프로세스 (Agile Process)</h3>
+<p><img src=/static/image/agile_process.png alt=agile_process></p>
+<ul>
+<li>특징
+<ul>
+<li>짧은 릴리즈와 반복</li>
+<li>점증적 설계</li>
+<li>사용자 참여</li>
+<li>문서 최소화</li>
+<li>비공식적 커뮤니케이션</li>
+<li>요구와 환경의 변화를 가정</li>
+</ul>
+</li>
+</ul>
+<h4 id=익스트림-프로그래밍-extreme-pragramming>익스트림 프로그래밍 (eXtreme Pragramming)</h4>
+<ul>
+<li>애자일 방법론 중 하나</li>
+</ul>
+<ol>
+<li>Planning : 요구사항을 작은 요소로 분할</li>
+<li>Analysis</li>
+<li>Design</li>
+<li>Execution : Coding, Testing</li>
+<li>Wrapping : small release, process improvement</li>
+<li>Closure : launch</li>
+</ol>
+<h4 id=스크럼-scrum>스크럼 (Scrum)</h4>
+<p><img src=/static/image/scrum.png alt=scrum></p>
+<ul>
+<li>
+<p>조직적으로 애자일 방법론을 적용</p>
+</li>
+<li>
+<p>구성 요소</p>
+<ul>
+<li>백로그 (Backlog) : 할 일 목록</li>
+<li>스프린트 (Sprint) : Iteration을 의미, 1~4주의 기간</li>
+<li>스크럼 회의 : 매일 15분간 진도 확인 회의</li>
+<li>리뷰 : 스프린트 종료 후 구현된 산출물을 리뷰</li>
+<li>스프린트 회고 : 방법론 자체에 대한 리뷰 수행</li>
+</ul>
+</li>
+</ul>
+<h3 id=프로세스-모델-선정>프로세스 모델 선정</h3>
+<ul>
+<li>일반적인 구축 : 폭포수 모델</li>
+<li>대규모 재구축 : 점증적 모델, 나선형 모델</li>
+<li>임베디드 시스템 : 점증적 모델</li>
+<li>프로젝트 타당성 검토 : 프로토타입 모델, 나선형 모델</li>
+<li>연구형 개발 : 프로토타입 모델, 나선형 모델</li>
+<li>소규모 : 애자일 프로세스</li>
+</ul>
+<h3 id=프로세스-활동>프로세스 활동</h3>
+<ul>
+<li>
+<p>Software speicification</p>
+<ul>
+<li>Feasibility study(타당성 조사)</li>
+<li>Requirements elicitation and analysis(요구사항 도출 및 분석)</li>
+<li>Requirements specification(요구사항 명세)</li>
+<li>Requirements validation(요구사항 검증)</li>
+</ul>
+</li>
+<li>
+<p>Software deisgn and implementation</p>
+<ul>
+<li>Architectureal design</li>
+<li>Interface design</li>
+<li>Component design</li>
+<li>Data structure design</li>
+<li>Algorithm design</li>
+</ul>
+</li>
+<li>
+<p>Software validation</p>
+<ul>
+<li>Vertification and validation (V&V) : 시스템이 요구사항을 충족한다는 것을 보여주기 위한 활동
+<ul>
+<li>Component or unit testing</li>
+<li>System testing</li>
+<li>Acceptance testing</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Software evolution</p>
+<ul>
+<li>변화하는 비즈니스 환경에 따라 요구사항이 변화함에 따라 소프트웨어 진화하고 변화해야 한다</li>
+</ul>
+</li>
+</ul>
+<h2 id=프로젝트-관리>프로젝트 관리</h2>
+<h3 id=프로젝트-관리-활동>프로젝트 관리 활동</h3>
+<ul>
+<li>제안서 작성</li>
+<li>프로젝트 계획 및 스케줄링</li>
+<li>프로젝트 비용 계획</li>
+<li>프로젝트 모니터링 및 검토</li>
+<li>인력 선발 및 평가</li>
+<li>보고서 작성 및 프레젠테이션</li>
+</ul>
+<h3 id=프로젝트-개발-노력-추정>프로젝트 개발 노력 추정</h3>
+<ul>
+<li>프로젝트 요소
+<ul>
+<li>문제의 복잡도, 시스템의 크기, 시스템 신뢰도</li>
+</ul>
+</li>
+<li>자원 요소
+<ul>
+<li>인적 자원, H/W 자원, S/W 자원</li>
+</ul>
+</li>
+<li>생산성 요소
+<ul>
+<li>개발자 능력, 개발 방법론</li>
+</ul>
+</li>
+</ul>
+<h4 id=기능-점수-모델-ufp-unadjusted-function-point-산정>기능 점수 모델 (UFP: Unadjusted Function Point) 산정</h4>
+<ul>
+<li>5가지 소프트웨어 구성 요소별 기능 점수 가중치 부여
+<ul>
+<li>외부 입력, 외부 출력, 외부 질의</li>
+<li>내부 논리 파일, 외부 인터페이스 파일</li>
+</ul>
+</li>
+</ul>
+<h4 id=기능-점수-모델-vaf-value-adjustment-factor-산정>기능 점수 모델 (VAF: Value Adjustment Factor) 산정</h4>
+<ul>
+<li>14가지 기술적 분야에 대한 복잡도를 고려하여 0~5 점수 부여</li>
+</ul>
+<h4 id=기능-점수-모델-afp-adjusted-function-point-산정>기능 점수 모델 (AFP: Adjusted Function Point) 산정</h4>
+<ul>
+<li>AFP = UFP * VAF</li>
+</ul>
+<h4 id=객체-점수-모델>객체 점수 모델</h4>
+<ul>
+<li>Cc(Class Complexity): 클래스의 개수 추정</li>
+<li>Wi: 사용자 입력의 종류 분류, 가중치 부여</li>
+<li>최종 클래스 개수(TCc) = Cc(Wi+1)</li>
+<li>Effort = TCc X MD(클래스 1개 개발하는데 소요되는 생산성 추정 값)</li>
+</ul>
+<h3 id=프로젝트-일정-관리>프로젝트 일정 관리</h3>
+<ul>
+<li>Action: 프로젝트에서의 활동</li>
+<li>Milestones(이정표): 프로젝트에서의 중요한 시점</li>
+<li>Deliverables(납품물)</li>
+</ul>
+<h4 id=pertcpm-차트>PERT/CPM 차트</h4>
+<p><img src=/static/image/pert_cpm_chart.png alt=pert_cpm_chart></p>
+<ul>
+<li>임계 경로
+<blockquote>
+<p>Pert Chart에서 소요 기간이 가장 긴 경로<br>
+-> 프로젝트 완료까지 필요한 최소 시간</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=간트gantt-차트>간트(Gantt) 차트</h4>
+<p><img src=/static/image/gantt_chart.png alt=gantt_chart></p>
+<ul>
+<li>가로축: 시간</li>
+<li>세로축: 작업</li>
+<li>마일스톤: 마름모 표시</li>
+<li>파란색 막대: 여유시간</li>
+</ul>
+<h4 id=애자일-일정-계획>애자일 일정 계획</h4>
+<ul>
+<li>스토리카드 단위의 일정 계획</li>
+</ul>
+<h3 id=프로젝트-인적-자원-관리>프로젝트 인적 자원 관리</h3>
+<h4 id=계층형-팀>계층형 팀</h4>
+<ul>
+<li>초보자와 경험자를 분리</li>
+<li>장점 : 소프트웨어가 크고 구조가 계층적으로 잘 나누어진 경우에 적합</li>
+<li>단점 : 기술 인력이 관리, 의사 전달 경로가 김</li>
+</ul>
+<h4 id=egoless-팀>Egoless 팀</h4>
+<ul>
+<li>민주주의 방식, 구성원이 동등한 책임과 권환</li>
+<li>장점 : 의사 교류 활발, 복잡한 장기 프로젝트에 적합</li>
+<li>단점 : 책임이 불명확, 느린 의사결정, 대규모 프로젝트에 부적합</li>
+</ul>
+<h4 id=책임-프로그래머-팀의-구성>책임 프로그래머 팀의 구성</h4>
+<ul>
+<li>작은 팀으로 구성, 책임 프로그래머가 통제</li>
+<li>책임 프로그래머, 프로그램 사서, 보조 프로그래머, 프로그래머로 구성</li>
+<li>장점 : 의사 결정이 빠름, 소규모 프로젝트에 적합</li>
+<li>단점 : 한 사람의 능력과 경험이 프로젝트의 성패 좌우</li>
+</ul>
+<h3 id=프로젝트-위험-관리>프로젝트 위험 관리</h3>
+<ul>
+<li>위험 종류
+<ul>
+<li>프로젝트 위험, 제품 위험, 비즈니스 위험</li>
+</ul>
+</li>
+<li>위험 관리 프로젝트
+<ol>
+<li>위험 식별</li>
+<li>위험 분석</li>
+<li>위험 대처 계획 수립</li>
+<li>위험 모니터링</li>
+</ol>
+</li>
+</ul>
+<h3 id=위험-대처-계획-수립>위험 대처 계획 수립</h3>
+<ul>
+<li>회피 전략: 위험이 발생할 확률을 줄임</li>
+<li>최소화 전략: 위험의 영향을 줄임</li>
+<li>비상 계획: 위험이 발생할 경우 대처 방법</li>
+</ul>
+<h2 id=요구사항-개발-및-정의>요구사항 개발 및 정의</h2>
+<h3 id=요구사항-분석과정>요구사항 분석과정</h3>
+<ul>
+<li>도메인 분석 -> 요구사항 추출 -> 분석 및 명세화 -> 검토</li>
+</ul>
+<h3 id=도메인-분석>도메인 분석</h3>
+<blockquote>
+<p>소프트웨어 엔지니어가 문제를 더 잘 이해하기 위하여 도메인에 대하여 알아가는 과정</p>
+</blockquote>
+<ul>
+<li>도메인: 소프트웨어를 사용할 것으로 예상되는 고객이 일하는 분야의 비즈니스나 기술</li>
+<li>도매인 분석의 이점
+<ul>
+<li>빠른 개발, 더 좋은 시스템 구축 가능, 확장 예견</li>
+</ul>
+</li>
+</ul>
+<h3 id=문제-정의와-범위-설정>문제 정의와 범위 설정</h3>
+<ul>
+<li>문제 정의서
+<ul>
+<li>문제 정의 범위</li>
+<li>시스템에 포함되어야 할 기능 결정</li>
+</ul>
+</li>
+</ul>
+<h3 id=요구사항-추출>요구사항 추출</h3>
+<ul>
+<li>요구사항 추출 방법
+<ul>
+<li>관찰, 인터뷰, 브레인스토밍, 프로토타이핑, 유스케이스 분석</li>
+</ul>
+</li>
+</ul>
+<h4 id=관찰>관찰</h4>
+<ul>
+<li>사용자를 관찰, 시간이 많이 소요된다</li>
+</ul>
+<h4 id=인터뷰>인터뷰</h4>
+<ul>
+<li>문제에 대해 최소한의 허용 가능한 솔루션이 무엇인지 질문</li>
+<li>다이어그램 작성을 요구</li>
+</ul>
+<h3 id=브레인스토밍>브레인스토밍</h3>
+<ul>
+<li>관련자 모두가 참여</li>
+<li>JAD(Joint Application Development)
+<ul>
+<li>최종 사용자와 개발자가 시스템 개발 논의</li>
+</ul>
+</li>
+</ul>
+<h3 id=프로토타이핑>프로토타이핑</h3>
+<ul>
+<li>paper prototype: 가장 단순한 형태</li>
+<li>mock-up of the UI : 가장 흔한 형태</li>
+</ul>
+<h3 id=요구사항-문서-구성>요구사항 문서 구성</h3>
+<ul>
+<li>환경 및 시스템 모델</li>
+<li>기능적 요구사항</li>
+<li>비기능적 요구사항 : 성능, 효율 등</li>
+</ul>
+<h2 id=유스케이스-모델링>유스케이스 모델링</h2>
+<h3 id=유스케이스>유스케이스</h3>
+<blockquote>
+<p>시스템이 actor에게 관찰 가능한 가치의 결과를 생산하기 위해 수행하는 일련의 행동 및 그 변형들의 집합</p>
+</blockquote>
+<ul>
+<li>유스케이스는 완전한 기능을 명세한다</li>
+<li>시나리오 : 특정한 목표를 달성하기 위해 수행되는 일련의 행동이나 집합</li>
+</ul>
+<h3 id=유스케이스-다이어그램>유스케이스 다이어그램</h3>
+<ul>
+<li>시스템, 액터, 유스케이스를 포함</li>
+<li>시스템 : 개발될 시스템의 경계</li>
+<li>액터 : 시스템과 상호작용할 때 외부 에이전트가 수행하는 역할</li>
+<li>유스케이스
+<ul>
+<li>항상 액터에 의해 개시됨</li>
+<li>액터에게 가치를 제공</li>
+<li>완전한 설명이어야 함</li>
+</ul>
+</li>
+</ul>
+<h3 id=유스케이스-간의-관계>유스케이스 간의 관계</h3>
+<ul>
+<li>포함 관계
+<ul>
+<li>다수의 유스케이스가 공통된 행동을 수행하는 경우, 포함시킬 수 있다.</li>
+</ul>
+</li>
+<li>확장 관계
+<ul>
+<li>한 유스케이스의 확장 지점에 액션을 추가하여 다른 유스케이스로 확장</li>
+</ul>
+</li>
+</ul>
+<h3 id=유스케이스-검증>유스케이스 검증</h3>
+<ul>
+<li>검증: 구현을 테스트</li>
+<li>확인: 사용자의 요구를 충족시키는가?</li>
+<li>워크쓰루: 액터와 시스템의 역할극</li>
+</ul>
+<h3 id=유스케이스-실현>유스케이스 실현</h3>
+<ul>
+<li>유스케이스는 collaboration으로 실현</li>
+</ul>
+<h2 id=클래스-모델링>클래스 모델링</h2>
+<h3 id=uml>UML</h3>
+<ul>
+<li>
+<p>Unified Modeling Language</p>
+</li>
+<li>
+<p>객체지향 소프트웨어를 모델링하기 위한 표준 그래픽 언어</p>
+</li>
+<li>
+<p>클래스</p>
+<ul>
+<li>사각형으로 표현</li>
+<li>이름, 속성, 오퍼레이션 표시</li>
+</ul>
+</li>
+<li>
+<p>속성</p>
+</li>
+<li>
+<p>오퍼레이션</p>
+<ul>
+<li>getter(), setter()</li>
+<li>operation signature의 표현
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>+ digit(n:int)
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>가시성</p>
+<ul>
+<li>public(+), private(-), protected(#)</li>
+</ul>
+</li>
+<li>
+<p>연관관계</p>
+<ul>
+<li>관계이름: 동사, 동사구</li>
+<li>다중성: 관계 사이에 개입하는 인스턴스 개수
+<ul>
+<li>0..1: 선택적 관계</li>
+<li>1..*: 1개 또는 그 이상</li>
+<li>3..5: 3개에서 5개까지</li>
+<li>One-to-one</li>
+<li>Many-to-many</li>
+<li>One-to-many</li>
+</ul>
+</li>
+<li>역할 이름: 역할, 링크 양 옆에 표시</li>
+<li>방향성 : 연관관계는 기본적으로 양방향성, 단방향으로 제한 가능</li>
+</ul>
+</li>
+<li>
+<p>전체/부분 관계 (Aggregation)</p>
+<ul>
+<li>전체 객체가 부분 객체를 포함</li>
+<li>흰색 다이아몬드로 표시</li>
+<li>Composition 관계
+<ul>
+<li>aggregation이 강한 관계</li>
+<li>전체가 소멸되면 부품도 소멸됨</li>
+<li>검은 다이아몬드로 표시</li>
+</ul>
+</li>
+<li>일반화 관계 (Generalization)
+<ul>
+<li>일반화: 두 가지 이상의 클래스의 공통 요소를 일반화</li>
+<li>상세화(specialization): 수퍼클래스를 서브클래스로 구체화</li>
+</ul>
+</li>
+<li>추상클래스
+<ul>
+<li>(abstract)로 표시</li>
+<li>추상 오퍼레이션: 구현이 없는 오퍼레이션</li>
+</ul>
+</li>
+<li>인터페이스
+<ul>
+<li>&lt;&lt;interface>>로 표시</li>
+</ul>
+</li>
+<li>Notes = 주석</li>
+</ul>
+<h3 id=ocl-object-constraint-language>OCL (Object Constraint Language)</h3>
+<ul>
+<li>소프트웨어의 모듈의 제약사항을 정형적으로 나타내도록 설계된 명세 영어</li>
+</ul>
+</li>
+</ul>
+</article>
+<div id=meta class=mt-24>
+<div>
+<div class="flex justify-between w-full whitespace-nowrap">
+<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/school/computer_network/>
+컴퓨터네트워크</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>

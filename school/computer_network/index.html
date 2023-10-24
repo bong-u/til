@@ -74,7 +74,7 @@
 </a>
 <a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
 <span class="text-xl mr-3">🏫</span>
-<span>학과 공부 (13)</span>
+<span>학과 공부 (14)</span>
 </a>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
@@ -173,7 +173,15 @@
 <li><a href=#switching-fabrics>Switching fabrics</a></li>
 </ul>
 </li>
-<li><a href=#transport-계층---혼잡-제어>Transport 계층 - 혼잡 제어</a></li>
+<li><a href=#transport-계층---혼잡-제어>Transport 계층 - 혼잡 제어</a>
+<ul>
+<li><a href=#혼잡제어-개요>혼잡제어 개요</a></li>
+<li><a href=#혼잡-제어-방법>혼잡 제어 방법</a></li>
+<li><a href=#혼잡-제어-정책>혼잡 제어 정책</a></li>
+<li><a href=#tcp-cubic>TCP CUBIC</a></li>
+<li><a href=#tcp-bbr>TCP BBR</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -186,7 +194,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-10-16 </h4>
-<h4 id=date> MODIFIED 2023-10-23</h4>
+<h4 id=date> MODIFIED 2023-10-24</h4>
 </div>
 </div>
 </div>
@@ -663,12 +671,61 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$</li>
 </li>
 </ul>
 <h2 id=transport-계층---혼잡-제어>Transport 계층 - 혼잡 제어</h2>
+<h3 id=혼잡제어-개요>혼잡제어 개요</h3>
+<ul>
+<li>Congestion : 네트워크의 처리량 &lt; 데이터 전송량</li>
+<li>혼잡 탐지 : 재전송 타이머, 중복 ACK -> 패킷 손실</li>
+<li>cwnd : congestion window size</li>
+</ul>
+<h3 id=혼잡-제어-방법>혼잡 제어 방법</h3>
+<h4 id=aimd>AIMD</h4>
+<ul>
+<li>Additive Increase Multiplicative Decrease</li>
+<li>매 RTT마다 cwnd 1MSS 씩 증가</li>
+<li>패킷 손실 감지 : cwnd 절반으로 감소</li>
+</ul>
+<h4 id=slow-start>Slow Start</h4>
+<ul>
+<li>초기 cwnd: 1 or 10 MSS</li>
+<li>매 RTT마다 cwnd 2배로 증가</li>
+<li>패킷 손실 감지 : cwnd 1 MSS 감소</li>
+</ul>
+<h3 id=혼잡-제어-정책>혼잡 제어 정책</h3>
+<h4 id=tcp-tahoe>TCP Tahoe</h4>
+<ul>
+<li>처음에는 Slow Start, 임계점 도달 시 AIMD</li>
+<li>3 duplicate ACKs 또는 timeout 발생 시
+<ul>
+<li>임계점 = window size/2</li>
+<li>window size = 1</li>
+</ul>
+</li>
+</ul>
+<h4 id=tcp-reno>TCP Reno</h4>
+<ul>
+<li>Tahoe와 비슷하다</li>
+<li>3 duplicate Acks 발생 시
+<ul>
+<li>임계점 = window size/2</li>
+<li>window size = window size/2</li>
+</ul>
+</li>
+<li>timeout 발생 시
+<ul>
+<li>window size = 1</li>
+</ul>
+</li>
+</ul>
+<h3 id=tcp-cubic>TCP CUBIC</h3>
+<h3 id=tcp-bbr>TCP BBR</h3>
 </article>
 <div id=meta class=mt-24>
 <div>
 <div class="flex justify-between w-full whitespace-nowrap">
 <a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/school/film_and_literature/>
 영화와 문학</a>
+<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href=/til/school/software_engineering/>
+소프트웨어공학</a>
 </div>
 </div>
 </div>
