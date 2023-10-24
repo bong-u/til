@@ -308,3 +308,38 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
   - scheduling policy : FIFO, Round Robin 등등 
 
 ## Transport 계층 - 혼잡 제어
+
+### 혼잡제어 개요
+- Congestion : 네트워크의 처리량 < 데이터 전송량
+- 혼잡 탐지 : 재전송 타이머, 중복 ACK -> 패킷 손실
+- cwnd : congestion window size
+
+### 혼잡 제어 방법
+#### AIMD
+- Additive Increase Multiplicative Decrease
+- 매 RTT마다 cwnd 1MSS 씩 증가
+- 패킷 손실 감지 : cwnd 절반으로 감소
+
+#### Slow Start
+- 초기 cwnd: 1 or 10 MSS
+- 매 RTT마다 cwnd 2배로 증가
+- 패킷 손실 감지 : cwnd 1 MSS 감소
+
+### 혼잡 제어 정책
+#### TCP Tahoe
+- 처음에는 Slow Start, 임계점 도달 시 AIMD
+- 3 duplicate ACKs 또는 timeout 발생 시
+  - 임계점 = window size/2
+  - window size = 1
+
+#### TCP Reno
+- Tahoe와 비슷하다
+- 3 duplicate Acks 발생 시
+  - 임계점 = window size/2
+  - window size = window size/2
+- timeout 발생 시
+  - window size = 1
+
+### TCP CUBIC
+### TCP BBR
+
