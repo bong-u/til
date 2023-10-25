@@ -181,13 +181,19 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{F}{min(d_{i})},\ \frac{NF}{u_s+\sum{u_i}}
 
 ## 신뢰성 있는 전송계층
 ### TCP
+- segment
+  - ![tcp_segment](/static/image/tcp_segment.png)
 - 신뢰성: 오류 탐지/복구, 순서 전송, 중복 제거
 - 흐름제어: 수신자의 상태에 따른 전송량 조절
 - 혼잡제어: 네트워크+수신자의 혼잡상태에 따른 전송량 조절
 - 연결관리
+
 ### UDP
+- segment
+  - ![udp_segment](/static/image/udp_segment.png)
 - 연결을 만들지 않는다, 빠르다, 단순한다
 - checksum : 오류 검출 가능
+
 ### 공통
 - 지연시간, 대역폭은 보장이 되지 않는다
 
@@ -214,7 +220,6 @@ $$U_{sender}=\frac{d_{trans}}{RTT+d_{trans}}$$
 - byte단위 의 stream 전송
 
 ### TCP Segment
-![tcp_segment](/static/image/tcp_segment.png)
 
 ### Timeout 설정
 - 적당한 tcp timeout 값 설정 필요
@@ -261,6 +266,12 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$
 #### Async
 - 빠르다
 - 복잡한 코드, 어려운 디버깅
+
+### WebSocket
+- 실시간 양방향 통신 가능
+
+### Socket.io
+- Node.js 기반의 WebSocket 구현체 라이브러리
 
 ## Data Link 계층
 
@@ -374,21 +385,23 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$
 #### Slow Start
 - 초기 cwnd: 1 or 10 MSS
 - 매 RTT마다 cwnd 2배로 증가
-- 패킷 손실 감지 : cwnd 1 MSS 감소
+- 패킷 손실시
+  - window size = 1
 
 ### 혼잡 제어 정책
 #### TCP Tahoe
-- 처음에는 Slow Start, 임계점 도달 시 AIMD
+- 처음에는 Slow Start, 이후에는 AIMD
 - 3 duplicate ACKs 또는 timeout 발생 시
   - 임계점 = window size/2
   - window size = 1
 
 #### TCP Reno
 - Tahoe와 비슷하다
-- 3 duplicate Acks 또는 timeout 발생시
-  - 임계점 = window size/2
+- timeout 발생시
+  - 임계점은 그대로
   - window size = 1
-- 이때, 3 duplicate Acks인 경우
+- 3 duplicate Acks인 경우
+  - 임계점 = window size/2
   - window size = window size/2
 
 ### TCP CUBIC
