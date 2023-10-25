@@ -34,7 +34,7 @@ date: 2023-10-16
 - 바이너리 프레임: 우선순위, 흐름제어, 서버 푸시
 - 우선순위 지정 : 콘텐츠가 로드되는 순서
 - 멀티플렉싱 : TCP연결 1개로 여러 데이터 전송
-- 서버 푸시 : 
+- 서버 푸시 : 서버가 리소스를 예측하여 전송
 - 헤더 압축, 헤더와 데이터 분리
 #### HTTP/3
 - QUIC 프로토콜, UDP 기반
@@ -48,14 +48,13 @@ date: 2023-10-16
 #### HTTP Cache
 - 최초 요청은 원래 서버에서 처리, 이후 요청은 Proxy(Cache) 서버에서 처리
 #### CDN (Content Delivery Network)
-
+- 컨텐츠를 전세계 여러 지역에 미리 배포
 
 ## Internet protocol
 - *traceroute* : 패킷 경로 추적
 - *netstat -rn*, *route -n* : 라우터 정보 확인
 - P2P
 - 버클리소켓 : 버클리 대학교에서 개발한 UNIX Socker API
-
 
 ## IP
 ### IP Address
@@ -105,6 +104,7 @@ date: 2023-10-16
 ## DNS (Domain Name System)
 - Domain 이름 -> IP 주소로 변환
 - dig 명령어를 통해 dns 정보 확인 가능
+- 포트번호 : **53**
 
 ### Slammer Worm
 - DNS 서버 공격
@@ -115,7 +115,7 @@ date: 2023-10-16
 
 ### DNS Query Type
 - A : IPv4 주소
-- AAAA : IPv6 주소r
+- AAAA : IPv6 주소
 - CNAME : 별칭
 
 ### TLD (Top Level Domain)
@@ -136,12 +136,48 @@ date: 2023-10-16
 - 공개키 암호화방식의 전자서명 도입
 
 ### DoH (DNS over HTTPS)
-- DNS 정보를 json형식으로 만들어 HTTP 전송
+- DNS 정보를 json형식으로 만들어 HTTPS 전송
 
 ### DNS over TLS
 - DNS 정보를 TLS로 암호화하여 전송
 - SNI (Server Name Indication) : 도메인 정보
 - TLS에서는 SNI를 암호화하지 않음
+- 포트번호: **853**
+
+## P2P
+### 두 방식의 비교
+- 1개의 서버 N개의 file
+- $u_s$: 서버 업로드 대역폭
+- $d_i$: i번째 peer의 다운로드 대역폭
+### Client-Server 방식
+- 배포 시간
+$$ d_{cs} = max(\frac{NF}{u_s},\ \frac{F}{min(d_i)}) $$
+
+### P2P 방식
+- 서버에 업로드하는 시간
+$$ d_{p2p} = max(\frac{F}{u_s},\ \frac{F}{min(d_{i})},\ \frac{NF}{u_s+\sum{u_i}}) $$
+
+### BitTorrent
+- 파일을 256KB chunks로 분할
+
+### Distributed Hash Table (DHT)
+- 분산 P2P DB
+- key: hash(content), value: IP address
+- 인접한 이웃에게 키를 할당
+- Circular DHT
+  - 각 피어는 인접 노드만 알고있음
+
+### Skype
+  - 사용자 간 P2P통신
+
+## FTP, SMTP
+
+### 메일관련 프로토콜
+- SMTP: 이메일 서버 전송 프로토콜
+- POP3, IMAP, HTTP: 이메일 서버 접근 프로토콜
+
+### telnet
+- 포트번호: **23**
 
 ## 신뢰성 있는 전송계층
 ### TCP
@@ -158,6 +194,9 @@ date: 2023-10-16
 ### Stop-and-Wait ARQ
 - 송신자 윈도우 크기: 0 or 1
 - 수신자 윈도우 크기 : 1
+- 성능
+$$d_{trans}=\frac{L}{R}$$
+$$U_{sender}=\frac{d_{trans}}{RTT+d_{trans}}$$
 ### Go-Back-N ARQ
 - 송신자 윈도우 크기 : $2^m - 1$
 - 수신자 윈도우 크기 : 1
@@ -165,35 +204,46 @@ date: 2023-10-16
 - 송신자 윈도우 크기 : $2^{m - 1}$
 - 수신자 윈도우 크기 : $2^{m - 1}$
 
-## FTP, SMTP
-- SMTP: 이메일 서버 전송 프로토콜
-- POP3, IMAP, HTTP: 이메일 서버 접근 프로토콜
+## TCP
+### TCP 개요
+- 연결 지향적
+- 신뢰성 있는 전송
+- pipelining : 병렬 전송
+- Full duplex data : 동일 연결에서 양방향 데이터 전송
+- flow control
+- byte단위 의 stream 전송
 
-## P2P
-### 두 방식의 비교
-- 1개의 서버 N개의 peer
-- $u_s$: 서버 업로드 대역폭
-- $d_i$: i번째 peer의 다운로드 대역폭
-### Client-Server 방식
-- 배포 시간
-$$ d_{cs} = max(\frac{NF}{u_s},\ \frac{F}{d_i}) $$
+### TCP Segment
+![tcp_segment](/static/image/tcp_segment.png)
 
-### P2P 방식
-- 서버에 업로드하는 시간
-$$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
+### Timeout 설정
+- 적당한 tcp timeout 값 설정 필요
+- RTT보다 길어야함
+- 너무 짧으면 불필요한 재전송, 너무 길면 세그먼트 손실
 
-### BitTorrent
-- 파일을 256KB chunks로 분할
+### RTT 측정
+$$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
+- 보통 $\alpha$ : 0.125
+- 오차 범위 계산
+  $$ DevRTT = (1-\beta)DevRTT + \beta |SampleRTT - EstimatedRTT| $$
+- Timeout Interval 도출
+$$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$
 
-### Distributed Hash Table (DHT)
-- 분산 P2P DB
-- key: hash(content), value: IP address
-- 인접한 이웃에게 키를 할당
-- Circular DHT
-  - 각 피어는 인접 노드만 알고있음
+### TCP 신뢰성 있는 전송
+- cumulative acks
+- pipelined segments
+- timeout -> 재전송
+- duplicate acks -> 재전송
 
-### Skype
-  - 사용자 간 P2P통신
+### TCP Flow control control 동작원리
+- RcvWindow : 송신자 최대 전송크기
+- RcvWindow만큼 buffer 내 spare room으로 한다
+
+### TCP 연결 관리 (3-way handshake)
+- 연결 종료 시나리오
+  1. client->server : FIN
+  2. server->client : ACK + FIN
+  3. client->server : ACK
 
 ## Socket Programming
 
@@ -212,26 +262,12 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
 - 빠르다
 - 복잡한 코드, 어려운 디버깅
 
-## TCP
-### TCP 개요
-- 연결 지향적
-- 신뢰성 있는 전송
-- pipelining : 병렬 전송
-- Full duplex data : 동일 연결에서 양방향 데이터 전송
-- flow control
-
-### TCP Segment
-![tcp_segment](/static/image/tcp_segment.png)
-
-### TCP 신뢰성 있는 전송
-- cumulative acks
-- timeout -> 재전송
-- duplicate acks -> 재전송
-
 ## Data Link 계층
 
 ### 링크 계층의 역할
 - 데이터 프레임의 주고 받기
+- 링크제어, 다중접근, 흐름제어, 에러제어
+
 ### MAC 주소
 - 디바이스 고유의 식별자, 48bit
 ### CIDR
@@ -255,15 +291,24 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
   - Ethernet : 1500B
 - MTU 보다 큰 IP 패킷을 파편화, 목적지에서 재조립
 
- ### TTL
+### TTL
  - 라우팅 루프 방지, 0이 되면 폐기
  - traceroute : TTL을 이용한 도구
+  
+### IP Options
 
 ### IPv4
 - IPv4 datagram format
   ![ipv4_datagram](/static/image/ipv4_datagram.png)
+
+#### IP Options
+- Record route, MTU probe/reply, timestamp
 - IHL(Header Length): IP 헤더 길이
+- IP Options 필드의 최대길이는
+  - 최대 IP헤더길이 60B - IHL필드 최소값 20B = 40B
 - IP Record Route Option: IP 주소 기록하는 옵션
+
+### Subnets
 - 서브넷 (Subnets)
   > 라우터를 거치지 않고 도착할 수 있는 인터페이스의 집합
 
@@ -272,6 +317,8 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
 
 ### NAT
 - 사설 IP 주소를 공인 IP 주소로 변환
+- NAT translation table
+  - WAN side addr(addr, port) : LAN side addr(addr, port)
 
 ### Ipv6
 - Ipv6 datagram format
@@ -291,6 +338,7 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
 ## Network 계층 - Routing
 - Routing: 길 찾기 기능
   - Routing table : Trie 자료구조 사용
+  - 방식 : Longest prefix matching
 - Forwarding: 패킷 전달 기능
   - Forwarding table : 가장 긴 공통 prefix를 찾아서 패킷 전달
 
@@ -313,6 +361,9 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
 - Congestion : 네트워크의 처리량 < 데이터 전송량
 - 혼잡 탐지 : 재전송 타이머, 중복 ACK -> 패킷 손실
 - cwnd : congestion window size
+- Van Jacobson이 큰 영향을 미침
+- MSS(Maximum Segment Size): 세그먼트의 최대 크기 (데이터만 포함)
+- MTU(Maximum Transfer Unit): 최대 전송 크기
 
 ### 혼잡 제어 방법
 #### AIMD
@@ -334,12 +385,16 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{NF}{u_s+\sum{u_i}}) $$
 
 #### TCP Reno
 - Tahoe와 비슷하다
-- 3 duplicate Acks 발생 시
+- 3 duplicate Acks 또는 timeout 발생시
   - 임계점 = window size/2
-  - window size = window size/2
-- timeout 발생 시
   - window size = 1
+- 이때, 3 duplicate Acks인 경우
+  - window size = window size/2
 
 ### TCP CUBIC
-### TCP BBR
+- K: window size가 Wmax인 시점
+- K 근처에서 느리게 증가
+- K 멀리에서 빠르게 증가
 
+### TCP BBR
+- BBR: Bottleneck Bandwidth and RTT
