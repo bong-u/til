@@ -156,6 +156,8 @@
 <ul>
 <li><a href=#소켓>소켓</a></li>
 <li><a href=#여러개의-클라이언트와-통신>여러개의 클라이언트와 통신</a></li>
+<li><a href=#websocket>WebSocket</a></li>
+<li><a href=#socketio>Socket.io</a></li>
 </ul>
 </li>
 <li><a href=#data-link-계층>Data Link 계층</a>
@@ -494,6 +496,11 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{F}{min(d_{i})},\ \frac{NF}{u_s+\sum{u_i}}
 <h2 id=신뢰성-있는-전송계층>신뢰성 있는 전송계층</h2>
 <h3 id=tcp>TCP</h3>
 <ul>
+<li>segment
+<ul>
+<li><img src=/static/image/tcp_segment.png alt=tcp_segment></li>
+</ul>
+</li>
 <li>신뢰성: 오류 탐지/복구, 순서 전송, 중복 제거</li>
 <li>흐름제어: 수신자의 상태에 따른 전송량 조절</li>
 <li>혼잡제어: 네트워크+수신자의 혼잡상태에 따른 전송량 조절</li>
@@ -501,6 +508,11 @@ $$ d_{p2p} = max(\frac{F}{u_s},\ \frac{F}{min(d_{i})},\ \frac{NF}{u_s+\sum{u_i}}
 </ul>
 <h3 id=udp>UDP</h3>
 <ul>
+<li>segment
+<ul>
+<li><img src=/static/image/udp_segment.png alt=udp_segment></li>
+</ul>
+</li>
 <li>연결을 만들지 않는다, 빠르다, 단순한다</li>
 <li>checksum : 오류 검출 가능</li>
 </ul>
@@ -537,7 +549,6 @@ $$U_{sender}=\frac{d_{trans}}{RTT+d_{trans}}$$</li>
 <li>byte단위 의 stream 전송</li>
 </ul>
 <h3 id=tcp-segment>TCP Segment</h3>
-<p><img src=/static/image/tcp_segment.png alt=tcp_segment></p>
 <h3 id=timeout-설정>Timeout 설정</h3>
 <ul>
 <li>적당한 tcp timeout 값 설정 필요</li>
@@ -598,6 +609,14 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <ul>
 <li>빠르다</li>
 <li>복잡한 코드, 어려운 디버깅</li>
+</ul>
+<h3 id=websocket>WebSocket</h3>
+<ul>
+<li>실시간 양방향 통신 가능</li>
+</ul>
+<h3 id=socketio>Socket.io</h3>
+<ul>
+<li>Node.js 기반의 WebSocket 구현체 라이브러리</li>
 </ul>
 <h2 id=data-link-계층>Data Link 계층</h2>
 <h3 id=링크-계층의-역할>링크 계층의 역할</h3>
@@ -767,12 +786,16 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <ul>
 <li>초기 cwnd: 1 or 10 MSS</li>
 <li>매 RTT마다 cwnd 2배로 증가</li>
-<li>패킷 손실 감지 : cwnd 1 MSS 감소</li>
+<li>패킷 손실시
+<ul>
+<li>window size = 1</li>
+</ul>
+</li>
 </ul>
 <h3 id=혼잡-제어-정책>혼잡 제어 정책</h3>
 <h4 id=tcp-tahoe>TCP Tahoe</h4>
 <ul>
-<li>처음에는 Slow Start, 임계점 도달 시 AIMD</li>
+<li>처음에는 Slow Start, 이후에는 AIMD</li>
 <li>3 duplicate ACKs 또는 timeout 발생 시
 <ul>
 <li>임계점 = window size/2</li>
@@ -783,14 +806,15 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <h4 id=tcp-reno>TCP Reno</h4>
 <ul>
 <li>Tahoe와 비슷하다</li>
-<li>3 duplicate Acks 또는 timeout 발생시
+<li>timeout 발생시
 <ul>
-<li>임계점 = window size/2</li>
+<li>임계점은 그대로</li>
 <li>window size = 1</li>
 </ul>
 </li>
-<li>이때, 3 duplicate Acks인 경우
+<li>3 duplicate Acks인 경우
 <ul>
+<li>임계점 = window size/2</li>
 <li>window size = window size/2</li>
 </ul>
 </li>
