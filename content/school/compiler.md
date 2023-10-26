@@ -112,6 +112,7 @@ date: 2023-09-01
 ### LL 파싱
 - 왼쪽->오른쪽으로 읽어서 좌파스 생성
 - backtracking X, 빠르다
+- **결정적으로** 파싱
 
 ### 사용된 정의
 1. ε-생성규칙
@@ -130,18 +131,18 @@ date: 2023-09-01
 #### Follow
 - A 다음에 나오는 terminal의 집합
 - A->αBβ, β != ε 일때,
-  > FOLLOW(B) = FIRST(B) U (FIRST(β)-{ε})
+  > FOLLOW(B) = FOLLOW(B) U (FIRST(β)-{ε})
 - A->αB 또는 A->αBβ, FIRST(β)에 ε가 속할 때,
   > FOLLOW(B) = FOLLOW(B) U FOLLOW(A)
 
 ### LL조건
 - FIRST(α)와 FIRST(β)가 겹치면 안된다
-- FIRST(α)에 ε가 있으면, Follow(α)와 FIRST(β)가 겹치면 안된다
+- FIRST(α)에 ε가 있으면, FOLLOW(α)와 FIRST(β)가 겹치면 안된다
 - LL 조건을 만족하는 문법 = LL 파싱 되는 문법
 
 ### LL(1) 문법
 - 임의의 문법에 대하여 LL 조건을 만족하는 CFG
-- 1 : LOOKAHEAD가 1이라는 의미
+- 1 : LOOKAHEAD가 1개라는 의미
 - 다음과 같은 경우 LL(1)문법이 되지 않는다
   1. 모호한 문법
     - 우선순위 주기, 결합법칙 반영으로 해결
@@ -209,6 +210,23 @@ date: 2023-09-01
 2. Stack의 top에서 얼마만큼을 handle로 볼 것인가?
 - 해결방법: LR Parsing Table
 
+### YACC
+- LALR 파서 생성기
+- foo.y --(yacc)--> y.tab.c --(gcc)--> a.out
+- *.y 파일 구조
+  ```java
+  <선언부>
+  ...
+  %%
+  ...
+  exp : exp '+' term;
+  factor : ident;
+  ...
+  %%
+  <여러 함수>
+  ```
+- 모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결
+
 #### LR Parsing Table
 - Action table : Action + Parser 상태
 - Goto table : Parser 상태
@@ -235,23 +253,6 @@ date: 2023-09-01
   - [A->X.Y] : X!=ε일때 kernel item
   - [A->.X] : closure item
   - [A->X.] : reduce item
-
-### YACC
-- LALR 파서 생성기
-- foo.y --(yacc)--> y.tab.c --(gcc)--> a.out
-- *.y 파일 구조
-  ```java
-  <선언부>
-  ...
-  %%
-  ...
-  exp : exp '+' term;
-  factor : ident;
-  ...
-  %%
-  <여러 함수>
-  ```
-- 모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결
 
 ### SLR 파싱 테이블 만들기
 - reduce Item이 [X->α.]일때, FOLLOW(X)의 모든 terminal에만 reduce action을 넣는다
