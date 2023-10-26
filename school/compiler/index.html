@@ -120,8 +120,8 @@
 <ul>
 <li></li>
 <li><a href=#shift와-reduce로-parsing-하기>Shift와 Reduce로 Parsing 하기</a></li>
-<li><a href=#lr0-파싱-테이블-만들기>LR(0) 파싱 테이블 만들기</a></li>
 <li><a href=#yacc>YACC</a></li>
+<li><a href=#lr0-파싱-테이블-만들기>LR(0) 파싱 테이블 만들기</a></li>
 <li><a href=#slr-파싱-테이블-만들기>SLR 파싱 테이블 만들기</a></li>
 <li><a href=#lalr-parsing>LALR Parsing</a></li>
 </ul>
@@ -138,7 +138,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-23</h4>
+<h4 id=date> MODIFIED 2023-10-27</h4>
 </div>
 </div>
 </div>
@@ -319,6 +319,7 @@
 <ul>
 <li>왼쪽->오른쪽으로 읽어서 좌파스 생성</li>
 <li>backtracking X, 빠르다</li>
+<li><strong>결정적으로</strong> 파싱</li>
 </ul>
 <h3 id=사용된-정의>사용된 정의</h3>
 <ol>
@@ -356,7 +357,7 @@
 <li>A 다음에 나오는 terminal의 집합</li>
 <li>A->αBβ, β != ε 일때,
 <blockquote>
-<p>FOLLOW(B) = FIRST(B) U (FIRST(β)-{ε})</p>
+<p>FOLLOW(B) = FOLLOW(B) U (FIRST(β)-{ε})</p>
 </blockquote>
 </li>
 <li>A->αB 또는 A->αBβ, FIRST(β)에 ε가 속할 때,
@@ -368,13 +369,13 @@
 <h3 id=ll조건>LL조건</h3>
 <ul>
 <li>FIRST(α)와 FIRST(β)가 겹치면 안된다</li>
-<li>FIRST(α)에 ε가 있으면, Follow(α)와 FIRST(β)가 겹치면 안된다</li>
+<li>FIRST(α)에 ε가 있으면, FOLLOW(α)와 FIRST(β)가 겹치면 안된다</li>
 <li>LL 조건을 만족하는 문법 = LL 파싱 되는 문법</li>
 </ul>
 <h3 id=ll1-문법>LL(1) 문법</h3>
 <ul>
 <li>임의의 문법에 대하여 LL 조건을 만족하는 CFG</li>
-<li>1 : LOOKAHEAD가 1이라는 의미</li>
+<li>1 : LOOKAHEAD가 1개라는 의미</li>
 <li>다음과 같은 경우 LL(1)문법이 되지 않는다
 <ol>
 <li>모호한 문법</li>
@@ -496,6 +497,23 @@
 <ul>
 <li>해결방법: LR Parsing Table</li>
 </ul>
+<h3 id=yacc>YACC</h3>
+<ul>
+<li>LALR 파서 생성기</li>
+<li>foo.y &ndash;(yacc)&ndash;> y.tab.c &ndash;(gcc)&ndash;> a.out</li>
+<li>*.y 파일 구조
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>&lt;</span>선언부<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#f92672>%%</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>exp <span style=color:#f92672>:</span> exp <span style=color:#e6db74>&#39;+&#39;</span> term<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>factor <span style=color:#f92672>:</span> ident<span style=color:#f92672>;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span style=color:#f92672>%%</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>&lt;</span>여러 함수<span style=color:#f92672>&gt;</span>
+</code></pre></div></li>
+<li>모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결</li>
+</ul>
 <h4 id=lr-parsing-table>LR Parsing Table</h4>
 <ul>
 <li>Action table : Action + Parser 상태</li>
@@ -539,23 +557,6 @@
 <li>[A->X.] : reduce item</li>
 </ul>
 </li>
-</ul>
-<h3 id=yacc>YACC</h3>
-<ul>
-<li>LALR 파서 생성기</li>
-<li>foo.y &ndash;(yacc)&ndash;> y.tab.c &ndash;(gcc)&ndash;> a.out</li>
-<li>*.y 파일 구조
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>&lt;</span>선언부<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#f92672>%%</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>exp <span style=color:#f92672>:</span> exp <span style=color:#e6db74>&#39;+&#39;</span> term<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>factor <span style=color:#f92672>:</span> ident<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span style=color:#f92672>%%</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>&lt;</span>여러 함수<span style=color:#f92672>&gt;</span>
-</code></pre></div></li>
-<li>모호한 문법으로 LR Conflict 발생 시 선언부에서 우선순위 지정하여 해결</li>
 </ul>
 <h3 id=slr-파싱-테이블-만들기>SLR 파싱 테이블 만들기</h3>
 <ul>
