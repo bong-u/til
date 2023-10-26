@@ -15,9 +15,9 @@ date: 2023-10-24
 - IEEE : 소프트웨어의 개발, 운용, 유지보수 및 파기에 대한 체계적인 접근
 - W.Humphrey : 질 좋은 소프트웨어를 경제적으로 생산하기 위하여 공학, 과학, 수학적 원리에 의하여 소프트웨어를 개발해야한다
 
-### 소프트웨어 품질
-- 사용용이성(usability)
+### 소프트웨어 품질 (효-용-신-유-재-)
 - 효율성(efficiency)
+- 사용**용**이성(usability)
 - 신뢰성(reliability)
 - 유지보수성(maintainability)
 - 재사용성(reusability)
