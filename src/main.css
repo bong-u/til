@@ -28,10 +28,6 @@
   body::-webkit-scrollbar-thumb {
     @apply bg-scroll_thumb rounded-lg;
   }
-
-  .preview {
-    @apply text-text hover:no-underline !important;
-  }
 }
 
 @layer components {
@@ -53,5 +49,9 @@
 
   .hover-bigger {
     @apply hover:scale-110;
+  }
+
+  .preview {
+    @apply text-text hover:no-underline !important;
   }
 }
