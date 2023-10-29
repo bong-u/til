@@ -32,21 +32,32 @@
 		</article>
 		<!--  -->
 
-		<!-- tags, previous, next -->
-		<div id="meta" class="mt-24">
+		<!-- previous, next -->
+		<div id="meta" class="my-16">
 			<div>
-				<div class="flex justify-between w-full whitespace-nowrap">
+				<div class="flex justify-between w-full text-lg">
 					{{ with .PrevInSection }}
-					<a class="previous mr-5 overflow-hidden overflow-ellipsis hover-bold" href=" {{.RelPermalink}}">
-						{{.Title}}</a>
+					<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=" {{.RelPermalink}}">
+						<span class="mx-3">◀</span>
+						{{.Title}}
+					</a>
 					{{ end }}
 					{{ with .NextInSection }}
-					<a class="next ml-5 overflow-hidden overflow-ellipsis hover-bold" href="{{.RelPermalink}}">
-						{{.Title}}</a>
+					<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href="{{.RelPermalink}}">
+						{{.Title}}
+						<span class="mx-3">▶</span>
+					</a>
 					{{ end }}
 				</div>
 			</div>
+
 		</div>
+		<!--  -->
+
+		<!-- comment -->
+		<script src="https://utteranc.es/client.js" repo="bong-u/til" issue-term="pathname" label="comment"
+			theme="github-dark-orange" crossorigin="anonymous" async>
+			</script>
 		<!--  -->
 
 	</section>
