@@ -34,10 +34,10 @@ const modifyImagePath = () => {
 const checkDarkMode = () => {
 
     if (localStorage.getItem("theme") === "dark")
-        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("dark");
     // light -> dark
     else {
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.remove("dark");
 
     };
 }
@@ -48,12 +48,12 @@ const toggleDarkModeHandler = () => {
     // dark -> light
     if (localStorage.getItem("theme") === "dark") {
         localStorage.removeItem("theme");
-        buttonEl.innerText = '☀️';
+        buttonEl.innerText = '🌙';
     }
     // light -> dark
     else {
         localStorage.setItem("theme", "dark");
-        buttonEl.innerText = '🌙';
+        buttonEl.innerText = '☀️';
     }
 
     checkDarkMode();
