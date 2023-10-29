@@ -634,14 +634,6 @@ body::-webkit-scrollbar-thumb{
   background-color: var(--color-scroll-thumb);
 }
 
-.preview{
-  color: var(--color-text) !important;
-}
-
-.preview:hover{
-  text-decoration-line: none !important;
-}
-
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -830,6 +822,14 @@ body::-webkit-scrollbar-thumb{
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.preview{
+  color: var(--color-text) !important;
+}
+
+.preview:hover{
+  text-decoration-line: none !important;
 }
 
 .static{
