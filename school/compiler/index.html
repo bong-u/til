@@ -126,6 +126,14 @@
 <li><a href=#lalr-parsing>LALR Parsing</a></li>
 </ul>
 </li>
+<li><a href=#ir-intermediate-representation>IR (Intermediate Representation)</a>
+<ul>
+<li><a href=#ir이란>IR이란?</a></li>
+<li><a href=#high-level-ir>High Level IR</a></li>
+<li><a href=#low-level-ir>Low Level IR</a></li>
+<li><a href=#ir-예시>IR 예시</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -138,7 +146,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-10-27</h4>
+<h4 id=date> MODIFIED 2023-11-07</h4>
 </div>
 </div>
 </div>
@@ -576,6 +584,115 @@
 <p>SLR = LALR &#171; LR(1)</p>
 </blockquote>
 </li>
+</ul>
+<h2 id=ir-intermediate-representation>IR (Intermediate Representation)</h2>
+<h3 id=ir이란>IR이란?</h3>
+<ul>
+<li>Tree나 Instruction list 형태</li>
+<li>instruction(node)가 적어야 최적화/번역에 좋음</li>
+</ul>
+<h3 id=high-level-ir>High Level IR</h3>
+<ul>
+<li>High와 Low는 상대적인 개념</li>
+<li>High level IR: 여기서는 AST의 변형만 생각</li>
+<li>종류 : AST, TCOL</li>
+</ul>
+<h3 id=low-level-ir>Low Level IR</h3>
+<ul>
+<li>단순한 instruction으로 구성</li>
+<li>가상기계(주로 RISC)를 emulate</li>
+</ul>
+<h4 id=n-tuple-표기법-3-address-code>N-tuple 표기법 (3-address code)</h4>
+<blockquote>
+<p>a = b OP c</p>
+</blockquote>
+<ul>
+<li>일반적으로 기계어가 가지는 피연산자 개수 &lt;= 3</li>
+<li>quadruple : (연산자, 피연산자1, 피연산자2, 결과)</li>
+</ul>
+<h4 id=stack-machine-code>Stack machine code</h4>
+<ul>
+<li>Java byte code, U-code : AST로부터 생성이 용이</li>
+</ul>
+<h4 id=tree-표현>Tree 표현</h4>
+<ul>
+<li>기계어 생성 용이</li>
+</ul>
+<h3 id=ir-예시>IR 예시</h3>
+<h4 id=gcc---gimple-3-address-code>GCC - GIMPLE (3-address code)</h4>
+<ul>
+<li>GCC의 중간코드 : GENERIC -> <strong>GIMPLE</strong> -> RTL</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>D<span style=color:#ae81ff>.1954</span> <span style=color:#f92672>=</span> x<span style=color:#f92672>*</span><span style=color:#ae81ff>10</span> <span style=color:#75715e>// D.1954는 임시변수
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>gimple_assign <span style=color:#f92672>&lt;</span>mult_exprt, D<span style=color:#ae81ff>.1954</span>, x, <span style=color:#ae81ff>10</span><span style=color:#f92672>&gt;</span>
+</code></pre></div><h4 id=llvm---bit-3-address-code>LLVM - bit (3-address code)</h4>
+<ul>
+<li>LLVM IR : 언어와 머신에 독립적</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-llvm data-lang=llvm><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>@var = <span style=color:#66d9ef>global</span> <span style=color:#66d9ef>i32</span> <span style=color:#ae81ff>14</span> <span style=color:#75715e>; 전역변수 var에 14 대입
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>define</span> <span style=color:#66d9ef>i32</span> @main() <span style=color:#66d9ef>nounwind</span> { <span style=color:#75715e>; i32(int) 반환형
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>  entry:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    %a = <span style=color:#66d9ef>alloca</span> <span style=color:#66d9ef>i32</span>, <span style=color:#66d9ef>align</span> <span style=color:#ae81ff>4</span> <span style=color:#75715e>; 지역변수 a 선언, int 할당
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e></span>    %1 = <span style=color:#66d9ef>load</span> <span style=color:#66d9ef>i32</span> * @var <span style=color:#75715e>; %1 임시변수에 var값 대입
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>    <span style=color:#66d9ef>ret</span> <span style=color:#66d9ef>i32</span> %1 <span style=color:#75715e>; 임시변수 값 반환
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#75715e></span>}
+</code></pre></div><h4 id=jvm---byte-code-stack-machine-code>JVM - byte code (stack machine code)</h4>
+<ul>
+<li>가상 기계 코드 (Bytecode, MSIL)
+<ul>
+<li>가상 기계에서 동작하도록 함</li>
+<li>이식성, 호환성이 목적 : java bytecode는 machine 호환성, c# msil은 language 호환성</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Employee</span><span style=color:#f92672>(</span>String strName<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> num<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>{</span>name <span style=color:#f92672>=</span> strName<span style=color:#f92672>;</span> idNumber <span style=color:#f92672>=</span> num<span style=color:#f92672>;</span> storeData<span style=color:#f92672>(</span>strName<span style=color:#f92672>,</span> num<span style=color:#f92672>);}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>Method <span style=color:#a6e22e>Employee</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span><span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>0 aload_0 <span style=color:#f92672>;</span> 0번째 <span style=color:#a6e22e>로컬변수</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>)</span>를 스택에 push
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>1 invokespecial <span style=color:#960050;background-color:#1e0010>#</span>3 <span style=color:#f92672>&lt;</span>Method java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>()&gt;</span> <span style=color:#f92672>;</span> 함수 호출
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#f92672>---</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>4 aload_0
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>5 aload_1 <span style=color:#f92672>;</span> strName을 스택에 push
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>6 putfield <span style=color:#960050;background-color:#1e0010>#</span>5 <span style=color:#f92672>&lt;</span>Field java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span> name<span style=color:#f92672>&gt;</span> <span style=color:#f92672>;</span> name에 strName 대입
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>---</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>9 aload_0
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>10 iload_2 <span style=color:#f92672>;</span> num을 스택에 push
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>11 putfield <span style=color:#960050;background-color:#1e0010>#</span>7 <span style=color:#f92672>&lt;</span>Field <span style=color:#66d9ef>int</span> idNumber<span style=color:#f92672>&gt;</span> <span style=color:#f92672>;</span> idNumber에 num 대입
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#f92672>---</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>14 aload_0
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>15 aload_1 <span style=color:#f92672>;</span> strName을 스택에 push
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>16 iload_2 <span style=color:#f92672>;</span> num을 스택에 push
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>17 invokespecial <span style=color:#960050;background-color:#1e0010>#</span>9 <span style=color:#f92672>&lt;</span>Method <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>storeData</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span><span style=color:#f92672>)&gt;</span> <span style=color:#f92672>;</span> 함수 호출
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>20 <span style=color:#66d9ef>return</span>
+</code></pre></div><ul>
+<li>line number : 명령이 시작하는 바이트 주소</li>
+<li>aload : 객체를 push, iload : 정수를 push</li>
+<li>원래는 aload가 명령, 자주 쓰는 명령 aload 0을 묶어서 bind -> aload_0</li>
+</ul>
+<h4 id=cil-common-intermediate-language-stack-machine-code>CIL (Common Intermediate Language) (stack machine code)</h4>
+<ul>
+<li>C#, VB.NET, J# 등에서 사용</li>
+<li>MSIL은 옛날 이름</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-nasm data-lang=nasm><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>.assembly</span> Hello <span style=color:#960050;background-color:#1e0010>{}</span> <span style=color:#75715e>; .assembly: 어셈블리 선언</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>.assembly</span> extern mscorlib <span style=color:#960050;background-color:#1e0010>{}</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#a6e22e>.method</span> static void Main() <span style=color:#960050;background-color:#1e0010>{</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#a6e22e>.entrypoint</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#a6e22e>.maxstack</span> <span style=color:#ae81ff>1</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>  <span style=color:#a6e22e>ldstr</span> <span style=color:#e6db74>&#34;Hello, world!&#34;</span> <span style=color:#75715e>; stack에 저장</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#a6e22e>call</span> void [mscorlib]System.Console::WriteLine(string)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>  <span style=color:#a6e22e>ret</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#960050;background-color:#1e0010>}</span>
+</code></pre></div><h4 id=gcc-rtlregister-transfer-language-tree구조-코드>GCC RTL(Register Transfer Language) (Tree구조 코드)</h4>
+<ul>
+<li>Lisp <em>S-expression</em> 사용</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>(set (reg:SI 140)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>     (plus:SI (reg:SI 138)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>              (reg:SI 139)))
+</code></pre></div><ul>
+<li>=> reg140 = reg138+reg139</li>
 </ul>
 </article>
 <div id=meta class=my-16>
