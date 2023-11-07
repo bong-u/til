@@ -264,3 +264,106 @@ date: 2023-09-01
   > LR(0) < SLR < LALR(1) < LR(1)
 - 파서 상태의 개수
   > SLR = LALR << LR(1)
+
+
+## IR (Intermediate Representation)
+
+### IR이란?
+- Tree나 Instruction list 형태
+- instruction(node)가 적어야 최적화/번역에 좋음
+
+### High Level IR
+- High와 Low는 상대적인 개념
+- High level IR: 여기서는 AST의 변형만 생각
+- 종류 : AST, TCOL
+
+### Low Level IR
+- 단순한 instruction으로 구성
+- 가상기계(주로 RISC)를 emulate
+
+#### N-tuple 표기법 (3-address code)
+> a = b OP c
+- 일반적으로 기계어가 가지는 피연산자 개수 <= 3
+- quadruple : (연산자, 피연산자1, 피연산자2, 결과)
+#### Stack machine code
+- Java byte code, U-code : AST로부터 생성이 용이
+#### Tree 표현
+- 기계어 생성 용이
+
+### IR 예시
+
+#### GCC - GIMPLE (3-address code)
+- GCC의 중간코드 : GENERIC -> **GIMPLE** -> RTL
+```c
+D.1954 = x*10 // D.1954는 임시변수
+gimple_assign <mult_exprt, D.1954, x, 10>
+```
+
+#### LLVM - bit (3-address code)
+- LLVM IR : 언어와 머신에 독립적
+```llvm
+@var = global i32 14 ; 전역변수 var에 14 대입
+define i32 @main() nounwind { ; i32(int) 반환형
+  entry:
+    %a = alloca i32, align 4 ; 지역변수 a 선언, int 할당
+    %1 = load i32 * @var ; %1 임시변수에 var값 대입
+    ret i32 %1 ; 임시변수 값 반환
+}
+```
+
+#### JVM - byte code (stack machine code)
+
+- 가상 기계 코드 (Bytecode, MSIL)
+  - 가상 기계에서 동작하도록 함
+  - 이식성, 호환성이 목적 : java bytecode는 machine 호환성, c# msil은 language 호환성
+
+```java
+public Employee(String strName, int num)
+{name = strName; idNumber = num; storeData(strName, num);}
+Method Employee(java.lang.String, int)
+
+0 aload_0 ; 0번째 로컬변수(this)를 스택에 push
+1 invokespecial #3 <Method java.lang.Object()> ; 함수 호출
+---
+4 aload_0
+5 aload_1 ; strName을 스택에 push
+6 putfield #5 <Field java.lang.String name> ; name에 strName 대입
+---
+9 aload_0
+10 iload_2 ; num을 스택에 push
+11 putfield #7 <Field int idNumber> ; idNumber에 num 대입
+---
+14 aload_0
+15 aload_1 ; strName을 스택에 push
+16 iload_2 ; num을 스택에 push
+17 invokespecial #9 <Method void storeData(java.lang.String, int)> ; 함수 호출
+20 return
+```
+- line number : 명령이 시작하는 바이트 주소
+- aload : 객체를 push, iload : 정수를 push
+- 원래는 aload가 명령, 자주 쓰는 명령 aload 0을 묶어서 bind -> aload_0
+
+#### CIL (Common Intermediate Language) (stack machine code)
+- C#, VB.NET, J# 등에서 사용
+- MSIL은 옛날 이름
+```nasm
+.assembly Hello {} ; .assembly: 어셈블리 선언
+.assembly extern mscorlib {}
+.method static void Main() {
+  .entrypoint
+  .maxstack 1
+  ldstr "Hello, world!" ; stack에 저장
+  call void [mscorlib]System.Console::WriteLine(string)
+  ret
+}
+```
+
+#### GCC RTL(Register Transfer Language) (Tree구조 코드)
+- Lisp *S-expression* 사용
+```text
+(set (reg:SI 140)
+     (plus:SI (reg:SI 138)
+              (reg:SI 139)))
+```
+- => reg140 = reg138+reg139
+
