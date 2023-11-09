@@ -11,15 +11,14 @@
 	<meta property="og:image" content="{{ .Site.BaseURL }}asset/profile.jpg" />
 
 	<!-- my custom js -->
-	<script type="text/javascript" src="{{ .Site.BaseURL }}src/script.js"></script>
+	<script type="text/javascript" src="{{ .Site.BaseURL }}script/base.js"></script>
 
 	<!-- my favicon -->
 	<link rel="icon" href="{{ .Site.BaseURL }}favicon16.png" sizes="16x16">
 	<link rel="icon" href="{{ .Site.BaseURL }}favicon32.png" sizes="32x32">
 
-
 	<!-- my tailwind css -->
-	<link id="twCSS" rel="stylesheet" href="{{ .Site.BaseURL }}src/style.css" />
+	<link id="twCSS" rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
 
 	<!-- latex -->
 	{{ partial "latex.html" . }}
