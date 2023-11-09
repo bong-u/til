@@ -66,9 +66,6 @@
   #content code * {
     @apply font-code !important;
   }
-  #content code:not(:has(span)) {
-    @apply hidden;
-  }
 
   #content table td,
   #content table th {
