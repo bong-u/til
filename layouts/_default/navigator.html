@@ -1,6 +1,17 @@
-{{ range .Site.Sections }}
-{{ $section := . }}
-{{ with .Pages }}
+{{ $sections := slice }}
+<!-- .Site.Sections를 순회 -->
+{{ range $index, $section := .Site.Sections }}
+<!-- section 가장 최신 게시물의 lastmod 추출 -->
+{{ $lastmod := (index (last 1 $section.Pages.ByLastmod) 0).Lastmod }}
+<!-- section과 lastmod를 dict로 묶어서 $sections에 append -->
+{{ $sections = $sections | append (dict "section" $section "lastmod" $lastmod) }}
+{{ end }}
+<!-- $sections를 lastmod 기준으로 정렬 -->
+{{ $sections = sort $sections "lastmod" "desc"}}
+
+{{ range $item := $sections }}
+{{ $section := $item.section }}
+{{ with $section.Pages }}
 {{ $indexPage := index . 0 }}
 {{ $section_emoji := $section.Params.emoji }}
 {{ $section_name := $section.Title }}
