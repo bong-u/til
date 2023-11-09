@@ -8,10 +8,10 @@
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://github.com/bong-u/til-hugo">
 <meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/src/script.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
 <link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
 <link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/src/style.css>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
 <script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
 <script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
@@ -35,8 +35,10 @@
 </div>
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
 <script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
-<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<nav class="fixed hidden lg:block h-full left-0 top-0 py-16 px-7 bg-[#18181b]">
+<div id=sidebar class="flex flex-col gap-3 pr-4 overflow-y-scroll overflow-x-hidden h-full">
 <a class="flex py-3 hover-bold hover-bigger" href=/til/open_source/>
 <span class="text-xl mr-3">🐮</span>
 <span>OpenSource (1)</span>
@@ -81,6 +83,7 @@
 <span class="text-xl mr-3">☸</span>
 <span>Kubernetes (4)</span>
 </a>
+</div>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
