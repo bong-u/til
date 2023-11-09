@@ -578,7 +578,13 @@ video {
 }
 
 #content code:not(:has(span)){
-  display: none;
+  border-radius: 0.375rem;
+  background-color: var(--color-code-bg);
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  font-size: 80%;
 }
 
 #content table td,
