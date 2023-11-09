@@ -126,6 +126,12 @@
 <li><a href=#lalr-parsing>LALR Parsing</a></li>
 </ul>
 </li>
+<li><a href=#sdd-ast>SDD, AST</a>
+<ul>
+<li><a href=#sdd-syntax-directed-definition>SDD (Syntax Directed Definition)</a></li>
+<li><a href=#ast-abstract-syntax-tree>AST (Abstract Syntax Tree)</a></li>
+</ul>
+</li>
 <li><a href=#ir-intermediate-representation>IR (Intermediate Representation)</a>
 <ul>
 <li><a href=#ir이란>IR이란?</a></li>
@@ -146,7 +152,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-09-01 </h4>
-<h4 id=date> MODIFIED 2023-11-07</h4>
+<h4 id=date> MODIFIED 2023-11-09</h4>
 </div>
 </div>
 </div>
@@ -583,6 +589,29 @@
 <blockquote>
 <p>SLR = LALR &#171; LR(1)</p>
 </blockquote>
+</li>
+</ul>
+<h2 id=sdd-ast>SDD, AST</h2>
+<h3 id=sdd-syntax-directed-definition>SDD (Syntax Directed Definition)</h3>
+<ul>
+<li>SDD : semnatic action을 정의하는 추상적인 명세서</li>
+<li>Semnatic Actions : 규칙에 대한 Action</li>
+</ul>
+<h3 id=ast-abstract-syntax-tree>AST (Abstract Syntax Tree)</h3>
+<ul>
+<li>파스트리에서 불필요한 정보를 제거한 형태</li>
+<li>AST를 만드는 방법
+<ul>
+<li>파싱단계에서 만들기 : LL, LR</li>
+<li>파스트리를 순회하면서 만들기 : SDD 사용 (Yacc etc.)</li>
+</ul>
+</li>
+<li>evaluation : 노드를 방문하면서 작업하는 행위</li>
+<li>On-the-fly evaluation
+<ul>
+<li>S-attributed SDD: synthesized attribute만 가지고 있는 SDD</li>
+<li>L-attributed SDD: synthesized attribute만 가지는 경우 + 값이 왼쪽에서 오른쪽으로 흘러 계산이 이루어지는 경우</li>
+</ul>
 </li>
 </ul>
 <h2 id=ir-intermediate-representation>IR (Intermediate Representation)</h2>
