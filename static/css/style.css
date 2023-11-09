@@ -13,6 +13,8 @@
   /* zinc-100 */
   --color-box-hover-bg: #d4d4d8;
   /* zinc-300 */
+  --color-sidebar: #fafafa;
+  /* zinc-50 */
   /* common */
   --color-code-bg: #1c1917;
   /* stone-900 */
@@ -35,6 +37,8 @@
   /* stone-900 */
   --color-box-hover-bg: #0c0a09;
   /* stone-950 */
+  --color-sidebar: #18181b;
+  /* zinc-900 */
 }
 
 /* ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com */
@@ -1122,13 +1126,12 @@ body::-webkit-scrollbar-thumb{
   border-radius: 0.5rem;
 }
 
-.bg-\[\#18181b\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
 .bg-inherit{
   background-color: inherit;
+}
+
+.bg-sidebar{
+  background-color: var(--color-sidebar);
 }
 
 .p-1{
@@ -1178,6 +1181,11 @@ body::-webkit-scrollbar-thumb{
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .pb-5{

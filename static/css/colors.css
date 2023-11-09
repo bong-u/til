@@ -4,6 +4,7 @@
   --color-toc-hover: #9ca3af; /* gray-400 */
   --color-box-bg: #f4f4f5; /* zinc-100 */
   --color-box-hover-bg: #d4d4d8; /* zinc-300 */
+  --color-sidebar: #fafafa; /* zinc-50 */
 
   /* common */
   --color-code-bg: #1c1917; /* stone-900 */
@@ -17,4 +18,5 @@
   --color-toc-hover: #71717a; /* gray-500 */
   --color-box-bg: #1c1917; /* stone-900 */
   --color-box-hover-bg: #0c0a09; /* stone-950 */
+  --color-sidebar: #18181b; /* zinc-900 */
 }

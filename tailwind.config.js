@@ -21,6 +21,7 @@ module.exports = {
       toc_hover: "var(--color-toc-hover)",
       box_bg: "var(--color-box-bg)",
       box_hover_bg: "var(--color-box-hover-bg)",
+      sidebar: "var(--color-sidebar)",
       link: "var(--color-link)",
       quote_bar: "var(--color-quote-bar)",
     },
