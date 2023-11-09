@@ -16,9 +16,11 @@ npm run watch
 - Deploy : https://bong-u.github.io/til
 - Develop : http://localhost:1313/til
 
-### Dependency
+### Support
 
 - MathJax v3 : https://github.com/mathjax/MathJax/releases/latest
+- Utterances : https://utteranc.es/
+- Google Analytics 4 : https://analytics.google.com/analytics/web/
 
 ### Commit Convention
 
