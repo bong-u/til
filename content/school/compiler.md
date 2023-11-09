@@ -266,6 +266,22 @@ date: 2023-09-01
   > SLR = LALR << LR(1)
 
 
+## SDD, AST
+
+### SDD (Syntax Directed Definition)
+- SDD : semnatic action을 정의하는 추상적인 명세서
+- Semnatic Actions : 규칙에 대한 Action
+
+### AST (Abstract Syntax Tree)
+- 파스트리에서 불필요한 정보를 제거한 형태
+- AST를 만드는 방법
+  - 파싱단계에서 만들기 : LL, LR
+  - 파스트리를 순회하면서 만들기 : SDD 사용 (Yacc etc.)
+- evaluation : 노드를 방문하면서 작업하는 행위
+- On-the-fly evaluation
+  - S-attributed SDD: synthesized attribute만 가지고 있는 SDD
+  - L-attributed SDD: synthesized attribute만 가지는 경우 + 값이 왼쪽에서 오른쪽으로 흘러 계산이 이루어지는 경우
+
 ## IR (Intermediate Representation)
 
 ### IR이란?
