@@ -3,8 +3,10 @@
 
 {{ partial "toc.html" .}}
 
-<nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
-	{{ .Render "navigator" }}
+<nav class="fixed hidden lg:block h-full left-0 top-0 py-16 px-7 bg-[#18181b]">
+	<div id="sidebar" class="flex flex-col gap-3 pr-4 overflow-y-scroll overflow-x-hidden h-full">
+		{{ .Render "navigator" }}
+	</div>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
 	{{ .TableOfContents }}

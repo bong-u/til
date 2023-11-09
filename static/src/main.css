@@ -54,4 +54,8 @@
   .preview {
     @apply text-text hover:no-underline !important;
   }
+
+  #sidebar::-webkit-scrollbar {
+    @apply w-0;
+  }
 }

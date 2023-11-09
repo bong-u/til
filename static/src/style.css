@@ -838,6 +838,10 @@ body::-webkit-scrollbar-thumb{
   text-decoration-line: none !important;
 }
 
+#sidebar::-webkit-scrollbar{
+  width: 0px;
+}
+
 .static{
   position: static;
 }
@@ -1088,6 +1092,14 @@ body::-webkit-scrollbar-thumb{
   overflow: hidden;
 }
 
+.overflow-x-hidden{
+  overflow-x: hidden;
+}
+
+.overflow-y-scroll{
+  overflow-y: scroll;
+}
+
 .truncate{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1110,16 +1122,17 @@ body::-webkit-scrollbar-thumb{
   border-radius: 0.5rem;
 }
 
+.bg-\[\#18181b\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+
 .bg-inherit{
   background-color: inherit;
 }
 
 .p-1{
   padding: 0.25rem;
-}
-
-.p-7{
-  padding: 1.75rem;
 }
 
 .px-3{
@@ -1137,9 +1150,19 @@ body::-webkit-scrollbar-thumb{
   padding-right: 1.5rem;
 }
 
+.px-7{
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.py-16{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .py-24{
@@ -1159,6 +1182,10 @@ body::-webkit-scrollbar-thumb{
 
 .pb-5{
   padding-bottom: 1.25rem;
+}
+
+.pr-4{
+  padding-right: 1rem;
 }
 
 .text-center{
@@ -1232,6 +1259,10 @@ body::-webkit-scrollbar-thumb{
 }
 
 @media (min-width: 1024px){
+  .lg\:block{
+    display: block;
+  }
+
   .lg\:flex{
     display: flex;
   }
