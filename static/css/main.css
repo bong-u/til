@@ -26,17 +26,17 @@
   }
 
   body::-webkit-scrollbar-thumb {
-    @apply bg-scroll_thumb rounded-lg;
+    @apply bg-scrollbar rounded-lg;
   }
 }
 
 @layer components {
   .box {
-    @apply bg-box_bg hover-bold;
+    @apply bg-box hover-bold;
   }
 
   .box:hover {
-    @apply bg-box_hover_bg;
+    @apply bg-box-hover;
   }
 
   .hover-bold {
