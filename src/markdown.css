@@ -67,7 +67,7 @@
     @apply font-code !important;
   }
   #content code:not(:has(span)) {
-    @apply hidden;
+    @apply bg-code_bg px-[0.4rem] py-[0.2rem] rounded-md text-[80%];
   }
 
   #content table td,

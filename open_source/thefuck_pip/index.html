@@ -1,9 +1,9 @@
 <!doctype html><html>
 <head>
-<title>11057 : 오르막 수 (S1)</title>
+<title>[thefuck] pip uninstall 기여</title>
 <meta charset=utf-8>
-<meta property="og:title" content="11057 : 오르막 수 (S1)">
-<meta property="og:description" content="1N = int(input()) 2dp = [[1]+[0]*9 for _ in range(N+1)] 3 4for i in range(1, N+1): 5 for j in …">
+<meta property="og:title" content="[thefuck] pip uninstall 기여">
+<meta property="og:description" content="PR #1414 : Correct &ldquo;pip delete|remove&rdquo; -> &ldquo;pip uninstall&rdquo; 배경  pip …">
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://github.com/bong-u/til-hugo">
 <meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
@@ -82,43 +82,60 @@
 </a>
 </nav>
 <aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#pr-1414--correct-pip-deleteremove---pip-uninstallhttpsgithubcomnvbnthefuckpull1414><a href=https://github.com/nvbn/thefuck/pull/1414>PR #1414 : Correct &ldquo;pip delete|remove&rdquo; -> &ldquo;pip uninstall&rdquo;</a></a></li>
+<li><a href=#배경>배경</a></li>
+<li><a href=#과정>과정</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </aside>
 <main class="flex w-full justify-center">
 <section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-11057 : 오르막 수 (S1)
+[thefuck] pip uninstall 기여
 </h1>
 <div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-01-09 </h4>
-<h4 id=date> MODIFIED 2023-02-05</h4>
+<h4 id=date> CREATED 2023-11-09 </h4>
+<h4 id=date> MODIFIED 2023-11-09</h4>
 </div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>N <span style=color:#f92672>=</span> int(input())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span><span style=color:#ae81ff>9</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        dp[i][j] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j]<span style=color:#f92672>+</span>dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>print (sum(dp[N])<span style=color:#f92672>%</span><span style=color:#ae81ff>10007</span>)
-</code></pre></div>
+<h3 id=pr-1414--correct-pip-deleteremove---pip-uninstallhttpsgithubcomnvbnthefuckpull1414><a href=https://github.com/nvbn/thefuck/pull/1414>PR #1414 : Correct &ldquo;pip delete|remove&rdquo; -> &ldquo;pip uninstall&rdquo;</a></h3>
+<h3 id=배경>배경</h3>
+<ul>
+<li><code>pip uninstall &lt;package></code>는 파이썬 패키지를 삭제하는 명령어이다.</li>
+<li>헷갈려서 remove, delete로 오타를 친 경험이 있다.</li>
+<li>thefuck에서 지원하지 않는 것을 확인하고 기여하기로 했다.</li>
+</ul>
+<h3 id=과정>과정</h3>
+<ul>
+<li>기존의 로직 : 오타가 났을 때, pip 명령에서 “maybe you meant” 하면서 추천해주는 명령어가 있다면 추천, 하지만 remove와 delete는 그 대상이 아님</li>
+<li>잘못된 명령어가 ‘delete’ 또는 ‘remove’인 경우 suggest에 uninstall을 대입하도록 수정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>if</span> broken_cmd <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;delete&#39;</span> <span style=color:#f92672>or</span> broken_cmd <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;remove&#39;</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>        suggest <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;uninstall&#39;</span>
+</code></pre></div></li>
+<li>테스트 코드 수정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e># 의도한대로 명령어를 잘 바꿔주는지 테스트</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@pytest</span><span style=color:#f92672>.</span>mark<span style=color:#f92672>.</span>parametrize(<span style=color:#e6db74>&#39;script, synonym, new_cmd&#39;</span>, [
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  (<span style=color:#e6db74>&#39;pip delete thefuck&#39;</span>, <span style=color:#e6db74>&#39;delete&#39;</span>, <span style=color:#e6db74>&#39;pip uninstall thefuck&#39;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  (<span style=color:#e6db74>&#39;pip remove thefuck&#39;</span>, <span style=color:#e6db74>&#39;remove&#39;</span>, <span style=color:#e6db74>&#39;pip uninstall thefuck&#39;</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>])
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_get_new_command_without_recommended</span>(script, new_cmd, pip_unknown_cmd_without_recommend):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#66d9ef>assert</span> get_new_command(Command(script, pip_unknown_cmd_without_recommend)) <span style=color:#f92672>==</span> new_cmd
+</code></pre></div></li>
+</ul>
 </article>
 <div id=meta class=my-16>
 <div>
 <div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_14891/>
-<span class=mx-3>◀</span>
-14891 : 톱니바퀴 (G5)
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_11052/>
-11052 : 카드 구매하기 (S1)
-<span class=mx-3>▶</span>
-</a>
 </div>
 </div>
 </div>

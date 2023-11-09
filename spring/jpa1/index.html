@@ -36,6 +36,14 @@
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
 <nav class="fixed hidden lg:flex flex-col h-full left-0 top-0 py-24 gap-3 p-7">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/open_source/>
+<span class="text-xl mr-3">🐮</span>
+<span>OpenSource (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (29)</span>
+</a>
 <a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
 <span class="text-xl mr-3">🏫</span>
 <span>학과 공부 (14)</span>
@@ -47,10 +55,6 @@
 <a class="flex py-3 hover-bold hover-bigger" href=/til/issues/>
 <span class="text-xl mr-3">🧐</span>
 <span>기타 Issues (1)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span>Spring (29)</span>
 </a>
 <a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -118,7 +122,7 @@ Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-08-04 </h4>
-<h4 id=date> MODIFIED 2023-08-07</h4>
+<h4 id=date> MODIFIED 2023-11-09</h4>
 </div>
 </div>
 </div>
@@ -265,9 +269,14 @@ Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 </ul>
 <h4 id=예제---연관관계-편의-메소드>예제 - 연관관계 편의 메소드</h4>
 <ul>
-<li>양방향 연관관계에서 한쪽에만 설정하면 양쪽 다 설정해주는 메소드를 만들 수 있다</li>
-<li>양방향 연관관계와 그 편의메소드를 정의한 코드이다</li>
-<li>Member.java
+<li>
+<p>양방향 연관관계에서 한쪽에만 설정하면 양쪽 다 설정해주는 메소드를 만들 수 있다</p>
+</li>
+<li>
+<p>양방향 연관관계와 그 편의메소드를 정의한 코드이다</p>
+</li>
+<li>
+<p>Member.java</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@OneToMany</span><span style=color:#f92672>(</span>mappedBy <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;member&#34;</span><span style=color:#f92672>)</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>private</span> List<span style=color:#f92672>&lt;</span>Order<span style=color:#f92672>&gt;</span> orders <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
@@ -275,8 +284,9 @@ Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>orders</span><span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>order<span style=color:#f92672>);</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>	order<span style=color:#f92672>.</span><span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#f92672>}</span>
-</code></pre></div><pre tabindex=0><code></code></pre></li>
-<li>Order.java
+</code></pre></div></li>
+<li>
+<p>Order.java</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@ManyToOne</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#a6e22e>@JoinColumn</span><span style=color:#f92672>(</span>name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;member_id&#34;</span><span style=color:#f92672>,</span> referencedColumnName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;id&#34;</span><span style=color:#f92672>)</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>private</span> Member member<span style=color:#f92672>;</span>
@@ -288,8 +298,7 @@ Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>	<span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>member</span> <span style=color:#f92672>=</span> member<span style=color:#f92672>;</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>	member<span style=color:#f92672>.</span><span style=color:#a6e22e>getOrders</span><span style=color:#f92672>().</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>}</span>
-</code></pre></div><pre tabindex=0><code>
-</code></pre></li>
+</code></pre></div></li>
 </ul>
 </article>
 <div id=meta class=my-16>
