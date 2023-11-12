@@ -17,6 +17,7 @@ module.exports = {
       text: "var(--color-text)",
       bg: "var(--color-bg)",
       scrollbar: "var(--color-scrollbar)",
+      codeinline: "var(--color-codeinline)",
       codebox: "var(--color-codebox)",
       box: {
         DEFAULT: "var(--color-box)",
