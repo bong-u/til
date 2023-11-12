@@ -16,6 +16,7 @@
   --color-sidebar: #fafafa;
   /* zinc-50 */
   /* common */
+  --color-codeinline: #f8f8f2;
   --color-codebox: #1c1917;
   /* stone-900 */
   --color-scrollbar: #71717a;
@@ -589,6 +590,7 @@ video {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   font-size: 80%;
+  color: var(--color-codeinline);
 }
 
 #content table td,
