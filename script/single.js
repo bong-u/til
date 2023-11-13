@@ -3,7 +3,6 @@
 window.onload = () => {
     modifyImagePath();
     loadUtterances();
-    sidebarScrollHandler();
 };
 
 // 이미지 경로 변경
@@ -41,20 +40,4 @@ const loadUtterances = () => {
         commentElement.replaceChild(scriptElement, oldChild);
     else
         commentElement.appendChild(scriptElement);
-};
-
-// 사이드바 스크롤 이벤트 핸들러
-const sidebarScrollHandler = () => {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.onmousemove = (e) => {
-        const mouseY = e.clientY;
-
-        const sidebarRect = sidebar.getBoundingClientRect();
-        const offsetY = mouseY - sidebarRect.top;
-
-        const maxScroll = sidebar.scrollHeight - sidebar.clientHeight;
-        const scrollValue = maxScroll * (offsetY / sidebar.clientHeight);
-
-        sidebar.scrollTo({ top: scrollValue });
-    };
 };

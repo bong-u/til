@@ -16,9 +16,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
-<body class="flex justify-center my-16">
-<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
-<div class="flex gap-3 float-right">
+<body class=custom-scroll>
+<header class="hidden md:block fixed top-0 right-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3">
 <a class=hover-bigger href=https://bong-u.github.io/til/>
 🏠
 </a>
@@ -34,9 +34,8 @@
 </div>
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
-<nav class="fixed hidden lg:block h-full left-0 top-0 py-16 px-7 bg-sidebar">
+<div class="flex w-full">
+<nav class="sticky hidden absolute top-0 xl:block h-screen w-1/6 top-0 py-16 px-7 bg-sidebar">
 <div id=sidebar class="flex flex-col gap-3 px-2 overflow-y-scroll overflow-x-hidden h-full">
 <a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
 <span class="text-xl mr-3">🏫</span>
@@ -84,7 +83,10 @@
 </a>
 </div>
 </nav>
-<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<main class="w-full lg:w-5/6 px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
 <li><a href=#lambda>Lambda</a>
@@ -109,17 +111,15 @@
 </ul>
 </nav>
 </aside>
-<main class="flex w-full justify-center">
-<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<section class="pl-4 mt-6 xl:w-5/6">
+<div class="flex flex-col">
+<h4 id=date>마지막 수정 : 2023-07-03</h4>
+</div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
 Stream, Optional
 </h1>
-<div class="flex flex-col items-end">
-<h4 id=date> CREATED 2023-07-03 </h4>
-<h4 id=date> MODIFIED 2023-07-03</h4>
-</div>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
@@ -192,5 +192,6 @@ Record
 <div id=comment-box></div>
 </section>
 </main>
+</div>
 </body>
 </html>

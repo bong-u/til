@@ -16,9 +16,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
-<body class="flex justify-center my-16">
-<header class="fixed w-full top-0 px-8 py-4 text-3xl z-10">
-<div class="flex gap-3 float-right">
+<body class=custom-scroll>
+<header class="hidden md:block fixed top-0 right-0 px-8 py-4 text-3xl z-10">
+<div class="flex gap-3">
 <a class=hover-bigger href=https://bong-u.github.io/til/>
 🏠
 </a>
@@ -34,6 +34,55 @@
 </div>
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<div class="flex w-full">
+<nav class="sticky hidden absolute top-0 xl:block h-screen w-1/6 top-0 py-16 px-7 bg-sidebar">
+<div id=sidebar class="flex flex-col gap-3 px-2 overflow-y-scroll overflow-x-hidden h-full">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (14)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span>Spring (29)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/open_source/>
+<span class="text-xl mr-3">🐮</span>
+<span>OpenSource (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span>Algorithm (102)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/issues/>
+<span class="text-xl mr-3">🧐</span>
+<span>기타 Issues (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span>23-모각코 (13)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span>Javascript (7)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span>Java (6)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span>특강 (4)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span>SQL (1)</span>
+</a>
+<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☸</span>
+<span>Kubernetes (4)</span>
+</a>
+</div>
+</nav>
 <main class="flex w-full justify-center">
 <section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12 lg:w-4/12">
 <div class="flex flex-col justify-center">
@@ -128,5 +177,6 @@
 </div>
 </section>
 </main>
+</div>
 </body>
 </html>

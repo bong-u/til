@@ -14,6 +14,7 @@ checkDarkMode();
 
 window.addEventListener('DOMContentLoaded', () => {
     scrollHandler();
+    sidebarScrollHandler();
 });
 
 // 스크롤 이벤트 핸들러
@@ -58,4 +59,20 @@ const scrollToTop = () => {
 // 스크롤 최하단 이동
 const scrollToBottom = () => {
     window.scrollTo({ top: document.body.clientHeight, behavior: 'smooth' });
+};
+
+// 사이드바 스크롤 이벤트 핸들러
+const sidebarScrollHandler = () => {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.onmousemove = (e) => {
+        const mouseY = e.clientY;
+
+        const sidebarRect = sidebar.getBoundingClientRect();
+        const offsetY = mouseY - sidebarRect.top;
+
+        const maxScroll = sidebar.scrollHeight - sidebar.clientHeight;
+        const scrollValue = maxScroll * (offsetY / sidebar.clientHeight);
+
+        sidebar.scrollTo({ top: scrollValue });
+    };
 };
