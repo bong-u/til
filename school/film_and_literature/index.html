@@ -39,6 +39,10 @@
 <script>let anchorsCache=null;document.addEventListener("DOMContentLoaded",()=>{window.addEventListener("scroll",()=>{const c=document.getElementById("TableOfContents"),b=document.querySelectorAll("#TableOfContents a"),a=getCurrentAnchor();let d=0;for(let c=0;c<b.length;c++)b[c].classList.remove("current"),b[c]===a&&(d=c);a&&a.classList.add("current"),c.scroll(0,a.offsetTop-c.offsetHeight/2)})});const getTocItem=a=>document.querySelector('[href="'+a+'"]'),getCurrentAnchor=()=>{const c=window.pageYOffset,a=getAnchors();let b=null;for(let d=0;d<a.length;d++){const e=getHeading(a[d]).getBoundingClientRect().top+c;if(e<c+window.innerHeight*.23)b=a[d];else break}return b||(b=a[0]),getTocItem(b)},getAnchors=()=>(anchorsCache||(anchorsCache=Array.from(document.querySelectorAll("#TableOfContents a")).map(a=>a.getAttribute("href"))),anchorsCache),getHeading=a=>document.getElementById(a.substr(1))</script>
 <nav class="fixed hidden lg:block h-full left-0 top-0 py-16 px-7 bg-sidebar">
 <div id=sidebar class="flex flex-col gap-3 px-2 overflow-y-scroll overflow-x-hidden h-full">
+<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (14)</span>
+</a>
 <a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
 <span>Spring (29)</span>
@@ -46,10 +50,6 @@
 <a class="flex py-3 hover-bold hover-bigger" href=/til/open_source/>
 <span class="text-xl mr-3">🐮</span>
 <span>OpenSource (1)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span>학과 공부 (14)</span>
 </a>
 <a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
 <span class="text-xl mr-3">🧠</span>
@@ -97,6 +97,16 @@
 <li><a href=#작품론-분석>작품론 분석</a></li>
 </ul>
 </li>
+<li><a href=#계급-문제>계급 문제</a>
+<ul>
+<li><a href=#계급-이란>계급 이란</a></li>
+<li><a href=#계급을-이해하기-위한-이론>계급을 이해하기 위한 이론</a></li>
+<li><a href=#세-가지-자본의-구체적인-특징>세 가지 자본의 구체적인 특징</a></li>
+<li><a href=#계급-간-권력과-이데올로기>계급 간 권력과 이데올로기</a></li>
+<li><a href=#계급-차이로-인해-발생하는-다양한-감정들>계급 차이로 인해 발생하는 다양한 감정들</a></li>
+<li><a href=#21세기-자본주의-사회에-새롭게-등장한-글로벌-게급-구조>21세기 자본주의 사회에 새롭게 등장한 글로벌 게급 구조</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -109,7 +119,7 @@
 </h1>
 <div class="flex flex-col items-end">
 <h4 id=date> CREATED 2023-10-11 </h4>
-<h4 id=date> MODIFIED 2023-11-08</h4>
+<h4 id=date> MODIFIED 2023-11-13</h4>
 </div>
 </div>
 </div>
@@ -233,18 +243,28 @@
 <li>의도적 클로즈업 활용 : 관객들에게 극도의 공포감 조성 효과</li>
 </ul>
 <ol start=5>
-<li>각종 소품을 통한 의미 생성</li>
-<li>피아노
-- 동식 : 가장으로서의 권위를 그나마 유지할 수 있도록 하는 수단
-- 하녀 : 동식을 유혹하기 위한 수단
-- 부인 : 동식을 유혹하기 위한 수단</li>
-<li>재봉틀
-- 아내의 물질에 대한 욕망을 드러내는 도구
-- 끊임없이 돈을 벌어야하는 악순환을 의미
-- 가부장적 지위가 무너지고, 여성의 힘이 확대되고 있음을 의미
-- 1960년대 산업 자본주의 물질 소유의 중요성을 강조</li>
+<li>
+<p>각종 소품을 통한 의미 생성</p>
+</li>
+<li>
+<p>피아노</p>
+<ul>
+<li>동식 : 가장으로서의 권위를 그나마 유지할 수 있도록 하는 수단</li>
+<li>하녀 : 동식을 유혹하기 위한 수단</li>
+<li>부인 : 동식을 유혹하기 위한 수단</li>
+</ul>
+</li>
+<li>
+<p>재봉틀</p>
+<ul>
+<li>아내의 물질에 대한 욕망을 드러내는 도구</li>
+<li>끊임없이 돈을 벌어야하는 악순환을 의미</li>
+<li>가부장적 지위가 무너지고, 여성의 힘이 확대되고 있음을 의미</li>
+<li>1960년대 산업 자본주의 물질 소유의 중요성을 강조</li>
+</ul>
+</li>
 </ol>
-<h4 id=생각해봐야-하는-것>생각해봐야 하는 것</h4>
+<h4 id=하녀를-보고-생각해봐야-하는-것>&ldquo;하녀"를 보고 생각해봐야 하는 것</h4>
 <ol>
 <li>쥐와 다람쥐의 차이</li>
 </ol>
@@ -270,6 +290,74 @@
 </ul>
 </li>
 </ol>
+<h2 id=계급-문제>계급 문제</h2>
+<h3 id=계급-이란>계급 이란</h3>
+<blockquote>
+<p>일정한 사회에서 신분, 재산, 직업 따위가 비슷한 사람들로 형성되는 집단 또는 그렇게 나뉜 사회적 지위</p>
+</blockquote>
+<h3 id=계급을-이해하기-위한-이론>계급을 이해하기 위한 이론</h3>
+<ol>
+<li>부르디외(프랑스 사회학자) : &ldquo;청년과 노인을 구분하는 나이의 경계가 모호함에도 노인이 있듯, 현대에 계급 간 경계가 희미해졌다고 해도 계급이 엄연히 있다.&rdquo;</li>
+<li>구별짓기 : 우월한 계급을 특징짓는 변별적 속성들의 총체. -> 태어날 때 부터 가지는 특징을 떨쳐내기 어렵다</li>
+<li>자본의 종류 : 경제, 문화, 사회 자본으로 구별되며, 이를 모두 갖추게 되면 상징 자본을 소유함으로써 위계적인 관계에서 권력을 손에 넣을 수 있다</li>
+<li>각각 서로 다른 동일한 특성을 공유한 집단들은 끊임없이 세 가지 자본을 차지하기 위하여 끊임없이 투쟁하고 경합한다</li>
+</ol>
+<h3 id=세-가지-자본의-구체적인-특징>세 가지 자본의 구체적인 특징</h3>
+<ol>
+<li>경제 자본 : 여러 생산 요소(토지, 공장, 노동력)과 각종 재화(자산, 소유물)로 구성됨. 즉각적이고 직접적으로 화폐로 변환할 수 있고 재산권의 형태로 제도화가 가능함</li>
+<li>문화 자본 : 가족에 의해 전수되거나 교육 체계에 의해 생산됨. 특정 조건에서 경제 자본으로 변환됨. 개인의 몸에 축적되는 능력이자 지식</li>
+<li>사회 자본 : 개인 또는 집단이 동원하고 활용할 수 있는 사회적 연줄과 관계망. 특정 조건에서 경제 자본으로 변환됨.</li>
+</ol>
+<ul>
+<li>세 가지 자본 중 계급의 차이를 근본적으로 발생시키는 것은 문화 자본이다.
+<ul>
+<li>개인이나 집단은 자신이 지닌 문화 자본을 토대로 타인보다 우위에 서거나 그렇지 못할 수도 있음</li>
+<li>계급이 높을 수록 후손에게 경제 자본을 상속하기 앞서 문화 자본을 습득시키는 것에 더욱더 열중할 수 밖에 없음</li>
+<li>최하층 계급의 경우 자신이 처한 상황에서 벗어나기 어려움, 경제 자본의 획득을 위해 필수적인 문화 자본의 축적 자체가 불가능하기 때문</li>
+<li>문화 자본의 습득을 위해서는 시간과 노력도 필요하지만, 경제 자본이 갖춰져 있어야만 가능함.</li>
+</ul>
+</li>
+</ul>
+<h3 id=계급-간-권력과-이데올로기>계급 간 권력과 이데올로기</h3>
+<h4 id=권력--두가지로-나뉜다>권력 : 두가지로 나뉜다</h4>
+<ol>
+<li>타자가 지발적으로 권력자에게 복종하는 방식</li>
+<li>타자로부터 복종을 끌어내기 위하여 자유가 아닌 폭력을 사용하는 방식</li>
+</ol>
+<h4 id=폭력>폭력</h4>
+<ol>
+<li>주관적 폭력 : 정상적이고 평온한 상태를 혼란 시키는 폭력. 즉, 직접적이고 물리적인 폭력</li>
+<li>객관적 폭력 : 정상적인 상태에 내재하는 폭력, 사회 구조적 문제를 발생시키는 근본적인 폭력, 상징적 폭력(언어 폭력), 구조적 폭력(계급, 체제 폭력) 등이 있음</li>
+</ol>
+<h3 id=계급-차이로-인해-발생하는-다양한-감정들>계급 차이로 인해 발생하는 다양한 감정들</h3>
+<ol>
+<li>혐오
+<ul>
+<li>사람이나 대상을 서열화해서 특정한 대상을 천한 것을 간주</li>
+<li>혐오 대상이 자신의 영역에 침범하고자 할 때 차별과 폭력을 발생시킴</li>
+</ul>
+</li>
+<li>수치심
+<ul>
+<li>자신의 약점이 노출되었을 때 생기는 고통스러운 감정</li>
+<li>사회는 수치심을 통해 특정한 집단과 개인을 선택하고, 그들을 비정상으로 구별함</li>
+</ul>
+</li>
+</ol>
+<h3 id=21세기-자본주의-사회에-새롭게-등장한-글로벌-게급-구조>21세기 자본주의 사회에 새롭게 등장한 글로벌 게급 구조</h3>
+<h4 id=상위층-계급>상위층 계급</h4>
+<ul>
+<li>극소수 부호 계급 : 재벌</li>
+<li>엘리트 계급 : 검/판사, 국회의원, 대기업 임원 등</li>
+<li>샐러리아트 : 상대적으로 안정된 봉급 생활자</li>
+<li>프로피시언 : 프리랜서 전문가</li>
+</ul>
+<h4 id=하위층-계급>하위층 계급</h4>
+<ul>
+<li>프롤레타리아 : 주로 노동으로 먹고 사는 사람</li>
+<li>프레카리아트 : 불안정한 노동으로 먹고 사는 사람</li>
+<li>룸펜 프레카리아트 : 노숙자, 극빈층, 약물중독자 등의 사회 부적응자</li>
+</ul>
 </article>
 <div id=meta class=my-16>
 <div>
