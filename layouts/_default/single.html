@@ -4,27 +4,20 @@
 
 {{ partial "toc.html" .}}
 
-<nav class="fixed hidden lg:block h-full left-0 top-0 py-16 px-7 bg-sidebar">
-	<div id="sidebar" class="flex flex-col gap-3 px-2 overflow-y-scroll overflow-x-hidden h-full">
-		{{ .Render "navigator" }}
-	</div>
-</nav>
-<aside class="fixed top-0 right-0 py-24 w-2/12 gap-3 mx-9 hidden lg:flex text-sm overflow-hidden">
-	{{ .TableOfContents }}
-</aside>
-
-<main class="flex w-full justify-center">
-	<section class="px-4 w-11/12 lg:w-1/2 xl:w-7/12">
+<main class="w-full lg:w-5/6 px-12">
+	<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+		{{ .TableOfContents }}
+	</aside>
+	<section class="pl-4 mt-6 xl:w-5/6">
 		<!-- title, created date, modified date -->
+		<div class="flex flex-col">
+			<h4 id="date">마지막 수정 : {{ .Lastmod.Format "2006-01-02" }}</h4>
+		</div>
 		<div class="mb-10 whitespace-nowrap">
 			<div class="flex justify-between items-baseline my-4 gap-8">
 				<h1 id="title" class="overflow-ellipsis-bundle text-3xl font-bold p-1">
 					{{ .Title }}
 				</h1>
-				<div class="flex flex-col items-end">
-					<h4 id="date"> CREATED {{ .Date.Format "2006-01-02" }} </h4>
-					<h4 id="date"> MODIFIED {{ .Lastmod.Format "2006-01-02" }}</h4>
-				</div>
 			</div>
 		</div>
 		<!--  -->

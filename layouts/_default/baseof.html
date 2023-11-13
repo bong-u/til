@@ -27,11 +27,16 @@
 	{{ partial "google-analytics.html" . }}
 </head>
 
-<body class="flex justify-center my-16">
+<body class="">
 	{{ .Render "header" }}
 
-	{{ block "main" .}} {{ end }}
 
+	<div class="flex w-full">
+		{{ .Render "navigator" }}
+
+		{{ block "main" .}} {{ end }}
+
+	</div>
 	<!-- {{ block "footer" . }} {{ end }} -->
 </body>
 

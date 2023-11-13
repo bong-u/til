@@ -2,23 +2,34 @@
 
 <script type="text/javascript" src="{{ .Site.BaseURL }}script/main.js"></script>
 
-<div class="flex flex-col gap-16 w-11/12 sm:w-9/12 md:w-10/12">
-	<section class="grid md:grid-cols-2 justify-items-center gap-12 w-full">
-		<div class="">
-			<img src="{{ .Site.BaseURL }}asset\profile.jpg" alt="profile" class="rounded-3xl w-64 h-64 mx-auto my-4" />
-			<h1 class="text-center text-4xl font-bold mt-12">
-				{{ .Site.Title }}
-			</h1>
+
+<!-- <div class="flex flex-col gap-16 w-11/12 sm:w-9/12 md:w-3/5 absolute top-0"> -->
+<div class="w-full flex py-20 h-screen">
+	<section class="my-8 w-5/12">
+		<h1 class="text-center text-4xl font-bold my-8">
+			{{ .Site.Title }}
+		</h1>
+		<img src="{{ .Site.BaseURL }}asset\profile.jpg" alt="profile" class="rounded-3xl w-64 h-64 mx-auto my-8" />
+
+		<div class="flex flex-col items-center gap-4">
+			<a href="https://github.com/bong-u" rel="nofollow">
+				<img src="https://img.shields.io/badge/Github-0d1117?style=flat-square&logo=github&logoColor=white"
+					alt="github" class="h-6" />
+			</a>
+			<a href="https://www.linkedin.com/in/bong-u-son-133658269/" rel="nofollow">
+				<img src="https://img.shields.io/badge/Linkedin-0a66c2?style=flat-square&logo=linkedin&logoColor=white"
+					alt="github" class="h-6" />
+			</a>
+			<a href="mailto:bongudev@gmail.com" rel="nofollow">
+				<img src="https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=gmail&logoColor=white"
+					alt="github" class="h-6" />
+			</a>
 		</div>
 
-		<nav class="grid w-full justify-items-center grid-cols-2 xl:grid-cols-3 content-evenly">
-			{{ .Render "navigator" }}
-		</nav>
 	</section>
 
-
-	<main class="flex flex-col">
-		<section class="grid gap-16 w-full xl:grid-cols-2">
+	<main class="flex flex-col pr-16 w-7/12">
+		<section class="grid gap-16 w-full overflow-y-scroll">
 			<!-- 최근에 commit한 20개 페이지 -->
 			{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 			{{ .Render "summary" }}
