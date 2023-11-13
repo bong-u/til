@@ -29,7 +29,7 @@
 	</section>
 
 	<main class="flex flex-col pr-16 w-7/12">
-		<section class="grid gap-16 w-full overflow-y-scroll">
+		<section class="grid gap-16 w-full overflow-y-scroll custom-scroll">
 			<!-- 최근에 commit한 20개 페이지 -->
 			{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 			{{ .Render "summary" }}

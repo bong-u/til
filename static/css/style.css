@@ -637,15 +637,6 @@ body{
   color: var(--color-text);
 }
 
-body::-webkit-scrollbar {
-  width: 15px;
-}
-
-body::-webkit-scrollbar-thumb{
-  border-radius: 0.5rem;
-  background-color: var(--color-scrollbar);
-}
-
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -806,6 +797,15 @@ body::-webkit-scrollbar-thumb{
   white-space: nowrap;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 15px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb{
+  border-radius: 0.5rem;
+  background-color: var(--color-scrollbar);
 }
 
 .box:hover{
@@ -1263,14 +1263,6 @@ body::-webkit-scrollbar-thumb{
 }
 
 @media (min-width: 640px){
-  .sm\:fixed{
-    position: fixed;
-  }
-
-  .sm\:block{
-    display: block;
-  }
-
   .sm\:w-9\/12{
     width: 75%;
   }
@@ -1288,10 +1280,6 @@ body::-webkit-scrollbar-thumb{
   .md\:w-6\/12{
     width: 50%;
   }
-
-  .md\:flex-row{
-    flex-direction: row;
-  }
 }
 
 @media (min-width: 1024px){
@@ -1305,10 +1293,6 @@ body::-webkit-scrollbar-thumb{
 }
 
 @media (min-width: 1280px){
-  .xl\:fixed{
-    position: fixed;
-  }
-
   .xl\:block{
     display: block;
   }

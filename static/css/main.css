@@ -20,17 +20,16 @@
   body {
     @apply text-text bg-bg;
   }
-
-  body::-webkit-scrollbar {
-    width: 15px;
-  }
-
-  body::-webkit-scrollbar-thumb {
-    @apply bg-scrollbar rounded-lg;
-  }
 }
 
 @layer components {
+  .custom-scroll::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-thumb {
+    @apply bg-scrollbar rounded-lg;
+  }
   .box {
     @apply bg-box hover-bold;
   }
