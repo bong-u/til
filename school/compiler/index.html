@@ -149,12 +149,19 @@
 <li><a href=#ir-예시>IR 예시</a></li>
 </ul>
 </li>
+<li><a href=#ir-generation>IR generation</a>
+<ul>
+<li><a href=#3-address-translation-규칙>3-address Translation 규칙</a></li>
+<li><a href=#statement-expression>Statement Expression</a></li>
+<li><a href=#nested-expressions>Nested Expressions</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="pl-4 mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-11-09</h4>
+<h4 id=date>마지막 수정 : 2023-11-14</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -729,6 +736,34 @@
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>              (reg:SI 139)))
 </code></pre></div><ul>
 <li>=> reg140 = reg138+reg139</li>
+</ul>
+<h2 id=ir-generation>IR generation</h2>
+<h3 id=3-address-translation-규칙>3-address Translation 규칙</h3>
+<ul>
+<li>Binary operations: <code>t = [[el OP e2]]</code></li>
+<li>Unary operations: <code>t = [[OP el]]</code></li>
+<li>Array access: <code>t = [[ v[e] ]]</code></li>
+<li>Structure access: <code>t = [[ v.f ]]</code></li>
+<li>Short-circuit OR: <code>t = [[ el SC-OR e2]]</code></li>
+<li>Statement sequence: <code>[[s1; s2; ...; sN]]</code></li>
+<li>Variable assignment: <code>[[ v = e ]]</code></li>
+<li>Array assignment: <code>[[ v[e1] = e2 ]]</code></li>
+<li>If: <code>[[ if(e) then s ]]</code>, <code>[[ if(e) then s1 else s2]]</code></li>
+<li>While: <code>[[ while (e) s ]]</code></li>
+<li>Switch: <code>[[ switch (e) case v1:s1, ..., case vN:sN ]]</code></li>
+<li>Function Call: <code>[[ call f(e1, e2, ..., eN) ]]</code></li>
+<li>Fucntion Return: <code>[[ return e ]]</code></li>
+</ul>
+<h3 id=statement-expression>Statement Expression</h3>
+<ul>
+<li>Statement도 expression 처럼 값을 가지도록 확장</li>
+<li><code>t = [[ S ]]</code>를 추가하여 결과값을 저장하자</li>
+</ul>
+<h3 id=nested-expressions>Nested Expressions</h3>
+<ul>
+<li><code>t = [[ (a - b) * (c + d) ]]</code></li>
+<li>가장 큰 덩어리부터 바꾼다</li>
+<li></li>
 </ul>
 </article>
 <div id=meta class=my-16>
