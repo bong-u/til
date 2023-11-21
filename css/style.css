@@ -792,11 +792,16 @@ body{
 }
 
 #TableOfContents ul > li{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+@layer utilites {
+  #TableOfContents ul > li{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .custom-scroll::-webkit-scrollbar {
@@ -808,32 +813,18 @@ body{
   background-color: var(--color-scrollbar);
 }
 
-.box:hover{
-  font-weight: 700;
-}
-
 .box{
   background-color: var(--color-box);
 }
 
+@layer utilites {
+  .box:hover{
+    font-weight: 700;
+  }
+}
+
 .box:hover{
   background-color: var(--color-box-hover);
-}
-
-.hover-bold:hover{
-  font-weight: 700;
-}
-
-.overflow-ellipsis-bundle{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.hover-bigger:hover{
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .preview{
@@ -846,6 +837,33 @@ body{
 
 #sidebar::-webkit-scrollbar{
   width: 0px;
+}
+
+div#pagination-box > ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+div#pagination-box li{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+@layer utilites {
+  div#pagination-box li:hover{
+    font-weight: 700;
+  }
+}
+
+div#pagination-box li.active{
+  font-weight: 700;
+}
+
+div#pagination-box span{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .static{
@@ -868,8 +886,8 @@ body{
   position: sticky;
 }
 
-.left-\[-10px\]{
-  left: -10px;
+.left-\[-30px\]{
+  left: -30px;
 }
 
 .right-0{
@@ -880,8 +898,8 @@ body{
   top: 0px;
 }
 
-.top-\[-10px\]{
-  top: -10px;
+.top-\[-30px\]{
+  top: -30px;
 }
 
 .z-10{
@@ -1260,6 +1278,24 @@ body{
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+@layer utilites {
+  .overflow-ellipsis-bundle{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hover-bold:hover{
+    font-weight: 700;
+  }
+
+  .hover-bigger:hover{
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
 }
 
 @media (min-width: 640px){
