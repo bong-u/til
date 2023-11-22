@@ -816,6 +816,18 @@ body{
   }
 }
 
+#summary-box {
+  -webkit-mask-image: linear-gradient(
+      transparent,
+      black,
+      black,
+      black,
+      black,
+      black,
+      transparent
+    );
+}
+
 .custom-scroll::-webkit-scrollbar {
   width: 15px;
 }
@@ -975,17 +987,16 @@ div#pagination-box span{
   margin-bottom: 2rem;
 }
 
-.my-12{
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
 .mb-10{
   margin-bottom: 2.5rem;
 }
 
 .mb-7{
   margin-bottom: 1.75rem;
+}
+
+.mb-8{
+  margin-bottom: 2rem;
 }
 
 .ml-5{
@@ -1002,22 +1013,6 @@ div#pagination-box span{
 
 .mt-6{
   margin-top: 1.5rem;
-}
-
-.mt-16{
-  margin-top: 4rem;
-}
-
-.mt-24{
-  margin-top: 6rem;
-}
-
-.mt-20{
-  margin-top: 5rem;
-}
-
-.mb-8{
-  margin-bottom: 2rem;
 }
 
 .line-clamp-3{
@@ -1119,10 +1114,6 @@ div#pagination-box span{
   align-items: baseline;
 }
 
-.justify-end{
-  justify-content: flex-end;
-}
-
 .justify-center{
   justify-content: center;
 }
@@ -1197,17 +1188,8 @@ div#pagination-box span{
   padding: 0.25rem;
 }
 
-.p-8{
-  padding: 2rem;
-}
-
 .p-4{
   padding: 1rem;
-}
-
-.px-12{
-  padding-left: 3rem;
-  padding-right: 3rem;
 }
 
 .px-2{
@@ -1230,11 +1212,6 @@ div#pagination-box span{
   padding-right: 1.75rem;
 }
 
-.px-8{
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .px-9{
   padding-left: 2.25rem;
   padding-right: 2.25rem;
@@ -1250,17 +1227,8 @@ div#pagination-box span{
   padding-bottom: 0.75rem;
 }
 
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .pb-5{
   padding-bottom: 1.25rem;
-}
-
-.pl-4{
-  padding-left: 1rem;
 }
 
 .text-center{
@@ -1332,10 +1300,6 @@ div#pagination-box span{
 }
 
 @media (min-width: 640px){
-  .sm\:right-0{
-    right: 0px;
-  }
-
   .sm\:px-12{
     padding-left: 3rem;
     padding-right: 3rem;
@@ -1345,18 +1309,6 @@ div#pagination-box span{
 @media (min-width: 768px){
   .md\:fixed{
     position: fixed;
-  }
-
-  .md\:mt-6{
-    margin-top: 1.5rem;
-  }
-
-  .md\:block{
-    display: block;
-  }
-
-  .md\:flex{
-    display: flex;
   }
 
   .md\:w-5\/12{
@@ -1383,8 +1335,8 @@ div#pagination-box span{
     overflow-y: scroll;
   }
 
-  .md\:p-16{
-    padding: 4rem;
+  .md\:p-20{
+    padding: 5rem;
   }
 }
 
