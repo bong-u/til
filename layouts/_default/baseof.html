@@ -24,7 +24,10 @@
 	{{ partial "latex.html" . }}
 
 	<!-- google analytics -->
+	{{ if not .Site.IsServer }}
 	{{ partial "google-analytics.html" . }}
+	{{ end }}
+
 </head>
 
 <body class="custom-scroll">
