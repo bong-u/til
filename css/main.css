@@ -23,16 +23,18 @@
 }
 
 @layer components {
-  #summary-box {
-    -webkit-mask-image: linear-gradient(
-      transparent,
-      black,
-      black,
-      black,
-      black,
-      black,
-      transparent
-    );
+  .summary-box {
+    @media (min-width: 768px) {
+      -webkit-mask-image: linear-gradient(
+        transparent,
+        black,
+        black,
+        black,
+        black,
+        black,
+        transparent
+      );
+    }
   }
 
   .custom-scroll::-webkit-scrollbar {
