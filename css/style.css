@@ -1062,16 +1062,8 @@ div#pagination-box span{
   width: 91.666667%;
 }
 
-.w-5\/12{
-  width: 41.666667%;
-}
-
 .w-64{
   width: 16rem;
-}
-
-.w-7\/12{
-  width: 58.333333%;
 }
 
 .w-full{
@@ -1220,11 +1212,6 @@ div#pagination-box span{
   padding-bottom: 4rem;
 }
 
-.py-20{
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1241,10 +1228,6 @@ div#pagination-box span{
 
 .pl-4{
   padding-left: 1rem;
-}
-
-.pr-16{
-  padding-right: 4rem;
 }
 
 .text-center{
@@ -1315,23 +1298,33 @@ div#pagination-box span{
   }
 }
 
-@media (min-width: 640px){
-  .sm\:w-9\/12{
-    width: 75%;
-  }
-}
-
 @media (min-width: 768px){
   .md\:block{
     display: block;
   }
 
-  .md\:w-3\/5{
-    width: 60%;
+  .md\:w-5\/12{
+    width: 41.666667%;
   }
 
   .md\:w-6\/12{
     width: 50%;
+  }
+
+  .md\:w-7\/12{
+    width: 58.333333%;
+  }
+
+  .md\:flex-row{
+    flex-direction: row;
+  }
+
+  .md\:overflow-y-scroll{
+    overflow-y: scroll;
+  }
+
+  .md\:p-16{
+    padding: 4rem;
   }
 }
 
