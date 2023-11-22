@@ -42,7 +42,7 @@
   /* zinc-900 */
 }
 
-/* ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com */
+/* ! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -233,6 +233,10 @@ select,
 textarea {
   font-family: inherit;
   /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
   font-size: 100%;
   /* 1 */
   font-weight: inherit;
@@ -380,6 +384,14 @@ ul,
 menu {
   list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
   padding: 0;
 }
 
@@ -866,6 +878,15 @@ div#pagination-box span{
   line-height: 2.25rem;
 }
 
+.sidebar-gradient{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: var(--color-sidebar) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-from-position: 90%;
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+
 .static{
   position: static;
 }
@@ -1153,10 +1174,6 @@ div#pagination-box span{
 
 .bg-inherit{
   background-color: inherit;
-}
-
-.bg-sidebar{
-  background-color: var(--color-sidebar);
 }
 
 .p-1{
