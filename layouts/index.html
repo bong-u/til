@@ -2,8 +2,8 @@
 
 <script type="text/javascript" src="{{ .Site.BaseURL }}script/main.js"></script>
 
-<div class="w-full flex py-20 h-screen">
-	<section class="my-8 w-5/12">
+<div class="w-full flex md:p-16 h-screen flex-col md:flex-row">
+	<section class="my-8 w-full md:w-5/12">
 		<h1 class="text-center text-4xl font-bold my-8">
 			{{ .Site.Title }}
 		</h1>
@@ -32,8 +32,8 @@
 
 	</section>
 
-	<main class="flex flex-col pr-16 w-7/12">
-		<section class="grid gap-16 w-full overflow-y-scroll custom-scroll">
+	<main class="flex flex-col w-full md:w-7/12">
+		<section class="grid gap-16 w-full md:overflow-y-scroll custom-scroll">
 			<!-- 최근에 commit한 20개 페이지 -->
 			{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 			{{ .Render "summary" }}
