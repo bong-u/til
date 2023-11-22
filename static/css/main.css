@@ -64,6 +64,9 @@
   div#pagination-box span {
     @apply text-3xl;
   }
+  .sidebar-gradient {
+    @apply bg-gradient-to-r from-90% from-sidebar to-transparent;
+  }
 }
 
 @layer utilites {
