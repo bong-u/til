@@ -816,20 +816,6 @@ body{
   }
 }
 
-.summary-box {
-  @media (min-width: 768px) {
-    -webkit-mask-image: linear-gradient(
-        transparent,
-        black,
-        black,
-        black,
-        black,
-        black,
-        transparent
-      );
-  }
-}
-
 .custom-scroll::-webkit-scrollbar {
   width: 15px;
 }
@@ -935,6 +921,14 @@ div#pagination-box span{
 
 .top-\[-30px\]{
   top: -30px;
+}
+
+.left-\[0px\]{
+  left: 0px;
+}
+
+.top-\[0px\]{
+  top: 0px;
 }
 
 .z-10{
