@@ -487,3 +487,63 @@ Method Employee(java.lang.String, int)
 - `t = [[ (a - b) * (c + d) ]]`
 - `t = [[ if c then if d then a = b ]]`
 - 가장 큰 덩어리부터 바꾼다
+
+### Storage Management
+
+#### 2가지 Storage
+
+- Register : 빠른 접근, 간접 접근 불가
+- Memory : 상대적으로 느린 접근, 간접 접근 가능
+
+#### 2가지 접근 방식
+
+#### All memory approach
+
+- 모든 변수를 memory에 저장, 가능한것만 register
+
+#### Standard approach
+
+- Global, Statics, Local(composite)는 memory에 저장
+- Local(scalar)는 memory 또는 virtual register에 저장
+
+#### Memory의 4대 영역
+
+- Code space : 명령어를 저장 read-only일때 빠름
+- Static data : 프로그램과 lifetime을 함께하는 데이터
+- Stack : Local 변수들
+- Heap : 동적으로 할당되는 데이터
+
+#### File Format
+
+- Windows : PE (Portable Executable)
+- Unix : ELF (Executable and Linkable Format)
+
+#### 변수 바인딩
+
+- environment : <변수, storage location> 정보
+  - state: <변수, 값> 정보
+- 어떤 변수 N이 storage location S에 지정되면 바인딩 된다고 한다
+
+#### Static Allocation
+
+- 프로그램 수행하는 동안 변하지 않는 location으로 바인딩
+
+#### Heap Allocation
+
+- 연속적인 global 영역의 일부를 OS로부터 받은 것
+- 프로그램 수행 중 요청과 반환
+
+### Stack Management
+
+- Run-time stack : 한 함수 call마다 하나씩두는 frames
+- Activation record : 함수 수행을 위한 execution env(local var, parameter, return address, etc.)
+- Top frame : 현재 수행중인 함수의 frame
+
+### Stack pointers
+
+- SP : Frame top
+- FP : Frame base
+- 두 개를 쓰는 이유
+  - 가까운 거 기준으로 offset 계산 -> small offset 유지
+  - 수행 중 top frame의 위치를 알 수 없음
+-
