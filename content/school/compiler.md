@@ -546,4 +546,50 @@ Method Employee(java.lang.String, int)
 - 두 개를 쓰는 이유
   - 가까운 거 기준으로 offset 계산 -> small offset 유지
   - 수행 중 top frame의 위치를 알 수 없음
--
+
+## Semantic Analysis - Symbol Tables
+
+### Scope
+
+- Identifier: 식별자
+- Lexical Scope: 특정 범위
+- 식별자의 Scope: 그 식별자의 선언이 참조되는 lexical scope
+
+### Symbol Table
+
+| Name | Kind | Type            | Attribute |
+| ---- | ---- | --------------- | --------- |
+| foo  | func | int, int -> int | extern    |
+| m    | arg  | int             |           |
+| tmp  | var  | char            | const     |
+
+- 하나의 lexical마다 하나의 symbol table
+- symbol table은 계층적이다
+- 현재 scope에 없으면 상위 scope로 올라가면서 찾는다
+
+### Symbol Table Implementation
+
+- AST가 만들어져야 가능
+- Local Table은 hash table 사용
+- Global Table은 N-array tree 구조 사용
+- 코드를 순차대로 읽으면서 만듬 (scope 스택을 사용)
+
+### Type Checking
+
+- Type Expressions
+  - Array types: T[], T[10]
+  - Structure types : {id1: T1, id2: T2 ...}
+  - Pointer types: T\*
+  - Function types: T1 X T2 X ... X Tn -> T_return
+
+### Type Judgement
+
+- A ├ E : T
+  > A 상황에서 E는 T타입을 만족한다
+- A ├ if(E) S1 else S2 : T
+  > 위 조건은 모든 E, S1, S2, A, T에 대한 가정이 성립할 때 결론 T가 성립한다
+- Proof Tree (타입 유도 트리)
+  - 역삼각형 모양
+  - 만족하는 proof tree가 있다 -> 타입 오류가 없다
+- 그 외 Semantic Analyses
+  - break, continue, goto 문이 올바른 위치에 있는 지 등
