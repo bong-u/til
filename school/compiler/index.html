@@ -160,12 +160,21 @@
 <li><a href=#stack-pointers>Stack pointers</a></li>
 </ul>
 </li>
+<li><a href=#semantic-analysis---symbol-tables>Semantic Analysis - Symbol Tables</a>
+<ul>
+<li><a href=#scope>Scope</a></li>
+<li><a href=#symbol-table>Symbol Table</a></li>
+<li><a href=#symbol-table-implementation>Symbol Table Implementation</a></li>
+<li><a href=#type-checking>Type Checking</a></li>
+<li><a href=#type-judgement>Type Judgement</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-11-27</h4>
+<h4 id=date>마지막 수정 : 2023-11-29</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -831,7 +840,91 @@
 <li>수행 중 top frame의 위치를 알 수 없음</li>
 </ul>
 </li>
-<li></li>
+</ul>
+<h2 id=semantic-analysis---symbol-tables>Semantic Analysis - Symbol Tables</h2>
+<h3 id=scope>Scope</h3>
+<ul>
+<li>Identifier: 식별자</li>
+<li>Lexical Scope: 특정 범위</li>
+<li>식별자의 Scope: 그 식별자의 선언이 참조되는 lexical scope</li>
+</ul>
+<h3 id=symbol-table>Symbol Table</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+<th>Type</th>
+<th>Attribute</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foo</td>
+<td>func</td>
+<td>int, int -> int</td>
+<td>extern</td>
+</tr>
+<tr>
+<td>m</td>
+<td>arg</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>var</td>
+<td>char</td>
+<td>const</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>하나의 lexical마다 하나의 symbol table</li>
+<li>symbol table은 계층적이다</li>
+<li>현재 scope에 없으면 상위 scope로 올라가면서 찾는다</li>
+</ul>
+<h3 id=symbol-table-implementation>Symbol Table Implementation</h3>
+<ul>
+<li>AST가 만들어져야 가능</li>
+<li>Local Table은 hash table 사용</li>
+<li>Global Table은 N-array tree 구조 사용</li>
+<li>코드를 순차대로 읽으면서 만듬 (scope 스택을 사용)</li>
+</ul>
+<h3 id=type-checking>Type Checking</h3>
+<ul>
+<li>Type Expressions
+<ul>
+<li>Array types: T[], T[10]</li>
+<li>Structure types : {id1: T1, id2: T2 &mldr;}</li>
+<li>Pointer types: T*</li>
+<li>Function types: T1 X T2 X &mldr; X Tn -> T_return</li>
+</ul>
+</li>
+</ul>
+<h3 id=type-judgement>Type Judgement</h3>
+<ul>
+<li>A ├ E : T
+<blockquote>
+<p>A 상황에서 E는 T타입을 만족한다</p>
+</blockquote>
+</li>
+<li>A ├ if(E) S1 else S2 : T
+<blockquote>
+<p>위 조건은 모든 E, S1, S2, A, T에 대한 가정이 성립할 때 결론 T가 성립한다</p>
+</blockquote>
+</li>
+<li>Proof Tree (타입 유도 트리)
+<ul>
+<li>역삼각형 모양</li>
+<li>만족하는 proof tree가 있다 -> 타입 오류가 없다</li>
+</ul>
+</li>
+<li>그 외 Semantic Analyses
+<ul>
+<li>break, continue, goto 문이 올바른 위치에 있는 지 등</li>
+</ul>
+</li>
 </ul>
 </article>
 <div id=meta class=my-16>
