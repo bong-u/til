@@ -593,3 +593,24 @@ Method Employee(java.lang.String, int)
   - 만족하는 proof tree가 있다 -> 타입 오류가 없다
 - 그 외 Semantic Analyses
   - break, continue, goto 문이 올바른 위치에 있는 지 등
+
+## 컴파일러 후반부 (빠르고, 실제 돌아가는 코드로 바꾸기)
+
+### Instruction Selection
+
+### Tree 기반 Intermediate Representation
+
+- MEM(e) : 주소 e로 시작하는 메모리 한 word의 내용
+- TEMP(t) : 레지스터 t
+- SEQ(s1, s2): 문장 s1 수행 후 s2 수행
+- ESEQ(s, e): 문장 s 수행 후 (결과 없음) e가 추가 수행
+- BINOP(o, e1, e2) : 연산자 o, 피연산자 e1, e2, 결과 저장된 주소 반환
+- const(i): 정수 상수 i
+
+### Register Allocation
+
+- 최적화 하기 위해 최대한 자주 사용되는 것을 Register에 저장
+- Interference
+  > 서로 다른 두 definition이 live range 에서 공통 operation을 가지고있는 경우
+- Interference Graph : 서로 interfere 하면 연결하는 그래프
+- Graph coloring : 연결된 노드는 다른 색으로 칠하기
