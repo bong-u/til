@@ -169,12 +169,19 @@
 <li><a href=#type-judgement>Type Judgement</a></li>
 </ul>
 </li>
+<li><a href=#컴파일러-후반부-빠르고-실제-돌아가는-코드로-바꾸기>컴파일러 후반부 (빠르고, 실제 돌아가는 코드로 바꾸기)</a>
+<ul>
+<li><a href=#instruction-selection>Instruction Selection</a></li>
+<li><a href=#tree-기반-intermediate-representation>Tree 기반 Intermediate Representation</a></li>
+<li><a href=#register-allocation>Register Allocation</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-11-29</h4>
+<h4 id=date>마지막 수정 : 2023-12-02</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -925,6 +932,28 @@
 <li>break, continue, goto 문이 올바른 위치에 있는 지 등</li>
 </ul>
 </li>
+</ul>
+<h2 id=컴파일러-후반부-빠르고-실제-돌아가는-코드로-바꾸기>컴파일러 후반부 (빠르고, 실제 돌아가는 코드로 바꾸기)</h2>
+<h3 id=instruction-selection>Instruction Selection</h3>
+<h3 id=tree-기반-intermediate-representation>Tree 기반 Intermediate Representation</h3>
+<ul>
+<li>MEM(e) : 주소 e로 시작하는 메모리 한 word의 내용</li>
+<li>TEMP(t) : 레지스터 t</li>
+<li>SEQ(s1, s2): 문장 s1 수행 후 s2 수행</li>
+<li>ESEQ(s, e): 문장 s 수행 후 (결과 없음) e가 추가 수행</li>
+<li>BINOP(o, e1, e2) : 연산자 o, 피연산자 e1, e2, 결과 저장된 주소 반환</li>
+<li>const(i): 정수 상수 i</li>
+</ul>
+<h3 id=register-allocation>Register Allocation</h3>
+<ul>
+<li>최적화 하기 위해 최대한 자주 사용되는 것을 Register에 저장</li>
+<li>Interference
+<blockquote>
+<p>서로 다른 두 definition이 live range 에서 공통 operation을 가지고있는 경우</p>
+</blockquote>
+</li>
+<li>Interference Graph : 서로 interfere 하면 연결하는 그래프</li>
+<li>Graph coloring : 연결된 노드는 다른 색으로 칠하기</li>
 </ul>
 </article>
 <div id=meta class=my-16>
