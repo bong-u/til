@@ -621,7 +621,7 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 
 ## IP 계층 - 보안
 
-### IP Sec
+### 암호통신 - IP Sec
 
 - IP 패킷에서 encryption, authentication, integrity
 - 2가지 모드
@@ -631,4 +631,183 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
   - AH(Authentication Header): 인증, 무결성 보장
   - ESP(Encapsulating Security Payload): 인증, 무결성, **기밀성** 보장
 - SAs(Security Associations)
+  - 데이터를 보내기 전 SA 생성
+  - IP: 비연결성, IPsec: 연결성
+- IPsec datagram (tunnel mode, ESP)
+  ![ipsec_datagram](/static/image/ipsec_datagram.png)
+  - ESP trailer: block 암호화를 위한 padding
+  - ESP header
+- IKE (Internet Key Exchange)
+  - 기존 방식 : 수동 키로 IPSec SA를 생성
+  - endpoint가 많은 경우 수동 키 관리가 어려움 -> IPsec IKE 사용
+
+### 암호 통신 - 대칭키, 공개키, 전자서명
+
+- 암호 (cryptography) 기초 용어
+
+  - m : 평문
+  - $K_A(m)$: 암호문
+  - m = $K_B(K_A(m))$ : 복호화
+
+- Symmetric key cryptography (대칭키 암호화)
+
+  - 암호화, 복호화에 같은 키 사용
+
+- 단순 암호화 방법
+  - substitution cipher : 문자를 다른 문자로 치환
+- 좀 더 정교한 방법
+
+  - cyclic cipher : 문자를 다른 문자로 치환하고, 순서를 바꿈
+
+- DES(Data Encryption Standard)
+
+  - 56bit symmetric key, input : 64bit
+  - 하루에 안 채워지는 시간에 뚫림
+  - 3DES : 3개의 서로 다른 키로 3번 암호화
+
+- AES(Advanced Encryption Standard)
+
+  - 128bit, 192bit, 256bit key
+  - input: 128bit
+  - AES는 DEC보다 견고하다
+
+- Public Key Cryptography (공개키)
+
+  - 공개키: 암호화, 개인키: 복호화
+  - 대칭키보다 느리다
+  - HTTPS = 공개키(키 교환) + 대칭키 (암호화)
+
+#### RSA 암호화 방식
+
+- 특징
+
+  1. $K_B^-(K_B^+(m)) = m$
+  2. 공개키 $K_B^+$가 주어졌을 때 개인키 $K_B^-$가 계산 불가능 해야한다.
+  3. $K_B^-(K_B^+(m)) = m = K_B^+(K_B^-(m))$
+
+- 방법
+
+#### 디지털 서명
+
+- 서명한 사람의 인증 용도
+- 공개키 활용
+- 인증서
+  - 전자서명만으로 송신자의 신원 확인 불가능
+  - 내용: 신원정보, 공개키, 유효기관, 인증기관정보, 전자서명
+  - 표준 규격 : X.509
+- X.509
+  - .der 혹은 .pem 확장자 파일
+
+### 암호통신 - 무결성
+
+- 전자 서명의 무결성 (A->B)
+  - m에 A가 유일하게 서명을 해야한다.
+  - A는 m`이 아닌 m에만 서명을 해야한다.
+- 해시 함수 알고리즘 : MD5, SHA-1
+
+### 암호통신 - Firewall
+
+- 목적
+  - 서비스 거부 공격 방지 (SYN flooding: 가짜 TCP 연결을 생성)
+  - 내부 데이터의 불법 수정/접근 방지
+  - 내부 네트워크에 대한 권한 있는 액세스만 허용
+- 종류
+  - Stateless packet filter
+  - Stateful packet filter
+  - Application gateway
+- 한계
+  - IP soofing: IP 주소를 위조하여 내부 네트워크에 접근하는 공격
   -
+
+#### Stateless packet filtering
+
+- 패킷 단위로 패킷을 필터링
+- 필터링 하는 기준 : source IP, dest IP, TCP/UDP source, port 등
+- ACL(Access Control List) : 허용/차단 목록
+
+#### Stateful packet filtering
+
+- 패킷 상태 테이블 확인
+
+#### Application gateway
+
+- IP/TCP/UDP 패킷의 data field를 확인
+
+#### Intrusion Detection System (IDS) (침입 탐지 시스템)
+
+- deep packet inspection : 패킷의 내용을 확인
+- 패킷 간 상관관계 조사 (port scanning, network mapping, Dos attack)
+- multiple IDSs : 여러 IDS를 사용하여 패킷을 확인
+
+### 암호통신 - email
+
+#### 예시 (Alice가 Bob에게 메일을 보낸다)
+
+- Confidentiality(기밀성)
+  - Alice
+    - 대칭키 K 생성
+    - K로 메시지 암호화, K로 메시지 암호화
+    - K를 Bob의 공개키로 암호화
+    - 암호화 된 K와 메시지를 전달
+  - Bob
+    - K를 Bob의 개인키로 복호화
+    - K로 메시지 복호화
+- Integrity (무결성), Authentication(인증)
+  - Alice
+    - 메시지 Hash에 Alice의 개인키로 디지털 서명
+    - 메시지와 디지털 서명을 전달
+  - Bob
+    - 메시지 hash를 Alice의 공개키로 복호화
+    - 디지털 서명과 메시지 hash가 일치하는지 확인
+
+#### PGP (Pretty Good Privacy)
+
+- 메일을 암호화하는 시스템
+- AES256(대칭키) 사용
+
+#### S/MIME (Secure/Multipurpose Internet Mail Extensions)
+
+- 메일을 암호화하는 시스템
+- 암호화 + 디지털 서명 = Confidentiality + Integrity + Authentication
+
+## Multimedia streaming
+
+### RTSP (Real-Time Streaming Protocol)
+
+### RTMP (Real-Time Messaging Protocol)
+
+### HLS (HTTP Live Streaming)
+
+- 비디오/오디오 조각 파일 HTTP 전송
+- 인코딩 : H.26
+- 조각화 : 6초 정도
+- HTTP : TCP
+- 버퍼링 때문에 실시간 목적에는 부적합
+
+### MPEG-DASH (Dynamic Adaptive Streaming over HTTP)
+
+### RTMP
+
+### WebRTC
+
+- Plug-in 없이 웹브라우저에서 음성/영상/P2P 공유 가능하게 하는 표준 API
+- P2P 작동 방식
+- STUN, TURN, ICE와 같은 NAT Traversal 기술 사용
+- 신호 메시지 : Socket.io, 웹소켓, AJAX long polling
+
+#### STUN (Session Traversal Utilities for NAT)
+
+- STUN 서버에서 공인 IP 주소 정보와 port번호 질의 응답
+
+#### TURN (Traversal Using Relays around NAT)
+
+- 피어 간에 트래픽 릴레이 서버
+- 클라이언트가 동일한 로컬 네트워크에 위치하지 않을 경우 사용
+
+#### ICE (Interactive Connectivity Establishment)
+
+- 브라우저가 Peer를 통한 연결을 가능하게 하는 프레임워크
+
+## Wireless and Mobile Networks
+
+-
