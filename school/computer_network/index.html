@@ -207,6 +207,7 @@
 <li><a href=#nat-공유기>NAT 공유기</a></li>
 <li><a href=#ip-routing>IP Routing</a>
 <ul>
+<li><a href=#l3network-layer>L3(Network layer)</a></li>
 <li><a href=#routing-protocols>Routing Protocols</a></li>
 <li><a href=#inter-as-routing-protocol>Inter-AS routing protocol</a></li>
 <li><a href=#eigrp-enhanced-interior-gateway-routing-protocol>EIGRP (Enhanced Interior Gateway Routing Protocol)</a></li>
@@ -240,13 +241,22 @@
 <li><a href=#webrtc>WebRTC</a></li>
 </ul>
 </li>
-<li><a href=#wireless-and-mobile-networks>Wireless and Mobile Networks</a></li>
+<li><a href=#wireless-and-mobile-networks>Wireless and Mobile Networks</a>
+<ul>
+<li><a href=#elements-of-a-wireless-network>Elements of a wireless network</a></li>
+<li><a href=#무선-통신의-특징>무선 통신의 특징</a></li>
+<li><a href=#80211-lan>802.11 LAN</a></li>
+<li><a href=#cdma-code-division-multiple-access>CDMA (Code Division Multiple Access)</a></li>
+<li><a href=#4g5g-cellular-networks>4G/5G cellular networks</a></li>
+<li><a href=#5g>5G</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-12-07</h4>
+<h4 id=date>마지막 수정 : 2023-12-10</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -906,20 +916,38 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 </li>
 </ul>
 <h2 id=ip-routing>IP Routing</h2>
+<h3 id=l3network-layer>L3(Network layer)</h3>
+<ul>
+<li>역할
+<ul>
+<li>forwarding (data plane): 단순 패킷 전달</li>
+<li>routing (control plane): 패킷 전달 경로 결정</li>
+</ul>
+</li>
+<li>control plane의 구조
+<ul>
+<li>Per-router control plane : 라우터마다 라우팅 알고리즘을 수행</li>
+<li>SDN(Software Defined Networking) : 중앙집중식 라우팅 알고리즘</li>
+</ul>
+</li>
+</ul>
 <h3 id=routing-protocols>Routing Protocols</h3>
 <ul>
-<li>link state : 네트워크 상태 정보를 모든 라우터에 전달
+<li>link state (centralized, global)
 <ul>
+<li>출발지에서 목적지까지 반복하며 최단 경로를 계산</li>
 <li>dijkstra 알고리즘 사용</li>
 <li>시간복잡도(n개의 node) : $O(n^2)$</li>
-<li>oscillation : 라우팅 테이블이 수렴하지 않는 현상</li>
+<li>oscillation 발생 가능 : 라우팅 테이블이 수렴하지 않는 현상</li>
 </ul>
 </li>
 <li>distance vector : 인접한 라우터에게만 정보 전달
 <ul>
+<li>각 노드에서 동기적으로 최단 경로를 계산</li>
 <li>bellman-ford 알고리즘 사용</li>
 <li>link cost가 바뀌면 local dv를 다시 계산, 바뀐 dv를 인접 node에 전달</li>
 <li>count-to-infinity 문제 : 라우팅 루프 현상</li>
+<li>poisoned reverse : count-to-infinity 해결 방법</li>
 </ul>
 </li>
 </ul>
@@ -941,14 +969,22 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 </ul>
 <h4 id=ospf-open-shortest-path-first>OSPF (Open Shortest Path First)</h4>
 <ul>
-<li>Hierarchical routing : local area, backbone 두 개의 레벨로 구성</li>
+<li>classic link-state</li>
+<li>모든 OSPF메시지는 인증됨</li>
+<li>Hierarchical routing : local area, backbone 두 개의 레벨로 구성
+<ul>
+<li>boundary router : AS간 라우터</li>
+<li>local router : local 내부 라우터</li>
+<li>area border router : local과 backbone을 연결하는 라우터</li>
+</ul>
+</li>
 </ul>
 <h3 id=inter-as-routing-bgp>Inter-AS routing BGP</h3>
 <ul>
 <li>BGP (Border Gateway Protocol): 인터넷 상의 AS간 라우팅 프로토콜</li>
 <li>eBGP : 인접한 AS간 라우팅 정보 교환</li>
 <li>iBGP : AS 내부 라우터들에게 라우팅 정보 전달</li>
-<li>BGP session : BGP routers는 TCP로 연결됨</li>
+<li>BGP session : BGP routers는 <strong>TCP</strong>로 연결됨</li>
 <li>BGP path: prefix + attributes
 <ul>
 <li>prefix: IP 주소</li>
@@ -964,14 +1000,22 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <li>NOTIFICATION : 오류 보고</li>
 </ul>
 </li>
+<li>BGP 경로 선택 방법
+<ol>
+<li>큰 weight</li>
+<li>큰 local preference</li>
+<li>짧은 AS-PATH</li>
+<li>가까운 NEXT-HOP</li>
+<li>MED (Multi-Exit Discriminator)</li>
+</ol>
+</li>
 </ul>
 <h2 id=transport-계층---보안>Transport 계층 - 보안</h2>
 <h3 id=tlstransport-layer-security>TLS(Transport Layer Security)</h3>
 <ul>
 <li>표준
 <ul>
-<li>SSL 3.0 -> IETF TLS 1.0</li>
-<li>TLS 1.2 -> TLS 1.3</li>
+<li>SSL 3.0 -> IETF TLS 1.0 -> TLS 1.2 -> TLS 1.3</li>
 </ul>
 </li>
 <li>HTTPS = TCP + TLS + HTTP</li>
@@ -1263,8 +1307,82 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <li>브라우저가 Peer를 통한 연결을 가능하게 하는 프레임워크</li>
 </ul>
 <h2 id=wireless-and-mobile-networks>Wireless and Mobile Networks</h2>
+<h3 id=elements-of-a-wireless-network>Elements of a wireless network</h3>
 <ul>
-<li></li>
+<li>base station : 유선 네트워크에 연결</li>
+<li>relay: 로컬에서 유선 네트워크와 무선 호스트 간에 패킷 전송을 담당</li>
+<li>wireless link : 모바일을 기지국에 연결하는데 사용</li>
+<li>infrastructure mode : 기지국은 핸드폰을 유선 네트워크에 연결</li>
+<li>handoff : 모바일에서 AP를 바꾸면서 통신</li>
+<li>ad hoc mode : 기지국 없이 모바일 간에 통신</li>
+</ul>
+<h3 id=무선-통신의-특징>무선 통신의 특징</h3>
+<ul>
+<li>유선 대비 약한 신호</li>
+<li>다른 무선 장치와의 간섭</li>
+<li>다중 경로 전파</li>
+<li>SNR(Signal to Noise Ratio) : 신호 대 잡음비</li>
+<li>BER(Bit Error Rate) : 비트 오류율</li>
+<li>Hidden terminal problem : A-B, B-C 가능 A-C 불가능</li>
+</ul>
+<h3 id=80211-lan>802.11 LAN</h3>
+<ul>
+<li>
+<p>base station과 무선 host간의 통신</p>
+</li>
+<li>
+<p>Infrastructure 모드의 BSS(Basic Service Set)에 포함되는 것</p>
+<ul>
+<li>Wireless hosts</li>
+<li>AP (base station)</li>
+<li>ad hoc mode: hosts only</li>
+</ul>
+</li>
+</ul>
+<h4 id=csma--전송-전-충돌-검사---충돌-감지가-불가능>CSMA : 전송 전 충돌 검사 -> 충돌 감지가 불가능</h4>
+<ul>
+<li>보내는 사람
+<ol>
+<li>Sense channel이 DIFS에 대해 idle하면 프레임을 전송</li>
+<li>Sense channel이 busy하면 random backoff 후 ack가 오지 않으면 backoff를 증가, 2번 반복</li>
+</ol>
+</li>
+<li>받는 사람
+<ol>
+<li>프레임을 받으면 SIFS 후 ack 전송</li>
+</ol>
+</li>
+</ul>
+<h4 id=ca>CA</h4>
+<ol>
+<li>sender가 작은 RTS(Request to Send) 프레임을 BS로 전송 (CSMA 사용)</li>
+<li>BS broadcasts CTS(Clear to Send) to sender (CTS가 모든 노드에게 전달)</li>
+<li>sender가 데이터 프레임 전송, 다른 station은 전송 지연</li>
+</ol>
+<h4 id=advanced-capabilities>advanced capabilities</h4>
+<ul>
+<li>Rate adaptation : SNR(신호대 잡음비)와 BER(비트 오류율)을 측정하여 전송률을 조절</li>
+</ul>
+<h3 id=cdma-code-division-multiple-access>CDMA (Code Division Multiple Access)</h3>
+<ul>
+<li>unique code가 각 사용자에게 부여</li>
+<li>encoding: 원본 데이터 X chipping 순서 (내적 연산)</li>
+<li>decodding : encoded 데이터 X chipping 순서 (내적 연산)</li>
+</ul>
+<h3 id=4g5g-cellular-networks>4G/5G cellular networks</h3>
+<ul>
+<li>최대 100Mbps의 전송 속도</li>
+<li>기술 표준 : 3GPP(3rd Generation Partnership Project)</li>
+<li>Base station(eNodeB) : wifi AP와 유사</li>
+<li>HSS(Home Subscriber Server) : 사용자 정보 저장</li>
+<li>MME(Mobility Management Entity) : 사용자 위치 추적</li>
+<li>S-GW(Serving Gateway) : 사용자 데이터 전송</li>
+<li>P-GW(Packet Data Network Gateway) : 사용자 데이터 전송</li>
+<li>GTP : GPRS Tunneling Protocol</li>
+</ul>
+<h3 id=5g>5G</h3>
+<ul>
+<li>10배 빠른 속도, 지연 시간 10배 감소, 100배 많은 장치 연결 (4G 대비)</li>
 </ul>
 </article>
 <div id=meta class=my-16>
