@@ -536,16 +536,28 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 
 ## IP Routing
 
+### L3(Network layer)
+
+- 역할
+  - forwarding (data plane): 단순 패킷 전달
+  - routing (control plane): 패킷 전달 경로 결정
+- control plane의 구조
+  - Per-router control plane : 라우터마다 라우팅 알고리즘을 수행
+  - SDN(Software Defined Networking) : 중앙집중식 라우팅 알고리즘
+
 ### Routing Protocols
 
-- link state : 네트워크 상태 정보를 모든 라우터에 전달
+- link state (centralized, global)
+  - 출발지에서 목적지까지 반복하며 최단 경로를 계산
   - dijkstra 알고리즘 사용
   - 시간복잡도(n개의 node) : $O(n^2)$
-  - oscillation : 라우팅 테이블이 수렴하지 않는 현상
+  - oscillation 발생 가능 : 라우팅 테이블이 수렴하지 않는 현상
 - distance vector : 인접한 라우터에게만 정보 전달
+  - 각 노드에서 동기적으로 최단 경로를 계산
   - bellman-ford 알고리즘 사용
   - link cost가 바뀌면 local dv를 다시 계산, 바뀐 dv를 인접 node에 전달
   - count-to-infinity 문제 : 라우팅 루프 현상
+  - poisoned reverse : count-to-infinity 해결 방법
 
 ### Inter-AS routing protocol
 
@@ -565,14 +577,19 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 
 #### OSPF (Open Shortest Path First)
 
+- classic link-state
+- 모든 OSPF메시지는 인증됨
 - Hierarchical routing : local area, backbone 두 개의 레벨로 구성
+  - boundary router : AS간 라우터
+  - local router : local 내부 라우터
+  - area border router : local과 backbone을 연결하는 라우터
 
 ### Inter-AS routing BGP
 
 - BGP (Border Gateway Protocol): 인터넷 상의 AS간 라우팅 프로토콜
 - eBGP : 인접한 AS간 라우팅 정보 교환
 - iBGP : AS 내부 라우터들에게 라우팅 정보 전달
-- BGP session : BGP routers는 TCP로 연결됨
+- BGP session : BGP routers는 **TCP**로 연결됨
 - BGP path: prefix + attributes
   - prefix: IP 주소
   - AS-PATH: AS 리스트
@@ -582,14 +599,19 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
   - **UPDATE** : 새 경로를 공시 (또는 이전 연결 철회)
   - KEEPALIVE : UPDATES 없이 연결 유지
   - NOTIFICATION : 오류 보고
+- BGP 경로 선택 방법
+  1. 큰 weight
+  2. 큰 local preference
+  3. 짧은 AS-PATH
+  4. 가까운 NEXT-HOP
+  5. MED (Multi-Exit Discriminator)
 
 ## Transport 계층 - 보안
 
 ### TLS(Transport Layer Security)
 
 - 표준
-  - SSL 3.0 -> IETF TLS 1.0
-  - TLS 1.2 -> TLS 1.3
+  - SSL 3.0 -> IETF TLS 1.0 -> TLS 1.2 -> TLS 1.3
 - HTTPS = TCP + TLS + HTTP
 - Network Security의 구성요소
   - Confidentiality (기밀성)
@@ -810,4 +832,68 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 
 ## Wireless and Mobile Networks
 
--
+### Elements of a wireless network
+
+- base station : 유선 네트워크에 연결
+- relay: 로컬에서 유선 네트워크와 무선 호스트 간에 패킷 전송을 담당
+- wireless link : 모바일을 기지국에 연결하는데 사용
+- infrastructure mode : 기지국은 핸드폰을 유선 네트워크에 연결
+- handoff : 모바일에서 AP를 바꾸면서 통신
+- ad hoc mode : 기지국 없이 모바일 간에 통신
+
+### 무선 통신의 특징
+
+- 유선 대비 약한 신호
+- 다른 무선 장치와의 간섭
+- 다중 경로 전파
+- SNR(Signal to Noise Ratio) : 신호 대 잡음비
+- BER(Bit Error Rate) : 비트 오류율
+- Hidden terminal problem : A-B, B-C 가능 A-C 불가능
+
+### 802.11 LAN
+
+- base station과 무선 host간의 통신
+- Infrastructure 모드의 BSS(Basic Service Set)에 포함되는 것
+
+  - Wireless hosts
+  - AP (base station)
+  - ad hoc mode: hosts only
+
+#### CSMA : 전송 전 충돌 검사 -> 충돌 감지가 불가능
+
+- 보내는 사람
+  1. Sense channel이 DIFS에 대해 idle하면 프레임을 전송
+  2. Sense channel이 busy하면 random backoff 후 ack가 오지 않으면 backoff를 증가, 2번 반복
+- 받는 사람
+  1. 프레임을 받으면 SIFS 후 ack 전송
+
+#### CA
+
+1. sender가 작은 RTS(Request to Send) 프레임을 BS로 전송 (CSMA 사용)
+2. BS broadcasts CTS(Clear to Send) to sender (CTS가 모든 노드에게 전달)
+3. sender가 데이터 프레임 전송, 다른 station은 전송 지연
+
+#### advanced capabilities
+
+- Rate adaptation : SNR(신호대 잡음비)와 BER(비트 오류율)을 측정하여 전송률을 조절
+
+### CDMA (Code Division Multiple Access)
+
+- unique code가 각 사용자에게 부여
+- encoding: 원본 데이터 X chipping 순서 (내적 연산)
+- decodding : encoded 데이터 X chipping 순서 (내적 연산)
+
+### 4G/5G cellular networks
+
+- 최대 100Mbps의 전송 속도
+- 기술 표준 : 3GPP(3rd Generation Partnership Project)
+- Base station(eNodeB) : wifi AP와 유사
+- HSS(Home Subscriber Server) : 사용자 정보 저장
+- MME(Mobility Management Entity) : 사용자 위치 추적
+- S-GW(Serving Gateway) : 사용자 데이터 전송
+- P-GW(Packet Data Network Gateway) : 사용자 데이터 전송
+- GTP : GPRS Tunneling Protocol
+
+### 5G
+
+- 10배 빠른 속도, 지연 시간 10배 감소, 100배 많은 장치 연결 (4G 대비)
