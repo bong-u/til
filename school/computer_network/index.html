@@ -1072,6 +1072,7 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <ul>
 <li>데이터를 보내기 전 SA 생성</li>
 <li>IP: 비연결성, IPsec: 연결성</li>
+<li>SPI(Security Parameter Index): SA를 식별하는 값</li>
 </ul>
 </li>
 <li>IPsec datagram (tunnel mode, ESP)
@@ -1184,24 +1185,18 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 </ul>
 <h3 id=암호통신---firewall>암호통신 - Firewall</h3>
 <ul>
-<li>목적
+<li>
+<p>목적</p>
 <ul>
 <li>서비스 거부 공격 방지 (SYN flooding: 가짜 TCP 연결을 생성)</li>
 <li>내부 데이터의 불법 수정/접근 방지</li>
 <li>내부 네트워크에 대한 권한 있는 액세스만 허용</li>
 </ul>
 </li>
-<li>종류
+<li>
+<p>한계</p>
 <ul>
-<li>Stateless packet filter</li>
-<li>Stateful packet filter</li>
-<li>Application gateway</li>
-</ul>
-</li>
-<li>한계
-<ul>
-<li>IP soofing: IP 주소를 위조하여 내부 네트워크에 접근하는 공격</li>
-<li></li>
+<li>IP spoofing: IP 주소를 위조하여 내부 네트워크에 접근하는 공격</li>
 </ul>
 </li>
 </ul>
@@ -1213,7 +1208,8 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 </ul>
 <h4 id=stateful-packet-filtering>Stateful packet filtering</h4>
 <ul>
-<li>패킷 상태 테이블 확인</li>
+<li>TCP 연결마다 패킷 상태를 추적</li>
+<li>ACL에 check connection column이 추적 여부 결정</li>
 </ul>
 <h4 id=application-gateway>Application gateway</h4>
 <ul>
