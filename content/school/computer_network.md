@@ -655,6 +655,7 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 - SAs(Security Associations)
   - 데이터를 보내기 전 SA 생성
   - IP: 비연결성, IPsec: 연결성
+  - SPI(Security Parameter Index): SA를 식별하는 값
 - IPsec datagram (tunnel mode, ESP)
   ![ipsec_datagram](/static/image/ipsec_datagram.png)
   - ESP trailer: block 암호화를 위한 padding
@@ -730,16 +731,13 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 ### 암호통신 - Firewall
 
 - 목적
+
   - 서비스 거부 공격 방지 (SYN flooding: 가짜 TCP 연결을 생성)
   - 내부 데이터의 불법 수정/접근 방지
   - 내부 네트워크에 대한 권한 있는 액세스만 허용
-- 종류
-  - Stateless packet filter
-  - Stateful packet filter
-  - Application gateway
+
 - 한계
-  - IP soofing: IP 주소를 위조하여 내부 네트워크에 접근하는 공격
-  -
+  - IP spoofing: IP 주소를 위조하여 내부 네트워크에 접근하는 공격
 
 #### Stateless packet filtering
 
@@ -749,7 +747,8 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 
 #### Stateful packet filtering
 
-- 패킷 상태 테이블 확인
+- TCP 연결마다 패킷 상태를 추적
+- ACL에 check connection column이 추적 여부 결정
 
 #### Application gateway
 
