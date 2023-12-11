@@ -558,6 +558,7 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
   - link cost가 바뀌면 local dv를 다시 계산, 바뀐 dv를 인접 node에 전달
   - count-to-infinity 문제 : 라우팅 루프 현상
   - poisoned reverse : count-to-infinity 해결 방법
+- path vector
 
 ### Inter-AS routing protocol
 
