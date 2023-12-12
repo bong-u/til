@@ -256,7 +256,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-12-11</h4>
+<h4 id=date>마지막 수정 : 2023-12-13</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -337,7 +337,7 @@
 <h3 id=http-protocol-version>HTTP Protocol Version</h3>
 <h4 id=http10>HTTP/1.0</h4>
 <ul>
-<li>연결방식 : non-persestent HTTP</li>
+<li>연결방식 : non-persistent HTTP</li>
 <li>TCP 연결 한번에 최대 하나의 객체</li>
 <li>각 객체당 2개의 RTT가 필요</li>
 </ul>
@@ -1309,8 +1309,11 @@ $$ TimeoutInterval = EstimatedRTT + 4*DevRTT $$</li>
 <li>base station : 유선 네트워크에 연결</li>
 <li>relay: 로컬에서 유선 네트워크와 무선 호스트 간에 패킷 전송을 담당</li>
 <li>wireless link : 모바일을 기지국에 연결하는데 사용</li>
-<li>infrastructure mode : 기지국은 핸드폰을 유선 네트워크에 연결</li>
+<li>infrastructure mode : 기지국은 핸드폰을 유선 네트워크에 연결
+<ul>
 <li>handoff : 모바일에서 AP를 바꾸면서 통신</li>
+</ul>
+</li>
 <li>ad hoc mode : 기지국 없이 모바일 간에 통신</li>
 </ul>
 <h3 id=무선-통신의-특징>무선 통신의 특징</h3>

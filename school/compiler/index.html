@@ -174,6 +174,17 @@
 <li><a href=#instruction-selection>Instruction Selection</a></li>
 <li><a href=#tree-기반-intermediate-representation>Tree 기반 Intermediate Representation</a></li>
 <li><a href=#register-allocation>Register Allocation</a></li>
+<li><a href=#instruction-scheduling>Instruction Scheduling</a></li>
+<li><a href=#기타-optimization-방법>기타 Optimization 방법</a></li>
+</ul>
+</li>
+<li><a href=#control-flow-analysis>Control Flow Analysis</a>
+<ul>
+<li><a href=#optimizations최적화>Optimizations(최적화)</a></li>
+<li><a href=#control-flow>Control Flow</a></li>
+<li><a href=#optimization>Optimization</a></li>
+<li><a href=#loop-optimization>Loop Optimization</a></li>
+<li><a href=#dataflow-analysis--optimization>Dataflow Analysis + Optimization</a></li>
 </ul>
 </li>
 </ul>
@@ -181,7 +192,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-12-02</h4>
+<h4 id=date>마지막 수정 : 2023-12-13</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -954,6 +965,244 @@
 </li>
 <li>Interference Graph : 서로 interfere 하면 연결하는 그래프</li>
 <li>Graph coloring : 연결된 노드는 다른 색으로 칠하기</li>
+</ul>
+<h3 id=instruction-scheduling>Instruction Scheduling</h3>
+<blockquote>
+<p>instruction의 순서를 바꾸어 stall 개수 등을 줄여서 수행속도를 높이는 것</p>
+</blockquote>
+<ul>
+<li>stall : 다른 명령어 수행을 기다리느라 CPU를 낭비하는 것</li>
+<li>목표
+<ul>
+<li>Wasting time을 줄인다</li>
+<li>동일한 코드가 나와야한다</li>
+<li>register spilling을 피해야한다</li>
+</ul>
+</li>
+<li>Static scheduling 단계
+<ul>
+<li>Local basic scheduling, Loop scheduling, global scheduling</li>
+</ul>
+</li>
+</ul>
+<h4 id=local-basic-scheduling>Local basic scheduling</h4>
+<ul>
+<li>List scheduling : greedy, heuristic, local technique 사용
+<ol>
+<li>precedence graph를 만든다</li>
+<li>각 노드에 priority function을 적용한다</li>
+<li>&ldquo;ready-operation queue"를 에서 ready operation을 하나 선택 후 scheduling, ready operation queue를 업데이트한다.</li>
+</ol>
+</li>
+<li>Longest latency-weighted path를 이용해서 우선순위를 정한다</li>
+</ul>
+<h3 id=기타-optimization-방법>기타 Optimization 방법</h3>
+<ul>
+<li><code>addr r1 1</code> -> <code>inc r1</code></li>
+<li>특수 성질의 레지스터 활용</li>
+<li>특수 목적의 명령어 활용</li>
+<li>Register 간 mov 제거</li>
+<li>중복된 load 제거</li>
+</ul>
+<h2 id=control-flow-analysis>Control Flow Analysis</h2>
+<h3 id=optimizations최적화>Optimizations(최적화)</h3>
+<blockquote>
+<p>주어진 입력 프로그램을 좀 더 효율적인 코드로 바꾸는 것</p>
+</blockquote>
+<ul>
+<li>여러가지 분류 방법
+<ul>
+<li>분석 : Control Flow Analysis vs Data Flow Analysis</li>
+<li>최적화
+<ul>
+<li>Inner basic block(local) vs Inter basic block(global)</li>
+<li>Cyclic code opt vs Acyclic code opt</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=control-flow>Control Flow</h3>
+<ul>
+<li>Control Flow
+<blockquote>
+<p>프로그램의 가능한 수행순서 (분기)</p>
+</blockquote>
+<ul>
+<li>Branch
+<ul>
+<li>Execution -> dynamic control flow : 실행 해봐야 확인 가능</li>
+<li>Compiler -> <strong>static control flow</strong> : 컴파일러가 분석해서 알 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Control Flow Analysis
+<ul>
+<li>정적 성질 (static property): 프로그램 수행 없이 도출 되는 성질</li>
+<li>CFA(Control Flow Analysis) : 코드의 분기 구조를 CFG 형태로 표현</li>
+</ul>
+</li>
+<li>Basic Block
+<blockquote>
+<p>동일한 execution condition을 적용받는 instruction 묶음</p>
+</blockquote>
+<ul>
+<li>instruction 외에는 branch가 없음</li>
+<li>Maximal basic block 구하기
+<ol>
+<li>BB의 leader(첫번째 instruction)를 찾는다</li>
+<li>다음 leader 이전까지의 instruction을 구한다</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Weighted CFG
+<ul>
+<li>Profiling: 반복해서 수행해보면서 실행횟수를 얻음</li>
+<li>얻은 weight를 edge에 표시</li>
+</ul>
+</li>
+</ul>
+<h3 id=optimization>Optimization</h3>
+<h4 id=acyclic-code>Acyclic Code</h4>
+<ul>
+<li>
+<p>Loop가 없는 코드</p>
+</li>
+<li>
+<p>분석 및 최적화가 상대적으로 쉬움</p>
+</li>
+<li>
+<p>종류</p>
+<ul>
+<li>Inner basic block opt. = Intra opt. = Local opt.</li>
+<li>Inter basic block opt. = Global opt.</li>
+</ul>
+</li>
+</ul>
+<h4 id=inner-basic-block-optimization>Inner Basic Block Optimization</h4>
+<ol>
+<li>Commn subexpression elimination</li>
+</ol>
+<ul>
+<li>공통된 부분이 있으면 한번만 계산</li>
+</ul>
+<ol start=2>
+<li>Algebraic simplification</li>
+</ol>
+<ul>
+<li>대수법칙을 이용하여 식을 간소화</li>
+<li>ex) <code>x=1*y;</code> -> <code>x=y;</code></li>
+</ul>
+<ol start=3>
+<li>Strength reduction</li>
+</ol>
+<ul>
+<li>연산자의 비용이 적은 것으로 바꾸기</li>
+<li>ex) <code>x=x*2;</code> -> <code>x=x+x;</code></li>
+<li>ex) <code>y=a/4;</code> -> <code>y=a>>2;</code></li>
+</ul>
+<ol start=4>
+<li>Constant folding / propagation</li>
+</ol>
+<ul>
+<li>folding: 컴파일 시간에 상수식을 직접시간</li>
+<li>propagation : 고정된 값을 가지는 변수를 상수로 대체</li>
+</ul>
+<h4 id=inter-basic-block-optimization>Inter Basic Block Optimization</h4>
+<ul>
+<li>
+<p>Global application of inner basic block optimization</p>
+<ol>
+<li>Global common subexpression elimination
+<ul>
+<li>basic block 간의 공통 부분식에 대해 한번만 계산</li>
+</ul>
+</li>
+<li>Global constant folding / propagation
+<ul>
+<li>basic block 간의 상수를 인식하여 한번만 계산</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Other transformation</p>
+<ol>
+<li>Branch to unconditional branch
+<ul>
+<li>불필요한 분기 제거</li>
+</ul>
+</li>
+<li>Unconditional branch to branch
+<ul>
+<li>분기 후 바로 분기 -> 분기 한번으로 변경</li>
+</ul>
+</li>
+<li>Branch to next basic block (next instr)
+<ul>
+<li>분기 후 바로 다음 basic block으로 분기 제거</li>
+</ul>
+</li>
+<li>Basic block merging
+<ul>
+<li>두 basic block을 합침</li>
+</ul>
+</li>
+<li>Branch to same target
+<ul>
+<li>같은 basic block으로 분기하는 것을 제거</li>
+</ul>
+</li>
+<li>Branch target expansion
+<ul>
+<li>분기 대상이 되는 basic block을 합침</li>
+</ul>
+</li>
+<li>Unreachable code elimination
+<ul>
+<li>Entry에서 도달할 수 없는 &lsquo;unreachable&rsquo; block 제거</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id=loop-optimization>Loop Optimization</h3>
+<ul>
+<li>Loop는 한번 optimize하면 효과가 크다</li>
+</ul>
+<ol>
+<li>Loop unrolling : 반복문을 풀어서 반복 횟수를 줄임</li>
+<li>Loop invarient : 매번 동일한 값을 내는 문장을 반복문 밖으로 빼냄</li>
+<li>Count up to zero : i를 감소하는 반복문으로 변경 (i를 0과 비교하는 것이 n과 비교하는 것보다 빠름)</li>
+</ol>
+<h3 id=dataflow-analysis--optimization>Dataflow Analysis + Optimization</h3>
+<ul>
+<li>Dataflow Analysis
+<ul>
+<li>프로그램 내에 각 data 값들이 생성/소멸되는 정보를 모으는 것</li>
+</ul>
+</li>
+<li>Reaching Definition Analysis
+<ul>
+<li>definition : 해당 변수가 assign되는 것</li>
+<li>reach : definition d가 특정 위치 p에 도달한다</li>
+<li>kill : definition d의 두개의 포인트사이에서 다른 definition이 존재한다</li>
+<li>GEN/KILL
+<ul>
+<li>GEN: 블록 내에서 생성된 definition</li>
+<li>KILL: 블록 내에서 소멸된 definition</li>
+</ul>
+</li>
+<li>IN/OUT
+<ul>
+<li>IN : 이전 블록의 OUT의 합집합</li>
+<li>OUT : IN에서 GEN을 더하고 KILL을 뺀 것</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </article>
 <div id=meta class=my-16>
