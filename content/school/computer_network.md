@@ -23,7 +23,7 @@ date: 2023-10-16
 
 #### HTTP/1.0
 
-- 연결방식 : non-persestent HTTP
+- 연결방식 : non-persistent HTTP
 - TCP 연결 한번에 최대 하나의 객체
 - 각 객체당 2개의 RTT가 필요
 
@@ -838,7 +838,7 @@ $$EstimatedRTT = (1-\alpha)EstimatedRTT + \alpha SampleRTT$$
 - relay: 로컬에서 유선 네트워크와 무선 호스트 간에 패킷 전송을 담당
 - wireless link : 모바일을 기지국에 연결하는데 사용
 - infrastructure mode : 기지국은 핸드폰을 유선 네트워크에 연결
-- handoff : 모바일에서 AP를 바꾸면서 통신
+  - handoff : 모바일에서 AP를 바꾸면서 통신
 - ad hoc mode : 기지국 없이 모바일 간에 통신
 
 ### 무선 통신의 특징

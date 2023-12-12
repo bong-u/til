@@ -614,3 +614,144 @@ Method Employee(java.lang.String, int)
   > 서로 다른 두 definition이 live range 에서 공통 operation을 가지고있는 경우
 - Interference Graph : 서로 interfere 하면 연결하는 그래프
 - Graph coloring : 연결된 노드는 다른 색으로 칠하기
+
+### Instruction Scheduling
+
+> instruction의 순서를 바꾸어 stall 개수 등을 줄여서 수행속도를 높이는 것
+
+- stall : 다른 명령어 수행을 기다리느라 CPU를 낭비하는 것
+- 목표
+  - Wasting time을 줄인다
+  - 동일한 코드가 나와야한다
+  - register spilling을 피해야한다
+- Static scheduling 단계
+  - Local basic scheduling, Loop scheduling, global scheduling
+
+#### Local basic scheduling
+
+- List scheduling : greedy, heuristic, local technique 사용
+  1. precedence graph를 만든다
+  2. 각 노드에 priority function을 적용한다
+  3. "ready-operation queue"를 에서 ready operation을 하나 선택 후 scheduling, ready operation queue를 업데이트한다.
+- Longest latency-weighted path를 이용해서 우선순위를 정한다
+
+### 기타 Optimization 방법
+
+- `addr r1 1` -> `inc r1`
+- 특수 성질의 레지스터 활용
+- 특수 목적의 명령어 활용
+- Register 간 mov 제거
+- 중복된 load 제거
+
+## Control Flow Analysis
+
+### Optimizations(최적화)
+
+> 주어진 입력 프로그램을 좀 더 효율적인 코드로 바꾸는 것
+
+- 여러가지 분류 방법
+  - 분석 : Control Flow Analysis vs Data Flow Analysis
+  - 최적화
+    - Inner basic block(local) vs Inter basic block(global)
+    - Cyclic code opt vs Acyclic code opt
+
+### Control Flow
+
+- Control Flow
+  > 프로그램의 가능한 수행순서 (분기)
+  - Branch
+    - Execution -> dynamic control flow : 실행 해봐야 확인 가능
+    - Compiler -> **static control flow** : 컴파일러가 분석해서 알 수 있음
+- Control Flow Analysis
+  - 정적 성질 (static property): 프로그램 수행 없이 도출 되는 성질
+  - CFA(Control Flow Analysis) : 코드의 분기 구조를 CFG 형태로 표현
+- Basic Block
+  > 동일한 execution condition을 적용받는 instruction 묶음
+  - instruction 외에는 branch가 없음
+  - Maximal basic block 구하기
+    1. BB의 leader(첫번째 instruction)를 찾는다
+    2. 다음 leader 이전까지의 instruction을 구한다
+- Weighted CFG
+  - Profiling: 반복해서 수행해보면서 실행횟수를 얻음
+  - 얻은 weight를 edge에 표시
+
+### Optimization
+
+#### Acyclic Code
+
+- Loop가 없는 코드
+- 분석 및 최적화가 상대적으로 쉬움
+
+- 종류
+  - Inner basic block opt. = Intra opt. = Local opt.
+  - Inter basic block opt. = Global opt.
+
+#### Inner Basic Block Optimization
+
+1. Commn subexpression elimination
+
+- 공통된 부분이 있으면 한번만 계산
+
+2. Algebraic simplification
+
+- 대수법칙을 이용하여 식을 간소화
+- ex) `x=1*y;` -> `x=y;`
+
+3. Strength reduction
+
+- 연산자의 비용이 적은 것으로 바꾸기
+- ex) `x=x*2;` -> `x=x+x;`
+- ex) `y=a/4;` -> `y=a>>2;`
+
+4. Constant folding / propagation
+
+- folding: 컴파일 시간에 상수식을 직접시간
+- propagation : 고정된 값을 가지는 변수를 상수로 대체
+
+#### Inter Basic Block Optimization
+
+- Global application of inner basic block optimization
+
+  1. Global common subexpression elimination
+     - basic block 간의 공통 부분식에 대해 한번만 계산
+  2. Global constant folding / propagation
+     - basic block 간의 상수를 인식하여 한번만 계산
+
+- Other transformation
+  1. Branch to unconditional branch
+     - 불필요한 분기 제거
+  2. Unconditional branch to branch
+     - 분기 후 바로 분기 -> 분기 한번으로 변경
+  3. Branch to next basic block (next instr)
+     - 분기 후 바로 다음 basic block으로 분기 제거
+  4. Basic block merging
+     - 두 basic block을 합침
+  5. Branch to same target
+     - 같은 basic block으로 분기하는 것을 제거
+  6. Branch target expansion
+     - 분기 대상이 되는 basic block을 합침
+  7. Unreachable code elimination
+     - Entry에서 도달할 수 없는 'unreachable' block 제거
+
+### Loop Optimization
+
+- Loop는 한번 optimize하면 효과가 크다
+
+1. Loop unrolling : 반복문을 풀어서 반복 횟수를 줄임
+2. Loop invarient : 매번 동일한 값을 내는 문장을 반복문 밖으로 빼냄
+3. Count up to zero : i를 감소하는 반복문으로 변경 (i를 0과 비교하는 것이 n과 비교하는 것보다 빠름)
+
+### Dataflow Analysis + Optimization
+
+- Dataflow Analysis
+  - 프로그램 내에 각 data 값들이 생성/소멸되는 정보를 모으는 것
+- Reaching Definition Analysis
+  - definition : 해당 변수가 assign되는 것
+  - reach : definition d가 특정 위치 p에 도달한다
+  - kill : definition d의 두개의 포인트사이에서 다른 definition이 존재한다
+  - GEN/KILL
+    - GEN: 블록 내에서 생성된 definition
+    - KILL: 블록 내에서 소멸된 definition
+  - IN/OUT
+    - IN : 이전 블록의 OUT의 합집합
+    - OUT : IN에서 GEN을 더하고 KILL을 뺀 것
