@@ -327,6 +327,12 @@ date: 2023-09-01
 
 - SDD : semnatic action을 정의하는 추상적인 명세서
 - Semnatic Actions : 규칙에 대한 Action
+  - Yacc/Bison : $$, $1, $2, ... 사용
+  - ANTLR : $<name> 사용
+- Type declaration
+- Attribute 종류
+  - synthesized attr. : children에 의해 계산 (terminal)
+  - inherited attr. : parent, sibling에 의해 계산
 
 ### AST (Abstract Syntax Tree)
 
@@ -643,7 +649,7 @@ Method Employee(java.lang.String, int)
 - Register 간 mov 제거
 - 중복된 load 제거
 
-## Control Flow Analysis
+## Control Flow
 
 ### Optimizations(최적화)
 
@@ -655,14 +661,14 @@ Method Employee(java.lang.String, int)
     - Inner basic block(local) vs Inter basic block(global)
     - Cyclic code opt vs Acyclic code opt
 
-### Control Flow
+### Control Flow Analysis
 
 - Control Flow
   > 프로그램의 가능한 수행순서 (분기)
   - Branch
     - Execution -> dynamic control flow : 실행 해봐야 확인 가능
     - Compiler -> **static control flow** : 컴파일러가 분석해서 알 수 있음
-- Control Flow Analysis
+- Analysis
   - 정적 성질 (static property): 프로그램 수행 없이 도출 되는 성질
   - CFA(Control Flow Analysis) : 코드의 분기 구조를 CFG 형태로 표현
 - Basic Block
@@ -675,7 +681,7 @@ Method Employee(java.lang.String, int)
   - Profiling: 반복해서 수행해보면서 실행횟수를 얻음
   - 얻은 weight를 edge에 표시
 
-### Optimization
+### Control Flow Optimization
 
 #### Acyclic Code
 
@@ -733,7 +739,7 @@ Method Employee(java.lang.String, int)
   7. Unreachable code elimination
      - Entry에서 도달할 수 없는 'unreachable' block 제거
 
-### Loop Optimization
+#### Loop Optimization
 
 - Loop는 한번 optimize하면 효과가 크다
 
@@ -741,7 +747,7 @@ Method Employee(java.lang.String, int)
 2. Loop invarient : 매번 동일한 값을 내는 문장을 반복문 밖으로 빼냄
 3. Count up to zero : i를 감소하는 반복문으로 변경 (i를 0과 비교하는 것이 n과 비교하는 것보다 빠름)
 
-### Dataflow Analysis + Optimization
+## Dataflow Analysis + Optimization
 
 - Dataflow Analysis
   - 프로그램 내에 각 data 값들이 생성/소멸되는 정보를 모으는 것
