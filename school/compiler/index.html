@@ -178,21 +178,20 @@
 <li><a href=#기타-optimization-방법>기타 Optimization 방법</a></li>
 </ul>
 </li>
-<li><a href=#control-flow-analysis>Control Flow Analysis</a>
+<li><a href=#control-flow>Control Flow</a>
 <ul>
 <li><a href=#optimizations최적화>Optimizations(최적화)</a></li>
-<li><a href=#control-flow>Control Flow</a></li>
-<li><a href=#optimization>Optimization</a></li>
-<li><a href=#loop-optimization>Loop Optimization</a></li>
-<li><a href=#dataflow-analysis--optimization>Dataflow Analysis + Optimization</a></li>
+<li><a href=#control-flow-analysis>Control Flow Analysis</a></li>
+<li><a href=#control-flow-optimization>Control Flow Optimization</a></li>
 </ul>
 </li>
+<li><a href=#dataflow-analysis--optimization>Dataflow Analysis + Optimization</a></li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-12-13</h4>
+<h4 id=date>마지막 수정 : 2023-12-14</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -640,7 +639,19 @@
 <h3 id=sdd-syntax-directed-definition>SDD (Syntax Directed Definition)</h3>
 <ul>
 <li>SDD : semnatic action을 정의하는 추상적인 명세서</li>
-<li>Semnatic Actions : 규칙에 대한 Action</li>
+<li>Semnatic Actions : 규칙에 대한 Action
+<ul>
+<li>Yacc/Bison : $$, $1, $2, &mldr; 사용</li>
+<li>ANTLR : $ 사용</li>
+</ul>
+</li>
+<li>Type declaration</li>
+<li>Attribute 종류
+<ul>
+<li>synthesized attr. : children에 의해 계산 (terminal)</li>
+<li>inherited attr. : parent, sibling에 의해 계산</li>
+</ul>
+</li>
 </ul>
 <h3 id=ast-abstract-syntax-tree>AST (Abstract Syntax Tree)</h3>
 <ul>
@@ -1004,7 +1015,7 @@
 <li>Register 간 mov 제거</li>
 <li>중복된 load 제거</li>
 </ul>
-<h2 id=control-flow-analysis>Control Flow Analysis</h2>
+<h2 id=control-flow>Control Flow</h2>
 <h3 id=optimizations최적화>Optimizations(최적화)</h3>
 <blockquote>
 <p>주어진 입력 프로그램을 좀 더 효율적인 코드로 바꾸는 것</p>
@@ -1022,7 +1033,7 @@
 </ul>
 </li>
 </ul>
-<h3 id=control-flow>Control Flow</h3>
+<h3 id=control-flow-analysis>Control Flow Analysis</h3>
 <ul>
 <li>Control Flow
 <blockquote>
@@ -1037,7 +1048,7 @@
 </li>
 </ul>
 </li>
-<li>Control Flow Analysis
+<li>Analysis
 <ul>
 <li>정적 성질 (static property): 프로그램 수행 없이 도출 되는 성질</li>
 <li>CFA(Control Flow Analysis) : 코드의 분기 구조를 CFG 형태로 표현</li>
@@ -1064,7 +1075,7 @@
 </ul>
 </li>
 </ul>
-<h3 id=optimization>Optimization</h3>
+<h3 id=control-flow-optimization>Control Flow Optimization</h3>
 <h4 id=acyclic-code>Acyclic Code</h4>
 <ul>
 <li>
@@ -1168,7 +1179,7 @@
 </ol>
 </li>
 </ul>
-<h3 id=loop-optimization>Loop Optimization</h3>
+<h4 id=loop-optimization>Loop Optimization</h4>
 <ul>
 <li>Loop는 한번 optimize하면 효과가 크다</li>
 </ul>
@@ -1177,7 +1188,7 @@
 <li>Loop invarient : 매번 동일한 값을 내는 문장을 반복문 밖으로 빼냄</li>
 <li>Count up to zero : i를 감소하는 반복문으로 변경 (i를 0과 비교하는 것이 n과 비교하는 것보다 빠름)</li>
 </ol>
-<h3 id=dataflow-analysis--optimization>Dataflow Analysis + Optimization</h3>
+<h2 id=dataflow-analysis--optimization>Dataflow Analysis + Optimization</h2>
 <ul>
 <li>Dataflow Analysis
 <ul>
