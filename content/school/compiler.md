@@ -327,7 +327,7 @@ date: 2023-09-01
 
 - SDD : semnatic action을 정의하는 추상적인 명세서
 - Semnatic Actions : 규칙에 대한 Action
-  - Yacc/Bison : $$, $1, $2, ... 사용
+  - Yacc/Bison : `$$, $1, $2, ...` 사용
   - ANTLR : $<name> 사용
 - Type declaration
 - Attribute 종류
