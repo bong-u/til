@@ -1,9 +1,9 @@
 <!doctype html><html>
 <head>
-<title>5639 : 이진 검색 트리 (G5)</title>
+<title>백준 - 5639 : 이진 검색 트리 (G5)</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta property="og:title" content="5639 : 이진 검색 트리 (G5)">
+<meta property="og:title" content="백준 - 5639 : 이진 검색 트리 (G5)">
 <meta property="og:description" content="풀이방법 1 : 직접 구현 1import sys 2 3sys.setrecursionlimit(10**6) 4class Node: 5 def __init__(self, value): …">
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://github.com/bong-u/til-hugo">
@@ -101,12 +101,12 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-03-05</h4>
+<h4 id=date>마지막 수정 : 2023-12-27</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-5639 : 이진 검색 트리 (G5)
+백준 - 5639 : 이진 검색 트리 (G5)
 </h1>
 </div>
 </div>
@@ -124,7 +124,7 @@
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BinaryTree</span>:
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> __init__(self, root):
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        self<span style=color:#f92672>.</span>root <span style=color:#f92672>=</span> root
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>insert</span>(self, value):
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        cur_node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>root
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
@@ -140,7 +140,7 @@
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>                <span style=color:#66d9ef>else</span>:
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>                    cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> Node(value)
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>                    <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(self, node):
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>left)
@@ -153,7 +153,7 @@
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>    exit()
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    <span style=color:#66d9ef>try</span>:    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    <span style=color:#66d9ef>try</span>:
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>        tree<span style=color:#f92672>.</span>insert(int(input()))
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>    <span style=color:#66d9ef>except</span>:
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>        <span style=color:#66d9ef>break</span>
@@ -182,7 +182,7 @@
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#66d9ef>if</span> L[root] <span style=color:#f92672>&lt;</span> L[i]:
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            mid <span style=color:#f92672>=</span> i
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    traverse(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    traverse(mid, end)
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    print (L[root])
@@ -199,10 +199,10 @@
 <div class="flex justify-between w-full text-lg">
 <a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_14938/>
 <span class=mx-3>◀</span>
-14938 : 서강그라운드 (G4)
+백준 - 14938 : 서강그라운드 (G4)
 </a>
 <a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_1043/>
-1043 : 거짓말 (G4)
+백준 - 1043 : 거짓말 (G4)
 <span class=mx-3>▶</span>
 </a>
 </div>
