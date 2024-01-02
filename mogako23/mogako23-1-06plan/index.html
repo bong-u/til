@@ -1,11 +1,10 @@
 <!doctype html><html>
 <head>
-<title>[모각코] 03 : 결과</title>
+<title>[모각코23하계] 06 : 계획</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta property="og:title" content="[모각코] 03 : 결과">
-<meta property="og:description" content="1. 프로그래머스 한 문제 풀기 프로그래머스 - 숫자 변환하기 (L2) 🧠 Algorithm
- 1from collections import deque 2 3def …">
+<meta property="og:title" content="[모각코23하계] 06 : 계획">
+<meta property="og:description" content="오늘의 목표  프로그래머스 한 문제 풀기 MockMvc 정리하기  ">
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://github.com/bong-u/til-hugo">
 <meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
@@ -91,67 +90,37 @@
 <aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li>
-<ul>
-<li><a href=#1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</a></li>
-<li><a href=#2-jdbc-정리>2. JDBC 정리</a></li>
-</ul>
-</li>
+<li><a href=#오늘의-목표>오늘의 목표</a></li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-07-19</h4>
+<h4 id=date>마지막 수정 : 2024-01-03</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-[모각코] 03 : 결과
+[모각코23하계] 06 : 계획
 </h1>
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
-<div class="h-40 flex px-3 box rounded-2xl">
-<a href=https://bong-u.github.io/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0/ class="preview flex">
-<div class="flex flex-col w-full mx-5 justify-around">
-<div class="flex justify-between">
-<span class=text-2xl>프로그래머스 - 숫자 변환하기 (L2)</span>
-<p>🧠 Algorithm</p>
-</div>
-<div class=line-clamp-3>
-1from collections import deque 2 3def solution(x, y, n): 4 q = deque() 5 visited = [False] * 1000001 6 q.append((x, 0)) 7 8 while q: 9 cx, cnt = q.popleft() 10 if cx == y: 11 return cnt 12 13 if cx + n &amp;lt;= y and not visited[cx+n]: 14 q.append((cx+n, cnt+1)) 15 visited[cx+n] = True 16 if cx * 2 &amp;lt;= y and not visited[cx*2]: 17 q.append((cx*2, cnt+1)) 18 visited[cx*2] = True 19 if cx * 3 &amp;lt;= y and not visited[cx*3]: 20 q.
-</div>
-</div>
-</a>
-</div>
-<h3 id=2-jdbc-정리>2. JDBC 정리</h3>
-<div class="h-40 flex px-3 box rounded-2xl">
-<a href=https://bong-u.github.io/til/spring/jdbc/ class="preview flex">
-<div class="flex flex-col w-full mx-5 justify-around">
-<div class="flex justify-between">
-<span class=text-2xl>Spring 개념 - JDBC, DBCP, JdbcTemplate</span>
-<p>🍃 Spring</p>
-</div>
-<div class=line-clamp-3>
-JDBC 자바 프로그램을 DB와 연결해주는 API
-JDBC 드라이버 DBMS와 통신을 담당하는 자바 클래스
-JDBC 드라이버는 4가지 종류가 있다 (Type 1~4) Mysql은 Type 4를 지원한다 예제 - Connection을 직접 연결 1public List&amp;lt;UUID&amp;gt; findAllIds() { 2 List&amp;lt;UUID&amp;gt; uuids = new ArrayList&amp;lt;&amp;gt;(); 3 try ( 4 var connection = DriverManager.getConnection(url, username, password); 5 var statement = connection.createStatement(); 6 var resultSet = statement.executeQuery(SELECT_ALL_SQL); 7 ) { 8 while (resultSet.next()) { 9 var customerName = resultSet.
-</div>
-</div>
-</a>
-</div>
+<h2 id=오늘의-목표>오늘의 목표</h2>
+<ol>
+<li>프로그래머스 한 문제 풀기</li>
+<li>MockMvc 정리하기</li>
+</ol>
 </article>
 <div id=meta class=my-16>
 <div>
 <div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako23/mogako03_plan/>
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako23/mogako23-1-05/>
 <span class=mx-3>◀</span>
-[모각코] 03 : 계획
+[모각코23하계] 05 : 결과
 </a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako23/mogako04_plan/>
-[모각코] 04 : 계획
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako23/mogako23-1-06/>
+[모각코23하계] 06 : 결과
 <span class=mx-3>▶</span>
 </a>
 </div>
