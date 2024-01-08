@@ -635,15 +635,6 @@ video {
   font-family: Noto Sans KR, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
 }
 
-header{
-  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-  --tw-gradient-from: var(--color-bg) var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  --tw-gradient-from-position: 30%;
-  --tw-gradient-to: transparent var(--tw-gradient-to-position);
-}
-
 body{
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -907,27 +898,11 @@ div#pagination-box span{
   position: sticky;
 }
 
-.left-\[-30px\]{
-  left: -30px;
-}
-
 .right-0{
   right: 0px;
 }
 
 .top-0{
-  top: 0px;
-}
-
-.top-\[-30px\]{
-  top: -30px;
-}
-
-.left-\[0px\]{
-  left: 0px;
-}
-
-.top-\[0px\]{
   top: 0px;
 }
 
@@ -1174,6 +1149,10 @@ div#pagination-box span{
 
 .rounded-lg{
   border-radius: 0.5rem;
+}
+
+.border{
+  border-width: 1px;
 }
 
 .bg-inherit{
