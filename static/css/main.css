@@ -13,10 +13,6 @@
     @apply font-base !important;
   }
 
-  header {
-    @apply bg-gradient-to-b from-30% from-bg to-transparent;
-  }
-
   body {
     @apply text-text bg-bg;
   }
