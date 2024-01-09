@@ -75,6 +75,6 @@
   }
 
   .hover-bigger {
-    @apply hover:scale-110;
+    @apply hover:scale-110 !important;
   }
 }
