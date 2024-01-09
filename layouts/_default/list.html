@@ -10,9 +10,8 @@
 
       <div class="flex flex-col gap-3 my-16">
         {{ range .Paginator.Pages }}
-        <a href="{{.RelPermalink}}">
+        <a href="{{.RelPermalink}}" class="hover-bold">
           {{ .Title }}
-
         </a>
         {{ end }}
       </div>
