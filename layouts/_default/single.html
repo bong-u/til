@@ -4,6 +4,9 @@
 <script type="text/javascript" src="{{ .Site.BaseURL }}script/single.js"></script>
 <script type="text/javascript" src="{{ .Site.BaseURL }}script/toc.js"></script>
 
+
+{{ .Render "header" }}
+
 <main class="w-full lg:w-5/6 px-3 sm:px-12">
 	<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
 		{{ .TableOfContents }}

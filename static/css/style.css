@@ -1041,6 +1041,10 @@ div#pagination-box span{
   height: 100vh;
 }
 
+.w-1{
+  width: 0.25rem;
+}
+
 .w-1\/6{
   width: 16.666667%;
 }
@@ -1326,10 +1330,6 @@ div#pagination-box span{
 }
 
 @media (min-width: 1280px){
-  .xl\:block{
-    display: block;
-  }
-
   .xl\:flex{
     display: flex;
   }
