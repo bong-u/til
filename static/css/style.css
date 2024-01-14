@@ -1317,6 +1317,18 @@ div#pagination-box span{
   .md\:p-20{
     padding: 5rem;
   }
+
+  .md\:p-16{
+    padding: 4rem;
+  }
+
+  .md\:p-12{
+    padding: 3rem;
+  }
+
+  .md\:p-8{
+    padding: 2rem;
+  }
 }
 
 @media (min-width: 1024px){
