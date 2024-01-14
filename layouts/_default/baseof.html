@@ -32,11 +32,9 @@
 </head>
 
 <body class="custom-scroll">
-	{{ .Render "header" }}
 
 
-	<div class="flex w-full">
-		{{ .Render "navigator" }}
+	<div class="flex w-full flex-col">
 
 		{{ block "main" .}} {{ end }}
 
