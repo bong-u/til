@@ -52,3 +52,17 @@ const formatTimeDiff = () => {
         element.innerText = label;
     }
 };
+
+const switchSection = (e) => {
+    const switches = e.target.parentElement.children;
+    const summarySection = document.getElementById('summary-section');
+    const groupSection = document.getElementById('group-section');
+
+    if (switches[0].checked) {
+        summarySection.classList.remove('hidden');
+        groupSection.classList.add('hidden');
+    } else {
+        summarySection.classList.add('hidden');
+        groupSection.classList.remove('hidden');
+    }
+}
