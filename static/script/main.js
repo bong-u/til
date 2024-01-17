@@ -2,6 +2,7 @@
 
 window.onload = () => {
     formatTimeDiff();
+    switchSection();
 };
 
 // 최근 게시물인 경우 "hidden" 클래스 제거
@@ -53,8 +54,9 @@ const formatTimeDiff = () => {
     }
 };
 
-const switchSection = (e) => {
-    const switches = e.target.parentElement.children;
+// 스위치 버튼 클릭 시 섹션 전환
+const switchSection = () => {
+    const switches = document.getElementsByName('switch');
     const summarySection = document.getElementById('summary-section');
     const groupSection = document.getElementById('group-section');
 
