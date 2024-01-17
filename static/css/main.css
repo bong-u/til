@@ -64,6 +64,10 @@
     @apply bg-gradient-to-r from-90% from-sidebar to-transparent;
   }
 
+  .switch-button {
+    @apply text-center w-16 cursor-pointer p-2 hover-bold;
+  }
+
   input[name="switch"] {
     display: none;
   }

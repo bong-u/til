@@ -869,6 +869,19 @@ div#pagination-box span{
   line-height: 2.25rem;
 }
 
+.switch-button{
+  width: 4rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+@layer utilites {
+  .switch-button:hover{
+    font-weight: 700;
+  }
+}
+
 input[name="switch"] {
   display: none;
 }
@@ -959,6 +972,10 @@ input[name="switch"]:checked + label{
   margin-bottom: 2.5rem;
 }
 
+.mb-16{
+  margin-bottom: 4rem;
+}
+
 .mb-7{
   margin-bottom: 1.75rem;
 }
@@ -981,10 +998,6 @@ input[name="switch"]:checked + label{
 
 .mt-6{
   margin-top: 1.5rem;
-}
-
-.mb-16{
-  margin-bottom: 4rem;
 }
 
 .line-clamp-3{
@@ -1160,8 +1173,14 @@ input[name="switch"]:checked + label{
   border-radius: 0.5rem;
 }
 
-.rounded-xl{
-  border-radius: 0.75rem;
+.rounded-l-lg{
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.rounded-r-lg{
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .border{
@@ -1174,10 +1193,6 @@ input[name="switch"]:checked + label{
 
 .p-1{
   padding: 0.25rem;
-}
-
-.p-2{
-  padding: 0.5rem;
 }
 
 .p-4{
