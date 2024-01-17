@@ -57,11 +57,10 @@
 				{{ .Render "summary" }}
 				{{ end }}
 			</section>
-			<section id="group-section" class="hidden">
-				{{ .Render "navigator" }}
+			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+				{{ .Render "sections" }}
 			</section>
 		</div>
-
 	</main>
 </div>
 {{ end }}

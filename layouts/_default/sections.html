@@ -1,0 +1,12 @@
+{{ range .Site.Sections }}
+{{ $section := . }}
+{{ with .Pages }}
+{{ $indexPage := index . 0 }}
+{{ $section_emoji := $section.Params.emoji }}
+
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href="{{ $section.RelPermalink }}">
+    <span class="text-xl mr-3">{{ $section_emoji }}</span>
+    <span> {{ $section.LinkTitle }} ({{ len $section.Pages }})</span>
+</a>
+{{ end }}
+{{ end }}
