@@ -814,6 +814,9 @@ body{
 
 .box{
   background-color: var(--color-box);
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 @layer utilites {
@@ -1039,10 +1042,6 @@ input[name="switch"]:checked + label{
   height: 2rem;
 }
 
-.h-full{
-  height: 100%;
-}
-
 .h-screen{
   height: 100vh;
 }
@@ -1081,14 +1080,6 @@ input[name="switch"]:checked + label{
 
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-1{
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.grid-cols-3{
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-col{
@@ -1141,14 +1132,6 @@ input[name="switch"]:checked + label{
 
 .overflow-hidden{
   overflow: hidden;
-}
-
-.overflow-x-hidden{
-  overflow-x: hidden;
-}
-
-.overflow-y-scroll{
-  overflow-y: scroll;
 }
 
 .truncate{
@@ -1209,11 +1192,6 @@ input[name="switch"]:checked + label{
   padding-right: 1.5rem;
 }
 
-.px-7{
-  padding-left: 1.75rem;
-  padding-right: 1.75rem;
-}
-
 .px-9{
   padding-left: 2.25rem;
   padding-right: 2.25rem;
@@ -1221,6 +1199,10 @@ input[name="switch"]:checked + label{
 
 .pb-5{
   padding-bottom: 1.25rem;
+}
+
+.pr-5{
+  padding-right: 1.25rem;
 }
 
 .text-center{
@@ -1309,14 +1291,6 @@ input[name="switch"]:checked + label{
 
   .md\:w-7\/12{
     width: 58.333333%;
-  }
-
-  .md\:grid-cols-3{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-2{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row{
