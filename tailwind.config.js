@@ -23,7 +23,6 @@ module.exports = {
         DEFAULT: "var(--color-box)",
         hover: "var(--color-box-hover)",
       },
-      sidebar: "var(--color-sidebar)",
       link: "var(--color-link)",
       quotebar: "var(--color-quotebar)",
     },

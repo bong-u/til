@@ -13,8 +13,6 @@
   /* zinc-100 */
   --color-box-hover: #d4d4d8;
   /* zinc-300 */
-  --color-sidebar: #d4d4d8;
-  /* zinc-50 */
   /* common */
   --color-codeinline: #f8f8f2;
   --color-codebox: #1c1917;
@@ -38,8 +36,6 @@
   /* stone-900 */
   --color-box-hover: #0c0a09;
   /* stone-950 */
-  --color-sidebar: #18181b;
-  /* zinc-900 */
 }
 
 /* ! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com */
@@ -836,10 +832,6 @@ body{
 
 .preview:hover{
   text-decoration-line: none !important;
-}
-
-#sidebar::-webkit-scrollbar{
-  width: 0px;
 }
 
 div#pagination-box > ul{
