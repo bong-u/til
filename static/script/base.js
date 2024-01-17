@@ -47,7 +47,6 @@ const toggleDarkModeHandler = () => {
     }
 
     checkDarkMode();
-    loadUtterances();
 };
 
 // 스크롤 최상단 이동
