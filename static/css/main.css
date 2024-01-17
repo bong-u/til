@@ -63,6 +63,16 @@
   .sidebar-gradient {
     @apply bg-gradient-to-r from-90% from-sidebar to-transparent;
   }
+
+  input[name="switch"] {
+    display: none;
+  }
+  input[name="switch"] + label {
+    @apply bg-box;
+  }
+  input[name="switch"]:checked + label {
+    @apply bg-link text-codeinline font-bold;
+  }
 }
 
 @layer utilites {

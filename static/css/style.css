@@ -869,6 +869,20 @@ div#pagination-box span{
   line-height: 2.25rem;
 }
 
+input[name="switch"] {
+  display: none;
+}
+
+input[name="switch"] + label{
+  background-color: var(--color-box);
+}
+
+input[name="switch"]:checked + label{
+  background-color: var(--color-link);
+  font-weight: 700;
+  color: var(--color-codeinline);
+}
+
 .static{
   position: static;
 }
@@ -1056,10 +1070,6 @@ div#pagination-box span{
   resize: both;
 }
 
-.grid-cols-1{
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1104,12 +1114,12 @@ div#pagination-box span{
   gap: 1rem;
 }
 
-.gap-8{
-  gap: 2rem;
-}
-
 .gap-5{
   gap: 1.25rem;
+}
+
+.gap-8{
+  gap: 2rem;
 }
 
 .overflow-hidden{
@@ -1146,6 +1156,10 @@ div#pagination-box span{
   border-radius: 0.5rem;
 }
 
+.rounded-xl{
+  border-radius: 0.75rem;
+}
+
 .border{
   border-width: 1px;
 }
@@ -1158,26 +1172,17 @@ div#pagination-box span{
   padding: 0.25rem;
 }
 
-.p-12{
-  padding: 3rem;
+.p-2{
+  padding: 0.5rem;
 }
 
 .p-4{
   padding: 1rem;
 }
 
-.p-8{
-  padding: 2rem;
-}
-
 .px-3{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-
-.px-36{
-  padding-left: 9rem;
-  padding-right: 9rem;
 }
 
 .px-6{
@@ -1193,16 +1198,6 @@ div#pagination-box span{
 .px-9{
   padding-left: 2.25rem;
   padding-right: 2.25rem;
-}
-
-.py-12{
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-.py-5{
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 
 .pb-5{
@@ -1278,10 +1273,6 @@ div#pagination-box span{
 }
 
 @media (min-width: 640px){
-  .sm\:grid-cols-2{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .sm\:px-12{
     padding-left: 3rem;
     padding-right: 3rem;
@@ -1299,10 +1290,6 @@ div#pagination-box span{
 
   .md\:w-7\/12{
     width: 58.333333%;
-  }
-
-  .md\:grid-cols-3{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-row{
@@ -1325,10 +1312,6 @@ div#pagination-box span{
 
   .lg\:w-5\/6{
     width: 83.333333%;
-  }
-
-  .lg\:grid-cols-4{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

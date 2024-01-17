@@ -34,32 +34,30 @@
 
 	</section>
 
-	<main class="flex flex-col w-full md:w-7/12 gap-3">
+	<main class="flex flex-col w-full md:w-7/12 gap-5">
 
-		<div class="flex justify-center gap-3">
-			<form onchange="switchSection(event)">
-				<input id="switch-page" type="radio" name="switch" checked>
-				<label for="switch-page">
-					게시물
-				</label>
-				</input>
+		<form onchange="switchSection(event)" class="flex justify-center gap-3">
+			<input id="switch-page" type="radio" name="switch" checked>
+			<label for="switch-page" class="cursor-pointer p-2 rounded-xl hover-bold">
+				게시물
+			</label>
+			</input>
 
-				<input id="switch-group" type="radio" name="switch">
-				<label for="switch-group">
-					분류
-				</label>
-				</input>
-			</form>
-		</div>
+			<input id="switch-group" type="radio" name="switch">
+			<label for="switch-group" class="cursor-pointer p-2 rounded-xl hover-bold">
+				분류
+			</label>
+			</input>
+		</form>
 
 		<div class="w-full md:overflow-y-scroll custom-scroll">
-			<section id="summary-section" class="grid gap-16 hidden">
+			<section id="summary-section" class="grid gap-16">
 				<!-- 최근에 commit한 20개 페이지 -->
 				{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 				{{ .Render "summary" }}
 				{{ end }}
 			</section>
-			<section id="group-section" class="">
+			<section id="group-section" class="hidden">
 				{{ .Render "navigator" }}
 			</section>
 		</div>
