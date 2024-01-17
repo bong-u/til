@@ -51,13 +51,13 @@
 		</form>
 
 		<div class="w-full md:overflow-y-scroll custom-scroll">
-			<section id="summary-section" class="grid gap-16">
+			<section id="summary-section" class="grid gap-16 pr-5">
 				<!-- 최근에 commit한 20개 페이지 -->
 				{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
 				{{ .Render "summary" }}
 				{{ end }}
 			</section>
-			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5 pr-5">
 				{{ .Render "sections" }}
 			</section>
 		</div>
