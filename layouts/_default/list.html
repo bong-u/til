@@ -1,8 +1,9 @@
 {{ define "main" }}
 <main class="flex w-full justify-center">
-  <section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12 lg:w-4/12  ">
 
-    <div class="my-16">
+  <section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12 lg:w-4/12  ">
+    {{ .Render "header" }}
+    <div class="mb-16">
       <h1 class="text-3xl text-center mb-7">
         <span class="text-4xl mr-3">{{ index (split .Page.Title "|") 0 }}</span>
         <span> {{ index (split .Page.Title "|") 1 }}</span>

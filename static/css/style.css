@@ -13,8 +13,6 @@
   /* zinc-100 */
   --color-box-hover: #d4d4d8;
   /* zinc-300 */
-  --color-sidebar: #d4d4d8;
-  /* zinc-50 */
   /* common */
   --color-codeinline: #f8f8f2;
   --color-codebox: #1c1917;
@@ -38,8 +36,6 @@
   /* stone-900 */
   --color-box-hover: #0c0a09;
   /* stone-950 */
-  --color-sidebar: #18181b;
-  /* zinc-900 */
 }
 
 /* ! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com */
@@ -838,10 +834,6 @@ body{
   text-decoration-line: none !important;
 }
 
-#sidebar::-webkit-scrollbar{
-  width: 0px;
-}
-
 div#pagination-box > ul{
   display: flex;
   align-items: center;
@@ -869,13 +861,31 @@ div#pagination-box span{
   line-height: 2.25rem;
 }
 
-.sidebar-gradient{
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: var(--color-sidebar) var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  --tw-gradient-from-position: 90%;
-  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+.switch-button{
+  width: 4rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+@layer utilites {
+  .switch-button:hover{
+    font-weight: 700;
+  }
+}
+
+input[name="switch"] {
+  display: none;
+}
+
+input[name="switch"] + label{
+  background-color: var(--color-box);
+}
+
+input[name="switch"]:checked + label{
+  background-color: var(--color-link);
+  font-weight: 700;
+  color: var(--color-codeinline);
 }
 
 .static{
@@ -886,16 +896,8 @@ div#pagination-box span{
   position: fixed;
 }
 
-.absolute{
-  position: absolute;
-}
-
 .relative{
   position: relative;
-}
-
-.sticky{
-  position: sticky;
 }
 
 .right-0{
@@ -960,6 +962,10 @@ div#pagination-box span{
 
 .mb-10{
   margin-bottom: 2.5rem;
+}
+
+.mb-16{
+  margin-bottom: 4rem;
 }
 
 .mb-7{
@@ -1073,6 +1079,18 @@ div#pagination-box span{
   resize: both;
 }
 
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-1{
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-3{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .flex-col{
   flex-direction: column;
 }
@@ -1113,6 +1131,10 @@ div#pagination-box span{
   gap: 1rem;
 }
 
+.gap-5{
+  gap: 1.25rem;
+}
+
 .gap-8{
   gap: 2rem;
 }
@@ -1151,6 +1173,16 @@ div#pagination-box span{
   border-radius: 0.5rem;
 }
 
+.rounded-l-lg{
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.rounded-r-lg{
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
 .border{
   border-width: 1px;
 }
@@ -1165,11 +1197,6 @@ div#pagination-box span{
 
 .p-4{
   padding: 1rem;
-}
-
-.px-2{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .px-3{
@@ -1190,16 +1217,6 @@ div#pagination-box span{
 .px-9{
   padding-left: 2.25rem;
   padding-right: 2.25rem;
-}
-
-.py-16{
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.py-3{
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 
 .pb-5{
@@ -1282,10 +1299,6 @@ div#pagination-box span{
 }
 
 @media (min-width: 768px){
-  .md\:fixed{
-    position: fixed;
-  }
-
   .md\:w-5\/12{
     width: 41.666667%;
   }
@@ -1298,20 +1311,24 @@ div#pagination-box span{
     width: 58.333333%;
   }
 
-  .md\:flex-row{
-    flex-direction: row;
+  .md\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .md\:justify-end{
-    justify-content: flex-end;
+  .md\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:flex-row{
+    flex-direction: row;
   }
 
   .md\:overflow-y-scroll{
     overflow-y: scroll;
   }
 
-  .md\:p-20{
-    padding: 5rem;
+  .md\:p-12{
+    padding: 3rem;
   }
 }
 
@@ -1323,13 +1340,13 @@ div#pagination-box span{
   .lg\:w-5\/6{
     width: 83.333333%;
   }
+
+  .lg\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 1280px){
-  .xl\:block{
-    display: block;
-  }
-
   .xl\:flex{
     display: flex;
   }
