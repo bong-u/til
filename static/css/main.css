@@ -28,7 +28,7 @@
   }
 
   .box {
-    @apply bg-box hover-bold;
+    @apply bg-box hover-bold shadow-lg;
   }
 
   .box:hover {
