@@ -983,6 +983,10 @@ input[name="switch"]:checked + label{
   margin-top: 1.5rem;
 }
 
+.mb-16{
+  margin-bottom: 4rem;
+}
+
 .line-clamp-3{
   overflow: hidden;
   display: -webkit-box;
