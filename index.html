@@ -19,7 +19,11 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
 </head>
 <body class=custom-scroll>
-<header class="flex block md:fixed w-full justify-center md:justify-end p-4 text-3xl z-10">
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
+<div class="w-full flex px-3 md:p-12 h-screen flex-col md:flex-row">
+<section class="mb-8 w-full md:w-5/12">
+<header class="flex block justify-center p-4 text-3xl z-10">
 <div class="flex gap-3">
 <a class=hover-bigger href=https://bong-u.github.io/til/>
 🏠
@@ -36,58 +40,6 @@
 </div>
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="flex w-full">
-<nav class="sticky hidden absolute top-0 xl:block h-screen w-1/6 top-0 py-16 px-7 sidebar-gradient">
-<div id=sidebar class="flex flex-col gap-3 px-2 overflow-y-scroll overflow-x-hidden h-full">
-<a class="flex py-3 hover-bold hover-bigger" href=/til/mogako23/>
-<span class="text-xl mr-3">👨‍💻</span>
-<span>23-모각코 (20)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/algorithm/>
-<span class="text-xl mr-3">🧠</span>
-<span>Algorithm (102)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/java/>
-<span class="text-xl mr-3">☕</span>
-<span>Java (6)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/javascript/>
-<span class="text-xl mr-3">🍌</span>
-<span>Javascript (7)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/kubernetes/>
-<span class="text-xl mr-3">☸</span>
-<span>Kubernetes (4)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/open_source/>
-<span class="text-xl mr-3">🐮</span>
-<span>OpenSource (1)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span>Spring (29)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/sql/>
-<span class="text-xl mr-3">🥞</span>
-<span>SQL (1)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/issues/>
-<span class="text-xl mr-3">🧐</span>
-<span>기타 Issues (1)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/lecture/>
-<span class="text-xl mr-3">👨‍🏫</span>
-<span>특강 (4)</span>
-</a>
-<a class="flex py-3 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span>학과 공부 (14)</span>
-</a>
-</div>
-</nav>
-<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
-<div class="w-full flex px-3 md:p-20 h-screen flex-col md:flex-row">
-<section class="mb-8 w-full md:w-5/12">
 <h1 class="text-center text-4xl font-bold my-8">
 Bong-u's TIL
 </h1>
@@ -107,8 +59,21 @@ Bong-u's TIL
 </a>
 </div>
 </section>
-<main class="flex flex-col w-full md:w-7/12">
-<section class="grid gap-16 w-full md:overflow-y-scroll custom-scroll">
+<main class="flex flex-col w-full md:w-7/12 gap-5">
+<form onchange=switchSection() class="flex justify-center">
+<input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">
+게시물
+</label>
+</input>
+<input id=switch-group type=radio name=switch>
+<label for=switch-group class="switch-button rounded-r-lg">
+분류
+</label>
+</input>
+</form>
+<div class="w-full md:overflow-y-scroll custom-scroll">
+<section id=summary-section class="grid gap-16">
 <div class="box flex flex-col gap-3 rounded-lg w-full min-w-0">
 <div class="h-0 relative">
 <img onload="checkRecentPost(event,'17')" class="h-8 hidden" src=https://bong-u.github.io/til/asset/new.png alt=new>
@@ -470,6 +435,53 @@ Bong-u's TIL
 </a>
 </div>
 </section>
+<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako23/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span> 23-모각코 (20)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span> Algorithm (102)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span> Java (6)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span> Javascript (7)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/kubernetes/>
+<span class="text-xl mr-3">☸</span>
+<span> Kubernetes (4)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/open_source/>
+<span class="text-xl mr-3">🐮</span>
+<span> OpenSource (1)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span> Spring (29)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/sql/>
+<span class="text-xl mr-3">🥞</span>
+<span> SQL (1)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/issues/>
+<span class="text-xl mr-3">🧐</span>
+<span> 기타 Issues (1)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/lecture/>
+<span class="text-xl mr-3">👨‍🏫</span>
+<span> 특강 (4)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span> 학과 공부 (14)</span>
+</a>
+</section>
+</div>
 </main>
 </div>
 </div>

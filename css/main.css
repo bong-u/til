@@ -39,10 +39,6 @@
     @apply text-text hover:no-underline !important;
   }
 
-  #sidebar::-webkit-scrollbar {
-    @apply w-0;
-  }
-
   li.page-item {
     @apply inline;
   }
@@ -60,8 +56,19 @@
   div#pagination-box span {
     @apply text-3xl;
   }
-  .sidebar-gradient {
-    @apply bg-gradient-to-r from-90% from-sidebar to-transparent;
+
+  .switch-button {
+    @apply text-center w-16 cursor-pointer p-2 hover-bold;
+  }
+
+  input[name="switch"] {
+    display: none;
+  }
+  input[name="switch"] + label {
+    @apply bg-box;
+  }
+  input[name="switch"]:checked + label {
+    @apply bg-link text-codeinline font-bold;
   }
 }
 
