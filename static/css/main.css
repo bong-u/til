@@ -70,6 +70,19 @@
   input[name="switch"]:checked + label {
     @apply bg-link text-codeinline font-bold;
   }
+
+  #page-table th {
+    @apply py-4;
+  }
+  #page-table td {
+    @apply py-2;
+  }
+  #page-table tr {
+    @apply border-b border-text;
+  }
+  #page-table tbody > tr {
+    @apply hover-bold cursor-pointer;
+  }
 }
 
 @layer utilites {
