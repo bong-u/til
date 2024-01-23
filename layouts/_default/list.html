@@ -5,11 +5,11 @@
     {{ .Render "header" }}
     <div class="mb-16">
       <h1 class="text-3xl text-center">
-        <span class="text-4xl mr-3">{{ index (split .Page.Title "|") 0 }}</span>
-        <span> {{ index (split .Page.Title "|") 1 }}</span>
+        <div class="text-5xl mb-3">{{ .Page.Params.emoji }}</div>
+        <div>{{ .Page.Title }}</div>
       </h1>
 
-      <div class="flex flex-col gap-3 mt-8 mb-16">
+      <div class="flex flex-col gap-3 mt-4 mb-16">
         <table id="page-table">
           <thead>
             <tr>
@@ -23,11 +23,11 @@
             <tr onclick="location.href='{{.RelPermalink}}'">
               <td>
                 {{ math.Add $index 1 }}
-              <td>
+              <td class="whitespace-nowrap">
                 {{ .Title }}
               </td>
-              <td>
-                <span class="whitespace-nowrap">{{.Date.Format "2006-01-02"}}</span>
+              <td class="whitespace-nowrap">
+                {{.Date.Format "2006-01-02"}}
               </td>
             </tr>
             {{ end }}
@@ -38,16 +38,6 @@
       <div id="pagination-box">
         {{ template "_internal/pagination.html" . }}
       </div>
-
-      <!-- <a class="m-0 my-3 hover-bold" href="{{.RelPermalink}}"></a> -->
-      <!-- {{ range .Data.Pages.ByLastmod.Reverse }} -->
-      <!-- <div class="flex justify-between">
-
-        <span class="overflow-ellipsis-bundle">{{ .Title }}</span>
-        <span class="whitespace-nowrap">{{.Date.Format "2006-01-02"}}</span>
-      </div>
-      </a> -->
-      <!-- {{ end }} -->
     </div>
   </section>
 </main>
