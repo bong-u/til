@@ -10,11 +10,30 @@
       </h1>
 
       <div class="flex flex-col gap-3 my-16">
-        {{ range .Paginator.Pages }}
-        <a href="{{.RelPermalink}}" class="hover-bold">
-          {{ .Title }}
-        </a>
-        {{ end }}
+        <table id="page-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Date</th>
+            </tr>
+          <tbody class="text-center">
+            {{ range $index, $page := .Paginator.Pages }}
+            <tr>
+              <td>
+                {{ math.Add $index 1 }}
+              <td>
+                <a href="{{.RelPermalink}}" class="hover-bold">
+                  {{ .Title }}
+                </a>
+              </td>
+              <td>
+                <span class="whitespace-nowrap">{{.Date.Format "2006-01-02"}}</span>
+              </td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
       </div>
 
       <div id="pagination-box">
