@@ -39,14 +39,32 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">기타 Issues</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3">🧐</div>
+<div>기타 Issues</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
-<a href=/til/issues/yaml_colon/ class=hover-bold>
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+<tr onclick="location.href='/til/issues/yaml_colon/'">
+<td>
+1
+<td class=whitespace-nowrap>
 Issue - yaml 문자열 속 colon(콜론)
-</a>
+</td>
+<td class=whitespace-nowrap>
+2023-08-20
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 </div>

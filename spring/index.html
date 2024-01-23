@@ -39,71 +39,222 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">Spring</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3">🍃</div>
+<div>Spring</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
-<a href=/til/spring/mockmvc_param_null/ class=hover-bold>
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+<tr onclick="location.href='/til/spring/mockmvc_param_null/'">
+<td>
+1
+<td class=whitespace-nowrap>
 Issue - MockMvc int타입 param이 null로 들어오는 문제
-</a>
-<a href=/til/spring/jpa_getbyid_refbyid/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-08-17
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/jpa_getbyid_refbyid/'">
+<td>
+2
+<td class=whitespace-nowrap>
 Spring - JPA : getReferenceById vs findById
-</a>
-<a href=/til/spring/jpa2/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-08-11
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/jpa2/'">
+<td>
+3
+<td class=whitespace-nowrap>
 Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체
-</a>
-<a href=/til/spring/jpa1/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-08-07
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/jpa1/'">
+<td>
+4
+<td class=whitespace-nowrap>
 Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
-</a>
-<a href=/til/spring/bean_validation/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-08-04
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/bean_validation/'">
+<td>
+5
+<td class=whitespace-nowrap>
 Spring - Bean Validation : Annotation으로 Validation하기
-</a>
-<a href=/til/spring/rest_error_response/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-08-01
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/rest_error_response/'">
+<td>
+6
+<td class=whitespace-nowrap>
 Spring - RESTful API에서 내맘대로 에러 응답하기
-</a>
-<a href=/til/spring/responseentity/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-31
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/responseentity/'">
+<td>
+7
+<td class=whitespace-nowrap>
 Spring - ResponseEntity 정리
-</a>
-<a href=/til/spring/restcontroller/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-27
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/restcontroller/'">
+<td>
+8
+<td class=whitespace-nowrap>
 Spring - @RestController 정리
-</a>
-<a href=/til/spring/object/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-26
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/object/'">
+<td>
+9
+<td class=whitespace-nowrap>
 Spring 개념 - POJO, DAO, DTO, VO, Entity
-</a>
-<a href=/til/spring/mvc_servlet/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-25
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/mvc_servlet/'">
+<td>
+10
+<td class=whitespace-nowrap>
 Spring 개념 - MVC 패턴, Servlet (서블릿)
-</a>
-<a href=/til/spring/transaction/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-21
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/transaction/'">
+<td>
+11
+<td class=whitespace-nowrap>
 Spring 개념 - Transaction (트랜잭션)
-</a>
-<a href=/til/spring/jdbc/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-20
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/jdbc/'">
+<td>
+12
+<td class=whitespace-nowrap>
 Spring 개념 - JDBC, DBCP, JdbcTemplate
-</a>
-<a href=/til/spring/class_resource_issue/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-19
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/class_resource_issue/'">
+<td>
+13
+<td class=whitespace-nowrap>
 Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제
-</a>
-<a href=/til/spring/profile/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-11
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/profile/'">
+<td>
+14
+<td class=whitespace-nowrap>
 Spring 개념 - Profile
-</a>
-<a href=/til/spring/environment/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-10
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/environment/'">
+<td>
+15
+<td class=whitespace-nowrap>
 Spring 개념 - Environment
-</a>
-<a href=/til/spring/ioc/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-07
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/ioc/'">
+<td>
+16
+<td class=whitespace-nowrap>
 Spring 개념 - IoC (Inversion of Control)
-</a>
-<a href=/til/spring/logging/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-06
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/logging/'">
+<td>
+17
+<td class=whitespace-nowrap>
 Spring 개념 - Logging
-</a>
-<a href=/til/spring/maven/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-06
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/maven/'">
+<td>
+18
+<td class=whitespace-nowrap>
 Spring 개념 - Maven
-</a>
-<a href=/til/spring/13_mvc_3/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-04
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/13_mvc_3/'">
+<td>
+19
+<td class=whitespace-nowrap>
 MVC 3 : Session, Interceptor, Cookies
-</a>
-<a href=/til/spring/12_mvc_2/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-02-06
+</td>
+</tr>
+<tr onclick="location.href='/til/spring/12_mvc_2/'">
+<td>
+20
+<td class=whitespace-nowrap>
 MVC 2 : Messages, Validate command object
-</a>
+</td>
+<td class=whitespace-nowrap>
+2023-02-01
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 <ul class="pagination pagination-default">

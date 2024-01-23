@@ -39,17 +39,42 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">Algorithm</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3">🧠</div>
+<div>Algorithm</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
-<a href=/til/algorithm/boj_2573/ class=hover-bold>
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+<tr onclick="location.href='/til/algorithm/boj_2573/'">
+<td>
+1
+<td class=whitespace-nowrap>
 백준 - 2573 : 빙산 (G5)
-</a>
-<a href=/til/algorithm/boj_2748/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-01-09
+</td>
+</tr>
+<tr onclick="location.href='/til/algorithm/boj_2748/'">
+<td>
+2
+<td class=whitespace-nowrap>
 백준 - 2748 : 피보나치 수2 (B2)
-</a>
+</td>
+<td class=whitespace-nowrap>
+2023-01-09
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 <ul class="pagination pagination-default">

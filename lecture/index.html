@@ -39,23 +39,62 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">특강</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3">👨‍🏫</div>
+<div>특강</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
-<a href=/til/lecture/spring_boot/ class=hover-bold>
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+<tr onclick="location.href='/til/lecture/spring_boot/'">
+<td>
+1
+<td class=whitespace-nowrap>
 Spring Boot Framework - KAKAO 김가연 선배님
-</a>
-<a href=/til/lecture/git/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-04-03
+</td>
+</tr>
+<tr onclick="location.href='/til/lecture/git/'">
+<td>
+2
+<td class=whitespace-nowrap>
 Git 특강 - 네이버 정다현 선배님
-</a>
-<a href=/til/lecture/collaborative_process/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-03-20
+</td>
+</tr>
+<tr onclick="location.href='/til/lecture/collaborative_process/'">
+<td>
+3
+<td class=whitespace-nowrap>
 협업프로세스 - LINE 나도희 선배님
-</a>
-<a href=/til/lecture/socar_cto/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-03-13
+</td>
+</tr>
+<tr onclick="location.href='/til/lecture/socar_cto/'">
+<td>
+4
+<td class=whitespace-nowrap>
 프로그래머로 산다는 것 (리더의 생각) - 쏘카 류석문 CTO님
-</a>
+</td>
+<td class=whitespace-nowrap>
+2023-03-06
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 </div>

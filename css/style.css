@@ -7,8 +7,6 @@
   /* zinc-700 */
   --color-bg: #e4e4e7;
   /* zinc-200 */
-  --color-toc-hover: #9ca3af;
-  /* gray-400 */
   --color-box: #f4f4f5;
   /* zinc-100 */
   --color-box-hover: #d4d4d8;
@@ -30,8 +28,6 @@
   /* gray-300 */
   --color-bg: #27272a;
   /* zinc-800 */
-  --color-toc-hover: #71717a;
-  /* gray-500 */
   --color-box: #1c1917;
   /* stone-900 */
   --color-box-hover: #0c0a09;
@@ -891,6 +887,31 @@ input[name="switch"]:checked + label{
   color: var(--color-codeinline);
 }
 
+#page-table th{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#page-table td{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#page-table tr{
+  border-bottom-width: 1px;
+  border-color: var(--color-text);
+}
+
+#page-table tbody > tr{
+  cursor: pointer;
+}
+
+@layer utilites {
+  #page-table tbody > tr:hover{
+    font-weight: 700;
+  }
+}
+
 .static{
   position: static;
 }
@@ -971,10 +992,6 @@ input[name="switch"]:checked + label{
   margin-bottom: 4rem;
 }
 
-.mb-7{
-  margin-bottom: 1.75rem;
-}
-
 .mb-8{
   margin-bottom: 2rem;
 }
@@ -993,6 +1010,22 @@ input[name="switch"]:checked + label{
 
 .mt-6{
   margin-top: 1.5rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
+}
+
+.mr-1{
+  margin-right: 0.25rem;
+}
+
+.mb-3{
+  margin-bottom: 0.75rem;
+}
+
+.mt-4{
+  margin-top: 1rem;
 }
 
 .line-clamp-3{
@@ -1205,12 +1238,12 @@ input[name="switch"]:checked + label{
   padding-bottom: 1.25rem;
 }
 
-.pr-5{
-  padding-right: 1.25rem;
-}
-
 .text-center{
   text-align: center;
+}
+
+.align-middle{
+  vertical-align: middle;
 }
 
 .text-2xl{
@@ -1241,6 +1274,11 @@ input[name="switch"]:checked + label{
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-bold{

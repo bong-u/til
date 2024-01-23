@@ -39,29 +39,82 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">Java</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3">☕</div>
+<div>Java</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
-<a href=/til/java/method_reference/ class=hover-bold>
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+<tr onclick="location.href='/til/java/method_reference/'">
+<td>
+1
+<td class=whitespace-nowrap>
 Method reference (메소드 참조)
-</a>
-<a href=/til/java/double_brace_initialization/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-28
+</td>
+</tr>
+<tr onclick="location.href='/til/java/double_brace_initialization/'">
+<td>
+2
+<td class=whitespace-nowrap>
 Java - 이중 중괄호와 Anti-Pattern
-</a>
-<a href=/til/java/try_with_resources/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-19
+</td>
+</tr>
+<tr onclick="location.href='/til/java/try_with_resources/'">
+<td>
+3
+<td class=whitespace-nowrap>
 Try with resources로 간결하게 반납하기
-</a>
-<a href=/til/java/record/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-13
+</td>
+</tr>
+<tr onclick="location.href='/til/java/record/'">
+<td>
+4
+<td class=whitespace-nowrap>
 Record
-</a>
-<a href=/til/java/stream/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-05
+</td>
+</tr>
+<tr onclick="location.href='/til/java/stream/'">
+<td>
+5
+<td class=whitespace-nowrap>
 Stream, Optional
-</a>
-<a href=/til/java/generics/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-03
+</td>
+</tr>
+<tr onclick="location.href='/til/java/generics/'">
+<td>
+6
+<td class=whitespace-nowrap>
 Generics
-</a>
+</td>
+<td class=whitespace-nowrap>
+2023-02-01
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 </div>

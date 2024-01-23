@@ -39,11 +39,22 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">Categories</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3"></div>
+<div>Categories</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 </div>

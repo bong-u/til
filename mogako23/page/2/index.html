@@ -39,17 +39,42 @@
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
 <div class=mb-16>
-<h1 class="text-3xl text-center mb-7">
-<span class="text-4xl mr-3">23-모각코</span>
-<span> </span>
+<h1 class="text-3xl text-center">
+<div class="text-5xl mb-3">👨‍💻</div>
+<div>23-모각코</div>
 </h1>
-<div class="flex flex-col gap-3 my-16">
-<a href=/til/mogako23/mogako23-1-01plan/ class=hover-bold>
+<div class="flex flex-col gap-3 mt-4 mb-16">
+<table id=page-table>
+<thead>
+<tr>
+<th>No</th>
+<th>Title</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody class=text-center>
+<tr onclick="location.href='/til/mogako23/mogako23-1-01plan/'">
+<td>
+1
+<td class=whitespace-nowrap>
 [모각코23하계] 01 : 계획
-</a>
-<a href=/til/mogako23/mogako23-1-00/ class=hover-bold>
+</td>
+<td class=whitespace-nowrap>
+2023-07-05
+</td>
+</tr>
+<tr onclick="location.href='/til/mogako23/mogako23-1-00/'">
+<td>
+2
+<td class=whitespace-nowrap>
 [모각코23하계] 00 : 목표
-</a>
+</td>
+<td class=whitespace-nowrap>
+2023-06-26
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
