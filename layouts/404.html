@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ .Page.Title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ .Page.Title }}" />
+    <meta property="og:description" content="{{ .Summary | truncate 100}}" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:url" content="https://github.com/bong-u/til-hugo" />
+    <meta property="og:image" content="{{ .Site.BaseURL }}asset/profile.jpg" />
+
+    <!-- my custom js -->
+    <script type="text/javascript" src="{{ .Site.BaseURL }}script/base.js"></script>
+
+    <!-- my favicon -->
+    <link rel="icon" href="{{ .Site.BaseURL }}favicon16.png" sizes="16x16">
+    <link rel="icon" href="{{ .Site.BaseURL }}favicon32.png" sizes="32x32">
+
+    <!-- my tailwind css -->
+    <link id="twCSS" rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
+
+    <!-- latex -->
+    {{ partial "latex.html" . }}
+
+    <!-- google analytics -->
+    {{ if not .Site.IsServer }}
+    {{ partial "google-analytics.html" . }}
+    {{ end }}
+
+</head>
+
+<body class="h-screen flex flex-col justify-center items-center gap-12">
+    <h1 class="text-7xl">😓</h1>
+    <h1 class="text-5xl">404 Not Found</h1>
+    <a href="{{ .Site.BaseURL }}">
+        <div class="text-xl text-center box w-40 p-3 rounded-xl hover-bold">
+            Back to home
+        </div>
+    </a>
+</body>
+
+</html>
