@@ -25,7 +25,7 @@ const getTocItem = (anchor) => {
 }
 
 const getCurrentAnchor = () => {
-    const winY = window.pageYOffset;
+    const winY = window.scrollY;
     const anchors = getAnchors();
     let currAnchor = null;
     for (let i = 0; i < anchors.length; i++) {
