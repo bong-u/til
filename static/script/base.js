@@ -19,6 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
 // 스크롤 이벤트 핸들러
 const scrollHandler = () => {
     const scrollButton = document.getElementById('scrollButton');
+    if (scrollButton === null) return;
+
     if (window.scrollY / (document.body.clientHeight - window.innerHeight) > 0.5) {
         scrollButton.innerText = '🔼';
         scrollButton.removeEventListener('click', scrollToBottom);
