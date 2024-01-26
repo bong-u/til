@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="flex w-full justify-center">
 
-  <section class="flex flex-col justify-center gap-8 w-11/12 md:w-6/12 lg:w-4/12">
+  <section class="flex flex-col justify-center gap-8 w-11/12 md:w-3/4 lg:w-7/12">
     {{ .Render "header" }}
     <div class="mb-16">
       <h1 class="text-3xl text-center">
@@ -10,12 +10,12 @@
       </h1>
 
       <div class="flex flex-col gap-3 mt-4 mb-16">
-        <table id="page-table">
+        <table id="page-table" class="table-fixed w-full">
           <thead>
             <tr>
-              <th>No</th>
+              <th class="w-8">No</th>
               <th>Title</th>
-              <th>Date</th>
+              <th class="w-24">Date</th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -23,10 +23,10 @@
             <tr onclick="location.href='{{.RelPermalink}}'">
               <td>
                 {{ math.Add $index 1 }}
-              <td class="whitespace-nowrap">
+              <td>
                 {{ .Title }}
               </td>
-              <td class="whitespace-nowrap">
+              <td>
                 {{.Date.Format "2006-01-02"}}
               </td>
             </tr>
