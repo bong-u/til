@@ -893,6 +893,9 @@ input[name="switch"]:checked + label{
 }
 
 #page-table td{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
@@ -1078,8 +1081,20 @@ input[name="switch"]:checked + label{
   width: 16rem;
 }
 
+.w-8{
+  width: 2rem;
+}
+
 .w-full{
   width: 100%;
+}
+
+.w-16{
+  width: 4rem;
+}
+
+.w-24{
+  width: 6rem;
 }
 
 .min-w-0{
@@ -1088,6 +1103,10 @@ input[name="switch"]:checked + label{
 
 .grow{
   flex-grow: 1;
+}
+
+.table-fixed{
+  table-layout: fixed;
 }
 
 .cursor-pointer{
@@ -1335,6 +1354,14 @@ input[name="switch"]:checked + label{
     width: 58.333333%;
   }
 
+  .md\:w-2\/3{
+    width: 66.666667%;
+  }
+
+  .md\:w-3\/4{
+    width: 75%;
+  }
+
   .md\:flex-row{
     flex-direction: row;
   }
@@ -1355,6 +1382,14 @@ input[name="switch"]:checked + label{
 
   .lg\:w-5\/6{
     width: 83.333333%;
+  }
+
+  .lg\:w-3\/4{
+    width: 75%;
+  }
+
+  .lg\:w-7\/12{
+    width: 58.333333%;
   }
 
   .lg\:grid-cols-3{
