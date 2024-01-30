@@ -18,7 +18,7 @@
               <th class="w-24">Date</th>
             </tr>
           </thead>
-          <tbody class="text-center">
+          <tbody>
             {{ range $index, $page := .Paginator.Pages }}
             <tr onclick="location.href='{{.RelPermalink}}'">
               <td>
