@@ -898,6 +898,7 @@ input[name="switch"]:checked + label{
   white-space: nowrap;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  text-align: center;
 }
 
 #page-table tr{
@@ -1073,6 +1074,10 @@ input[name="switch"]:checked + label{
   width: 91.666667%;
 }
 
+.w-24{
+  width: 6rem;
+}
+
 .w-40{
   width: 10rem;
 }
@@ -1087,14 +1092,6 @@ input[name="switch"]:checked + label{
 
 .w-full{
   width: 100%;
-}
-
-.w-16{
-  width: 4rem;
-}
-
-.w-24{
-  width: 6rem;
 }
 
 .min-w-0{
@@ -1342,24 +1339,16 @@ input[name="switch"]:checked + label{
 }
 
 @media (min-width: 768px){
+  .md\:w-3\/4{
+    width: 75%;
+  }
+
   .md\:w-5\/12{
     width: 41.666667%;
   }
 
-  .md\:w-6\/12{
-    width: 50%;
-  }
-
   .md\:w-7\/12{
     width: 58.333333%;
-  }
-
-  .md\:w-2\/3{
-    width: 66.666667%;
-  }
-
-  .md\:w-3\/4{
-    width: 75%;
   }
 
   .md\:flex-row{
@@ -1376,16 +1365,8 @@ input[name="switch"]:checked + label{
 }
 
 @media (min-width: 1024px){
-  .lg\:w-4\/12{
-    width: 33.333333%;
-  }
-
   .lg\:w-5\/6{
     width: 83.333333%;
-  }
-
-  .lg\:w-3\/4{
-    width: 75%;
   }
 
   .lg\:w-7\/12{
