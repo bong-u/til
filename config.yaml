@@ -1,6 +1,6 @@
 baseURL: "https://bong-u.github.io/til/"
 languageCode: "en-us"
-title: "Bong-u's TIL"
+title: "bong-u/til"
 enableGitInfo: true
 timezone: "Asia/Seoul"
 paginate: 20
