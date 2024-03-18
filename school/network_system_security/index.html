@@ -48,9 +48,18 @@
 <aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
 <nav id=TableOfContents>
 <ul>
-<li>
+<li><a href=#csrf-cross-site-request-forgery>CSRF (Cross Site Request Forgery)</a>
 <ul>
-<li><a href=#csrf-cross-site-request-forgery>CSRF (Cross Site Request Forgery)</a></li>
+<li></li>
+</ul>
+</li>
+<li><a href=#xsscross-site-scripting-attack>XSS(Cross Site Scripting) Attack</a>
+<ul>
+<li><a href=#non-persistent-reflected-xss-attack>Non-persistent (Reflected) XSS Attack</a></li>
+<li><a href=#persistent-stored-xss-attack>Persistent (Stored) XSS Attack</a></li>
+<li><a href=#xss로-발생-가능한-피해>XSS로 발생 가능한 피해</a></li>
+<li><a href=#self-propagation-xss-worm>Self-Propagation XSS Worm</a></li>
+<li><a href=#방어-1>방어</a></li>
 </ul>
 </li>
 </ul>
@@ -58,7 +67,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-03-11</h4>
+<h4 id=date>마지막 수정 : 2024-03-18</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -68,7 +77,7 @@
 </div>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=csrf-cross-site-request-forgery>CSRF (Cross Site Request Forgery)</h3>
+<h2 id=csrf-cross-site-request-forgery>CSRF (Cross Site Request Forgery)</h2>
 <blockquote>
 <p>다른 사이트에서 요청을 위조하여 공격하는 기법</p>
 </blockquote>
@@ -142,6 +151,62 @@
 </li>
 </ul>
 </li>
+</ul>
+<h2 id=xsscross-site-scripting-attack>XSS(Cross Site Scripting) Attack</h2>
+<h3 id=non-persistent-reflected-xss-attack>Non-persistent (Reflected) XSS Attack</h3>
+<blockquote>
+<p>사용자의 입력값을 그대로 출력하여, 공격자가 스크립트를 삽입하여 공격하는 기법</p>
+</blockquote>
+<ul>
+<li>예시
+<ol>
+<li>query string을 실행하는 페이지가 존재 (innerHTML)</li>
+<li>피해자가 해당 링크를 실행 => <a href="http://www.example.com/search?input=">http://www.example.com/search?input=</a>alert(“attack”);</li>
+<li>피해자의 브라우저에서 alert가 실행됨</li>
+</ol>
+</li>
+</ul>
+<h3 id=persistent-stored-xss-attack>Persistent (Stored) XSS Attack</h3>
+<blockquote>
+<p>사용자의 입력값을 DB에 저장하여, 공격자가 스크립트를 삽입하여 공격하는 기법</p>
+</blockquote>
+<ul>
+<li>예시
+<ol>
+<li>게시판에 글을 작성하는 페이지가 존재</li>
+<li>피해자가 해당 페이지에 스크립트를 삽입하여 글을 작성</li>
+<li>다른 사용자가 해당 글을 읽을 때, 스크립트가 실행됨</li>
+</ol>
+</li>
+</ul>
+<h3 id=xss로-발생-가능한-피해>XSS로 발생 가능한 피해</h3>
+<ul>
+<li>Web defacing(웹페이지 변조)</li>
+<li>Spoofing requests(사용자의 요청 변조)</li>
+<li>Stealing information(정보 탈취)</li>
+</ul>
+<h3 id=self-propagation-xss-worm>Self-Propagation XSS Worm</h3>
+<blockquote>
+<p>XSS 공격을 통해, 자동으로 공격을 전파하는 기법</p>
+</blockquote>
+<h3 id=방어-1>방어</h3>
+<ul>
+<li>입력값 필터링 : 사용자의 입력값을 필터링하여, 스크립트를 실행하지 않도록 한다</li>
+<li>Encoding : 사용자의 입력값을 출력할 때, HTML Encoding하여, 스크립트를 실행하지 않도록 한다</li>
+<li>Content Security Policy (CSP) : 웹페이지에서 실행 가능한 리소스를 제한하여, XSS 공격을 방어한다
+<ul>
+<li>예시 (script 파일)</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>Content-Security-Policy: script-src &#39;self&#39; example.com
+</code></pre></div><ul>
+<li>예시 (inline script)</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>Content-Security-Policy: script-src &#39;nonce-2726c7f26c&#39;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>// allowed script
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>nonce</span><span style=color:#f92672>=</span><span style=color:#e6db74>2726c7f26c</span>&gt; ... &lt;/<span style=color:#f92672>script</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>// not allowed script
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>nonce</span><span style=color:#f92672>=</span><span style=color:#e6db74>42eh44jhad</span>&gt; ... &lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div></li>
 </ul>
 </article>
 <div id=meta class=my-16>
