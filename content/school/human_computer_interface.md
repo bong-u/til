@@ -107,3 +107,34 @@ date: 2024-03-04
 #### Persona
 
 > 사용자를 대표하는 가상의 인물
+
+## Learnability
+
+### 새로운 UI를 배우는 방법
+- Learning by Doing
+- Learning by Watching
+
+### Recognition vs Recall
+- Recognition : 시각적 요소를 보고 인지하는 것
+- Recall : 기억을 통해 인지하는 것
+
+### Interaction style
+1. Command Language
+> 인공 언어의 명령어를 입력
+- Self Disclosure (자기 공개) : 사용 가능한 명령어를 시각적으로 표현
+2. Menus and Forms
+3. Direct Manipulation
+> 즉각적으로 반응 시각적 표현을 통해 상호작용
+4. Speech Dialog
+
+### Mental Model
+> 사람들이 자기 자신, 다른 사람, 환경, 자신이 상호작용하는 사물들에 대해 갖는 모형
+- 관찰, 인터뷰, 작업 분석이 필요하다
+
+
+### Conceptual Model
+> 제품이 어떠한 원리나 방식으로 작동하는지에 대한 이해
+
+- Content strategy : 각 페이지에 나타나는 내용의 규칙이나 개념이 존재하는가?
+- Channel starategy : 일관적인 경험, 지속적인 경험, 상호 보완적인 경험을 만들어내는가?
+- Interaction models : 보편적인 패턴을 사용했는가?
