@@ -3,7 +3,7 @@ title: "네트워크 및 웹 보안"
 date: 2024-03-11
 ---
 
-### CSRF (Cross Site Request Forgery)
+## CSRF (Cross Site Request Forgery)
 
 > 다른 사이트에서 요청을 위조하여 공격하는 기법
 
@@ -49,3 +49,46 @@ date: 2024-03-11
   - 방어
     - X-Frame-Options Header (값 : DENY, SAMEORIGIN, ALLOW-FROM uri)
       > 해당 페이지를 iframe으로 렌더링하는 것을 방지
+
+## XSS(Cross Site Scripting) Attack
+
+### Non-persistent (Reflected) XSS Attack
+> 사용자의 입력값을 그대로 출력하여, 공격자가 스크립트를 삽입하여 공격하는 기법
+
+- 예시
+  1. query string을 실행하는 페이지가 존재 (innerHTML)
+  2. 피해자가 해당 링크를 실행 => http://www.example.com/search?input=<script>alert(“attack”);</script>
+  3. 피해자의 브라우저에서 alert가 실행됨
+
+### Persistent (Stored) XSS Attack
+> 사용자의 입력값을 DB에 저장하여, 공격자가 스크립트를 삽입하여 공격하는 기법
+
+- 예시
+  1. 게시판에 글을 작성하는 페이지가 존재
+  2. 피해자가 해당 페이지에 스크립트를 삽입하여 글을 작성
+  3. 다른 사용자가 해당 글을 읽을 때, 스크립트가 실행됨
+
+### XSS로 발생 가능한 피해
+- Web defacing(웹페이지 변조)
+- Spoofing requests(사용자의 요청 변조)
+- Stealing information(정보 탈취)
+
+### Self-Propagation XSS Worm
+> XSS 공격을 통해, 자동으로 공격을 전파하는 기법
+
+### 방어
+- 입력값 필터링 : 사용자의 입력값을 필터링하여, 스크립트를 실행하지 않도록 한다
+- Encoding : 사용자의 입력값을 출력할 때, HTML Encoding하여, 스크립트를 실행하지 않도록 한다
+- Content Security Policy (CSP) : 웹페이지에서 실행 가능한 리소스를 제한하여, XSS 공격을 방어한다
+  - 예시 (script 파일)
+  ```html
+  Content-Security-Policy: script-src 'self' example.com
+  ```
+  - 예시 (inline script)
+  ```html
+  Content-Security-Policy: script-src 'nonce-2726c7f26c'
+  // allowed script
+  <script nonce=2726c7f26c> ... </script>
+  // not allowed script
+  <script nonce=42eh44jhad> ... </script>
+  ```
