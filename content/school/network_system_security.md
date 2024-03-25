@@ -92,3 +92,55 @@ date: 2024-03-11
   // not allowed script
   <script nonce=42eh44jhad> ... </script>
   ```
+
+## SQL Injection
+
+> SQL 쿼리를 조작하여, DB에 대한 공격을 수행하는 기법
+
+### 예시
+- EID에 "EID5002'#"을 삽입 -> PASSWORD 검증을 우증
+```sql
+SELECT NAME, SALERY, SSN
+FROM EMPLOYE입
+WHERE EID='EID5002'#' AND PASSWORD='1234';
+```
+
+- curl을 이용해서 SQL Injection 공격
+```bash
+curl 'www.example.com/getdata.php?EID=a' OR 1=1&PASSWORD='
+```
+
+### 방어
+1. Filtering and Encoding data
+> SQL Injection에서 쓰이는 특수문자를 Filtering, Encoding
+
+- 예시 (PHP)
+  ```php
+  $mysqli->real_escape_string($input);
+  ```
+- 한계
+  - 필요한 문자열을 필터링할 수 있음
+
+2. Prepared Statements
+> SQL 쿼리를 미리 준비하여, 사용자의 입력값을 삽입하지 않고, 쿼리를 실행
+
+- 예시 (PHP)
+  ```php
+  $stmt = $mysqli->prepare("SELECT NAME, SALARY, SSN FROM EMPLOYEE WHERE EID=? AND PASSWORD=?");
+  // ss means "string string"
+  $stmt->bind_param("ss", $EID, $PASSWORD);
+  $stmt->execute();
+  ```
+
+### SQL Error
+> 의도적으로 SQL Error를 발생시키는 공격 기법
+
+- 예시
+  ```sql
+  CAST((SELECT example_column FROM example_table) as int)
+  --> ERROR: invalid input syntax for type integer: "Example data"
+  IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRING(PASSWORD, 1, 1) > 'M') = 1 WAITFOR DELAY '0:0:{DELAY}'--
+  --> Time Delay 발생
+  ```
+
+
