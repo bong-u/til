@@ -111,36 +111,98 @@ curl 'www.example.com/getdata.php?EID=a' OR 1=1&PASSWORD='
 ```
 
 ### 방어
-1. Filtering and Encoding data
-> SQL Injection에서 쓰이는 특수문자를 Filtering, Encoding
+#### Filtering and Encoding data
+  > SQL Injection에서 쓰이는 특수문자를 Filtering, Encoding
 
-- 예시 (PHP)
-  ```php
-  $mysqli->real_escape_string($input);
-  ```
+```php
+$mysqli->real_escape_string($input);
+```
 - 한계
   - 필요한 문자열을 필터링할 수 있음
 
-2. Prepared Statements
+#### Prepared Statements
 > SQL 쿼리를 미리 준비하여, 사용자의 입력값을 삽입하지 않고, 쿼리를 실행
 
-- 예시 (PHP)
-  ```php
-  $stmt = $mysqli->prepare("SELECT NAME, SALARY, SSN FROM EMPLOYEE WHERE EID=? AND PASSWORD=?");
-  // ss means "string string"
-  $stmt->bind_param("ss", $EID, $PASSWORD);
-  $stmt->execute();
-  ```
+```php
+$stmt = $mysqli->prepare("SELECT NAME, SALARY, SSN FROM EMPLOYEE WHERE EID=? AND PASSWORD=?");
+// ss means "string string"
+$stmt->bind_param("ss", $EID, $PASSWORD);
+$stmt->execute();
+```
 
 ### SQL Error
 > 의도적으로 SQL Error를 발생시키는 공격 기법
 
-- 예시
-  ```sql
-  CAST((SELECT example_column FROM example_table) as int)
-  --> ERROR: invalid input syntax for type integer: "Example data"
-  IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRING(PASSWORD, 1, 1) > 'M') = 1 WAITFOR DELAY '0:0:{DELAY}'--
-  --> Time Delay 발생
-  ```
+```sql
+CAST((SELECT example_column FROM example_table) as int)
+--> ERROR: invalid input syntax for type integer: "Example data"
+IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRING(PASSWORD, 1, 1) > 'M') = 1 WAITFOR DELAY '0:0:{DELAY}'--
+--> Time Delay 발생
+```
 
+## Clickjacking Attack
+> 사용자의 의도와 상관없이 클릭을 유도하여, 공격하는 기법
+
+```html
+<iframe id="top" src="http://www.attack.com" style="opacity: 0"></iframe>
+<iframe id="bottom" src="http://www.example.com>" style="opacity: 1"></iframe>
+```
+
+### 방어
+#### Client-side (Framekiller and Framebuster)
+> javascript를 이용하여, 해당 페이지가 iframe으로 렌더링되는 것을 방지
+```js
+if (top != self)
+if (top.location != self.location)
+...
+```
+- 한계
+  - 우회할 수 있는 방법이 많아서 불안정 -> 잘 쓰지 않는다
+- 우회
+  1. Double framing : 두개의 iframe을 사용하여, 첫번째 iframe을 숨기고, 두번째 iframe을 보여줌
+  2. Abusing onBeforeUnload : 사용자가 페이지를 떠날 때, alert을 띄워서, 사용자의 클릭을 유도
+  3. sandbox attribute : iframe에 sandbox attribute를 사용하여, 해당 iframe에서는 스크립트를 실행하지 않도록 함
+    - options
+      1. allow-same-origin
+      2. allow-scripts
+      3. allow-forms
+      4. allow-modals
+      5. allow-top-navigation
+    - 예시
+      ```html
+      <iframe ... sandbox="allow_forms allow-scripts"></iframe>
+      ```
+- Referrer checking problems
+    > Referer를 확인하여 특정 도메인의 사이트만 iframe으로 렌더링되었는지 확인
+    - 한계 : Referer를 조작하여 우회 가능
+
+#### Server-side
+- X-Frame-Options
+  > 특정 ORIGIN 페이지에서만 해당 페이지를 iframe으로 렌더링할 수 있도록 함
+  - 예시
+    ```c
+    X-Frame-Options: DENY // 해당 페이지를 iframe으로 렌더링하지 않음
+    X-Frame-Options: SAMEORIGIN // 같은 ORIGIN 페이지에서만 해당 페이지를 iframe으로 렌더링
+    X-Frame-Options: ALLOW-FROM uri // 특정 uri에서만 해당 페이지를 iframe으로 렌더링
+    ```
+  - Outdated : CSP 사용 권장
+
+- Content Security Policy (CSP)
+  > 웹페이지에서 실행 가능한 리소스를 제한
+  - script-src : 스크립트 source를 제한
+  - img-src : 이미지의 source를 제한
+  - frame-ancestors : `<frame>`, `<iframe>`, `<object>`, `<embed>` 또는 `<applet>` 요소의 부모를 제한
+  - 예시
+    ```php
+    $csp = "Content-Security-Policy: frame-ancestors *";
+    header($csp);
+    ```
+
+### Types of Context Integrity
+#### Visual Integrity
+> 보이는 것과 실제로 실행되는 것의 차이에 대한 무결성
+  - 방어를 위한 방법 : User Confirmation, UI Randomization, Visibility Detection on Click
+#### Temporary Integrity
+> 사용자 확인 시점과 클릭 시작 시점 사이의 UI 상태 차이에 대한 무결성
+  - 방어를 위한 방법 : Acess Control Gadgets
 
