@@ -38,10 +38,10 @@ date: 2024-03-11
   - 한계
     - 해당 field를 이용해서 접속 기록을 확인 가능 -> 개인정보 보호 문제
 - Same-Site Cookies
-  > 쿠키를 전송할 때, same-site인지 cross-site인지 확인하여, cross-site인 경우 쿠키를 전송하지 않음
+  > 쿠키를 전송할 때, `SameSite`라는 쿠키를 전송, same-site인지 cross-site인지 확인하여, 설정값에 따라 쿠키를 전송하지 않음
   - 설정 값
     - Strict (cross-site는 항상 쿠키 전송하지 않음)
-    - Lax (cross-site에서 멱등성을 가지는 요청에 대해서만 쿠키를 전송?)
+    - Lax (cross-site는 GET 요청시에만 쿠키 전송하지 않음)
 - Secret Token
   > 특정 origin의 첫 요청때, 특정한 토큰을 생성, 이후 요청시 해당 토큰을 함께 전송하여, 요청이 같은 Origin에서 온 것인지 확인
 - Clickjacking
