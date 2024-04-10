@@ -95,7 +95,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-09</h4>
+<h4 id=date>마지막 수정 : 2024-04-10</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -147,13 +147,13 @@
 </li>
 <li>Same-Site Cookies
 <blockquote>
-<p>쿠키를 전송할 때, same-site인지 cross-site인지 확인하여, cross-site인 경우 쿠키를 전송하지 않음</p>
+<p>쿠키를 전송할 때, <code>SameSite</code>라는 쿠키를 전송, same-site인지 cross-site인지 확인하여, 설정값에 따라 쿠키를 전송하지 않음</p>
 </blockquote>
 <ul>
 <li>설정 값
 <ul>
 <li>Strict (cross-site는 항상 쿠키 전송하지 않음)</li>
-<li>Lax (cross-site에서 멱등성을 가지는 요청에 대해서만 쿠키를 전송?)</li>
+<li>Lax (cross-site는 GET 요청시에만 쿠키 전송하지 않음)</li>
 </ul>
 </li>
 </ul>
