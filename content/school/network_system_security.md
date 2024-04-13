@@ -144,8 +144,18 @@ IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRI
 > bash 쉘의 취약점을 이용하여, 공격하는 기법
 
 ### Set-UID Programs
-> Set-UID root 권한을 가진 프로그램에 대한 취약점
-- 취약한 C 프로그램 (vul.c)
+> Set-UID root 권한을 가진 프로그램이 system함수를 호출할 때, 공격하는 기법
+- RUID : Real User ID
+- EUID : Effective User ID
+- Set-UID Program : 사용자가 프로그램을 root 권한으로 실행할 수 있도록 하는 프로그램, RUID와 EUID가 다름, 
+- Set-UID Program을 만드는 방법
+  ```bash
+  $ sudo chown root vul
+  $ sudo chmod 4755 vul
+  $ ls -l vul
+  -rwsr-xr-x 1 root root 1234 Mar 11 12:00 vul # s가 존재
+  ```
+- 취약한 C 프로그램 (vul : Set-UID program)
   ```c
   #include <stdio.h>
   void main() {
@@ -180,11 +190,11 @@ IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRI
  
 ## Environment Variables & Attacks
 - 프로세스가 환경변수를 얻는 방법
-  1. fork() system call : 자식이 부모의 환경변수를 상속
-  2. excve() system call : 환경변수를 새로 설정
+  1. fork() : 자식을 생성, 자식이 부모의 환경변수를 상속
+  2. execve() : 새로운 프로그램을 자식으로 실행, 새로 환경변수를 설정
 
 ### Attacks via Dynamic Linker
-> 링크된 라이브러리를 조작하여, 공격하는 기법a
+> 링크된 라이브러리를 조작하여, 공격하는 기법
 - 원리
   1. LD_PRELOAD는 공유 라이브러리의 목록을 저장
   2. 함수를 찾지 못하면, LD_LIBRARY_PATH에서 찾음
