@@ -95,7 +95,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-10</h4>
+<h4 id=date>마지막 수정 : 2024-04-14</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -286,10 +286,19 @@
 </blockquote>
 <h3 id=set-uid-programs>Set-UID Programs</h3>
 <blockquote>
-<p>Set-UID root 권한을 가진 프로그램에 대한 취약점</p>
+<p>Set-UID root 권한을 가진 프로그램이 system함수를 호출할 때, 공격하는 기법</p>
 </blockquote>
 <ul>
-<li>취약한 C 프로그램 (vul.c)
+<li>RUID : Real User ID</li>
+<li>EUID : Effective User ID</li>
+<li>Set-UID Program : 사용자가 프로그램을 root 권한으로 실행할 수 있도록 하는 프로그램, RUID와 EUID가 다름,</li>
+<li>Set-UID Program을 만드는 방법
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>$ sudo chown root vul
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>$ sudo chmod <span style=color:#ae81ff>4755</span> vul
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>$ ls -l vul
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>-rwsr-xr-x <span style=color:#ae81ff>1</span> root root <span style=color:#ae81ff>1234</span> Mar <span style=color:#ae81ff>11</span> 12:00 vul <span style=color:#75715e># s가 존재</span>
+</code></pre></div></li>
+<li>취약한 C 프로그램 (vul : Set-UID program)
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  setuid(geteuid()); <span style=color:#75715e>// root 권한을 가진 사용자로 설정
@@ -327,14 +336,14 @@
 <ul>
 <li>프로세스가 환경변수를 얻는 방법
 <ol>
-<li>fork() system call : 자식이 부모의 환경변수를 상속</li>
-<li>excve() system call : 환경변수를 새로 설정</li>
+<li>fork() : 자식을 생성, 자식이 부모의 환경변수를 상속</li>
+<li>execve() : 새로운 프로그램을 자식으로 실행, 새로 환경변수를 설정</li>
 </ol>
 </li>
 </ul>
 <h3 id=attacks-via-dynamic-linker>Attacks via Dynamic Linker</h3>
 <blockquote>
-<p>링크된 라이브러리를 조작하여, 공격하는 기법a</p>
+<p>링크된 라이브러리를 조작하여, 공격하는 기법</p>
 </blockquote>
 <ul>
 <li>원리
