@@ -1,0 +1,224 @@
+<!doctype html><html>
+<head>
+<title>프로그래밍언어개론</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Ocaml Functional Programming  함수형 프로그래밍은 함수를 값처럼 다루는 프로그래밍 패러다임
+  특징  Immutable …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="프로그래밍언어개론">
+<meta property="og:description" content="Ocaml Functional Programming  함수형 프로그래밍은 함수를 값처럼 다루는 프로그래밍 패러다임
+  특징  Immutable …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex block justify-center p-4 text-3xl z-10">
+<div class="flex gap-3">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ocaml>Ocaml</a>
+<ul>
+<li><a href=#functional-programming>Functional Programming</a></li>
+<li><a href=#primitive-types>Primitive Types</a></li>
+<li><a href=#statement와-expression>Statement와 Expression</a></li>
+<li><a href=#tuple>Tuple</a></li>
+<li><a href=#function>Function</a></li>
+<li><a href=#conditional-branch>Conditional branch</a></li>
+<li><a href=#pattern-matching>Pattern Matching</a></li>
+<li><a href=#lists>Lists</a></li>
+<li><a href=#type-definition>Type definition</a></li>
+<li><a href=#tail-call-optimization>Tail Call Optimization</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="mt-6 xl:w-5/6">
+<div class="flex flex-col">
+<h4 id=date>마지막 수정 : 2024-04-15</h4>
+</div>
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프로그래밍언어개론
+</h1>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=ocaml>Ocaml</h2>
+<h3 id=functional-programming>Functional Programming</h3>
+<blockquote>
+<p>함수형 프로그래밍은 함수를 값처럼 다루는 프로그래밍 패러다임</p>
+</blockquote>
+<ul>
+<li>특징
+<ol>
+<li>Immutable</li>
+</ol>
+<blockquote>
+<p>변수의 값이 변하지 않는다</p>
+</blockquote>
+<ol start=2>
+<li>First-class function</li>
+<li>Higher-order function</li>
+<li>Referential transparency</li>
+</ol>
+<blockquote>
+<p>동일한 인자에 대해 항상 동일한 결과를 반환한다</p>
+</blockquote>
+<ol start=5>
+<li>Lazy evaluation (지연 계산)</li>
+</ol>
+<blockquote>
+<p>필요할 때만 계산을 수행</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=primitive-types>Primitive Types</h3>
+<ul>
+<li>unit</li>
+<li>int</li>
+<li>float
+<ul>
+<li><code>int_of_float</code> : float->int</li>
+<li><code>float_of_int</code> : int->float</li>
+</ul>
+</li>
+<li>bool : true/false
+<ul>
+<li>x = y : x equals y (structural equality)</li>
+<li>x &lt;> y : x not equals y (structural equality)</li>
+<li>x == y : x equals y (physical equality)</li>
+<li>x != y : x not equals y (physical equality)</li>
+</ul>
+</li>
+<li>char</li>
+<li>string
+<ul>
+<li><code>^</code> : string concatenation</li>
+<li><code>.[n]</code> : n-th character</li>
+<li><code>.length</code> : length of string</li>
+<li><code>.sub n m</code> : substring from n to m</li>
+</ul>
+</li>
+</ul>
+<h3 id=statement와-expression>Statement와 Expression</h3>
+<ul>
+<li>
+<p>Statement</p>
+<blockquote>
+<p>프로그램의 상태전이(메모리 상태를 변경하는 행위)를 수행하는 언어의 구성 요소</p>
+</blockquote>
+</li>
+<li>
+<p>Expression</p>
+<blockquote>
+<p>실행 시 값으로 계산외는 언어의 구성요소</p>
+</blockquote>
+</li>
+<li>
+<p>Statement는 값을 반환하지 않는다</p>
+</li>
+<li>
+<p>Expression은 값을 반환한다</p>
+</li>
+<li>
+<p>순수 함수형 언어는 Expression만을 가지고 있다</p>
+</li>
+</ul>
+<h3 id=tuple>Tuple</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ocaml data-lang=ocaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>let</span> x <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>1<span style=color:#f92672>,</span> 2<span style=color:#f92672>,</span> 3<span style=color:#f92672>)</span>
+</code></pre></div><h3 id=function>Function</h3>
+<ul>
+<li>first-class object (1급 객체)</li>
+</ul>
+<blockquote>
+<ol>
+<li>할당의 대상이 될 수 있다</li>
+<li>함수의 인자로 사용할 수 있다</li>
+<li>함수의 반화값으로 사용할 수 있다</li>
+<li>비교연산을 적용할 수 있다</li>
+</ol>
+</blockquote>
+<ul>
+<li>Higher Order Function (고차함수)</li>
+</ul>
+<blockquote>
+<p>함수를 인자로 받거나 함수를 반환하는 함수</p>
+</blockquote>
+<ul>
+<li>재귀함수인 경우 <code>rec</code> 키워드를 사용해야 한다</li>
+</ul>
+<h3 id=conditional-branch>Conditional branch</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ocaml data-lang=ocaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span>expression1<span style=color:#f92672>]</span> <span style=color:#66d9ef>then</span> <span style=color:#f92672>[</span>expression2<span style=color:#f92672>]</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>[</span>expression3<span style=color:#f92672>]</span>
+</code></pre></div><h3 id=pattern-matching>Pattern Matching</h3>
+<ul>
+<li>binding occurrence</li>
+<li>Ocaml 컴파일러는 expression의 타입을 기반으로 패턴매칭의 완전성을 검사</li>
+</ul>
+<h3 id=lists>Lists</h3>
+<ul>
+<li><code>::</code> : 리스트 앞에 원소를 삽입</li>
+<li><code>@</code> : 리스트를 연결</li>
+</ul>
+<h3 id=type-definition>Type definition</h3>
+<blockquote>
+<p>Disjoint union : 구분되는 식별자를 사용하여 여러 타입을 묶은 타입</p>
+</blockquote>
+<ul>
+<li>Varient records라고도 부름
+<code>type [type_name] = [constructor] (of [type])? (| [name] (of [type])?)*</code></li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ocaml data-lang=ocaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>type</span> number <span style=color:#f92672>=</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>|</span> <span style=color:#a6e22e>Int</span> <span style=color:#66d9ef>of</span> <span style=color:#66d9ef>int</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#f92672>|</span> <span style=color:#a6e22e>Float</span> <span style=color:#66d9ef>of</span> <span style=color:#66d9ef>float</span>
+</code></pre></div><h3 id=tail-call-optimization>Tail Call Optimization</h3>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/network_system_security/>
+<span class=mx-3>◀</span>
+네트워크 및 웹 보안
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
