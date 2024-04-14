@@ -38,17 +38,17 @@ date: 2024-03-11
   - 한계
     - 해당 field를 이용해서 접속 기록을 확인 가능 -> 개인정보 보호 문제
 - Same-Site Cookies
-  > 쿠키를 전송할 때, `SameSite`라는 쿠키를 전송, same-site인지 cross-site인지 확인하여, 설정값에 따라 쿠키를 전송하지 않음
+  > 쿠키를 전송할 때, `SameSite`라는 쿠키 속성를 전송, same-site인지 cross-site인지 확인하여, 설정값에 따라 쿠키를 전송하지 않음
   - 설정 값
     - Strict (cross-site는 항상 쿠키 전송하지 않음)
     - Lax (cross-site는 GET 요청시에만 쿠키 전송하지 않음)
 - Secret Token
   > 특정 origin의 첫 요청때, 특정한 토큰을 생성, 이후 요청시 해당 토큰을 함께 전송하여, 요청이 같은 Origin에서 온 것인지 확인
-- Clickjacking
-  > 사용자가 의도하지 않은 클릭을 유도하여, CSRF 공격을 수행하는 기법
-  - 방어
-    - X-Frame-Options Header (값 : DENY, SAMEORIGIN, ALLOW-FROM uri)
-      > 해당 페이지를 iframe으로 렌더링하는 것을 방지
+  - Bypassing with Clickjacking
+    > 사용자가 의도하지 않은 클릭을 유도하여, CSRF 공격을 수행하는 기법
+    - 방어
+      - X-Frame-Options Header (값 : DENY, SAMEORIGIN, ALLOW-FROM uri)
+        > 해당 페이지를 iframe으로 렌더링하는 것을 방지
 
 ## XSS(Cross Site Scripting) Attack
 
@@ -145,8 +145,8 @@ IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRI
 
 ### Set-UID Programs
 > Set-UID root 권한을 가진 프로그램이 system함수를 호출할 때, 공격하는 기법
-- RUID : Real User ID
-- EUID : Effective User ID
+- RUID : Real User ID : 프로그램을 실행한 사용자의 권한
+- EUID : Effective User ID : 프로그램이 실행되는 권한
 - Set-UID Program : 사용자가 프로그램을 root 권한으로 실행할 수 있도록 하는 프로그램, RUID와 EUID가 다름, 
 - Set-UID Program을 만드는 방법
   ```bash
