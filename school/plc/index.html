@@ -62,12 +62,37 @@
 <li><a href=#tail-call-optimization>Tail Call Optimization</a></li>
 </ul>
 </li>
+<li><a href=#syntax-and-semantics>Syntax and Semantics</a>
+<ul>
+<li><a href=#compilation>Compilation</a></li>
+<li><a href=#interpretation>Interpretation</a></li>
+<li><a href=#syntax-구문-구조>Syntax (구문 구조)</a></li>
+<li><a href=#semantics-의미>Semantics (의미)</a></li>
+<li><a href=#unspecified-behaviors>Unspecified Behaviors</a></li>
+<li><a href=#undefined-behaviors>Undefined Behaviors</a></li>
+</ul>
+</li>
+<li><a href=#programming-language-syntax-and-parsing>Programming Language Syntax and Parsing</a>
+<ul>
+<li><a href=#the-chomsky-hierarchy>The Chomsky Hierarchy</a></li>
+<li><a href=#ast-abstract-syntax-tree>AST (Abstract Syntax Tree)</a></li>
+<li><a href=#cfg-context-free-grammar>CFG (Context-Free Grammar)</a></li>
+<li><a href=#bnf-backus-naur-form>BNF (Backus-Naur Form)</a></li>
+<li><a href=#derivation>Derivation</a></li>
+<li><a href=#parse>Parse</a></li>
+</ul>
+</li>
+<li><a href=#ae-arithmetic-expression-language>AE (Arithmetic Expression) Language</a>
+<ul>
+<li></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-15</h4>
+<h4 id=date>마지막 수정 : 2024-04-16</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -205,6 +230,160 @@
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>|</span> <span style=color:#a6e22e>Int</span> <span style=color:#66d9ef>of</span> <span style=color:#66d9ef>int</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#f92672>|</span> <span style=color:#a6e22e>Float</span> <span style=color:#66d9ef>of</span> <span style=color:#66d9ef>float</span>
 </code></pre></div><h3 id=tail-call-optimization>Tail Call Optimization</h3>
+<blockquote>
+<p>재귀함수의 호출이 함수의 마지막 행위일 때, 스택을 사용하지 않고 반복문으로 최적화</p>
+</blockquote>
+<h2 id=syntax-and-semantics>Syntax and Semantics</h2>
+<h3 id=compilation>Compilation</h3>
+<blockquote>
+<p>프로그래밍 언어로 작성된 프로그램을 다른 언어로 번역하는 행위</p>
+</blockquote>
+<ul>
+<li>적합한 프로젝트
+<ul>
+<li>큰 규모의 소프트웨어 프로젝트 : 검증을 통해 오류를 사전에 탐지</li>
+<li>고성능 소프트웨어 : 최적화를 통한 성능 향상</li>
+<li>저수준 소프트웨어 : 기계어로 변환</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>학습 곡선이 높다</li>
+<li>Compilation 과정이 비싸고 복잡</li>
+</ul>
+</li>
+</ul>
+<h3 id=interpretation>Interpretation</h3>
+<blockquote>
+<p>프로그래밍 언어로 작성된 프로그램을 해석하여 실행하는 행위</p>
+</blockquote>
+<ul>
+<li>
+<p>적합한 프로젝트</p>
+<ul>
+<li>높은 언어의 자유도를 활용한 소프트웨어 prototyping : 검증 절차의 부재로 인한 다양한 동적 특성 존재</li>
+<li>쉽고 직관적인 구조로 프로그래밍 교육 : 구문 구조가 단순</li>
+<li>실행환경에 영향을 받지 않는 cross-platform 소프트웨어 : platform 별로 구현된 interpreter를 통해 실행</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>성능 이슈가 존재</li>
+<li>검증 절차의 부재로 인한 결함 탐지 및 수정의 어려움</li>
+</ul>
+</li>
+</ul>
+<h3 id=syntax-구문-구조>Syntax (구문 구조)</h3>
+<blockquote>
+<p>프로그래밍 언어의 &ldquo;형태&rdquo;</p>
+</blockquote>
+<ul>
+<li>구문 구조의 종류
+<ul>
+<li>Concrete syntax : 프로그래밍 언어의 구문을 텍스트로 표현</li>
+<li>Abstract syntax : Concrete syntax를 트리 구조로 표현</li>
+</ul>
+</li>
+</ul>
+<h3 id=semantics-의미>Semantics (의미)</h3>
+<blockquote>
+<p>프로그래밍 언어 구문의 &ldquo;실행동작&rdquo;</p>
+</blockquote>
+<h3 id=unspecified-behaviors>Unspecified Behaviors</h3>
+<blockquote>
+<p>특정조건에서 구문의 정의하지 않은 동작</p>
+</blockquote>
+<h3 id=undefined-behaviors>Undefined Behaviors</h3>
+<blockquote>
+<p>특정조건에서 구문의 정의되지 않은 동작</p>
+</blockquote>
+<h2 id=programming-language-syntax-and-parsing>Programming Language Syntax and Parsing</h2>
+<ul>
+<li>언어 : L(G)</li>
+</ul>
+<h3 id=the-chomsky-hierarchy>The Chomsky Hierarchy</h3>
+<ol>
+<li>Regular Language : Finite-State Automation</li>
+<li>Context-Free Language : Pushdown Automation</li>
+<li>Context-Sensitive Language : Linear-Bounded Automation</li>
+<li>Recursively Enumerable Language : Turing Machine</li>
+</ol>
+<h3 id=ast-abstract-syntax-tree>AST (Abstract Syntax Tree)</h3>
+<blockquote>
+<p>프로그램 구조를 요약한 트리</p>
+</blockquote>
+<h3 id=cfg-context-free-grammar>CFG (Context-Free Grammar)</h3>
+<blockquote>
+<p>문맥을 고려하지 않고 항상 동일한 문자열을 표현하는 문법</p>
+</blockquote>
+<ul>
+<li>G = ($\sum$, N, P, S)
+<ul>
+<li>$\sum$ : terminal의 유한집합</li>
+<li>N : non-terminal 유한집합</li>
+<li>P : production의 집합</li>
+<li>S : 시작 nonterminal</li>
+</ul>
+</li>
+</ul>
+<h3 id=bnf-backus-naur-form>BNF (Backus-Naur Form)</h3>
+<blockquote>
+<p>CFG의 표현 방법</p>
+</blockquote>
+<ul>
+<li>예시</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>S ::= aAc
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>A ::= aA
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>| b
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>| 𝜖
+</code></pre></div><h3 id=derivation>Derivation</h3>
+<blockquote>
+<p>문법의 규칙을 적용하여 문자열을 생성하는 과정</p>
+</blockquote>
+<ul>
+<li>Leftmost derivation</li>
+<li>Rightmost derivation</li>
+</ul>
+<h3 id=parse>Parse</h3>
+<blockquote>
+<p>Derivation의 역과정<br>
+Source code &ndash;lexing&ndash;> Token &ndash;parsing&ndash;> AST</p>
+</blockquote>
+<h2 id=ae-arithmetic-expression-language>AE (Arithmetic Expression) Language</h2>
+<h4 id=semantics-of-ae>Semantics of AE</h4>
+<ul>
+<li><code>e⇓n</code> : e는 n으로 계산됨</li>
+</ul>
+<h4 id=inference-rule-추론-규칙>Inference rule (추론 규칙)</h4>
+<blockquote>
+<p>전제로부터 결론을 이끌어내는 규칙
+$$\frac{H_1 H_2 H_3 &mldr; H_n}{P}$$</p>
+</blockquote>
+<ul>
+<li>
+<p>$H_1, H_2, H_3, &mldr;, H_n$ : 전제</p>
+</li>
+<li>
+<p>P : 결론</p>
+</li>
+<li>
+<p>전제가 모두 참이면 결론도 참</p>
+</li>
+<li>
+<p>Big-step : 프로그램의 계산이 하나의 큰 단계에 의해 수행</p>
+</li>
+<li>
+<p>Small-step : 프로그램의 계산이 한 스텝 계산들의 연속에 의해 수행</p>
+</li>
+<li>
+<p>Operational : 프로그램의 계산을 가상 기계의 동작(계산)에 기반하여 기술</p>
+</li>
+<li>
+<p>Proof tree : Inference rule을 이용하여 결론을 증명하는 과정을 나타내는 tree형태의 자료구조</p>
+</li>
+</ul>
 </article>
 <div id=meta class=my-16>
 <div>
