@@ -290,3 +290,36 @@ if (top.location != self.location)
 > 사용자 확인 시점과 클릭 시작 시점 사이의 UI 상태 차이에 대한 무결성
   - 방어를 위한 방법 : Acess Control Gadgets
 
+## SSRF (Server Side Request Forgery)
+
+> 서버에서 다른 서버로 요청을 보내는 공격 기법
+
+### 공격 (서버가 신뢰된 서버에서 요청이 온 것으로 착각)
+```text
+POST /product/stock HTTP/1.0
+Content-Type: application/www-form-urlencoded
+Content-Length: 30
+
+stockApi=http://localhost/admin
+```
+
+### 방어
+- 차단된 문자열을 URL 인코딩 또는 대소문자 변형을 통해 숨김
+- 서로 다른 프로토콜을 사용하여, 요청을 보냄
+- using @
+```text
+https://expected-host:fakepassword@evil-host
+```
+- using #
+```text
+https://evil-host#expected-host
+```
+- Rogue DNS
+```text
+https://expected-host.evil-host
+```
+- Double encoding : `# -> %23 -> %2523`
+
+### XXE (XML eXternal Entity) Injection
+> XML 파싱 과정에서 발생하는 취약점을 이용하여, 공격하는 기법
+
