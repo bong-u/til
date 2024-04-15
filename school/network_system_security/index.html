@@ -90,12 +90,19 @@
 <li><a href=#types-of-context-integrity>Types of Context Integrity</a></li>
 </ul>
 </li>
+<li><a href=#ssrf-server-side-request-forgery>SSRF (Server Side Request Forgery)</a>
+<ul>
+<li><a href=#공격-서버가-신뢰된-서버에서-요청이-온-것으로-착각>공격 (서버가 신뢰된 서버에서 요청이 온 것으로 착각)</a></li>
+<li><a href=#방어-4>방어</a></li>
+<li><a href=#xxe-xml-external-entity-injection>XXE (XML eXternal Entity) Injection</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-14</h4>
+<h4 id=date>마지막 수정 : 2024-04-15</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -477,6 +484,38 @@
 <ul>
 <li>방어를 위한 방법 : Acess Control Gadgets</li>
 </ul>
+<h2 id=ssrf-server-side-request-forgery>SSRF (Server Side Request Forgery)</h2>
+<blockquote>
+<p>서버에서 다른 서버로 요청을 보내는 공격 기법</p>
+</blockquote>
+<h3 id=공격-서버가-신뢰된-서버에서-요청이-온-것으로-착각>공격 (서버가 신뢰된 서버에서 요청이 온 것으로 착각)</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>POST /product/stock HTTP/1.0
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>Content-Type: application/www-form-urlencoded
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>Content-Length: 30
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>stockApi=http://localhost/admin
+</code></pre></div><h3 id=방어-4>방어</h3>
+<ul>
+<li>차단된 문자열을 URL 인코딩 또는 대소문자 변형을 통해 숨김</li>
+<li>서로 다른 프로토콜을 사용하여, 요청을 보냄</li>
+<li>using @</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>https://expected-host:fakepassword@evil-host
+</code></pre></div><ul>
+<li>using #</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>https://evil-host#expected-host
+</code></pre></div><ul>
+<li>Rogue DNS</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>https://expected-host.evil-host
+</code></pre></div><ul>
+<li>Double encoding : <code># -> %23 -> %2523</code></li>
+</ul>
+<h3 id=xxe-xml-external-entity-injection>XXE (XML eXternal Entity) Injection</h3>
+<blockquote>
+<p>XML 파싱 과정에서 발생하는 취약점을 이용하여, 공격하는 기법</p>
+</blockquote>
 </article>
 <div id=meta class=my-16>
 <div>
