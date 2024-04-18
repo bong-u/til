@@ -32,13 +32,14 @@ const formatTimeDiff = () => {
     const elements = document.getElementsByClassName('summary-date');
     let label = '';
 
-    for (const element of elements) {
+    for (const el of elements) {
         label = '방금 전';
-        // Date 객체 변환을 위해 " KST" 제거
-        const lastmod = new Date(element.getAttribute('lastmod').replace(" KST", ""));
+
+        const parts = el.getAttribute('lastmod').match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2}) \+0900 KST/);
+        const lastmod = new Date(Date.UTC(parseInt(parts[1], 10), parseInt(parts[2], 10) - 1, parseInt(parts[3], 10), parseInt(parts[4], 10) - 9, parseInt(parts[5], 10), parseInt(parts[6], 10)));
 
         const today = new Date();
-
+        
         const diff = (today - lastmod) / 1000;
 
         for (const value of times) {
@@ -50,7 +51,7 @@ const formatTimeDiff = () => {
             }
         }
 
-        element.innerText = label;
+        el.innerText = label;
     }
 };
 
