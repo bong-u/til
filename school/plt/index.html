@@ -84,7 +84,18 @@
 </li>
 <li><a href=#ae-arithmetic-expression-language>AE (Arithmetic Expression) Language</a>
 <ul>
-<li></li>
+<li><a href=#syntax-정의>Syntax 정의</a></li>
+<li><a href=#semantics-정의>Semantics 정의</a></li>
+<li><a href=#inference-rule-추론-규칙>Inference rule (추론 규칙)</a></li>
+<li><a href=#bigstep-operational-semantics>Bigstep operational semantics</a></li>
+<li><a href=#proof-tree>Proof tree</a></li>
+</ul>
+</li>
+<li><a href=#syntactic-sugar-and-identifier>Syntactic Sugar and Identifier</a>
+<ul>
+<li><a href=#syntactic-sugar>Syntactic Sugar</a></li>
+<li><a href=#identifier>Identifier</a></li>
+<li><a href=#abstract-memory>Abstract Memory</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +103,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-16</h4>
+<h4 id=date>마지막 수정 : 2024-04-20</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -311,7 +322,7 @@
 </ol>
 <h3 id=ast-abstract-syntax-tree>AST (Abstract Syntax Tree)</h3>
 <blockquote>
-<p>프로그램 구조를 요약한 트리</p>
+<p>프로그램의 추상구조를 나타내는 트리형태의 자료구조</p>
 </blockquote>
 <h3 id=cfg-context-free-grammar>CFG (Context-Free Grammar)</h3>
 <blockquote>
@@ -344,45 +355,98 @@
 </blockquote>
 <ul>
 <li>Leftmost derivation</li>
-<li>Rightmost derivation</li>
+<li>Rightmost derivatio</li>
 </ul>
 <h3 id=parse>Parse</h3>
 <blockquote>
 <p>Derivation의 역과정<br>
 Source code &ndash;lexing&ndash;> Token &ndash;parsing&ndash;> AST</p>
 </blockquote>
+<ul>
+<li>leftmost derivation</li>
+<li>rightmost derivation</li>
+<li>ambiguous grammer
+<blockquote>
+<p>leftmost derivation과 rightmost derivation이 다른 결과를 반환하는 문법</p>
+</blockquote>
+</li>
+</ul>
 <h2 id=ae-arithmetic-expression-language>AE (Arithmetic Expression) Language</h2>
-<h4 id=semantics-of-ae>Semantics of AE</h4>
+<h3 id=syntax-정의>Syntax 정의</h3>
+<ul>
+<li>Concrete syntax (syntax 형태)</li>
+<li>Abstract syntax (tree 형태)</li>
+</ul>
+<h3 id=semantics-정의>Semantics 정의</h3>
 <ul>
 <li><code>e⇓n</code> : e는 n으로 계산됨</li>
 </ul>
-<h4 id=inference-rule-추론-규칙>Inference rule (추론 규칙)</h4>
+<h3 id=inference-rule-추론-규칙>Inference rule (추론 규칙)</h3>
 <blockquote>
 <p>전제로부터 결론을 이끌어내는 규칙
 $$\frac{H_1 H_2 H_3 &mldr; H_n}{P}$$</p>
 </blockquote>
 <ul>
+<li>$H_1, H_2, H_3, &mldr;, H_n$ : 전제</li>
+<li>P : 결론</li>
+<li>전제가 모두 참이면 결론도 참</li>
+</ul>
+<h3 id=bigstep-operational-semantics>Bigstep operational semantics</h3>
+<ul>
+<li>Big-step : 프로그램의 계산이 하나의 큰 단계에 의해 수행</li>
+<li>Small-step : 프로그램의 계산이 한 스텝 계산들의 연속에 의해 수행</li>
+<li>Operational : 프로그램의 계산을 가상 기계의 동작(계산)에 기반하여 기술</li>
+</ul>
+<h3 id=proof-tree>Proof tree</h3>
+<blockquote>
+<p>Inference rule을 이용하여 결론을 증명하는 과정을 나타내는 tree형태의 자료구조</p>
+</blockquote>
+<h2 id=syntactic-sugar-and-identifier>Syntactic Sugar and Identifier</h2>
+<h3 id=syntactic-sugar>Syntactic Sugar</h3>
+<blockquote>
+<p>사용자 편의를 위해 제공되는 구문</p>
+</blockquote>
+<ul>
+<li>주로 concrete syntax의 확장을 통해 제공</li>
+</ul>
+<h4 id=desugaring>Desugaring</h4>
+<blockquote>
+<p>~(e) => 0 - e</p>
+</blockquote>
+<h4 id=sugaring>Sugaring</h4>
+<blockquote>
+<p>0 - e => ~(e)</p>
+</blockquote>
+<h3 id=identifier>Identifier</h3>
+<blockquote>
+<p>프로그램의 어떤 요소와 연관된 이름</p>
+</blockquote>
+<h4 id=identifier-등장>Identifier 등장</h4>
+<ul>
+<li>binding occurence : 정의를 위해 등장</li>
+<li>bound ocurrence : 사용을 위해 등장</li>
+<li>free identifier : 위 두가지에 해당하지 않는 등장 (정의되지 않은 변수 접근)</li>
+</ul>
+<h4 id=identifier-scope>Identifier Scope</h4>
+<ul>
 <li>
-<p>$H_1, H_2, H_3, &mldr;, H_n$ : 전제</p>
+<p>Identifier는 scope(범위)내에서 binding-bound 관계가 성립</p>
 </li>
 <li>
-<p>P : 결론</p>
+<p>Scope : binding ocurrence identifier가 bound 될 수 있는 범위</p>
 </li>
 <li>
-<p>전제가 모두 참이면 결론도 참</p>
+<p>Scope를 벗어난 접근 : free identifier</p>
 </li>
 <li>
-<p>Big-step : 프로그램의 계산이 하나의 큰 단계에 의해 수행</p>
+<p>Shadowing : 동일한 이름의 identifier가 중첩된 scope에서 binding되는 경우, 바깥쪽 scope의 identifier를 가리키는 것</p>
 </li>
-<li>
-<p>Small-step : 프로그램의 계산이 한 스텝 계산들의 연속에 의해 수행</p>
-</li>
-<li>
-<p>Operational : 프로그램의 계산을 가상 기계의 동작(계산)에 기반하여 기술</p>
-</li>
-<li>
-<p>Proof tree : Inference rule을 이용하여 결론을 증명하는 과정을 나타내는 tree형태의 자료구조</p>
-</li>
+</ul>
+<h3 id=abstract-memory>Abstract Memory</h3>
+<ul>
+<li>$\sigma$(x) : 추상메모리 $\sigma$에서 x의 값을 반환</li>
+<li>$\sigma$[x↦n](x') : 추상메모리 $\sigma$에서 x를 n으로 업데이트한 후 새로운 추상메모리를 반환</li>
+<li>↦ (mapsto) : 왼쪽 값을 오른쪽 값을 매핑한다</li>
 </ul>
 </article>
 <div id=meta class=my-16>
