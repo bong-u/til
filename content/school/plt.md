@@ -143,7 +143,7 @@ type number =
 4. Recursively Enumerable Language : Turing Machine
 
 ### AST (Abstract Syntax Tree)
-> 프로그램 구조를 요약한 트리
+> 프로그램의 추상구조를 나타내는 트리형태의 자료구조
 
 ### CFG (Context-Free Grammar)
 > 문맥을 고려하지 않고 항상 동일한 문자열을 표현하는 문법
@@ -168,17 +168,26 @@ A ::= aA
 ### Derivation
 > 문법의 규칙을 적용하여 문자열을 생성하는 과정
 - Leftmost derivation
-- Rightmost derivation
+- Rightmost derivatio
 
 ### Parse
 > Derivation의 역과정  
 > Source code --lexing--> Token --parsing--> AST
 
+- leftmost derivation
+- rightmost derivation
+- ambiguous grammer
+    > leftmost derivation과 rightmost derivation이 다른 결과를 반환하는 문법
+
 ## AE (Arithmetic Expression) Language
-#### Semantics of AE
+### Syntax 정의
+- Concrete syntax (syntax 형태)
+- Abstract syntax (tree 형태)
+
+### Semantics 정의
 - `e⇓n` : e는 n으로 계산됨
 
-#### Inference rule (추론 규칙)
+### Inference rule (추론 규칙)
 > 전제로부터 결론을 이끌어내는 규칙
 $$\frac{H_1 H_2 H_3 ... H_n}{P}$$
 
@@ -186,7 +195,44 @@ $$\frac{H_1 H_2 H_3 ... H_n}{P}$$
 - P : 결론
 - 전제가 모두 참이면 결론도 참
 
+### Bigstep operational semantics
+
 - Big-step : 프로그램의 계산이 하나의 큰 단계에 의해 수행
 - Small-step : 프로그램의 계산이 한 스텝 계산들의 연속에 의해 수행
 - Operational : 프로그램의 계산을 가상 기계의 동작(계산)에 기반하여 기술
-- Proof tree : Inference rule을 이용하여 결론을 증명하는 과정을 나타내는 tree형태의 자료구조
+
+### Proof tree
+> Inference rule을 이용하여 결론을 증명하는 과정을 나타내는 tree형태의 자료구조
+
+## Syntactic Sugar and Identifier
+
+### Syntactic Sugar
+> 사용자 편의를 위해 제공되는 구문
+
+- 주로 concrete syntax의 확장을 통해 제공
+
+#### Desugaring
+> ~(e) => 0 - e
+#### Sugaring
+> 0 - e => ~(e)
+
+### Identifier
+> 프로그램의 어떤 요소와 연관된 이름
+
+#### Identifier 등장
+- binding occurence : 정의를 위해 등장
+- bound ocurrence : 사용을 위해 등장
+- free identifier : 위 두가지에 해당하지 않는 등장 (정의되지 않은 변수 접근)
+
+#### Identifier Scope
+- Identifier는 scope(범위)내에서 binding-bound 관계가 성립
+- Scope : binding ocurrence identifier가 bound 될 수 있는 범위
+- Scope를 벗어난 접근 : free identifier
+
+- Shadowing : 동일한 이름의 identifier가 중첩된 scope에서 binding되는 경우, 바깥쪽 scope의 identifier를 가리키는 것
+ 
+### Abstract Memory
+
+- $\sigma$(x) : 추상메모리 $\sigma$에서 x의 값을 반환
+- $\sigma$\[x↦n\](x') : 추상메모리 $\sigma$에서 x를 n으로 업데이트한 후 새로운 추상메모리를 반환
+- ↦ (mapsto) : 왼쪽 값을 오른쪽 값을 매핑한다
