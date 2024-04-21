@@ -3,6 +3,85 @@ title: "네트워크 및 웹 보안"
 date: 2024-03-11
 ---
 
+## Web Security Model
+
+### Web 보안의 목표
+- Integirty : 무결성
+- Confidentiality : 기밀성
+
+### HTTP
+- URL
+  > https:// www.example.edu :80 /lectures ?lec=80 #slides 
+  > protocol + hostname + port + path + query + fragment
+
+### Cookies
+> 서버가 웹 브라우저에게 보내는 정보
+
+- 역할 : 세션 관리, 사용자 설정 저장, 사용자 추적 등
+
+```text
+// 쿠키 설정
+Set-Cookie: name=value;
+// 쿠키 전송
+Cookie: name=value;
+```
+
+### Same Origin Policy (SOP)
+> 같은 Origin에서만 리소스를 공유할 수 있도록 한다
+
+- Origin
+  > scheme://domain:port
+
+#### Domain Relaxation
+> 서브 도메인 간의 리소스 공유
+
+- document.domain을 수정하여, 서브 도메인 간의 리소스 공유 가능
+- 예시
+  ```text
+  a.domain.com -> domain.com 가능
+  a.domain.com -> b.domain.com 불가능
+  a.domain.com -> com 불가능
+  ```
+
+- 취약점 : 악의적인 사이트가 document.domain을 수정하여 접근을 시도할 수 있음
+- 해결방법 : Mozilla Public Suffix List (PSL) 사용
+
+#### BroadcastChannel API
+> 같은 origin의 다른 context 간의 통신
+
+- 사용법
+  ```js
+  const bc = new BroadcastChannel('channel');
+  bc.postMessage('message');
+  bc.onmessage = (e) => console.log(e.data);
+  ```
+### XMLHttpRequest (XHR)
+> 서버와 비동기 통신을 위한 객체
+
+### CORS (Cross-Origin Resource Sharing)
+> 다른 Origin의 리소스를 요청할 때, 서버에서 허용하는 정책
+
+### Cookie
+> 서버가 클라이언트에게 보내는 정보
+
+#### Cookie Scoping
+- Domain
+  > 해당 도메인은 Subdomain 또는 Parent Domain에 대해서만 쿠키를 전송
+- Path
+  > 해당 경로의 하위 경로까지 쿠키를 전송
+
+#### Secure Cookies
+> HTTPS 프로토콜을 사용할 때만 쿠키를 전송
+```text
+Set-Cookie: name=value; Secure
+```
+
+#### HTTPOnly Cookies
+> JavaScript에서 쿠키에 접근할 수 없도록 함
+```text
+Set-Cookie: name=value; HttpOnly
+```
+
 ## CSRF (Cross Site Request Forgery)
 
 > 다른 사이트에서 요청을 위조하여 공격하는 기법
@@ -35,11 +114,15 @@ date: 2024-03-11
 
 - Referer Header
   > 요청을 보낸 페이지의 주소를 나타내는 HTTP header를 확인하여, 요청을 보낸 페이지가 같은 사이트인지 확인
+  ```text
+  Referer: http://www.example.com
+  ```
   - 한계
     - 해당 field를 이용해서 접속 기록을 확인 가능 -> 개인정보 보호 문제
 - Same-Site Cookies
-  > 쿠키를 전송할 때, `SameSite`라는 쿠키 속성를 전송, same-site인지 cross-site인지 확인하여, 설정값에 따라 쿠키를 전송하지 않음
+  > 서버가 쿠키를 전송할 때, `SameSite`라는 쿠키 속성를 전송, same-site인지 cross-site인지 확인하여, 설정값에 따라 쿠키를 전송하지 않음
   - 설정 값
+    - None (모든 요청에 쿠키 전송)
     - Strict (cross-site는 항상 쿠키 전송하지 않음)
     - Lax (cross-site는 GET 요청시에만 쿠키 전송하지 않음)
 - Secret Token
@@ -76,6 +159,16 @@ date: 2024-03-11
 ### Self-Propagation XSS Worm
 > XSS 공격을 통해, 자동으로 공격을 전파하는 기법
 
+- 2가지 접근
+  - DOM Approach
+  ```js
+  let jsCode = document.getElementById('worm').innerHTML;
+  ```
+  - Link Approach
+  ```js
+  let jsCode = '<script src="http://www.example.com/worm.js"></script>';
+  ```
+
 ### 방어
 - 입력값 필터링 : 사용자의 입력값을 필터링하여, 스크립트를 실행하지 않도록 한다
 - Encoding : 사용자의 입력값을 출력할 때, HTML Encoding하여, 스크립트를 실행하지 않도록 한다
@@ -101,7 +194,7 @@ date: 2024-03-11
 - EID에 "EID5002'#"을 삽입 -> PASSWORD 검증을 우증
 ```sql
 SELECT NAME, SALERY, SSN
-FROM EMPLOYE입
+FROM EMPLOYEE
 WHERE EID='EID5002'#' AND PASSWORD='1234';
 ```
 
