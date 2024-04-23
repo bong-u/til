@@ -402,7 +402,7 @@ if (top.location != self.location)
   - 방어를 위한 방법 : User Confirmation, UI Randomization, Visibility Detection on Click
 #### Temporary Integrity
 > 사용자 확인 시점과 클릭 시작 시점 사이의 UI 상태 차이에 대한 무결성
-  - 방어를 위한 방법 : Acess Control Gadgets
+  - 방어를 위한 방법 : Access Control Gadgets
 
 ## SSRF (Server Side Request Forgery)
 
