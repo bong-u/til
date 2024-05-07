@@ -463,3 +463,50 @@ https://expected-host.evil-host
   ```xml
   <!DOCTYPE foo[<!ENTITY xxe SYSTEM "http://localhost/admin">]>
   ```
+
+## 암호기술
+
+### 전통적인 암호기술
+
+#### 암호의 정의
+
+- 암호를 사용하는 목적
+  1. 기밀성 (Confidentiality) : 정보가 노출되지 않아야함
+  2. 자료의 무결성 (Data Integrity) : 데이터가 위변조되면 안됨
+  3. 인증 (Authentication) : 정보의 출처가 정당해야함
+  4. 부인방지 (Non-repudiation) : 사용자가 이를 거부하지 않아야함
+
+- 암호 알고리즘의 기본 조건 (K : Key, M : Message, C : Cipher Text)
+  - 암호화 : E(K, M) = C
+  - 복호화 : D(K, C) = C
+  - E(K, M)과 D(K, C)의 계산은 쉬워야 함
+  - K를 모를때 C에서 M을 계산하는 것은 어려워야 함
+
+- 암호 해독 방법
+  1. Cipher Text Only Attack : 암호문만을 이용하여 평문을 찾는 공격
+  2. Known Plain Text Attack : 암호문과 평문을 이용하여 키를 찾는 공격
+  3. Chosen Plain Text Attack : 평문을 선택하여 암호문을 찾는 공격
+
+#### 암호의 종류
+1. 대칭키(비밀키)(관용키) 암호
+  > 암호화와 복호화에 같은 키를 사용하는 암호
+  - 사용자 n명에 따라 필요한 키의 개수 : n(n-1)/2
+  - 암호 알고리즘의 종류
+    - 블록 암호 (DES, IDEA, AES)
+      > 평문을 블록으로 나누어 암호화하는 방식
+    - 스트림 암호 (RC4)
+      > 평문과 키를 비트 단위로 XOR하여 암호화하는 방식
+  - 한국에서 쓰는 알고리즘 종류 : NEAT, SEED, NES, ARIA
+2. 공개키(비대칭키) 암호
+  > 암호화와 복호화에 다른 키를 사용하는 암호
+  - 사용자 n명에 따라 필요한 키의 개수 : 2n
+  - 기밀성 (Confidentiality) : 공개키로 암호화, 개인키로 복호화
+  - 인증 (Authentication) : 개인키로 암호화, 공개키로 복호화
+  - 키 생성
+  - DH 키 교환
+
+### 암호기술의 활용
+#### 디지털 서명
+- 특성 : 위조불가, 변경 불가, 서명자 인증, 재사용 불가, 부인 방지
+
+### 동형암호와 양자암호 기술
