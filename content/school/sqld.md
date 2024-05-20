@@ -68,11 +68,25 @@ date: 2024-05-09
 
 ### 과목 2 : SQL 기본 및 활용
 
+#### 순수 관계 연산자
+> `SELECT`, `PROJECT`, `JOIN`, `DIVIDE`
+
 #### SQL의 종류
-- DDL : 데이터 정의어 : CREATE, ALTER, DROP
-- DML : 데이터 조작어 : SELECT, INSERT, UPDATE, DELETE
-- DCL : 데이터 제어어 : GRANT, REVOKE
-- TCL : 트랜잭션 제어어 : COMMIT, ROLLBACK
+- DDL : 데이터 정의어 : `CREATE`, `ALTER`, `DROP`, `TRUNCATE`
+- DML : 데이터 조작어 : `SELECT`, `INSERT`, `UPDATE`, `DELETE`
+- DCL : 데이터 제어어 : `GRANT`, `REVOKE`
+- TCL : 트랜잭션 제어어 : `COMMIT`, `ROLLBACK`, `SAVEPOINT`
+
+#### 집합 연산자
+- `UNION` : 합집합
+- `INTERSECT` : 교집합
+- `UNION ALL` : 중복 포함 합집합
+- `EXCEPT` : 차집합 (MS-SQL)
+- `MINUS` : 차집합 (Oracle)
+
+#### PRIOR문
+- `PRIOR 자식 = 부모` : 부모->자식 순방향 전개
+- `PRIOR 부모 = 자식` : 자식->부모 역방향 전개
 
 #### 참조 동작
 - Delete(/Modify) Action : Cascade, Set Null, Set Default, Restrict (부서-사원)
@@ -93,3 +107,12 @@ date: 2024-05-09
 - 일관성 : 트랜잭션은 일관성 있는 상태로 변환한다.
 - 독립성 : 트랜잭션은 다른 트랜잭션에 영향을 미치지 않는다.
 - 지속성 : 트랜잭션이 성공하면 그 결과는 영구적으로 반영된다.
+
+#### 단일행 NULL 관련 함수
+- `NVL(a, b)` : a가 NULL이면 b를 반환
+- `NULLIF(a, b)` : a와 b가 같으면 NULL, 다르면 a를 반환
+- `COALESCE(a, b, c)` : 첫번째 NULL이 아닌 값을 반환
+- `ISNULL(a, b)` : a가 NULL이 아니면 a, NULL이면 b를 반환
+
+#### SELECT문의 실행 순서
+> `FROM` -> `WHERE` -> `GROUP BY` -> `HAVING` -> `SELECT` -> `ORDER BY`
