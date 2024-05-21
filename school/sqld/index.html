@@ -232,11 +232,32 @@ SQLD 대비 정리
 <li><code>CUBE</code> : 모든 소그룹 간의 합계를 계산하는 함수</li>
 <li><code>GROUPING SETS</code> : 특정 소그룹 간의 합계를 계산하는 함수</li>
 </ul>
-<h4 id=rank와-dense_rank>RANK와 DENSE_RANK</h4>
+<h4 id=순위-함수>순위 함수</h4>
 <ul>
-<li>공통점 : 동일한 값이 있을 경우 동일한 순위를 부여</li>
-<li><code>RANK</code> : 동일한 값이 있을 경우 중간 순위를 건너뛰고 순위를 부여</li>
-<li><code>DENSE_RANK</code> : 동일한 값이 있을 경우 중간 순위를 건너뛰지 않고 순차적으로 순위를 부여</li>
+<li><code>RANK</code> : 동일한 값이 있을 경우 동일한 순위를 부여, 이후 중간 순위를 건너뛰고 순위를 부여</li>
+<li><code>DENSE_RANK</code> : 동일한 값이 있을 경우 동일한 순위를 부여, 이후 중간 순위를 건너뛰지 않고 순차적으로 순위를 부여</li>
+<li><code>ROW_NUMBER</code> : 동일한 값이 있을 경우 고유한 순위를 부여</li>
+</ul>
+<h4 id=이전행-다음행-함수>이전행, 다음행 함수</h4>
+<ul>
+<li><code>LAG</code> : 이전 행의 데이터를 가져옴</li>
+<li><code>LEAD</code> : 다음 행의 데이터를 가져옴</li>
+</ul>
+<h4 id=윈도우-함수>윈도우 함수</h4>
+<ul>
+<li><code>OVER</code> : 윈도우 함수를 사용할 때 사용하는 절</li>
+<li><code>PARTITION BY</code> : 윈도우 함수를 적용할 때 그룹을 나누는 기준</li>
+<li><code>ORDER BY</code> : 윈도우 함수를 적용할 때 정렬 기준</li>
+</ul>
+<h4 id=plsql의-특징>PL/SQL의 특징</h4>
+<ul>
+<li>PL/SQL은 Block 구조로 되어있어 각 기능별로 모듈화가 가능하다.</li>
+<li>변수, 상수 등을 선언하여 SQL 문장 간 값을 교환한다.</li>
+<li>IF, LOOP 등의 절차형 언어를 사용하여 절차적인 프로그램이 가능하도록 한다.</li>
+<li>DBMS 정의 에러나 사용자 정의 에러를 정의하여 사용할 수 있다.</li>
+<li>PL/SQL은 Oracle에 내장되어 있으므로 Oracle과 PL/SQL을 지원하는 어떤 서버로도 프로그램을 옮길 수 있다.</li>
+<li>PL/SQL은 응용 프로그램의 성능을 향상시킨다.</li>
+<li>PL/SQL은 여러 SQL 문장을 Block으로 묶고 한 번에 Block 전부를 서버로 보내기 때문에 통신량을 줄일 수 있다.</li>
 </ul>
 </article>
 <div id=meta class=my-16>
