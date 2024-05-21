@@ -210,10 +210,10 @@ SQLD 대비 정리
 </ul>
 <h4 id=단일행-null-관련-함수>단일행 NULL 관련 함수</h4>
 <ul>
-<li><code>NVL(a, b)</code> : a가 NULL이면 b를 반환</li>
+<li><code>NVL(a, b)</code> : a가 NULL이면 b를 반환 (Oracle)</li>
+<li><code>ISNULL(a, b)</code> : a가 NULL이면 b를 반환 (MS-SQL)</li>
 <li><code>NULLIF(a, b)</code> : a와 b가 같으면 NULL, 다르면 a를 반환</li>
 <li><code>COALESCE(a, b, c)</code> : 첫번째 NULL이 아닌 값을 반환</li>
-<li><code>ISNULL(a, b)</code> : a가 NULL이 아니면 a, NULL이면 b를 반환</li>
 </ul>
 <h4 id=select문의-실행-순서>SELECT문의 실행 순서</h4>
 <blockquote>
@@ -259,6 +259,29 @@ SQLD 대비 정리
 <li>PL/SQL은 응용 프로그램의 성능을 향상시킨다.</li>
 <li>PL/SQL은 여러 SQL 문장을 Block으로 묶고 한 번에 Block 전부를 서버로 보내기 때문에 통신량을 줄일 수 있다.</li>
 </ul>
+<h4 id=프로시저와-트리거의-차이>프로시저와 트리거의 차이</h4>
+<table>
+<thead>
+<tr>
+<th>프로시저</th>
+<th>트리거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CREATE PROCEDURE</td>
+<td>CREATE TRIGGER</td>
+</tr>
+<tr>
+<td>EXECUTE 명령어로 실행</td>
+<td>트리거 조건에 의해 자동 실행</td>
+</tr>
+<tr>
+<td>COMMIT, ROLLBACK 가능</td>
+<td>COMMIT, ROLLBACK 불가능</td>
+</tr>
+</tbody>
+</table>
 </article>
 <div id=meta class=my-16>
 <div>
