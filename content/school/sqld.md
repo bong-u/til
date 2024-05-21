@@ -109,10 +109,10 @@ date: 2024-05-09
 - 지속성 : 트랜잭션이 성공하면 그 결과는 영구적으로 반영된다.
 
 #### 단일행 NULL 관련 함수
-- `NVL(a, b)` : a가 NULL이면 b를 반환
+- `NVL(a, b)` : a가 NULL이면 b를 반환 (Oracle)
+- `ISNULL(a, b)` : a가 NULL이면 b를 반환 (MS-SQL)
 - `NULLIF(a, b)` : a와 b가 같으면 NULL, 다르면 a를 반환
 - `COALESCE(a, b, c)` : 첫번째 NULL이 아닌 값을 반환
-- `ISNULL(a, b)` : a가 NULL이 아니면 a, NULL이면 b를 반환
 
 #### SELECT문의 실행 순서
 > `FROM` -> `WHERE` -> `GROUP BY` -> `HAVING` -> `SELECT` -> `ORDER BY`
@@ -150,3 +150,10 @@ date: 2024-05-09
 - PL/SQL은 Oracle에 내장되어 있으므로 Oracle과 PL/SQL을 지원하는 어떤 서버로도 프로그램을 옮길 수 있다.
 - PL/SQL은 응용 프로그램의 성능을 향상시킨다.
 - PL/SQL은 여러 SQL 문장을 Block으로 묶고 한 번에 Block 전부를 서버로 보내기 때문에 통신량을 줄일 수 있다.
+
+#### 프로시저와 트리거의 차이
+| 프로시저 | 트리거 |
+|---|---|
+| CREATE PROCEDURE | CREATE TRIGGER |
+| EXECUTE 명령어로 실행 | 트리거 조건에 의해 자동 실행 |
+| COMMIT, ROLLBACK 가능 | COMMIT, ROLLBACK 불가능 |
