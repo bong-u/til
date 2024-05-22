@@ -57,7 +57,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-05-21</h4>
+<h4 id=date>마지막 수정 : 2024-05-22</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -79,6 +79,10 @@ SQLD 대비 정리
 <li>개념적 데이터 모델링</li>
 <li>물리적 데이터 모델링</li>
 </ol>
+<h4 id=데이터-베이스-모델링의-특징>데이터 베이스 모델링의 특징</h4>
+<blockquote>
+<p>추상화, 단순화, 명확화</p>
+</blockquote>
 <h4 id=데이터베이스-스키마의-구조>데이터베이스 스키마의 구조</h4>
 <ul>
 <li>외부 스키마 : 사용자 관점의 데이터베이스 구조</li>
@@ -102,9 +106,9 @@ SQLD 대비 정리
 </ul>
 <h4 id=속성의-분류>속성의 분류</h4>
 <ul>
-<li>기본 속성</li>
-<li>설계 속성</li>
-<li>파생 속성</li>
+<li>기본 속성 : 본래의 속성</li>
+<li>설계 속성 : 데이터 모델링 과정에서 추가된 속성</li>
+<li>파생 속성 : 다른 속성에 의해 만들어지는 속성</li>
 </ul>
 <h4 id=관계의-표기법>관계의 표기법</h4>
 <ul>
@@ -126,6 +130,13 @@ SQLD 대비 정리
 <li>데이터베이스에 발생되는 트랜잭션의 유형을 파악한다.</li>
 <li>용량과 트랜잭션의 유형에 따라 반정규화를 수행 한다.</li>
 <li>이력모델의 조정, PK/FK조정, 슈퍼타입/서브타입 조정 등을 수행한다.</li>
+</ol>
+<h4 id=조인>조인</h4>
+<ol>
+<li>Nested Loop Join</li>
+<li>Single Loop Join</li>
+<li>Sort Merge Join</li>
+<li>Hash Join</li>
 </ol>
 <h4 id=정규화>정규화</h4>
 <ul>
@@ -201,12 +212,12 @@ SQLD 대비 정리
 </ol>
 </li>
 </ul>
-<h4 id=트랜잭션의-특성>트랜잭션의 특성</h4>
+<h4 id=트랜잭션의-특성-acid>트랜잭션의 특성 (ACID)</h4>
 <ul>
-<li>원자성 : 트랜잭션은 성공 또는 실패로 끝나야 한다.</li>
-<li>일관성 : 트랜잭션은 일관성 있는 상태로 변환한다.</li>
-<li>독립성 : 트랜잭션은 다른 트랜잭션에 영향을 미치지 않는다.</li>
-<li>지속성 : 트랜잭션이 성공하면 그 결과는 영구적으로 반영된다.</li>
+<li>원자성(Atomicity) : 트랜잭션은 성공 또는 실패로 끝나야 한다.</li>
+<li>일관성(Consistency) : 트랜잭션은 일관성 있는 상태로 변환한다.</li>
+<li>독립성(Isolation) : 트랜잭션은 다른 트랜잭션에 영향을 미치지 않는다.</li>
+<li>지속성(Durability) : 트랜잭션이 성공하면 그 결과는 영구적으로 반영된다.</li>
 </ul>
 <h4 id=단일행-null-관련-함수>단일행 NULL 관련 함수</h4>
 <ul>
