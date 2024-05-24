@@ -57,7 +57,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-05-22</h4>
+<h4 id=date>마지막 수정 : 2024-05-25</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -190,6 +190,23 @@ SQLD 대비 정리
 <ul>
 <li><code>PRIOR 자식 = 부모</code> : 부모->자식 순방향 전개</li>
 <li><code>PRIOR 부모 = 자식</code> : 자식->부모 역방향 전개</li>
+</ul>
+<h4 id=서브쿼리의-종류>서브쿼리의 종류</h4>
+<ol>
+<li>일반 서브쿼리 : 하나의 변수처럼 사용</li>
+</ol>
+<ul>
+<li>SingleRow Subquery</li>
+<li>MultieRow Subquery</li>
+<li>MultieColumn Subquery</li>
+</ul>
+<ol start=2>
+<li>인라인 뷰 (Inline View) : 뷰 형태로써 테이블을 리턴하는 서브쿼리. FROM 또는 JOIN절에 사용한다.</li>
+<li>Scalar Subquery : 하나의 칼럼처럼 사용되는 서브쿼리.</li>
+</ol>
+<ul>
+<li>Correlative Subquery : 메인 쿼리의 값을 사용하는 서브쿼리.
+즉 메인 쿼리의 결과로 서브쿼리가 실행되고 그 결과로 메인쿼리가 또 실행되는 서로 연관된 쿼리를 의미합니다.</li>
 </ul>
 <h4 id=참조-동작>참조 동작</h4>
 <ul>
