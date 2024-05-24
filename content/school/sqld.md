@@ -97,6 +97,17 @@ date: 2024-05-09
 - `PRIOR 자식 = 부모` : 부모->자식 순방향 전개
 - `PRIOR 부모 = 자식` : 자식->부모 역방향 전개
 
+#### 서브쿼리의 종류
+1. 일반 서브쿼리 : 하나의 변수처럼 사용
+  - SingleRow Subquery
+  - MultieRow Subquery
+  - MultieColumn Subquery
+2. 인라인 뷰 (Inline View) : 뷰 형태로써 테이블을 리턴하는 서브쿼리. FROM 또는 JOIN절에 사용한다.
+3. Scalar Subquery : 하나의 칼럼처럼 사용되는 서브쿼리.
+* Correlative Subquery : 메인 쿼리의 값을 사용하는 서브쿼리.
+즉 메인 쿼리의 결과로 서브쿼리가 실행되고 그 결과로 메인쿼리가 또 실행되는 서로 연관된 쿼리를 의미합니다.
+
+
 #### 참조 동작
 - Delete(/Modify) Action : Cascade, Set Null, Set Default, Restrict (부서-사원)
     1. Cascade : Master 삭제 시 Child 같이 삭제
