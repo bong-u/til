@@ -1,7 +1,6 @@
 ---
 title: "프론트엔드(react) 면접 준비"
 date: 2024-05-27
-draft: true
 ---
 
 #### React의 특징
