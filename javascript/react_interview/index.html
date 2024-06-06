@@ -1,0 +1,195 @@
+<!doctype html><html>
+<head>
+<title>프론트엔드(react) 면접 준비</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="React의 특징  Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks  DOM  HTML element를 tree …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="프론트엔드(react) 면접 준비">
+<meta property="og:description" content="React의 특징  Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks  DOM  HTML element를 tree …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex block justify-center p-4 text-3xl z-10">
+<div class="flex gap-3">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li></li>
+<li><a href=#react-hooks>React Hooks</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="mt-6 xl:w-5/6">
+<div class="flex flex-col">
+<h4 id=date>마지막 수정 : 2024-06-06</h4>
+</div>
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+프론트엔드(react) 면접 준비
+</h1>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h4 id=react의-특징>React의 특징</h4>
+<ul>
+<li>Component 기반</li>
+<li>Virtual DOM</li>
+<li>JSX</li>
+<li>단방향 데이터 흐름</li>
+<li>생명주기 메소드</li>
+<li>Hooks</li>
+</ul>
+<h4 id=dom>DOM</h4>
+<blockquote>
+<p>HTML element를 tree형태로 표현한 것</p>
+</blockquote>
+<h4 id=virtual-dom>Virtual DOM</h4>
+<blockquote>
+<p>DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식</p>
+</blockquote>
+<ul>
+<li>Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교</li>
+<li>Reconciliation : 변경된 부분만 실제 DOM에 반영</li>
+<li>Batch Update : 여러 개의 변경사항을 한번에 업데이트</li>
+</ul>
+<h4 id=react-component>React Component</h4>
+<ul>
+<li>Class Component
+<ul>
+<li>생명주기 메소드를 포함</li>
+<li>상속을 통해 Component를 생성</li>
+<li>mutable state를 가질 수 있음</li>
+</ul>
+</li>
+<li>Functional Component
+<ul>
+<li>immutable하다</li>
+<li>stateless</li>
+<li>Hooks를 사용</li>
+</ul>
+</li>
+</ul>
+<h4 id=lifecycle-method>LifeCycle Method</h4>
+<ul>
+<li>Mounting
+<ul>
+<li>constructor : 컴포넌트 생성자</li>
+<li>static getDerivedStateFromProps : props로 state를 설정</li>
+<li>render : 컴포넌트 렌더링</li>
+<li>componentDidMount : 컴포넌트가 마운트된 직후</li>
+</ul>
+</li>
+<li>Updating
+<ul>
+<li>static getDerivedStateFromProps : props로 state를 설정</li>
+<li>shouldComponentUpdate : 컴포넌트 업데이트 여부 결정</li>
+<li>render : 컴포넌트 렌더링</li>
+<li>getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전</li>
+<li>componentDidUpdate : 컴포넌트 업데이트 직후</li>
+</ul>
+</li>
+<li>Unmounting
+<ul>
+<li>componentWillUnmount : 컴포넌트가 언마운트되기 직전</li>
+</ul>
+</li>
+</ul>
+<h3 id=react-hooks>React Hooks</h3>
+<blockquote>
+<p>함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능</p>
+</blockquote>
+<h4 id=기본-hooks>기본 Hooks</h4>
+<ul>
+<li>useState
+<blockquote>
+<p>state를 사용</p>
+</blockquote>
+</li>
+<li>useEffect
+<blockquote>
+<p>componentDidMount, componentDidUpdate, componentWillUnmount를 대체</p>
+</blockquote>
+</li>
+<li>useContext
+<blockquote>
+<p>prop 대신 전역 context를 사용 (props drilling 방지)</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=추가-hooks>추가 Hooks</h4>
+<ul>
+<li>useReducer
+<blockquote>
+<p>복잡한 정적 로직, 다음 state가 이전 state에 의존적인 경우 사용 (useState 대체)</p>
+</blockquote>
+</li>
+<li>useRef
+<blockquote>
+<p>렌더링 없이 변경되는 값을 저장</p>
+</blockquote>
+</li>
+<li>useMemo : 메모이제이션
+<blockquote>
+<p>마지막 렌더링 이후 값이 변경되지 않으면 이전 값을 반환</p>
+</blockquote>
+</li>
+<li>useCallback : 콜백 함수를 사용
+<blockquote>
+<p>마지막 렌더링 이후 함수가 변경되지 않으면 이전 함수를 반환</p>
+</blockquote>
+</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/react_utilize_router/>
+<span class=mx-3>◀</span>
+React - 로그인 상태와 중첩 라우팅
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>

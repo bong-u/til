@@ -1,0 +1,638 @@
+<!doctype html><html>
+<head>
+<title>네트워크 보안</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="네트워크 보안 개요 네트워크 보안의 요구사항  기밀성(Confidentiality)  정보를 권한이 없는 개인에게 노출되지 않도록 함
+  무결성(Integrity)  정보와 프로그 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="네트워크 보안">
+<meta property="og:description" content="네트워크 보안 개요 네트워크 보안의 요구사항  기밀성(Confidentiality)  정보를 권한이 없는 개인에게 노출되지 않도록 함
+  무결성(Integrity)  정보와 프로그 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex block justify-center p-4 text-3xl z-10">
+<div class="flex gap-3">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#네트워크-보안-개요>네트워크 보안 개요</a>
+<ul>
+<li><a href=#네트워크-보안의-요구사항>네트워크 보안의 요구사항</a></li>
+<li><a href=#보안-공격의-종류>보안 공격의 종류</a></li>
+<li><a href=#보안-서비스>보안 서비스</a></li>
+<li><a href=#보안-메커니즘>보안 메커니즘</a></li>
+</ul>
+</li>
+<li><a href=#암호-기술의-이해>암호 기술의 이해</a>
+<ul>
+<li><a href=#전통적인-암호-기술>전통적인 암호 기술</a></li>
+<li><a href=#암호-기술의-활용>암호 기술의 활용</a></li>
+<li><a href=#동형암호와-양자암호-기술>동형암호와 양자암호 기술</a></li>
+</ul>
+</li>
+<li><a href=#사용자-인증>사용자 인증</a>
+<ul>
+<li><a href=#사용자-인증-원리>사용자 인증 원리</a></li>
+<li><a href=#비밀번호-기반-인증>비밀번호 기반 인증</a></li>
+<li><a href=#토큰-기반-인증>토큰 기반 인증</a></li>
+<li><a href=#생체-인증>생체 인증</a></li>
+<li><a href=#원격-사용자-인증>원격 사용자 인증</a></li>
+</ul>
+</li>
+<li><a href=#접근-제어>접근 제어</a>
+<ul>
+<li><a href=#접근-제어-원리>접근 제어 원리</a></li>
+<li><a href=#임의-접근-제어-dac-자율적-접근-제어율>임의 접근 제어 (DAC, 자율적 접근 제어율)</a></li>
+<li><a href=#역할-기반-접근-제어>역할 기반 접근 제어</a></li>
+<li><a href=#속성-기반-접근-제어>속성 기반 접근 제어</a></li>
+<li><a href=#강제적-접근-제어-mac>강제적 접근 제어 (MAC)</a></li>
+<li><a href=#신원-신용장-접근-관리-icam>신원, 신용장, 접근 관리 (ICAM)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="mt-6 xl:w-5/6">
+<div class="flex flex-col">
+<h4 id=date>마지막 수정 : 2024-06-06</h4>
+</div>
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+네트워크 보안
+</h1>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=네트워크-보안-개요>네트워크 보안 개요</h2>
+<h3 id=네트워크-보안의-요구사항>네트워크 보안의 요구사항</h3>
+<ul>
+<li>기밀성(Confidentiality)
+<blockquote>
+<p>정보를 권한이 없는 개인에게 노출되지 않도록 함</p>
+</blockquote>
+</li>
+<li>무결성(Integrity)
+<blockquote>
+<p>정보와 프로그램은 인가된 방식으로만 변경되도록 함</p>
+</blockquote>
+</li>
+<li>가용성(Availability)
+<blockquote>
+<p>정보 자산에 대해 적절한 시간에 접근 가능하도록 함</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=보안-공격의-종류>보안 공격의 종류</h3>
+<ol>
+<li>소극적 공격(Passive Attack)
+<ul>
+<li>정보를 도청하거나 감시하는 공격</li>
+<li>방어방법 : 암호화</li>
+</ul>
+</li>
+<li>적극적 공격(Active Attack)
+<ul>
+<li>정보를 변조하거나 삭제하는 공격</li>
+<li>방어방법 : 메시지 인증</li>
+</ul>
+</li>
+</ol>
+<h3 id=보안-서비스>보안 서비스</h3>
+<ol>
+<li>인증(Authentication)
+<blockquote>
+<p>사용자의 신원을 확인하는 과정</p>
+</blockquote>
+<ul>
+<li>대등 개체 인증, 데이터-근원지 인증</li>
+</ul>
+</li>
+<li>접근 제어(Access Control)
+<blockquote>
+<p>자원을 불법적으로 사용하지 못하도록 방지하는 것</p>
+</blockquote>
+</li>
+<li>데이터 기밀성(Data Confidentiality)
+<blockquote>
+<p>데이터의 불법적 노출을 막는 것</p>
+</blockquote>
+<ul>
+<li>연결기밀성, 비연결 기밀성, 선별된-필드 기밀성, 트래픽-흐름 기밀성</li>
+</ul>
+</li>
+<li>데이터 무결성(Data Integrity)
+<blockquote>
+<p>수신된 데이터가 송신된 데이터와 일치하는지 확인하는 것</p>
+</blockquote>
+<ul>
+<li>연결형 데이터 무결성, 비연결형 데이터 무결성</li>
+<li>복구 가능한 데이터 무결성, 복구 불가능한 데이터 무결성</li>
+<li>선별된-필드 연결 무결성, 비연결 무결성, 선별된-필드 비연결 무결성</li>
+</ul>
+</li>
+<li>부인 봉쇄 (Non-repudiation)
+<blockquote>
+<p>통신의 한 주체가 통신에 참여했던 사실을 부인하는 것을 방지</p>
+</blockquote>
+</li>
+<li>가용성 서비스 (Availability Service)
+<blockquote>
+<p>서비스를 사용할 수 있는 상태를 유지하는 것</p>
+</blockquote>
+</li>
+</ol>
+<h3 id=보안-메커니즘>보안 메커니즘</h3>
+<h4 id=특정-보안-메커니즘>특정 보안 메커니즘</h4>
+<blockquote>
+<p>특정 프로토콜 계층에서 구현되는 메커니즘</p>
+</blockquote>
+<ul>
+<li>인증</li>
+<li>암호화</li>
+<li>디지털 서명</li>
+<li>접근 제어</li>
+<li>데이터 무결성</li>
+<li>인증 교환</li>
+<li>트래픽 패딩</li>
+<li>경로 제어</li>
+<li>공증</li>
+</ul>
+<h4 id=일반-보안-메커니즘>일반 보안 메커니즘</h4>
+<blockquote>
+<p>계층과 서비스에 독립적인 메커니즘</p>
+</blockquote>
+<ul>
+<li>신뢰받는 기능</li>
+<li>보안 레이블</li>
+<li>사건 탐지</li>
+<li>보안 감사 추적</li>
+<li>보안 복구</li>
+</ul>
+<h2 id=암호-기술의-이해>암호 기술의 이해</h2>
+<h3 id=전통적인-암호-기술>전통적인 암호 기술</h3>
+<h4 id=암호를-사용하는-목적>암호를 사용하는 목적</h4>
+<ul>
+<li>비밀성 유지 (Confidentiality)</li>
+<li>무결성 유지 (Data Integrity)</li>
+<li>사용자 또는 자료의 출처 인증 (Authentication)</li>
+<li>부인 방지 (Non-repudiation)</li>
+</ul>
+<h4 id=암호-해독>암호 해독</h4>
+<blockquote>
+<p>해독자는 암호 시스템을 알고 있지만, 키만 모름</p>
+</blockquote>
+<ul>
+<li>Cipher Text Only Attack : 암호문 단독 공격</li>
+<li>Know Plain Text Attack : 알려진 평문 공격</li>
+<li>Chosen Plain Text Attack : 선택적 평문 공격</li>
+</ul>
+<h4 id=공개키-암호화-비밀키-암호의-비교>공개키 암호화 비밀키 암호의 비교</h4>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>공개키 암호</th>
+<th>비밀키 암호</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>키의 관계</td>
+<td>암호화 키 != 복호화 키</td>
+<td>암호화 키 = 복호화 키</td>
+</tr>
+<tr>
+<td>키의 개수</td>
+<td>2n</td>
+<td>n(n-1)/2</td>
+</tr>
+<tr>
+<td>1인당 필요한 비밀키</td>
+<td>1</td>
+<td>n-1</td>
+</tr>
+<tr>
+<td>속도</td>
+<td>비효율적</td>
+<td>효율적</td>
+</tr>
+</tbody>
+</table>
+<h4 id=대칭키비밀키-암호>대칭키(비밀키) 암호</h4>
+<ul>
+<li>종류
+<ul>
+<li>블록 암호 : 블록 단위로 암호화
+<blockquote>
+<p>DES, IDEA, AES</p>
+</blockquote>
+</li>
+<li>스트림 암호 : 비트 단위로 암호화
+<blockquote>
+<p>RC4, A5/1</p>
+</blockquote>
+</li>
+<li>한국에서 사용하는 알고리즘
+<blockquote>
+<p>NEAT, SEED, NES, ARIA</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id=공개키비대칭키-암호>공개키(비대칭키) 암호</h4>
+<ul>
+<li>종류
+<ul>
+<li>소인수 분해 기반 : RSA</li>
+<li>이산 대수 기반 : ElGamal</li>
+<li>타원 곡선 기반</li>
+</ul>
+</li>
+<li>키 생성
+<ul>
+<li>서로소인 두 소수 p, q를 선택</li>
+<li>n = p * q</li>
+<li>φ(n) = (p-1)(q-1)</li>
+<li>gcd(e, φ(n)) = 1을 만족하는 e 선택</li>
+<li>d * e mod φ(n) = 1을 만족하는 d 선택</li>
+<li>공개키 : {e, n}, 비밀키 : {d, n}</li>
+</ul>
+</li>
+<li>암호화
+<blockquote>
+<p>C = M^e mod n</p>
+</blockquote>
+</li>
+<li>복호화
+<blockquote>
+<p>M = C^d mod n</p>
+</blockquote>
+</li>
+<li>DH (Diffie Hellman) 키 공유
+<ul>
+<li>q(소수), α(q의 원시근, α&lt;q)</li>
+<li>임의 수 $X_A &lt; q$를 만족하는 $X_A$를 선택</li>
+<li>공개할 $Y_A = \alpha^{X_A} mod\ q$</li>
+<li>상대방이 생성하는 비밀키 K = $Y_A^{X_B} mod\ q$</li>
+</ul>
+</li>
+</ul>
+<h3 id=암호-기술의-활용>암호 기술의 활용</h3>
+<h4 id=디지털-서명>디지털 서명</h4>
+<ul>
+<li>특성
+<blockquote>
+<p>위조 불가, 변경 불가, 서명자 인증, 재사용 불가, 부인 방지</p>
+</blockquote>
+</li>
+<li>서명자의 비밀키로 암호화</li>
+<li>서명자의 공개키로 복호화</li>
+</ul>
+<h4 id=단방향-해시-함수를-이용한-메시지-인증>단방향 해시 함수를 이용한 메시지 인증</h4>
+<ul>
+<li>해시 함수의 요건
+<ul>
+<li>단방향성 : H(x) = h일때, x를 찾는 것이 불가능해야한다</li>
+<li>약한 충돌 저항성 : H(x)=H(y)를 만족하는 y(=x)를 찾는 것이 불가능해야한다</li>
+<li>강한 충돌 저항성 : H(x)=H(y)를 만족하는 (x, y)를 찾는 것이 불가능해야한다</li>
+</ul>
+</li>
+</ul>
+<h4 id=공개키-기반-구조>공개키 기반 구조</h4>
+<ul>
+<li>인증서
+<blockquote>
+<p>공개키와 사용자 정보를 포함한 전자 문서</p>
+</blockquote>
+<ul>
+<li>표준 : X.509 v3</li>
+</ul>
+</li>
+<li>PKI (Public Key Infrastructure)
+<blockquote>
+<p>공개키를 관리하고 인증하는 구조</p>
+</blockquote>
+<ul>
+<li>CA (Certificate Authority) : 인증서 발급</li>
+<li>RA (Registration Authority) : 사용자 등록</li>
+</ul>
+</li>
+</ul>
+<h3 id=동형암호와-양자암호-기술>동형암호와 양자암호 기술</h3>
+<h4 id=동형암호>동형암호</h4>
+<blockquote>
+<p>암호화된 상태에서 연산을 수행한 결과를 복호화하면 원문과 같은 결과를 얻는 암호화 기법</p>
+</blockquote>
+<ul>
+<li>부분 동형 암호 : 덧셈과 곱셈 중에서 하나의 연산만 지원</li>
+<li>준동형 암호 : 연산의 횟수에 제한이 존재</li>
+<li>완전 동형 암호 : 임의의 계산을 수행 가능</li>
+<li>활용
+<ul>
+<li>암호화된 상태로 연산을 하기 때문에 보안성이 높음</li>
+</ul>
+</li>
+</ul>
+<h4 id=양자-내성-암호-pqc-post-quantum-cryptography>양자 내성 암호 (PQC: Post Quantum Cryptography)</h4>
+<blockquote>
+<p>양자 컴퓨터에 의한 공격으로부터 안전한 공개키 암호</p>
+</blockquote>
+<ul>
+<li>QKD(Quantum Key Distribution) : 양자 통신을 위해 비밀키를 분배/관리하는 기술</li>
+<li>QRNG(Quantum Random Number Generator) : 양자 난수 생성기</li>
+</ul>
+<h2 id=사용자-인증>사용자 인증</h2>
+<h3 id=사용자-인증-원리>사용자 인증 원리</h3>
+<ul>
+<li>인증 절차
+<ol>
+<li>신원 확인 단계</li>
+<li>입증 단계</li>
+</ol>
+</li>
+<li>NIST의 전자 인증 모델</li>
+<li>인증 수단
+<ul>
+<li>알고 있는 것을 통한 인증 : 비밀번호</li>
+<li>소유물을 통한 인증 : OTP 기기, 인증서</li>
+<li>생체 조직을 통한 인증 : 지문, 망막</li>
+<li>행동을 통한 인증 : 목소리 패턴, 필적</li>
+</ul>
+</li>
+<li>보존 등급 영향 프로파일
+<ul>
+<li>보증레벨 : 신뢰서 정도에 따라 4가지 등급으로 분류</li>
+</ul>
+</li>
+</ul>
+<h3 id=비밀번호-기반-인증>비밀번호 기반 인증</h3>
+<ul>
+<li>공격 유형
+<ul>
+<li>오프라인 사전 공격</li>
+<li>특정 계정 공격</li>
+<li>잘 알려진 패스워드 공격, 대입 공격</li>
+<li>단일 사용자에 대한 패스워드 추측</li>
+<li>단말기 강탈</li>
+<li>사용자 실수 이용</li>
+<li>다중 비밀 번호 사용</li>
+<li>컴퓨터 모니터링 : 통신 패킷 분석</li>
+</ul>
+</li>
+<li>해시화된 비밀번호 사용
+<ul>
+<li>Salt의 역할
+<blockquote>
+<p>비밀번호가 같아도 다른 해시값을 가지도록 함</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>패스워드 크랙킹
+<ul>
+<li>사전 공격</li>
+<li>레인보우 테이블 공격 : 모든 솔트에 대한 해시 값을 계산해 놓은 테이블을 이용</li>
+</ul>
+</li>
+<li>패스워드 선택 기법
+<ul>
+<li>사용자 교육</li>
+<li>컴퓨터 발생 패스워드</li>
+<li>패스워드 검사의 활성화 : 자체 패스워드 크래커 실행</li>
+<li>사전 패스워드 검사 : 패스워드 안정성 검사</li>
+</ul>
+</li>
+</ul>
+<h3 id=토큰-기반-인증>토큰 기반 인증</h3>
+<h4 id=종류>종류</h4>
+<ul>
+<li>메모리 카드</li>
+<li>스마트 카드 : 임베디드 마이크로프로세서 포함</li>
+</ul>
+<h3 id=생체-인증>생체 인증</h3>
+<ul>
+<li>기술 정확도 : 확률 밀도 함수로 표현하면 정규 분포를 따름</li>
+<li>FAR (False Acceptance Rate) : 거짓 수락률</li>
+<li>FRR (False Rejection Rate) : 거짓 거부율</li>
+<li>EER (Equal Error Rate) : FAR과 FRR이 같은 지점</li>
+</ul>
+<h3 id=원격-사용자-인증>원격 사용자 인증</h3>
+<ul>
+<li>멀티 팩터 인증 : 두 요소 이상을 사용한 인증</li>
+<li>멀티 채널 인증 : 다양한 채널을 통해 인증</li>
+</ul>
+<h4 id=인증-프로토콜>인증 프로토콜</h4>
+<ul>
+<li>패스워드 프로토콜
+<ol>
+<li>호스트가 난수를 생성, 사용자에게 전송</li>
+<li>사용자는 패스워드와 난수를 조합하여 해시값을 생성, 전송</li>
+</ol>
+</li>
+<li>토큰 프로토콜
+<ol>
+<li>호스트가 난수를 생성, 사용자에게 전송</li>
+<li>사용자는 토큰을 사용하여 난수를 암호화, 전송</li>
+</ol>
+</li>
+<li>정적 생체 프로토콜
+<ol>
+<li>호스트는 난수와 암호화를 위한 식별자를 전송</li>
+<li>사용자는 이를 사용하여 생체 정보를 암호화, 전송</li>
+</ol>
+</li>
+<li>동적 생체 프로토콜
+<ol>
+<li>호스트가 사용자에게 랜덤 시퀀스나 난수를 전송</li>
+<li>사용자는 이를 말하거나, 글자를 쓰는 등의 동작을 수행, 암호화 후 전송</li>
+</ol>
+</li>
+</ul>
+<h2 id=접근-제어>접근 제어</h2>
+<h3 id=접근-제어-원리>접근 제어 원리</h3>
+<h4 id=접근제어-철학>접근제어 철학</h4>
+<ul>
+<li>접근통제 영역
+<ul>
+<li>관리적 통제</li>
+<li>기술적 통제</li>
+<li>물리적 통제</li>
+</ul>
+</li>
+<li>접근 제어 원칙
+<ul>
+<li>알 필요성 원칙</li>
+<li>최소 권한 원칙</li>
+<li>최대 권한 원칙</li>
+<li>직무 분리 원칙</li>
+</ul>
+</li>
+</ul>
+<h4 id=접근-제어-기본-요소>접근 제어 기본 요소</h4>
+<ul>
+<li>주제 : 객체에 접근 가능한 존재 : owner, group, other</li>
+<li>객체 : 접근이 제어되는 자원 : 파일 또는 레코드</li>
+<li>접근 권한 : 주체가 객체에 접근할 수 있는 방법 : 읽기, 쓰기, 실행 등</li>
+</ul>
+<h4 id=접근-제어-요구-사항>접근 제어 요구 사항</h4>
+<ul>
+<li>닫힌 정책 : 화이트리스트 관리</li>
+<li>열린 정책 : 블랙리스트 관리</li>
+</ul>
+<h4 id=접근-제어-정책>접근 제어 정책</h4>
+<ul>
+<li>임의 접근 제어 (DAC)</li>
+<li>강제적 접근 제어 (MAC)</li>
+<li>역할 기반 접근 제어 (RBAC)</li>
+<li>속성 기반 접근 제어 (ABAC)</li>
+</ul>
+<h3 id=임의-접근-제어-dac-자율적-접근-제어율>임의 접근 제어 (DAC, 자율적 접근 제어율)</h3>
+<blockquote>
+<p>한 개체가 자신의 의지대로 다른 개체에게 권한을 부여하는 방식</p>
+</blockquote>
+<h4 id=접근-제어-목록-access-control-list>접근 제어 목록 (access control list)</h4>
+<pre><code>&gt; 개체별로 접근 권한을 명시하는 방식
+</code></pre>
+<h4 id=인가-테이블>인가 테이블</h4>
+<h4 id=확장된-접근-제어-매트릭스>확장된 접근 제어 매트릭스</h4>
+<h4 id=unix-파일-접근-제어>UNIX 파일 접근 제어</h4>
+<ul>
+<li>Set-UID : 실행할 때, euid를 소유자의 id로 설정됨
+<ul>
+<li>ex) -rwsr-xr-x : 4755</li>
+</ul>
+</li>
+<li>Set-GID : 실행할 때, egid를 소유그룹의 id로 설정됨
+<ul>
+<li>ex) -rwxr-sr-x : 2755</li>
+</ul>
+</li>
+<li>패스워드 파일 : /etc/shadow : &mdash;&mdash;&mdash;- : 000</li>
+</ul>
+<h3 id=역할-기반-접근-제어>역할 기반 접근 제어</h3>
+<blockquote>
+<p>사용자의 역할에 따라 접근 권한을 부여하는 방식</p>
+</blockquote>
+<h4 id=역할-계층---rbac1>역할 계층 - RBAC1</h4>
+<blockquote>
+<p>역할 구조는 기관 내 역할의 계층 구조를 나타내는 수단</p>
+</blockquote>
+<h4 id=제약전제조건의-의미와-종류---rbac2>제약(전제조건)의 의미와 종류 - RBAC2</h4>
+<ul>
+<li>제약의 종류
+<ul>
+<li>상호 배타적인 역할 : 직무와 능력을 분리</li>
+<li>cardinality : 역할에 관한 최대숫자를 설정</li>
+<li>전제 조건 : 특정 역할이 다른 명시된 역할에 할당 되었다면, 사용자는 그 역할에만 할당될 수 있다</li>
+</ul>
+</li>
+</ul>
+<h3 id=속성-기반-접근-제어>속성 기반 접근 제어</h3>
+<blockquote>
+<p>자원과 주체의 성질의 특성에 대한 조건을 표현하여 접근 권한을 정의하는 방식</p>
+</blockquote>
+<h4 id=속성>속성</h4>
+<blockquote>
+<p>주체, 객체 환경 조건, 권한에 의해 미리 정의되고 할당된 요구 동작의 특정 측면을 정의하는 성질</p>
+</blockquote>
+<ul>
+<li>유형
+<ul>
+<li>주체 속성 : 사용자, 응용 프로그램, 프로세스, 디바이스</li>
+<li>객체 속성 : 디바이스, 파일, 프로그램, 네트워크 등</li>
+<li>환경 속성 : 날짜, 시간, 네트워크 보안 레벨 등</li>
+</ul>
+</li>
+</ul>
+<h4 id=abac의-논리-구조>ABAC의 논리 구조</h4>
+<ul>
+<li>ACL 접근 체인</li>
+<li>ABAC 신뢰 체인</li>
+</ul>
+<h4 id=정책>정책</h4>
+<blockquote>
+<p>조직 내에서 주체의 권한과 환경 조건에서 자원 혹은 객체들이 보호되는 것에 기반한 허가된 행위를 관리하는 규칙과 관계의 집합</p>
+</blockquote>
+<h3 id=강제적-접근-제어-mac>강제적 접근 제어 (MAC)</h3>
+<blockquote>
+<p>객체에 포함된 정보의 비밀성과 이러한 비밀성의 접근 정보에 대하여 주체가 갖는 권한에 근거하여 객체에 대한 접근을 제한하는 방법</p>
+</blockquote>
+<h4 id=기밀성에-따른-접근-권한-제어>기밀성에 따른 접근 권한 제어</h4>
+<ul>
+<li>No read up (단순 보안 속성)
+<blockquote>
+<p>보안 수준이 낮은 주체는 보안 수준이 높은 객체를 읽을 수 없음</p>
+</blockquote>
+</li>
+<li>No write down (*(스타) 보안 특성)
+<blockquote>
+<p>보안 수준이 높은 주체는 보안 수준이 낮은 객체에 기록할 수 없음</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=무결성에-따른-접근-권한-제어>무결성에 따른 접근 권한 제어</h4>
+<ul>
+<li>No read up (단순 무결성 특성)
+<blockquote>
+<p>보안 수준이 높은 주체는 보안 수준이 낮은 객체를 읽을 수 없음</p>
+</blockquote>
+</li>
+<li>No write down (*(스타) 무결성 특성)
+<blockquote>
+<p>보안 수준이 낮은 주체는 보안 수준이 높은 객체에 기록할 수 없음</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=신원-신용장-접근-관리-icam>신원, 신용장, 접근 관리 (ICAM)</h3>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/sqld/>
+<span class=mx-3>◀</span>
+SQLD 대비 정리
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
