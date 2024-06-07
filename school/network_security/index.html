@@ -82,12 +82,32 @@
 <li><a href=#신원-신용장-접근-관리-icam>신원, 신용장, 접근 관리 (ICAM)</a></li>
 </ul>
 </li>
+<li><a href=#서비스-거부-공격>서비스 거부 공격</a>
+<ul>
+<li><a href=#서비스-거부-공격-1>서비스 거부 공격</a></li>
+<li><a href=#플러딩-공격>플러딩 공격</a></li>
+<li><a href=#분산-서비스-거부-공격>분산 서비스 거부 공격</a></li>
+<li><a href=#응용프로그램-기반-대역폭-공격>응용프로그램 기반 대역폭 공격</a></li>
+<li><a href=#반사-및-증폭-공격>반사 및 증폭 공격</a></li>
+<li><a href=#dos-공격-방어-예방-대응>DoS 공격 방어, 예방, 대응</a></li>
+</ul>
+</li>
+<li><a href=#침입-탐지와-침입-차단>침입 탐지와 침입 차단</a>
+<ul>
+<li><a href=#침입자>침입자</a></li>
+<li><a href=#침입-탐지>침입 탐지</a></li>
+<li><a href=#방화벽>방화벽</a></li>
+<li><a href=#통합-위협-관리-utm>통합 위협 관리 (UTM)</a></li>
+<li><a href=#허니팟>허니팟</a></li>
+<li><a href=#스노트>스노트</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-06-06</h4>
+<h4 id=date>마지막 수정 : 2024-06-08</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -619,6 +639,245 @@
 </li>
 </ul>
 <h3 id=신원-신용장-접근-관리-icam>신원, 신용장, 접근 관리 (ICAM)</h3>
+<h2 id=서비스-거부-공격>서비스 거부 공격</h2>
+<h3 id=서비스-거부-공격-1>서비스 거부 공격</h3>
+<ul>
+<li>전통적인 DoS 공격
+<ul>
+<li>플러딩 핑 명령
+<blockquote>
+<p>대상 조직에 대해 네트워크 연결 기능을 제압하는 것이 목적</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>시작 주소 스푸핑
+<ul>
+<li>위조된 소스 주소 사용</li>
+<li>후방 산란(backscatter) 트래픽을 이용해 대응</li>
+</ul>
+</li>
+</ul>
+<h4 id=syn-스푸핑>SYN 스푸핑</h4>
+<ul>
+<li>일반적인 DoS공격</li>
+<li>연결을 관리하는 테이블을 넘치게 함</li>
+<li>Flooding 공격에 비해 적은 트래픽으로 공격 가능</li>
+<li>공격자 입장
+<ul>
+<li>스푸핑된 시스템이 존재한다면 Reset 패킷을 수신</li>
+<li>존재하지 않으면 타이머에 의한 재전송 후 엔트리 삭제</li>
+<li>Reset으로 반응하지 않는 주소를 사용</li>
+</ul>
+</li>
+</ul>
+<h3 id=플러딩-공격>플러딩 공격</h3>
+<ul>
+<li>프로토콜에 따라 분류
+<ul>
+<li>ICMP 플러딩</li>
+<li>UDP 플러딩</li>
+<li>TCP SYN 플러딩</li>
+</ul>
+</li>
+</ul>
+<h4 id=ddos-distributed-denial-of-service>DDoS (Distributed Denial of Service)</h4>
+<blockquote>
+<p>여러 대의 컴퓨터를 사용하여 대상 시스템을 공격하는 방식</p>
+</blockquote>
+<h3 id=분산-서비스-거부-공격>분산 서비스 거부 공격</h3>
+<h4 id=세션-개시-프로토콜sip-플러드>세션 개시 프로토콜(SIP) 플러드</h4>
+<ul>
+<li>세션 개시 프로토콜 : VoIP 기술에 대한 표준 프로토콜</li>
+</ul>
+<h3 id=응용프로그램-기반-대역폭-공격>응용프로그램 기반 대역폭 공격</h3>
+<h4 id=http-기반-공격>HTTP 기반 공격</h4>
+<ul>
+<li>스파이더링(spidering)
+<blockquote>
+<p>특정 HTTP 링크에서 시작되며, 재귀적 방식으로 제공되는 웹사이트에 모든 링크를 따르는 봇</p>
+</blockquote>
+</li>
+<li>R-U-DEAD-YET (RUDY) 공격
+<blockquote>
+<p>Content-Length를 크게 설정하여 서버의 지연을 유발하는 기법</p>
+</blockquote>
+</li>
+<li>Slowloris 공격
+<blockquote>
+<p>비정상적인 헤더 값을 서버로 요청하여 연결을 유지하여, 서버가 헤더를 기다리게 하는 공격</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=반사-및-증폭-공격>반사 및 증폭 공격</h3>
+<h4 id=반사-공격>반사 공격</h4>
+<ul>
+<li>TCP SYN 스푸핑 공격</li>
+<li>DNS 반사 공격</li>
+</ul>
+<h4 id=증폭-공격-smurfs>증폭 공격 (smurfs)</h4>
+<ul>
+<li>DNS 증폭 공격
+<ul>
+<li>공격자가 타겟 시스템의 스푸핑 소스 주소를 담고 있는 DNS 연쇄적 요청</li>
+<li>적은 요청으로 많은 트래픽을 발생시키는 DNS 행위를 이용</li>
+<li>방어책 : 스푸핑 소스 주소의 사용을 방지</li>
+</ul>
+</li>
+</ul>
+<h3 id=dos-공격-방어-예방-대응>DoS 공격 방어, 예방, 대응</h3>
+<h4 id=dos-공격-예방>DoS 공격 예방</h4>
+<ul>
+<li>스푸핑 소스 주소 차단</li>
+<li>TCP 연결 관련 코드를 수정</li>
+<li>IP 다이렉트 브로드캐스팅 기능 차단</li>
+<li>의심스러운 서비스나 부호조합 차단</li>
+<li>capcha를 이용해 자동화된 요청 차단</li>
+<li>알맞은 표준 시스템 보안 관행화</li>
+<li>미러 서버 또는 복제 서버의 사용</li>
+</ul>
+<h4 id=dos-공격-대응>DoS 공격 대응</h4>
+<ul>
+<li>공격 유형 확인 : 패킷 캡처</li>
+<li>ISP로 패킷의 흐름을 역추적 : 높은 비용 발생</li>
+<li>비상 사태 계획 구현</li>
+<li>사고 대응 계획 업데이트</li>
+</ul>
+<h4 id=dns-싱크홀-적용>DNS 싱크홀 적용</h4>
+<blockquote>
+<p>좀비와 C&C 서버의 통신을 차단하는 방법</p>
+</blockquote>
+<h4 id=ddos-대피소>DDoS 대피소</h4>
+<h2 id=침입-탐지와-침입-차단>침입 탐지와 침입 차단</h2>
+<h3 id=침입자>침입자</h3>
+<ul>
+<li>침입자 유형
+<ul>
+<li>사이버 범죄자</li>
+<li>해킹주의자</li>
+<li>정부 후원 집단</li>
+<li>기타</li>
+</ul>
+</li>
+<li>행동 패턴
+<ol>
+<li>공격 대상 포착 및 정보 수집</li>
+<li>초기 접속</li>
+<li>권한 상승</li>
+<li>정보 수집 또는 시스템 공격</li>
+<li>접근 관리</li>
+<li>추적 회피</li>
+</ol>
+</li>
+</ul>
+<h3 id=침입-탐지>침입 탐지</h3>
+<ul>
+<li>보안 침입 : 침입자가 허가 권한 없이 시스템 (또는 자원)을 빼내거나 액세스하려는 시도로 구성된 사건의 조합</li>
+<li>침입 탐지 : 허가되지 않은 방식으로 시스템 자원에서의 접근 시도를 발견 및 실시간으로 알려주는 목적의 시스템을 모니터링하고 분석하는 보안 서비스</li>
+</ul>
+<h4 id=침입-탐지-시스템-ids>침입 탐지 시스템 (IDS)</h4>
+<ul>
+<li>호스트 기반 IDS</li>
+<li>네트워크 기반 IDS</li>
+<li>분산 IDS 또는 하이브리드 IDS</li>
+</ul>
+<h4 id=분석-방법>분석 방법</h4>
+<ul>
+<li>이상 징후 탐지
+<ul>
+<li>행동 기반 탐지 : 행동 패턴을 기반으로 탐지</li>
+<li>시그니처 탐지 : 알려진 공격 패턴을 기반으로 탐지</li>
+</ul>
+</li>
+<li>시그니처 방식 또는 휴리스틱 방식</li>
+</ul>
+<h4 id=호스트-기반-ids>호스트 기반 IDS</h4>
+<ul>
+<li>HIDS</li>
+</ul>
+<blockquote>
+<p>취약하거나 민감한 시스템에 특수 보안 소프트웨어 계층을 추가</p>
+</blockquote>
+<ul>
+<li>데이터 소스
+<ul>
+<li>시스템 호출 추적</li>
+<li>로그 파일
+<ul>
+<li>네이티브 감사 기록 : 시스템이 생성하는 로그 파일</li>
+<li>특정 감사 기록 : IDS에 의해 요구된 정보만을 기록하는 수집 시설</li>
+</ul>
+</li>
+<li>파일 무결성 체크섬</li>
+<li>레지스트리 액세스</li>
+</ul>
+</li>
+<li>USTAT 액션 vs SunOS 이벤트 유형</li>
+<li>분산 호스트 기반 침입 탐지</li>
+</ul>
+<h4 id=네트워크-기반-ids>네트워크 기반 IDS</h4>
+<ul>
+<li>NIDS
+<blockquote>
+<p>네트워크 트래픽을 모니터링하여 침입을 탐지</p>
+</blockquote>
+</li>
+<li>NIDS 센서 배치
+<ul>
+<li>인라인 센서 : 네트워크 세그먼트에 삽입되어 그 센서를 통과하는 트래픽만 감지</li>
+<li>수동 센서 : 네트워크 트래픽 사본을 감시</li>
+</ul>
+</li>
+<li>침입 탐지 기법
+<ul>
+<li>시그니처 탐지</li>
+<li>이상 징후 감지</li>
+</ul>
+</li>
+<li>Stateful protocol analysis
+<blockquote>
+<p>트래픽의 상태를 추적하여 비정상적인 트래픽을 탐지</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=방화벽>방화벽</h3>
+<ul>
+<li>기능
+<ul>
+<li>접근 통제</li>
+<li>사용자 인증</li>
+<li>감사 및 로그 기능</li>
+<li>주소 변환 기능 (NAT)</li>
+</ul>
+</li>
+<li>종류
+<ul>
+<li>호스트 기반 방화벽</li>
+<li>네트워크 기반 방화벽</li>
+</ul>
+</li>
+</ul>
+<h3 id=통합-위협-관리-utm>통합 위협 관리 (UTM)</h3>
+<blockquote>
+<p>방화벽, IDS, IPS, 백신 등의 다양한 보안솔루션의 기능을 하나로 통합한 장비</p>
+</blockquote>
+<ul>
+<li>편의성이 높고 비용을 절감할 수 있음</li>
+</ul>
+<h3 id=허니팟>허니팟</h3>
+<blockquote>
+<p>공격자의 공격을 유도하여 공격자의 행동을 분석하는 시스템</p>
+</blockquote>
+<h3 id=스노트>스노트</h3>
+<blockquote>
+<p>호스트 또는 네트워크 기반의 오픈소스 IDS</p>
+</blockquote>
+<ul>
+<li>패킷 디코더 : 프로토콜 헤더 식별 및 격리</li>
+<li>탐지 엔진 : 규칙 집합을 기반으로 각 패킷을 분석</li>
+<li>로거 : 규칙과 일치하는 각 패킷을 소형으로 저장</li>
+<li>경고 : 탐지된 패킷에 대해 경고를 보냄</li>
+</ul>
 </article>
 <div id=meta class=my-16>
 <div>
