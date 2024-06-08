@@ -102,6 +102,23 @@
 <li><a href=#스노트>스노트</a></li>
 </ul>
 </li>
+<li><a href=#ssltlsvpn>SSL/TLS/VPN</a>
+<ul>
+<li><a href=#ssl의-기본-개념>SSL의 기본 개념</a></li>
+<li><a href=#ssl-vs-tls>SSL vs TLS</a></li>
+<li><a href=#ssltls-활용>SSL/TLS 활용</a></li>
+<li><a href=#ssltls-취약점>SSL/TLS 취약점</a></li>
+<li><a href=#https-패킷-차단-기술-및-이슈>HTTPS 패킷 차단 기술 및 이슈</a></li>
+<li><a href=#tls-악용과-대응-기술>TLS 악용과 대응 기술</a></li>
+</ul>
+</li>
+<li><a href=#ipsec>IPSec</a>
+<ul>
+<li></li>
+<li><a href=#프로토콜>프로토콜</a></li>
+<li><a href=#espencapsulating-security-payload>ESP(Encapsulating Security Payload)</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -878,6 +895,221 @@
 <li>로거 : 규칙과 일치하는 각 패킷을 소형으로 저장</li>
 <li>경고 : 탐지된 패킷에 대해 경고를 보냄</li>
 </ul>
+<h2 id=ssltlsvpn>SSL/TLS/VPN</h2>
+<h3 id=ssl의-기본-개념>SSL의 기본 개념</h3>
+<h4 id=ssltls-프로토콜-구성>SSL/TLS 프로토콜 구성</h4>
+<ul>
+<li>Handshake Layer : Handshake, Cipher spec 변경, Alert 프로토콜로 구성</li>
+<li>Record Layer : 단편화, 압축, 무결성, 암호화 기능을 제공하는 Record 프로토콜로 구성</li>
+</ul>
+<h4 id=ssltls-handshake>SSL/TLS Handshake</h4>
+<ol>
+<li>client->server
+<ul>
+<li>hello</li>
+</ul>
+</li>
+<li>server->client
+<ul>
+<li>hello</li>
+<li>certificate : 서버 인증서</li>
+<li>server key exchange : 서버 키 교환</li>
+<li>certificate_request : 클라이언트 인증서 요청 (선택)</li>
+<li>hello done</li>
+</ul>
+</li>
+<li>client->server
+<ul>
+<li>certificate : 클라이언트 인증서 (선택)</li>
+<li>client key exchange : 클라이언트 키 교환</li>
+<li>certificate_verify : 서버 인증서 검증 (선택)</li>
+<li>change cipher spec</li>
+<li>finished</li>
+</ul>
+</li>
+<li>server->client
+<ul>
+<li>change cipher spec</li>
+<li>finished</li>
+</ul>
+</li>
+</ol>
+<h4 id=change-cipher-spec-protocol>Change Cipher Spec Protocol</h4>
+<blockquote>
+<p>상대방에게 새로운 암호화 방식을 사용하도록 알리기 위해 사용</p>
+</blockquote>
+<h4 id=alert-protocol>Alert Protocol</h4>
+<blockquote>
+<p>오류 발생시 상대방에게 오류를 통보하기 위해 사용</p>
+</blockquote>
+<ul>
+<li>경고와 심각으로 분류, 심각의 경우 연결 종료</li>
+</ul>
+<h4 id=record-protocol>Record Protocol</h4>
+<ul>
+<li>동작과정 : 단편화 -> 압축(선택) -> MAC 첨부 -> 암호화 -> SSL 레코드 헤더 붙이기</li>
+<li>MAC : 키 공유과정에서 도출된 비밀키 사용</li>
+<li>암호화 : 압축된 메시지와 MAC을 대칭 암호로 암호화</li>
+</ul>
+<h3 id=ssl-vs-tls>SSL vs TLS</h3>
+<ul>
+<li>Handshake에서의 차이점
+<ul>
+<li>TLS로 발전하면서 Handshake 프로세스를 줄임</li>
+<li>사용하는 총 암호 그룹 수를 줄여 프로세스 속도를 향상</li>
+</ul>
+</li>
+<li>Alert에서의 차이점
+<ul>
+<li>알림 메시지 유형이 추가됨</li>
+<li>TLS Alert는 보안을 위해 암호화되어 전송됨</li>
+</ul>
+</li>
+<li>메시지 인증에서의 차이점
+<ul>
+<li>SSL은 MAC을 사용, TLS는 HMAC을 사용</li>
+</ul>
+</li>
+<li>Cipher suite에서의 차이점
+<ul>
+<li>취약한 알고리즘(RC4, DES) 사용 중단</li>
+<li>신규 키 교환, 검증, 암호화, MAC 알고리즘 적용</li>
+<li>TLS는 버전 별로 지원하는 Cipher suite가 다름</li>
+</ul>
+</li>
+</ul>
+<h3 id=ssltls-활용>SSL/TLS 활용</h3>
+<h4 id=tls-서버-구축-방법>TLS 서버 구축 방법</h4>
+<ol>
+<li>키쌍 생성</li>
+<li>생성한 공개키를 넣어서 CSR 생성, 개인키로 전자 서명</li>
+<li>CSR을 인증서 발급기관에 전송</li>
+<li>인증서 발급기관은 CSR의 전자 서명을 CSR에 포함된 공개키로 서명 검증</li>
+<li>사용자의 공개키와 추가정보(도메인, 이메일 등)를 추가하여 SSL 인증서 발급</li>
+<li>웹서버에 적용</li>
+</ol>
+<h4 id=ssltls-서버의-보안-강화>SSL/TLS 서버의 보안 강화</h4>
+<ul>
+<li>HSTS (HTTP Strict Transport Security)
+<blockquote>
+<p>HTTPS로만 통신하도록 강제하는 기술</p>
+</blockquote>
+<ul>
+<li>헤더에 <code>Strict-Transport-Security</code>를 설정</li>
+<li>max-age 기간동안 자동 적용</li>
+</ul>
+</li>
+</ul>
+<h3 id=ssltls-취약점>SSL/TLS 취약점</h3>
+<ul>
+<li>TLSv1.2이전의 프로토콜은 취약점이 존재</li>
+</ul>
+<h4 id=poodle-padding-oracle-on-downgraded-legacy-encryption>POODLE (Padding Oracle On Downgraded Legacy Encryption)</h4>
+<blockquote>
+<p>블록 암호화 기법인 CBC 모드 사용시 암호문이 MAC에 의해 보호되지 않는 취약점</p>
+</blockquote>
+<h4 id=drown-decrypting-rsa-with-obsolete-and-weakened-encryption>DROWN (Decrypting RSA with Obsolete and Weakened eNcryption)</h4>
+<blockquote>
+<p>공격자가 SSLv2 proves를 송신하여 키를 찾아낼 수 있는 취약점</p>
+</blockquote>
+<h4 id=beast-browser-exploit-against-ssltls>BEAST (Browser Exploit Against SSL/TLS)</h4>
+<blockquote>
+<p>CBC의 취약점을 이용해 HTTPS 쿠키를 해독할 수 있는 취약점</p>
+</blockquote>
+<h4 id=freak-factoring-rsa-export-keys>FREAK (Factoring RSA Export Keys)</h4>
+<blockquote>
+<p>SSL 서버가 공격에 의해 수출용 RSA를 허용하도록 다운그레이드 시킨후 Brute-force로 키를 찾아내는 취약점</p>
+</blockquote>
+<h4 id=logjam>Logjam</h4>
+<blockquote>
+<p>SSL 서버가 공격에 의해 수출용 DHE를 허용하도록 다운그레이드 시킨후 Brute-force로 키를 찾아내는 취약점</p>
+</blockquote>
+<h4 id=heartbleed>Heartbleed</h4>
+<blockquote>
+<p>OpenSSL 1.0.1의 메모리 누수 취약점</p>
+</blockquote>
+<h4 id=취약점-대응>취약점 대응</h4>
+<ul>
+<li>서버 관리자 : 취약한 프로토콜, Cipher suite를 사용하지 않도록 설정, 철저한 비밀키 관리</li>
+<li>클라이언트 사용자 : 최신 버전의 브라우저 유지, 서버의 인증서 확인, 안전하지 않은 사이트 방문 자제</li>
+<li>공통 : 최신 SLS/TLS 프로토콜 소프트웨어 사용</li>
+</ul>
+<h3 id=https-패킷-차단-기술-및-이슈>HTTPS 패킷 차단 기술 및 이슈</h3>
+<h4 id=dns-서버-응답-변조-및-ip-차단>DNS 서버 응답 변조 및 IP 차단</h4>
+<blockquote>
+<p>DNS 서버의 응답을 변조하여 HTTPS 접속을 차단하는 기술</p>
+</blockquote>
+<ul>
+<li>CDN 서버 경유를 통해 우회하는 사례가 등장 -> 패킷 분석 기반 차단</li>
+</ul>
+<h4 id=패킷-분석-기반-차단>패킷 분석 기반 차단</h4>
+<blockquote>
+<p>패킷을 분석하여 HTTPS 패킷을 차단하는 기술</p>
+</blockquote>
+<ul>
+<li>DPI (Deep Packet Inspection) : 패킷의 헤더와 페이로드를 분석하여 차단</li>
+</ul>
+<h4 id=https-sni-기반-차단>HTTPS SNI 기반 차단</h4>
+<ul>
+<li>TLS 통신 표준을 역이용한 차단 방법</li>
+<li>SNI는 Client Hello 단계에서 평문으로 전송된다는 특성을 활용하여 차단</li>
+</ul>
+<h3 id=tls-악용과-대응-기술>TLS 악용과 대응 기술</h3>
+<h4 id=악용사례>악용사례</h4>
+<ul>
+<li>정보 유출 경로로의 악용
+<blockquote>
+<p>SSL/TLS 기술을 역이용하여 내부 정보 유출 시 내용을 알 수 없도록 함</p>
+</blockquote>
+</li>
+<li>악성 코드 유입 통로로의 악용
+<blockquote>
+<p>SSL/TLS 기술을 이용하여 악성 코드를 유포하는 통로로 사용</p>
+</blockquote>
+</li>
+</ul>
+<h4 id=대응-기술>대응 기술</h4>
+<ul>
+<li>TLS 가시성 확보 기술
+<blockquote>
+<p>SSL/TLS을 복호화 해 가시성을 확보하는 기술</p>
+</blockquote>
+</li>
+<li>TLS Fingering 기술
+<blockquote>
+<p>TLS Handshake 및 트래픽에서 특징을 추출하여 클라이언트 및 서버를 식별하는 기술</p>
+</blockquote>
+<ul>
+<li>메시지를 채취 -> 필드 추출 -> 지문 데이터 생성 -> 저장 및 비교</li>
+<li>기법 사용 예시 : JA3, 인공지능 기반 기술</li>
+</ul>
+</li>
+</ul>
+<h2 id=ipsec>IPSec</h2>
+<blockquote>
+<p>IP 패킷을 보호하기 위한 프로토콜</p>
+</blockquote>
+<h4 id=ipsec-개요>IPSec 개요</h4>
+<ul>
+<li>제공 : 인증, 기밀성, 키 관리</li>
+<li>두 가지 모드
+<ul>
+<li>전송 모드 : 페이로드만 암호화</li>
+<li>터널 모드 : 헤더와 페이로드 모두 암호화</li>
+</ul>
+</li>
+</ul>
+<h3 id=프로토콜>프로토콜</h3>
+<h4 id=ahauthentication-header>AH(Authentication Header)</h4>
+<ul>
+<li>제공 : 인증, 무결성</li>
+</ul>
+<h3 id=espencapsulating-security-payload>ESP(Encapsulating Security Payload)</h3>
+<ul>
+<li>제공 : 인증, 기밀성, 무결성</li>
+<li>ESP 단독 사용 또는 ESP+AH 사용(터널모드)</li>
+</ul>
+<h4 id=ike-internet-key-exchange>IKE (Internet Key Exchange)</h4>
 </article>
 <div id=meta class=my-16>
 <div>
