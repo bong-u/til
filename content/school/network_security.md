@@ -463,3 +463,142 @@ date: 2024-06-05
 - 로거 : 규칙과 일치하는 각 패킷을 소형으로 저장
 - 경고 : 탐지된 패킷에 대해 경고를 보냄
 
+## SSL/TLS/VPN
+
+### SSL의 기본 개념
+#### SSL/TLS 프로토콜 구성
+- Handshake Layer : Handshake, Cipher spec 변경, Alert 프로토콜로 구성
+- Record Layer : 단편화, 압축, 무결성, 암호화 기능을 제공하는 Record 프로토콜로 구성
+#### SSL/TLS Handshake
+1. client->server
+    - hello
+2. server->client
+    - hello
+    - certificate : 서버 인증서
+    - server key exchange : 서버 키 교환
+    - certificate_request : 클라이언트 인증서 요청 (선택)
+    - hello done
+3. client->server
+    - certificate : 클라이언트 인증서 (선택)
+    - client key exchange : 클라이언트 키 교환
+    - certificate_verify : 서버 인증서 검증 (선택)
+    - change cipher spec
+    - finished
+4. server->client
+    - change cipher spec
+    - finished
+
+#### Change Cipher Spec Protocol
+> 상대방에게 새로운 암호화 방식을 사용하도록 알리기 위해 사용
+
+#### Alert Protocol
+> 오류 발생시 상대방에게 오류를 통보하기 위해 사용
+- 경고와 심각으로 분류, 심각의 경우 연결 종료
+
+#### Record Protocol
+- 동작과정 : 단편화 -> 압축(선택) -> MAC 첨부 -> 암호화 -> SSL 레코드 헤더 붙이기
+- MAC : 키 공유과정에서 도출된 비밀키 사용
+- 암호화 : 압축된 메시지와 MAC을 대칭 암호로 암호화
+
+### SSL vs TLS
+- Handshake에서의 차이점
+    - TLS로 발전하면서 Handshake 프로세스를 줄임
+    - 사용하는 총 암호 그룹 수를 줄여 프로세스 속도를 향상
+- Alert에서의 차이점
+    - 알림 메시지 유형이 추가됨
+    - TLS Alert는 보안을 위해 암호화되어 전송됨
+- 메시지 인증에서의 차이점
+    - SSL은 MAC을 사용, TLS는 HMAC을 사용
+- Cipher suite에서의 차이점
+    - 취약한 알고리즘(RC4, DES) 사용 중단
+    - 신규 키 교환, 검증, 암호화, MAC 알고리즘 적용
+    - TLS는 버전 별로 지원하는 Cipher suite가 다름
+
+### SSL/TLS 활용
+#### TLS 서버 구축 방법
+1. 키쌍 생성
+2. 생성한 공개키를 넣어서 CSR 생성, 개인키로 전자 서명
+3. CSR을 인증서 발급기관에 전송
+4. 인증서 발급기관은 CSR의 전자 서명을 CSR에 포함된 공개키로 서명 검증
+5. 사용자의 공개키와 추가정보(도메인, 이메일 등)를 추가하여 SSL 인증서 발급
+6. 웹서버에 적용
+
+#### SSL/TLS 서버의 보안 강화
+- HSTS (HTTP Strict Transport Security)
+    > HTTPS로만 통신하도록 강제하는 기술
+    - 헤더에 `Strict-Transport-Security`를 설정
+    - max-age 기간동안 자동 적용
+
+### SSL/TLS 취약점
+- TLSv1.2이전의 프로토콜은 취약점이 존재
+
+#### POODLE (Padding Oracle On Downgraded Legacy Encryption)
+> 블록 암호화 기법인 CBC 모드 사용시 암호문이 MAC에 의해 보호되지 않는 취약점
+
+#### DROWN (Decrypting RSA with Obsolete and Weakened eNcryption)
+> 공격자가 SSLv2 proves를 송신하여 키를 찾아낼 수 있는 취약점
+
+#### BEAST (Browser Exploit Against SSL/TLS)
+> CBC의 취약점을 이용해 HTTPS 쿠키를 해독할 수 있는 취약점
+
+#### FREAK (Factoring RSA Export Keys)
+> SSL 서버가 공격에 의해 수출용 RSA를 허용하도록 다운그레이드 시킨후 Brute-force로 키를 찾아내는 취약점
+
+#### Logjam
+> SSL 서버가 공격에 의해 수출용 DHE를 허용하도록 다운그레이드 시킨후 Brute-force로 키를 찾아내는 취약점
+
+#### Heartbleed
+> OpenSSL 1.0.1의 메모리 누수 취약점
+
+#### 취약점 대응
+- 서버 관리자 : 취약한 프로토콜, Cipher suite를 사용하지 않도록 설정, 철저한 비밀키 관리
+- 클라이언트 사용자 : 최신 버전의 브라우저 유지, 서버의 인증서 확인, 안전하지 않은 사이트 방문 자제
+- 공통 : 최신 SLS/TLS 프로토콜 소프트웨어 사용
+
+### HTTPS 패킷 차단 기술 및 이슈
+
+#### DNS 서버 응답 변조 및 IP 차단
+> DNS 서버의 응답을 변조하여 HTTPS 접속을 차단하는 기술
+- CDN 서버 경유를 통해 우회하는 사례가 등장 -> 패킷 분석 기반 차단
+
+#### 패킷 분석 기반 차단
+> 패킷을 분석하여 HTTPS 패킷을 차단하는 기술
+- DPI (Deep Packet Inspection) : 패킷의 헤더와 페이로드를 분석하여 차단
+
+#### HTTPS SNI 기반 차단
+- TLS 통신 표준을 역이용한 차단 방법
+- SNI는 Client Hello 단계에서 평문으로 전송된다는 특성을 활용하여 차단
+
+### TLS 악용과 대응 기술
+
+#### 악용사례
+- 정보 유출 경로로의 악용
+    > SSL/TLS 기술을 역이용하여 내부 정보 유출 시 내용을 알 수 없도록 함
+- 악성 코드 유입 통로로의 악용
+    > SSL/TLS 기술을 이용하여 악성 코드를 유포하는 통로로 사용
+
+#### 대응 기술
+- TLS 가시성 확보 기술
+    > SSL/TLS을 복호화 해 가시성을 확보하는 기술
+- TLS Fingering 기술
+    > TLS Handshake 및 트래픽에서 특징을 추출하여 클라이언트 및 서버를 식별하는 기술
+    - 메시지를 채취 -> 필드 추출 -> 지문 데이터 생성 -> 저장 및 비교
+    - 기법 사용 예시 : JA3, 인공지능 기반 기술
+
+## IPSec
+> IP 패킷을 보호하기 위한 프로토콜
+
+#### IPSec 개요
+- 제공 : 인증, 기밀성, 키 관리
+- 두 가지 모드
+    - 전송 모드 : 페이로드만 암호화
+    - 터널 모드 : 헤더와 페이로드 모두 암호화
+
+### 프로토콜
+#### AH(Authentication Header)
+- 제공 : 인증, 무결성
+### ESP(Encapsulating Security Payload)
+- 제공 : 인증, 기밀성, 무결성
+- ESP 단독 사용 또는 ESP+AH 사용(터널모드)
+
+#### IKE (Internet Key Exchange)
