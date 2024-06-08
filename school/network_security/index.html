@@ -75,7 +75,7 @@
 <li><a href=#접근-제어>접근 제어</a>
 <ul>
 <li><a href=#접근-제어-원리>접근 제어 원리</a></li>
-<li><a href=#임의-접근-제어-dac-자율적-접근-제어율>임의 접근 제어 (DAC, 자율적 접근 제어율)</a></li>
+<li><a href=#임의-접근-제어-dac-자율적-접근-제어>임의 접근 제어 (DAC, 자율적 접근 제어)</a></li>
 <li><a href=#역할-기반-접근-제어>역할 기반 접근 제어</a></li>
 <li><a href=#속성-기반-접근-제어>속성 기반 접근 제어</a></li>
 <li><a href=#강제적-접근-제어-mac>강제적 접근 제어 (MAC)</a></li>
@@ -124,7 +124,7 @@
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-06-08</h4>
+<h4 id=date>마지막 수정 : 2024-06-09</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -345,7 +345,7 @@
 <li>q(소수), α(q의 원시근, α&lt;q)</li>
 <li>임의 수 $X_A &lt; q$를 만족하는 $X_A$를 선택</li>
 <li>공개할 $Y_A = \alpha^{X_A} mod\ q$</li>
-<li>상대방이 생성하는 비밀키 K = $Y_A^{X_B} mod\ q$</li>
+<li>상대방이 생성하는 비밀키 $K = Y_A^{X_B} mod\ q$</li>
 </ul>
 </li>
 </ul>
@@ -387,6 +387,7 @@
 <ul>
 <li>CA (Certificate Authority) : 인증서 발급</li>
 <li>RA (Registration Authority) : 사용자 등록</li>
+<li>CRL (Certificate Revocation List) : 폐기된 인증서 목록</li>
 </ul>
 </li>
 </ul>
@@ -542,7 +543,7 @@
 </ul>
 <h4 id=접근-제어-기본-요소>접근 제어 기본 요소</h4>
 <ul>
-<li>주제 : 객체에 접근 가능한 존재 : owner, group, other</li>
+<li>주제 : 객체에 접근 가능한 존재 : user, group, other</li>
 <li>객체 : 접근이 제어되는 자원 : 파일 또는 레코드</li>
 <li>접근 권한 : 주체가 객체에 접근할 수 있는 방법 : 읽기, 쓰기, 실행 등</li>
 </ul>
@@ -558,7 +559,7 @@
 <li>역할 기반 접근 제어 (RBAC)</li>
 <li>속성 기반 접근 제어 (ABAC)</li>
 </ul>
-<h3 id=임의-접근-제어-dac-자율적-접근-제어율>임의 접근 제어 (DAC, 자율적 접근 제어율)</h3>
+<h3 id=임의-접근-제어-dac-자율적-접근-제어>임의 접근 제어 (DAC, 자율적 접근 제어)</h3>
 <blockquote>
 <p>한 개체가 자신의 의지대로 다른 개체에게 권한을 부여하는 방식</p>
 </blockquote>
@@ -603,6 +604,15 @@
 <blockquote>
 <p>자원과 주체의 성질의 특성에 대한 조건을 표현하여 접근 권한을 정의하는 방식</p>
 </blockquote>
+<ul>
+<li>ABAC 모델의 3가지 주요 요소
+<ul>
+<li>구성 내의 존재를 위해 정의된 속성</li>
+<li>ABAC 정책을 위해 정의된 정책 모델</li>
+<li>접근 제어 실행을 위한 정책에 적용되는 구조 모델</li>
+</ul>
+</li>
+</ul>
 <h4 id=속성>속성</h4>
 <blockquote>
 <p>주체, 객체 환경 조건, 권한에 의해 미리 정의되고 할당된 요구 동작의 특정 측면을 정의하는 성질</p>
@@ -659,6 +669,7 @@
 <h2 id=서비스-거부-공격>서비스 거부 공격</h2>
 <h3 id=서비스-거부-공격-1>서비스 거부 공격</h3>
 <ul>
+<li>공격할 수 있는 자원 : 네트워크 대역폭, 시스템 자원, 응용 프로그램 자원</li>
 <li>전통적인 DoS 공격
 <ul>
 <li>플러딩 핑 명령
