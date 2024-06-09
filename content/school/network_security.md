@@ -604,7 +604,7 @@ date: 2024-06-05
 ### 프로토콜
 #### AH(Authentication Header)
 - 제공 : 인증, 무결성
-### ESP(Encapsulating Security Payload)
+#### ESP(Encapsulating Security Payload)
 - 제공 : 인증, 기밀성, 무결성
 - ESP 단독 사용 또는 ESP+AH 사용(터널모드)
 
