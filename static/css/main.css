@@ -85,7 +85,7 @@
   }
 }
 
-@layer utilites {
+@layer utilities {
   .overflow-ellipsis-bundle {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
