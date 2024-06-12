@@ -238,7 +238,7 @@ $$\frac{H_1 H_2 H_3 ... H_n}{P}$$
 - ↦ (mapsto) : 왼쪽 값을 오른쪽 값을 매핑한다
 
 
-## First Order Function
+## First Order Function (F1VAE)
 
 #### F1VAE
 > VAE에 first-order function을 추가한 언어
@@ -297,5 +297,64 @@ $$
 #### Lexical scope vs dynamic scope
 - Lexical scope : identifier의 scope가 컴파일시점에 저의
 - Dynamic scope : identifier의 scope가 실행시점에 결정
+
+## First Class Function (FVAE)
+
+#### First-class function
+> 함수를 값처럼 다루는 프로그래밍 언어의 특성
+
+### Concrete syntax
+```c
+expr ::= let var = expr in expr
+       | (fun var -> expr) // 추가된 것 : 함수 정의
+       | expr expr         // 추가된 것 : 함수 호출
+       | expr + expr
+       | expr - expr
+       | (expr)
+       | number
+       | ~ (expr)
+       | var
+```
+
+#### function applications
+> 함수형 프로그래밍에서는 함수 호출 대신 함수 적용
+
+### Abstract syntax
+
+#### $\lambda x.e$
+$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e \\
+n \in Z\\
+x \in Var
+$$
+
+- $\lambda x.e$ : 함수 정의 (x는 파라미터, e는 함수 몸체)
+    - x는 binding occurence
+    - x의 scope는 e 
+- $e\ e$ : 함수 적용
+    - e1 : 함수로 계산되는 expression
+    - e2 : 인자
+
+#### Closure
+> Closure = Var X Expr X Store
+- FVAE에서는 함수도 "값"이므로 "값"의 확장이 요구된다
+
+#### Multiple parameters
+
+- Concrete syntax
+```c
+expr ::= let var = expr in expr
+       | let var var = expr in expr
+       | (fun var_list -> expr) // 추가된 것 : 함수 정의
+       | expr expr
+       | expr + expr
+       | expr - expr
+       | (expr)
+       | number
+       | ~ (expr)
+       | var
+var_list ::= var var_list | var // 추가된 것 : 파라미터 리스트
+```
+
 
 
