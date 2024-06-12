@@ -98,12 +98,19 @@
 <li><a href=#abstract-memory>Abstract Memory</a></li>
 </ul>
 </li>
-<li><a href=#first-order-function>First Order Function</a>
+<li><a href=#first-order-function-f1vae>First Order Function (F1VAE)</a>
 <ul>
 <li></li>
 <li><a href=#concrete-syntax>Concrete syntax</a></li>
 <li><a href=#abstract-syntax>Abstract syntax</a></li>
 <li><a href=#semantics>Semantics</a></li>
+</ul>
+</li>
+<li><a href=#first-class-function-fvae>First Class Function (FVAE)</a>
+<ul>
+<li></li>
+<li><a href=#concrete-syntax-1>Concrete syntax</a></li>
+<li><a href=#abstract-syntax-1>Abstract syntax</a></li>
 </ul>
 </li>
 </ul>
@@ -456,12 +463,12 @@ $$\frac{H_1 H_2 H_3 &mldr; H_n}{P}$$</p>
 <li>$\sigma$[x↦n](x') : 추상메모리 $\sigma$에서 x를 n으로 업데이트한 후 새로운 추상메모리를 반환</li>
 <li>↦ (mapsto) : 왼쪽 값을 오른쪽 값을 매핑한다</li>
 </ul>
-<h2 id=first-order-function>First Order Function</h2>
+<h2 id=first-order-function-f1vae>First Order Function (F1VAE)</h2>
 <h4 id=f1vae>F1VAE</h4>
 <blockquote>
 <p>VAE에 first-order function을 추가한 언어</p>
 </blockquote>
-<h4 id=first-order-function-1>First-order function</h4>
+<h4 id=first-order-function>First-order function</h4>
 <blockquote>
 <p>변수와 다르게 특별 취급하는 함수</p>
 </blockquote>
@@ -515,6 +522,69 @@ $$</p>
 <li>Lexical scope : identifier의 scope가 컴파일시점에 저의</li>
 <li>Dynamic scope : identifier의 scope가 실행시점에 결정</li>
 </ul>
+<h2 id=first-class-function-fvae>First Class Function (FVAE)</h2>
+<h4 id=first-class-function>First-class function</h4>
+<blockquote>
+<p>함수를 값처럼 다루는 프로그래밍 언어의 특성</p>
+</blockquote>
+<h3 id=concrete-syntax-1>Concrete syntax</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>expr <span style=color:#f92672>::=</span> let var <span style=color:#f92672>=</span> expr in expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>       <span style=color:#f92672>|</span> (fun var <span style=color:#f92672>-&gt;</span> expr) <span style=color:#75715e>// 추가된 것 : 함수 정의
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>       <span style=color:#f92672>|</span> expr expr         <span style=color:#75715e>// 추가된 것 : 함수 호출
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>+</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>-</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>       <span style=color:#f92672>|</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>       <span style=color:#f92672>|</span> number
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>~</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>       <span style=color:#f92672>|</span> var
+</code></pre></div><h4 id=function-applications>function applications</h4>
+<blockquote>
+<p>함수형 프로그래밍에서는 함수 호출 대신 함수 적용</p>
+</blockquote>
+<h3 id=abstract-syntax-1>Abstract syntax</h3>
+<h4 id=lambda-xe>$\lambda x.e$</h4>
+<p>$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e \
+n \in Z\
+x \in Var
+$$</p>
+<ul>
+<li>$\lambda x.e$ : 함수 정의 (x는 파라미터, e는 함수 몸체)
+<ul>
+<li>x는 binding occurence</li>
+<li>x의 scope는 e</li>
+</ul>
+</li>
+<li>$e\ e$ : 함수 적용
+<ul>
+<li>e1 : 함수로 계산되는 expression</li>
+<li>e2 : 인자</li>
+</ul>
+</li>
+</ul>
+<h4 id=closure>Closure</h4>
+<blockquote>
+<p>Closure = Var X Expr X Store</p>
+</blockquote>
+<ul>
+<li>FVAE에서는 함수도 &ldquo;값"이므로 &ldquo;값"의 확장이 요구된다</li>
+</ul>
+<h4 id=multiple-parameters-1>Multiple parameters</h4>
+<ul>
+<li>Concrete syntax</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>expr <span style=color:#f92672>::=</span> let var <span style=color:#f92672>=</span> expr in expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>       <span style=color:#f92672>|</span> let var var <span style=color:#f92672>=</span> expr in expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>       <span style=color:#f92672>|</span> (fun var_list <span style=color:#f92672>-&gt;</span> expr) <span style=color:#75715e>// 추가된 것 : 함수 정의
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>       <span style=color:#f92672>|</span> expr expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>+</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>-</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>       <span style=color:#f92672>|</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>       <span style=color:#f92672>|</span> number
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>~</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>       <span style=color:#f92672>|</span> var
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>var_list <span style=color:#f92672>::=</span> var var_list <span style=color:#f92672>|</span> var <span style=color:#75715e>// 추가된 것 : 파라미터 리스트
+</span></code></pre></div>
 </article>
 <div id=meta class=my-16>
 <div>
