@@ -236,3 +236,66 @@ $$\frac{H_1 H_2 H_3 ... H_n}{P}$$
 - $\sigma$(x) : 추상메모리 $\sigma$에서 x의 값을 반환
 - $\sigma$\[x↦n\](x') : 추상메모리 $\sigma$에서 x를 n으로 업데이트한 후 새로운 추상메모리를 반환
 - ↦ (mapsto) : 왼쪽 값을 오른쪽 값을 매핑한다
+
+
+## First Order Function
+
+#### F1VAE
+> VAE에 first-order function을 추가한 언어
+
+#### First-order function
+> 변수와 다르게 특별 취급하는 함수
+
+#### Higher-order function
+> 함수를 인자로 받거나 함수를 반환하는 함수
+
+### Concrete syntax
+```c
+// single function
+prog ::= decl expr
+// multiple functions
+prog ::= decl_list expr
+decl_list ::= decl decl_list | decl
+// single parameter
+decl ::= def var var = expr endef
+// multiple parameters
+decl ::= def var var_list = expr endef | def var = expr endef
+var_list ::= var var_list | var
+expr_list ::= expr, expr_list | expr
+
+// 공통
+expr ::= let var = expr in expr
+       | var(expr)
+       | expr + expr
+       | expr - expr
+       | (expr)
+       | number
+       | ~ (expr)
+       | var
+```
+
+### Abstract syntax
+#### 추상메모리 사용을 위한 보조함수
+- `Λ(x)` : 함수 추상메모리 Λ에서 함수이름 x의 값을 찾아 반환
+- `Λ[x1 ↦→ (x2, e)]` : 함수 추상메모리 Λ에 함수이름 x1의 값을 (x2, e)로 업데이트한 새로운 함수 추상메모리를 반환
+
+
+#### Multiple parameters
+$$
+p ::= \overline{d}\ e \\
+d ::= def\ x\ \overline{x} = e \\
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ x(\overline{e}) \\
+n \in Z\\
+x \in Var
+$$
+
+### Semantics
+
+#### `e[n/x]`
+> 함수 호출 시, 함수 몸체의 파라미터 변수를 전달된 이자로 치환한 후 계산
+
+#### Lexical scope vs dynamic scope
+- Lexical scope : identifier의 scope가 컴파일시점에 저의
+- Dynamic scope : identifier의 scope가 실행시점에 결정
+
+
