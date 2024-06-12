@@ -98,12 +98,20 @@
 <li><a href=#abstract-memory>Abstract Memory</a></li>
 </ul>
 </li>
+<li><a href=#first-order-function>First Order Function</a>
+<ul>
+<li></li>
+<li><a href=#concrete-syntax>Concrete syntax</a></li>
+<li><a href=#abstract-syntax>Abstract syntax</a></li>
+<li><a href=#semantics>Semantics</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-04-20</h4>
+<h4 id=date>마지막 수정 : 2024-06-12</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -447,6 +455,65 @@ $$\frac{H_1 H_2 H_3 &mldr; H_n}{P}$$</p>
 <li>$\sigma$(x) : 추상메모리 $\sigma$에서 x의 값을 반환</li>
 <li>$\sigma$[x↦n](x') : 추상메모리 $\sigma$에서 x를 n으로 업데이트한 후 새로운 추상메모리를 반환</li>
 <li>↦ (mapsto) : 왼쪽 값을 오른쪽 값을 매핑한다</li>
+</ul>
+<h2 id=first-order-function>First Order Function</h2>
+<h4 id=f1vae>F1VAE</h4>
+<blockquote>
+<p>VAE에 first-order function을 추가한 언어</p>
+</blockquote>
+<h4 id=first-order-function-1>First-order function</h4>
+<blockquote>
+<p>변수와 다르게 특별 취급하는 함수</p>
+</blockquote>
+<h4 id=higher-order-function>Higher-order function</h4>
+<blockquote>
+<p>함수를 인자로 받거나 함수를 반환하는 함수</p>
+</blockquote>
+<h3 id=concrete-syntax>Concrete syntax</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// single function
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span>prog <span style=color:#f92672>::=</span> decl expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e>// multiple functions
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>prog <span style=color:#f92672>::=</span> decl_list expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>decl_list <span style=color:#f92672>::=</span> decl decl_list <span style=color:#f92672>|</span> decl
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e>// single parameter
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span>decl <span style=color:#f92672>::=</span> def var var <span style=color:#f92672>=</span> expr endef
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e>// multiple parameters
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e></span>decl <span style=color:#f92672>::=</span> def var var_list <span style=color:#f92672>=</span> expr endef <span style=color:#f92672>|</span> def var <span style=color:#f92672>=</span> expr endef
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>var_list <span style=color:#f92672>::=</span> var var_list <span style=color:#f92672>|</span> var
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>expr_list <span style=color:#f92672>::=</span> expr, expr_list <span style=color:#f92672>|</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e>// 공통
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#75715e></span>expr <span style=color:#f92672>::=</span> let var <span style=color:#f92672>=</span> expr in expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>       <span style=color:#f92672>|</span> var(expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>+</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>-</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>       <span style=color:#f92672>|</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>       <span style=color:#f92672>|</span> number
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>~</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>       <span style=color:#f92672>|</span> var
+</code></pre></div><h3 id=abstract-syntax>Abstract syntax</h3>
+<h4 id=추상메모리-사용을-위한-보조함수>추상메모리 사용을 위한 보조함수</h4>
+<ul>
+<li><code>Λ(x)</code> : 함수 추상메모리 Λ에서 함수이름 x의 값을 찾아 반환</li>
+<li><code>Λ[x1 ↦→ (x2, e)]</code> : 함수 추상메모리 Λ에 함수이름 x1의 값을 (x2, e)로 업데이트한 새로운 함수 추상메모리를 반환</li>
+</ul>
+<h4 id=multiple-parameters>Multiple parameters</h4>
+<p>$$
+p ::= \overline{d}\ e \
+d ::= def\ x\ \overline{x} = e \
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ x(\overline{e}) \
+n \in Z\
+x \in Var
+$$</p>
+<h3 id=semantics>Semantics</h3>
+<h4 id=enx><code>e[n/x]</code></h4>
+<blockquote>
+<p>함수 호출 시, 함수 몸체의 파라미터 변수를 전달된 이자로 치환한 후 계산</p>
+</blockquote>
+<h4 id=lexical-scope-vs-dynamic-scope>Lexical scope vs dynamic scope</h4>
+<ul>
+<li>Lexical scope : identifier의 scope가 컴파일시점에 저의</li>
+<li>Dynamic scope : identifier의 scope가 실행시점에 결정</li>
 </ul>
 </article>
 <div id=meta class=my-16>
