@@ -476,3 +476,44 @@ $$
 #### Short circuit evaluation
 > 논리식 연산에 있어 결과가 정해진 경우 남은 expression 계산
 
+## minic 2
+- &x: reference
+- *e: dereference
+
+### Concrete syntax
+```c
+prog ::= stmts
+stmts ::= stmt | stmt stmts
+stmt ::= def var;
+       | var = expr;
+       | *expr = expr;
+       | if expr {stmts}
+       | if expr {stmts} else {stmts}
+       | while expr {stmts}
+expr ::= number
+       | var
+       | true
+       | false
+       | &var
+       | *expr
+       | (expr)
+       | expr + expr
+       | expr - expr
+       | expr < expr
+       | expr > expr
+       | expr == expr
+       | expr && expr
+       | expr || expr
+```
+
+### Abstract syntax
+$$
+p ::= \overline{s} \\
+s ::= def\ x\ |\ x = e\ |\ *e = e\ |\ e?\ \overline{s} : \overline{s}\ |\ while\ e\ \overline{s} \\
+e ::= n\ |\ x\ |\ b\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ e\ <\ e\ |\ e\ >\ e\ |\ e\ ==\ e\ |\ e\ \&\&\ e\ |\ e\ ||\ e\ |\ \&x\ |\ *e \\
+b \in \{true, false\}\\
+n \in Z\\
+x \in Var
+$$
+
+### Semantics
