@@ -113,12 +113,39 @@
 <li><a href=#abstract-syntax-1>Abstract syntax</a></li>
 </ul>
 </li>
+<li><a href=#conditional-branch-cfvae>Conditional Branch (CFVAE)</a>
+<ul>
+<li><a href=#concrete-syntax-2>Concrete syntax</a></li>
+<li><a href=#abstract-syntax-2>Abstract syntax</a></li>
+</ul>
+</li>
+<li><a href=#recursion-rcfvae>Recursion (RCFVAE)</a>
+<ul>
+<li><a href=#concrete-syntax-3>Concrete syntax</a></li>
+<li><a href=#abstract-syntax-3>Abstract syntax</a></li>
+</ul>
+</li>
+<li><a href=#minic-1>minic 1</a>
+<ul>
+<li></li>
+<li><a href=#concrete-syntax-4>Concrete syntax</a></li>
+<li><a href=#abstract-syntax-4>Abstract syntax</a></li>
+<li><a href=#semantics-1>Semantics</a></li>
+</ul>
+</li>
+<li><a href=#minic-2>minic 2</a>
+<ul>
+<li><a href=#concrete-syntax-5>Concrete syntax</a></li>
+<li><a href=#abstract-syntax-5>Abstract syntax</a></li>
+<li><a href=#semantics-2>Semantics</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
 <section class="mt-6 xl:w-5/6">
 <div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2024-06-12</h4>
+<h4 id=date>마지막 수정 : 2024-06-13</h4>
 </div>
 <div class="mb-10 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
@@ -584,7 +611,165 @@ $$</p>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>~</span> (expr)
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>       <span style=color:#f92672>|</span> var
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>var_list <span style=color:#f92672>::=</span> var var_list <span style=color:#f92672>|</span> var <span style=color:#75715e>// 추가된 것 : 파라미터 리스트
-</span></code></pre></div>
+</span></code></pre></div><h2 id=conditional-branch-cfvae>Conditional Branch (CFVAE)</h2>
+<h3 id=concrete-syntax-2>Concrete syntax</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>expr</span> <span style=color:#f92672>::=</span> <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>var</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>expr</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>       <span style=color:#f92672>|</span> (<span style=color:#a6e22e>fun</span> <span style=color:#a6e22e>var_list</span> <span style=color:#f92672>-&gt;</span> <span style=color:#a6e22e>expr</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>expr</span> <span style=color:#a6e22e>then</span> <span style=color:#a6e22e>expr</span> <span style=color:#66d9ef>else</span> <span style=color:#a6e22e>expr</span> <span style=color:#75715e>// 추가된 것 : 조건문
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>expr</span> <span style=color:#75715e>// 추가된 것 : 비교연산
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e></span>       <span style=color:#f92672>|</span> (<span style=color:#a6e22e>expr</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>number</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>bool</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>~</span> (<span style=color:#a6e22e>expr</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>var</span>
+</code></pre></div><ul>
+<li>if-then-else가 다른 expression에 비해 우선순위가 낮다고 가정</li>
+</ul>
+<h3 id=abstract-syntax-2>Abstract syntax</h3>
+<p>$$
+e ::= n\ |\ b\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e\ |\ e?e\ : e\ |\ e\ &lt;\ e \
+n \in Z\
+b \in {true, false }
+x \in Var
+$$</p>
+<ul>
+<li>Boolean support as syntatics sugar
+<ol>
+<li>true와 false를 정수로 표현</li>
+<li>true와 false를 closure로 표현</li>
+</ol>
+</li>
+</ul>
+<h4 id=option-1-c-style>Option 1. C style</h4>
+<p>$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e\ |\ e\ ?\ e\ :\ e\ |\ e\ &lt;\ e\
+n \in Z\
+x \in Var
+$$</p>
+<h4 id=option-2-church-boolean>Option 2. Church boolean</h4>
+<p>$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e\ |\ e\ &lt;\ e\
+n \in Z\
+b \in {true, false }\
+x \in Var
+$$</p>
+<h2 id=recursion-rcfvae>Recursion (RCFVAE)</h2>
+<h3 id=concrete-syntax-3>Concrete syntax</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>expr</span> <span style=color:#f92672>::=</span> <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>var</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>expr</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>rec</span> <span style=color:#66d9ef>var</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>expr</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>expr</span> <span style=color:#75715e>// 추가된 것 : 재귀함수
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e></span>       <span style=color:#f92672>|</span> (<span style=color:#a6e22e>fun</span> <span style=color:#66d9ef>var</span> <span style=color:#f92672>-&gt;</span> <span style=color:#a6e22e>expr</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>expr</span> <span style=color:#a6e22e>then</span> <span style=color:#a6e22e>expr</span> <span style=color:#66d9ef>else</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>expr</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>expr</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>       <span style=color:#f92672>|</span> (<span style=color:#a6e22e>expr</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>number</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>       <span style=color:#f92672>|</span> <span style=color:#a6e22e>bool</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>~</span> (<span style=color:#a6e22e>expr</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>var</span>
+</code></pre></div><h3 id=abstract-syntax-3>Abstract syntax</h3>
+<p>$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ let\ rec\ x\ =\ e\ in\ e |\ \lambda x.e\ |\ e\ e\ |\ e\ &lt;\ e \
+n \in Z\
+x \in Var
+$$</p>
+<h2 id=minic-1>minic 1</h2>
+<h4 id=imperative-language-명령형-언어>Imperative language (명령형 언어)</h4>
+<blockquote>
+<p>연속된 command(명령)을 통해 프로그램의 의미를 수행</p>
+</blockquote>
+<h3 id=concrete-syntax-4>Concrete syntax</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>prog <span style=color:#f92672>::=</span> stmts
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>stmts <span style=color:#f92672>::=</span> stmt <span style=color:#f92672>|</span> stmt stmts
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>stmt <span style=color:#f92672>::=</span> var <span style=color:#f92672>=</span> expr;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>if</span> expr {stmts}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>if</span> expr {stmts} <span style=color:#66d9ef>else</span> {stmts}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>expr <span style=color:#f92672>::=</span> number
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>       <span style=color:#f92672>|</span> var
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>       <span style=color:#f92672>|</span> true
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>       <span style=color:#f92672>|</span> false
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>       <span style=color:#f92672>|</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>+</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>-</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>&lt;</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>&gt;</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>==</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>&amp;&amp;</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>||</span> expr
+</code></pre></div><h3 id=abstract-syntax-4>Abstract syntax</h3>
+<p>$$
+p ::= \overline{s} \
+s ::= x = e\ |\ e?\ \overline{s} : \overline{s} \
+e ::= n\ |\ x\ |\ b\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ e\ &lt;\ e\ |\ e\ >\ e\ |\ e\ ==\ e\ |\ e\ &&\ e\ |\ e\ ||\ e \
+n \in Z\
+b \in {true, false}\
+x \in Var
+$$</p>
+<h3 id=semantics-1>Semantics</h3>
+<ul>
+<li>p : MiniC program</li>
+</ul>
+<blockquote>
+<p>Prog -> Store</p>
+</blockquote>
+<ul>
+<li>s : MiniC statement</li>
+</ul>
+<blockquote>
+<p>Store X Stmt -> Store</p>
+</blockquote>
+<ul>
+<li>e : MiniC expression</li>
+</ul>
+<blockquote>
+<p>Store X Expr -> Value</p>
+</blockquote>
+<h4 id=short-circuit-evaluation>Short circuit evaluation</h4>
+<blockquote>
+<p>논리식 연산에 있어 결과가 정해진 경우 남은 expression 계산</p>
+</blockquote>
+<h2 id=minic-2>minic 2</h2>
+<ul>
+<li>&x: reference</li>
+<li>*e: dereference</li>
+</ul>
+<h3 id=concrete-syntax-5>Concrete syntax</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>prog <span style=color:#f92672>::=</span> stmts
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>stmts <span style=color:#f92672>::=</span> stmt <span style=color:#f92672>|</span> stmt stmts
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>stmt <span style=color:#f92672>::=</span> def var;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>       <span style=color:#f92672>|</span> var <span style=color:#f92672>=</span> expr;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>*</span>expr <span style=color:#f92672>=</span> expr;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>if</span> expr {stmts}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>if</span> expr {stmts} <span style=color:#66d9ef>else</span> {stmts}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>while</span> expr {stmts}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>expr <span style=color:#f92672>::=</span> number
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>       <span style=color:#f92672>|</span> var
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>       <span style=color:#f92672>|</span> true
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>       <span style=color:#f92672>|</span> false
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>&amp;</span>var
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>       <span style=color:#f92672>|</span> <span style=color:#f92672>*</span>expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>       <span style=color:#f92672>|</span> (expr)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>+</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>-</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>&lt;</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>&gt;</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>==</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>&amp;&amp;</span> expr
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>       <span style=color:#f92672>|</span> expr <span style=color:#f92672>||</span> expr
+</code></pre></div><h3 id=abstract-syntax-5>Abstract syntax</h3>
+<p>$$
+p ::= \overline{s} \
+s ::= def\ x\ |\ x = e\ |\ *e = e\ |\ e?\ \overline{s} : \overline{s}\ |\ while\ e\ \overline{s} \
+e ::= n\ |\ x\ |\ b\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ e\ &lt;\ e\ |\ e\ >\ e\ |\ e\ ==\ e\ |\ e\ &&\ e\ |\ e\ ||\ e\ |\ &x\ |\ *e \
+b \in {true, false}\
+n \in Z\
+x \in Var
+$$</p>
+<h3 id=semantics-2>Semantics</h3>
 </article>
 <div id=meta class=my-16>
 <div>
