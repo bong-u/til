@@ -356,5 +356,123 @@ expr ::= let var = expr in expr
 var_list ::= var var_list | var // 추가된 것 : 파라미터 리스트
 ```
 
+## Conditional Branch (CFVAE)
 
+### Concrete syntax
+```js
+expr ::= let var = expr in expr
+       | (fun var_list -> expr)
+       | if expr then expr else expr // 추가된 것 : 조건문
+       | expr expr
+       | expr + expr
+       | expr - expr
+       | expr < expr // 추가된 것 : 비교연산
+       | (expr)
+       | number
+       | bool
+       | ~ (expr)
+       | var
+```
+
+- if-then-else가 다른 expression에 비해 우선순위가 낮다고 가정
+
+### Abstract syntax
+$$
+e ::= n\ |\ b\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e\ |\ e?e\ : e\ |\ e\ <\ e \\
+n \in Z\\
+b \in \{true, false \}
+x \in Var
+$$
+
+- Boolean support as syntatics sugar
+    1. true와 false를 정수로 표현
+    2. true와 false를 closure로 표현
+
+#### Option 1. C style
+$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e\ |\ e\ ?\ e\ :\ e\ |\ e\ <\ e\\
+n \in Z\\
+x \in Var
+$$
+
+#### Option 2. Church boolean
+$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ \lambda x.e\ |\ e\ e\ |\ e\ <\ e\\
+n \in Z\\
+b \in \{true, false \}\\
+x \in Var
+$$
+
+## Recursion (RCFVAE)
+
+### Concrete syntax
+```js
+expr ::= let var = expr in expr
+       | let rec var = expr in expr // 추가된 것 : 재귀함수
+       | (fun var -> expr)
+       | if expr then expr else expr
+       | expr expr
+       | expr + expr
+       | expr - expr
+       | expr < expr
+       | (expr)
+       | number
+       | bool
+       | ~ (expr)
+       | var
+```
+
+### Abstract syntax
+$$
+e ::= n\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ let\ x\ =\ e\ in\ e\ |\ let\ rec\ x\ =\ e\ in\ e |\ \lambda x.e\ |\ e\ e\ |\ e\ <\ e \\
+n \in Z\\
+x \in Var
+$$
+
+## minic 1
+
+#### Imperative language (명령형 언어)
+> 연속된 command(명령)을 통해 프로그램의 의미를 수행
+
+### Concrete syntax
+```c
+prog ::= stmts
+stmts ::= stmt | stmt stmts
+stmt ::= var = expr;
+       | if expr {stmts}
+       | if expr {stmts} else {stmts}
+expr ::= number
+       | var
+       | true
+       | false
+       | (expr)
+       | expr + expr
+       | expr - expr
+       | expr < expr
+       | expr > expr
+       | expr == expr
+       | expr && expr
+       | expr || expr
+```
+
+### Abstract syntax
+$$
+p ::= \overline{s} \\
+s ::= x = e\ |\ e?\ \overline{s} : \overline{s} \\
+e ::= n\ |\ x\ |\ b\ |\ x\ |\ e\ +\ e\ |\ e\ -\ e\ |\ e\ <\ e\ |\ e\ >\ e\ |\ e\ ==\ e\ |\ e\ \&\&\ e\ |\ e\ ||\ e \\
+n \in Z\\
+b \in \{true, false\}\\
+x \in Var
+$$
+
+### Semantics
+- p : MiniC program
+> Prog -> Store
+- s : MiniC statement
+> Store X Stmt -> Store
+- e : MiniC expression
+> Store X Expr -> Value
+
+#### Short circuit evaluation
+> 논리식 연산에 있어 결과가 정해진 경우 남은 expression 계산
 
