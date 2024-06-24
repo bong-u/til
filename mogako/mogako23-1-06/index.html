@@ -1,0 +1,125 @@
+<!doctype html><html>
+<head>
+<title>[모각코23하계] 06 : 결과</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="프로그래머스 한 문제 풀기 프로그래머스 - n^2 배열 자르기 (L2) 🧠 Algorithm
+ 1def solution(n, left, right): 2 answer = [] 3 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="[모각코23하계] 06 : 결과">
+<meta property="og:description" content="프로그래머스 한 문제 풀기 프로그래머스 - n^2 배열 자르기 (L2) 🧠 Algorithm
+ 1def solution(n, left, right): 2 answer = [] 3 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex block justify-center p-4 text-3xl z-10">
+<div class="flex gap-3">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#프로그래머스-한-문제-풀기>프로그래머스 한 문제 풀기</a></li>
+<li><a href=#mockmvc-정리하기>MockMvc 정리하기</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="mt-6 xl:w-5/6">
+<div class="flex flex-col">
+<h4 id=date>마지막 수정 : 2024-06-24</h4>
+</div>
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+[모각코23하계] 06 : 결과
+</h1>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=프로그래머스-한-문제-풀기>프로그래머스 한 문제 풀기</h3>
+<div class="h-40 flex px-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="preview flex">
+<div class="flex flex-col w-full mx-5 justify-around">
+<div class="flex justify-between">
+<span class=text-2xl>프로그래머스 - n^2 배열 자르기 (L2)</span>
+<p>🧠 Algorithm</p>
+</div>
+<div class=line-clamp-3>
+1def solution(n, left, right): 2 answer = [] 3 start = (left//n, left%n) 4 end = (right//n, right%n) 5 6 for i in range(start[0], end[0]+1): 7 line = [i+1]*(i+1) + [i for i in range(i+2, n+1)] 8 answer += line 9 10 return answer[start[1]:right-(start[0]*n)+1] 문제 정수 n, left, right가 주어진다 n X n 크기의 2차원 배열을 만든다 i=1,2,3..n에 대해서, 1행 1열부터 i형 i행까지 숫자 i로 채운다 1행, 2행.. n행을 모두 이어붙인 새로운 1차원 배열을 만든다 새로운 1차원 배열에서 left번째 숫자부터 right번째 숫자까지를 배열로 반환하라 TC input n : 3, left : 2, right : 5
+</div>
+</div>
+</a>
+</div>
+<h3 id=mockmvc-정리하기>MockMvc 정리하기</h3>
+<div class="h-40 flex px-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til/spring/mockmvc_param_null/ class="preview flex">
+<div class="flex flex-col w-full mx-5 justify-around">
+<div class="flex justify-between">
+<span class=text-2xl>Issue - MockMvc int타입 param이 null로 들어오는 문제</span>
+<p>🍃 Spring</p>
+</div>
+<div class=line-clamp-3>
+문제상황 MockMvc를 이용하여 Controller를 테스트하고 있었다
+createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다
+UserResponse 내 int타입의 age변수의 값이 null로 들어오는 문제가 있었다
+UserController.java
+1@PostMapping(&amp;#34;/user&amp;#34;) 2public ResponseEntity&amp;lt;SuccessResponse&amp;lt;UserResponse&amp;gt;&amp;gt; createUser(UserRequest user) { 3 return SuccessResponse.get(201, userService.createUser(user)); 4} UserControllerTest.java
+1@Test 2void createUserTest() throws Exception { 3 // Given 4 User user = User.builder() 5 .id(1) 6 .name(&amp;#34;h
+</div>
+</div>
+</a>
+</div>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-06plan/>
+<span class=mx-3>◀</span>
+[모각코23하계] 06 : 계획
+</a>
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-1-00/>
+[모각코24하계] 00 : 목표
+<span class=mx-3>▶</span>
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html><html>
+<head>
+<title>[모각코23하계] 05 : 결과</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="프로그래머스 한 문제 풀기 프로그래머스 - 두 큐 합 같게 만들기 (L2) 🧠 Algorithm
+ 1from collections import deque 2 3def …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="[모각코23하계] 05 : 결과">
+<meta property="og:description" content="프로그래머스 한 문제 풀기 프로그래머스 - 두 큐 합 같게 만들기 (L2) 🧠 Algorithm
+ 1from collections import deque 2 3def …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex block justify-center p-4 text-3xl z-10">
+<div class="flex gap-3">
+<a class=hover-bigger href=https://bong-u.github.io/til/>
+🏠
+</a>
+<a class=hover-bigger href=https://github.com/bong-u/til>
+🐈
+</a>
+<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
+☀️
+</label>
+<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
+🔽
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#프로그래머스-한-문제-풀기>프로그래머스 한 문제 풀기</a></li>
+<li><a href=#jpa-정리하기>JPA 정리하기</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="mt-6 xl:w-5/6">
+<div class="flex flex-col">
+<h4 id=date>마지막 수정 : 2024-06-24</h4>
+</div>
+<div class="mb-10 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+[모각코23하계] 05 : 결과
+</h1>
+</div>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=프로그래머스-한-문제-풀기>프로그래머스 한 문제 풀기</h3>
+<div class="h-40 flex px-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til/algorithm/pgs_%EB%91%90_%ED%81%90_%ED%95%A9_%EA%B0%99%EA%B2%8C_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="preview flex">
+<div class="flex flex-col w-full mx-5 justify-around">
+<div class="flex justify-between">
+<span class=text-2xl>프로그래머스 - 두 큐 합 같게 만들기 (L2)</span>
+<p>🧠 Algorithm</p>
+</div>
+<div class=line-clamp-3>
+1from collections import deque 2 3def solution(queue1, queue2): 4 sum1, sum2 = sum(queue1), sum(queue2) 5 dq1 = deque(queue1) 6 dq2 = deque(queue2) 7 cnt = 0 8 9 while cnt &amp;lt;= len(queue1)*2+1 and sum1 != sum2: 10 if sum1 &amp;gt; sum2: 11 tmp = dq1.popleft() 12 dq2.append(tmp) 13 sum1 -= tmp 14 sum2 += tmp 15 elif sum1 &amp;lt; sum2: 16 tmp = dq2.popleft() 17 dq1.append(tmp) 18 sum1 += tmp 19 sum2 -= tmp 20 cnt += 1 21 22 return cnt if sum1 == sum2 else -1 문제 길이가 같은 두 큐가 주어진다 두 큐의 합이 같아지도록 큐의 원소를 교환할
+</div>
+</div>
+</a>
+</div>
+<h3 id=jpa-정리하기>JPA 정리하기</h3>
+<div class="h-40 flex px-3 box rounded-2xl">
+<a href=https://bong-u.github.io/til/spring/jpa2/ class="preview flex">
+<div class="flex flex-col w-full mx-5 justify-around">
+<div class="flex justify-between">
+<span class=text-2xl>Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체</span>
+<p>🍃 Spring</p>
+</div>
+<div class=line-clamp-3>
+프록시 객체 프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다 em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다 JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다 FetchType.EAGER (즉시 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 실제 객체이다 3String name = member.getName(); // 1차 캐시에서 조회한다 FetchType.LAZY (지연 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 프록시 객체이다 3String name = member.
+</div>
+</div>
+</a>
+</div>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-05plan/>
+<span class=mx-3>◀</span>
+[모각코23하계] 05 : 계획
+</a>
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-06plan/>
+[모각코23하계] 06 : 계획
+<span class=mx-3>▶</span>
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
