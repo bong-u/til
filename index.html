@@ -63,6 +63,33 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'177')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/devtools/git_submodule/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Git - Submodule
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🔨</span>
+<span>개발 도구</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/devtools/git_submodule/ class="content-summary text-sm overflow-hidden">
+Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 도구
+용어 슈퍼 프로젝트 : 상위 레포지토리 서브 모듈 : 하위 레포지토리 명령어 super-repository의 “dirA” 라는 디렉토리에 sub-repository를 등록하는 경우
+1$ git submodule add https://github.com/bong-u/sub-repository.git dirA sub-repository의 변경상황을 반영해야하는 경우
+1# 1번째 방법 : sub-repository내에서 pull 해야한다 2$ cd dirA 3$ git pull 4# 2번째 방법 5$ git submodule update --remote 서브모듈을 포함한 프로젝트 클론하기
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-06-25 20:28:30 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/mogako/mogako23-1-00/ class="text-2xl my-3 overflow-ellipsis-bundle">
 [모각코23하계] 00 : 목표
@@ -524,30 +551,6 @@ SQL 기초 공부 DDL (Data Definition Language) CREATE ALTER DROP RENAME TRUNCA
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-1-03/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24동계] 03 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-1-03/ class="content-summary text-sm overflow-hidden">
-Sub Query 단일 행 서브 쿼리 서브쿼리 결과 : 단일 행 결과 : 단일 행 1SELECT USER_ID, USER_NAME, USER_AGE 2FROM USERS 3WHERE TEAM_ID = ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME='BONG' 7); 다중 행 서브 쿼리 서브쿼리 결과 : 다중 행 결과 : 단일행 다중 행 비교 연산자와 함께 사용 (IN, ALL, ANY, SOME) 1SELECT TEAM_ID, TEAM_NAME, TEAM_LOGO_URL 2FROM TEAM 3WHERE TEAM_ID IN ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME='BONG' 7) 다중 컬럼 서브 쿼리 서브쿼리의 결과: 다중 행 결과 : 다중 행 1SELECT TEAM_ID, USER_NAME 2FROM USERS 3WHERE (TEAM_ID, HEIGHT) 4IN ( 5 SELECT TEAM_ID, MIN(HEIGHT) 6 FROM USERS 7 GROUP BY TEAM_ID 8) 9ORDER BY TEAM_ID, USER_NAME 연관 서브 쿼리 1SELECT B.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -577,6 +580,10 @@ Sub Query 단일 행 서브 쿼리 서브쿼리 결과 : 단일 행 결과 : 단
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/sql/>
 <span class="text-xl mr-3">🥞</span>
 <span> SQL (1)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
+<span class="text-xl mr-3">🔨</span>
+<span> 개발 도구 (1)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/issues/>
 <span class="text-xl mr-3">🧐</span>

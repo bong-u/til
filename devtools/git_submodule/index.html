@@ -1,0 +1,126 @@
+<!doctype html><html>
+<head>
+<title>Git - Submodule</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Git Submodule  레포지토리 하위에 다른 저장소를 관리하기 위한 도구
+ 용어  슈퍼 프로젝트 : 상위 레포지토리 서브 모듈 : …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="Git - Submodule">
+<meta property="og:description" content="Git Submodule  레포지토리 하위에 다른 저장소를 관리하기 위한 도구
+ 용어  슈퍼 프로젝트 : 상위 레포지토리 서브 모듈 : …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#git-submodule>Git Submodule</a>
+<ul>
+<li><a href=#용어>용어</a></li>
+<li><a href=#명령어>명령어</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Git - Submodule
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-06-25</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=git-submodule>Git Submodule</h2>
+<blockquote>
+<p>레포지토리 하위에 다른 저장소를 관리하기 위한 도구</p>
+</blockquote>
+<h3 id=용어>용어</h3>
+<ul>
+<li>슈퍼 프로젝트 : 상위 레포지토리</li>
+<li>서브 모듈 : 하위 레포지토리</li>
+</ul>
+<h3 id=명령어>명령어</h3>
+<ul>
+<li>
+<p><code>super-repository</code>의 “dirA” 라는 디렉토리에 <code>sub-repository</code>를 등록하는 경우</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>$ git submodule add https://github.com/bong-u/sub-repository.git dirA
+</code></pre></div></li>
+<li>
+<p><code>sub-repository</code>의 변경상황을 반영해야하는 경우</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e># 1번째 방법 : sub-repository내에서 pull 해야한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>$ cd dirA
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>$ git pull
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e># 2번째 방법</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>$ git submodule update --remote
+</code></pre></div></li>
+<li>
+<p>서브모듈을 포함한 프로젝트 클론하기</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>$ git clone --recurse-submodules http://github.com/bong-u/super-repository.git
+</code></pre></div></li>
+<li>
+<p><code>super-repository</code> 와 <code>sub-repository</code> 를 한번에 push 하기</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e># 서브모듈의 변경사항이 push되지 않았으면 fail</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>$ git push --recurse-submodules<span style=color:#f92672>=</span>check
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e># 서브모듈의 변경사항을 알아서 푸시</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>$ git push --recurse-submoduels<span style=color:#f92672>=</span>on-demand
+</code></pre></div></li>
+<li>
+<p><code>sub-repository</code> 상태 확인</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>$ git submodule status
+</code></pre></div></li>
+<li>
+<p>서브모듈 삭제하기</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>$ git rm -f <span style=color:#f92672>[</span>서브모듈 경로<span style=color:#f92672>]</span>
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
