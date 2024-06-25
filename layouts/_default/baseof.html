@@ -25,9 +25,6 @@
 	<!-- my tailwind css -->
 	<link id="twCSS" rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
 
-	<!-- latex -->
-	{{ partial "latex.html" . }}
-
 	<!-- google analytics -->
 	{{ if not .Site.IsServer }}
 	{{ partial "google-analytics.html" . }}
