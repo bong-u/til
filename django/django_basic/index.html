@@ -1,0 +1,176 @@
+<!doctype html><html>
+<head>
+<title>Django crud 기초</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="개요  장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
+ 프로젝트 구조 1. 2├── db.sqlite3 3├── djtest ( …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="Django crud 기초">
+<meta property="og:description" content="개요  장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
+ 프로젝트 구조 1. 2├── db.sqlite3 3├── djtest ( …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#개요>개요</a></li>
+<li><a href=#프로젝트-구조>프로젝트 구조</a></li>
+<li><a href=#자주-쓰는-명령어>자주 쓰는 명령어</a></li>
+<li><a href=#paste-model-정의>Paste Model 정의</a></li>
+<li><a href=#paste-serializer-정의>Paste Serializer 정의</a></li>
+<li><a href=#pasteview---get-구현>PasteView - get 구현</a></li>
+<li><a href=#urlspy>urls.py</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Django crud 기초
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-06-26</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=개요>개요</h3>
+<blockquote>
+<p>장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.</p>
+</blockquote>
+<h3 id=프로젝트-구조>프로젝트 구조</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>.
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>├── db.sqlite3
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>├── djtest <span style=color:#f92672>(</span>메인 앱<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>│   ├── __init__.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>│   ├── asgi.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>│   ├── settings.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>│   ├── urls.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>│   ├── views.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>│   └── wsgi.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>├── manage.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>├── paste <span style=color:#f92672>(</span>생성한 앱<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>│   ├── __init__.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>│   ├── admin.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>│   ├── apps.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>│   ├── migrations
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>│   ├── models.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>│   ├── serializers.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>│   ├── tests.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>│   ├── urls.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>│   └── views.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>└── requirements.txt
+</code></pre></div><h3 id=자주-쓰는-명령어>자주 쓰는 명령어</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e># 새로운 Django 프로젝트를 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>python manage.py startproject
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e># 새로운 Django 앱을 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>python manage.py startapp
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e># 데이터베이스에 적용할 마이그레이션 파일을 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>python manage.py makemigrations
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e># 마이그레이션 파일을 실제 데이터베이스에 적용</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>python manage.py migrate
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e># 관리자(superuser) 계정을 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>python manage.py createsuperuser
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e># 프로젝트의 테스트 케이스를 실행</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>python manage.py test
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e># 테스트용 서버를 특정 설정으로 실행</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>python manage.py testserver
+</code></pre></div><h3 id=paste-model-정의>Paste Model 정의</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> django.db <span style=color:#f92672>import</span> models
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Paste</span>(models<span style=color:#f92672>.</span>Model):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    title <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    content <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>TextField()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># auto_now_add : 객체가 처음 생성될 때만 현재 날짜와 시간을 자동으로 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    created_at <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>DateTimeField(auto_now_add<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># auto_now : 객체가 저장될 때마다 현재 날짜와 시간을 자동으로 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    updated_at <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>DateTimeField(auto_now<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Meta</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        ordering <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#39;-created_at&#39;</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>def</span> __str__(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>title
+</code></pre></div><h3 id=paste-serializer-정의>Paste Serializer 정의</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> serializers
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> .models <span style=color:#f92672>import</span> Paste
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteSerializer</span>(serializers<span style=color:#f92672>.</span>ModelSerializer):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Meta</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        model <span style=color:#f92672>=</span> Paste
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        fields <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;__all__&#39;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>        <span style=color:#75715e># 직접 지정하는 방법</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>        <span style=color:#75715e># fields = [&#39;title&#39;, &#39;content&#39;]</span>
+</code></pre></div><h3 id=pasteview---get-구현>PasteView - get 구현</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> rest_framework.views <span style=color:#f92672>import</span> APIView
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> rest_framework.response <span style=color:#f92672>import</span> Response
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> status, permissions
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>from</span> .models <span style=color:#f92672>import</span> Paste
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>from</span> .serializers <span style=color:#f92672>import</span> PasteSerializer
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># 모든 사용자에게 접근을 허용</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        pastes <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>all()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(pastes, many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+</code></pre></div><h3 id=urlspy>urls.py</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> .views <span style=color:#f92672>import</span> PasteView
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>urlpatterns <span style=color:#f92672>=</span> [
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    path(<span style=color:#e6db74>&#39;&#39;</span>, PasteView<span style=color:#f92672>.</span>as_view())
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>]
+</code></pre></div>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
