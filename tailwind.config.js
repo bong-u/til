@@ -1,5 +1,4 @@
 module.exports = {
-  darkMode: 'class',
   content: ["./content/**/*.md", "./layouts/**/*.html"],
   plugins: [],
   theme: {
@@ -15,10 +14,13 @@ module.exports = {
       inherit: 'inherit',
       transparent: 'transparent',
       text: "var(--color-text)",
+      textgray: "var(--color-textgray)",
+      black: "var(--color-black)",
       bg: "var(--color-bg)",
       scrollbar: "var(--color-scrollbar)",
       codeinline: "var(--color-codeinline)",
       codebox: "var(--color-codebox)",
+      line: "var(--color-line)",
       box: {
         DEFAULT: "var(--color-box)",
         hover: "var(--color-box-hover)",
@@ -29,7 +31,7 @@ module.exports = {
     extend: {
       fontFamily: {
         "base": [
-          "Noto Sans KR",
+          "Apple SD Gothic Neo",
           "Apple Color Emoji",
           "Segoe UI Emoji",
           "Segoe UI Symbol",

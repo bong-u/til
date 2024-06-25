@@ -1,17 +1,5 @@
 `use strict`;
 
-// 현재 다크모드 여부에 따라 class 추가
-const checkDarkMode = () => {
-    // dark -> light
-    if (localStorage.getItem("theme") === "dark")
-        document.documentElement.classList.add("dark");
-    // light -> dark
-    else {
-        document.documentElement.classList.remove("dark");
-    };
-}
-checkDarkMode();
-
 window.addEventListener('DOMContentLoaded', () => {
     scrollHandler();
 });
@@ -33,23 +21,6 @@ const scrollHandler = () => {
     }
 };
 window.addEventListener('scroll', scrollHandler);
-
-// 다크모드 toggle
-const toggleDarkModeHandler = () => {
-    const buttonEl = document.getElementById('toggleButton');
-    // dark -> light
-    if (localStorage.getItem("theme") === "dark") {
-        localStorage.removeItem("theme");
-        buttonEl.innerText = '🌙';
-    }
-    // light -> dark
-    else {
-        localStorage.setItem("theme", "dark");
-        buttonEl.innerText = '☀️';
-    }
-
-    checkDarkMode();
-};
 
 // 스크롤 최상단 이동
 const scrollToTop = () => {

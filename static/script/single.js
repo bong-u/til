@@ -29,10 +29,7 @@ const loadUtterances = () => {
     scriptElement.setAttribute('crossorigin', "anonymous");
     scriptElement.async = true;
 
-    if (localStorage.getItem("theme") === "dark")
-        scriptElement.setAttribute('theme', "github-dark-orange");
-    else
-        scriptElement.setAttribute('theme', "github-light");
+    scriptElement.setAttribute('theme', "github-light");
 
     const oldChild = commentElement.firstChild;
 
