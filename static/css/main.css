@@ -28,11 +28,17 @@
   }
 
   .box {
-    @apply bg-box hover-bold shadow-lg;
+    @apply overflow-hidden;
   }
 
-  .box:hover {
-    @apply bg-box-hover;
+  .box a {
+    @apply hover-black;
+  }
+
+  .box .content-summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 
   .preview {
@@ -96,5 +102,9 @@
 
   .hover-bigger {
     @apply hover:scale-110 !important;
+  }
+
+  .hover-black {
+    @apply hover:text-black;
   }
 }

@@ -1,17 +1,23 @@
-<header class="flex block justify-center p-4 text-3xl z-10">
-    <div class="flex gap-3">
-        <a class="hover-bigger" href="{{ .Site.BaseURL }}">
-            🏠
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+    <h3>
+        <a href="{{ .Site.BaseURL }}" class="hover-black">
+            {{ .Site.Title }}
         </a>
-        <a class="hover-bigger" href="https://github.com/bong-u/til">
-            🐈
+    </h3>
+    <div class="flex gap-5">
+        <a class="hover-black" href="{{ .Site.BaseURL }}">
+            🏠 home
         </a>
-        <label id="toggleButton" class="cursor-pointer hover-bigger" for="toggleDarkMode">
-            ☀️
-        </label>
-        <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bigger">
+        <a class="hover-black" href="https://github.com/bong-u/til">
+            🐈 repository
+        </a>
+            <!-- <label id="toggleButton" class="cursor-pointer hover-bigger" for="toggleDarkMode">
+                ☀️
+            </label> -->
+        <!-- <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bigger">
             🔽
-        </a>
+
+        </a> -->
     </div>
 </header>
 

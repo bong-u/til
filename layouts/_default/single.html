@@ -11,17 +11,17 @@
 	<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
 		{{ .TableOfContents }}
 	</aside>
-	<section class="mt-6 xl:w-5/6">
+	<section class="my-16 xl:w-5/6">
 		<!-- title, created date, modified date -->
-		<div class="flex flex-col">
-			<h4 id="date">마지막 수정 : {{ .Lastmod.Format "2006-01-02" }}</h4>
-		</div>
-		<div class="mb-10 whitespace-nowrap">
+		<div class="mb-8 whitespace-nowrap">
 			<div class="flex justify-between items-baseline my-4 gap-8">
 				<h1 id="title" class="overflow-ellipsis-bundle text-3xl font-bold p-1">
 					{{ .Title }}
 				</h1>
 			</div>
+		</div>
+		<div class="text-sm flex flex-col mb-8 text-textgray">
+			<h4 id="date">수정일 : {{ .Lastmod.Format "2006-01-02" }}</h4>
 		</div>
 		<!--  -->
 
