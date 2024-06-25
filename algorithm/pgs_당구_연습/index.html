@@ -25,19 +25,18 @@
 <div class="flex w-full flex-col">
 <script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
 <script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex block justify-center p-4 text-3xl z-10">
-<div class="flex gap-3">
-<a class=hover-bigger href=https://bong-u.github.io/til/>
-🏠
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
 </a>
-<a class=hover-bigger href=https://github.com/bong-u/til>
-🐈
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
 </a>
-<label id=toggleButton class="cursor-pointer hover-bigger" for=toggleDarkMode>
-☀️
-</label>
-<a id=scrollButton onclick=scrollToTop() class="cursor-pointer hover-bigger">
-🔽
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
 </a>
 </div>
 </header>
@@ -55,16 +54,16 @@
 </ul>
 </nav>
 </aside>
-<section class="mt-6 xl:w-5/6">
-<div class="flex flex-col">
-<h4 id=date>마지막 수정 : 2023-07-12</h4>
-</div>
-<div class="mb-10 whitespace-nowrap">
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
 <div class="flex justify-between items-baseline my-4 gap-8">
 <h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
 프로그래머스 - 당구 연습 (L2)
 </h1>
 </div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2023-07-12</h4>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(m, n, startX, startY, balls):
