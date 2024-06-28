@@ -1,5 +1,5 @@
 ---
-title: "Django crud 기초"
+title: "Django - crud 기초"
 date: 2024-06-26
 ---
 
