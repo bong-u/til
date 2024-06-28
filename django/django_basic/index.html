@@ -54,10 +54,22 @@ bong-u/til
 <li><a href=#자주-쓰는-명령어>자주 쓰는 명령어</a></li>
 <li><a href=#paste-model-정의>Paste Model 정의</a></li>
 <li><a href=#paste-serializer-정의>Paste Serializer 정의</a></li>
-<li><a href=#pasteview---get-구현>PasteView - get 구현</a></li>
+</ul>
+</li>
+<li><a href=#view-구현>View 구현</a>
+<ul>
+<li><a href=#paste--get-post>/paste : GET, POST</a></li>
+<li><a href=#pasteid--get-put-delete>/paste/:id : GET, PUT, DELETE</a></li>
 <li><a href=#urlspy>urls.py</a></li>
 </ul>
 </li>
+<li><a href=#swagger-적용---view-구현>Swagger 적용 - View 구현</a>
+<ul>
+<li><a href=#paste--get-post-1>/paste : GET, POST</a></li>
+<li><a href=#pasteid--get-put-delete-1>/paste/:id : GET, PUT, DELETE</a></li>
+</ul>
+</li>
+<li><a href=#swagger-적용-결과>swagger 적용 결과</a></li>
 </ul>
 </nav>
 </aside>
@@ -138,29 +150,140 @@ Django crud 기초
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        fields <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;__all__&#39;</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>        <span style=color:#75715e># 직접 지정하는 방법</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>        <span style=color:#75715e># fields = [&#39;title&#39;, &#39;content&#39;]</span>
-</code></pre></div><h3 id=pasteview---get-구현>PasteView - get 구현</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> rest_framework.views <span style=color:#f92672>import</span> APIView
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> rest_framework.response <span style=color:#f92672>import</span> Response
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> status, permissions
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>from</span> .models <span style=color:#f92672>import</span> Paste
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>from</span> .serializers <span style=color:#f92672>import</span> PasteSerializer
+</code></pre></div><h2 id=view-구현>View 구현</h2>
+<blockquote>
+<p>코드의 가독성이 떨어질 수 있지만, RestFul한 API를 구현하기 위해 나름대로 구현을 해보았다.</p>
+</blockquote>
+<h3 id=paste--get-post>/paste : GET, POST</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        pastes <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>all()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(pastes, many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># 모든 사용자에게 접근을 허용</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(data<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>data)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>if</span> serializer<span style=color:#f92672>.</span>is_valid():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            serializer<span style=color:#f92672>.</span>save()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_201_CREATED)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>errors, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_400_BAD_REQUEST)
+</code></pre></div><h3 id=pasteid--get-put-delete>/paste/:id : GET, PUT, DELETE</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(paste)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        pastes <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>all()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(pastes, many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(paste, data<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>data)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        <span style=color:#66d9ef>if</span> serializer<span style=color:#f92672>.</span>is_valid():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            serializer<span style=color:#f92672>.</span>save()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>errors, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_400_BAD_REQUEST)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>        paste<span style=color:#f92672>.</span>delete()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>        <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_204_NO_CONTENT)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>
 </code></pre></div><h3 id=urlspy>urls.py</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> .views <span style=color:#f92672>import</span> PasteView
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> paste.views <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>urlpatterns <span style=color:#f92672>=</span> [
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    path(<span style=color:#e6db74>&#39;&#39;</span>, PasteView<span style=color:#f92672>.</span>as_view())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>]
-</code></pre></div>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    path(<span style=color:#e6db74>&#39;&#39;</span>, PasteView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;paste_list_create&#39;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    path(<span style=color:#e6db74>&#39;&lt;int:pk&gt;/&#39;</span>, PasteDetailView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;paste_get_update_delete&#39;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>]
+</code></pre></div><h2 id=swagger-적용---view-구현>Swagger 적용 - View 구현</h2>
+<h3 id=paste--get-post-1>/paste : GET, POST</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get all pastes&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get all pastes&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>200</span>: PasteSerializer(many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        pastes <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>all()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(pastes, many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Create a new paste&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Create a new paste&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        request_body<span style=color:#f92672>=</span>PasteSerializer,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>201</span>: PasteSerializer},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(data<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>data)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        <span style=color:#66d9ef>if</span> serializer<span style=color:#f92672>.</span>is_valid():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>            serializer<span style=color:#f92672>.</span>save()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_201_CREATED)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>errors, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_400_BAD_REQUEST)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>
+</code></pre></div><h3 id=pasteid--get-put-delete-1>/paste/:id : GET, PUT, DELETE</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>200</span>: PasteSerializer},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(paste)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Update a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Update a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        request_body<span style=color:#f92672>=</span>PasteSerializer,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>200</span>: PasteSerializer},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(paste, data<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>data)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>if</span> serializer<span style=color:#f92672>.</span>is_valid():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>            serializer<span style=color:#f92672>.</span>save()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>errors, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_400_BAD_REQUEST)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Delete a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Delete a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>204</span>: <span style=color:#e6db74>&#34;No Content&#34;</span>},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>        paste<span style=color:#f92672>.</span>delete()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span>        <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_204_NO_CONTENT)
+</code></pre></div><h2 id=swagger-적용-결과>swagger 적용 결과</h2>
+<p><img src=/static/image/django_crud.png alt=swagger></p>
 </article>
 <div id=meta class=my-16>
 <div>
