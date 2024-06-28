@@ -83,32 +83,154 @@ class PasteSerializer(serializers.ModelSerializer):
         # fields = ['title', 'content']
 ```
 
-### PasteView - get 구현
+## View 구현
+> 코드의 가독성이 떨어질 수 있지만, RestFul한 API를 구현하기 위해 나름대로 구현을 해보았다. 
 
+### /paste : GET, POST
 ```python
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status, permissions
-from .models import Paste
-from .serializers import PasteSerializer
-
 class PasteView(APIView):
-    # 모든 사용자에게 접근을 허용
-    permission_classes = [permissions.AllowAny]
-
     def get(self, request):
         pastes = Paste.objects.all()
         serializer = PasteSerializer(pastes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = PasteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
+
+### /paste/:id : GET, PUT, DELETE
+```python
+class PasteDetailView(APIView):
+    def get(self, request, pk):
+        try:
+            paste = Paste.objects.get(pk=pk)
+        except Paste.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PasteSerializer(paste)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        try:
+            paste = Paste.objects.get(pk=pk)
+        except Paste.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PasteSerializer(paste, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        try:
+            paste = Paste.objects.get(pk=pk)
+        except Paste.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        paste.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 ```
 
 ### urls.py
 
 ```python
 from django.urls import path
-from .views import PasteView
+from paste.views import *
 
 urlpatterns = [
-    path('', PasteView.as_view())
+    path('', PasteView.as_view(), name='paste_list_create'),
+    path('<int:pk>/', PasteDetailView.as_view(), name='paste_get_update_delete'),
 ]
 ```
+
+## Swagger 적용 - View 구현
+
+### /paste : GET, POST
+```python
+class PasteView(APIView):
+    @swagger_auto_schema(
+        operation_description="Get all pastes",
+        operation_summary="Get all pastes",
+        responses={200: PasteSerializer(many=True)},
+    )
+    def get(self, request):
+        pastes = Paste.objects.all()
+        serializer = PasteSerializer(pastes, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @swagger_auto_schema(
+        operation_description="Create a new paste",
+        operation_summary="Create a new paste",
+        request_body=PasteSerializer,
+        responses={201: PasteSerializer},
+    )
+    def post(self, request):
+        serializer = PasteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+```
+
+### /paste/:id : GET, PUT, DELETE
+```python
+class PasteDetailView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    @swagger_auto_schema(
+        operation_description="Get a paste by ID",
+        operation_summary="Get a paste by ID",
+        responses={200: PasteSerializer},
+    )
+    def get(self, request, pk):
+        try:
+            paste = Paste.objects.get(pk=pk)
+        except Paste.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PasteSerializer(paste)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @swagger_auto_schema(
+        operation_description="Update a paste by ID",
+        operation_summary="Update a paste by ID",
+        request_body=PasteSerializer,
+        responses={200: PasteSerializer},
+    )
+    def put(self, request, pk):
+        try:
+            paste = Paste.objects.get(pk=pk)
+        except Paste.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PasteSerializer(paste, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @swagger_auto_schema(
+        operation_description="Delete a paste by ID",
+        operation_summary="Delete a paste by ID",
+        responses={204: "No Content"},
+    )
+    def delete(self, request, pk):
+        try:
+            paste = Paste.objects.get(pk=pk)
+        except Paste.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        paste.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+```
+
+## swagger 적용 결과
+
+![swagger](/static/image/django_crud.png)
