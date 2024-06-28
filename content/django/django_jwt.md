@@ -7,6 +7,8 @@ date: 2024-06-28
 
 ## JWT 인증 구현하기
 
+> 장고에서는 `djangorestframework-simplejwt` 패키지를 사용하여 JWT 인증을 구현할 수 있다.
+
 ### requirements
 ```bash
 pip install djangorestframework-simplejwt
@@ -135,3 +137,29 @@ class PasteDetailView(APIView):
             self.permission_classes = [permissions.AllowAny]
         return super().get_permissions()
 ```
+
+### 결과
+- `TokenObtainPairView`를 통해 access token과 refresh token을 발급받을 수 있다.
+- `TokenRefreshView`를 통해 refresh token을 사용하여 access token을 갱신할 수 있다.
+- access token과 refresh token은 settings.py에서 설정한 유효 기간에 따라 만료된다.
+
+## Blacklist 적용
+
+### settings.py
+```python
+INSTALLED_APPS = [
+    ...
+    'rest_framework_simplejwt.token_blacklist',
+]
+```
+
+```python
+SIMPLE_JWT = {
+    ...
+    # 블랙리스트에 토큰을 추가할 때 사용할 모델을 설정
+    'BLACKLIST_AFTER_ROTATION': True,
+}
+```
+
+### 결과
+- `TokenRefreshView`를 통해 토큰이 재발급될 때, 이전 refresh token을 블랙리스트에 추가한다.
