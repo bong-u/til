@@ -61,9 +61,34 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'180')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/django/django_jwt/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Django - JWT 인증
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🔫</span>
+<span>장고</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/django/django_jwt/ class="content-summary text-sm overflow-hidden">
+JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
+JWT 인증 구현하기 requirements 1pip install djangorestframework-simplejwt settings.py 1INSTALLED_APPS = [ 2 ... 3 'rest_framework', 4 'rest_framework_simplejwt', 5] 1REST_FRAMEWORK = { 2 # 기본 인증 클래스를 설정 3 'DEFAULT_AUTHENTICATION_CLASSES': ( 4 'rest_framework_simplejwt.authentication.JWTAuthentication', 5 ), 6 # 기본 스키마 클래스를 설정, CoreAPI를 사용하여 자동으로 API 문서화를 생성 7 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema', 8 # 기본 권한 클래스를 설정, AllowAny를 사용하여 모든 요청을 허용 9 'DEFAULT_PERMISSION_CLASSES': ( 10 'rest_framework.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-06-28 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'178')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/django/django_basic/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Django crud 기초
+Django - crud 기초
 </a>
 </div>
 <div class="flex justify-between items-center">
@@ -524,32 +549,6 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-1-02/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24동계] 02 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-1-02/ class="content-summary text-sm overflow-hidden">
-SQL 기초 공부 DDL (Data Definition Language) CREATE ALTER DROP RENAME TRUNCATE DML (Data Manipulation Language) SELECT INSERT UPDATE DELETE DCL (Data Control Language) GRANT REVOKE TCL (Transaction Control Language) COMMIT ROLLBACK SAVEPOINT SELECT GROUP BY 특정 Column기준으로 그룹화
-그룹화 하지 않은 Column은 집계함수(SUM, COUNT)를 통해서만 조회해야한다
-1SELECT name, COUNT(name), SUM(quantity) FROM 테이블 GROUP BY name; HAVING GROUP BY 절에서 조건을 주기 위해 사용
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -594,7 +593,7 @@ SQL 기초 공부 DDL (Data Definition Language) CREATE ALTER DROP RENAME TRUNCA
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/django/>
 <span class="text-xl mr-3">🔫</span>
-<span> 장고 (1)</span>
+<span> 장고 (2)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/lecture/>
 <span class="text-xl mr-3">👨‍🏫</span>
