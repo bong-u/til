@@ -107,13 +107,13 @@ class PasteView(APIView):
     def post(self, request):
         ...
 
-    # POST 요청에 대해서만 JWT 인증을 사용하도록 설정
-    def get_permissions(self):
-        if self.request.method == "POST":
+   def get_permissions(self):
+        # SAFE_METHODS : GET, HEAD, OPTIONS
+        if self.request.method in permissions.SAFE_METHODS:
+            self.permission_classes = [permissions.AllowAny]
+        else:
             self.authentication_classes = [JWTAuthentication]
             self.permission_classes = [permissions.IsAuthenticated]
-        else:
-            self.permission_classes = [permissions.AllowAny]
         return super().get_permissions()
 
 
@@ -128,14 +128,15 @@ class PasteDetailView(APIView):
     def delete(self, request, pk):
         ...
 
-    # PUT, DELETE 요청에 대해서만 JWT 인증을 사용하도록 설정 
     def get_permissions(self):
-        if self.request.method == "PUT" or self.request.method == "DELETE":
+        # SAFE_METHODS : GET, HEAD, OPTIONS
+        if self.request.method in permissions.SAFE_METHODS:
+            self.permission_classes = [permissions.AllowAny]
+        else:
             self.authentication_classes = [JWTAuthentication]
             self.permission_classes = [permissions.IsAuthenticated]
-        else:
-            self.permission_classes = [permissions.AllowAny]
         return super().get_permissions()
+
 ```
 
 ### 결과
