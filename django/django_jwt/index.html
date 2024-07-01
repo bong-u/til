@@ -166,13 +166,13 @@ Django - JWT 인증
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#f92672>...</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#75715e># POST 요청에 대해서만 JWT 인증을 사용하도록 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;POST&#34;</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>   <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
@@ -187,14 +187,15 @@ Django - JWT 인증
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        <span style=color:#f92672>...</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#75715e># PUT, DELETE 요청에 대해서만 JWT 인증을 사용하도록 설정 </span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;PUT&#34;</span> <span style=color:#f92672>or</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;DELETE&#34;</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>        <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>        <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>
 </code></pre></div><h3 id=결과>결과</h3>
 <ul>
 <li><code>TokenObtainPairView</code>를 통해 access token과 refresh token을 발급받을 수 있다.</li>
