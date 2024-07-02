@@ -1,0 +1,427 @@
+<!doctype html><html>
+<head>
+<title>[모각코24하계] 01 : 결과</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="django에서 swagger 문서화 구현하기 개요  장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
+  프로젝트 구조  1. …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="[모각코24하계] 01 : 결과">
+<meta property="og:description" content="django에서 swagger 문서화 구현하기 개요  장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
+  프로젝트 구조  1. …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#django에서-swagger-문서화-구현하기>django에서 swagger 문서화 구현하기</a>
+<ul>
+<li><a href=#개요>개요</a></li>
+<li><a href=#crud-구현>CRUD 구현</a></li>
+</ul>
+</li>
+<li><a href=#swagger-적용>Swagger 적용</a>
+<ul>
+<li></li>
+<li><a href=#swagger-적용-결과>swagger 적용 결과</a></li>
+</ul>
+</li>
+<li><a href=#django에서-jwt-인증-구현하기>django에서 JWT 인증 구현하기</a>
+<ul>
+<li></li>
+<li><a href=#blacklist-적용>Blacklist 적용</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+[모각코24하계] 01 : 결과
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-07-02</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=django에서-swagger-문서화-구현하기>django에서 swagger 문서화 구현하기</h2>
+<h3 id=개요>개요</h3>
+<blockquote>
+<p>장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.</p>
+</blockquote>
+<ul>
+<li>프로젝트 구조</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>.
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>├── db.sqlite3
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>├── djtest <span style=color:#f92672>(</span>메인 앱<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>│   ├── __init__.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>│   ├── asgi.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>│   ├── settings.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>│   ├── urls.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>│   ├── views.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>│   └── wsgi.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>├── manage.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>├── paste <span style=color:#f92672>(</span>생성한 앱<span style=color:#f92672>)</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>│   ├── __init__.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>│   ├── admin.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>│   ├── apps.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>│   ├── migrations
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>│   ├── models.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>│   ├── serializers.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>│   ├── tests.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>│   ├── urls.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>│   └── views.py
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>└── requirements.txt
+</code></pre></div><ul>
+<li>자주 사용하는 Django 명령자</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e># 새로운 Django 프로젝트를 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>python manage.py startproject
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e># 새로운 Django 앱을 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>python manage.py startapp
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e># 데이터베이스에 적용할 마이그레이션 파일을 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>python manage.py makemigrations
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e># 마이그레이션 파일을 실제 데이터베이스에 적용</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>python manage.py migrate
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e># 관리자(superuser) 계정을 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>python manage.py createsuperuser
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e># 프로젝트의 테스트 케이스를 실행</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>python manage.py test
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e># 테스트용 서버를 특정 설정으로 실행</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>python manage.py testserver
+</code></pre></div><h3 id=crud-구현>CRUD 구현</h3>
+<h4 id=paste-모델-정의>Paste 모델 정의</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> django.db <span style=color:#f92672>import</span> models
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Paste</span>(models<span style=color:#f92672>.</span>Model):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    title <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>CharField(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    content <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>TextField()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># auto_now_add : 객체가 처음 생성될 때만 현재 날짜와 시간을 자동으로 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    created_at <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>DateTimeField(auto_now_add<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># auto_now : 객체가 저장될 때마다 현재 날짜와 시간을 자동으로 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    updated_at <span style=color:#f92672>=</span> models<span style=color:#f92672>.</span>DateTimeField(auto_now<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Meta</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        ordering <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#39;-created_at&#39;</span>]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>def</span> __str__(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>title
+</code></pre></div><h4 id=serializer-정의>Serializer 정의</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> serializers
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> .models <span style=color:#f92672>import</span> Paste
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteSerializer</span>(serializers<span style=color:#f92672>.</span>ModelSerializer):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Meta</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        model <span style=color:#f92672>=</span> Paste
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        fields <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;__all__&#39;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>        <span style=color:#75715e># 직접 지정하는 방법</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>        <span style=color:#75715e># fields = [&#39;title&#39;, &#39;content&#39;]</span>
+</code></pre></div><h4 id=view-구현>View 구현</h4>
+<ul>
+<li>
+<p>PasteView</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, _):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        pastes <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>all()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(pastes, many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(data<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>data)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>if</span> serializer<span style=color:#f92672>.</span>is_valid():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            serializer<span style=color:#f92672>.</span>save(user<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>user)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_201_CREATED)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>errors, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_400_BAD_REQUEST)
+</code></pre></div></li>
+<li>
+<p>PasteDetailView</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, _, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>            serializer <span style=color:#f92672>=</span> PasteSerializer(paste)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>if</span> paste<span style=color:#f92672>.</span>user <span style=color:#f92672>!=</span> request<span style=color:#f92672>.</span>user:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_403_FORBIDDEN)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        serializer <span style=color:#f92672>=</span> PasteSerializer(paste, data<span style=color:#f92672>=</span>request<span style=color:#f92672>.</span>data)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        <span style=color:#66d9ef>if</span> serializer<span style=color:#f92672>.</span>is_valid():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>            serializer<span style=color:#f92672>.</span>save()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>            <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>data, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_200_OK)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        <span style=color:#66d9ef>return</span> Response(serializer<span style=color:#f92672>.</span>errors, status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_400_BAD_REQUEST)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>            paste <span style=color:#f92672>=</span> Paste<span style=color:#f92672>.</span>objects<span style=color:#f92672>.</span>get(pk<span style=color:#f92672>=</span>pk)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>        <span style=color:#66d9ef>except</span> Paste<span style=color:#f92672>.</span>DoesNotExist:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>            <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_404_NOT_FOUND)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        paste<span style=color:#f92672>.</span>delete()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>        <span style=color:#66d9ef>return</span> Response(status<span style=color:#f92672>=</span>status<span style=color:#f92672>.</span>HTTP_204_NO_CONTENT)
+</code></pre></div></li>
+</ul>
+<h4 id=urlspy>urls.py</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> paste.views <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>urlpatterns <span style=color:#f92672>=</span> [
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    path(<span style=color:#e6db74>&#39;&#39;</span>, PasteView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;paste_list_create&#39;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    path(<span style=color:#e6db74>&#39;&lt;int:pk&gt;&#39;</span>, PasteDetailView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;paste_get_update_delete&#39;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>]
+</code></pre></div><h2 id=swagger-적용>Swagger 적용</h2>
+<h4 id=pasteview>PasteView</h4>
+<ul>
+<li>
+<p>PasteView</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get list of pastes&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get list of pastes&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>200</span>: PasteSerializer(many<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, _):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Create a new paste&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Create a new paste&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        request_body<span style=color:#f92672>=</span>PasteSerializer,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>201</span>: PasteSerializer, <span style=color:#ae81ff>400</span>: <span style=color:#e6db74>&#34;Bad Request&#34;</span>},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#f92672>...</span>
+</code></pre></div></li>
+<li>
+<p>PasteDetailView</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Get a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>200</span>: PasteSerializer, <span style=color:#ae81ff>404</span>: <span style=color:#e6db74>&#34;Not Found&#34;</span>},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, _, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Update a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Update a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        request_body<span style=color:#f92672>=</span>PasteSerializer,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        responses<span style=color:#f92672>=</span>{
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>            <span style=color:#ae81ff>200</span>: PasteSerializer,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            <span style=color:#ae81ff>400</span>: <span style=color:#e6db74>&#34;Bad Request&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            <span style=color:#ae81ff>403</span>: <span style=color:#e6db74>&#34;Forbidden&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            <span style=color:#ae81ff>404</span>: <span style=color:#e6db74>&#34;Not Found&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        },
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>    <span style=color:#a6e22e>@swagger_auto_schema</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>        operation_description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Delete a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        operation_summary<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Delete a paste by ID&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        responses<span style=color:#f92672>=</span>{<span style=color:#ae81ff>204</span>: <span style=color:#e6db74>&#34;No Content&#34;</span>, <span style=color:#ae81ff>404</span>: <span style=color:#e6db74>&#34;Not Found&#34;</span>},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>    )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>        <span style=color:#f92672>...</span>
+</code></pre></div></li>
+</ul>
+<h3 id=swagger-적용-결과>swagger 적용 결과</h3>
+<p><img src=/static/image/django_crud.png alt=swagger></p>
+<h2 id=django에서-jwt-인증-구현하기>django에서 JWT 인증 구현하기</h2>
+<blockquote>
+<p>장고에서는 <code>djangorestframework-simplejwt</code> 패키지를 사용하여 JWT 인증을 구현할 수 있다.</p>
+</blockquote>
+<h4 id=requirements>requirements</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>pip install djangorestframework-simplejwt
+</code></pre></div><h4 id=settingspy>settings.py</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>INSTALLED_APPS <span style=color:#f92672>=</span> [
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#e6db74>&#39;rest_framework&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#e6db74>&#39;rest_framework_simplejwt&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>]
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>REST_FRAMEWORK <span style=color:#f92672>=</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#75715e># 기본 인증 클래스를 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#e6db74>&#39;DEFAULT_AUTHENTICATION_CLASSES&#39;</span>: (
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        <span style=color:#e6db74>&#39;rest_framework_simplejwt.authentication.JWTAuthentication&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    ),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># 기본 스키마 클래스를 설정, CoreAPI를 사용하여 자동으로 API 문서화를 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#e6db74>&#39;DEFAULT_SCHEMA_CLASS&#39;</span>: <span style=color:#e6db74>&#39;rest_framework.schemas.coreapi.AutoSchema&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># 기본 권한 클래스를 설정, AllowAny를 사용하여 모든 요청을 허용</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#e6db74>&#39;DEFAULT_PERMISSION_CLASSES&#39;</span>: (
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#e6db74>&#39;rest_framework.permissions.AllowAny&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    ),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> timedelta
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>SIMPLE_JWT <span style=color:#f92672>=</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#75715e># 액세스 토큰의 유효 기간을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#e6db74>&#39;ACCESS_TOKEN_LIFETIME&#39;</span>: timedelta(minutes<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># 리프레시 토큰의 유효 기간을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#e6db74>&#39;REFRESH_TOKEN_LIFETIME&#39;</span>: timedelta(days<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># 리프레시 토큰이 갱신될 때마다 새로운 리프레시 토큰을 발급할지 여부를 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#e6db74>&#39;ROTATE_REFRESH_TOKENS&#39;</span>: <span style=color:#66d9ef>False</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#75715e># 리프레시 토큰이 갱신된 후 이전 토큰을 블랙리스트에 추가할지 여부를 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#e6db74>&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span style=color:#66d9ef>True</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#75715e># JWT 토큰의 암호화 알고리즘을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#e6db74>&#39;ALGORITHM&#39;</span>: <span style=color:#e6db74>&#39;HS256&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#75715e># JWT 토큰을 서명할 때 사용할 키를 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#e6db74>&#39;SIGNING_KEY&#39;</span>: SECRET_KEY,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#75715e># 토큰 검증에 사용할 공개 키를 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#e6db74>&#39;VERIFYING_KEY&#39;</span>: <span style=color:#66d9ef>None</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#75715e># 토큰의 대상자(aud) 클레임을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#e6db74>&#39;AUDIENCE&#39;</span>: <span style=color:#66d9ef>None</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#75715e># 토큰의 발급자(iss) 클레임을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    <span style=color:#e6db74>&#39;ISSUER&#39;</span>: <span style=color:#66d9ef>None</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>    <span style=color:#75715e># 인증 헤더 타입을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    <span style=color:#e6db74>&#39;AUTH_HEADER_TYPES&#39;</span>: (<span style=color:#e6db74>&#39;Bearer&#39;</span>,),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>    <span style=color:#75715e># 인증 헤더의 이름을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>    <span style=color:#e6db74>&#39;AUTH_HEADER_NAME&#39;</span>: <span style=color:#e6db74>&#39;HTTP_AUTHORIZATION&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>    <span style=color:#75715e># 사용자 모델에서 사용자 ID 필드를 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#e6db74>&#39;USER_ID_FIELD&#39;</span>: <span style=color:#e6db74>&#39;id&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#75715e># JWT 토큰에서 사용자 ID를 저장할 클레임을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    <span style=color:#e6db74>&#39;USER_ID_CLAIM&#39;</span>: <span style=color:#e6db74>&#39;user_id&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>    <span style=color:#75715e># 인증에 사용할 토큰 클래스들을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>    <span style=color:#e6db74>&#39;AUTH_TOKEN_CLASSES&#39;</span>: (<span style=color:#e6db74>&#39;rest_framework_simplejwt.tokens.AccessToken&#39;</span>,),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#75715e># 토큰의 유형을 저장할 클레임을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>    <span style=color:#e6db74>&#39;TOKEN_TYPE_CLAIM&#39;</span>: <span style=color:#e6db74>&#39;token_type&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>}
+</code></pre></div><h4 id=urlspy-1>urls.py</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> rest_framework_simplejwt.views <span style=color:#f92672>import</span> TokenObtainPairView, TokenRefreshView
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> rest_framework_simplejwt.authentication <span style=color:#f92672>import</span> JWTAuthentication
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>urlpatterns <span style=color:#f92672>=</span> [
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># JWT 토큰을 발급하는 뷰</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>   path(<span style=color:#e6db74>&#34;token/&#34;</span>, TokenObtainPairView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;token_obtain_pair&#34;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># JWT 토큰을 갱신하는 뷰</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>   path(<span style=color:#e6db74>&#34;token/refresh/&#34;</span>, TokenRefreshView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;token_refresh&#34;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>]
+</code></pre></div><h4 id=viewspy>views.py</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> permissions
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> rest_framework_simplejwt.authentication <span style=color:#f92672>import</span> JWTAuthentication
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> drf_yasg.utils <span style=color:#f92672>import</span> swagger_auto_schema
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>   <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>        <span style=color:#66d9ef>else</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>
+</code></pre></div><h4 id=결과>결과</h4>
+<ul>
+<li><code>TokenObtainPairView</code>를 통해 access token과 refresh token을 발급받을 수 있다.</li>
+<li><code>TokenRefreshView</code>를 통해 refresh token을 사용하여 access token을 갱신할 수 있다.</li>
+<li>access token과 refresh token은 settings.py에서 설정한 유효 기간에 따라 만료된다.</li>
+</ul>
+<h3 id=blacklist-적용>Blacklist 적용</h3>
+<h4 id=settingspy-1>settings.py</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>INSTALLED_APPS <span style=color:#f92672>=</span> [
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#e6db74>&#39;rest_framework_simplejwt.token_blacklist&#39;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>]
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>SIMPLE_JWT <span style=color:#f92672>=</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>...</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#75715e># 블랙리스트에 토큰을 추가할 때 사용할 모델을 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#e6db74>&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span style=color:#66d9ef>True</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
+</code></pre></div><h4 id=결과-1>결과</h4>
+<ul>
+<li><code>TokenRefreshView</code>를 통해 토큰이 재발급될 때, 이전 refresh token을 블랙리스트에 추가한다.</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-2-01plan/>
+<span class=mx-3>◀</span>
+[모각코24하계] 01 : 계획
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
