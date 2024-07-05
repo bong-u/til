@@ -1,0 +1,207 @@
+<!doctype html><html>
+<head>
+<title>RAG 이론 정리 + OpenSearch</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="RAG (Retrieval-Augmented Generation)  RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델
+   LLM의 문 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="RAG 이론 정리 + OpenSearch">
+<meta property="og:description" content="RAG (Retrieval-Augmented Generation)  RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델
+   LLM의 문 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#rag-retrieval-augmented-generation>RAG (Retrieval-Augmented Generation)</a></li>
+<li><a href=#opensearch>OpenSearch</a>
+<ul>
+<li><a href=#분석>분석</a></li>
+<li><a href=#opensearch에서-지원하는-요소>OpenSearch에서 지원하는 요소</a></li>
+<li><a href=#opensearch-접근을-위한-curl-명령어>OpenSearch 접근을 위한 cURL 명령어</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+RAG 이론 정리 + OpenSearch
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-07-05</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=rag-retrieval-augmented-generation>RAG (Retrieval-Augmented Generation)</h2>
+<blockquote>
+<p>RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델</p>
+</blockquote>
+<ul>
+<li>
+<p>LLM의 문제점</p>
+<ul>
+<li>할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상</li>
+<li>최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제</li>
+<li>신뢰할 수 없는 출처로부터 정보를 생성하는 문제</li>
+</ul>
+</li>
+<li>
+<p>RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.</p>
+</li>
+</ul>
+<h2 id=opensearch>OpenSearch</h2>
+<blockquote>
+<p>OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전</p>
+</blockquote>
+<ul>
+<li>
+<p>벡터 데이터베이스 : 벡터 데이터를 저장하고 쿼리할 수 있는 데이터베이스</p>
+</li>
+<li>
+<p>주요 기능</p>
+<ul>
+<li>분산 검색 및 분석</li>
+<li>보안</li>
+<li>시각화와 대시보드 지원</li>
+</ul>
+</li>
+<li>
+<p>index와 document</p>
+<ul>
+<li>index : 데이터베이스</li>
+<li>document : 데이터베이스에 저장되는 데이터</li>
+</ul>
+</li>
+</ul>
+<h3 id=분석>분석</h3>
+<ul>
+<li>분석기 Analyzer (Character Filter + Tokenizer + Token Filter)
+<blockquote>
+<p>텍스트를 토큰화하고 필터링하는 과정을 수행</p>
+</blockquote>
+</li>
+<li>분석 과정
+<ol>
+<li>Character Filter
+<blockquote>
+<p>특정 문자를 제거하거나 변경하는 등의 작업을 수행</p>
+</blockquote>
+</li>
+<li>Tokenizer
+<blockquote>
+<p>기본적으로 공백을 기준으로 텍스트를 분리</p>
+</blockquote>
+</li>
+<li>Token Filter
+<blockquote>
+<p>토큰을 추가하거나 제거하는 등의 작업을 수행</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id=opensearch에서-지원하는-요소>OpenSearch에서 지원하는 요소</h3>
+<ol>
+<li>Tokenizer
+<ul>
+<li>Standard Tokenizer : 공백을 기준으로 텍스트를 분리, 문장 부호 삭제</li>
+<li>Letter Tokenizer : 문자를 기준으로 텍스트를 분리</li>
+<li>Whitespace Tokenizer : 공백을 기준으로 텍스트를 분리</li>
+<li>Ngram Tokenizer : 부분 문자열로 텍스트를 분리</li>
+</ul>
+</li>
+<li>Token Filter
+<ul>
+<li>Standard Token Filter : 아무것도 하지 않음</li>
+<li>Lowercase Token Filter : 텍스트를 소문자로 변환</li>
+<li>Synonym Token Filter : 동의어 처리</li>
+</ul>
+</li>
+<li>Analyzer
+<ul>
+<li>Standard Analyzer : Standard Tokenizer + Standard Token Filter</li>
+<li>Simple Analyzer : Letter Tokenizer + Lowercase Token Filter</li>
+<li>Whitespace Analyzer : Whitespace Tokenizer + Lowercase Token Filter</li>
+</ul>
+</li>
+</ol>
+<h3 id=opensearch-접근을-위한-curl-명령어>OpenSearch 접근을 위한 cURL 명령어</h3>
+<ul>
+<li>인덱스 조회
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/_cat/indices&#34;</span>
+</code></pre></div></li>
+<li>특정 인덱스 조회
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}&#34;</span>
+</code></pre></div></li>
+<li>전체 검색 결과 조회
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}/_search&#34;</span>
+</code></pre></div></li>
+<li>특정 검색어로 검색한 결과 조회
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}/_search&#34;</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#ae81ff></span>-H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#ae81ff></span>-d <span style=color:#e6db74>&#39;{&#34;query&#34;: {&#34;match&#34;: {&#34;field&#34;: &#34;value&#34;}}}&#39;</span>
+</code></pre></div></li>
+<li>인덱스 삭제
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X DELETE -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}&#34;</span>
+</code></pre></div></li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/rag/rag_opensearch/>
+OpenSearch를 활용한 RAG 실습
+<span class=mx-3>▶</span>
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
