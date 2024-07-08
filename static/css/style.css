@@ -580,6 +580,7 @@ video {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
   display: block;
+  overflow: scroll;
   white-space: pre-wrap;
   border-radius: 0.375rem;
   padding: 1.25rem;
@@ -1280,6 +1281,10 @@ input[name="switch"]:checked + label{
 
 .font-bold{
   font-weight: 700;
+}
+
+.lowercase{
+  text-transform: lowercase;
 }
 
 .text-textgray{
