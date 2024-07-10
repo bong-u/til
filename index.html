@@ -62,6 +62,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'193')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/thefuck_pip/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[오픈소스] thefuck - pip uninstall 규칙 추가
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🐍</span>
+<span>Python</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/python/thefuck_pip/ class="content-summary text-sm overflow-hidden">
+PR #1414 : Correct &ldquo;pip delete|remove&rdquo; -> &ldquo;pip uninstall&rdquo; 배경 pip uninstall &lt;package>는 파이썬 패키지를 삭제하는 명령어이다. 헷갈려서 remove, delete로 오타를 친 경험이 있다. thefuck에서 지원하지 않는 것을 확인하고 기여하기로 했다. 과정 기존의 로직 : 오타가 났을 때, pip 명령에서 “maybe you meant” 하면서 추천해주는 명령어가 있다면 추천, 하지만 remove와 delete는 그 대상이 아님 잘못된 명령어가 ‘delete’ 또는 ‘remove’인 경우 suggest에 uninstall을 대입하도록 수정 1if broken_cmd == 'delete' or broken_cmd == 'remove': 2 suggest = 'uninstall' 테스트 코드 수정 1# 의도한대로 명령어를 잘 바꿔주는지 테스트 2@pytest.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-11 02:09:03 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'193')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/school/socar_cto/ class="text-2xl my-3 overflow-ellipsis-bundle">
 프로그래머로 산다는 것 (리더의 생각) - 쏘카 류석문 CTO님
 </a>
@@ -533,31 +557,6 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako23-1-04/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코23하계] 04 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako23-1-04/ class="content-summary text-sm overflow-hidden">
-1. 프로그래머스 한 문제 풀기 프로그래머스 - 디펜스 게임 (L2) 🧠 Algorithm
-1import heapq 2 3def solution(n, k, enemy): 4 heap = [] 5 cnt = 0 6 for i in enemy: 7 n -= i 8 heapq.heappush(heap, -i) 9 while n &amp;lt; 0: 10 k -= 1 11 if not heap or k &amp;lt; 0: 12 return cnt 13 tmp = -heapq.heappop(heap) 14 n += tmp 15 cnt += 1 16 return cnt 문제 n: 가지고 있는 병사 수 k: 사용할 수 있는 무적권 스킬 수 enemy: 라운드마다 존재하는 적 수의 배열 라운드마다 enemy[i]명 만큼 소모하여 enemy[i]마리의 적을 막을 수 있다 무적권을 적절히 사용하여 버틸 수 있는 최대 라운드 수를 구하라 TC input n: 7, k: 3, enemy: [4, 2, 4, 5, 3, 3, 1] 2.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -572,9 +571,9 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 <span class="text-xl mr-3">🍌</span>
 <span> Javascript (8)</span>
 </a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/open_source/>
-<span class="text-xl mr-3">🐮</span>
-<span> OpenSource (1)</span>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
+<span class="text-xl mr-3">🐍</span>
+<span> Python (1)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
