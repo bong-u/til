@@ -1,0 +1,185 @@
+<!doctype html><html>
+<head>
+<title>쿠버네티스 및 MSA 특강 1일차 : 클라우드 컴퓨팅 개념 및 역사</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="클라우드 제대로 이해하기 클라우드란  개인이 가진 단말기를 통해서는 주로 입/출력 작업만 이루어지고, 정보분석 및 처리, 저장, 관리 유통 등의 작업은 클라우드라고 불리는 제3의  …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="쿠버네티스 및 MSA 특강 1일차 : 클라우드 컴퓨팅 개념 및 역사">
+<meta property="og:description" content="클라우드 제대로 이해하기 클라우드란  개인이 가진 단말기를 통해서는 주로 입/출력 작업만 이루어지고, 정보분석 및 처리, 저장, 관리 유통 등의 작업은 클라우드라고 불리는 제3의  …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#클라우드-제대로-이해하기>클라우드 제대로 이해하기</a>
+<ul>
+<li><a href=#클라우드란>클라우드란</a></li>
+<li><a href=#클라우드-컴퓨팅이-필요한-이유>클라우드 컴퓨팅이 필요한 이유</a></li>
+<li><a href=#클라우드-컴퓨팅-서비스모델>클라우드 컴퓨팅 서비스모델</a></li>
+<li><a href=#웹호스팅-vs-서버호스팅-vs-클라우드-차이점>웹호스팅 vs 서버호스팅 vs 클라우드 차이점</a></li>
+<li><a href=#on-premise란>On-premise란</a></li>
+</ul>
+</li>
+<li><a href=#private-public-hybrid-cloud-비교>Private, Public, Hybrid Cloud 비교</a>
+<ul>
+<li><a href=#private-cloud>Private cloud</a></li>
+<li><a href=#public-cloud>Public cloud</a></li>
+<li><a href=#hybrid-cloud>Hybrid cloud</a></li>
+</ul>
+</li>
+<li><a href=#업체별-클라우드-시장>업체별 클라우드 시장</a></li>
+<li><a href=#클라우드-관련-직군>클라우드 관련 직군</a></li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+쿠버네티스 및 MSA 특강 1일차 : 클라우드 컴퓨팅 개념 및 역사
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2023-02-20</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=클라우드-제대로-이해하기>클라우드 제대로 이해하기</h2>
+<h3 id=클라우드란>클라우드란</h3>
+<blockquote>
+<p>개인이 가진 단말기를 통해서는 주로 입/출력 작업만 이루어지고, 정보분석 및 처리, 저장, 관리 유통 등의 작업은 클라우드라고 불리는 제3의 공간에서 이루어지는 컴퓨팅 시스템 형태</p>
+</blockquote>
+<h3 id=클라우드-컴퓨팅이-필요한-이유>클라우드 컴퓨팅이 필요한 이유</h3>
+<ol>
+<li>비용절감</li>
+<li>속도향상</li>
+<li>확장성</li>
+<li>생산성</li>
+</ol>
+<h3 id=클라우드-컴퓨팅-서비스모델>클라우드 컴퓨팅 서비스모델</h3>
+<ul>
+<li>Infrastructure as a Service (IaaS) : IT리소스에 대한 유연성과 관리 제어 기능을 제공
+<ul>
+<li>GCE, AWS, Azure</li>
+</ul>
+</li>
+<li>Platform as a Service (Paas) : 빌드 및 배포를 위한 환경이 사용자에게 제공
+<ul>
+<li>Openshift, Github, docker, kubernetes</li>
+</ul>
+</li>
+<li>Software as a a Service (Saas) : 완전한 제품 제공
+<ul>
+<li>GShift</li>
+</ul>
+</li>
+<li>비교
+<blockquote>
+<p>On-site &lt; Iaas &lt; Paas &lt; Saas</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=웹호스팅-vs-서버호스팅-vs-클라우드-차이점>웹호스팅 vs 서버호스팅 vs 클라우드 차이점</h3>
+<ul>
+<li>웹호스팅 : 호스팅 업체의 서버 중 일부만 임대하여 사용
+<ul>
+<li>홈페이지 운영</li>
+</ul>
+</li>
+<li>서버호스팅 : 호스팅 업체의 물리 서버를 단독으로 임대/구매하여 사용
+<ul>
+<li>ERP, 인트라넷 등 운영</li>
+</ul>
+</li>
+<li>클라우드
+<ul>
+<li>단기 이벤트 등 유동적인 서비스 운영</li>
+</ul>
+</li>
+</ul>
+<h3 id=on-premise란>On-premise란</h3>
+<blockquote>
+<p>자체적으로 보유한 전산실에 직접 설치해 운영하는 방식</p>
+</blockquote>
+<h2 id=private-public-hybrid-cloud-비교>Private, Public, Hybrid Cloud 비교</h2>
+<h3 id=private-cloud>Private cloud</h3>
+<ul>
+<li>인프라가 조직 전용인 클라우드 컴퓨팅 모델</li>
+<li>해당 사용자 또는 그룹의 방화벽으로 보호된다</li>
+</ul>
+<h3 id=public-cloud>Public cloud</h3>
+<ul>
+<li>최종 사용자가 소유하지 않은 IT인프라에서 생성되는 클라우드 환경</li>
+<li>Alibaba Cloud, AWS, GCP, IBM Cloud, Microsft Azure 등이 있다</li>
+</ul>
+<h3 id=hybrid-cloud>Hybrid cloud</h3>
+<ul>
+<li>단일 IT환경 처럼 보이지만 실제로는 여러 환경이 연결된 형태</li>
+</ul>
+<h2 id=업체별-클라우드-시장>업체별 클라우드 시장</h2>
+<ul>
+<li>GCP, Azure, AWS</li>
+</ul>
+<h2 id=클라우드-관련-직군>클라우드 관련 직군</h2>
+<ul>
+<li>클라우드 엔지니어</li>
+<li>클라우드 시스템 엔지니어</li>
+<li>클라우드 인프라 보안 담당자</li>
+<li>데브옵스</li>
+<li>클라우드 백엔드 개발자</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/sysp_09_11/>
+<span class=mx-3>◀</span>
+221207 SYSP
+</a>
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-2%EC%9D%BC%EC%B0%A8/>
+쿠버네티스 및 MSA 특강 2일차 : Docker 실습
+<span class=mx-3>▶</span>
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>

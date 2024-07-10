@@ -1,0 +1,203 @@
+<!doctype html><html>
+<head>
+<title>협업프로세스 - LINE 나도희 선배님</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="IT 업계의 조직 구성 목적 조직  프로젝트 A : 기획, 개발자, 디자이너 프로젝트 B : 기획, 개발자, 디자이너 &mldr; …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="협업프로세스 - LINE 나도희 선배님">
+<meta property="og:description" content="IT 업계의 조직 구성 목적 조직  프로젝트 A : 기획, 개발자, 디자이너 프로젝트 B : 기획, 개발자, 디자이너 &mldr; …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#it-업계의-조직-구성>IT 업계의 조직 구성</a>
+<ul>
+<li><a href=#목적-조직>목적 조직</a></li>
+<li><a href=#기능-조직>기능 조직</a></li>
+</ul>
+</li>
+<li><a href=#개발-방법론>개발 방법론</a>
+<ul>
+<li><a href=#waterfall-개발-방법론>Waterfall 개발 방법론</a></li>
+<li><a href=#agile-개발-방법론>Agile 개발 방법론</a></li>
+<li><a href=#kanban--프로젝트-관리-도구>Kanban : 프로젝트 관리 도구</a></li>
+<li><a href=#scrum>Scrum</a></li>
+<li><a href=#테스트-코드의-중요성>테스트 코드의 중요성</a></li>
+<li><a href=#tdd-방법론>TDD 방법론</a></li>
+<li><a href=#문서화>문서화</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+협업프로세스 - LINE 나도희 선배님
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-07-11</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=it-업계의-조직-구성>IT 업계의 조직 구성</h2>
+<h3 id=목적-조직>목적 조직</h3>
+<ul>
+<li>프로젝트 A : 기획, 개발자, 디자이너</li>
+<li>프로젝트 B : 기획, 개발자, 디자이너</li>
+<li>&mldr;</li>
+</ul>
+<blockquote>
+<p>프로젝트가 커지면 관리가 힘듦</p>
+</blockquote>
+<h3 id=기능-조직>기능 조직</h3>
+<ul>
+<li>기획 : 기획자, 기획자, 기획자</li>
+<li>클라이언트 : 개발자, 개발자, 개발자</li>
+<li>서버 : 개발자, 개발자, 개발자</li>
+</ul>
+<blockquote>
+<p>부서내 개발자마다 하는 프로젝트가 다름</p>
+</blockquote>
+<h2 id=개발-방법론>개발 방법론</h2>
+<h3 id=waterfall-개발-방법론>Waterfall 개발 방법론</h3>
+<ul>
+<li>명확한 요구사항을 가지고 프로젝트를 진행</li>
+</ul>
+<ul>
+<li>장점</li>
+</ul>
+<ul>
+<li>대략적인 일정 산출이 가능함</li>
+<li>프로젝트의 시작과 끝이 명확함</li>
+</ul>
+<ul>
+<li>단점
+<ul>
+<li>피드백 처리가 느리다</li>
+<li>중간에 수정이 어렵다</li>
+</ul>
+</li>
+</ul>
+<h3 id=agile-개발-방법론>Agile 개발 방법론</h3>
+<ul>
+<li>짧은 개발 주기를 가지고 피드백을 계속 반영하면서 진행</li>
+</ul>
+<ul>
+<li>단점
+<ul>
+<li>프로젝트의 시작과 끝이 명확하지 않다</li>
+<li>프로젝트 관리가 상대적으로 어려움이 있음</li>
+</ul>
+</li>
+</ul>
+<h3 id=kanban--프로젝트-관리-도구>Kanban : 프로젝트 관리 도구</h3>
+<ul>
+<li>
+<p>카드를 이용해서 &ldquo;할일&rdquo;, &ldquo;진행 중&rdquo;, &ldquo;완료&rdquo; 항목을 나누어서 각 테스크의 상태를 관리하는 보드</p>
+</li>
+<li>
+<p>시각적인 표현을 통해 현재 작업들의 진행상태를 확인 가능 함</p>
+</li>
+<li>
+<p>일반적으로 Trello, JIRA, Github에서 제공하는 툴들을 이용하여 사용</p>
+</li>
+<li>
+<p>장점</p>
+<ul>
+<li>시각적인 표현으로 확인 가능 -> 용이함</li>
+<li>팀원들이 서로 어떤 일들을 하고 있는지 공유 가능</li>
+<li>업무 우선순위를 효과적으로 정할 수 있음 -> 유연함</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>단점
+<ul>
+<li>전체적인 상황을 파악하기 어려움</li>
+</ul>
+</li>
+</ul>
+<h3 id=scrum>Scrum</h3>
+<ul>
+<li>Sprint Backlog : Sprint 목표를 위한 실제 작업 목록</li>
+<li>Daily Scrum Meeting : 각자 한 일들에 대한 공유</li>
+<li>Sprint Review Meeting : Sprint 목표가 잘 달성되었는지 확인하는 미팅</li>
+<li>Sprint Retrospective : Sprint에 대한 회고</li>
+</ul>
+<h3 id=테스트-코드의-중요성>테스트 코드의 중요성</h3>
+<ul>
+<li>새로운 코드를 추가하거나 리팩토링을 하는 경우 기존의 기능에 영향을 끼치는 경우가 많음</li>
+<li>기존의 기능이 새로운 코드를 추가 했을 때 잘못된 행동을 일으키는지 검증하는 용도로
+사용 가능</li>
+</ul>
+<h3 id=tdd-방법론>TDD 방법론</h3>
+<ul>
+<li>소프트웨어 개발자가 코드를 작성하기 전에 테스트 케이스를 작성하고, 테스트 케이스를 통과하는 코드를 작성하는 방식으로 개발을 진행</li>
+<li>테스트 케이스 작성 -> 코드 작성 및 리팩토링 -> 테스트 케이스 실행 ->
+성공 여부 확인을 반복적으로 진행하는 방법론</li>
+</ul>
+<h3 id=문서화>문서화</h3>
+<ul>
+<li>문서화는 두가지 관점에서 필요함</li>
+<li>내가 개발하려는 기능의 스펙과 상세 구현에 대한 팀원들의 이해력을 높이는 것</li>
+<li>내가 개발한 기능을 팀원들이 별다른 히스토리에 대한 기억없이 바로바로 찾아낼 수 있는 것</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/operatingsystem1/>
+<span class=mx-3>◀</span>
+운영체제 - 중간범위
+</a>
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/basicprojectlab_design_thinking/>
+230315 기프랩 Design Thinking 방법론 - 김재정 교수님
+<span class=mx-3>▶</span>
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
