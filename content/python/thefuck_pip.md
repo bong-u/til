@@ -1,5 +1,5 @@
 ---
-title: "[thefuck] pip uninstall 규칙 추가"
+title: "[오픈소스] thefuck - pip uninstall 규칙 추가"
 date: 2023-11-09
 ---
 
