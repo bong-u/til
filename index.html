@@ -61,6 +61,54 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'198')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-03plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24하계] 03 : 계획
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-2-03plan/ class="content-summary text-sm overflow-hidden">
+오늘의 목표 RabbitMQ, Celery, Fastapi 연동 정리
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-16 23:57:14 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'198')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-03/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24하계] 03 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-2-03/ class="content-summary text-sm overflow-hidden">
+Fastapi, RabbitMQ, Celery 연동 배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다. 여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다. 목표 Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다. docker-compose.yml 1version: '3' 2 3services: 4 rabbitmq: 5 image: rabbitmq:3 6 ports: 7 - "5672:5672" # RabbitMQ의 AMQP 포트 8 - "15672:15672" # RabbitMQ 관리 인터페이스 포트 9 volumes: 10 - rabbitmq_data:/var/lib/rabbitmq 11 expose: 12 - "5672" 13 - "15672" 14 15 celery_worker: 16 build: 17 context: .
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-16 23:57:14 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'193')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/mogako/mogako24-2-02plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
 [모각코24하계] 02 : 계획
@@ -510,55 +558,6 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako23-1-02plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코23하계] 02 : 계획
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako23-1-02plan/ class="content-summary text-sm overflow-hidden">
-오늘의 목표 프로그래머스 한 문제 풀기 Springboot Testing 공부하기
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako23-1-02/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코23하계] 02 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako23-1-02/ class="content-summary text-sm overflow-hidden">
-1. 프로그래머스 한 문제 풀기 프로그래머스 - 당구 연습 (L2) 🧠 Algorithm
-1def solution(m, n, startX, startY, balls): 2 answer = [] 3 for bx, by in balls: 4 tmp = [] 5 for x, y in [(-1*startX, startY), (startX, -1*startY), (startX, 2*n-startY), (2*m-startX, startY)]: 6 if bx==x and (y &amp;lt; 0 &amp;lt; by &amp;lt; startY or startY &amp;lt; by &amp;lt; n &amp;lt; y): 7 continue 8 if by==y and (x &amp;lt; 0 &amp;lt; bx &amp;lt; startX or startX &amp;lt; bx &amp;lt; m &amp;lt; x): 9 continue 10 tmp.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -591,7 +590,7 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (30)</span>
+<span> 모각코 (32)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
 <span class="text-xl mr-3">🤖</span>
