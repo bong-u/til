@@ -61,6 +61,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'200')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/github_action_pytest/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Github Actions에서 pytest 실행하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🐍</span>
+<span>Python</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/python/github_action_pytest/ class="content-summary text-sm overflow-hidden">
+배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다. Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다. run-pytest.yml 1name: Run pytest 2 3# main 또는 dev 브랜치에 pull request가 발생하면 실행 4on: 5 pull_request: 6 branches: 7 - main 8 - dev 9 10jobs: 11 test: 12 runs-on: ubuntu-latest 13 14 steps: 15 - name: Checkout code 16 uses: actions/checkout@v2 17 18 - name: Set up Python 19 uses: actions/setup-python@v2 20 with: 21 python-version: '3.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-18 00:06:16 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'198')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/mogako/mogako24-2-03plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
 [모각코24하계] 03 : 계획
@@ -533,31 +557,6 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako23-1-01/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코23하계] 01 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako23-1-01/ class="content-summary text-sm overflow-hidden">
-1. 프로그래머스 한 문제 풀기 프로그래머스 - 두 원 사이의 정수 쌍 (L2) 🧠 Algorithm
-1import math 2 3def calc1(r): 4 result = 0 5 for i in range(1, r): 6 result += math.floor(math.sqrt(r**2 - i**2)) 7 return result*4 + r*4 + 1 8 9def calc2(r): 10 result = 0 11 for i in range(1, r): 12 a = math.sqrt(r**2 - i**2) 13 result += math.floor(a) 14 if a % 1 == 0: 15 result -= 1 16 return result*4 + r*4 + 1 17 18def solution(r1, r2): 19 return calc1(r2)-calc2(r1)+4 문제 두 원의 반지름 r1, r2가 주어진다.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -574,7 +573,7 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
 <span class="text-xl mr-3">🐍</span>
-<span> Python (4)</span>
+<span> Python (5)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
