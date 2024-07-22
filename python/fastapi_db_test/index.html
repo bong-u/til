@@ -1,0 +1,176 @@
+<!doctype html><html>
+<head>
+<title>Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="상황  테커 부트캠프에서 팀프로젝트를 진행 중이다. 단위테스트 코드는 작성이 완료되었고, 통합테스트 코드를 작성 중이다. sqlite in-memory db를 사용해서 테스트 중인 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제">
+<meta property="og:description" content="상황  테커 부트캠프에서 팀프로젝트를 진행 중이다. 단위테스트 코드는 작성이 완료되었고, 통합테스트 코드를 작성 중이다. sqlite in-memory db를 사용해서 테스트 중인 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#상황>상황</a></li>
+<li><a href=#코드>코드</a></li>
+<li><a href=#원인>원인</a></li>
+<li><a href=#해결-방법>해결 방법</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-07-22</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=상황>상황</h3>
+<ul>
+<li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li>
+<li>단위테스트 코드는 작성이 완료되었고, 통합테스트 코드를 작성 중이다.</li>
+<li>sqlite in-memory db를 사용해서 테스트 중인데, 테이블이 없다는 에러가 발생했다.</li>
+<li>테스트 전에 테이블을 생성하는 코드가 실행됨에도 불구하고, 에러가 발생한다.</li>
+<li>인메모리가 아닌 파일로 저장하는 방법을 사용하면 에러가 발생하지 않는 것을 보고 문제의 원인을 파악할 수 있었다.</li>
+</ul>
+<h3 id=코드>코드</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> database <span style=color:#f92672>import</span> Base, engine
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> fastapi.testclient <span style=color:#f92672>import</span> TestClient
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> app
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>from</span> models <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e># 테이블을 생성하는 코드이다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(bind<span style=color:#f92672>=</span>engine)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>client <span style=color:#f92672>=</span> TestClient(app)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestUserApi</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_create_user</span>(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        test_nickname <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;test_nickname&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#75715e># 아래 요청을 처리하는 코드에서 오류가 발생한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>post(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            <span style=color:#e6db74>&#34;/api/users&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;nickname&#34;</span>: test_nickname},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>==</span> <span style=color:#ae81ff>200</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;nickname&#34;</span>] <span style=color:#f92672>==</span> test_nickname
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>
+</code></pre></div><h3 id=원인>원인</h3>
+<ul>
+<li>테이블을 생성할때 만들어지는 세션과 TestClient가 요청을 처리할 때 사용하는 세션이 다르다.</li>
+</ul>
+<h3 id=해결-방법>해결 방법</h3>
+<ul>
+<li>TestClient내에 get_db() 함수를 임의로 주입한다</li>
+<li>데이터베이스를 연결할때, 단일 세션을 사용하도록 한다.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> database <span style=color:#f92672>import</span> Base, engine, get_db
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> sqlalchemy.orm <span style=color:#f92672>import</span> sessionmaker
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> fastapi.testclient <span style=color:#f92672>import</span> TestClient
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> app
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#f92672>from</span> models <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(bind<span style=color:#f92672>=</span>engine)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>client <span style=color:#f92672>=</span> TestClient(app)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#75715e># 테스트에서 사용할 세션을 생성한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>TestingSessionLocal <span style=color:#f92672>=</span> sessionmaker(autocommit<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, autoflush<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, bind<span style=color:#f92672>=</span>engine)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(bind<span style=color:#f92672>=</span>engine)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#75715e># get_db() 함수를 재정의한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>override_get_db</span>():
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#66d9ef>try</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        db <span style=color:#f92672>=</span> TestingSessionLocal()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#66d9ef>yield</span> db
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    <span style=color:#66d9ef>finally</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>        db<span style=color:#f92672>.</span>close()
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span style=color:#75715e># get_db() 함수를 재정의한 함수를 주입한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>app<span style=color:#f92672>.</span>dependency_overrides[get_db] <span style=color:#f92672>=</span> override_get_db
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestUserApi</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_create_user</span>(self):
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        test_nickname <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;test_nickname&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>        response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>post(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>            <span style=color:#e6db74>&#34;/api/users&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>            json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;nickname&#34;</span>: test_nickname},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>        )
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>==</span> <span style=color:#ae81ff>201</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;nickname&#34;</span>] <span style=color:#f92672>==</span> test_nickname
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>engine <span style=color:#f92672>=</span> create_engine(    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;DATABASE_URL&#34;</span>),
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#75715e># sqlite를 사용할 때, 여러 스레드에서 연결이 가능하도록 설정한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    connect_args<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;check_same_thread&#34;</span>: <span style=color:#66d9ef>False</span>},
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    <span style=color:#75715e># 단일 세션을 사용하도록 설정한다</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    poolclass<span style=color:#f92672>=</span>StaticPool,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>)
+</code></pre></div>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/github_action_pytest/>
+<span class=mx-3>◀</span>
+Github Actions에서 pytest 실행하기
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
