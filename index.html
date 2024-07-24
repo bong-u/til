@@ -61,6 +61,54 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'206')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-04plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24하계] 04 : 계획
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-2-04plan/ class="content-summary text-sm overflow-hidden">
+오늘의 목표 Github Actions를 이용하여 pytest 자동화 테스트 환경 구축
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-24 16:51:08 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'206')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-04/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24하계] 04 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-2-04/ class="content-summary text-sm overflow-hidden">
+배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다. Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다. run-pytest.yml 1name: Run pytest 2 3# main 또는 dev 브랜치에 pull request가 발생하면 실행 4on: 5 pull_request: 6 branches: 7 - main 8 - dev 9 10jobs: 11 test: 12 runs-on: ubuntu-latest 13 14 steps: 15 - name: Checkout code 16 uses: actions/checkout@v2 17 18 - name: Set up Python 19 uses: actions/setup-python@v2 20 with: 21 python-version: '3.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-24 16:51:08 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'204')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/python/fastapi_db_test/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제
@@ -506,57 +554,6 @@ Django - crud 기초
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'177')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/devtools/git_submodule/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Git - Submodule
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🔨</span>
-<span>개발 도구</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/devtools/git_submodule/ class="content-summary text-sm overflow-hidden">
-Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 도구
-용어 슈퍼 프로젝트 : 상위 레포지토리 서브 모듈 : 하위 레포지토리 명령어 super-repository의 “dirA” 라는 디렉토리에 sub-repository를 등록하는 경우
-1$ git submodule add https://github.com/bong-u/sub-repository.git dirA sub-repository의 변경상황을 반영해야하는 경우
-1# 1번째 방법 : sub-repository내에서 pull 해야한다 2$ cd dirA 3$ git pull 4# 2번째 방법 5$ git submodule update --remote 서브모듈을 포함한 프로젝트 클론하기
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-25 20:28:30 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'176')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako23-1-00/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코23하계] 00 : 목표
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako23-1-00/ class="content-summary text-sm overflow-hidden">
-나의 목표 1. 성실한 포스팅으로 1일 1커밋을 향해 노력하겠다. 2. SW Academy에서 배운 Spring boot 기술을 상세하게 정리할 것이다. 2. 현재 기술 블로그의 디자인을 개선시킬 것이다. SW Academy 교육과정 - Backend 프레임워크를 위환 Java 심화 실리콘밸리에서 날아온 DataBase Spring Boot Basic 1 Spring Boot Basic 2 Spring Boot Basic 3 Spring Data Security 1 Spring Data Security 2
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -589,7 +586,7 @@ Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (32)</span>
+<span> 모각코 (34)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
 <span class="text-xl mr-3">🤖</span>
