@@ -61,6 +61,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'207')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/devtools/nginx_https/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Nginx에서 HTTPS 설정하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🔨</span>
+<span>개발 도구</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/devtools/nginx_https/ class="content-summary text-sm overflow-hidden">
+배경 테커 부트캠프를 진행중이다. 모든 프로그램은 docker-compose로 구성되어 있다. AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다. 도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다. 따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다. 목표 Nginx를 이용하여 HTTPS를 적용한다. 방법 1. docker-compose.yml에 certbot 컨테이너를 추가한다. 1certbot: 2 image: certbot/certbot 3 container_name: certbot 4 volumes: 5 - ./certbot/conf:/etc/letsencrypt 6 - ./certbot/www:/var/www/certbot 7 depends_on: 8 - nginx 9 10 # certbot은 무한루프로 돌리기 위해 사용 11 entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 6h & wait $${!
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-07-25 22:33:14 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'206')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/mogako/mogako24-2-04plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
 [모각코24하계] 04 : 계획
@@ -529,31 +553,6 @@ requirements 1pip install djangorestframework-simplejwt settings.py 1INSTALLED_A
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'178')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/django_basic/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Django - crud 기초
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/django_basic/ class="content-summary text-sm overflow-hidden">
-개요 장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
-프로젝트 구조 1. 2├── db.sqlite3 3├── djtest (메인 앱) 4│ ├── __init__.py 5│ ├── asgi.py 6│ ├── settings.py 7│ ├── urls.py 8│ ├── views.py 9│ └── wsgi.py 10├── manage.py 11├── paste (생성한 앱) 12│ ├── __init__.py 13│ ├── admin.py 14│ ├── apps.py 15│ ├── migrations 16│ ├── models.py 17│ ├── serializers.py 18│ ├── tests.py 19│ ├── urls.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-26 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -578,7 +577,7 @@ Django - crud 기초
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
 <span class="text-xl mr-3">🔨</span>
-<span> 개발 도구 (1)</span>
+<span> 개발 도구 (2)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/issues/>
 <span class="text-xl mr-3">🧐</span>
