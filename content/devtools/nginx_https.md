@@ -27,7 +27,7 @@ certbot:
     depends_on:
         - nginx
 
-    # certbot은 무한루프로 돌리기 위해 사용
+    # certbot을 무한루프로 돌리기 위해 사용
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 6h & wait $${!}; done;'"
 ```
 
@@ -110,8 +110,8 @@ nginx:
         - ./certbot/conf:/etc/letsencrypt
         - ./certbot/www:/var/www/certbot
 ```
-
+해
 ## 회고
 - 보통 crontab을 활용해서 자동으로 인증서 갱신을 받는다.
 - 이번에는 프로젝트 기간이 길지 않아서, 수동으로 진행했다.
-- 다음에는 자동으로 인증서 갱신을 받는 것도 도전보자.
+- 다음에는 자동으로 인증서 갱신을 받는 것도 도전해보자.
