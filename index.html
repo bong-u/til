@@ -61,6 +61,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'215')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/issue_websocket/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Issue - fastapi에서 websocket 404 문제
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🐍</span>
+<span>Python</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/python/issue_websocket/ class="content-summary text-sm overflow-hidden">
+배경 테커 부트캠프 최종발표 전날이다. gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다. 문제 배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,) 다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다. nginx의 log 1{IP주소} - - [02/Aug/2024:10:59:04 +0000] "GET /ws/chatrooms/294?user_id=296 HTTP/1.1" 404 22 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15" 2{IP주소} - - [02/Aug/2024:10:59:05 +0000] "GET /ws/chatrooms/294?
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-08-02 21:56:07 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'208')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/devtools/nginx_https/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Nginx에서 HTTPS 설정하기
@@ -527,32 +551,6 @@ django에서 swagger 문서화 구현하기 개요 장고 프레임워크를 사
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'180')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/django_jwt/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Django - JWT 인증
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/django_jwt/ class="content-summary text-sm overflow-hidden">
-JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
-JWT 인증 구현하기 장고에서는 djangorestframework-simplejwt 패키지를 사용하여 JWT 인증을 구현할 수 있다.
-requirements 1pip install djangorestframework-simplejwt settings.py 1INSTALLED_APPS = [ 2 ... 3 'rest_framework', 4 'rest_framework_simplejwt', 5] 1REST_FRAMEWORK = { 2 # 기본 인증 클래스를 설정 3 'DEFAULT_AUTHENTICATION_CLASSES': ( 4 'rest_framework_simplejwt.authentication.JWTAuthentication', 5 ), 6 # 기본 스키마 클래스를 설정, CoreAPI를 사용하여 자동으로 API 문서화를 생성 7 'DEFAULT_SCHEMA_CLASS': 'rest_framework.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-28 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -569,7 +567,7 @@ requirements 1pip install djangorestframework-simplejwt settings.py 1INSTALLED_A
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
 <span class="text-xl mr-3">🐍</span>
-<span> Python (6)</span>
+<span> Python (7)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>

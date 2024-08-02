@@ -1,0 +1,146 @@
+<!doctype html><html>
+<head>
+<title>Issue - fastapi에서 websocket 404 문제</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="배경  테커 부트캠프 최종발표 전날이다. gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다.  문제  배포한 서버에서 websocket 연결이 404 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="Issue - fastapi에서 websocket 404 문제">
+<meta property="og:description" content="배경  테커 부트캠프 최종발표 전날이다. gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다.  문제  배포한 서버에서 websocket 연결이 404 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#배경>배경</a></li>
+<li><a href=#문제>문제</a></li>
+<li><a href=#사고흐름>사고흐름</a></li>
+<li><a href=#원인>원인</a></li>
+<li><a href=#해결>해결</a></li>
+<li><a href=#배운-점>배운 점</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Issue - fastapi에서 websocket 404 문제
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-08-02</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=배경>배경</h3>
+<ul>
+<li>테커 부트캠프 최종발표 전날이다.</li>
+<li>gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다.</li>
+</ul>
+<h3 id=문제>문제</h3>
+<ul>
+<li>배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,)</li>
+<li>다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다.</li>
+<li>nginx의 log</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>{IP주소} <span style=color:#f92672>-</span> <span style=color:#f92672>-</span> [<span style=color:#ae81ff>02</span><span style=color:#f92672>/</span>Aug<span style=color:#f92672>/</span><span style=color:#ae81ff>2024</span><span style=color:#f92672>:</span><span style=color:#ae81ff>10</span><span style=color:#f92672>:</span><span style=color:#ae81ff>59</span><span style=color:#f92672>:</span><span style=color:#ae81ff>04</span> <span style=color:#f92672>+</span><span style=color:#ae81ff>0000</span>] <span style=color:#e6db74>&#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&#34;</span> <span style=color:#ae81ff>404</span> <span style=color:#ae81ff>22</span> <span style=color:#e6db74>&#34;-&#34;</span> <span style=color:#e6db74>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>{IP주소} <span style=color:#f92672>-</span> <span style=color:#f92672>-</span> [<span style=color:#ae81ff>02</span><span style=color:#f92672>/</span>Aug<span style=color:#f92672>/</span><span style=color:#ae81ff>2024</span><span style=color:#f92672>:</span><span style=color:#ae81ff>10</span><span style=color:#f92672>:</span><span style=color:#ae81ff>59</span><span style=color:#f92672>:</span><span style=color:#ae81ff>05</span> <span style=color:#f92672>+</span><span style=color:#ae81ff>0000</span>] <span style=color:#e6db74>&#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&#34;</span> <span style=color:#ae81ff>404</span> <span style=color:#ae81ff>22</span> <span style=color:#e6db74>&#34;-&#34;</span> <span style=color:#e6db74>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&#34;</span>
+</code></pre></div><h3 id=사고흐름>사고흐름</h3>
+<ol>
+<li>nginx 설정 문제인가? X
+<ul>
+<li>nginx 설정은 변경되지 않았다.</li>
+</ul>
+</li>
+<li>배포환경의 문제인가? X
+<ul>
+<li>로컬에서 실행한 서버에서도 동일한 문제가 발생하였다.</li>
+</ul>
+</li>
+<li>이번 배포에서 변경된 소스코드가 문제인가? X
+<ul>
+<li>육안으로 확인했을 때는, 변경된 부분이 웹소켓과 관련이 없다.</li>
+<li>로컬에서 이전 버전으로 reset 후 시도 해보았지만 문제가 해결되지 않았다.</li>
+</ul>
+</li>
+<li>Docker image 문제인가? X
+<ul>
+<li>백엔드 서버는 python:slim 이미지를 사용하고 있으며, 해당 이미지가 변경되어서 문제가 발생할 가능성이 있다고 생각했다.</li>
+<li>로컬에서 docker image를 사용하지 않고 실행해보았지만 문제가 해결되지 않았다.</li>
+<li>이때, 로그에서 <strong>warning 메시지</strong>를 확인했다.</li>
+</ul>
+<pre tabindex=0><code>WARNING:  No supported WebSocket library detected. Please use &quot;pip install 'uvicorn[standard]'&quot;, or install 'websockets' or 'wsproto' manually.
+</code></pre></li>
+</ol>
+<h3 id=원인>원인</h3>
+<ul>
+<li>모종의 이유로, 이전에 개발/배포할때에는 존재했던 웹소켓 관련 라이브러리가 사라진 것이다.</li>
+<li>오류를 해결하고 조사해본 결과 fastapi 레포지토리에 6시간 전 merge된 PR을 확인할 수 있었다. (<a href=https://github.com/fastapi/fastapi/pull/11935>https://github.com/fastapi/fastapi/pull/11935</a>)</li>
+<li>해당 PR에서는 <code>pip install fastapi[standard]</code> 를 통해 표준 종속 라이브러리를 설치하는 기능이 추가되었다.</li>
+<li>이로 인해, <code>uvicorn[standard]</code> 라이브러리를 설치하지 않았을 때, 웹소켓 관련 라이브러리가 설치되지 않아 발생한 문제였다.</li>
+</ul>
+<h3 id=해결>해결</h3>
+<ul>
+<li>requirements.txt에 <code>websockets</code>를 추가해서 문제를 해결할 수 있었다.</li>
+</ul>
+<h3 id=배운-점>배운 점</h3>
+<ul>
+<li>중요한 프로젝트를 할 때 requirements.txt에 항상 각 라이브러리에 버전을 명시해야겠다는 생각이 들었다.</li>
+<li>이번에도 버전을 명시했다면, 라이브러리가 업데이트 되더라도 문제가 발생하지 않았을 것이다.</li>
+<li>또한, 로그를 잘 확인하고, warning 메시지를 놓치지 않도록 주의해야겠다.</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/fastapi_db_test/>
+<span class=mx-3>◀</span>
+Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
