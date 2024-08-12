@@ -1,0 +1,187 @@
+<!doctype html><html>
+<head>
+<title>[모각코24하계] 05 : 결과</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="배경  테커 부트캠프를 진행중이다. 모든 프로그램은 docker-compose로 구성되어 있다. AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다. 도메인 구매 없이  …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="[모각코24하계] 05 : 결과">
+<meta property="og:description" content="배경  테커 부트캠프를 진행중이다. 모든 프로그램은 docker-compose로 구성되어 있다. AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다. 도메인 구매 없이  …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#배경>배경</a></li>
+<li><a href=#목표>목표</a></li>
+<li><a href=#방법>방법</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#회고>회고</a></li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+[모각코24하계] 05 : 결과
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-08-12</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h2 id=배경>배경</h2>
+<ul>
+<li>테커 부트캠프를 진행중이다.</li>
+<li>모든 프로그램은 docker-compose로 구성되어 있다.</li>
+<li>AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다.</li>
+<li>도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다.</li>
+<li>따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다.</li>
+</ul>
+<h2 id=목표>목표</h2>
+<ul>
+<li>Nginx를 이용하여 HTTPS를 적용한다.</li>
+</ul>
+<h2 id=방법>방법</h2>
+<h4 id=1-docker-composeyml에-certbot-컨테이너를-추가한다>1. docker-compose.yml에 certbot 컨테이너를 추가한다.</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>certbot</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>certbot/certbot</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>certbot</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#f92672>volumes</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        - <span style=color:#ae81ff>./certbot/conf:/etc/letsencrypt</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        - <span style=color:#ae81ff>./certbot/www:/var/www/certbot</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>depends_on</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        - <span style=color:#ae81ff>nginx</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#75715e># certbot을 무한루프로 돌리기 위해 사용</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#f92672>entrypoint</span>: <span style=color:#e6db74>&#34;/bin/sh -c &#39;trap exit TERM; while :; do sleep 6h &amp; wait $${!}; done;&#39;&#34;</span>
+</code></pre></div><h4 id=2-nginxconf를-수정한다>2. nginx.conf를 수정한다.</h4>
+<pre tabindex=0><code class=language-conf data-lang=conf># certbot을 사용하기 위한 설정
+location /.well-known/acme-challenge/ {
+    allow all;
+    root /var/www/certbot;
+}
+</code></pre><h4 id=3-certbot-컨테이너를-활용해서-ssl-인증서를-발급받는다>3. certbot 컨테이너를 활용해서 SSL 인증서를 발급받는다.</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>docker exec -it certbot certbot certonly <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#ae81ff></span>  <span style=color:#75715e># 웹 루트 방식으로 인증서를 생성</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>  --webroot <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#ae81ff></span>  <span style=color:#75715e># 웹 서버의 웹 루트 디렉터리 경로를 지정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>  --webroot-path<span style=color:#f92672>=</span>/var/www/certbot <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#ae81ff></span>  <span style=color:#75715e># 인증서 갱신 및 중요한 알림을 받을 이메일 주소를 지정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>  --email <span style=color:#f92672>{</span>이메일 주소<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#ae81ff></span>  <span style=color:#75715e># Let&#39;s Encrypt 서비스 약관에 동의</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>  --agree-tos <span style=color:#ae81ff>\ </span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>  <span style=color:#75715e># EFF(Electronic Frontier Foundation) 뉴스레터를 받지 않도록 설정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>  --no-eff-email <span style=color:#ae81ff>\
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#ae81ff></span>  <span style=color:#75715e># SSL 인증서를 생성할 도메인 이름을 지정</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>  -d <span style=color:#f92672>{</span>도메인 이름<span style=color:#f92672>}</span>
+</code></pre></div><h4 id=4-nginx-웹-서버와-함께-사용할-ssl-설정-파일을-다운로드>4. Nginx 웹 서버와 함께 사용할 SSL 설정 파일을 다운로드</h4>
+<ul>
+<li>다운 받은 후 파일을 알맞은 위치로 이동시킨다.</li>
+<li>해당 프로젝트에서는 /etc/letsencrypt/로 이동시켰다.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf &gt; <span style=color:#e6db74>&#34;./options-ssl-nginx.conf&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem &gt; <span style=color:#e6db74>&#34;./ssl-dhparams.pem&#34;</span>
+</code></pre></div><h4 id=5-nginxconf를-수정한다>5. nginx.conf를 수정한다.</h4>
+<ul>
+<li>필요한 부분만 추가하였다.</li>
+</ul>
+<pre tabindex=0><code class=language-conf data-lang=conf>server {
+    listen 80;
+    charset utf-8;
+
+    server_name {도메인 이름};
+
+    # HTTP 요청을 HTTPS로 리다이렉트
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+server {
+    listen 443 ssl;
+    charset utf-8;
+
+    server_name { 도메인 이름 };
+
+    # SSL 인증서 설정
+    ssl_certificate /etc/letsencrypt/live/api.forest-of-thoughts.site/fullchain.pem;
+    # SSL 인증서 키 설정
+    ssl_certificate_key /etc/letsencrypt/live/api.forest-of-thoughts.site/privkey.pem;
+    # SSL 설정 파일 포함
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    # Diffie-Hellman 키 설정
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+</code></pre><h4 id=6-nginx-컨테이너-설정을-수정한다>6. nginx 컨테이너 설정을 수정한다.</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>nginx</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>nginx:stable</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#f92672>ports</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        - <span style=color:#e6db74>&#34;80:80&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>        - <span style=color:#e6db74>&#34;443:443&#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#f92672>volumes</span>:
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>        - <span style=color:#ae81ff>./nginx.conf:/etc/nginx/nginx.conf</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>        - <span style=color:#ae81ff>./certbot/conf:/etc/letsencrypt</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>        - <span style=color:#ae81ff>./certbot/www:/var/www/certbot</span>
+</code></pre></div><p>해</p>
+<h2 id=회고>회고</h2>
+<ul>
+<li>보통 crontab을 활용해서 자동으로 인증서 갱신을 받는다.</li>
+<li>이번에는 프로젝트 기간이 길지 않아서, 수동으로 진행했다.</li>
+<li>다음에는 자동으로 인증서 갱신을 받는 것도 도전해보자.</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-2-05plan/>
+<span class=mx-3>◀</span>
+[모각코24하계] 05 : 계획
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
