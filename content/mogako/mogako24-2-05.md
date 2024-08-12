@@ -109,7 +109,7 @@ nginx:
         - ./certbot/conf:/etc/letsencrypt
         - ./certbot/www:/var/www/certbot
 ```
-해
+
 ## 회고
 - 보통 crontab을 활용해서 자동으로 인증서 갱신을 받는다.
 - 이번에는 프로젝트 기간이 길지 않아서, 수동으로 진행했다.
