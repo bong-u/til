@@ -1,0 +1,144 @@
+<!doctype html><html>
+<head>
+<title>C언어 개념 정리</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.
+ dead code <-> unreachable code  dead code : …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="C언어 개념 정리">
+<meta property="og:description" content="본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.
+ dead code <-> unreachable code  dead code : …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#dead-code---unreachable-code>dead code &lt;-> unreachable code</a></li>
+<li><a href=#tag>tag</a></li>
+<li><a href=#escape-sequence>escape sequence</a></li>
+<li><a href=#연결>연결</a></li>
+<li><a href=#namespace-c언어-o-c-x>namespace (c언어 O, c++ X)</a></li>
+<li><a href=#translation-unit-번역-단위>translation unit (번역 단위)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+C언어 개념 정리
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-09-08</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<blockquote>
+<p>본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.</p>
+</blockquote>
+<h3 id=dead-code---unreachable-code>dead code &lt;-> unreachable code</h3>
+<ul>
+<li>dead code : 코드에서 실행되지만 그 결과가 다른 계산에 사용될 수 없는 섹션</li>
+<li>unreachable code : 제어 흐름 경로가 없기 때문에 실행할 수 없는 프로그램 소스 코드의 일부</li>
+</ul>
+<h3 id=tag>tag</h3>
+<ul>
+<li>struct, union, enum 뒤에 붙는 이름</li>
+</ul>
+<h3 id=escape-sequence>escape sequence</h3>
+<ul>
+<li>백슬래시()와 특정문자를 결합하여 표현하기 어려운 기능, 문자를 표시해준다.</li>
+<li>종류 (대표적인 것만 몇개 뽑았다)
+<ul>
+<li>\n : 개행</li>
+<li>\t : 수평 탭</li>
+<li>\o(8진수 숫자) : 8진수</li>
+<li>\x(16진수 숫자) : 16진수</li>
+</ul>
+</li>
+</ul>
+<h3 id=연결>연결</h3>
+<blockquote>
+<p>다른 범위에 속하는 변수들을 서로 연결하는 것</p>
+</blockquote>
+<ul>
+<li>무연결 : 다른 블록과 연결을 가지지 않음
+<ul>
+<li>지역 변수</li>
+</ul>
+</li>
+<li>내부 연결 : 해당 파일 내부에서만 사용 가능
+<ul>
+<li>static 전역변수</li>
+</ul>
+</li>
+<li>외부 연결 : 다른 소스 파일에서도 사용 가능
+<ul>
+<li>non static 전역변수, extern 지정자 사용</li>
+</ul>
+</li>
+</ul>
+<h3 id=namespace-c언어-o-c-x>namespace (c언어 O, c++ X)</h3>
+<blockquote>
+<p>C언어는 아래 4가지의 이름공간을 가진다.
+- label
+- tag (struct, union, enum)
+- member 명 (struct, union, enum)
+- 나머지 (함수, 변수, typedef 타입 이름, 얼거형의 값)</p>
+</blockquote>
+<h3 id=translation-unit-번역-단위>translation unit (번역 단위)</h3>
+<blockquote>
+<p>대부분의 경우 c 파일</p>
+</blockquote>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>

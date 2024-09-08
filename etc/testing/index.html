@@ -1,0 +1,174 @@
+<!doctype html><html>
+<head>
+<title>정적테스트와 동적테스트</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="정적 테스트  SW를 실행하지 않고 테스팅하는 기법
+ 리뷰  여러 전문가들이 모여 코드를 포함한 SW …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="정적테스트와 동적테스트">
+<meta property="og:description" content="정적 테스트  SW를 실행하지 않고 테스팅하는 기법
+ 리뷰  여러 전문가들이 모여 코드를 포함한 SW …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#정적-테스트>정적 테스트</a></li>
+<li><a href=#동적-테스트>동적 테스트</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+정적테스트와 동적테스트
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-09-08</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=정적-테스트>정적 테스트</h3>
+<blockquote>
+<p>SW를 실행하지 않고 테스팅하는 기법</p>
+</blockquote>
+<h4 id=리뷰>리뷰</h4>
+<blockquote>
+<p>여러 전문가들이 모여 코드를 포함한 SW 개발 및 산출물을 검토하고 테스팅하여 결함을 검출하는 방법</p>
+</blockquote>
+<ul>
+<li>Inspection
+<ul>
+<li>전문적인 inspection team이 정형화된 방식으로 defect를 찾는 리뷰 기법</li>
+<li>Planning -> Overview -> Preparation -> Meeting(Inspection) -> Rework -> Follow-up</li>
+</ul>
+</li>
+<li>Peer Review (Technical Review)
+<ul>
+<li>개발팀이 주도하여 직접 모여 수행하는 리뷰 기법</li>
+<li>PL 또는 TL이 주도하여 리뷰 대상을 선정, 개발자에게 리뷰 요청</li>
+</ul>
+</li>
+<li>Walkthrough
+<ul>
+<li>Peer Review와 유사하나 문서 작성자가 주도하는 가벼운 만남 형태</li>
+</ul>
+</li>
+</ul>
+<h4 id=정적-분석-무기체계sw-개발-및-관리-매뉴얼-기준>정적 분석 (무기체계SW 개발 및 관리 매뉴얼 기준)</h4>
+<ul>
+<li>
+<p>코딩 규칙</p>
+<ul>
+<li>MISRA-C</li>
+<li>MISRA-C++</li>
+<li>C# Coding conventions</li>
+<li>Code conventions for the Java Programming Language</li>
+</ul>
+</li>
+<li>
+<p>CWE(Common Weakness Enumeration) 점검</p>
+<blockquote>
+<p>일반적인 SW와 HW의 보안 약점을 나열한 공식적인 리스트</p>
+</blockquote>
+<ul>
+<li>CWE-658 : C언어</li>
+<li>CWE-659 : C++</li>
+<li>CWE-660 : Java</li>
+</ul>
+</li>
+<li>
+<p>Code Metric 점검</p>
+<ul>
+<li>Cyclomatic Complexity : 제어 흐름 그래프의 복잡도</li>
+<li>Number of call levels : 조건문 중첩의 깊이</li>
+<li>Number of function parameters</li>
+<li>Number of calling function : 함수가 몇 번 호출되는가</li>
+<li>Number of called functions : 함수를 몇 번 호출하는가</li>
+<li>Number of Executable code lines</li>
+</ul>
+</li>
+</ul>
+<h3 id=동적-테스트>동적 테스트</h3>
+<ul>
+<li>
+<p>명세 기반 테스트 (블랙박스 기법)</p>
+<ul>
+<li>동등 분할</li>
+<li>경계값 분석</li>
+<li>결정 테이블 테스트</li>
+<li>상태 전이 테스트</li>
+<li>분류 트리 기법</li>
+<li>조합 테스트</li>
+<li>시나리오 테스트</li>
+<li>&mldr;</li>
+</ul>
+</li>
+<li>
+<p>구조 기반 테스트 (화이트박스 기법)</p>
+<ul>
+<li>Statement Coverage</li>
+<li>Decision Coverage (Branch Coverage)</li>
+<li>Condition Coverage</li>
+<li>MC/DC Coverage</li>
+<li>Path Coverage</li>
+</ul>
+</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/etc/yaml_colon/>
+<span class=mx-3>◀</span>
+Issue - yaml 문자열 속 colon(콜론)
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
