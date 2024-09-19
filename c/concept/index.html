@@ -143,15 +143,14 @@ C언어 개념 정리
 <p>비트필드를 사용해 구조체 멤버를 비트 단위로 크기를 지정해서 저장할 수 있다.</p>
 </blockquote>
 <ul>
-<li>
-<p>예시 코드</p>
+<li>예시 코드</li>
+</ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>struct</span> Flags {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> a : <span style=color:#ae81ff>1</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> b : <span style=color:#ae81ff>3</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> c : <span style=color:#ae81ff>7</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
-</code></pre></div><pre tabindex=0><code>
-</code></pre></li>
+</code></pre></div><ul>
 <li>
 <p>메모리 구조</p>
 <ul>
@@ -193,6 +192,8 @@ C언어 개념 정리
 </li>
 <li>
 <p>예시 코드</p>
+</li>
+</ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>inline</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>hello_world</span>() {
@@ -203,8 +204,7 @@ C언어 개념 정리
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>	hello_world();
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-</code></pre></div><pre tabindex=0><code>
-</code></pre></li>
+</code></pre></div><ul>
 <li>
 <p>장점</p>
 <ul>
@@ -230,20 +230,15 @@ C언어 개념 정리
 <p>restrict를 붙인 포인터가 가리키는 객체는 다른 포인터가 가리키지 않는다.</p>
 </blockquote>
 <ul>
-<li>
-<p>예시 코드</p>
+<li>예시 코드</li>
+</ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>increase</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> <span style=color:#66d9ef>restrict</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> <span style=color:#66d9ef>restrict</span> b, <span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> <span style=color:#66d9ef>restrict</span> x) {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>	<span style=color:#f92672>*</span>a <span style=color:#f92672>+=</span> <span style=color:#f92672>*</span>x;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>	<span style=color:#f92672>*</span>b <span style=color:#f92672>+=</span> <span style=color:#f92672>*</span>x;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
-</code></pre></div><pre tabindex=0><code>
-</code></pre></li>
-<li>
-<p>특정 메모리 영역에 접근할 수 있는 포인터가 하나임을 보장</p>
-</li>
-<li>
-<p>최적화를 위해 사용</p>
-</li>
+</code></pre></div><ul>
+<li>특정 메모리 영역에 접근할 수 있는 포인터가 하나임을 보장</li>
+<li>최적화를 위해 사용</li>
 </ul>
 <h3 id=_atomic>_Atomic</h3>
 <blockquote>
@@ -258,11 +253,12 @@ C언어 개념 정리
 </li>
 <li>
 <p>예시 코드</p>
+</li>
+</ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdatomic.h&gt;</span><span style=color:#75715e>
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>_Atomic <span style=color:#66d9ef>int</span> var <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-</code></pre></div><pre tabindex=0><code></code></pre></li>
-</ul>
+</code></pre></div>
 </article>
 <div id=meta class=my-16>
 <div>
