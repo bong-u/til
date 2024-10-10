@@ -1,0 +1,133 @@
+<!doctype html><html>
+<head>
+<title>C++ 개념 정리</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
+ 템플릿 (Template)  템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="C++ 개념 정리">
+<meta property="og:description" content="본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
+ 템플릿 (Template)  템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#템플릿-template>템플릿 (Template)</a></li>
+<li><a href=#템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+C++ 개념 정리
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-10-10</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<blockquote>
+<p>본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.</p>
+</blockquote>
+<h3 id=템플릿-template>템플릿 (Template)</h3>
+<blockquote>
+<p>템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작성하는 방법</p>
+</blockquote>
+<h4 id=함수-템플릿>함수 템플릿</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>T add(T a, T b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
+</code></pre></div><h4 id=클래스-템플릿>클래스 템플릿</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Point</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    T x, y;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    Point(T x, T y) <span style=color:#f92672>:</span> x(x), y(y) {}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
+</code></pre></div><h3 id=템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</h3>
+<blockquote>
+<p>템플릿을 특정 타입에 대해 구체화하는 것</p>
+</blockquote>
+<h4 id=함수-템플릿-명시적-특수화>함수 템플릿 명시적 특수화</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>T add(T a, T b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e>// int 타입에 대한 특수화
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>int</span> add(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
+</code></pre></div><h4 id=함수-템플릿-부분-특수화>함수 템플릿 부분 특수화</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>T add(T a, T b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e>// 포인터 타입에 대한 부분 특수화
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>T add(T<span style=color:#f92672>*</span> a, T<span style=color:#f92672>*</span> b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>*</span>a <span style=color:#f92672>+</span> <span style=color:#f92672>*</span>b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
+</code></pre></div>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/c_-cpp/c_concept/>
+<span class=mx-3>◀</span>
+C언어 개념 정리
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
