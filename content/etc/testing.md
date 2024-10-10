@@ -58,3 +58,22 @@ date: 2024-09-08
 	- Condition Coverage
 	- MC/DC Coverage
 	- Path Coverage
+
+#### Fuzzing 테스트
+> 유효한, 예상치 않은 값들을 무작위로 대입하는 테스트 기법
+
+- 변형 기반 Fuzzing (Dumb Fuzzing)
+	> 입력 샘플을 Fuzzing 도구에 제공, Fuzzing 도구가 이를 변형시켜가면서 테스트
+	- 장점
+		- 쉽고 빠르게 구현이 가능
+		- 입력 구조에 대한 분석을 하지 않아도 됨
+	- 단점
+		- 미리 정의된 구조가 필요하거나 체크섬이 포함되어 있는 경우 유효한 입력을 생성하는데 어려움이 존재
+
+- 생성 기반 Fuzzing (Smart Fuzzing)
+	> 대상 시스템에 입력시킬 데이터를 Fuzzing 도구가 생성
+	- 장점
+		- 더 높은 Coverage로 이어지는 테스트케이스를 생성
+	- 단점
+		- 입력 모델에 대한 이해도가 선행되어야 함
+		- 구현 난이도가 높음
