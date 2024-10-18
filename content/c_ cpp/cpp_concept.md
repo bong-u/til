@@ -276,3 +276,38 @@ int* b = const_cast<int*>(&a);
 int a = 10;
 int* b = reinterpret_cast<int*>(&a);
 ```
+
+### constexpr (~C++11)
+
+> 컴파일 시간에 평가되는 표현식을 생성하기 위해 사용
+
+#### 변수 
+- compile time 상수에만 사용 가능
+
+```cpp
+constexpr int num1 = 10;
+
+int a = 20;
+constexpr int num2 = a; // error: 변수 a는 runtime에 결정되므로 사용 불가
+```
+
+#### 함수
+- 함수가 compile time에 실행되도록 보장
+- 인자 값이 compile time 상수인 경우 -> constexpr 함수로 동작
+- 인자 값이 compile time 상수가 아닌 경우 -> constexpr 함수로 동작
+- body에서 불가능한 구문
+    - goto
+    - try-catch
+    - 초기화 수행이 없는 변수 선언
+    - 리터럴 타입이 아닌 변수 선언
+    - static 변수 선언
+    - tls(thread local storage) 변수 선언
+    - 등...
+
+```cpp
+constexpr int fibonacci(const int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+fibonacci(10); // compile time에 다 계산되어서 55로 대체됨
+```
