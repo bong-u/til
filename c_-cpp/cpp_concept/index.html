@@ -58,6 +58,7 @@ bong-u/til
 <li><a href=#escape-sequence>Escape Sequence</a></li>
 <li><a href=#encoding>Encoding</a></li>
 <li><a href=#cast-operator>Cast Operator</a></li>
+<li><a href=#constexpr-c11>constexpr (~C++11)</a></li>
 </ul>
 </li>
 </ul>
@@ -409,7 +410,41 @@ C++ 개념 정리
 </ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>reinterpret_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*&gt;</span>(<span style=color:#f92672>&amp;</span>a);
-</code></pre></div>
+</code></pre></div><h3 id=constexpr-c11>constexpr (~C++11)</h3>
+<blockquote>
+<p>컴파일 시간에 평가되는 표현식을 생성하기 위해 사용</p>
+</blockquote>
+<h4 id=변수>변수</h4>
+<ul>
+<li>compile time 상수에만 사용 가능</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> num1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> num2 <span style=color:#f92672>=</span> a; <span style=color:#75715e>// error: 변수 a는 runtime에 결정되므로 사용 불가
+</span></code></pre></div><h4 id=함수>함수</h4>
+<ul>
+<li>함수가 compile time에 실행되도록 보장</li>
+<li>인자 값이 compile time 상수인 경우 -> constexpr 함수로 동작</li>
+<li>인자 값이 compile time 상수가 아닌 경우 -> constexpr 함수로 동작</li>
+<li>body에서 불가능한 구문
+<ul>
+<li>goto</li>
+<li>try-catch</li>
+<li>초기화 수행이 없는 변수 선언</li>
+<li>리터럴 타입이 아닌 변수 선언</li>
+<li>static 변수 선언</li>
+<li>tls(thread local storage) 변수 선언</li>
+<li>등&mldr;</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>fibonacci</span>(<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>if</span> (n <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> n;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>+</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>fibonacci(<span style=color:#ae81ff>10</span>); <span style=color:#75715e>// compile time에 다 계산되어서 55로 대체됨
+</span></code></pre></div>
 </article>
 <div id=meta class=my-16>
 <div>
