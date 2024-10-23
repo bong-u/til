@@ -59,6 +59,7 @@ bong-u/til
 <li><a href=#encoding>Encoding</a></li>
 <li><a href=#cast-operator>Cast Operator</a></li>
 <li><a href=#constexpr-c11>constexpr (~C++11)</a></li>
+<li><a href=#lvalue-rvalue-참조>lvalue, rvalue 참조</a></li>
 </ul>
 </li>
 </ul>
@@ -73,7 +74,7 @@ C++ 개념 정리
 </div>
 </div>
 <div class="text-sm flex flex-col mb-8 text-textgray">
-<h4 id=date>수정일 : 2024-10-18</h4>
+<h4 id=date>수정일 : 2024-10-23</h4>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <blockquote>
@@ -131,7 +132,6 @@ C++ 개념 정리
 </blockquote>
 <ul>
 <li>[[noreturn]]으로 선언된 함수가 정상적인 반환을 시도하는 경우 undefined behavior 발생</li>
-<li></li>
 </ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>[[noreturn]]</span> <span style=color:#66d9ef>void</span> error() {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>throw</span> <span style=color:#e6db74>&#34;error&#34;</span>;
@@ -184,6 +184,28 @@ C++ 개념 정리
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>auto</span> add <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
+</code></pre></div><h4 id=transientnon-transient-lambda>Transient/Non-transient lambda</h4>
+<ul>
+<li>Transient lambda</li>
+</ul>
+<blockquote>
+<p>즉시 호출되고 소멸되는 람다 함수</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>    <span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>auto</span> result <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> x) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>        <span style=color:#66d9ef>return</span> x <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    }(); <span style=color:#75715e>// 즉시 호출
+</span></code></pre></div><ul>
+<li>Non-transient lambda</li>
+</ul>
+<blockquote>
+<p>메모리에 저장되어 여러 번 호출할 수 있는 람다 함수</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>std<span style=color:#f92672>::</span>function<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span>()<span style=color:#f92672>&gt;</span> add <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> a) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>int32_t</span> result <span style=color:#f92672>=</span> add(<span style=color:#ae81ff>10</span>);
 </code></pre></div><h3 id=closure-c11>Closure (~C++11)</h3>
 <blockquote>
 <p>lambda expression에서 외부 변수에 대한 참조를 캡처하는 방식</p>
@@ -444,6 +466,63 @@ C++ 개념 정리
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>+</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>);
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>fibonacci(<span style=color:#ae81ff>10</span>); <span style=color:#75715e>// compile time에 다 계산되어서 55로 대체됨
+</span></code></pre></div><h3 id=lvalue-rvalue-참조>lvalue, rvalue 참조</h3>
+<h4 id=lvalue>lvalue</h4>
+<blockquote>
+<p>객체를 가리키는 메모리 위치를 나타내는 표현식</p>
+</blockquote>
+<ul>
+<li>lvalue 참조</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> a <span style=color:#f92672>=</span> b;     <span style=color:#75715e>// a는 b의 참조자 (lvalue 참조)
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>a <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</code></pre></div><ul>
+<li>멤버 함수에서의 사용 예시</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>void</span> show() <span style=color:#f92672>&amp;</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;lvalue function called (object is lvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>MyClass obj;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>obj.show(); <span style=color:#75715e>// lvalue 객체에서 호출
+</span></code></pre></div><h4 id=rvalue>rvalue</h4>
+<blockquote>
+<p>메모리에 위치에 할당된 값을 나타내는 표현식</p>
+</blockquote>
+<ul>
+<li>
+<p>주소가 없거나, 임시로 할당된 값</p>
+</li>
+<li>
+<p>주로 표현식이나 함수의 반환값이다.</p>
+</li>
+<li>
+<p>move semnatics를 사용하여 자원을 효율적으로 이동시키는데 사용한다.</p>
+</li>
+<li>
+<p>rvalue 참조 (~C++11)</p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>show</span>() <span style=color:#f92672>&amp;&amp;</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;rvalue function called (object is rvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
+</code></pre></div><ul>
+<li>멤버 함수에서의 사용 예시</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>void</span> show() <span style=color:#f92672>&amp;&amp;</span> { <span style=color:#75715e>// rvalue에서만 호출 가능
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;rvalue function called (object is rvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>MyClass().show(); <span style=color:#75715e>// rvalue 객체에서 호출
 </span></code></pre></div>
 </article>
 <div id=meta class=my-16>

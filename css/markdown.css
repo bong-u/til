@@ -2,18 +2,23 @@
   #content h1 {
     @apply text-4xl font-bold mt-7 mb-2;
   }
+
   #content h2 {
     @apply text-3xl font-bold mt-6 mb-2;
   }
+
   #content h3 {
     @apply text-2xl font-bold mt-5 mb-2;
   }
+
   #content h4 {
     @apply text-xl font-bold mt-4 mb-2;
   }
+
   #content h5 {
     @apply text-lg font-bold mt-3 mb-2;
   }
+
   #content h6 {
     @apply text-base font-bold mt-2 mb-2;
   }
@@ -29,10 +34,12 @@
   #content ul {
     @apply list-disc pl-8;
   }
+
   #content ul ul,
   #content ol ul {
     @apply list-circle;
   }
+
   #content ul ul ul,
   #content ul ol ul,
   #content ol ul ul,
@@ -43,10 +50,12 @@
   #content ol {
     @apply list-decimal pl-8;
   }
+
   #content ol ol,
   #content ul ol {
     @apply list-alpha;
   }
+
   #content ol ol ol,
   #content ol ul ol,
   #content ul ol ol,
@@ -60,12 +69,14 @@
 
   #content pre {
     @apply bg-codebox !important;
-    @apply block my-3 p-5 rounded-md whitespace-pre-wrap overflow-scroll;
+    @apply block my-3 p-5 rounded-md whitespace-pre-wrap overflow-hidden;
   }
+
   #content code,
   #content code * {
     @apply font-code !important;
   }
+
   #content code:not(:has(span)) {
     @apply bg-codebox px-[0.4rem] py-[0.2rem] rounded-md text-[80%] text-codeinline;
   }
@@ -75,8 +86,8 @@
     @apply border px-3 py-1;
   }
 
-  #content * {
-    @apply my-1;
+  #content>* {
+    @apply my-3;
   }
 
   #content a {
