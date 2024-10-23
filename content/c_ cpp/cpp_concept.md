@@ -67,7 +67,6 @@ T add(T* a, T* b) {
 > 함수가 정상적으로 호출자에게 제어권을 반환하지 않음을 나타냄
 
 - [[noreturn]]으로 선언된 함수가 정상적인 반환을 시도하는 경우 undefined behavior 발생
-- 
 
 ```cpp
 [[noreturn]] void error() {
@@ -129,6 +128,26 @@ void print(T value) {
 auto add = [](int a, int b) {
     return a + b;
 };
+```
+
+#### Transient/Non-transient lambda
+- Transient lambda
+> 즉시 호출되고 소멸되는 람다 함수
+```cpp
+    int x = 10;
+    auto result = [](int x) {
+        return x * 2;
+    }(); // 즉시 호출
+```
+
+- Non-transient lambda
+> 메모리에 저장되어 여러 번 호출할 수 있는 람다 함수
+```cpp
+std::function<int32_t()> add = [](int a) {
+    return a + 10;
+};
+
+int32_t result = add(10);
 ```
 
 
@@ -310,4 +329,57 @@ constexpr int fibonacci(const int n) {
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 fibonacci(10); // compile time에 다 계산되어서 55로 대체됨
+```
+
+### lvalue, rvalue 참조
+
+#### lvalue
+> 객체를 가리키는 메모리 위치를 나타내는 표현식
+
+- lvalue 참조
+```cpp
+int b = 10;
+int& a = b;     // a는 b의 참조자 (lvalue 참조)
+a = 20;
+```
+
+- 멤버 함수에서의 사용 예시
+```cpp
+class MyClass {
+public:
+    void show() & {
+        std::cout << "lvalue function called (object is lvalue)" << std::endl;
+    }
+};
+
+MyClass obj;
+obj.show(); // lvalue 객체에서 호출
+```
+
+#### rvalue
+> 메모리에 위치에 할당된 값을 나타내는 표현식
+
+- 주소가 없거나, 임시로 할당된 값
+- 주로 표현식이나 함수의 반환값이다.
+- move semnatics를 사용하여 자원을 효율적으로 이동시키는데 사용한다.
+
+- rvalue 참조 (~C++11)
+```cpp
+int&& a = 10;
+
+void show() && {
+    std::cout << "rvalue function called (object is rvalue)" << std::endl;
+}
+```
+
+- 멤버 함수에서의 사용 예시
+```cpp
+class MyClass {
+public:
+    void show() && { // rvalue에서만 호출 가능
+        std::cout << "rvalue function called (object is rvalue)" << std::endl;
+    }
+};
+
+MyClass().show(); // rvalue 객체에서 호출
 ```
