@@ -383,3 +383,57 @@ public:
 
 MyClass().show(); // rvalue 객체에서 호출
 ```
+
+
+
+### 가상함수
+> 상속 관계에서 동적 바인딩을 위해 사용
+
+#### virtual 지정자
+- 가상 함수 : 오버라이딩이 선택적임
+- 순수 가상 함수 : 오버라이딩이 필수임
+
+```cpp
+class Base {
+public:
+    // 가상함수
+    virtual void show() {
+        std::cout << "Base::show()" << std::endl;
+    }
+
+    // 순수 가상함수
+    virtual void print() = 0;
+};
+```
+
+#### override 지정자
+> 오버라이딩을 명시적으로 표시
+
+```cpp
+class Derived : public Base {
+public:
+    void show() override {
+        std::cout << "Derived::show()" << std::endl;
+    }
+};
+```
+
+#### final 지정자
+> 상속을 방지하는 키워드
+
+- 클래스에 사용 : 상속을 방지
+- 함수에 사용 : 오버라이딩을 방지
+
+```cpp
+// 상속을 방지
+class Car final { ... };
+
+// 상속과 같이 쓰이는 경우
+class Derived final : public Base { ... };
+
+class Base {
+public:
+    // 오버라이딩을 방지
+    void show() final { ... }
+};
+```
