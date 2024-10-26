@@ -4,11 +4,11 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
- 템플릿 (Template)  템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작 …">
+ 참조(Reference)와 포인터(Pointer) 포인터(Pointer)  메모리 주소를 저장 …">
 <meta property="og:site_name" content="bong-u/til">
 <meta property="og:title" content="C++ 개념 정리">
 <meta property="og:description" content="본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
- 템플릿 (Template)  템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작 …">
+ 참조(Reference)와 포인터(Pointer) 포인터(Pointer)  메모리 주소를 저장 …">
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://github.com/bong-u/til-hugo">
 <meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
@@ -49,6 +49,8 @@ bong-u/til
 <ul>
 <li>
 <ul>
+<li><a href=#참조reference와-포인터pointer>참조(Reference)와 포인터(Pointer)</a></li>
+<li><a href=#참조reference>참조(Reference)</a></li>
 <li><a href=#템플릿-template>템플릿 (Template)</a></li>
 <li><a href=#템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</a></li>
 <li><a href=#속성-attribute>속성 (Attribute)</a></li>
@@ -61,6 +63,7 @@ bong-u/til
 <li><a href=#constexpr-c11>constexpr (~C++11)</a></li>
 <li><a href=#lvalue-rvalue-참조>lvalue, rvalue 참조</a></li>
 <li><a href=#가상함수>가상함수</a></li>
+<li><a href=#enum-vs-enum-class>enum vs enum class</a></li>
 </ul>
 </li>
 </ul>
@@ -75,13 +78,54 @@ C++ 개념 정리
 </div>
 </div>
 <div class="text-sm flex flex-col mb-8 text-textgray">
-<h4 id=date>수정일 : 2024-10-26</h4>
+<h4 id=date>수정일 : 2024-10-27</h4>
 </div>
 <article id=content class="bg-inherit markdown-body flex flex-col">
 <blockquote>
 <p>본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.</p>
 </blockquote>
-<h3 id=템플릿-template>템플릿 (Template)</h3>
+<h3 id=참조reference와-포인터pointer>참조(Reference)와 포인터(Pointer)</h3>
+<h4 id=포인터pointer>포인터(Pointer)</h4>
+<blockquote>
+<p>메모리 주소를 저장하는 변수</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 변수 선언
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#f92672>&amp;</span>a; <span style=color:#75715e>// a의 주소를 저장
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e>// 매개변수로 전달
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>*</span>a <span style=color:#f92672>+</span> <span style=color:#f92672>*</span>b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>add(<span style=color:#f92672>&amp;</span>a, <span style=color:#f92672>&amp;</span>b);
+</code></pre></div><h3 id=참조reference>참조(Reference)</h3>
+<blockquote>
+<p>변수에 별칭을 부여하는 것</p>
+</blockquote>
+<ul>
+<li>
+<p>이름으로 대상을 가리킨다.</p>
+</li>
+<li>
+<p>제약사항</p>
+<ul>
+<li>참조는 선언과 동시에 초기화해야 한다.</li>
+<li>참조는 한 번 초기화되면 다른 변수로 변경할 수 없다.</li>
+<li>참조는 NULL로 초기화할 수 없다.</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// 변수 선언
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> b <span style=color:#f92672>=</span> a; <span style=color:#75715e>// a의 별칭을 b로 지정
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e>// 매개변수로 전달
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> b) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    a <span style=color:#f92672>+</span> b;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>add (a, b);
+</code></pre></div><h3 id=템플릿-template>템플릿 (Template)</h3>
 <blockquote>
 <p>템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작성하는 방법</p>
 </blockquote>
@@ -572,6 +616,35 @@ C++ 개념 정리
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#75715e>// 오버라이딩을 방지
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>    <span style=color:#66d9ef>void</span> show() <span style=color:#66d9ef>final</span> { ... }
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>};
+</code></pre></div><h3 id=enum-vs-enum-class>enum vs enum class</h3>
+<h4 id=enum>enum</h4>
+<blockquote>
+<p>기존의 C 스타일 열거형</p>
+</blockquote>
+<ul>
+<li>컴파일 시점에 정수형 상수로 변환 -> 성능 저하가 없음</li>
+<li>다른 enum 영역이라도 변수명이 중복되면 충돌 발생</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    RED,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    GREEN,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    BLUE
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>};
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>Color color <span style=color:#f92672>=</span> RED;
+</code></pre></div><h4 id=enum-class-c11>enum class (~C++11)</h4>
+<blockquote>
+<p>enum의 확장된 버전</p>
+</blockquote>
+<ul>
+<li>묵시적 형변환이 불가능 -> 명시적 형변환 필요</li>
+<li>enum 영역이 격리되어 변수명이 중복되어도 충돌이 발생하지 않음</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>enum</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Color</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    RED,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    GREEN,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    BLUE
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>};
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>Color color <span style=color:#f92672>=</span> Color<span style=color:#f92672>::</span>RED;
 </code></pre></div>
 </article>
 <div id=meta class=my-16>

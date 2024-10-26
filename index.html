@@ -61,6 +61,35 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'301')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/c_-cpp/cpp_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">
+C++ 개념 정리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🌊</span>
+<span>C/CPP</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/c_-cpp/cpp_concept/ class="content-summary text-sm overflow-hidden">
+본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
+참조(Reference)와 포인터(Pointer) 포인터(Pointer) 메모리 주소를 저장하는 변수
+1// 변수 선언 2int a = 10; 3int* b = &amp;a; // a의 주소를 저장 4 5// 매개변수로 전달 6void add(int* a, int* b) { 7 *a + *b; 8} 9 10add(&a, &b); 참조(Reference) 변수에 별칭을 부여하는 것
+이름으로 대상을 가리킨다.
+제약사항
+참조는 선언과 동시에 초기화해야 한다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-10-27 00:04:40 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'300')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/etc/testing/ class="text-2xl my-3 overflow-ellipsis-bundle">
 정적테스트와 동적테스트
@@ -78,32 +107,6 @@ bong-u/til
 실행 여부에 따른 테스트의 분류 정적 테스트 동적 테스트 내부 구조를 고려하는지 여부에 따른 테스트의 분류 블랙박스 테스트 화이트박스 테스트 목적과 범위에 따른 테스트의 분류 수행 순서에 따라 작성해보았다. 1. 단위 테스트 (Unit Test) 가장 작은 단위 수준(모듈, 함수, 클래스)의 테스트
 2. 통합 테스트 (Integration Test) 모듈을 통합하는 과정에서, 각 모듈 간의 인터페이스와 관련된 결함이 있는지 테스트
 Top-down : 상위 모듈부터 하위 모듈로 통합하며 테스트 Bottom-up : 하위 모듈부터 상위 모듈로 통합하며 테스트 Big-bang : 모든 모듈을 한번에 통합하여 테스트 Threads : 중요 모듈을 먼저 구현하고 통합한 뒤, 보조적인 모듈을 구현 후 통합하는 방식 3.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-10-26 23:57:56 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'300')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/c_-cpp/cpp_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">
-C++ 개념 정리
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🌊</span>
-<span>C/CPP</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/c_-cpp/cpp_concept/ class="content-summary text-sm overflow-hidden">
-본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
-템플릿 (Template) 템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작성하는 방법
-함수 템플릿 1template &lt;typename T> 2T add(T a, T b) { 3 return a + b; 4} 클래스 템플릿 1template &lt;typename T> 2class Point { 3public: 4 T x, y; 5 Point(T x, T y) : x(x), y(y) {} 6}; 템플릿 특수화 (Template Specialization) 템플릿을 특정 타입에 대해 구체화하는 것
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-10-26 23:57:56 +0900 +0900">
