@@ -5,6 +5,49 @@ date: 2024-10-10
 
 > 본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다. 
 
+
+### 참조(Reference)와 포인터(Pointer)
+
+#### 포인터(Pointer)
+
+> 메모리 주소를 저장하는 변수
+
+```cpp
+// 변수 선언
+int a = 10;
+int* b = &a; // a의 주소를 저장
+
+// 매개변수로 전달
+void add(int* a, int* b) {
+    *a + *b;
+}
+
+add(&a, &b);
+```
+
+### 참조(Reference)
+
+> 변수에 별칭을 부여하는 것
+
+- 이름으로 대상을 가리킨다.
+
+- 제약사항
+    - 참조는 선언과 동시에 초기화해야 한다.
+    - 참조는 한 번 초기화되면 다른 변수로 변경할 수 없다.
+    - 참조는 NULL로 초기화할 수 없다.
+
+```cpp
+// 변수 선언
+int a = 10;
+int& b = a; // a의 별칭을 b로 지정
+
+// 매개변수로 전달
+void add(int& a, int& b) {
+    a + b;
+}
+add (a, b);
+```
+
 ### 템플릿 (Template)
 
 > 템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작성하는 방법
@@ -436,4 +479,37 @@ public:
     // 오버라이딩을 방지
     void show() final { ... }
 };
+```
+
+
+### enum vs enum class
+
+#### enum
+> 기존의 C 스타일 열거형
+
+- 컴파일 시점에 정수형 상수로 변환 -> 성능 저하가 없음
+- 다른 enum 영역이라도 변수명이 중복되면 충돌 발생
+
+```cpp
+enum Color {
+    RED,
+    GREEN,
+    BLUE
+};
+Color color = RED;
+```
+
+#### enum class (~C++11)
+> enum의 확장된 버전
+
+- 묵시적 형변환이 불가능 -> 명시적 형변환 필요
+- enum 영역이 격리되어 변수명이 중복되어도 충돌이 발생하지 않음
+
+```cpp
+enum class Color {
+    RED,
+    GREEN,
+    BLUE
+};
+Color color = Color::RED;
 ```
