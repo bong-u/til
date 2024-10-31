@@ -139,7 +139,22 @@ int32_t main() {
     return a + b;
 }
 ```
+#### `[[fallthrough]] (~C++17)`
+> switch문에서 case 라벨을 사용할 때, break를 사용하지 않는 경우 경고를 억제
 
+```cpp
+switch (a) {
+    case 1:
+        std::cout << "1" << std::endl;
+        [[fallthrough]]; // 의도적으로 2로 넘어간다는 것을 명시
+    case 2:
+        std::cout << "2" << std::endl;
+        break;
+    default:
+        std::cout << "default" << std::endl;
+        break;
+}
+```
 
 ### if constexpr (~C++17)
 
@@ -431,6 +446,9 @@ MyClass().show(); // rvalue 객체에서 호출
 
 ### 가상함수
 > 상속 관계에서 동적 바인딩을 위해 사용
+
+- 가상 함수를 가진 클래스를 다형성 클래스(polymorphic class)라고 함
+- 순수 가상 함수를 가진 클래스를 추상 클래스(abstract class)라고 함
 
 #### virtual 지정자
 - 가상 함수 : 오버라이딩이 선택적임
