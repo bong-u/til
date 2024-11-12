@@ -531,3 +531,72 @@ enum class Color {
 };
 Color color = Color::RED;
 ```
+
+### `explicit` 지정자
+> 단일 인자 생성자의 암시적 형변환을 방지하기 위해 사용
+
+- 단일 인자 생성자 앞에 사용
+
+```cpp
+class MyClass {
+public:
+    explicit MyClass(int a) : a(a) {}
+}
+
+MyClass obj = 10; // error: 암시적 형변환 불가
+MyClass obj(10);  // ok
+```
+
+### 숨겨진 `friend` 함수
+
+> 클래스의 private 멤버에 접근할 수 있도록 하는 함수
+
+- 멤버함수가 아니지만 클래스의 private 멤버에 접근할 수 있음
+- 클래스 내부에 정의해야 함
+- ADL로만 호출 가능
+
+
+```cpp
+namespace MyMath {
+    class Point {
+        int x, y;
+
+        Point(int x, int y) : x(x), y(y) {}
+
+        friend void operator+(Point& a, Point& b) {
+            a.x += b.x;
+            a.y += b.y;
+        }
+    };
+}
+int32_t main() {
+    MyMath::Point a(10, 20);
+    MyMath::Point b(30, 40);
+
+    a + b;
+}
+```
+
+#### ADL (Argument Dependent Lookup)
+> 함수 호출 시 인자의 네임스페이스를 검색하여 함수를 찾는 것
+
+```cpp
+namespace MyMath {
+    struct Point {
+        int x, y;
+        Point(int x, int y) : x(x), y(y) {}
+    };
+
+    void operator+(Point& a, Point& b) {
+        a.x += b.x;
+        a.y += b.y;
+    }
+}
+int32_t main() {
+    MyMath::Point a(10, 20);
+    MyMath::Point b(30, 40);
+
+    a + b; // ADL로 인해 MyMath::operator+ 함수 호출
+    MyMath::operator+(a, b); // ADL이 없었다면 명시적으로 호출
+}
+```
