@@ -1,6 +1,7 @@
 ---
 title: "Issue - MockMvc int타입 param이 null로 들어오는 문제"
 date: 2023-08-17
+tags: ["Java", "Spring"]
 ---
 
 ### 문제상황

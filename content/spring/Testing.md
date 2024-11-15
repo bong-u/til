@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Testing"
 date: 2023-01-07
+tags: ["Java", "Spring"]
 ---
 
 ## Unit Test (단위 테스트)

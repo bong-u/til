@@ -1,6 +1,7 @@
 ---
 title: "Spring - JPA : getReferenceById vs findById"
 date: 2023-08-11
+tags: ["Java", "Spring"]
 ---
 
 ### 배경

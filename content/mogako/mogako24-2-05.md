@@ -1,6 +1,7 @@
 ---
 title: "[모각코24하계] 05 : 결과"
 date: 2024-08-04
+tags: ["Nginx", "HTTPS", "Docker Compose"]
 ---
 
 ## 배경

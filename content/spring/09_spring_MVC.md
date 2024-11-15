@@ -1,6 +1,7 @@
 ---
 title: "09_spring_MVC"
 date: 2023-01-07
+tags: ["Java", "Spring"]
 ---
 
 ## Spring MVC 시작하기

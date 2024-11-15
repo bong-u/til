@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - AOP (Aspect Oriented Programming)"
 date: 2023-01-09
+tags: ["Java", "Spring"]
 ---
 
 ### AOP (Aspect Oriented Programming)

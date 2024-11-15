@@ -1,6 +1,7 @@
 ---
 title: "[모각코24동계] 04 : 결과"
 date: 2024-01-23
+tags: ["SQL"]
 ---
 
 ### Recursive Query

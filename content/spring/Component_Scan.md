@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Component Scan"
 date: 2023-01-07
+tags: ["Java", "Spring"]
 ---
 
 ### 개념

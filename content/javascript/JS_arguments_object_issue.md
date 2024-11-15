@@ -1,6 +1,7 @@
 ---
 title: "JS - Arguments object 관련 이슈"
 date: 2023-04-05
+tags: ["JavaScript"]
 ---
 
 ### 상황

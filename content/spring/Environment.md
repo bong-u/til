@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Environment"
 date: 2023-07-07
+tags: ["Java", "Spring"]
 ---
 
 ## application.properties

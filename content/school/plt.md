@@ -1,6 +1,7 @@
 ---
 title: "프로그래밍언어개론"
 date: 2024-04-14
+tags: ["CS", "Ocaml"]
 ---
 
 ## Ocaml

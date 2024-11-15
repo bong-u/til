@@ -1,6 +1,7 @@
 ---
 title: "운영체제 - 기말범위"
 date: 2023-05-29
+tags: ["CS", "C"]
 ---
 
 # 06-File-Management

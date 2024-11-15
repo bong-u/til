@@ -1,6 +1,7 @@
 ---
 title: "React - useEffect 사용법"
 date: 2023-01-19
+tags: ["React"]
 ---
 
 1. component가 rendering 될 때 실행

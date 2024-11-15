@@ -1,6 +1,7 @@
 ---
 title: "React - environment variable 설정하기"
 date: 2023-01-19
+tags: ["React"]
 ---
 
 - 프로그램이 개발/배포 상황에 따라 변수를 달리해야 할 때가 있다.

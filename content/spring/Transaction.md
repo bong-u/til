@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Transaction (트랜잭션)"
 date: 2023-07-20
+tags: ["Java", "Spring"]
 ---
 
 ### 상황

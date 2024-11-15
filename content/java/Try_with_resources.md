@@ -1,6 +1,7 @@
 ---
 title: "Try with resources로 간결하게 반납하기"
 date: 2023-07-13
+tags: ["Java"]
 ---
 
 

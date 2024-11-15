@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - POJO, DAO, DTO, VO, Entity"
 date: 2023-07-25
+tags: ["Java", "Spring"]
 ---
 
 ### Spring의 여러 객체들

@@ -1,6 +1,7 @@
 ---
 title: "쿠버네티스 및 MSA 특강 4일차 : MSA란 무엇인가"
 date: 2023-02-23
+tags: ["Kubernetes"]
 ---
 
 ## MSA란 무엇인가

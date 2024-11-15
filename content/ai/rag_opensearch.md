@@ -1,6 +1,7 @@
 ---
 title: "OpenSearch를 활용한 RAG 실습"
 date: 2024-07-05
+tags: ["RAG"]
 ---
 
 ### 배경

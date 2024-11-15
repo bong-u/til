@@ -1,6 +1,7 @@
 ---
 title: "쿠버네티스 및 MSA 특강 3일차 : 모니터링 시스템 구축 실습 (ELK), kubernetes"
 date: 2023-02-22
+tags: ["Kubernetes", "ELK"]
 ---
 
 ## 모니터링 시스템 구축 실습 (ELK)

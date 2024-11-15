@@ -1,6 +1,7 @@
 ---
 title: "Django - crud 기초"
 date: 2024-06-26
+"tags": ["Django"]
 ---
 
 ### 개요

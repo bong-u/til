@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Logging"
 date: 2023-07-06
+tags: ["Java", "Spring"]
 ---
 
 ### Java Logging Framework

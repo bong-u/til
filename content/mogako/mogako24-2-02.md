@@ -1,6 +1,7 @@
 ---
 title: "[모각코24하계] 02 : 결과"
 date: 2024-07-11
+tags: ["RAG"]
 ---
 
 ## RAG (Retrieval-Augmented Generation) 이론 정리

@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Profile"
 date: 2023-07-10
+tags: ["Java", "Spring"]
 ---
 
 ### Profile

@@ -1,6 +1,7 @@
 ---
 title: "[모각코24하계] 01 : 결과"
 date: 2024-07-02
+tags: ["Django"]
 ---
 
 ## django에서 swagger 문서화 구현하기

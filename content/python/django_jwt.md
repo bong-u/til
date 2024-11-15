@@ -1,6 +1,7 @@
 ---
 title: "Django - JWT 인증"
 date: 2024-06-28
+tags: ["Django", "JWT"]
 ---
 
 > JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.

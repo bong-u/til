@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Maven"
 date: 2023-07-04
+tags: ["Java", "Spring"]
 ---
 
 ### Maven coordinates

@@ -1,6 +1,7 @@
 ---
 title: "Issue - fastapi에서 websocket 404 문제"
 date: 2024-08-02
+tags: ["Python", "FastAPI", "Websocket"]
 ---
 
 ### 배경

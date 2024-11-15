@@ -1,6 +1,7 @@
 ---
 title: "React - build 이후 빈 화면만 나오는 문제"
 date: 2023-01-19
+tags: ["React"]
 ---
 
 ### build 결과물을 돌리면 빈 화면만 나오는 문제

@@ -1,6 +1,7 @@
 ---
 title: "Issue - yaml 문자열 속 colon(콜론)"
 date: 2023-08-20
+tags: ["Github Action"]
 ---
 
 ### 문제상황

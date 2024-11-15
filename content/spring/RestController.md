@@ -1,6 +1,7 @@
 ---
 title: "Spring - @RestController 정리"
 date: 2023-07-26
+tags: ["Java", "Spring"]
 ---
 
 ### @RestController

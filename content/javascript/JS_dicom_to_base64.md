@@ -1,6 +1,7 @@
 ---
 title: "JS - Dicom to base64"
 date: 2023-08-06
+tags: ["Javascript"]
 ---
 
 ### 배경

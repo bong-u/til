@@ -1,6 +1,7 @@
 ---
 title: "객체지향설계"
 date: 2023-01-09
+tags: ["C++"]
 ---
 
 ## Dynamic dispatch and Multiple inheritance

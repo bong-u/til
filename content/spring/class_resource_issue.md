@@ -1,6 +1,7 @@
 ---
 title: "Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제"
 date: 2023-07-11
+tags: ["Java", "Spring"]
 ---
 
 ### 상황

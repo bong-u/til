@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - JDBC, DBCP, JdbcTemplate"
 date: 2023-07-19
+tags: ["Java", "Spring"]
 ---
 
 ### JDBC

@@ -1,6 +1,7 @@
 ---
 title: "Spring - RESTful API에서 내맘대로 에러 응답하기"
 date: 2023-07-31
+tags: ["Java", "Spring"]
 ---
 
 ### 1. 클래스 정의

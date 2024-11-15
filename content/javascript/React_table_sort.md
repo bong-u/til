@@ -1,6 +1,7 @@
 ---
 title: "React - column을 기준으로 정렬하기"
 date: 2023-01-17
+tags: ["React"]
 ---
 
 ## Table에 있는 데이터들을 column별로 정렬해야 한다

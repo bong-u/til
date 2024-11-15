@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - IoC (Inversion of Control)"
 date: 2023-07-06
+tags: ["Java", "Spring"]
 ---
 
 ### IoC (Inversion of Control)

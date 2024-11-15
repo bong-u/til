@@ -1,7 +1,7 @@
 ---
 title: "Fastapi, RabbitMQ, Celery 연동"
 date: 2024-07-11
-tags: ["python", "fastapi", "rabbitmq", "celery"]
+tags: ["Python", "Fastapi", "Rabbitmq", "Celery"]
 ---
 
 ### 배경

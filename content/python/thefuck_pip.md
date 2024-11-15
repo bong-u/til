@@ -1,6 +1,7 @@
 ---
 title: "[오픈소스] thefuck - pip uninstall 규칙 추가"
 date: 2023-11-09
+tags: ["Python", "Open Source"]
 ---
 
 ### [PR #1414 : Correct "pip delete|remove" -> "pip uninstall"](https://github.com/nvbn/thefuck/pull/1414)

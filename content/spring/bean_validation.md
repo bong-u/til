@@ -1,6 +1,7 @@
 ---
 title: "Spring - Bean Validation : Annotation으로 Validation하기"
 date: 2023-08-01
+tags: ["Java", "Spring"]
 ---
 
 ### Bean Validation

@@ -1,6 +1,7 @@
 ---
 title: "Java - 이중 중괄호와 Anti-Pattern"
 date: 2023-07-19
+tags: ["Java"]
 ---
 
 ### 기존 코드

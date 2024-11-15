@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Bean Lifecycle & Scope"
 date: 2023-01-07
+tags: ["Java", "Spring"]
 ---
 
 ### Bean 객체의 Lifecycle

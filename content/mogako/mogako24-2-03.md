@@ -1,6 +1,7 @@
 ---
 title: "[모각코24하계] 03 : 결과"
 date: 2024-07-16
+tags: ["Fastapi", "RabbitMQ", "Celery"]
 ---
 
 ## Fastapi, RabbitMQ, Celery 연동

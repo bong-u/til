@@ -1,6 +1,7 @@
 ---
 title: "08_connect_DB"
 date: 2023-01-10
+tags: ["Java", "Spring"]
 ---
 
 ## DataSource 설정

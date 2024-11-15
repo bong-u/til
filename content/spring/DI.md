@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - DI (Dependency Injection)"
 date: 2023-01-07
+tags: ["Java", "Spring"]
 ---
 
 ### 의존 주입 (DI : Dependency Injection)을 하는 방법

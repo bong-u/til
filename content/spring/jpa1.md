@@ -1,6 +1,7 @@
 ---
 title: "Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑"
 date: 2023-08-04
+tags: ["Java", "Spring"]
 ---
 
 ## JPA (Java Persistence API)

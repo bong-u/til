@@ -1,6 +1,7 @@
 ---
 title: "RAG 이론 정리 + OpenSearch"
 date: 2024-07-05
+tags: ["RAG"]
 ---
 
 ## RAG (Retrieval-Augmented Generation)

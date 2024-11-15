@@ -1,6 +1,7 @@
 ---
 title: "Stream, Optional"
 date: 2023-07-03
+tags: ["Java"]
 ---
 
 ## Lambda

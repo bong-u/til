@@ -1,9 +1,8 @@
 ---
 title: "Github Actions에서 pytest 실행하기"
 date: 2024-07-17
-tags: ["python", "github actions", "test"]
+tags: ["Python", "Github Actions", "pytest"]
 ---
-
 
 ### 배경
 - 테커 부트캠프에서 팀프로젝트를 진행 중이다.

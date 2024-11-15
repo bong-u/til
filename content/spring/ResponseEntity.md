@@ -1,6 +1,7 @@
 ---
 title: "Spring - ResponseEntity 정리"
 date: 2023-07-27
+tags: ["Java", "Spring"]
 ---
 
 ### ResponseEntity

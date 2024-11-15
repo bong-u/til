@@ -1,6 +1,7 @@
 ---
 title: "Record"
 date: 2023-07-05
+tags: ["Java"]
 ---
 
 ### 레코드란

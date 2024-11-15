@@ -1,6 +1,7 @@
 ---
 title: "Generics"
 date: 2023-02-01
+tags: ["Java"]
 ---
 
 * 효과 : 타입안정성, 간결한 코드

@@ -1,6 +1,7 @@
 ---
 title: "쿠버네티스 및 MSA 특강 2일차 : Docker 실습"
 date: 2023-02-21
+tags: ["Kubernetes", "Docker"]
 ---
 
 ## Docker 실습

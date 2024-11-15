@@ -1,6 +1,7 @@
 ---
 title: "[모각코24하계] 04 : 결과"
 date: 2024-07-18
+tags: ["Github Actions", "Testing", "Python"]
 ---
 
 ### 배경

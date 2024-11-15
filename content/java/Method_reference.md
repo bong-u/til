@@ -1,6 +1,7 @@
 ---
 title: "Method reference (메소드 참조)"
 date: 2023-07-28
+tags: ["Java"]
 ---
 
 ### 메소드 참조

@@ -1,6 +1,7 @@
 ---
 title: "Spring Boot Framework - KAKAO 김가연 선배님"
 date: 2023-04-03
+tags: ["Spring"]
 ---
 
 ### REST API

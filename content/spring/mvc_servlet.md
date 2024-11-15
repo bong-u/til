@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - MVC 패턴, Servlet (서블릿)"
 date: 2023-07-21
+tags: ["Java", "Spring"]
 ---
 
 ### Servlet 개념 

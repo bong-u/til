@@ -1,7 +1,7 @@
 ---
 title: "Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제"
 date: 2024-07-22
-tags: ['python', 'fastapi', 'test']
+tags: ['Python', 'Fastapi', 'Testing']
 ---
 
 ### 상황

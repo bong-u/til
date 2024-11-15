@@ -1,6 +1,7 @@
 ---
 title: "소프트웨어공학"
 date: 2023-10-24
+tags: ["CS", "Software Engineering"]
 ---
 
 ## 1장 소프트웨어 공학 개요

@@ -1,6 +1,7 @@
 ---
 title: "Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체"
 date: 2023-08-07
+tags: ["Java", "Spring"]
 ---
 
 ### 프록시 객체

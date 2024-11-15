@@ -1,6 +1,7 @@
 ---
 title: "Spring 개념 - Autowired"
 date: 2023-01-07
+tags: ["Java", "Spring"]
 ---
 
 ### @Autowired를 이용한 자동 객체 주입
