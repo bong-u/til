@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 디펜스 게임 (L2)"
 date: 2023-07-26
+tags: ["Python", "Programmers"]
 ---
 
 ```python

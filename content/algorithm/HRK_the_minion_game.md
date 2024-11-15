@@ -1,6 +1,7 @@
 ---
 title: "HackerRank - The Minion Game"
 date: 2023-09-15
+tags: ["Python", "HackerRank"]
 ---
 
 ```python

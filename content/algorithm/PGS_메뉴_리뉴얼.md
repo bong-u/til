@@ -1,7 +1,9 @@
 ---
 title: "프로그래머스 - 메뉴 리뉴얼 (L2)"
 date: 2023-09-04
+tags: ["Python", "Programmers"]
 ---
+
 
 ```python
 from itertools import combinations

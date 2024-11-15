@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 이모티콘 할인행사 (L2)"
 date: 2023-07-23
+tags: ["Python", "Programmers"]
 ---
 
 ```python

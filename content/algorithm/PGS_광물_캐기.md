@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 광물 캐기 (L2)"
 date: 2023-07-10
+tags: ["Python", "Programmers"]
 ---
 
 ```python

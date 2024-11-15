@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 롤케이크 자르기 (L2)"
 date: 2023-08-03
+tags: ["Python", "Programmers"]
 ---
 
 ```python

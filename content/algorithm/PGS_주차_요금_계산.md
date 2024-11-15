@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 주차 요금 계산 (L2)"
 date: 2023-08-11
+tags: ["Python", "Programmers"]
 ---
 
 ```python

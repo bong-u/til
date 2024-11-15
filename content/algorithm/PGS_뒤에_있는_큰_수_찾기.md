@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 뒤에 있는 큰 수 찾기 (L2)"
 date: 2023-07-18
+tags: ["Python", "Programmers"]
 ---
 
 ```python

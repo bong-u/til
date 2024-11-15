@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 두 원 사이의 정수 쌍 (L2)"
 date: 2023-07-05
+tags: ["Python", "Programmers"]
 ---
 
 ```python

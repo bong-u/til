@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 과제 진행하기 (L2)"
 date: 2023-07-07
+tags: ["Python", "Programmers"]
 ---
 
 ### 내 답안

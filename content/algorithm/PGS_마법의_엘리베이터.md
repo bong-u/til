@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 마법의 엘리베이터 (L2)"
 date: 2023-07-24
+tags: ["Python", "Programmers"]
 ---
 
 ### 첫번째 BFS 풀이

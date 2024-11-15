@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 행렬 테두리 회전하기 (L2)"
 date: 2023-08-24
+tags: ["Python", "Programmers"]
 ---
 
 ```python

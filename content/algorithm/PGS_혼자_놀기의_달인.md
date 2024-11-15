@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 혼자 놀기의 달인 (L2)"
 date: 2023-08-07
+tags: ["Python", "Programmers"]
 ---
 
 ```python

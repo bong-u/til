@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 택배 배달과 수거하기 (L2)"
 date: 2023-07-21
+tags: ["Python", "Programmers"]
 ---
 
 ```python

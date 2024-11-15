@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 모음사전 (L2)"
 date: 2023-08-21
+tags: ["Python", "Programmers"]
 ---
 
 ```python

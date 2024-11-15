@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 빛의 경로 사이클 (L2)"
 date: 2023-08-20
+tags: ["Python", "Programmers"]
 ---
 
 ```python

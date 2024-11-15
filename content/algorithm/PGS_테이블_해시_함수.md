@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 테이블 해시 함수 (L2)"
 date: 2023-07-25
+tags: ["Python", "Programmers"]
 ---
 
 ```python

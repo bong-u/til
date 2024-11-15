@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 귤 고르기 (L2)"
 date: 2023-07-28
+tags: ["Python", "Programmers"]
 ---
 
 ```python

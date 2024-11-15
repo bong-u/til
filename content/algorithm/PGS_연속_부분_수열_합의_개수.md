@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 연속 수열 합의 개수 (L2)"
 date: 2023-08-06
+tags: ["Python", "Programmers"]
 ---
 
 - 첫번째 풀이

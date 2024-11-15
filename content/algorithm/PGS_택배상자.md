@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 택배상자 (L2)"
 date: 2023-08-04
+tags: ["Python", "Programmers"]
 ---
 
 ```python

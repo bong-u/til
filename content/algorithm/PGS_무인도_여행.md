@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 무인도 여행 (L2)"
 date: 2023-07-17
+tags: ["Python", "Programmers"]
 ---
 
 ```python

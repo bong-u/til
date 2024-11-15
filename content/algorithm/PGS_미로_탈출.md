@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 미로 탈출 (L2)"
 date: 2023-07-14
+tags: ["Python", "Programmers"]
 ---
 
 ```python

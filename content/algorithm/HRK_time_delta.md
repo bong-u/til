@@ -1,6 +1,7 @@
 ---
 title: "HackerRank - Time Delta"
 date: 2023-10-06
+tags: ["Python", "HackerRank"]
 ---
 
 ```python

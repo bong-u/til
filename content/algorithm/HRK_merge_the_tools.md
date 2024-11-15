@@ -1,6 +1,7 @@
 ---
 title: "HackerRank - Merge the Tools"
 date: 2023-10-04
+tags: ["Python", "HackerRank"]
 ---
 
 ```python

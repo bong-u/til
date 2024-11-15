@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 이진 변환 반복하기 (L2)"
 date: 2023-09-06
+tags: ["Python", "Programmers"]
 ---
 
 ```python

@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 우박수열 정적분 (L2)"
 date: 2023-08-01
+tags: ["Python", "Programmers"]
 ---
 
 ```python

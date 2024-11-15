@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 수식 최대화 (L2)"
 date: 2023-09-16
+tags: ["Python", "Programmers"]
 ---
 
 ```python

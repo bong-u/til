@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 괄호 회전하기 (L2)"
 date: 2023-08-28
+tags: ["Python", "Programmers"]
 ---
 
 ```python

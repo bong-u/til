@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 순위 검색 (L2)"
 date: 2023-08-31
+tags: ["Python", "Programmers"]
 ---
 
 ```python

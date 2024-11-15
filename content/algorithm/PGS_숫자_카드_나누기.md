@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 숫자 카드 나누기 (L2)"
 date: 2023-07-31
+tags: ["Python", "Programmers"]
 ---
 
 - 첫번째 통과한 풀이

@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 연속된 부분 수열의 합 (L2)"
 date: 2023-07-06
+tags: ["Python", "Programmers"]
 ---
 
 ```python

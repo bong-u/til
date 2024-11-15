@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 할인 행사 (L2)"
 date: 2023-08-08
+tags: ["Python", "Programmers"]
 ---
 
 ```python

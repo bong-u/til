@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 당구 연습 (L2)"
 date: 2023-07-12
+tags: ["Python", "Programmers"]
 ---
 
 ```python

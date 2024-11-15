@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 혼자서 하는 틱택토 (L2)"
 date: 2023-07-13
+tags: ["Python", "Programmers"]
 ---
 
 ```python

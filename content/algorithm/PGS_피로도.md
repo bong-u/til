@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 피로도 (L2)"
 date: 2023-08-14
+tags: ["Python", "Programmers"]
 ---
 
 ```python

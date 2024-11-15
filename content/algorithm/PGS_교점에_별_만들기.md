@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 교점에 별 만들기 (L2)"
 date: 2023-08-17
+tags: ["Python", "Programmers"]
 ---
 
 ```python

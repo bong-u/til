@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 숫자 변환하기 (L2)"
 date: 2023-07-19
+tags: ["Python", "Programmers"]
 ---
 
 ```python

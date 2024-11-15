@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 거리두기 확인하기 (L2)"
 date: 2023-08-22
+tags: ["Python", "Programmers"]
 ---
 
 ```python

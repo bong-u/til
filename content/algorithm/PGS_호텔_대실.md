@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 호텔 대실 (L2)"
 date: 2023-07-16
+tags: ["Python", "Programmers"]
 ---
 
 ```python

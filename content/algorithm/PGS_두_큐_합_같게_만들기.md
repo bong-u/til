@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 두 큐 합 같게 만들기 (L2)"
 date: 2023-08-09
+tags: ["Python", "Programmers"]
 ---
 
 ```python

@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 쿼드압축 후 개수 세기 (L2)"
 date: 2023-09-07
+tags: ["Python", "Programmers"]
 ---
 
 ```python

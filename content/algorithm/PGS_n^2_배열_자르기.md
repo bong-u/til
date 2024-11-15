@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - n^2 배열 자르기 (L2)"
 date: 2023-08-16
+tags: ["Python", "Programmers"]
 ---
 
 ```python

@@ -1,7 +1,9 @@
 ---
 title: "프로그래머스 - k진수에서 소수 개수 구하기 (L2)"
 date: 2023-08-12
+tags: ["Python", "Programmers"]
 ---
+
 
 ```python
 def convert10toN(n, k):

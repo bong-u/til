@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 2개 이하로 다른 비트 (L2)"
 date: 2023-08-23
+tags: ["Python", "Programmers"]
 ---
 
 ```python

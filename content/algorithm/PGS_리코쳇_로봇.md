@@ -1,6 +1,7 @@
 ---
 title: "프로그래머스 - 리코쳇 로봇 (L2)"
 date: 2023-07-11
+tags: ["Python", "Programmers"]
 ---
 
 ```python
