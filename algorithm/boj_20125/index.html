@@ -1,0 +1,182 @@
+<!doctype html><html>
+<head>
+<title>백준 - 20125 : 쿠키의 신체 측정 (S4)</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="1#include <bits/stdc++.h>2using namespace std; 3 4char board[1000][1000] = { NULL }; 5int n; 6 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="백준 - 20125 : 쿠키의 신체 측정 (S4)">
+<meta property="og:description" content="1#include <bits/stdc++.h>2using namespace std; 3 4char board[1000][1000] = { NULL }; 5int n; 6 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/profile.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제httpswwwacmicpcnetproblem20125><a href=https://www.acmicpc.net/problem/20125>문제</a></a></li>
+<li><a href=#해결방법>해결방법</a></li>
+<li><a href=#막혔던-부분>막혔던 부분</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+백준 - 20125 : 쿠키의 신체 측정 (S4)
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-11-15</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>char</span> board[<span style=color:#ae81ff>1000</span>][<span style=color:#ae81ff>1000</span>] <span style=color:#f92672>=</span> { NULL };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>int</span> n;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>tuple<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> getlength(<span style=color:#66d9ef>int</span> sx, <span style=color:#66d9ef>int</span> sy, <span style=color:#66d9ef>int</span> dx, <span style=color:#66d9ef>int</span> dy) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>	<span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>	<span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> sx;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>	<span style=color:#66d9ef>int</span> y <span style=color:#f92672>=</span> sy;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>	<span style=color:#66d9ef>while</span> (true) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>		x <span style=color:#f92672>+=</span> dx;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>		y <span style=color:#f92672>+=</span> dy;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>		<span style=color:#66d9ef>if</span> (y <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> y <span style=color:#f92672>&gt;=</span> n <span style=color:#f92672>||</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> x <span style=color:#f92672>&gt;=</span> n <span style=color:#f92672>||</span> board[x][y] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;*&#39;</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>			<span style=color:#66d9ef>return</span> { cnt, x<span style=color:#f92672>-</span>dx, y<span style=color:#f92672>-</span>dy };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>		}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>		cnt<span style=color:#f92672>++</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>	}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>	cin.tie(<span style=color:#ae81ff>0</span>)<span style=color:#f92672>-&gt;</span>sync_with_stdio(false);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>	cin <span style=color:#f92672>&gt;&gt;</span> n;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>	pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> heart <span style=color:#f92672>=</span> { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span> };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>	tuple<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> ass <span style=color:#f92672>=</span> { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span> };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>		<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> n; j<span style=color:#f92672>++</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>			cin <span style=color:#f92672>&gt;&gt;</span> board[i][j];
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>			<span style=color:#66d9ef>if</span> (board[i][j] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;*&#39;</span> <span style=color:#f92672>&amp;&amp;</span> heart.first <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>				heart <span style=color:#f92672>=</span> { j, i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>		}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>	}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>	ass <span style=color:#f92672>=</span> getlength(heart.second, heart.first, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>	cout <span style=color:#f92672>&lt;&lt;</span> heart.second<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>&lt;&lt;</span> heart.first<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>	cout <span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(heart.second, heart.first, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(heart.second, heart.first, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(ass) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;</span>(ass), get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>2</span><span style=color:#f92672>&gt;</span>(ass)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;</span>(ass), get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>2</span><span style=color:#f92672>&gt;</span>(ass)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>));
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>}
+</code></pre></div><h3 id=문제httpswwwacmicpcnetproblem20125><a href=https://www.acmicpc.net/problem/20125>문제</a></h3>
+<ul>
+<li>
+<p>정사각형 판의 크기 N과 쿠키의 신체 모양이 2차원 문자로 주어진다.</p>
+</li>
+<li>
+<p>1번째 줄에는 심장의 위치를 출력한다.</p>
+</li>
+<li>
+<p>2번째 줄에는 왼팔, 오른팔, 허리, 왼다리, 오른다리의 길이를 출력한다.</p>
+</li>
+<li>
+<p>글로 설명하기 쉽지 않다.</p>
+</li>
+<li>
+<p>TC</p>
+<ul>
+<li>input
+<blockquote>
+<p>5</p>
+<hr>
+<p><strong>*</strong><br>
+<em>***</em><br>
+<strong>*</strong><br>
+<em>*</em>*_</p>
+</blockquote>
+</li>
+<li>ouput
+<blockquote>
+<p>3 3<br>
+1 1 1 1 1</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=해결방법>해결방법</h3>
+<ul>
+<li>입력 받으면서 심장의 위치를 딴다.</li>
+<li>심장의 위치를 통해 허리의 끝을 딴다.</li>
+<li>왼팔, 오른팔, 허리의 길이를 출력한다.</li>
+<li>허리의 끝을 이용해 왼다리, 오른다리의 길이를 출력한다.</li>
+<li>getlength() 함수를 정의하여 각 길이를 구했다.</li>
+</ul>
+<h3 id=막혔던-부분>막혔던 부분</h3>
+<ul>
+<li>x, y가 혼동되어서 고치는데 시간을 많이 잡아 먹자</li>
+<li>c++로 2차원 배열 다루는 문제를 열심히 풀어보자!</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_8979/>
+<span class=mx-3>◀</span>
+백준 - 8979 : 올림픽 (S5)
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>

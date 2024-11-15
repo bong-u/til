@@ -75,10 +75,34 @@ bong-u/til
 </div>
 <div class=flex-grow>
 <a href=/til/algorithm/boj_8979/ class="content-summary text-sm overflow-hidden">
-1#include &lt;bits/stdc++.h> 2using namespace std; 3 4struct medal { 5 int number; 6 int gold; 7 int silver; 8 int bronze; 9}; 10bool cmp(medal a, medal b) { 11 if (a.gold != b.gold) return a.gold > b.gold; 12 if (a.silver != b.silver) return a.silver > b.silver; 13 return a.bronze > b.bronze; 14 15} 16int main() { 17 cin.tie(0)->sync_with_stdio(false); 18 int n = 0, target = 0, rank = 0; 19 cin >> n; 20 cin >> target; 21 22 medal* arr = new medal[n]; 23 24 for (int i = 0; i &lt; n; i++) { 25 cin >> arr[i].
+1#include &lt;bits/stdc++.h>2using namespace std; 3 4struct medal { 5 int number; 6 int gold; 7 int silver; 8 int bronze; 9}; 10bool cmp(medal a, medal b) { 11 if (a.gold != b.gold) return a.gold > b.gold; 12 if (a.silver != b.silver) return a.silver > b.silver; 13 return a.bronze > b.bronze; 14 15} 16int main() { 17 cin.tie(0)->sync_with_stdio(false); 18 int n = 0, target = 0, rank = 0; 19 cin >> n; 20 cin >> target; 21 22 medal* arr = new medal[n]; 23 24 for (int i = 0; i &lt; n; i++) { 25 cin >> arr[i].
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:43:32 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 07:05:09 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_20125/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 20125 : 쿠키의 신체 측정 (S4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_20125/ class="content-summary text-sm overflow-hidden">
+1#include &lt;bits/stdc++.h>2using namespace std; 3 4char board[1000][1000] = { NULL }; 5int n; 6 7tuple&lt;int, int, int> getlength(int sx, int sy, int dx, int dy) { 8 int cnt = 0; 9 int x = sx; 10 int y = sy; 11 12 while (true) { 13 x += dx; 14 y += dy; 15 if (y &lt; 0 || y >= n || x &lt; 0 || x >= n || board[x][y] !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 07:03:13 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -533,35 +557,11 @@ Generics
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/13_mvc_3/ class="text-2xl my-3 overflow-ellipsis-bundle">
-MVC 3 : Session, Interceptor, Cookies
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/13_mvc_3/ class="content-summary text-sm overflow-hidden">
-Session 로그인 할 때 세션에 등록 LoginController.java 1@PostMapping 2public String submit(LoginCommand loginCommand, Errors errors, HttpSession session) { 3new LoginCommandValidator().validate(loginCommand, errors); 4if (errors.hasErrors()) { 5 return "login/loginForm"; 6} 7 8try { 9 AuthInfo authInfo = authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword()); 10 11 session.setAttribute("authInfo", authInfo); 12 return "login/loginSuccess"; 13} 14catch (WrongIdPasswordException e) { 15 errors.reject("idPasswordNotMatching"); 16 return "login/loginForm"; 17} 18} 로그아웃 할때 세션에서 삭제 LogoutController.java 1@RequestMapping("/logout") 2public String logout(HttpSession session) { 3 session.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
 <span class="text-xl mr-3">🧠</span>
-<span> Algorithm (103)</span>
+<span> Algorithm (104)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
 <span class="text-xl mr-3">🌊</span>
