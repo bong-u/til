@@ -78,7 +78,7 @@ bong-u/til
 1#include &lt;bits/stdc++.h> 2using namespace std; 3 4struct medal { 5 int number; 6 int gold; 7 int silver; 8 int bronze; 9}; 10bool cmp(medal a, medal b) { 11 if (a.gold != b.gold) return a.gold > b.gold; 12 if (a.silver != b.silver) return a.silver > b.silver; 13 return a.bronze > b.bronze; 14 15} 16int main() { 17 cin.tie(0)->sync_with_stdio(false); 18 int n = 0, target = 0, rank = 0; 19 cin >> n; 20 cin >> target; 21 22 medal* arr = new medal[n]; 23 24 for (int i = 0; i &lt; n; i++) { 25 cin >> arr[i].
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:37:38 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:40:18 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
