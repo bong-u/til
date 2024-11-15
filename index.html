@@ -62,6 +62,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_8979/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 8979 : 올림픽 (S5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_8979/ class="content-summary text-sm overflow-hidden">
+1#include &lt;bits/stdc++.h> 2using namespace std; 3 4struct medal { 5 int number; 6 int gold; 7 int silver; 8 int bronze; 9}; 10bool cmp(medal a, medal b) { 11 if (a.gold != b.gold) return a.gold > b.gold; 12 if (a.silver != b.silver) return a.silver > b.silver; 13 return a.bronze > b.bronze; 14 15} 16int main() { 17 cin.tie(0)->sync_with_stdio(false); 18 int n = 0, target = 0, rank = 0; 19 cin >> n; 20 cin >> target; 21 22 medal* arr = new medal[n]; 23 24 for (int i = 0; i &lt; n; i++) { 25 cin >> arr[i].
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:37:38 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/spring/testing/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Spring 개념 - Testing
 </a>
@@ -533,35 +557,11 @@ Session 로그인 할 때 세션에 등록 LoginController.java 1@PostMapping 2p
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/data_structure/ class="text-2xl my-3 overflow-ellipsis-bundle">
-자료구조
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/data_structure/ class="content-summary text-sm overflow-hidden">
-제 1장 : 자료구조를 배우기 위한 준비 (230302) 배열 배열(Array): 동일한 타입의 원소들이 연속적인 메모리 공간에 할당되어 있는 기초적인 자료구조 추상데이터 타입 추상데이터타입(ADT:Abstract Data Type) : 데이터와 그 데이터에 대한 추상적인 연산들로써 구성 ADT =~ 자바의 interface, 자료구조 =~ 자바의 class 자료구조는 추상데이터타입을 구체적으로 구현한 것 1-2 수행시간의 분석 알고리즘의 성능: 수행시간을 나타내는 **시간복잡도(Time Complexity)**와 알고리즘이 수행되는 동안 사용되는 메모리 공간의 크기를 나타내는 **공간복잡도(Space Complexity)**에 기반하여 분석 시간 복잡도
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
 <span class="text-xl mr-3">🧠</span>
-<span> Algorithm (102)</span>
+<span> Algorithm (103)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
 <span class="text-xl mr-3">🌊</span>
