@@ -62,23 +62,27 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2748/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2748 : 피보나치 수2 (B2)
+<a href=/til/spring/testing/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Testing
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2748/ class="content-summary text-sm overflow-hidden">
-&ldquo;알고리즘 분류-DP"에서 안 푼 문제이길래 한 번 풀어봤다. 1N = int(input()) 2 3L = [0, 1] + [0]*89 4 5for i in range(2, N+1): 6 L[i] = L[i-1]+L[i-2] 7 8print (L[N])
+<a href=/til/spring/testing/ class="content-summary text-sm overflow-hidden">
+Unit Test (단위 테스트) 가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식
+관련 용어 SUT (Sytem Under Test) 테스트하고자하는 주요 대상이 되는 Unit
+DOC (Depended On Component) SUT가 의존하는 객체
+Test double DOC를 대신해 줄 수 있는 객체
+Test double의 종류 : Mock, Stub Mock 행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용 test framework : Mockito, JMock, EasyMock Stub 상태 검증 (객체의 상태를 확인하여 검정) 사용 Integration Test (통합 테스트) 여러 개의 Unit을 통합해서 테스트하는 방식
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -86,23 +90,24 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2573/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2573 : 빙산 (G5)
+<a href=/til/spring/di/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - DI (Dependency Injection)
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2573/ class="content-summary text-sm overflow-hidden">
-1import copy 2from collections import deque 3 4N, M = map(int, input().split()) 5L = [list(map(int, input().split())) for _ in range(N)] 6L[0][0] = 0 7L[N-1][M-1] = 0 8vx = [0, 0, -1, 1] 9vy = [-1, 1, 0, 0] 10 11def melt(L): 12 L_ = copy.deepcopy(L) 13 for i in range(M): 14 for j in range(N): 15 if L[j][i] != 0: 16 for k in range(4): 17 nx = j + vx[k] 18 ny = i + vy[k] 19 20 if not 0 &lt;= nx &lt; N or not 0 &lt;= ny &lt; M: 21 continue 22 if L[nx][ny] == 0 and L_[j][i] !
+<a href=/til/spring/di/ class="content-summary text-sm overflow-hidden">
+의존 주입 (DI : Dependency Injection)을 하는 방법 Assembler라는 별도의 클래스 생성
+1public class Assembler { 2 private MemberDao memberDao; 3 private MemberRegisterService regSvc; 4 5 public Assembler() { 6 memberDao = new MemberDao(); 7 regSvc = new MemberRegisterService(memberDao); 8 } 9 10 public MemberDao getMemberDao() { 11 return memberDao; 12 } 13 14 public MemberRegisterService getMemberRegisterService() { 15 return regSvc; 16 } 17} Spring에서 지원하는 DI 사용
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -110,23 +115,27 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2565/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2565 : 전깃줄 (G5)
+<a href=/til/spring/component_scan/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Component Scan
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2565/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3L = [i[1] for i in sorted(L)] 4dp = [0]*N 5for i in range(N): 6 dp[i] = 1 7 for j in range(i): 8 if L[j] &lt; L[i]: 9 dp[i] = max(dp[i], dp[j]+1) 10 11print (N-max(dp)) LIS를 이용하는 문제
+<a href=/til/spring/component_scan/ class="content-summary text-sm overflow-hidden">
+개념 Component Scan은 스프링이 직접 클래스를 검색해서 빈으로 등록해주는 기능이다 xml 또는 annotation을 통해 사용 가능하다 @ComponentScan basePacakges : 패키지 이름을 통해 스캔할 범위를 지정한다
+1@ComponentScan(basePackages="org.academy.order") 2@ComponentScan(basePackages={"org.academy.order", "org.academy.voucher"}) basePackageClasses : 해당 클래스가 들어있는 패키지를 범위로 지정한다
+1@ComponentScan(basePackageClasses="Order.class") 2@ComponentScan(basePackages={"Order.class", "Voucher.class"}) 예제 AppCtx.java
+1@Configuration 2@ComponentScan(basePackages = {"spring"}) 3public class AppCtx {...} MemberInfoPrinter.java
+1@Component("infoPrinter") 2public class MemberInfoPrinter {...} 효과
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -134,23 +143,25 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2294/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2294 : 동전 2 (G5)
+<a href=/til/spring/bean_lifecycle_scope/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Bean Lifecycle & Scope
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2294/ class="content-summary text-sm overflow-hidden">
-1N, K = map(int, input().split()) 2V = [] 3for _ in range(N): 4 V.append(int(input())) 5dp = [[0]+([10001]*K) for _ in range(N+1)] 6 7for i in range(1, N+1): 8 for j in range(1, K+1): 9 if j >= V[i-1]: 10 dp[i][j] = min(dp[i-1][j], dp[i][j-V[i-1]]+1) 11 else: 12 dp[i][j] = dp[i-1][j] 13 14res = dp[N][K] 15 16print (res if res != 10001 else -1) dp를 많이 풀어보자
+<a href=/til/spring/bean_lifecycle_scope/ class="content-summary text-sm overflow-hidden">
+Bean 객체의 Lifecycle Bean 객체가 생성 또는 소멸될때 특정 코드를 실행하게 할 수 있다. @PostConstruct, @PreDestroy Annotation 사용
+1// Bean 객체 생성될 때 실행 2@PostConstruct 3public void postConstruct() {...} 4 5// Bean 객체 소멸될 때 실행 6@PreDestroy 7public void preDestroy() {...} InitializingBean, DisposableBean 구현
+1public class Client implements InitializingBean, DisposableBean { 2 // Bean 객체 생성될 때 실행 3 @Override 4 public void afterPropertiesSet() throws Exception {.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -158,23 +169,25 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2225/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2225 - 합분해 (G5)
+<a href=/til/spring/autowired/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Autowired
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2225/ class="content-summary text-sm overflow-hidden">
-1N, K = map(int, input().split()) 2 3dp = [[0]*(N+1) for _ in range(K+1)] 4for i in range(1, K+1): 5 dp[i][0] = 1 6 7for i in range(1, K+1): 8 for j in range(1, N+1): 9 dp[i][j] = (dp[i-1][j] + dp[i][j-1])%1000000000 10print (dp[K][N]) 내 힘으로 풀었다!
+<a href=/til/spring/autowired/ class="content-summary text-sm overflow-hidden">
+@Autowired를 이용한 자동 객체 주입 방법1 : Field에 적용
+1public class MemberListPrinter { 2 @Autowired 3 private MemberDao memberDao; 4 @Autowired 5 private MemberPrinter printer; 6 7 public MemberListPrinter() {} 8 9 public void printAll() { 10 Collection&lt;Member> members = memberDao.selectAll(); 11 members.forEach(m -> printer.print(m)); 12 } 13} 방법2 : Method에 적용
+1public class MemberListPrinter { 2 private MemberDao memberDao; 3 private MemberPrinter printer; 4 5 public MemberListPrinter() {} 6 7 @Autowired 8 public void setMemberDao(MemberDao memberDao) { 9 this.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -182,23 +195,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2193/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2193 : 이친수 (S3)
+<a href=/til/spring/09_spring_mvc/ class="text-2xl my-3 overflow-ellipsis-bundle">
+09_spring_MVC
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2193/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2dp = [1]*N 3for i in range(2, N): 4 dp[i] = dp[i-2]+dp[i-1] 5print (dp[N-1]) 피보나치였다
+<a href=/til/spring/09_spring_mvc/ class="content-summary text-sm overflow-hidden">
+Spring MVC 시작하기 프로젝트 생성 앞에서 만들었던 자바 애플리케이션과는 좀 다른점이 있었다 jar이 아닌 war을 사용하는 등 여러가지 많았는데 일일이 적지는 않을 것이다 Controller 1@Controller 2public class HelloController { 3 @GetMapping("/hello") 4 public String hello(Model model, 5 @RequestParam(value="name", required=false) String name) { 6 model.addAttribute("greeting", "안녕하세요" + name); 7 return "hello"; 8 } 9} JSP 1&lt;%@ page contentType="text/html; charset=utf-8" %> 2&lt;!DOCTYPE html> 3&lt;html> 4 &lt;head> 5 &lt;title>Hello&lt;/title> 6 &lt;/head> 7 &lt;body> 8 인사말 : ${greeting} 9 &lt;/body> 10&lt;/html URL접속해도 해당 jsp파일이 나오지 않는 문제 vscode에서 community server connector라는 extension을 통해 tomcat을 띄워서 할려고 한다 특정 jsp를 감지했는지, serving하는지에 대한 로그가 없어 되는건지 알 수가 없다 web.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -206,23 +219,26 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_17404/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 17404 : RGB거리 2 (G4)
+<a href=/til/school/ood/ class="text-2xl my-3 overflow-ellipsis-bundle">
+객체지향설계
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_17404/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3 4result = 100000 5 6for i in range(3): 7 dp = [[0, 0, 0] for _ in range(N)] 8 dp[0] = [10000]*3 9 dp[0][i] = L[0][i] 10 for j in range(1, N): 11 dp[j][0] = min(dp[j-1][1], dp[j-1][2])+L[j][0] 12 dp[j][1] = min(dp[j-1][0], dp[j-1][2])+L[j][1] 13 dp[j][2] = min(dp[j-1][0], dp[j-1][1])+L[j][2] 14 15 dp[N-1][i] = 100000 16 result = min([result]+dp[N-1]) 17 18print (result) 인터넷을 참고하여 풀었다
+<a href=/til/school/ood/ class="content-summary text-sm overflow-hidden">
+Dynamic dispatch and Multiple inheritance Polymorphism Function overloading using compile time types of arguments Function overriding using runtime types of receiver objects virtual function for dynamic dispatch dynamic dispatch를 사용하기 위한 조건
+함수가 virtual keyword로 정의되어 있어야 한다.
+receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
+1// from parent class : Employee 2virtual std::string GetInfo() { 3 return "Employee: " + name_ ; 4} 5// from child class : Developer 6std::string GetInfo() { 7 return "Developer: " + name_; 8} override keyword override 키워드를 사용하는 이유 직관적인 코드
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -230,23 +246,24 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1699/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1699 : 제곱수의 합 (S2)
+<a href=/til/spring/aop/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - AOP (Aspect Oriented Programming)
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_1699/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2 3dp = [100000]*(N+1) 4tmp = 1 5 6for i in range(1, N+1): 7 if i**(1/2) % 1 == 0: 8 dp[i] = 1 9 tmp += 1 10 else: 11 for j in range(1, tmp): 12 dp[i] = min(dp[i], dp[i-(j**2)]+1) 13 14print (dp[N])
+<a href=/til/spring/aop/ class="content-summary text-sm overflow-hidden">
+AOP (Aspect Oriented Programming) 여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법 기본 개념 : 핵심 기능에 공통 기능을 삽입 구현하는 3가지 방법 컴파일 시점에 코드에 공통 기능을 삽입하는 방법 클래스 로딩 시점에 바이트 코드에 공통 기능을 삽입하는 방법 런타임에 프록시 객체를 생성해서 공통 기능을 삽입하는 방법 AOP 주요 용어 Target 부가 기능을 부여할 대상
+Advice 부가기능을 담고 있는 모듈
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -254,23 +271,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_15683/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 15683 : 감시 (G4)
+<a href=/til/school/sysp_12_13/ class="text-2xl my-3 overflow-ellipsis-bundle">
+221208 SYSP
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_15683/ class="content-summary text-sm overflow-hidden">
-1import copy, sys 2 3N, M = map(int, input().split()) 4L = [list(map(int, input().split())) for _ in range(N)] 5cctv = [] 6direction = [[[(0, 1)], [(0, -1)], [(1, 0)], [(-1, 0)]], 7[[(-1, 0), (1, 0)], [(0, -1), (0, 1)]], 8[[(-1, 0), (0, -1)], [(0, -1), (1, 0)], [(1, 0), (0, 1)], [(0, 1), (-1, 0)]], 9[[(-1, 0), (0, -1), (1, 0)], [(0, -1), (1, 0), (0, 1)], [(1, 0), (0, 1), (-1, 0)], [(0, 1), (-1, 0), (0, -1)]], 10[[(-1, 0), (0, -1), (1, 0), (0, 1)]]] 11res = sys.
+<a href=/til/school/sysp_12_13/ class="content-summary text-sm overflow-hidden">
+12-memory-1 메모리에 관한 불편한 진실 메모리는 무한의 자원이 아니다 동적 메모리 할당 직접(explicit) vs 간접(implicit) 메모리 할당기 직접 할당 : 응용프로그램이 할당하고, 반환한다 ex) malloc, free 간접 할당 : 응용프로그램이 할당하지만, 반환하지는 않는다 ex) java의 garbage collector 프로세스의 메모리 이미지 스택은 아래로, 힙은 위로 성장한다 sbrk 함수가 추가적인 힙 메모리를 운영체제로부터 요청한다 (brk 포인터 이동) Malloc package 1#include &lt;stdlib.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -278,23 +295,25 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_14891/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 14891 : 톱니바퀴 (G5)
+<a href=/til/school/sysp_09_11/ class="text-2xl my-3 overflow-ellipsis-bundle">
+221207 SYSP
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_14891/ class="content-summary text-sm overflow-hidden">
-1from collections import deque 2 3wheels = [deque(map(int, list(input()))) for _ in range(4)] 4 5def rotate(wheel, direction): 6 if direction == 1: 7 wheel.appendleft(wheel.pop()) 8 else: 9 wheel.append(wheel.popleft()) 10 return wheel 11 12K = int(input()) 13vd = [1, -1] 14res = 0 15 16for _ in range(K): 17 N, D = map(int, input().split()) 18 q = deque() 19 q.append((N-1, D)) 20 visited = [False] * 4 21 tmp = [] 22 23 while q: 24 cur, curD = q.
+<a href=/til/school/sysp_09_11/ class="content-summary text-sm overflow-hidden">
+09-process1 예외적인 제어 흐름 하위 매커니즘 예외 (Exception) 상위 매커니즘 프로세스 컨텍스트 전환 OS 소프트웨어와 하드웨어 타이머로 구현 시그널 OS 소프트웨어로 구현 nolocal 점프 예외 테이블 (Exception Tables) 각 이벤트 타입은 예외번호 k를 갖는다 비동기형 예외 (Interrupt) 입출력 인터럽트 (ctrl + c)
+하드 리셋 인터러트
+소프트 리셋 인터럽트
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -302,23 +321,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11057/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11057 : 오르막 수 (S1)
+<a href=/til/spring/08_connect_db/ class="text-2xl my-3 overflow-ellipsis-bundle">
+08_connect_DB
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_11057/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2dp = [[1]+[0]*9 for _ in range(N+1)] 3 4for i in range(1, N+1): 5 for j in range(1, 10): 6 dp[i][j] = dp[i-1][j]+dp[i][j-1] 7 8print (sum(dp[N])%10007)
+<a href=/til/spring/08_connect_db/ class="content-summary text-sm overflow-hidden">
+DataSource 설정 AppCtx.java 1 @Bean(destroyMethod = "close") 2 public DataSource dataSource() { 3 DataSource ds = new DataSource(); 4 ds.setDriverClassName("com.mysql.jdbc.Driver"); 5 ds.setUrl("jdbc:mysql://localhost/spring5fs?"+ 6 "enabledTLSProtocols=TLSv1.2&"+ 7 "useSSL=false&"+ 8 "characterEncoding=utf8"); 9 ds.setUsername("spring5"); 10 ds.setPassword("spring5"); 11 ds.setInitialSize(2); 12 ds.setMaxActive(10); 13 ds.setTestWhileIdle(true); 14 ds.setMinEvictableIdleTimeMillis(60000 * 3); 15 ds.setTimeBetweenEvictionRunsMillis(10 * 1000); 16 return ds; 17 } Query 실행 JdbcTemplate을 이용한 select 1jdbcTemplate.query( 2"select * from MEMBER where EMAIL = ?", 3new RowMapper&lt;Member>() { 4 @Override 5 public Member mapRow(ResultSet rs, int rowNum) 6 throws SQLException { 7 Member member = new Member( 8 rs.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -326,23 +345,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11052/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11052 : 카드 구매하기 (S1)
+<a href=/til/javascript/react_table_sort/ class="text-2xl my-3 overflow-ellipsis-bundle">
+React - column을 기준으로 정렬하기
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_11052/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2P = list(map(int, input().split())) 3 4D = [P[0]]+[0]*(N-1) 5 6for i in range(1, N): 7 for j in range(1, i+1): 8 D[i] = max(D[i-j]+P[j-1], D[i]) 9 D[i] = max(P[i], D[i]) 10 11print (D[N-1]
+<a href=/til/javascript/react_table_sort/ class="content-summary text-sm overflow-hidden">
+Table에 있는 데이터들을 column별로 정렬해야 한다 데이터의 형식에 따라 comparator를 따로 구현하였다 1const comparatorStr = (a, b, order) => { 2 if (order === Order.ASC) return a.localeCompare(b); 3 return b.localeCompare(a); 4}; 5 6const comparatorInt = (a, b, order) => { 7 if (order === Order.ASC) return a > b ? 1 : -1; 8 return a &lt; b ? 1 : -1; 9}; 정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다 1useEffect(() => { 2 if (sortBy === Key.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -350,25 +369,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11051/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11051 : 이항계수2 (S2)
+<a href=/til/spring/11_mvc_1/ class="text-2xl my-3 overflow-ellipsis-bundle">
+MVC 1 : Request Mapping, Command Object, Redirect, Form Tag, Model
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_11051/ class="content-summary text-sm overflow-hidden">
-내장 함수 사용
-1import math 2 3N, K = map(int, input().split()) 4 5print (math.comb(N, K)%10007 파스칼의 사각형? dp 구현
-1N, K = map(int, input().split()) 2 3if K == 0: 4 print(1) 5 exit() 6 7dp = [[0]*N for _ in range(K)] 8 9for i in range(N): 10 dp[0][i] = i+1 11 12for i in range(1, K): 13 for j in range(i, N): 14 dp[i][j] = (dp[i-1][j-1] + dp[i][j-1]) % 10007 15 16print (dp[K-1][N-1])
+<a href=/til/spring/11_mvc_1/ class="content-summary text-sm overflow-hidden">
+Request Mapping GetMapping/PostMapping으로 처리할 method를 지정하거나 RequestMapping을 사용할 수 있다. Access request parameter : HttpServletRequest 1@PostMapping("/register/step2") 2public String handleStep2(HttpServletRequest request) { 3 String agreeParam = request.getParameter("agree"); 4 if (agreeParam == null || !agreeParam.equals("true")) { 5 return "register/step1"; 6 } 7 return "register/step2"; Access request parameter : RequestParam Annotation 1@PostMapping("/register/step2") 2public String handleStep2( 3@RequestParam(value="agree", defaultValue="false") Boolean agree) { 4 if (!agree) { 5 return "register/step1"; 6 } 7 return "register/step2"; Redirect 1@GetMapping("/register/step2") 2public String handleStep2Get() { 3 return "redirect:/register/step1"; Command Object Use request parameter as command object RegisterController.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -376,23 +393,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11048/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11048 : 이동하기 (S2)
+<a href=/til/javascript/react_useeffect/ class="text-2xl my-3 overflow-ellipsis-bundle">
+React - useEffect 사용법
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_11048/ class="content-summary text-sm overflow-hidden">
-1N, M = map(int, input().split()) 2dp = [list(map(int, input().split())) for _ in range(N)] 3 4for i in range(1, N): 5 dp[i][0] = dp[i][0]+dp[i-1][0] 6for i in range(1, M): 7 dp[0][i] = dp[0][i]+dp[0][i-1] 8 9for i in range(1, N): 10 for j in range(1, M): 11 dp[i][j] = dp[i][j]+max(dp[i-1][j], dp[i][j-1]) 12 13print (dp[N-1][M-1])
+<a href=/til/javascript/react_useeffect/ class="content-summary text-sm overflow-hidden">
+component가 rendering 될 때 실행 1useEffect(()=> { 2 ... 3}); component가 mount 될 때 (처음 rendering 될 때) 실행 1useEffect(()=> { 2 ... 3}, []); component가 update 될 때 (props, states가 바뀔 때) 실행 1useEffect(()=> { 2 ... 3}, [{ props or states }]); component가 unmount 될 때 또는 update되기 직전에 실행 1useEffect(()=> { 2 return () => { 3 ... 4 }; 5}, []);
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -400,23 +417,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_10844/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 10844 : 쉬운 계단 수 (S1)
+<a href=/til/javascript/react_env_var/ class="text-2xl my-3 overflow-ellipsis-bundle">
+React - environment variable 설정하기
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_10844/ class="content-summary text-sm overflow-hidden">
-접근이 어려워 인터넷을 참고했다. 코드는 보지 않았다. 수의 길이가 i이면서 마지막 숫자가 j인 계단 수의 개수를 저장하는 것이 핵심이다. 점화식은 L[i][j] = L[i-1][j-1]+L[i-1][j+1] 이다. 1N = int(input()) 2L = [[0]*12 for _ in range(100)] 3L[0] = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0] 4 5for i in range(1, N): 6 for j in range(1, 11): 7 L[i][j] = L[i-1][j-1]+L[i-1][j+1] 8 9print (sum(L[N-1])%1000000000)
+<a href=/til/javascript/react_env_var/ class="content-summary text-sm overflow-hidden">
+프로그램이 개발/배포 상황에 따라 변수를 달리해야 할 때가 있다. 이때 react에서는 .env.development , .env.production 파일을 만들어서 환경변수를 쉽게 관리할 수 있다. react는 앞에 &lsquo;REACT_APP&rsquo; 을 붙여야 인식이 된다고한다. 설정 .env.development 1REACT_APP_HOST=localhost .env.production 1REACT_APP_HOST=192.168.0.1 사용 1${process.env.REACT_APP_HOST}
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -424,23 +441,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1010/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1010 : 다리놓기 (S5)
+<a href=/til/javascript/react_deploy_issue/ class="text-2xl my-3 overflow-ellipsis-bundle">
+React - build 이후 빈 화면만 나오는 문제
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_1010/ class="content-summary text-sm overflow-hidden">
-1import math 2 3for _ in range(int(input())): 4 a, b = map(int, input().split()) 5 print(math.comb(max(a,b), min(a,b)))
+<a href=/til/javascript/react_deploy_issue/ class="content-summary text-sm overflow-hidden">
+build 결과물을 돌리면 빈 화면만 나오는 문제 static files 로딩에 성공했는지 확인하자 문제가 있다면 index.html의 경로를 수정하자 react-router를 사용하고 있다면 url을 확인하자 deploy할때 root url이 아니라면 router에 basename을 추가해줘야한다. 1&lt;Router basename="/index">...&lt;/Router>
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -448,23 +465,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_9655/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 9655 : 돌게임 (S5)
+<a href=/til/spring/12_mvc_2/ class="text-2xl my-3 overflow-ellipsis-bundle">
+MVC 2 : Messages, Validate command object
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_9655/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2print ('CY' if N%2==0 else 'SK') 게임이론에서 기초 중 기초 문제이다
+<a href=/til/spring/12_mvc_2/ class="content-summary text-sm overflow-hidden">
+Messages label.properties member.register=회원가입 1&lt;%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 2&lt;head> 3 &lt;title>&lt;spring:message code="member.register" />&lt;/title> 4&lt;/head> 사이트가 여러 언어를 지원해야할 때 label_ko.properties, label_en.properties와 같이 만든다고 한다 http헤더의 Accept-Launguage를 자동으로 인식한다고 하니까 편할 것 같다 Validate command object Validation RegisterRequestValidator 1@Override 2public void validate(Object target, Errors errors) { 3 RegisterRequest regReq = (RegisterRequest) target; 4 5 if(regReq.getEmail() == null | regReq.getEmail().trim().isEmpty()) { 6 errors.rejectValue("email", "bad"); 7 } 8 else { 9 Matcher matcher = pattern.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -472,23 +489,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1309/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1309 : 동물원 (S1)
+<a href=/til/java/generics/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Generics
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>☕</span>
+<span>Java</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_1309/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2dp = [1, 3] + [0]*(N-1) 3 4for i in range(2, N+1): 5 dp[i] = (dp[i-1]*2 + dp[i-2]) % 9901 6 7print(dp[N]) 고민 끝에 답을 찾아보긴 했다 점화식 생각해내는 놈들 머리에 뭐가 든건지 모르겠다
+<a href=/til/java/generics/ class="content-summary text-sm overflow-hidden">
+효과 : 타입안정성, 간결한 코드 Generic class 1public class Box&lt;M, I> { 2 private M material; 3 private I item; 4 ... 5} 6 7Box&lt;Paper, String> box = new Box&lt;Paper, String>(); Generic Function 1public class CoffeeMachine { 2 public &lt;T> Coffee makeCoffee(T capsule) { 3 return new Coffee(capsule); 4 } 5} 6CoffeeMachine coffeeMachine = new CoffeeMachine(); 7Colombian capsule = new Colombian(); 8coffeeMachine.&lt;Colombian>makeCoffee(capsule); 9coffeeMachine.makeCoffee(capsule); Restrictions on Generics 1// BoxMaterial을 상속 받았으면서 Hard(인터페이스)를 구현한 클래스만 가능 2public class Box&lt;M extends BoxMaterial & Hard> 3// BoxMaterial의 조상 클래스만 가능 4public class Box&lt;T super BoxMaterial> Whild Card 1// T와 그 자손만 가능 2&lt;?
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -496,23 +513,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1890/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1890 : 점프 (S1)
+<a href=/til/spring/13_mvc_3/ class="text-2xl my-3 overflow-ellipsis-bundle">
+MVC 3 : Session, Interceptor, Cookies
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_1890/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2 3L = [list(map(int, input().split())) for _ in range(N)] 4dp = [[0]*N for _ in range(N)] 5dp[0][0] = 1 6for i in range(N): 7 for j in range(N): 8 if L[i][j] == 0: 9 continue 10 if dp[i][j] != 0: 11 right = j+L[i][j] 12 bottom = i+L[i][j] 13 14 if right &lt; N: 15 dp[i][right] += dp[i][j] 16 if bottom &lt; N: 17 dp[bottom][j] += dp[i][j] 18print (dp[N-1][N-1]) dp에 있는 값을 더해야하는데 1을 더해서 몇 번 틀렸다 거의 혼자 힘으로 풀었다
+<a href=/til/spring/13_mvc_3/ class="content-summary text-sm overflow-hidden">
+Session 로그인 할 때 세션에 등록 LoginController.java 1@PostMapping 2public String submit(LoginCommand loginCommand, Errors errors, HttpSession session) { 3new LoginCommandValidator().validate(loginCommand, errors); 4if (errors.hasErrors()) { 5 return "login/loginForm"; 6} 7 8try { 9 AuthInfo authInfo = authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword()); 10 11 session.setAttribute("authInfo", authInfo); 12 return "login/loginSuccess"; 13} 14catch (WrongIdPasswordException e) { 15 errors.reject("idPasswordNotMatching"); 16 return "login/loginForm"; 17} 18} 로그아웃 할때 세션에서 삭제 LogoutController.java 1@RequestMapping("/logout") 2public String logout(HttpSession session) { 3 session.
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -520,23 +537,23 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2096/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2096 : 내려가기 (G5)
+<a href=/til/school/data_structure/ class="text-2xl my-3 overflow-ellipsis-bundle">
+자료구조
 </a>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
 </div>
 </div>
 </div>
 <div class=flex-grow>
-<a href=/til/algorithm/boj_2096/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3dp1 = [L[0][i] for i in range(3)] 4dp2 = [L[0][i] for i in range(3)] 5 6for i in range(1, N): 7tmp1 = [0]*3 8tmp2 = [0]*3 9for j in range(3): 10 11 if j == 0: 12 tmp1[0] = L[i][j] + max(dp1[0], dp1[1]) 13 tmp2[0] = L[i][j] + min(dp2[0], dp2[1]) 14 elif j == 1: 15 tmp1[1] = L[i][j] + max(dp1[0], dp1[1], dp1[2]) 16 tmp2[1] = L[i][j] + min(dp2[0], dp2[1], dp2[2]) 17 else: 18 tmp1[2] = L[i][j] + max(dp1[1], dp1[2]) 19 tmp2[2] = L[i][j] + min(dp2[1], dp2[2]) 20 dp1 = [i for i in tmp1] 21 dp2 = [i for i in tmp2] 22 23print (max(dp1), min(dp2)) Memoization과정이 다른 memoization 변수에 대해 종속적이라면 잘못된 결과를 초래한다 위 코드에서는 이를 방지하기 위해 tmp1, tmp2 변수를 사용한다 깊이 생각하지 않고 여러 번 제출해서 WA개수가 조금 많다;;
+<a href=/til/school/data_structure/ class="content-summary text-sm overflow-hidden">
+제 1장 : 자료구조를 배우기 위한 준비 (230302) 배열 배열(Array): 동일한 타입의 원소들이 연속적인 메모리 공간에 할당되어 있는 기초적인 자료구조 추상데이터 타입 추상데이터타입(ADT:Abstract Data Type) : 데이터와 그 데이터에 대한 추상적인 연산들로써 구성 ADT =~ 자바의 interface, 자료구조 =~ 자바의 class 자료구조는 추상데이터타입을 구체적으로 구현한 것 1-2 수행시간의 분석 알고리즘의 성능: 수행시간을 나타내는 **시간복잡도(Time Complexity)**와 알고리즘이 수행되는 동안 사용되는 메모리 공간의 크기를 나타내는 **공간복잡도(Space Complexity)**에 기반하여 분석 시간 복잡도
 </a>
 </div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -546,7 +563,7 @@ bong-u/til
 <span class="text-xl mr-3">🧠</span>
 <span> Algorithm (102)</span>
 </a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_-cpp/>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
 <span class="text-xl mr-3">🌊</span>
 <span> C/CPP (2)</span>
 </a>
