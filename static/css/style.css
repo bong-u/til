@@ -931,10 +931,6 @@ input[name="switch"]:checked + label{
   top: 0px;
 }
 
-.z-10{
-  z-index: 10;
-}
-
 .m-1{
   margin: 0.25rem;
 }
@@ -1009,10 +1005,6 @@ input[name="switch"]:checked + label{
 
 .mt-auto{
   margin-top: auto;
-}
-
-.mb-1{
-  margin-bottom: 0.25rem;
 }
 
 .line-clamp-3{
@@ -1096,22 +1088,6 @@ input[name="switch"]:checked + label{
 
 .min-w-0{
   min-width: 0px;
-}
-
-.max-w-md{
-  max-width: 28rem;
-}
-
-.max-w-lg{
-  max-width: 32rem;
-}
-
-.max-w-xl{
-  max-width: 36rem;
-}
-
-.max-w-2xl{
-  max-width: 42rem;
 }
 
 .max-w-3xl{
@@ -1361,14 +1337,6 @@ input[name="switch"]:checked + label{
 @media (min-width: 768px){
   .md\:w-3\/4{
     width: 75%;
-  }
-
-  .md\:w-5\/6{
-    width: 83.333333%;
-  }
-
-  .md\:p-12{
-    padding: 3rem;
   }
 }
 

@@ -18,10 +18,15 @@
 			</input>
 
 			<input id="switch-group" type="radio" name="switch">
-			<label for="switch-group" class="switch-button rounded-r-lg">
+			<label for="switch-group" class="switch-button">
 				분류
 			</label>
 			</input>
+
+			<input id="switch-tag" type="radio" name="switch">
+			<label for="switch-tag" class="switch-button rounded-r-lg">
+				태그
+			</label>
 		</form>
 
 		<div class="w-full p-5">
@@ -33,6 +38,9 @@
 			</section>
 			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 				{{ .Render "sections" }}
+			</section>
+			<section id="tag-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+				{{ .Render "tags" }}
 			</section>
 		</div>
 	</main>

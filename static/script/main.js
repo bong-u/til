@@ -39,7 +39,7 @@ const formatTimeDiff = () => {
         const lastmod = new Date(Date.UTC(parseInt(parts[1], 10), parseInt(parts[2], 10) - 1, parseInt(parts[3], 10), parseInt(parts[4], 10) - 9, parseInt(parts[5], 10), parseInt(parts[6], 10)));
 
         const today = new Date();
-        
+
         const diff = (today - lastmod) / 1000;
 
         for (const value of times) {
@@ -60,12 +60,19 @@ const switchSection = () => {
     const switches = document.getElementsByName('switch');
     const summarySection = document.getElementById('summary-section');
     const groupSection = document.getElementById('group-section');
+    const tagSection = document.getElementById('tag-section');
 
+    // 모든 섹션 숨기기
+    summarySection.classList.add('hidden');
+    groupSection.classList.add('hidden');
+    tagSection.classList.add('hidden');
+
+    // 선택된 스위치에 따라 섹션 표시
     if (switches[0].checked) {
         summarySection.classList.remove('hidden');
-        groupSection.classList.add('hidden');
-    } else {
-        summarySection.classList.add('hidden');
+    } else if (switches[1].checked) {
         groupSection.classList.remove('hidden');
+    } else if (switches[2].checked) {
+        tagSection.classList.remove('hidden');
     }
 }
