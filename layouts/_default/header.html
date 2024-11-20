@@ -1,23 +1,27 @@
-<header class="flex p-3 block justify-between text-lg z-10 border-b border-line">
-    <h3>
-        <a href="{{ .Site.BaseURL }}" class="hover-black">
-            {{ .Site.Title }}
-        </a>
-    </h3>
-    <div class="flex gap-5">
-        <a class="hover-black" href="{{ .Site.BaseURL }}">
-            🏠 home
-        </a>
-        <a class="hover-black" href="https://github.com/bong-u/til">
-            🐈 repository
-        </a>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+    <!-- <div class="w-full flex max-w-3xl justify-between lg-5/6 max-w-3xl"> -->
+    <div class="w-full flex justify-between lg-5/6
+        {{ if .IsHome }} max-w-3xl {{ end }}">
+        <h3>
+            <a href=" {{ .Site.BaseURL }}" class="hover-black">
+                {{ .Site.Title }}
+            </a>
+        </h3>
+        <div class="flex gap-5">
+            <a class="hover-black" href="{{ .Site.BaseURL }}">
+                🏠 home
+            </a>
+            <a class="hover-black" href="https://github.com/bong-u/til">
+                🐈 repository
+            </a>
             <!-- <label id="toggleButton" class="cursor-pointer hover-bigger" for="toggleDarkMode">
                 ☀️
             </label> -->
-        <!-- <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bigger">
+            <!-- <a id="scrollButton" onclick="scrollToTop()" class="cursor-pointer hover-bigger">
             🔽
 
         </a> -->
+        </div>
     </div>
 </header>
 
