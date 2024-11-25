@@ -69,6 +69,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'330')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/gh_action_issue2/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Issue - Gihub action 오류 - venv 적용
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🎸</span>
+<span>기타</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/etc/gh_action_issue2/ class="content-summary text-sm overflow-hidden">
+문제상황 TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러로그 1error: externally-managed-environment 2 3× This environment is externally managed 4╰─> To install Python packages system-wide, try apt install 5 python3-xyz, where xyz is the package you are trying to 6 install. 7 8 If you wish to install a non-Debian-packaged Python package, 9 create a virtual environment using python3 -m venv path/to/venv. 10 Then use path/to/venv/bin/python and path/to/venv/bin/pip.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-25 16:49:28 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'330')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/etc/gh_action_issue1/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Issue - Gihub action 오류 - yaml multiline
 </a>
@@ -83,30 +107,6 @@ Issue - Gihub action 오류 - yaml multiline
 <div class=flex-grow>
 <a href=/til/etc/gh_action_issue1/ class="content-summary text-sm overflow-hidden">
 문제상황 TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러 로그에는 python 라이브러리가 설치되지 않았다는 내용이 적혀있었다. 문제의 yaml 코드 1- name: Install dependencies 2 run: python -m pip install --upgrade pip 3 pip install -r requirements.txt 해결방법 fix: github action error - &ldquo;Could not find a version&rdquo; 하단의 pip install 명령어가 실행되지 않아 오류가 발생하는것으로 판단하였다. literal 방식으로 pipe(|)를 사용하여 두번째 줄의 명령어가 실행되도록 수정하였다. 1- name: Install dependencies 2 run: |3python -m pip install --upgrade pip 4pip install -r requirements.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-25 16:43:53 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'330')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/etc/gh_action_issue2/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Issue - Gihub action 오류 - venv 적용
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🎸</span>
-<span>기타</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/etc/gh_action_issue2/ class="content-summary text-sm overflow-hidden">
-문제상황 TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러로그 1error: externally-managed-environment 2 3× This environment is externally managed 4╰─> To install Python packages system-wide, try apt install 5 python3-xyz, where xyz is the package you are trying to 6 install. 7 8 If you wish to install a non-Debian-packaged Python package, 9 create a virtual environment using python3 -m venv path/to/venv. 10 Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make 11 sure you have python3-full installed.
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-25 16:43:53 +0900 +0900">
