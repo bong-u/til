@@ -68,6 +68,54 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'330')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/gh_action_issue1/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Issue - Gihub action 오류 - yaml multiline
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🎸</span>
+<span>기타</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/etc/gh_action_issue1/ class="content-summary text-sm overflow-hidden">
+문제상황 TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러 로그에는 python 라이브러리가 설치되지 않았다는 내용이 적혀있었다. 문제의 yaml 코드 1- name: Install dependencies 2 run: python -m pip install --upgrade pip 3 pip install -r requirements.txt 해결방법 fix: github action error - &ldquo;Could not find a version&rdquo; 하단의 pip install 명령어가 실행되지 않아 오류가 발생하는것으로 판단하였다. literal 방식으로 pipe(|)를 사용하여 두번째 줄의 명령어가 실행되도록 수정하였다. 1- name: Install dependencies 2 run: |3python -m pip install --upgrade pip 4pip install -r requirements.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-25 16:43:53 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'330')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/gh_action_issue2/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Issue - Gihub action 오류 - venv 적용
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🎸</span>
+<span>기타</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/etc/gh_action_issue2/ class="content-summary text-sm overflow-hidden">
+문제상황 TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러로그 1error: externally-managed-environment 2 3× This environment is externally managed 4╰─> To install Python packages system-wide, try apt install 5 python3-xyz, where xyz is the package you are trying to 6 install. 7 8 If you wish to install a non-Debian-packaged Python package, 9 create a virtual environment using python3 -m venv path/to/venv. 10 Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make 11 sure you have python3-full installed.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-25 16:43:53 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_20125/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 20125 : 쿠키의 신체 측정 (S4)
@@ -516,54 +564,6 @@ build 결과물을 돌리면 빈 화면만 나오는 문제 static files 로딩�
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/12_mvc_2/ class="text-2xl my-3 overflow-ellipsis-bundle">
-MVC 2 : Messages, Validate command object
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/12_mvc_2/ class="content-summary text-sm overflow-hidden">
-Messages label.properties member.register=회원가입 1&lt;%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 2&lt;head> 3 &lt;title>&lt;spring:message code="member.register" />&lt;/title> 4&lt;/head> 사이트가 여러 언어를 지원해야할 때 label_ko.properties, label_en.properties와 같이 만든다고 한다 http헤더의 Accept-Launguage를 자동으로 인식한다고 하니까 편할 것 같다 Validate command object Validation RegisterRequestValidator 1@Override 2public void validate(Object target, Errors errors) { 3 RegisterRequest regReq = (RegisterRequest) target; 4 5 if(regReq.getEmail() == null | regReq.getEmail().trim().isEmpty()) { 6 errors.rejectValue("email", "bad"); 7 } 8 else { 9 Matcher matcher = pattern.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/java/generics/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Generics
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>☕</span>
-<span>Java</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/java/generics/ class="content-summary text-sm overflow-hidden">
-효과 : 타입안정성, 간결한 코드 Generic class 1public class Box&lt;M, I> { 2 private M material; 3 private I item; 4 ... 5} 6 7Box&lt;Paper, String> box = new Box&lt;Paper, String>(); Generic Function 1public class CoffeeMachine { 2 public &lt;T> Coffee makeCoffee(T capsule) { 3 return new Coffee(capsule); 4 } 5} 6CoffeeMachine coffeeMachine = new CoffeeMachine(); 7Colombian capsule = new Colombian(); 8coffeeMachine.&lt;Colombian>makeCoffee(capsule); 9coffeeMachine.makeCoffee(capsule); Restrictions on Generics 1// BoxMaterial을 상속 받았으면서 Hard(인터페이스)를 구현한 클래스만 가능 2public class Box&lt;M extends BoxMaterial & Hard> 3// BoxMaterial의 조상 클래스만 가능 4public class Box&lt;T super BoxMaterial> Whild Card 1// T와 그 자손만 가능 2&lt;?
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -596,7 +596,7 @@ Generics
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (2)</span>
+<span> 기타 (4)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -658,7 +658,7 @@ Generics
 </a>
 <a class="tag-item box rounded-lg flex p-4">
 <span class="text-xl mr-3">🏷️</span>
-<span>github-action (1)</span>
+<span>github-action (3)</span>
 </a>
 <a class="tag-item box rounded-lg flex p-4">
 <span class="text-xl mr-3">🏷️</span>

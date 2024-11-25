@@ -1,0 +1,118 @@
+<!doctype html><html>
+<head>
+<title>Issue - Gihub action 오류 - yaml multiline</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="문제상황  TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러 로그에는 python 라이브러리가 설치되지 않았다는 내용이 적혀있었다. …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="Issue - Gihub action 오류 - yaml multiline">
+<meta property="og:description" content="문제상황  TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다. 에러 로그에는 python 라이브러리가 설치되지 않았다는 내용이 적혀있었다. …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#문제상황>문제상황</a></li>
+<li><a href=#해결방법>해결방법</a></li>
+<li><a href=#회고>회고</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Issue - Gihub action 오류 - yaml multiline
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-11-25</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=문제상황>문제상황</h3>
+<ul>
+<li>TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다.</li>
+<li>에러 로그에는 python 라이브러리가 설치되지 않았다는 내용이 적혀있었다.</li>
+</ul>
+<h4 id=문제의-yaml-코드>문제의 yaml 코드</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install dependencies</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#f92672>run</span>: <span style=color:#ae81ff>python -m pip install --upgrade pip</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>	  <span style=color:#ae81ff>pip install -r requirements.txt</span>
+</code></pre></div><h3 id=해결방법>해결방법</h3>
+<ul>
+<li><a href=https://github.com/bong-u/cnu-notice/commit/a8936824048914565bb67c646468c07ff65c3f0f>fix: github action error - &ldquo;Could not find a version&rdquo;</a></li>
+<li>하단의 <code>pip install</code> 명령어가 실행되지 않아 오류가 발생하는것으로 판단하였다.</li>
+<li>literal 방식으로 pipe(|)를 사용하여 두번째 줄의 명령어가 실행되도록 수정하였다.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install dependencies</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#e6db74>    python -m pip install --upgrade pip
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#e6db74>    pip install -r requirements.txt</span>    
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run python script</span>
+</code></pre></div><h3 id=회고>회고</h3>
+<ul>
+<li>github action에서 yaml파일을 파싱하는 로직이 바뀐것에 대한 패치 노트는 찾지못하였다.</li>
+<li>모호한 문법으로 yaml을 작성하여 발생한 문제였다.</li>
+<li>이후에는 yaml 문법을 더욱 꼼꼼히 확인하고 사용해야겠다.</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/etc/testing/>
+<span class=mx-3>◀</span>
+정적테스트와 동적테스트
+</a>
+<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/etc/gh_action_issue2/>
+Issue - Gihub action 오류 - venv 적용
+<span class=mx-3>▶</span>
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
