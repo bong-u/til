@@ -22,7 +22,12 @@
 				</h1>
 			</div>
 		</div>
-		<div class="text-sm flex flex-col mb-8 text-textgray">
+		<div class="text-sm flex mb-8 justify-between text-textgray">
+			<div>
+				{{ range $tag, $pages := .Params.tags }}
+				<span class="text-md mr-1">🏷️ {{ . }}</span>
+				{{ end }}
+			</div>
 			<h4 id="date">수정일 : {{ .Lastmod.Format "2006-01-02" }}</h4>
 		</div>
 		<!--  -->

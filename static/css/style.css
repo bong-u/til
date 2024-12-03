@@ -1007,6 +1007,14 @@ input[name="switch"]:checked + label{
   margin-top: auto;
 }
 
+.mr-1{
+  margin-right: 0.25rem;
+}
+
+.mr-2{
+  margin-right: 0.5rem;
+}
+
 .line-clamp-3{
   overflow: hidden;
   display: -webkit-box;
