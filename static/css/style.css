@@ -991,6 +991,14 @@ input[name="switch"]:checked + label{
   margin-left: 1.25rem;
 }
 
+.mr-1{
+  margin-right: 0.25rem;
+}
+
+.mr-2{
+  margin-right: 0.5rem;
+}
+
 .mr-3{
   margin-right: 0.75rem;
 }
@@ -1005,14 +1013,6 @@ input[name="switch"]:checked + label{
 
 .mt-auto{
   margin-top: auto;
-}
-
-.mr-1{
-  margin-right: 0.25rem;
-}
-
-.mr-2{
-  margin-right: 0.5rem;
 }
 
 .line-clamp-3{
@@ -1222,6 +1222,10 @@ input[name="switch"]:checked + label{
   background-color: inherit;
 }
 
+.bg-textgray{
+  background-color: var(--color-textgray);
+}
+
 .p-1{
   padding: 0.25rem;
 }
@@ -1301,6 +1305,18 @@ input[name="switch"]:checked + label{
 
 .overline{
   text-decoration-line: overline;
+}
+
+.opacity-50{
+  opacity: 0.5;
+}
+
+.opacity-10{
+  opacity: 0.1;
+}
+
+.opacity-30{
+  opacity: 0.3;
 }
 
 .filter{
