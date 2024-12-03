@@ -130,18 +130,18 @@ Express&React 프로젝트에 Recaptcha 적용하기
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#75715e>// 결과를 JSON으로 파싱
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>verificationReuslt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>();
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#75715e>// 점수가 0.5보다 낮으면 에러 발생
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#75715e>// 점수가 0.5보다 낮으면 예외를 던짐
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>verificationReuslt</span>.<span style=color:#a6e22e>score</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0.5</span>) {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RecaptchaScoreTooLowError</span>();
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    }
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#75715e>// 성공 여부가 false이면 에러를 발생시킨다. (토큰이 유효하지 않은 경우)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#75715e>// 성공 여부가 false이면 예외를 던짐 (토큰이 유효하지 않은 경우)
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>verificationReuslt</span>.<span style=color:#a6e22e>success</span>) {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RecaptchaTokenInvalidError</span>();
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    }
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>}
 </code></pre></div><h4 id=user-routerts>user-router.ts</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 컨트롤러 부분에서 부분에서 Recaptcha 검증 함수를 호출하고, 예외를 처리하였다.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 컨트롤러 부분에서 부분에서 Recaptcha 검증 함수를 호출, 발생시킨 예외를 처리
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>try</span> {
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>UserService</span>.<span style=color:#a6e22e>verifyRecaptcha</span>(<span style=color:#a6e22e>recaptchaToken</span>);
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>UserService</span>.<span style=color:#a6e22e>createUser</span>(<span style=color:#a6e22e>username</span>, <span style=color:#a6e22e>password</span>);
@@ -178,7 +178,7 @@ Express&React 프로젝트에 Recaptcha 적용하기
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useGoogleReCaptcha</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react-google-recaptcha-v3&#34;</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SignupPage</span>: <span style=color:#66d9ef>React.FC</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#75715e>// useGoogleReCaptcha 훅을 사용하여 Recaptcha 토큰을 받아온다.
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#75715e>// useGoogleReCaptcha 훅을 사용하여 Recaptcha 토큰을 받아옴
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>	<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>executeRecaptcha</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useGoogleReCaptcha</span>();
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleSignup</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
@@ -187,7 +187,7 @@ Express&React 프로젝트에 Recaptcha 적용하기
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>			<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Execute recaptcha not yet available&#34;</span>);
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>			<span style=color:#66d9ef>return</span>;
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>		}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#75715e>// Recaptcha 토큰을 받아온다. (signup은 action을 구분하기 위한 문자열)
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#75715e>// Recaptcha 토큰을 받아옴 (signup은 action을 구분하기 위한 문자열)
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#75715e></span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>recaptchaToken</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>executeRecaptcha</span>(<span style=color:#e6db74>&#34;signup&#34;</span>);
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>		<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>password</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>confirmPassword</span>) {
