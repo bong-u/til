@@ -1,7 +1,7 @@
 {{ range $tag, $pages := .Site.Taxonomies.tags }}
-<a class="tag-item box rounded-lg flex p-4 ">
+<a class="tag-item box flex p-4 ">
     <!-- hover-bold hover-bigger" href="{{ (index $pages 0).RelPermalink }}"> -->
-    <span class="text-xl mr-3">🏷️</span>
+    <span class="text-xl mr-2">🏷️</span>
     <span>{{ $tag }} ({{ len $pages }})</span>
 </a>
 {{ end }}
