@@ -1,0 +1,231 @@
+<!doctype html><html>
+<head>
+<title>Express&React 프로젝트에 Recaptcha 적용하기</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="상황  사이드 프로젝트 &ldquo;알록&#34;을 개발하던 중, 사용자가 악의적인 목적으로 반복적으로 요청을 보내는 것을 어떻게 막을까 고민하게 되었다. …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="Express&React 프로젝트에 Recaptcha 적용하기">
+<meta property="og:description" content="상황  사이드 프로젝트 &ldquo;알록&#34;을 개발하던 중, 사용자가 악의적인 목적으로 반복적으로 요청을 보내는 것을 어떻게 막을까 고민하게 되었다. …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#상황>상황</a></li>
+<li><a href=#recaptcha란>Recaptcha란?</a></li>
+<li><a href=#v3의-작동-방식>v3의 작동 방식</a></li>
+<li><a href=#동작-순서>동작 순서</a></li>
+</ul>
+</li>
+<li><a href=#적용>적용</a>
+<ul>
+<li><a href=#사전-설정>사전 설정</a></li>
+<li><a href=#server-express>Server (Express)</a></li>
+<li><a href=#client-react>Client (React)</a></li>
+<li><a href=#결과>결과</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+Express&React 프로젝트에 Recaptcha 적용하기
+</h1>
+</div>
+</div>
+<div class="text-sm flex flex-col mb-8 text-textgray">
+<h4 id=date>수정일 : 2024-12-03</h4>
+</div>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<h3 id=상황>상황</h3>
+<ul>
+<li>사이드 프로젝트 &ldquo;알록"을 개발하던 중, 사용자가 악의적인 목적으로 반복적으로 요청을 보내는 것을 어떻게 막을까 고민하게 되었다.</li>
+<li>조사를 통해 Google에서 제공되는 Recaptcha를 사용하면 손쉽게 방지할 수 있다는 것을 알게 되었다.</li>
+<li>공격자의 입장에서 생각했을 때, 지금 프로젝트에서 가장 취약한 부분은 회원가입이라고 생각했다.</li>
+<li>회원가입은 회원이 아닌 자가, 아이디와 비밀번호 규칙만 만족한다면 반복적으로 요청을 보낼 수 있고, 이는 DB에 바로 저장되기 때문이다.</li>
+<li>따라서 회원가입 부분에 Recaptcha를 적용하기로 결정했다.</li>
+</ul>
+<h3 id=recaptcha란>Recaptcha란?</h3>
+<blockquote>
+<p>Recaptcha는 구글에서 제공하는 무료 보안 서비스로, 사용자가 로봇이 아님을 증명하는 방법 중 하나이다.</p>
+</blockquote>
+<ul>
+<li>지원 종료된 v1을 제외하면 v2, v3 두 가지 버전이 있다.</li>
+<li>v2는 사용자가 &lsquo;나는 로봇이 아닙니다&rsquo;를 클릭하는 방식으로 인증이 완료된다.</li>
+<li>v3는 사용자와 상호작용 없이 자동으로 인증이 완료된다.</li>
+<li>필자는 사용자의 경험과 이를 테스트할 나의 고생을 덜기 위해 v3를 사용하기로 했다.</li>
+</ul>
+<h3 id=v3의-작동-방식>v3의 작동 방식</h3>
+<ul>
+<li>사용자의 마우스 클릭, 키보드 입력, 스크롤, 요청 패턴 등을 분석하여 점수를 매긴다.</li>
+<li>점수는 0.0 ~ 1.0 사이의 값으로, 0.0은 로봇, 1.0은 사람을 의미한다.</li>
+<li>개발자는 Recaptcha가 평가한 점수를 기반으로 요청을 받아들일지 말지 결정할 수 있다.</li>
+</ul>
+<h3 id=동작-순서>동작 순서</h3>
+<ol>
+<li>사용자가 회원가입 페이지에 접속한다.</li>
+<li>브라우저단에서 Recaptcha 키를 Recaptcha 토큰을 받아온다.</li>
+<li>사용자가 회원가입 요청을 보낼 때, Recaptcha 토큰을 함께 전달한다.</li>
+<li>서버에서 Recaptcha 토큰을 검증하고, 점수가 0.5보다 낮으면 요청을 거부한다.</li>
+</ol>
+<h2 id=적용>적용</h2>
+<h3 id=사전-설정>사전 설정</h3>
+<ul>
+<li><a href=https://www.google.com/recaptcha/>https://www.google.com/recaptcha/</a>에 접속하여 도메인을 등록하고 키를 받는다.</li>
+<li>자세한 과정은 다른 블로그에도 잘 설명되어 있어서 생략한다.</li>
+</ul>
+<h3 id=server-express>Server (Express)</h3>
+<h4 id=user-servicets>user-service.ts</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 서비스 레이어에 추가한 Recaptcha 검증 함수
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>verifyRecaptcha</span>(<span style=color:#a6e22e>token</span>: <span style=color:#66d9ef>string</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>void</span>&gt; {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#75715e>// Recaptcha 검증
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#75715e>// 키는 Recaptcha 사이트에서 받은 것이며, 환경 변수로 관리
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e></span>        <span style=color:#e6db74>`https://www.google.com/recaptcha/api/siteverify?secret=</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>RECAPTCHA_SECRET_KEY</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&amp;response=</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>token</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;POST&#34;</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    );
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#75715e>// 결과를 JSON으로 파싱
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>verificationReuslt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>();
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#75715e>// 점수가 0.5보다 낮으면 에러 발생
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>verificationReuslt</span>.<span style=color:#a6e22e>score</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0.5</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RecaptchaScoreTooLowError</span>();
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#75715e>// 성공 여부가 false이면 에러를 발생시킨다. (토큰이 유효하지 않은 경우)
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>verificationReuslt</span>.<span style=color:#a6e22e>success</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>RecaptchaTokenInvalidError</span>();
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>}
+</code></pre></div><h4 id=user-routerts>user-router.ts</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 컨트롤러 부분에서 부분에서 Recaptcha 검증 함수를 호출하고, 예외를 처리하였다.
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>try</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>UserService</span>.<span style=color:#a6e22e>verifyRecaptcha</span>(<span style=color:#a6e22e>recaptchaToken</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>UserService</span>.<span style=color:#a6e22e>createUser</span>(<span style=color:#a6e22e>username</span>, <span style=color:#a6e22e>password</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#34;User created successfully&#34;</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>} <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>err</span>: <span style=color:#66d9ef>any</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#75715e>// Recaptcha 점수가 낮은 경우 -&gt; 403 Forbidden
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span> <span style=color:#66d9ef>instanceof</span> <span style=color:#a6e22e>RecaptchaScoreTooLowError</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>403</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>err</span>.<span style=color:#a6e22e>message</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#75715e>// Recaptcha 토큰이 유효하지 않은 경우 -&gt; 400 Bad Request
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e></span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span> <span style=color:#66d9ef>instanceof</span> <span style=color:#a6e22e>RecaptchaTokenInvalidError</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>err</span>.<span style=color:#a6e22e>message</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span> <span style=color:#66d9ef>instanceof</span> <span style=color:#a6e22e>UserAlreadyExistsError</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>409</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>err</span>.<span style=color:#a6e22e>message</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    } <span style=color:#66d9ef>else</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>err</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>500</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>err</span>.<span style=color:#a6e22e>message</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>}
+</code></pre></div><h3 id=client-react>Client (React)</h3>
+<h4 id=apptsx>App.tsx</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>GoogleReCaptchaProvider</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react-google-recaptcha-v3&#34;</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>return</span> (
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#75715e>// 최상위 컴포넌트에 GoogleReCaptchaProvider를 사용하여 Recaptcha 키를 전달
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>    &lt;<span style=color:#f92672>GoogleReCaptchaProvider</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#a6e22e>reCaptchaKey</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_RECAPTCHA_SITE_KEY</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#34;&#34;</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    &gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        &lt;<span style=color:#f92672>Router</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            {<span style=color:#75715e>/* ... */</span>}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        &lt;/<span style=color:#f92672>Router</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    &lt;/<span style=color:#f92672>GoogleReCaptchaProvider</span>&gt;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>);
+</code></pre></div><h4 id=signuppagetsx>SignupPage.tsx</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useGoogleReCaptcha</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react-google-recaptcha-v3&#34;</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SignupPage</span>: <span style=color:#66d9ef>React.FC</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#75715e>// useGoogleReCaptcha 훅을 사용하여 Recaptcha 토큰을 받아온다.
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>	<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>executeRecaptcha</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useGoogleReCaptcha</span>();
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>handleSignup</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        <span style=color:#75715e>// Recaptcha 토큰을 받아오기도 전에 사용자가 회원가입을 시도하는 경우
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e></span>		<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>executeRecaptcha</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>			<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Execute recaptcha not yet available&#34;</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>			<span style=color:#66d9ef>return</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>		}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#75715e>// Recaptcha 토큰을 받아온다. (signup은 action을 구분하기 위한 문자열)
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#75715e></span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>recaptchaToken</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>executeRecaptcha</span>(<span style=color:#e6db74>&#34;signup&#34;</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>		<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>password</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>confirmPassword</span>) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>			<span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;비밀번호가 일치하지 않습니다.&#34;</span>);
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>			<span style=color:#66d9ef>return</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>		}
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>		<span style=color:#66d9ef>try</span> {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>			<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>api</span>.<span style=color:#a6e22e>post</span>&lt;<span style=color:#f92672>SignupResponse</span>&gt;(<span style=color:#e6db74>&#34;/users/signup&#34;</span>, {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>				<span style=color:#a6e22e>username</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>				<span style=color:#a6e22e>password</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                <span style=color:#75715e>// 서버로 Recaptcha 토큰을 전달
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span style=color:#75715e></span>				<span style=color:#a6e22e>recaptchaToken</span>,
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>			});
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>        } <span style=color:#66d9ef>catch</span>() {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>            <span style=color:#75715e>// ...
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span style=color:#75715e></span>        }
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    };
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>};
+</code></pre></div><h3 id=결과>결과</h3>
+<p><img src=/static/image/recaptcha_result.png alt=recaptcha_result></p>
+<ul>
+<li>관리자 콘솔을 통해 Recaptcha를 통해 검증된 요청을 확인할 수 있다.</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/react_interview/>
+<span class=mx-3>◀</span>
+프론트엔드(react) 면접 준비
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
