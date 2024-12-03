@@ -1,5 +1,5 @@
 ---
-title: "Express&React 프로젝트에 Recaptcha 적용하기"
+title: "Express&React 프로젝트에 Recaptcha v3 적용하기"
 date: 2024-12-03
 tags: ["Typescript", "Security"]
 ---
@@ -9,14 +9,14 @@ tags: ["Typescript", "Security"]
 - 조사를 통해 Google에서 제공되는 Recaptcha를 사용하면 손쉽게 방지할 수 있다는 것을 알게 되었다.
 - 공격자의 입장에서 생각했을 때, 지금 프로젝트에서 가장 취약한 부분은 회원가입이라고 생각했다.
 - 회원가입은 회원이 아닌 자가, 아이디와 비밀번호 규칙만 만족한다면 반복적으로 요청을 보낼 수 있고, 이는 DB에 바로 저장되기 때문이다.
-- 따라서 회원가입 부분에 Recaptcha를 적용하기로 결정했다.
+- 따라서 **회원가입 부분에 Recaptcha를 적용**하기로 결정했다.
 
 ### Recaptcha란?
 > Recaptcha는 구글에서 제공하는 무료 보안 서비스로, 사용자가 로봇이 아님을 증명하는 방법 중 하나이다.
 
 - 지원 종료된 v1을 제외하면 v2, v3 두 가지 버전이 있다.
 - v2는 사용자가 '나는 로봇이 아닙니다'를 클릭하는 방식으로 인증이 완료된다.
-- v3는 사용자와 상호작용 없이 자동으로 인증이 완료된다.
+- v3는 **사용자와 상호작용 없이 자동으로 인증이 완료**된다.
 - 필자는 사용자의 경험과 이를 테스트할 나의 고생을 덜기 위해 v3를 사용하기로 했다.
 
 ### v3의 작동 방식
@@ -24,7 +24,7 @@ tags: ["Typescript", "Security"]
 - 점수는 0.0 ~ 1.0 사이의 값으로, 0.0은 로봇, 1.0은 사람을 의미한다.
 - 개발자는 Recaptcha가 평가한 점수를 기반으로 요청을 받아들일지 말지 결정할 수 있다.
 
-### 동작 순서
+### 예상 시나리오
 1. 사용자가 회원가입 페이지에 접속한다.
 2. 브라우저단에서 Recaptcha 키를 Recaptcha 토큰을 받아온다.
 3. 사용자가 회원가입 요청을 보낼 때, Recaptcha 토큰을 함께 전달한다.
@@ -53,12 +53,12 @@ static async verifyRecaptcha(token: string): Promise<void> {
     // 결과를 JSON으로 파싱
     const verificationReuslt = await response.json();
 
-    // 점수가 0.5보다 낮으면 에러 발생
+    // 점수가 0.5보다 낮으면 예외를 던짐
     if (verificationReuslt.score <= 0.5) {
         throw new RecaptchaScoreTooLowError();
     }
 
-    // 성공 여부가 false이면 에러를 발생시킨다. (토큰이 유효하지 않은 경우)
+    // 성공 여부가 false이면 예외를 던짐 (토큰이 유효하지 않은 경우)
     if (!verificationReuslt.success) {
         throw new RecaptchaTokenInvalidError();
     }
@@ -67,7 +67,7 @@ static async verifyRecaptcha(token: string): Promise<void> {
 
 #### user-router.ts
 ```ts
-// 컨트롤러 부분에서 부분에서 Recaptcha 검증 함수를 호출하고, 예외를 처리하였다.
+// 컨트롤러 부분에서 부분에서 Recaptcha 검증 함수를 호출, 발생시킨 예외를 처리
 try {
     await UserService.verifyRecaptcha(recaptchaToken);
     await UserService.createUser(username, password);
@@ -111,7 +111,7 @@ return (
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const SignupPage: React.FC = () => {
-    // useGoogleReCaptcha 훅을 사용하여 Recaptcha 토큰을 받아온다.
+    // useGoogleReCaptcha 훅을 사용하여 Recaptcha 토큰을 받아옴
 	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const handleSignup = async () => {
@@ -120,7 +120,7 @@ const SignupPage: React.FC = () => {
 			console.log("Execute recaptcha not yet available");
 			return;
 		}
-        // Recaptcha 토큰을 받아온다. (signup은 action을 구분하기 위한 문자열)
+        // Recaptcha 토큰을 받아옴 (signup은 action을 구분하기 위한 문자열)
 		const recaptchaToken = await executeRecaptcha("signup");
 
 		if (password !== confirmPassword) {
@@ -142,7 +142,7 @@ const SignupPage: React.FC = () => {
 };
 ```
 
-### 결과
+## 결과
 
 ![recaptcha_result](/static/image/recaptcha_result.png)
 - 관리자 콘솔을 통해 Recaptcha를 통해 검증된 요청을 확인할 수 있다.
