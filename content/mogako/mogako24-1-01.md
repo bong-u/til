@@ -1,7 +1,7 @@
 ---
 title: "[모각코24동계] 01 : 결과"
 date: 2024-01-03
-tags: ["SW Engineering"]
+tags: ["Software Engineering"]
 ---
 
 ### 1. Agile 방법론
@@ -51,8 +51,8 @@ tags: ["SW Engineering"]
 - Sprint Planning Meeting : sprint 목표와 sprint backlog를 계획하는 회의
 - Sprint Backlog : sprint 동안 개발할 작업 목록
 - Kanban Board : 작업을 시각적으로 업무 상태, 흐름을 보여주는 게시판
-  | Backlog | To Do | In Progress | Verify | Done |
-  |:---:|:---:|:---:|:---:|:---:|
+  |     Backlog     |     To Do      |  In Progress   |     Verify     |      Done      |
+  | :-------------: | :------------: | :------------: | :------------: | :------------: |
   | Product Backlog | Sprint Backlog | Sprint Backlog | Sprint Backlog | Sprint Backlog |
 - Daily Scrum : 어제 한 일, 오늘 할 일, 문제 요소를 공유하는 회의
 - Sprint Review : 스프린트 마지막 날 개발자가 개바한 내용을 Stakeholder, Client, PO에게 시연하고 검토

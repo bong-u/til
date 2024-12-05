@@ -1,7 +1,7 @@
 ---
 title: "Issue - Gihub action 오류 - yaml multiline"
 date: 2024-11-25
-tags: ["Github Action"]
+tags: ["Github Actions"]
 ---
 
 ### 문제상황
