@@ -68,6 +68,61 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'344')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/testing/ class="text-2xl my-3 overflow-ellipsis-bundle">
+소프트웨어 테스트
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🎸</span>
+<span>기타</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/etc/testing/ class="content-summary text-sm overflow-hidden">
+내부 구조를 고려하는지 여부에 따른 테스트의 분류 블랙박스 테스트 화이트박스 테스트 목적과 범위에 따른 테스트의 분류 수행 순서에 따라 작성해보았다. 1. 단위 테스트 (Unit Test) 가장 작은 단위 수준(모듈, 함수, 클래스)의 테스트
+2. 통합 테스트 (Integration Test) 모듈을 통합하는 과정에서, 각 모듈 간의 인터페이스와 관련된 결함이 있는지 테스트
+Top-down : 상위 모듈부터 하위 모듈로 통합하며 테스트 Bottom-up : 하위 모듈부터 상위 모듈로 통합하며 테스트 Big-bang : 모든 모듈을 한번에 통합하여 테스트 Threads : 중요 모듈을 먼저 구현하고 통합한 뒤, 보조적인 모듈을 구현 후 통합하는 방식 3.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-12-09 16:36:41 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'344')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/c_cpp/cpp_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">
+C++ 개념 정리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🌊</span>
+<span>C/CPP</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/c_cpp/cpp_concept/ class="content-summary text-sm overflow-hidden">
+본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
+참조(Reference)와 포인터(Pointer) 포인터(Pointer) 메모리 주소를 저장하는 변수
+1// 변수 선언 2int a = 10; 3int* b = &amp;a; // a의 주소를 저장 4 5// 매개변수로 전달 6void add(int* a, int* b) { 7 *a + *b; 8} 9 10add(&a, &b); 참조(Reference) 변수에 별칭을 부여하는 것
+이름으로 대상을 가리킨다.
+제약사항
+참조는 선언과 동시에 초기화해야 한다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-12-09 16:36:41 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'340')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/etc/gh_readme_stats_deploy/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Github Readme Stats - private 레포지토리도 포함하기
@@ -513,54 +568,6 @@ Advice 부가기능을 담고 있는 모듈
 09-process1 예외적인 제어 흐름 하위 매커니즘 예외 (Exception) 상위 매커니즘 프로세스 컨텍스트 전환 OS 소프트웨어와 하드웨어 타이머로 구현 시그널 OS 소프트웨어로 구현 nolocal 점프 예외 테이블 (Exception Tables) 각 이벤트 타입은 예외번호 k를 갖는다 비동기형 예외 (Interrupt) 입출력 인터럽트 (ctrl + c)
 하드 리셋 인터러트
 소프트 리셋 인터럽트
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/08_connect_db/ class="text-2xl my-3 overflow-ellipsis-bundle">
-08_connect_DB
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/08_connect_db/ class="content-summary text-sm overflow-hidden">
-DataSource 설정 AppCtx.java 1 @Bean(destroyMethod = "close") 2 public DataSource dataSource() { 3 DataSource ds = new DataSource(); 4 ds.setDriverClassName("com.mysql.jdbc.Driver"); 5 ds.setUrl("jdbc:mysql://localhost/spring5fs?"+ 6 "enabledTLSProtocols=TLSv1.2&"+ 7 "useSSL=false&"+ 8 "characterEncoding=utf8"); 9 ds.setUsername("spring5"); 10 ds.setPassword("spring5"); 11 ds.setInitialSize(2); 12 ds.setMaxActive(10); 13 ds.setTestWhileIdle(true); 14 ds.setMinEvictableIdleTimeMillis(60000 * 3); 15 ds.setTimeBetweenEvictionRunsMillis(10 * 1000); 16 return ds; 17 } Query 실행 JdbcTemplate을 이용한 select 1jdbcTemplate.query( 2"select * from MEMBER where EMAIL = ?", 3new RowMapper&lt;Member>() { 4 @Override 5 public Member mapRow(ResultSet rs, int rowNum) 6 throws SQLException { 7 Member member = new Member( 8 rs.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_table_sort/ class="text-2xl my-3 overflow-ellipsis-bundle">
-React - column을 기준으로 정렬하기
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_table_sort/ class="content-summary text-sm overflow-hidden">
-Table에 있는 데이터들을 column별로 정렬해야 한다 데이터의 형식에 따라 comparator를 따로 구현하였다 1const comparatorStr = (a, b, order) => { 2 if (order === Order.ASC) return a.localeCompare(b); 3 return b.localeCompare(a); 4}; 5 6const comparatorInt = (a, b, order) => { 7 if (order === Order.ASC) return a > b ? 1 : -1; 8 return a &lt; b ? 1 : -1; 9}; 정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다 1useEffect(() => { 2 if (sortBy === Key.
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">

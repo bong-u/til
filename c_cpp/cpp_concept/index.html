@@ -68,6 +68,7 @@ bong-u/til
 <li><a href=#enum-vs-enum-class>enum vs enum class</a></li>
 <li><a href=#explicit-지정자><code>explicit</code> 지정자</a></li>
 <li><a href=#숨겨진-friend-함수>숨겨진 <code>friend</code> 함수</a></li>
+<li><a href=#stdvariant-c17><code>std::variant</code> (~C++17)</a></li>
 </ul>
 </li>
 </ul>
@@ -85,7 +86,7 @@ C++ 개념 정리
 <div>
 <span class="text-md mr-1">🏷️ c++</span>
 </div>
-<h4 id=date>수정일 : 2024-11-15</h4>
+<h4 id=date>수정일 : 2024-12-09</h4>
 </div>
 <hr class=opacity-30>
 <article id=content class="bg-inherit markdown-body flex flex-col">
@@ -735,6 +736,43 @@ C++ 개념 정리
 <span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    a <span style=color:#f92672>+</span> b; <span style=color:#75715e>// ADL로 인해 MyMath::operator+ 함수 호출
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#75715e></span>    MyMath<span style=color:#f92672>::</span><span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(a, b); <span style=color:#75715e>// ADL이 없었다면 명시적으로 호출
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#75715e></span>}
+</code></pre></div><h3 id=stdvariant-c17><code>std::variant</code> (~C++17)</h3>
+<blockquote>
+<p>여러 타입 중 하나를 저장하는 클래스</p>
+</blockquote>
+<ul>
+<li>union과 똑같이 동작하지만, type-safe함</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>std<span style=color:#f92672>::</span>variant<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>double</span>, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span> value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>value <span style=color:#f92672>=</span> <span style=color:#ae81ff>3.14</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// 3.14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>value <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// hello
+</span></code></pre></div><h4 id=멤버-비멤버-함수>멤버, 비멤버 함수</h4>
+<ul>
+<li>index() : 현재 저장된 타입의 인덱스를 반환</li>
+<li>holds_alternative() : 특정 타입이 저장되어 있는지 확인</li>
+<li>get() : 특정 타입의 값을 반환 (타입이 맞지 않으면 예외 발생)</li>
+<li>get_if() : 특정 타입의 값을 반환 (타입이 맞지 않으면 nullptr 반환)</li>
+<li>visit() : 저장된 타입을 몰라도 처리 가능</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>std<span style=color:#f92672>::</span>variant<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>double</span>, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span> value;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>value <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>value.index(); <span style=color:#75715e>// 2 (타입 순서대로 index 형성)
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>std<span style=color:#f92672>::</span>holds_alternative<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(value); <span style=color:#75715e>// true
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(value); <span style=color:#75715e>// 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>get_if<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#f92672>&amp;</span>value); <span style=color:#75715e>// 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e></span>
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>std<span style=color:#f92672>::</span>visit([](<span style=color:#66d9ef>auto</span><span style=color:#f92672>&amp;</span> arg) {
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> arg <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>}, value);
 </code></pre></div>
 </article>
 <div id=meta class=my-16>
