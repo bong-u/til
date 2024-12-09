@@ -602,3 +602,44 @@ int32_t main() {
     MyMath::operator+(a, b); // ADL이 없었다면 명시적으로 호출
 }
 ```
+
+### `std::variant` (~C++17)
+> 여러 타입 중 하나를 저장하는 클래스
+
+- union과 똑같이 동작하지만, type-safe함
+
+```cpp
+std::variant<int, double, std::string> value = 1;
+cout << std::get<int>(value) << endl; // 1
+
+value = 3.14;
+cout << std::get<double>(value) << endl; // 3.14
+
+value = "hello";
+cout << std::get<std::string>(value) << endl; // hello
+```
+
+#### 멤버, 비멤버 함수
+- index() : 현재 저장된 타입의 인덱스를 반환
+- holds_alternative<T>() : 특정 타입이 저장되어 있는지 확인
+- get<T>() : 특정 타입의 값을 반환 (타입이 맞지 않으면 예외 발생)
+- get_if<T>() : 특정 타입의 값을 반환 (타입이 맞지 않으면 nullptr 반환)
+- visit() : 저장된 타입을 몰라도 처리 가능
+
+```cpp
+std::variant<int, double, std::string> value;
+
+value = "hello";
+value.index(); // 2 (타입 순서대로 index 형성)
+
+std::holds_alternative<double>(value); // true
+
+value = 1;
+std::get<int>(value); // 1
+std::get_if<int>(&value); // 1
+
+std::visit([](auto& arg) {
+    std::cout << arg << std::endl;
+}, value);
+```
+
