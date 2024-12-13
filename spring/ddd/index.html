@@ -1,0 +1,163 @@
+<!doctype html><html>
+<head>
+<title>DDD(Domain Driven Design)</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="도메인 패턴을 중심으로 설계하는 방법론
+ IOC  객체의 제어권을 개발자가 아닌 프레임워크 또는 외부 컨테이너에게 넘기는 것
+ 목적  객체 간 결합도를 감소 -> 유연성, 재 …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="DDD(Domain Driven Design)">
+<meta property="og:description" content="도메인 패턴을 중심으로 설계하는 방법론
+ IOC  객체의 제어권을 개발자가 아닌 프레임워크 또는 외부 컨테이너에게 넘기는 것
+ 목적  객체 간 결합도를 감소 -> 유연성, 재 …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#ioc>IOC</a></li>
+<li><a href=#didependency-injection>DI(Dependency Injection)</a></li>
+<li><a href=#dldependency-lookup>DL(Dependency Lookup)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+DDD(Domain Driven Design)
+</h1>
+</div>
+</div>
+<div class="text-sm flex mb-8 justify-between text-textgray">
+<div>
+<span class="text-md mr-1">🏷️ spring</span>
+<span class="text-md mr-1">🏷️ software-engineering</span>
+</div>
+<h4 id=date>수정일 : 2024-12-13</h4>
+</div>
+<hr class=opacity-30>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<blockquote>
+<p>도메인 패턴을 중심으로 설계하는 방법론</p>
+</blockquote>
+<h3 id=ioc>IOC</h3>
+<blockquote>
+<p>객체의 제어권을 개발자가 아닌 프레임워크 또는 외부 컨테이너에게 넘기는 것</p>
+</blockquote>
+<h4 id=목적>목적</h4>
+<ul>
+<li>객체 간 결합도를 감소 -> 유연성, 재사용성 증가</li>
+</ul>
+<h4 id=구현하는-기법>구현하는 기법</h4>
+<ul>
+<li>DI(Dependency Injection)
+<ul>
+<li>Constructor Injection</li>
+<li>Setter Injection</li>
+<li>Field Injection</li>
+</ul>
+</li>
+<li>DL(Dependency Lookup)
+<ul>
+<li>Service Locator</li>
+<li>Event-based callback</li>
+</ul>
+</li>
+</ul>
+<h3 id=didependency-injection>DI(Dependency Injection)</h3>
+<blockquote>
+<p>객체 간의 의존 관계를 객체 자신이 아닌 외부에서 주입하는 것</p>
+</blockquote>
+<ul>
+<li>장점
+<ul>
+<li>객체 간 결합도 감소</li>
+<li>테스트 용이성 증가</li>
+<li>객체의 책임이 명확하고 단순함</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>초기 설정, 구현이 복잡함</li>
+<li>객체 생성 시점에 의존 객체가 없으면 에러 발생</li>
+</ul>
+</li>
+</ul>
+<h3 id=dldependency-lookup>DL(Dependency Lookup)</h3>
+<blockquote>
+<p>객체 간의 의존 관계를 객체 자신이 아닌 외부에서 찾아오는 것</p>
+</blockquote>
+<ul>
+<li>장점
+<ul>
+<li>객체 간 결합도 감소 (DI보다 덜 감소)</li>
+<li>객체 생성 시점에 의존 객체가 없어도 에러 발생하지 않음</li>
+<li>구현이 간단함</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>객체의 책임이 불명확해짐</li>
+<li>테스트 용이성 감소</li>
+<li>객체 간의 의존 관계 파악이 어려움</li>
+</ul>
+</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/mockmvc_param_null/>
+<span class=mx-3>◀</span>
+Issue - MockMvc int타입 param이 null로 들어오는 문제
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
