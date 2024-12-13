@@ -68,6 +68,31 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'348')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/gil/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Python의 GIL
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🐍</span>
+<span>Python</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/python/gil/ class="content-summary text-sm overflow-hidden">
+GIL(Global Interpreter Lock) GIL은 하나의 쓰레드만 파이썬 바이트코드를 실행할 수 있도록 하는 것
+파이썬의 표준 구현인 CPython에서만 존재 장점 Reference Counting 기반 메모리 관리의 Race condition 방지 데이터 무결성 보장 : 멀티쓰레드 환경에서 파이썬 객체나 메모리 관련 작업이 안전하게 수행되도록 보장 파이썬 Interpreter의 구현을 단순화 : 복잡한 락 메커니즘이 필요없음 C 확장 모듈이 Thread-Safe 하지 않더라도 안전하게 사용할 수 있도록 보장 플랫폼 독립성 유지 : CPU 아키텍처별 동기화 메커니즘에 의존하지 않음 단점 멀티코어 CPU 활용 제한: 단일 코어만 사용되므로 병렬 처리의 이점을 얻을 수 없음 멀티쓰레딩 성능 저하 : 쓰레드 간 context switching이 빈번하게 발생 공정성 문제 : 특정 쓰레드가 GIL을 장시간 점유하면 starvation 문제가 발생할 수 있음 Reference Counting 객체가 몇 번 참조되는지를 세어서 객체가 더 이상 필요 없을 때 메모리를 해제하는 방법
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-12-13 10:21:14 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'344')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/etc/testing/ class="text-2xl my-3 overflow-ellipsis-bundle">
 소프트웨어 테스트
@@ -548,32 +573,6 @@ Advice 부가기능을 담고 있는 모듈
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/sysp_09_11/ class="text-2xl my-3 overflow-ellipsis-bundle">
-221207 SYSP
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/sysp_09_11/ class="content-summary text-sm overflow-hidden">
-09-process1 예외적인 제어 흐름 하위 매커니즘 예외 (Exception) 상위 매커니즘 프로세스 컨텍스트 전환 OS 소프트웨어와 하드웨어 타이머로 구현 시그널 OS 소프트웨어로 구현 nolocal 점프 예외 테이블 (Exception Tables) 각 이벤트 타입은 예외번호 k를 갖는다 비동기형 예외 (Interrupt) 입출력 인터럽트 (ctrl + c)
-하드 리셋 인터러트
-소프트 리셋 인터럽트
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -594,7 +593,7 @@ Advice 부가기능을 담고 있는 모듈
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
 <span class="text-xl mr-3">🐍</span>
-<span> Python (7)</span>
+<span> Python (8)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
@@ -640,7 +639,7 @@ Advice 부가기능을 담고 있는 모듈
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (12)</span>
+<span>cs (13)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
@@ -716,7 +715,7 @@ Advice 부가기능을 담고 있는 모듈
 </a>
 <a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>python (109)</span>
+<span>python (110)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
