@@ -1,0 +1,146 @@
+<!doctype html><html>
+<head>
+<title>JVM(Java Virtual Machine)</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content=" 자바 바이트 코드를 실행할 수 있는 가상 머신
+ JVM의 구조 클래스 로더 (Class Loader)  로딩 (Loading) : .class …">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="JVM(Java Virtual Machine)">
+<meta property="og:description" content=" 자바 바이트 코드를 실행할 수 있는 가상 머신
+ JVM의 구조 클래스 로더 (Class Loader)  로딩 (Loading) : .class …">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
+<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
+<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<main class="w-full lg:w-5/6 px-3 sm:px-12">
+<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#jvm의-구조>JVM의 구조</a>
+<ul>
+<li><a href=#클래스-로더-class-loader>클래스 로더 (Class Loader)</a></li>
+<li><a href=#실행-엔진-execution-engine>실행 엔진 (Execution Engine)</a></li>
+<li><a href=#런타임-데이터-영역-runtime-data-area>런타임 데이터 영역 (Runtime Data Area)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<section class="my-16 xl:w-5/6">
+<div class="mb-8 whitespace-nowrap">
+<div class="flex justify-between items-baseline my-4 gap-8">
+<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
+JVM(Java Virtual Machine)
+</h1>
+</div>
+</div>
+<div class="text-sm flex mb-8 justify-between text-textgray">
+<div>
+<span class="text-md mr-1">🏷️ java</span>
+<span class="text-md mr-1">🏷️ cs</span>
+</div>
+<h4 id=date>수정일 : 2024-12-13</h4>
+</div>
+<hr class=opacity-30>
+<article id=content class="bg-inherit markdown-body flex flex-col">
+<blockquote>
+<p>자바 바이트 코드를 실행할 수 있는 가상 머신</p>
+</blockquote>
+<h2 id=jvm의-구조>JVM의 구조</h2>
+<p><img src=static/image/jvm_structure.png alt="JVM 구조"></p>
+<h3 id=클래스-로더-class-loader>클래스 로더 (Class Loader)</h3>
+<ol>
+<li>로딩 (Loading) : .class 파일을 읽어들여 메모리에 적재</li>
+<li>링크 (Linking) : 적재된 클래스의 참조를 확인하고 준비</li>
+<li>초기화 (Initialization) : static 블록과 static 변수 초기화</li>
+</ol>
+<h3 id=실행-엔진-execution-engine>실행 엔진 (Execution Engine)</h3>
+<ul>
+<li>클래스 로더가 메모리에 적재된 바이트 코드를 실행하는 역할</li>
+</ul>
+<h4 id=인터프리터-interpreter>인터프리터 (Interpreter)</h4>
+<ul>
+<li>바이트 코드를 명령어 단위로 읽어서 실행</li>
+</ul>
+<h4 id=jit-컴파일러-just-in-time-compiler>JIT 컴파일러 (Just-In-Time Compiler)</h4>
+<ul>
+<li>적절한 시점에 바이트 코드 전체를 컴파일하여 기계어로 변경 후 실행 -> 성능 향상</li>
+</ul>
+<h4 id=gc-garbage-collector>GC (Garbage Collector)</h4>
+<ul>
+<li>더 이상 사용하지 않는 메모리를 해제하는 역할</li>
+</ul>
+<h3 id=런타임-데이터-영역-runtime-data-area>런타임 데이터 영역 (Runtime Data Area)</h3>
+<p><img src=static/image/jvm_rda.png alt="Runtime Data Area 구조"></p>
+<h4 id=pcprogram-counter>PC(Program Counter)</h4>
+<ul>
+<li>스레드가 실행되는 부분의 주소를 가리키는 포인터</li>
+</ul>
+<h4 id=jvm-스택-jvm-stack>JVM 스택 (JVM Stack)</h4>
+<ul>
+<li>메소드 호출 시마다 프레임을 추가하고, 메소드가 종료되면 해당 프레임을 제거</li>
+<li>각 프레임은 로컬 변수, 연산 스택, 메소드 수행이 끝나면 종료되는 정보를 저장</li>
+</ul>
+<h4 id=native-메소드-스택>Native 메소드 스택</h4>
+<ul>
+<li>JNI(Java Native Interface)를 통해 호출되는 C/C++/Assembly와 같은 네이티브 코드를 위한 스택</li>
+</ul>
+<h4 id=힙-heap>힙 (Heap)</h4>
+<ul>
+<li>new 키워드로 생성된 객체와 배열을 저장하는 공간</li>
+</ul>
+<h4 id=메소드-영역-method-area>메소드 영역 (Method Area)</h4>
+<ul>
+<li>클래스 정보, 상수, 정적 변수 등을 저장하는 공간</li>
+<li>모든 쓰레드가 공유하는 공간 -> 멀티쓰레딩 시 동기화 처리 필요</li>
+</ul>
+</article>
+<div id=meta class=my-16>
+<div>
+<div class="flex justify-between w-full text-lg">
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/java/method_reference/>
+<span class=mx-3>◀</span>
+Method reference (메소드 참조)
+</a>
+</div>
+</div>
+</div>
+<div id=comment-box></div>
+</section>
+</main>
+</div>
+</body>
+</html>
