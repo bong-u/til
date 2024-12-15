@@ -49,16 +49,18 @@
     @apply inline;
   }
 
-  div#pagination-box > ul {
+  div#pagination-box>ul {
     @apply flex justify-center gap-5 items-center;
   }
 
   div#pagination-box li {
     @apply hover-bold text-xl;
   }
+
   div#pagination-box li.active {
     @apply font-bold;
   }
+
   div#pagination-box span {
     @apply text-3xl;
   }
@@ -70,23 +72,28 @@
   input[name="switch"] {
     display: none;
   }
-  input[name="switch"] + label {
+
+  input[name="switch"]+label {
     @apply bg-box;
   }
-  input[name="switch"]:checked + label {
+
+  input[name="switch"]:checked+label {
     @apply bg-link text-codeinline font-bold;
   }
 
   #page-table th {
     @apply py-4;
   }
+
   #page-table td {
     @apply py-2 truncate text-center;
   }
+
   #page-table tr {
     @apply border-b border-text;
   }
-  #page-table tbody > tr {
+
+  #page-table tbody>tr {
     @apply hover-bold cursor-pointer;
   }
 }
