@@ -24,8 +24,13 @@
 			</input>
 
 			<input id="switch-tag" type="radio" name="switch">
-			<label for="switch-tag" class="switch-button rounded-r-lg">
+			<label for="switch-tag" class="switch-button">
 				태그
+			</label>
+
+			<input id="search-tag" type="radio" name="switch">
+			<label for="search-tag" class="switch-button rounded-r-lg">
+				검색
 			</label>
 		</form>
 
@@ -41,6 +46,9 @@
 			</section>
 			<section id="tag-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 				{{ .Render "tags" }}
+			</section>
+			<section id="search-section" class="hidden">
+				{{ .Render "search" }}
 			</section>
 		</div>
 	</main>

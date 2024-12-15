@@ -61,11 +61,13 @@ const switchSection = () => {
     const summarySection = document.getElementById('summary-section');
     const groupSection = document.getElementById('group-section');
     const tagSection = document.getElementById('tag-section');
+    const searchSection = document.getElementById('search-section');
 
     // 모든 섹션 숨기기
     summarySection.classList.add('hidden');
     groupSection.classList.add('hidden');
     tagSection.classList.add('hidden');
+    searchSection.classList.add('hidden');
 
     // 선택된 스위치에 따라 섹션 표시
     if (switches[0].checked) {
@@ -74,5 +76,7 @@ const switchSection = () => {
         groupSection.classList.remove('hidden');
     } else if (switches[2].checked) {
         tagSection.classList.remove('hidden');
+    } else if (switches[3].checked) {
+        searchSection.classList.remove('hidden');
     }
 }
