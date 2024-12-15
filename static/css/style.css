@@ -134,7 +134,7 @@
   --tw-contain-style:  ;
 }
 
-/* ! tailwindcss v3.4.15 | MIT License | https://tailwindcss.com */
+/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -838,7 +838,7 @@ body{
   text-decoration-line: none !important;
 }
 
-div#pagination-box > ul{
+div#pagination-box>ul{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -878,11 +878,11 @@ input[name="switch"] {
   display: none;
 }
 
-input[name="switch"] + label{
+input[name="switch"]+label{
   background-color: var(--color-box);
 }
 
-input[name="switch"]:checked + label{
+input[name="switch"]:checked+label{
   background-color: var(--color-link);
   font-weight: 700;
   color: var(--color-codeinline);
@@ -907,11 +907,11 @@ input[name="switch"]:checked + label{
   border-color: var(--color-text);
 }
 
-#page-table tbody > tr{
+#page-table tbody>tr{
   cursor: pointer;
 }
 
-#page-table tbody > tr:hover{
+#page-table tbody>tr:hover{
   font-weight: 700;
 }
 
@@ -1222,10 +1222,6 @@ input[name="switch"]:checked + label{
   background-color: inherit;
 }
 
-.bg-textgray{
-  background-color: var(--color-textgray);
-}
-
 .p-1{
   padding: 0.25rem;
 }
@@ -1305,14 +1301,6 @@ input[name="switch"]:checked + label{
 
 .overline{
   text-decoration-line: overline;
-}
-
-.opacity-50{
-  opacity: 0.5;
-}
-
-.opacity-10{
-  opacity: 0.1;
 }
 
 .opacity-30{
