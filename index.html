@@ -72,6 +72,82 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'351')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/interpreter/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Python의 동작 원리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🐍</span>
+<span>Python</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/python/interpreter/ class="content-summary text-sm overflow-hidden">
+파이썬의 구현체 CPython 파이썬의 표준 구현체이자 인터프리터
+역할 파이썬 코드를 바이트 코드로 변환 바이트 코드를 실행 파이썬 바이트 코드 .pyc 파일에 저장 플랫폼에 독립적 파이썬 가상 머신(PVM)에서 실행 예시 4 0 LOAD_GLOBAL 0 (print) 2 LOAD_CONST 1 ('hello world') 4 CALL_FUNCTION 1 6 POP_TOP 5 8 LOAD_CONST 2 (True) 10 RETURN_VALUE Jython 파이썬 코드를 자바 바이트 코드로 변환, JVM에서 실행
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-12-16 15:42:23 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'351')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/jit_aot/ class="text-2xl my-3 overflow-ellipsis-bundle">
+JIT 컴파일러와 AOT 컴파일러
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/jit_aot/ class="content-summary text-sm overflow-hidden">
+JIT(Just-In-Time) 컴파일러 프로그램이 실행 중일때, 바이트 코드를 네이티브 코드로 컴파일하는 컴파일러
+주요 작업 Hotspot(자주 실행되는 코드)을 탐지 최적화 수준 결정 최적화 및 컴파일 네이티브 코드 생성 캐싱 : 네이티브 코드를 캐싱하여 재사용 AOT(Ahead-Of-Time) 컴파일러 프로그램이 실행되기 전에, 바이트 코드를 네이티브 코드로 컴파일하는 컴파일러
+인터프리터 방식 X, 컴파일 방식 O 실행 속도가 빠름 GraalVM을 사용하면 Java 프로그램을 AOT 컴파일 가능 GraalVM 오라클에서 개발한 JVM 기반의 다양한 언어를 지원하는 통합 실행 환경 (JVM, JDK)
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-12-16 14:11:40 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'351')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/jvm/ class="text-2xl my-3 overflow-ellipsis-bundle">
+JVM(Java Virtual Machine)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/jvm/ class="content-summary text-sm overflow-hidden">
+자바 바이트 코드를 실행할 수 있는 가상 머신
+JVM의 구조 클래스 로더 (Class Loader) 로딩 (Loading) : .class 파일을 읽어들여 메모리에 적재 링크 (Linking) : 적재된 클래스의 참조를 확인하고 준비 초기화 (Initialization) : static 블록과 static 변수 초기화 실행 엔진 (Execution Engine) 클래스 로더가 메모리에 적재된 바이트 코드를 실행하는 역할 인터프리터 (Interpreter) 바이트 코드를 명령어 단위로 읽어서 실행 JIT 컴파일러 (Just-In-Time Compiler) Runtime 시점에 바이트 코드 전체를 컴파일하여 기계어로 변경 후 실행 -> 성능 향상 GC (Garbage Collector) 더 이상 사용하지 않는 메모리를 해제하는 역할 런타임 데이터 영역 (Runtime Data Area) PC(Program Counter) 스레드가 실행되는 부분의 주소를 가리키는 포인터 JVM 스택 (JVM Stack) 메소드 호출 시마다 프레임을 추가하고, 메소드가 종료되면 해당 프레임을 제거 각 프레임은 로컬 변수, 연산 스택, 메소드 수행이 끝나면 종료되는 정보를 저장 Native 메소드 스택 JNI(Java Native Interface)를 통해 호출되는 C/C++/Assembly와 같은 네이티브 코드를 위한 스택 힙 (Heap) new 키워드로 생성된 객체와 배열을 저장하는 공간 메소드 영역 (Method Area) 클래스 정보, 상수, 정적 변수 등을 저장하는 공간 모든 쓰레드가 공유하는 공간 -> 멀티쓰레딩 시 동기화 처리 필요
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-12-16 14:11:30 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'348')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/spring/ddd/ class="text-2xl my-3 overflow-ellipsis-bundle">
 DDD(Domain Driven Design)
@@ -93,31 +169,6 @@ IOC 객체의 제어권을 개발자가 아닌 프레임워크 또는 외부 컨
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-12-13 15:03:00 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'348')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/java/jvm/ class="text-2xl my-3 overflow-ellipsis-bundle">
-JVM(Java Virtual Machine)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>☕</span>
-<span>Java</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/java/jvm/ class="content-summary text-sm overflow-hidden">
-자바 바이트 코드를 실행할 수 있는 가상 머신
-JVM의 구조 클래스 로더 (Class Loader) 로딩 (Loading) : .class 파일을 읽어들여 메모리에 적재 링크 (Linking) : 적재된 클래스의 참조를 확인하고 준비 초기화 (Initialization) : static 블록과 static 변수 초기화 실행 엔진 (Execution Engine) 클래스 로더가 메모리에 적재된 바이트 코드를 실행하는 역할 인터프리터 (Interpreter) 바이트 코드를 명령어 단위로 읽어서 실행 JIT 컴파일러 (Just-In-Time Compiler) 적절한 시점에 바이트 코드 전체를 컴파일하여 기계어로 변경 후 실행 -> 성능 향상 GC (Garbage Collector) 더 이상 사용하지 않는 메모리를 해제하는 역할 런타임 데이터 영역 (Runtime Data Area) PC(Program Counter) 스레드가 실행되는 부분의 주소를 가리키는 포인터 JVM 스택 (JVM Stack) 메소드 호출 시마다 프레임을 추가하고, 메소드가 종료되면 해당 프레임을 제거 각 프레임은 로컬 변수, 연산 스택, 메소드 수행이 끝나면 종료되는 정보를 저장 Native 메소드 스택 JNI(Java Native Interface)를 통해 호출되는 C/C++/Assembly와 같은 네이티브 코드를 위한 스택 힙 (Heap) new 키워드로 생성된 객체와 배열을 저장하는 공간 메소드 영역 (Method Area) 클래스 정보, 상수, 정적 변수 등을 저장하는 공간 모든 쓰레드가 공유하는 공간 -> 멀티쓰레딩 시 동기화 처리 필요
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-12-13 11:56:28 +0900 +0900">
 </div>
 </div>
 <div class="border-b border-line"></div>
@@ -529,57 +580,6 @@ Spring 개념 - Autowired
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/09_spring_mvc/ class="text-2xl my-3 overflow-ellipsis-bundle">
-09_spring_MVC
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/09_spring_mvc/ class="content-summary text-sm overflow-hidden">
-Spring MVC 시작하기 프로젝트 생성 앞에서 만들었던 자바 애플리케이션과는 좀 다른점이 있었다 jar이 아닌 war을 사용하는 등 여러가지 많았는데 일일이 적지는 않을 것이다 Controller 1@Controller 2public class HelloController { 3 @GetMapping("/hello") 4 public String hello(Model model, 5 @RequestParam(value="name", required=false) String name) { 6 model.addAttribute("greeting", "안녕하세요" + name); 7 return "hello"; 8 } 9} JSP 1&lt;%@ page contentType="text/html; charset=utf-8" %> 2&lt;!DOCTYPE html> 3&lt;html> 4 &lt;head> 5 &lt;title>Hello&lt;/title> 6 &lt;/head> 7 &lt;body> 8 인사말 : ${greeting} 9 &lt;/body> 10&lt;/html URL접속해도 해당 jsp파일이 나오지 않는 문제 vscode에서 community server connector라는 extension을 통해 tomcat을 띄워서 할려고 한다 특정 jsp를 감지했는지, serving하는지에 대한 로그가 없어 되는건지 알 수가 없다 web.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'320')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/ood/ class="text-2xl my-3 overflow-ellipsis-bundle">
-객체지향설계
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/ood/ class="content-summary text-sm overflow-hidden">
-Dynamic dispatch and Multiple inheritance Polymorphism Function overloading using compile time types of arguments Function overriding using runtime types of receiver objects virtual function for dynamic dispatch dynamic dispatch를 사용하기 위한 조건
-함수가 virtual keyword로 정의되어 있어야 한다.
-receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
-1// from parent class : Employee 2virtual std::string GetInfo() { 3 return "Employee: " + name_ ; 4} 5// from child class : Developer 6std::string GetInfo() { 7 return "Developer: " + name_; 8} override keyword override 키워드를 사용하는 이유 직관적인 코드
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -592,7 +592,7 @@ receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
 <span class="text-xl mr-3">☕</span>
-<span> Java (7)</span>
+<span> Java (8)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
 <span class="text-xl mr-3">🍌</span>
@@ -600,7 +600,7 @@ receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
 <span class="text-xl mr-3">🐍</span>
-<span> Python (8)</span>
+<span> Python (9)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
 <span class="text-xl mr-3">🍃</span>
@@ -646,7 +646,7 @@ receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (14)</span>
+<span>cs (15)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
@@ -686,7 +686,7 @@ receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
 </a>
 <a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>java (36)</span>
+<span>java (37)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
@@ -722,7 +722,7 @@ receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
 </a>
 <a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>python (110)</span>
+<span>python (111)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
