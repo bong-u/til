@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto+Mono:wght@300&display=swap");
 
 :root {
   --color-text: #3f3f46;
@@ -883,7 +881,8 @@ input[name="switch"]+label{
 }
 
 input[name="switch"]:checked+label{
-  background-color: var(--color-link);
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 100 0 / var(--tw-bg-opacity, 1));
   font-weight: 700;
   color: var(--color-codeinline);
 }

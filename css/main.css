@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto+Mono:wght@300&display=swap");
 @import url("./colors.css");
 @import url("./toc.css");
 @import url("./markdown.css");
@@ -78,7 +77,7 @@
   }
 
   input[name="switch"]:checked+label {
-    @apply bg-link text-codeinline font-bold;
+    @apply bg-[#006400] text-codeinline font-bold;
   }
 
   #page-table th {
