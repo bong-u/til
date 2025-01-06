@@ -5,7 +5,10 @@
 {{ .Render "header" }}
 <div class="w-full flex max-w-3xl h-screen flex-col">
 	<section class="mb-8 w-full">
-		<video src="{{ .Site.BaseURL }}asset\profile.webm" autoplay loop muted class="w-64 h-64 mx-auto"></video>
+		<video preload="metadata" poster="{{ .Site.BaseURL }}asset\profile.jpg" class="w-64 h-64 mx-auto" autoplay loop
+			muted>
+			<source src="{{ .Site.BaseURL }}asset\profile.webm" type="video/webm">
+		</video>
 	</section>
 
 	<main class="flex flex-col w-full gap-5">
