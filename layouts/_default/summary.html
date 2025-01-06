@@ -5,7 +5,9 @@
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
     <div class="flex justify-between items-center">
         <div class="flex items-center">
-            <img onload="checkRecentPost(event, '{{ .Lastmod.YearDay }}')" class="inline h-6 hidden mx-2"
+            <!-- ISO 8601 형식으로 변환 -->
+            {{ $formattedLastmod := .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
+            <img onload="checkRecentPost(event, '{{ $formattedLastmod }}')" class="inline h-6 hidden mx-2"
                 src="{{ .Site.BaseURL }}asset/new.png" alt="new" />
             <a href="{{ .RelPermalink }}" class="text-2xl my-3 overflow-ellipsis-bundle">
                 {{ .Title }}
