@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto+Mono:wght@300&display=swap");
 @import url("./colors.css");
 @import url("./toc.css");
 @import url("./markdown.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 @layer base {
   * {
