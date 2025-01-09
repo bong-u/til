@@ -32,6 +32,7 @@ module.exports = {
       fontFamily: {
         "base": [
           "Apple SD Gothic Neo",
+          "system-ui",
           "Apple Color Emoji",
           "Segoe UI Emoji",
           "Segoe UI Symbol",
