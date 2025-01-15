@@ -42,7 +42,7 @@ bong-u/til
 </div>
 </header>
 <input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="w-full flex max-w-3xl flex-col mb-16">
+<div class="w-full flex max-w-3xl flex-col">
 <section class="mb-8 w-full">
 <video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
 <source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
@@ -564,6 +564,39 @@ jakarta.validation에서 지원하는 annotation Annotation Description @NotNull
 </div>
 </div>
 <div class="border-b border-line"></div>
+<div class=py-16>
+<div id=pagination-box>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/2/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/ aria-label="Page 1" class=page-link role=button>1</a>
+</li>
+<li class=page-item>
+<a href=/til/page/2/ aria-label="Page 2" class=page-link role=button>2</a>
+</li>
+<li class="page-item active">
+<a aria-current=page aria-label="Page 3" class=page-link role=button>3</a>
+</li>
+<li class=page-item>
+<a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
+</li>
+<li class=page-item>
+<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
+</li>
+<li class=page-item>
+<a href=/til/page/4/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</div>
 </section>
 <section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
@@ -764,37 +797,6 @@ jakarta.validation에서 지원하는 annotation Annotation Description @NotNull
 <div id=search></div>
 <script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
 </section>
-</div>
-<div id=pagination-box>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/2/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/ aria-label="Page 1" class=page-link role=button>1</a>
-</li>
-<li class=page-item>
-<a href=/til/page/2/ aria-label="Page 2" class=page-link role=button>2</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 3" class=page-link role=button>3</a>
-</li>
-<li class=page-item>
-<a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
-</li>
-<li class=page-item>
-<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
-</li>
-<li class=page-item>
-<a href=/til/page/4/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
-</ul>
 </div>
 </main>
 </div>
