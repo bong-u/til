@@ -856,9 +856,10 @@ div#pagination-box li.active{
   font-weight: 700;
 }
 
-div#pagination-box span{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+div#pagination-box span {
+  letter-spacing: -0.4em;
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .switch-button{

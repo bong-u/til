@@ -1,0 +1,790 @@
+<!doctype html><html lang=ko>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<title>bong-u/til</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="bong-u/til">
+<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6
+max-w-3xl">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<div class="w-full flex max-w-3xl h-screen flex-col">
+<section class="mb-8 w-full">
+<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
+</video>
+</section>
+<main class="flex flex-col w-full gap-5">
+<form onchange=switchSection() class="flex justify-center">
+<input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">
+게시물
+</label>
+</input>
+<input id=switch-group type=radio name=switch>
+<label for=switch-group class=switch-button>
+분류
+</label>
+</input>
+<input id=switch-tag type=radio name=switch>
+<label for=switch-tag class=switch-button>
+태그
+</label>
+<input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">
+검색
+</label>
+</form>
+<div class="w-full p-5">
+<section id=summary-section class="grid gap-8">
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_17070/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 17070 : 파이프 옮기기 1 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_17070/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2 3L = [list(map(int, input().split())) for _ in range(N)] 4result = 0 5 6def dfs(x, y, direc): 7 global result 8 if x == N-1 and y == N-1: 9 result += 1 10 return 11 12 if x+1 &lt; N and y+1 &lt; N and L[y+1][x] == 0 and L[y][x+1] == 0 and L[y+1][x+1] == 0: 13 dfs(x+1, y+1, 2) 14 15 if (direc == 0 or direc == 2) and x+1 &lt; N and L[y][x+1] == 0: 16 dfs(x+1, y, 0) 17 18 if (direc == 1 or direc == 2) and y+1 &lt; N and L[y+1][x] == 0: 19 dfs(x, y+1, 1) 20 21dfs(1, 0, 0) 22print(result) 별거 아닌게.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1965/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1965 : 상자넣기 (S2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1965/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2L = list(map(int, input().split())) 3dp = [0]*N 4 5for i in range(1, N): 6 for j in range(i): 7 if L[j]&lt;L[i] and dp[i]&lt;dp[j]+1: 8 dp[i] = dp[j]+1 9print(max(dp)+1) LIS를 구하는 문제이다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_16194/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 16194 : 카드 구매하기 2 (S1)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_16194/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2P = list(map(int, input().split())) 3dp = [10000000]*(N) 4 5for i in range(N): 6 for j in range(i): 7 dp[i] = min(dp[i], dp[j]+P[i-j-1]) 8 dp[i] = min(dp[i], P[i]) 9 10print (dp[N-1])
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1495/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1495 : 기타리스트 (S1)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1495/ class="content-summary text-sm overflow-hidden">
+1N, S, M = map(int, input().split()) 2P = list(map(int, input().split())) 3dp = [[False]*(M+1) for _ in range(N+1)] 4 5dp[0][S] = True 6 7for i in range(1, N+1): 8 for j in range(M+1): 9 if dp[i-1][j]: 10 if 0 &lt;= j-P[i-1] &lt;= M: 11 dp[i][j-P[i-1]] = True 12 if 0 &lt;= j+P[i-1] &lt;= M: 13 dp[i][j+P[i-1]] = True 14result = -1 15for i in range(M+1): 16 if dp[N][i]: 17 result = i 18print (result) 인터넷에서 접근을 참고했다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2011/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 2011 : 암호코드 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_2011/ class="content-summary text-sm overflow-hidden">
+1L = list(input()) 2N = len(L) 3MOD = 10**6 4 5def solution(): 6 if L[0] == '0': 7 return 0 8 9 dp = [1, 1]+[0]*(N-1) 10 11 for i in range(2, N+1): 12 if L[i-1] != '0': 13 dp[i] = (dp[i]+dp[i-1]) % MOD 14 if 10 &lt;= int(L[i-2]+L[i-1]) &lt;= 26: 15 dp[i] = (dp[i]+dp[i-2]) % MOD 16 17 return dp[N] 18 19 20print (solution()) 인터넷을 참고하여 풀었다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_10164/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 10164 : 격자상의 경로 (S1)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_10164/ class="content-summary text-sm overflow-hidden">
+1N, M, K = map(int, input().split()) 2K -= 1 3ox = K % M 4oy = K // M 5def solve(sx, sy, ex, ey): 6 dp = [[0]*M for _ in range(N)] 7 dp[sy][sx] = 1 8 for i in range(sy, ey+1): 9 for j in range(sx, ex+1): 10 if i-1 >= 0: 11 dp[i][j] += dp[i-1][j] 12 if j-1 >= 0: 13 dp[i][j] += dp[i][j-1] 14 return dp[ey][ex] 15 16if K !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_5557/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 5557 : 1학년 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_5557/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2L = list(map(int, input().split())) 3dp = [[0]*21 for _ in range(N-1)] 4 5dp[0][L[0]] = 1 6 7for i in range(0, N-2): 8 for j in range(21): 9 if dp[i][j] != 0: 10 k = L[i+1] 11 if k != 0: 12 if 0 &lt;= j+k &lt;= 20: 13 dp[i+1][j+k] += dp[i][j] 14 if 0 &lt;= j-k &lt;= 20: 15 dp[i+1][j-k] += dp[i][j] 16 else: 17 dp[i+1][j] = dp[i][j]*2 18print (dp[N-2][L[-1]]) 혼자 힘으로 풀었다!
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_5582/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 5582 : 공통 부분 문자열 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_5582/ class="content-summary text-sm overflow-hidden">
+1S1 = list(input()) 2S2 = list(input()) 3L1 = len(S1)+1 4L2 = len(S2)+1 5 6dp = [[0]*L1 for _ in range(L2)] 7result = 0 8 9for i in range(1, L2): 10 for j in range(1, L1): 11 if S1[j-1] == S2[i-1]: 12 dp[i][j] = dp[i-1][j-1]+1 13 result = max(result, dp[i][j]) 14 15print (result) 혼자 힘으로 해결! 깔끔한 풀이가 나와 기분이 좋다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_10942/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 10942 : 팰린드롬? (G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_10942/ class="content-summary text-sm overflow-hidden">
+1import sys 2input = sys.stdin.readline 3 4N = int(input()) 5L = list(map(int, input().split())) 6 7dp = [[0]*N for _ in range(N)] 8 9for i in range(N): 10 dp[i][i] = 1 11 if i &lt; N-1 and L[i] == L[i+1]: 12 dp[i][i+1] = 1 13 14for i in range(N, -1, -1): 15 for j in range(i+1, N): 16 if dp[i+1][j-1] and L[i] == L[j]: 17 dp[i][j] = 1 18 19for i in range(int(input())): 20 S, E = map(int, input().
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_9252/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 9252 : LCS 2 (G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_9252/ class="content-summary text-sm overflow-hidden">
+1S1 = list(input()) 2S2 = list(input()) 3 4N1 = len(S1)+1 5N2 = len(S2)+1 6 7dp = [[0]*(N1) for _ in range(N2)] 8 9for i in range(1, N2): 10 for j in range(1, N1): 11 if S2[i-1] == S1[j-1]: 12 dp[i][j] = dp[i-1][j-1] + 1 13 else: 14 dp[i][j] = max(dp[i-1][j], dp[i][j-1]) 15i = N2-1 16j = N1-1 17print (dp[i][j]) 18if dp[i][j] == 0: 19 exit() 20 21result = '' 22while True: 23 if i==0 or j==0: 24 break 25 26 if dp[i][j] == dp[i-1][j]: 27 i -= 1 28 elif dp[i][j] == dp[i][j-1]: 29 j -= 1 30 else: 31 result = S1[j-1] + result 32 i -= 1 33 j -= 1 34 35print (result) 점화식을 잘못 세웠었다 문자가 같은 경우에 max(dp[i-1][j], dp[i][j-1])+1이 아닌 dp[i-1][j-1]+1이다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1918/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1918 : 후위 표기식 (G2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1918/ class="content-summary text-sm overflow-hidden">
+1string = list(input()) 2 3priority = {'(':0, ')':0, '+':1, '-':1, '*':2, '/':2} 4operator = [] 5result = '' 6 7for c in string: 8 if c.isalpha(): 9 result += c 10 elif c == '(': 11 operator.append(c) 12 elif c == ')': 13 while operator: 14 op = operator.pop() 15 if op == '(': 16 break 17 result += op 18 else: 19 if operator: 20 if priority[operator[-1]] &lt; priority[c]: 21 operator.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1915/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1915 : 가장 큰 정사각형 (G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1915/ class="content-summary text-sm overflow-hidden">
+1N, M = map(int, input().split()) 2 3L = [list(map(int, input())) for _ in range(N)] 4 5dp = [[0]*(M+1) for _ in range(N+1)] 6 7result = 0 8 9for i in range(1, N+1): 10 for j in range(1, M+1): 11 dp[i][j] = L[i-1][j-1] 12 13 if L[i-1][j-1]: 14 dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])+1 15 result = max(result, dp[i][j]) 16 17for i in dp: 18 print (i) 19print (result**2) 조금 시간이 걸렸지만 혼자 힘으로 풀었다 점화식은 dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])+1이다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2631/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 2631 : 줄세우기 (G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_2631/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2L = [] 3for i in range(N): 4 L.append(int(input())) 5 6dp = [1]*N 7 8for i in range(N): 9 for j in range(i): 10 if L[j] &lt; L[i]: 11 dp[i] = max(dp[i], dp[j]+1) 12 13print (N-max(dp)) LIS를 활용한 문제이다 풀이 유도는 잘했으나 LIS가 헷갈려서 전에 풀었던 코드를 참고하였다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_15486/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 15486 : 퇴사 2 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_15486/ class="content-summary text-sm overflow-hidden">
+1import sys 2input = sys.stdin.readline 3N = int(input()) 4T = [] 5P = [] 6dp = [0]*(N+1) 7 8for _ in range(N): 9 a, b = map(int, input().split()) 10 T.append(a) 11 P.append(b) 12 13for i in range(N-1, -1, -1): 14 if i+T[i] > N: 15 dp[i] = dp[i+1] 16 else: 17 dp[i] = max(P[i]+dp[i+T[i]], dp[i+1]) 18 19print (dp[0]) dp라는 변수를 만들어야하는데 안 만들고 리스트 P만 가지고 memoization 하려다 실패했다 점화식은 잘 적었으나 조건문이 잘 못되어서 다른 풀이를 참고했다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_13398/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 13398 : 연속합 2 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_13398/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2L = list(map(int, input().split())) 3res = 0 4dp = [[-1000]*N for _ in range(2)] 5dp[0][0] = L[0] 6for i in range(1, N): 7 dp[0][i] = max(dp[0][i-1]+L[i], L[i]) 8 dp[1][i] = max(dp[1][i-1]+L[i], dp[0][i-1]) 9 10print (max(max(dp[0]), max(dp[1]))) 이번 문제에서 사용할 dp 배열의 크기는 N X 2 이다. 배열은 최솟값인 -1000으로 초기화하여야 한다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2502/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 2502 : 떡 먹는 호랑이 (S1)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_2502/ class="content-summary text-sm overflow-hidden">
+1D, K = map(int, input().split()) 2L = [(1, 0), (0, 1)] 3 4for i in range(2, D): 5 L.append((L[i-2][0]+L[i-1][0], L[i-2][1]+L[i-1][1])) 6 7A = 1 8B = 2 9 10while True: 11 if A*L[D-1][0] + B*L[D-1][1] == K: 12 break 13 14 if A+1 == B: 15 B += 1 16 A = 1 17 else: 18 A += 1 19 20print (A,'\n',B, sep='') 해결방법 N번째날 떡 개수를 구하기 위해 첫째날 떡, 둘째날 떡을 각각 몇번 더해야하는지 리스트에 구한다 첫째, 둘째 날 떡을 하나하나 넣어보면서 브루트 포스를 수행한다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_15681/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 15681 : 트리와 쿼리 (G5)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_15681/ class="content-summary text-sm overflow-hidden">
+1import sys 2sys.setrecursionlimit(10**6) 3input = sys.stdin.readline 4N, R, Q = map(int, input().split()) 5G = [[] for _ in range(N)] 6cnt = [1]*N 7visited = [False]*N 8 9for _ in range(N-1): 10 a, b = map(int, input().split()) 11 G[a-1].append(b-1) 12 G[b-1].append(a-1) 13 14def dfs(node): 15 visited[node] = True 16 17 for i in G[node]: 18 if not visited[i]: 19 cnt[node] += dfs(i) 20 return cnt[node] 21 22dfs(R-1) 23 24for _ in range(Q): 25 print (cnt[int(input())-1]) 혼자 풀었다!
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1967/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1967 : 트리의 지름(G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1967/ class="content-summary text-sm overflow-hidden">
+1import sys 2sys.setrecursionlimit(10**6) 3M = int(input()) 4G = [[] for _ in range(M)] 5 6for _ in range(M-1): 7 a, b, c = map(int, input().split()) 8 G[a-1].append((b-1, c)) 9 G[b-1].append((a-1, c)) 10 11n1 = 0 12tmp = 0 13 14def dfs(node, length): 15 global n1, tmp 16 visit[node] = True 17 if length > tmp: 18 tmp = length 19 n1 = node 20 for child, v in G[node]: 21 if not visit[child]: 22 dfs(child, length+v) 23 24visit = [False]*M 25dfs(0, 0) 26tmp = 0 27visit = [False]*M 28dfs(n1, 0) 29print (tmp) 인터넷에서 접근 방법을 참고했다 해결 방법 아무 정점에서 가장 먼 어떤 정점을 N이라고 하자 정점 N에서 가장 먼 정점 사이의 거리가 트리의 지름과 같다 느낀 점 루트를 구할 필요가 없다는 것을 깨달았다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1167/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1167 : 트리의 지름 (G2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1167/ class="content-summary text-sm overflow-hidden">
+1import sys 2sys.setrecursionlimit(10**6) 3input = sys.stdin.readline 4 5V = int(input()) 6G = [[] for _ in range(V)] 7for _ in range(V): 8 token = list(map(int, input().split()))[:-1] 9 for i in range(1, len(token), 2): 10 G[token[0]-1].append((token[i]-1, token[i+1])) 11 12def dfs(node, dist): 13 global max_node, max_dist 14 visited[node] = True 15 if dist > max_dist: 16 max_node = node 17 max_dist = dist 18 for n_node, n_dist in G[node]: 19 if not visited[n_node]: 20 dfs(n_node, dist+n_dist) 21 22max_node = 0 23 24max_dist = 0 25visited = [False]*V 26dfs(0, 0) 27max_dist = 0 28visited = [False]*V 29dfs(max_node, 0) 30 31print (max_dist) 최근에 푼 &ldquo;1967: 트리의 지름&rdquo; 덕분에 쉽게 해결할 수 있었다 기억하자 트리의 지름 = (어떤 한 정점에서 가장 먼 점 P)에서 가장 먼 점 사이의 거리
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_14938/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 14938 : 서강그라운드 (G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_14938/ class="content-summary text-sm overflow-hidden">
+1N, M, R = map(int, input().split()) 2 3item = list(map(int, input().split())) 4G = [[] for _ in range(N)] 5for _ in range(R): 6 a, b, c = map(int, input().split()) 7 G[a-1].append((b-1, c)) 8 G[b-1].append((a-1, c)) 9 10def dfs(node, dist): 11 global result 12 if dist > M: 13 return 14 if not visit[node]: 15 result += item[node] 16 visit[node] = True 17 18 for n_node, n_dist in G[node]: 19 dfs(n_node, dist+n_dist) 20 21max_result = 0 22 23for i in range(N): 24 result = 0 25 visit = [False]*N 26 dfs(i, 0) 27 max_result = max(max_result, result) 28 29print (max_result) 분류에 다익스트라, 플로이드-워셜로 되어있지만 DFS로 풀었다 풀이 방법 여기서는 재방문 했다고 해서 탐색을 하지 않으면 안된다 재방문했을때 전에 방문했을 때보다 더 짧은 통로로 들어왔다면 더 많은 아이템을 얻을 수 있기 때문이다 다만, 아이템은 방문할 때마다 얻을 수 있는 것이 아니기 때문에 주의하여야 한다 위의 내용을 질문게시판을 보다가 깨닫고 풀 수 있었다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+</section>
+<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span> Algorithm (104)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
+<span class="text-xl mr-3">🌊</span>
+<span> C/CPP (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span> Java (8)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span> Javascript (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
+<span class="text-xl mr-3">🐍</span>
+<span> Python (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span> Spring (30)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
+<span class="text-xl mr-3">🔨</span>
+<span> 개발 도구 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
+<span class="text-xl mr-3">🎸</span>
+<span> 기타 (5)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span> 모각코 (38)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
+<span class="text-xl mr-3">🤖</span>
+<span> 인공지능 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span> 학과 공부 (27)</span>
+</a>
+</section>
+<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>boj (53)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c++ (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>celery (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>cs (16)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>django (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker-compose (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>elk (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>fastapi (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>git (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>github-actions (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>hackerrank (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>https (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>java (37)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>javascript (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>jwt (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>kubernetes (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>nginx (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ocaml (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>open-source (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>programmers (48)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>pytest (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>python (111)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rabbitmq (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rag (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>react (6)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>security (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>software-engineering (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>spring (31)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>sql (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ssl (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>testing (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>typescript (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>vercel (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span>
+</a>
+</section>
+<section id=search-section class=hidden>
+<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
+<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
+<style>div.pagefind-ui__result-thumb{display:none}</style>
+<div id=search></div>
+<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
+</section>
+</div>
+<div id=pagination-box>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/6/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
+</li>
+<li class=page-item>
+<a href=/til/page/6/ aria-label="Page 6" class=page-link role=button>6</a>
+</li>
+<li class="page-item active">
+<a aria-current=page aria-label="Page 7" class=page-link role=button>7</a>
+</li>
+<li class=page-item>
+<a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
+</li>
+<li class=page-item>
+<a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
+</li>
+<li class=page-item>
+<a href=/til/page/8/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>

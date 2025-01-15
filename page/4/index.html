@@ -1,0 +1,813 @@
+<!doctype html><html lang=ko>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<title>bong-u/til</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="bong-u/til">
+<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6
+max-w-3xl">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<div class="w-full flex max-w-3xl h-screen flex-col">
+<section class="mb-8 w-full">
+<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
+</video>
+</section>
+<main class="flex flex-col w-full gap-5">
+<form onchange=switchSection() class="flex justify-center">
+<input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">
+게시물
+</label>
+</input>
+<input id=switch-group type=radio name=switch>
+<label for=switch-group class=switch-button>
+분류
+</label>
+</input>
+<input id=switch-tag type=radio name=switch>
+<label for=switch-tag class=switch-button>
+태그
+</label>
+<input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">
+검색
+</label>
+</form>
+<div class="w-full p-5">
+<section id=summary-section class="grid gap-8">
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/jpa1/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/jpa1/ class="content-summary text-sm overflow-hidden">
+JPA (Java Persistence API) JAVA진영의 ORM 기술 표준, interface 모음 Hibernate, EclipseLink, DataNucleus 등의 구현체가 존재 EntityManager Entity : RDB의 Table과 매핑되는 객체 EntityManagerFactory Entity를 관리하는 EntityManager를 생산하는 공장 Thread safe: O EntityManager Entity의 CRUD등 모든 일을 처리 Thread safe: X 영속성 컨텍스트 Entity를 영구 저장하는 환경 EntityManager는 Entity를 영속성 컨텍스트에 보관하고 관리한다 영속성 컨텍스트에서 관리되는 Entity는 식별자값을 가져야 한다 (ID) -> key-value로 Entity를 관리하기 때문 flush: 영속성 컨텍스트에 변경 내용들을 DB에 동기화하는 작업 영속성 컨텍스트의 이점 1차 캐시 동일성 보장 트랜잭션을 지원하는 쓰기 지연 변경 감지 지연 로딩 Entity의 Life cycle 비영속 (New / Transient): 영속성 컨텍스트와 전혀 관계가 없는 상태 영속 (Managed): 영속성 컨텍스트에 저장된 상태 준영속 (Detached): 영속성 컨텍스트에 저장되었다가 분리된 상태 삭제 (Removed): 삭제된 상태 저장 1EntityManager em = emf.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/javascript/js_dicom_to_base64/ class="text-2xl my-3 overflow-ellipsis-bundle">
+JS - Dicom to base64
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/javascript/js_dicom_to_base64/ class="content-summary text-sm overflow-hidden">
+배경 학부연구생 업무 중에, dicom파일을 서버에 전송하는 작업이 필요했다 보내는 형식은 2가지로 생각했다 dicom파일을 그대로 multipart/form-data 형식으로 보내는 방법 장점 : 파일을 그대로 효율적으로 전송할 수 있다 단점 : 파일 정보를 함께 보내기 어렵다 dicom파일을 base64로 인코딩하여 application/json 형식으로 보내는 방법 장점 : 파일 정보를 함께 보낼 수 있다 단점 : 인코딩으로 인해서 원본 파일보다 용량이 커진다 파일의 정보도 함께 구조화하여 보내기 위해 json형태로 보내는 방식을 택하였다 구현 dicom파일 -> base64 1// Encode a file to BASE64 2 const readFileAsync = (file) => { 3 return new Promise((resolve, reject) => { 4 // 비동기적으로 파일을 읽어오기 위해 FileReader 객체를 생성 5 const reader = new FileReader(); 6 7 // 읽기가 끝나면 수행 8 reader.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/jpa2/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/jpa2/ class="content-summary text-sm overflow-hidden">
+프록시 객체 프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다 em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다 JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다 FetchType.EAGER (즉시 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 실제 객체이다 3String name = member.getName(); // 1차 캐시에서 조회한다 FetchType.LAZY (지연 로딩) 1Order order = em.find(Order.class, orderId); 2Member member = order.getMember(); // 지금 member는 프록시 객체이다 3String name = member.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/jpa_getbyid_refbyid/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - JPA : getReferenceById vs findById
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/jpa_getbyid_refbyid/ class="content-summary text-sm overflow-hidden">
+배경 Service layer에서 createPost 메소드를 구현하는 중 이었다 Post entity는 User entity와 ManyToOne 관계이다 User entity를 가져오는 방식에 따라 두가지 방식의 구현이 가능했다 두 방식의 장단점을 파악해보았다 getReferenceById 사용 1public Post createPost(PostDTO.Request postDTO, int userId) { 2 // 프록시 객체를 가져온다 3 User user = userRepository.getReferenceById(userId); 4 5 Post post = Post.builder() 6 .title(postDTO.getTitle()) 7 .content(postDTO.getContent()) 8 .created_at(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)) 9 .author(user) 10 .build(); 11 12 try { 13 return postRepository.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/javascript/react_utilize_router/ class="text-2xl my-3 overflow-ellipsis-bundle">
+React - 로그인 상태와 중첩 라우팅
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/javascript/react_utilize_router/ class="content-summary text-sm overflow-hidden">
+배경 학부연구생 업무 중에, 로그인 여부에 따라 다른 페이지를 보여주는 기능을 구현해야 했다. 로그인을 하지 않았을때는 &ldquo;/login"으로, 로그인을 했을 때는 &ldquo;/&ldquo;으로 리다이렉트 했다 path가 달라도 공통적으로 적용되는 레이아웃은 중첩 라우팅을 이용하여 구현했다 구조는 다음과 같다 코드 Router.js
+1&lt;BrowserRouter> 2 &lt;Routes> 3 &lt;!-- isAuthorized를 prop으로 넘겨서 이미 login한 경우 redirect --> 4 &lt;Route 5 path="/login" 6 element={&lt;Login isAuthorized={isAuthorized} />} 7 /> 8 &lt;!-- 로그인을 하지 않았는데 "/"로 접근시 redirect --> 9 {!
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/mockmvc_param_null/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Issue - MockMvc int타입 param이 null로 들어오는 문제
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/mockmvc_param_null/ class="content-summary text-sm overflow-hidden">
+문제상황 MockMvc를 이용하여 Controller를 테스트하고 있었다
+createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다
+UserResponse 내 int타입의 age변수의 값이 null로 들어오는 문제가 있었다
+UserController.java
+1@PostMapping("/user") 2public ResponseEntity&lt;SuccessResponse&lt;UserResponse>> createUser(UserRequest user) { 3 return SuccessResponse.get(201, userService.createUser(user)); 4} UserControllerTest.java
+1@Test 2void createUserTest() throws Exception { 3 // Given 4 User user = User.builder() 5 .id(1) 6 .name("hong") 7 // age의 값은 분명히 20 8 .age(20) 9 .
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/compiler/ class="text-2xl my-3 overflow-ellipsis-bundle">
+컴파일러개론
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/compiler/ class="content-summary text-sm overflow-hidden">
+개요 컴퓨터와 인간이 소통하는 방법 어셈블리어 어셈블리어의 번역기는 어셈블러(Assembler)라고 한다 cpu칩셋이 바뀔때마다 어셈블리어가 바뀐다 고급언어 고급언어의 번역기는 컴파일러(Compiler)라고 한다 컴파일러의 정확한 정의 어떤 언어로 쓰여진 프로그램을 같은 역할의 다른 언어로 바꿔주는 프로그램
+1952년 그레이스 호퍼(Grace Hopper)가 UNIVAC용 프로그래밍언어 A-0 컴파일러를 제작 컴파일러 vs 인터프리터 프로그램 처리과정 컴파일러의 처리 과정 Lexical analysis (어휘 분석) token을 생성하는일, token은 어휘의 최소 단위 Syntax analysis (구문 분석) token을 읽어서 오류를 검색, 구문 구조를 만든다 (주로 트리형태) Semantic analysis (의미 분석) type checking Intermediate code generation (중간 코드 생성) 중간 코드로 변환 Code optimization (코드 최적화) 중간 코드를 더 효율적으로 변환 Code generation (코드 생성) 목적 코드 생성 Lexical analysis (어휘 분석) token : 문법적으로 의미있는 최소 단위 FSA (Finite State Automata, 유한 상태 오토마타) token을 인식하는 방법 시작 상태 한 개와 끝 상태 여러 개를 가짐 DFA (Deterministic Finite Automata) FSA의 한 종류 각 상태에서 뻗어나가는 edge가 하나씩만 존재 ε가 붙은 edge 없음 분석한 토큰을 표현하는 방법 Lexeme = &lt;토큰번호, 토큰 값>
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/computer_network/ class="text-2xl my-3 overflow-ellipsis-bundle">
+컴퓨터네트워크
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/computer_network/ class="content-summary text-sm overflow-hidden">
+HTTP HTTP Method Method request payload response payload idempotent GET Optional O O HEAD Optional O O POST Yes O X PUT Yes O O DELETE Optional O O CONNECT Optional O X OPTIONS Optional O O TRACE Optional O O PATCH Yes O X HTTP Protocol Version HTTP/1.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/software_engineering/ class="text-2xl my-3 overflow-ellipsis-bundle">
+소프트웨어공학
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/software_engineering/ class="content-summary text-sm overflow-hidden">
+1장 소프트웨어 공학 개요 소프트웨어의 종류 주문형, 패키지형, 임베디드 시스템 실시간 소프트웨어, 자료처리 소프트웨어 소프트웨어 공학의 정의 IEEE : 소프트웨어의 개발, 운용, 유지보수 및 파기에 대한 체계적인 접근 W.Humphrey : 질 좋은 소프트웨어를 경제적으로 생산하기 위하여 공학, 과학, 수학적 원리에 의하여 소프트웨어를 개발해야한다 소프트웨어 품질 (효-용-신-유-재-) 효율성(efficiency) 사용용이성(usability) 신뢰성(reliability) 유지보수성(maintainability) 재사용성(reusability) 소프트웨어 프로젝트 작업 요구분석과 명세화 도메인 분석, 문제 정의, 요구 추출, 요구 분석, 요구 명세화 설계 : 가용한 기술로 어떻게 구현되어야하는지 기술 시스템 엔지니어링, 소프트웨어 아키텍쳐 UI 설계, DB 설계 모델링 : 도메인이나 소프트웨어의 표현을 만들어 나가는 과정 유스케이스 모델링 정적 모델링, 동적 모델링, 행위 모델링 프로그래밍 품질보증 리뷰, 인스펙션, 테스트 배포 프로세스 관리 2장 소프트웨어 프로세스 폭포수 모델 (Waterfall Model) 각 단계가 다음 시작 전에 끝나야 함 -> 느림 프로토타입과 재사용의 기회가 줄어듦 프로토타입 모델 (Prototyping Model) 인간-기계 상호작용 프로토타입 프로토타입을 만든다 - 프로토타입을 평가한다 점증적 모델 (Incremental Model) 점증적 방법: 기능별로 릴리즈 반복적 방법: 릴리즈 할때마다 기능의 완성도를 높인다 기능이 부족하더라도 빨리 릴리즈 가능 나선형 모델 (Spiral Model) 진화 단계 계획 수립 위험 분석 개발 평가 반복적인 개발 및 테스트 -> 강인성 향상 관리, 위험 분석이 중요 진화적 모델 (Evolutionary Model) 초기에 요구사항을 파악하기 힘들고 구현이 어려운 경우, 요구사항 분석을 한 번이상 반복 UP (Unified Process) 도입 단계 : 프로젝트의 범위를 설정, 목표를 명확히 정련 단계 : 요구를 찾아내어 설계를 완성 구축 단계 : 제조 단계, 요구의 테스트 마무리 전환 단계 : 릴리즈 애자일 프로세스 (Agile Process) 특징 짧은 릴리즈와 반복 점증적 설계 사용자 참여 문서 최소화 비공식적 커뮤니케이션 요구와 환경의 변화를 가정 익스트림 프로그래밍 (eXtreme Pragramming) 애자일 방법론 중 하나 Planning : 요구사항을 작은 요소로 분할 Analysis Design Execution : Coding, Testing Wrapping : small release, process improvement Closure : launch 스크럼 (Scrum) 조직적으로 애자일 방법론을 적용
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/thefuck_pip/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[오픈소스] thefuck - pip uninstall 규칙 추가
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🐍</span>
+<span>Python</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/python/thefuck_pip/ class="content-summary text-sm overflow-hidden">
+PR #1414 : Correct &ldquo;pip delete|remove&rdquo; -> &ldquo;pip uninstall&rdquo; 배경 pip uninstall &lt;package>는 파이썬 패키지를 삭제하는 명령어이다. 헷갈려서 remove, delete로 오타를 친 경험이 있다. thefuck에서 지원하지 않는 것을 확인하고 기여하기로 했다. 과정 기존의 로직 : 오타가 났을 때, pip 명령에서 “maybe you meant” 하면서 추천해주는 명령어가 있다면 추천, 하지만 remove와 delete는 그 대상이 아님 잘못된 명령어가 ‘delete’ 또는 ‘remove’인 경우 suggest에 uninstall을 대입하도록 수정 1if broken_cmd == 'delete' or broken_cmd == 'remove': 2 suggest = 'uninstall' 테스트 코드 수정 1# 의도한대로 명령어를 잘 바꿔주는지 테스트 2@pytest.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-1-02/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24동계] 02 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-1-02/ class="content-summary text-sm overflow-hidden">
+SQL 기초 공부 DDL (Data Definition Language) CREATE ALTER DROP RENAME TRUNCATE DML (Data Manipulation Language) SELECT INSERT UPDATE DELETE DCL (Data Control Language) GRANT REVOKE TCL (Transaction Control Language) COMMIT ROLLBACK SAVEPOINT SELECT GROUP BY 특정 Column기준으로 그룹화
+그룹화 하지 않은 Column은 집계함수(SUM, COUNT)를 통해서만 조회해야한다
+1SELECT name, COUNT(name), SUM(quantity) FROM 테이블 GROUP BY name; HAVING GROUP BY 절에서 조건을 주기 위해 사용
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-1-03/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24동계] 03 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-1-03/ class="content-summary text-sm overflow-hidden">
+Sub Query 단일 행 서브 쿼리 서브쿼리 결과 : 단일 행 결과 : 단일 행 1SELECT USER_ID, USER_NAME, USER_AGE 2FROM USERS 3WHERE TEAM_ID = ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME='BONG' 7); 다중 행 서브 쿼리 서브쿼리 결과 : 다중 행 결과 : 단일행 다중 행 비교 연산자와 함께 사용 (IN, ALL, ANY, SOME) 1SELECT TEAM_ID, TEAM_NAME, TEAM_LOGO_URL 2FROM TEAM 3WHERE TEAM_ID IN ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME='BONG' 7) 다중 컬럼 서브 쿼리 서브쿼리의 결과: 다중 행 결과 : 다중 행 1SELECT TEAM_ID, USER_NAME 2FROM USERS 3WHERE (TEAM_ID, HEIGHT) 4IN ( 5 SELECT TEAM_ID, MIN(HEIGHT) 6 FROM USERS 7 GROUP BY TEAM_ID 8) 9ORDER BY TEAM_ID, USER_NAME 연관 서브 쿼리 1SELECT B.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-1-04/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24동계] 04 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-1-04/ class="content-summary text-sm overflow-hidden">
+Recursive Query 1WITH RECURSIVE CTE AS ( 2 SELECT 0 AS A 3 UNION ALL 4 SELECT A+1 AS NUM 5 FROM CTE 6 WHERE A &lt; 10 # 0 부터 10까지 포함 7) 결과 (CTE테이블) A NUM 0 NULL … … 10 NULL 성능 비교 LIMIT 1 VS 서브쿼리 1SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE 2FROM FOOD_PRODUCT 3ORDER BY PRICE DESC 4LIMIT 1; 1SELECT * 2FROM FOOD_PRODUCT 3WHERE PRICE IN ( 4 SELECT MAX(PRICE) FROM FOOD_PRODUCT 5); LIMIT 1을 사용하는 쿼리는 모든 COLUMN의 데이터를 가져오고, 서브쿼리는 PRICE의 최대값만 가져와서 구하기 때문에, 테이블이 클수록 서브쿼리가 더 빠르다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-1-05/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24동계] 05 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-1-05/ class="content-summary text-sm overflow-hidden">
+임시 테이블 지역 임시 테이블 (Local Temporary Table) 현재 connection에서만 사용 가능하다 해당 connection이 종료되면 테이블이 자동으로 삭제된다 테이블 이름 앞에 #를 붙여 사용한다 전역 임시 테이블 (Global Temporary Table) 다른 connection에서도 사용 가능하다 마지막 connection이 종료되면 테이블이 사라진다 테이블 이름 앞에 ##를 붙여 사용한다 생성하는 방법 1 - CREATE 사용 1CREATE TABLE #temp ( 2 id INT, 3 name VARCHAR(20) 4) 생성하는 방법 2 - SELECT INTO 사용 1SELECT * 2INTO #temp 3FROM table 특징 인덱스, 제약 조건 등은 복사되지 않는다 SELECT할때 ORDER BY를 사용해도 정렬된 순서대로 저장되지 않는다 LOCK 배타적 잠금 (Exclusive Lock, X) 하나의 특정 트랜잭션만 해당 리소스에 접근할 수 있다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-1-06/ class="text-2xl my-3 overflow-ellipsis-bundle">
+[모각코24동계] 06 : 결과
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>👨‍💻</span>
+<span>모각코</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/mogako/mogako24-1-06/ class="content-summary text-sm overflow-hidden">
+테스트 기법 블랙박스 기법 개발자와 사용자들의 결험을 바탕으로 기능적 혹은 비기능적 테스트 케이스를 도출하고 선택하는 방법
+명세 기반 기법과 경험 기반 기법을 포함 화이트박스 기법 컴포넌트 또는 시스템의 내부 구조를 중심으로 테스트를 도출하는 방법
+구조 기반 기법 포함 명세 기반 기법 특징 해결할 문제를 명세하기 위해 모델을 사용한다 모델에서 테스트 케이스를 시스템적으로 도출하는 것이 가능하다 종류 동등 분할 경계값 분석 결정테이블 테스팅 상태전이 테스팅 유즈케이스 테스팅 경험 기반 기법 특징 테스트 관련 인력의 지식이나 경험으로 테스트 케이스를 도출한다 종류 탐색적 테스팅 오류 추정 체크리스트 구조 기반 기법 특징 코드와 개발 설계 등의 소프트웨어 구현 정보를 기반으로 테스트 케이스를 도출한다 종류 구문 테스팅과 커버리지 결정 테스팅과 커버리지 조건 / 결정 커버리지 변경 조건/ 결정 커버리지 다중 조건 커버리지
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/web_security/ class="text-2xl my-3 overflow-ellipsis-bundle">
+웹 보안
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/web_security/ class="content-summary text-sm overflow-hidden">
+Web Security Model Web 보안의 목표 Integirty : 무결성 Confidentiality : 기밀성 HTTP URL https:// www.example.edu :80 /lectures ?lec=80 #slides protocol + hostname + port + path + query + fragment
+Cookies 서버가 웹 브라우저에게 보내는 정보
+역할 : 세션 관리, 사용자 설정 저장, 사용자 추적 등 1// 쿠키 설정 2Set-Cookie: name=value; 3// 쿠키 전송 4Cookie: name=value; Same Origin Policy (SOP) 같은 Origin에서만 리소스를 공유할 수 있도록 한다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/plt/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래밍언어개론
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/plt/ class="content-summary text-sm overflow-hidden">
+Ocaml Functional Programming 함수형 프로그래밍은 함수를 값처럼 다루는 프로그래밍 패러다임
+특징 Immutable 변수의 값이 변하지 않는다
+First-class function Higher-order function Referential transparency 동일한 인자에 대해 항상 동일한 결과를 반환한다
+Lazy evaluation (지연 계산) 필요할 때만 계산을 수행
+Primitive Types unit int float int_of_float : float->int float_of_int : int->float bool : true/false x = y : x equals y (structural equality) x &lt;> y : x not equals y (structural equality) x == y : x equals y (physical equality) x !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/sqld/ class="text-2xl my-3 overflow-ellipsis-bundle">
+SQLD 대비 정리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/sqld/ class="content-summary text-sm overflow-hidden">
+과목 1 : 데이터 모델링의 이해 데이터 모델링을 할때 유의 사항 중복 : 여러 장소에 같은 정보 X 비유연성 : 데이터의 정의와 사용 프로세스를 분리 -> 데이터가 적게 변화되도록 비일관성 : 데이터 간의 상호 연관관계를 명확히 정의 데이터 모델링의 종류 개념적 데이터 모델링 물리적 데이터 모델링 데이터 베이스 모델링의 특징 추상화, 단순화, 명확화
+데이터베이스 스키마의 구조 외부 스키마 : 사용자 관점의 데이터베이스 구조 개념 스키마 : 전체 데이터베이스의 논리적 구조 내부 스키마 : 물리적 저장장치에 대한 데이터베이스 구조 엔터티의 특징 반드시 해당 업무에서 필요하고 관리하고자 하는 정보여야한다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/javascript/react_interview/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프론트엔드(react) 면접 준비
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍌</span>
+<span>Javascript</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/javascript/react_interview/ class="content-summary text-sm overflow-hidden">
+React의 특징 Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks DOM HTML element를 tree형태로 표현한 것
+Virtual DOM DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식
+Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : 변경된 부분만 실제 DOM에 반영 Batch Update : 여러 개의 변경사항을 한번에 업데이트 React Component Class Component 생명주기 메소드를 포함 상속을 통해 Component를 생성 mutable state를 가질 수 있음 Functional Component immutable하다 stateless Hooks를 사용 LifeCycle Method Mounting constructor : 컴포넌트 생성자 static getDerivedStateFromProps : props로 state를 설정 render : 컴포넌트 렌더링 componentDidMount : 컴포넌트가 마운트된 직후 Updating static getDerivedStateFromProps : props로 state를 설정 shouldComponentUpdate : 컴포넌트 업데이트 여부 결정 render : 컴포넌트 렌더링 getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전 componentDidUpdate : 컴포넌트 업데이트 직후 Unmounting componentWillUnmount : 컴포넌트가 언마운트되기 직전 React Hooks 함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/network_security/ class="text-2xl my-3 overflow-ellipsis-bundle">
+네트워크 보안
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/network_security/ class="content-summary text-sm overflow-hidden">
+네트워크 보안 개요 네트워크 보안의 요구사항 기밀성(Confidentiality) 정보를 권한이 없는 개인에게 노출되지 않도록 함
+무결성(Integrity) 정보와 프로그램은 인가된 방식으로만 변경되도록 함
+가용성(Availability) 정보 자산에 대해 적절한 시간에 접근 가능하도록 함
+보안 공격의 종류 소극적 공격(Passive Attack) 정보를 도청하거나 감시하는 공격 방어방법 : 암호화 적극적 공격(Active Attack) 정보를 변조하거나 삭제하는 공격 방어방법 : 메시지 인증 보안 서비스 인증(Authentication) 사용자의 신원을 확인하는 과정
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+</section>
+<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span> Algorithm (104)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
+<span class="text-xl mr-3">🌊</span>
+<span> C/CPP (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span> Java (8)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span> Javascript (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
+<span class="text-xl mr-3">🐍</span>
+<span> Python (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span> Spring (30)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
+<span class="text-xl mr-3">🔨</span>
+<span> 개발 도구 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
+<span class="text-xl mr-3">🎸</span>
+<span> 기타 (5)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span> 모각코 (38)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
+<span class="text-xl mr-3">🤖</span>
+<span> 인공지능 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span> 학과 공부 (27)</span>
+</a>
+</section>
+<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>boj (53)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c++ (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>celery (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>cs (16)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>django (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker-compose (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>elk (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>fastapi (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>git (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>github-actions (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>hackerrank (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>https (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>java (37)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>javascript (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>jwt (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>kubernetes (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>nginx (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ocaml (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>open-source (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>programmers (48)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>pytest (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>python (111)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rabbitmq (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rag (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>react (6)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>security (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>software-engineering (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>spring (31)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>sql (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ssl (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>testing (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>typescript (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>vercel (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span>
+</a>
+</section>
+<section id=search-section class=hidden>
+<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
+<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
+<style>div.pagefind-ui__result-thumb{display:none}</style>
+<div id=search></div>
+<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
+</section>
+</div>
+<div id=pagination-box>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/3/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/2/ aria-label="Page 2" class=page-link role=button>2</a>
+</li>
+<li class=page-item>
+<a href=/til/page/3/ aria-label="Page 3" class=page-link role=button>3</a>
+</li>
+<li class="page-item active">
+<a aria-current=page aria-label="Page 4" class=page-link role=button>4</a>
+</li>
+<li class=page-item>
+<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
+</li>
+<li class=page-item>
+<a href=/til/page/6/ aria-label="Page 6" class=page-link role=button>6</a>
+</li>
+<li class=page-item>
+<a href=/til/page/5/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,708 @@
+<!doctype html><html lang=ko>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<title>bong-u/til</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="bong-u/til">
+<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6
+max-w-3xl">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<div class="w-full flex max-w-3xl h-screen flex-col">
+<section class="mb-8 w-full">
+<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
+</video>
+</section>
+<main class="flex flex-col w-full gap-5">
+<form onchange=switchSection() class="flex justify-center">
+<input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">
+게시물
+</label>
+</input>
+<input id=switch-group type=radio name=switch>
+<label for=switch-group class=switch-button>
+분류
+</label>
+</input>
+<input id=switch-tag type=radio name=switch>
+<label for=switch-tag class=switch-button>
+태그
+</label>
+<input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">
+검색
+</label>
+</form>
+<div class="w-full p-5">
+<section id=summary-section class="grid gap-8">
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%ED%98%B8%ED%85%94_%EB%8C%80%EC%8B%A4/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 호텔 대실 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%ED%98%B8%ED%85%94_%EB%8C%80%EC%8B%A4/ class="content-summary text-sm overflow-hidden">
+1import heapq 2 3def time_calc(time): 4 time_split = time.split(':') 5 return int(time_split[0])*60 + int(time_split[1]) 6 7def solution(book_time): 8 time = [] 9 q = [] 10 for start, end in book_time: 11 time.append((time_calc(start), time_calc(end))) 12 time.sort(key=lambda x: x[0]) 13 print (time) 14 for start, end in time: 15 if q: 16 top = heapq.heappop(q) 17 if top > start: 18 heapq.heappush(q, top) 19 heapq.heappush(q, end+10) 20 else: 21 heapq.heappush(q, end+10) 22 return len(q) 문제 호텔의 예약시간이 담긴 2차원 배열이 주어진다 ex) [[&ldquo;12:00&rdquo;, &ldquo;12:30&rdquo;], [&ldquo;15:00&rdquo;, &ldquo;16:00&rdquo;]] 퇴실 시간 10분 이후에 다음 손님이 입실 할 수 있다 최소 객실의 개수를 구하여라 TC input [[&ldquo;15:00&rdquo;, &ldquo;17:00&rdquo;], [&ldquo;16:40&rdquo;, &ldquo;18:20&rdquo;], [&ldquo;14:20&rdquo;, &ldquo;15:20&rdquo;], [&ldquo;14:10&rdquo;, &ldquo;19:20&rdquo;], [&ldquo;18:20&rdquo;, &ldquo;21:20&rdquo;]]
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-16 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-14T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%AF%B8%EB%A1%9C_%ED%83%88%EC%B6%9C/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 미로 탈출 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%AF%B8%EB%A1%9C_%ED%83%88%EC%B6%9C/ class="content-summary text-sm overflow-hidden">
+1from collections import deque 2 3vx = [0, 0, -1, 1] 4vy = [-1, 1, 0, 0] 5 6def bfs(maps, N, M, p1, p2): 7 visited = [[False]*M for _ in range(N)] 8 q = deque() 9 q.append(list(p1)+[0]) 10 11 while q: 12 curY, curX, cnt = q.popleft() 13 14 if p2 == (curY, curX): 15 return cnt 16 17 for i in range(4): 18 x = curX + vx[i] 19 y = curY + vy[i] 20 if 0 &lt;= x &lt; M and 0 &lt;= y &lt; N and not visited[y][x] and maps[y][x] !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-14 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-13T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%ED%98%BC%EC%9E%90%EC%84%9C_%ED%95%98%EB%8A%94_%ED%8B%B1%ED%83%9D%ED%86%A0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 혼자서 하는 틱택토 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%ED%98%BC%EC%9E%90%EC%84%9C_%ED%95%98%EB%8A%94_%ED%8B%B1%ED%83%9D%ED%86%A0/ class="content-summary text-sm overflow-hidden">
+1V = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, -1), (1, 1)], [(-1, 1), (1, -1)]] 2P = [[(1, 0), (1, 1), (1, 2)], [(0, 1), (1, 1), (2, 1)], [(1, 1)], [(1, 1)]] 3 4def solution(board): 5 answer = -1 6 o_line = 0 7 x_line = 0 8 9 for i, p_list in enumerate(P): 10 for p in p_list: 11 if board[p[0]][p[1]] != '.' and board[p[0]][p[1]]== board[p[0]+V[i][0][0]][p[1]+V[i][0][1]] == board[p[0]+V[i][1][0]][p[1]+V[i][1][1]]: 12 if board[p[0]][p[1]] == 'O': 13 o_line += 1 14 elif board[p[0]][p[1]] == 'X': 15 x_line += 1 16 17 o_cnt = 0 18 x_cnt = 0 19 20 21 for i in ''.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-13 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-12T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 당구 연습 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/ class="content-summary text-sm overflow-hidden">
+1def solution(m, n, startX, startY, balls): 2 answer = [] 3 for bx, by in balls: 4 tmp = [] 5 for x, y in [(-1*startX, startY), (startX, -1*startY), (startX, 2*n-startY), (2*m-startX, startY)]: 6 if bx==x and (y &lt; 0 &lt; by &lt; startY or startY &lt; by &lt; n &lt; y): 7 continue 8 if by==y and (x &lt; 0 &lt; bx &lt; startX or startX &lt; bx &lt; m &lt; x): 9 continue 10 tmp.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-12 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-11T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%A6%AC%EC%BD%94%EC%B3%87_%EB%A1%9C%EB%B4%87/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 리코쳇 로봇 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%A6%AC%EC%BD%94%EC%B3%87_%EB%A1%9C%EB%B4%87/ class="content-summary text-sm overflow-hidden">
+1from collections import deque 2visited = [] 3vx = [0, 0, -1, 1] 4vy = [-1, 1, 0, 0] 5 6def bfs(board, N, M, sp): 7 global visited 8 q = deque() 9 q.append(sp+[1]) 10 11 while q: 12 cy, cx, cnt = q.popleft() 13 visited[cy][cx] = True 14 for i in range(4): 15 x = cx 16 y = cy 17 while True: 18 x += vx[i] 19 y += vy[i] 20 if not (0 &lt;= x &lt; N and 0 &lt;= y &lt; M) or board[y][x] == 'D': 21 x -= vx[i] 22 y -= vy[i] 23 break 24 if board[y][x] == 'G': 25 return cnt 26 if not visited[y][x]: 27 q.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-11 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-10T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EA%B4%91%EB%AC%BC_%EC%BA%90%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 광물 캐기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EA%B4%91%EB%AC%BC_%EC%BA%90%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def solution(picks, minerals): 2 bundles = [] 3 tmp = [0, 0, 0] 4 DATA = [[1, 1, 1], [5, 1, 1], [25, 5, 1]] 5 answer = 0 6 7 for i in range(len(minerals)): 8 if minerals[i] == "diamond": 9 for j in range(3): 10 tmp[j] += DATA[j][0] 11 elif minerals[i] == "iron": 12 for j in range(3): 13 tmp[j] += DATA[j][1] 14 elif minerals[i] == "stone": 15 for j in range(3): 16 tmp[j] += DATA[j][2] 17 18 if (i+1) % 5 == 0 or i == len(minerals)-1: 19 bundles.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-10 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-07T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EA%B3%BC%EC%A0%9C_%EC%A7%84%ED%96%89%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 과제 진행하기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EA%B3%BC%EC%A0%9C_%EC%A7%84%ED%96%89%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+내 답안 1def solution(plans): 2 q = [] 3 answer = [] 4 for plan in plans: 5 h, m = map(int, plan[1].split(':')) 6 plan[1] = h*60 + m 7 plan[2] = int(plan[2]) 8 plans.sort(key = lambda x: x[1]) 9 10 for plan in plans: 11 if q: 12 free_time = plan[1] - q[-1][1] 13 while q: 14 q[-1][2] -= free_time 15 free_time = -1 * q[-1][2] 16 17 print (free_time, q[-1][2]) 18 if free_time &lt; 0: 19 break 20 21 if q[-1][2] &lt;= 0: 22 answer.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-07 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-06T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%97%B0%EC%86%8D%EB%90%9C_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4%EC%9D%98_%ED%95%A9/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 연속된 부분 수열의 합 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%97%B0%EC%86%8D%EB%90%9C_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4%EC%9D%98_%ED%95%A9/ class="content-summary text-sm overflow-hidden">
+1def solution(sequence, k): 2 answer = [] 3 e = len(sequence)-1 4 s = len(sequence) 5 cur = 0 6 7 while s >= 0: 8 if cur &lt; k: 9 s -= 1 10 cur += sequence[s] 11 elif cur > k: 12 cur -= sequence[e] 13 e -= 1 14 else: 15 answer.append((s, e)) 16 s -= 1 17 cur += sequence[s] 18 answer.sort(key=lambda x: (x[1]-x[0], x[0])) 19 return answer[0] 문제 수열과 k가 주어진다 수열의 부분합이 k가 되게 하는 시작인덱스와 끝인덱스를 구하라 이때, 길이가 짧은 수열을 찾는다, 길이가 같은것이 여러가지라면 시작인덱스가 작은 것을 찾는다 TC input [1, 2, 3, 4, 5], 7
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-06 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-05T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 두 원 사이의 정수 쌍 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="content-summary text-sm overflow-hidden">
+1import math 2 3def calc1(r): 4 result = 0 5 for i in range(1, r): 6 result += math.floor(math.sqrt(r**2 - i**2)) 7 return result*4 + r*4 + 1 8 9def calc2(r): 10 result = 0 11 for i in range(1, r): 12 a = math.sqrt(r**2 - i**2) 13 result += math.floor(a) 14 if a % 1 == 0: 15 result -= 1 16 return result*4 + r*4 + 1 17 18def solution(r1, r2): 19 return calc1(r2)-calc2(r1)+4 문제 두 원의 반지름 r1, r2가 주어진다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-05 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-04T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%9A%94%EA%B2%A9_%EC%8B%9C%EC%8A%A4%ED%85%9C/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 요격 시스템 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%9A%94%EA%B2%A9_%EC%8B%9C%EC%8A%A4%ED%85%9C/ class="content-summary text-sm overflow-hidden">
+1def solution(targets): 2 answer = 0 3 targets.sort(key=lambda x:x[1]) 4 cur = 0 5 6 for i in targets: 7 if i[0] >= cur: 8 answer += 1 9 cur = i[1] 10 11 return answer 문제 개구간 (s, e)의 리스트가 주어진다. 이때, 모든 개구간을 포함하는 최소 숫자의 수를 구하여라 TC input [[4,5],[4,8],[10,14],[11,13],[5,12],[3,7],[1,4]]
+ouput 3
+해결방법 개구간을 (s, e)에서 e를 정렬하여 해결하였다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-04 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-05-22T11:27:30\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/mplc/ class="text-2xl my-3 overflow-ellipsis-bundle">
+현대인의 생활문화
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/mplc/ class="content-summary text-sm overflow-hidden">
+글로벌 매너 매너 인간관계를 맺는데 있어 중요한 요소
+어원 : Manus(손, 행동, 습관) + Arius(방법, 방식)
+매너의 기본(1)
+다른 사람의 인격을 존중하고, 배려하는 마음을 가지고, 편안하게 해주거나 기쁘게 만들려는 행동방식
+매너의 기본(2)
+역지사지 (易地思之)
+매너의 기본(3)
+형식에 치우치지 말고, 배려하는 마음을 전달하는 것
+매너와 에티켓의 차이 매너(예의) : 상황에 따라 다르게 표현 가능 에티켓(범절) : 형식과 절차를 중요시 함 동양의 매너 5덕
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-05-22 11:27:30 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-03-29T13:46:34\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/basicprojectlab_design_thinking/ class="text-2xl my-3 overflow-ellipsis-bundle">
+230315 기프랩 Design Thinking 방법론 - 김재정 교수님
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/basicprojectlab_design_thinking/ class="content-summary text-sm overflow-hidden">
+디자인 씽킹이란 공감의 과정을 통해 문제점을 찾아내고, 아이디어를 발산하고, 프로토타입을 만들어 검증 과정을 거치는, 반복적 프로세스에 대한 방법론 및 사고방식 디자인 씽킹 프로세스 공감 - 문제 정의 - 아이디어 도출 - 프로토타이핑 - 테스팅 1. 공감 공감 프로세스 면담하기 관찰하기 경험하기 면담지 준비하기 순차적 경험 질문 : 어떤 순서로 행동하고 경험하는지 물어보자 감정 질문 이유 질문 : 행동 또는 감정에 대한 이유를 물어보자 또 질문 : &ldquo;또&mldr;&ldquo;라는 질문을 많이 하자 구체화 질문 관찰하기 | 모니터링 현장 중심 관찰 : 세상을 넓고 깊게 바라보기 관찰하기 | 쉐도잉 사람의 체험이나 행동을 그자리에서 관찰하기 관찰하기 | 맥락 질의법 현장에서 관찰 및 면담을 통해 대상자에 대한 이해를 하는 방법
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-03-29 13:46:34 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-02-23T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-4%EC%9D%BC%EC%B0%A8/ class="text-2xl my-3 overflow-ellipsis-bundle">
+쿠버네티스 및 MSA 특강 4일차 : MSA란 무엇인가
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-4%EC%9D%BC%EC%B0%A8/ class="content-summary text-sm overflow-hidden">
+MSA란 무엇인가 마이크로서비스 개념 마이크로서비스(microservice)는 애플리케이션을 느슨하게 결합된 서비스의 모임으로 구조화하는 서비스 지향 아키텍처(SOA) 스타일의 일종인 소프트웨어 개발 기법이다 마이크로서비스 아키텍처에서 서비스들은 섬세(fine-grained)하고 프로토콜은 가벼운 편이다. 마이크로서비스 특징 자율성 : 각 구성 요소 서비스는 다른 서비스의 기능에 영향을 주지 않으면서 개발, 배포, 운영하고 확장 가능 전문성 : 각 서비스는 일련의 기능을 위해 설계되며 특정 문제를 해결하는 데 중점을 둔다 마이크로서비스의 기술적 특징 각각의 서비스는 그 크기가 작을 뿐, 서비스 자체는 하나의 모노리식 아키텍처와 유사한 구조를 갖는다 각각의 서비스는 독립적으로 배포가 가능해야 한다 각각의 서비스는 다른 서비스에 대한 의존성이 작아야 한다 각 서비스는 개별 프로세스로 구동되며, REST API와 같은 가벼운 방식으로 통신되어야 한다 마이크로서비스 이점 민첩성 : 소규모 컨텍스트 내에서 활동하며 더 독립적이면서 신속하게 업무를 수행할 수 있다 유연한 확장성 : 서비스가 지원하는 애플리케이션을 기능의 수요를 충족하도록 해당 서비스를 독립적으로 확장할 수 있다 손쉬운 배포 마이크로서비스를 위한 조건 비용 개발 생산성 운영 인프라 배포 주기
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-02-23 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-02-22T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-3%EC%9D%BC%EC%B0%A8/ class="text-2xl my-3 overflow-ellipsis-bundle">
+쿠버네티스 및 MSA 특강 3일차 : 모니터링 시스템 구축 실습 (ELK), kubernetes
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-3%EC%9D%BC%EC%B0%A8/ class="content-summary text-sm overflow-hidden">
+모니터링 시스템 구축 실습 (ELK) ELK란 ELK는 Elasticsearch, Logstash 및 Kibana : 오픈 소스 프로젝트 세 개의 머리글
+Elasticserach는 검색 및 분석 엔진 Logstash는 여러 소스에서 동시에 데이터를 수집하여 변환한 후 Elasticsearch 같은 &ldquo;stash"로 전송하는 서버 사이드 데이터 처리 파이프라인 Kibana는 사용자가 Elasticsearch에서 차트와 그래프를 이용해 데이터를 시각화 Kibana Elasticsearch에 있는 데이터를 시각화할 수 있도록 하는 웹 브라우저 기반의 시각화 플랫폼
+Elasticsearch에 있는 인덱스의 패턴을 찾아서, 데이터를 확인하거나, 시각화할 수 있도록 한다 Logstash 서버 데이터를 수집, 변환, 전송하는 데이터 처리 파이프라인으로, Jruby(JVM 기반 Ruby)로 개발되었다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-02-22 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-02-21T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-2%EC%9D%BC%EC%B0%A8/ class="text-2xl my-3 overflow-ellipsis-bundle">
+쿠버네티스 및 MSA 특강 2일차 : Docker 실습
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-2%EC%9D%BC%EC%B0%A8/ class="content-summary text-sm overflow-hidden">
+Docker 실습 Docker란 무엇인가 Docker는 애플리케이션을 신속하게 구축, 테스트 및 배포할 수 있는 소프트웨어 플랫폼
+Docker를 사용하는 이유 개선되고 완벽한 이식성 경량의 중량, 미세한 업데이트 자동화된 컨테이너 작성 컨테이너 버전화 컨테이너 재사용 공유 컨테이너 라이브러리 Docker 오케스트레이션 - Kubernetes Kubernetes는 Google에서 내부용으로 개발된 프로젝트에서 파생된 오픈소스 컨테이너 오케스트레이션 플랫폼 Docker에 자체 오케스트레이션 툴 (Docker Swarm)이 포함되어 있지만, 대부분의 개발자는 그 대신 Kubernetes를 선택한다 Kubernetes는 컨테이너 배치, 업데이트, 서비스감지, 스토리지 프로비저닝, 로드 밸런싱, 상태 모니터링 등을 포함하여 컨테이너 기반 아키텍처의 관리에 필수적인 태스크를 스케줄링하고 자동화한다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-02-21 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-02-20T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-1%EC%9D%BC%EC%B0%A8/ class="text-2xl my-3 overflow-ellipsis-bundle">
+쿠버네티스 및 MSA 특강 1일차 : 클라우드 컴퓨팅 개념 및 역사
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-1%EC%9D%BC%EC%B0%A8/ class="content-summary text-sm overflow-hidden">
+클라우드 제대로 이해하기 클라우드란 개인이 가진 단말기를 통해서는 주로 입/출력 작업만 이루어지고, 정보분석 및 처리, 저장, 관리 유통 등의 작업은 클라우드라고 불리는 제3의 공간에서 이루어지는 컴퓨팅 시스템 형태
+클라우드 컴퓨팅이 필요한 이유 비용절감 속도향상 확장성 생산성 클라우드 컴퓨팅 서비스모델 Infrastructure as a Service (IaaS) : IT리소스에 대한 유연성과 관리 제어 기능을 제공 GCE, AWS, Azure Platform as a Service (Paas) : 빌드 및 배포를 위한 환경이 사용자에게 제공 Openshift, Github, docker, kubernetes Software as a a Service (Saas) : 완전한 제품 제공 GShift 비교 On-site &lt; Iaas &lt; Paas &lt; Saas
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-02-20 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+</section>
+<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span> Algorithm (104)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
+<span class="text-xl mr-3">🌊</span>
+<span> C/CPP (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span> Java (8)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span> Javascript (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
+<span class="text-xl mr-3">🐍</span>
+<span> Python (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span> Spring (30)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
+<span class="text-xl mr-3">🔨</span>
+<span> 개발 도구 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
+<span class="text-xl mr-3">🎸</span>
+<span> 기타 (5)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span> 모각코 (38)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
+<span class="text-xl mr-3">🤖</span>
+<span> 인공지능 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span> 학과 공부 (27)</span>
+</a>
+</section>
+<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>boj (53)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c++ (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>celery (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>cs (16)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>django (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker-compose (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>elk (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>fastapi (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>git (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>github-actions (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>hackerrank (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>https (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>java (37)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>javascript (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>jwt (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>kubernetes (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>nginx (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ocaml (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>open-source (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>programmers (48)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>pytest (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>python (111)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rabbitmq (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rag (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>react (6)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>security (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>software-engineering (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>spring (31)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>sql (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ssl (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>testing (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>typescript (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>vercel (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span>
+</a>
+</section>
+<section id=search-section class=hidden>
+<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
+<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
+<style>div.pagefind-ui__result-thumb{display:none}</style>
+<div id=search></div>
+<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
+</section>
+</div>
+<div id=pagination-box>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/11/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
+</li>
+<li class=page-item>
+<a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
+</li>
+<li class=page-item>
+<a href=/til/page/10/ aria-label="Page 10" class=page-link role=button>10</a>
+</li>
+<li class=page-item>
+<a href=/til/page/11/ aria-label="Page 11" class=page-link role=button>11</a>
+</li>
+<li class="page-item active">
+<a aria-current=page aria-label="Page 12" class=page-link role=button>12</a>
+</li>
+<li class="page-item disabled">
+<a aria-disabled=true aria-label=Next class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class="page-item disabled">
+<a aria-disabled=true aria-label=Last class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>

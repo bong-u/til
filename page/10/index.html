@@ -1,0 +1,797 @@
+<!doctype html><html lang=ko>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<title>bong-u/til</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="bong-u/til">
+<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6
+max-w-3xl">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<div class="w-full flex max-w-3xl h-screen flex-col">
+<section class="mb-8 w-full">
+<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
+</video>
+</section>
+<main class="flex flex-col w-full gap-5">
+<form onchange=switchSection() class="flex justify-center">
+<input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">
+게시물
+</label>
+</input>
+<input id=switch-group type=radio name=switch>
+<label for=switch-group class=switch-button>
+분류
+</label>
+</input>
+<input id=switch-tag type=radio name=switch>
+<label for=switch-tag class=switch-button>
+태그
+</label>
+<input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">
+검색
+</label>
+</form>
+<div class="w-full p-5">
+<section id=summary-section class="grid gap-8">
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-12-06T11:02:27\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/film_and_literature/ class="text-2xl my-3 overflow-ellipsis-bundle">
+영화와 문학
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/film_and_literature/ class="content-summary text-sm overflow-hidden">
+매체 변환이란 소설, 희곡, 시, 영화 등 각각의 매체 형식을 다른 종류의 매체 형식으로 변환하는 것
+뤼미에르 형제에 의해서 영화가 발명된 후, 1910년대부터 기존 문학 작품을 영화의 형식에 맞도록 각색하는 양상이 인기를 얻게 됨.
+매체 변환 양상 분석 과정에서 고려해야할 사항
+구성의 생략과 압축 텍스트 -> 영화, 시공간적 제약을 받을 수 밖에 없다 따라서, 생략과 압축은 할 수 밖에 없다 시간과 공간의 영상적 변환 시공간을 처리하는 방식은 매체에 따라 달라질 수 밖에 없다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-12-06 11:02:27 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-09-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%ED%8A%9C%ED%94%8C/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 튜플 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%ED%8A%9C%ED%94%8C/ class="content-summary text-sm overflow-hidden">
+1from collections import defaultdict 2 3def solution(s): 4 count = defaultdict(int) 5 for i in s[1:-1].replace('},{', '} {').split(' '): 6 for j in i[1:-1].split(','): 7 count[j] += 1 8 return [int(i[0]) for i in sorted(count.items(), key=lambda x: x[1], reverse=True)] 문제 특정 튜플을 포현하는 집합이 담긴 문자열 s가 매개변수로 주어진다 s가 표현하는 튜플을 배열에 담아 반환하라 TC input &ldquo;{{2},{2,1},{2,1,3},{2,1,3,4}}&rdquo;
+ouput [2, 1, 3, 4]
+해결방법 문제에서 원하는 튜플의 순서는 원소의 개수가 자주 등장하는 순서이다 각 원소의 개수를 세어 count라는 defaultdict에 넣는다 count를 value 기준으로 정렬하여 key값을 list의 형태로 반환하라
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-09-16 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-09-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%88%98%EC%8B%9D_%EC%B5%9C%EB%8C%80%ED%99%94/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 수식 최대화 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%88%98%EC%8B%9D_%EC%B5%9C%EB%8C%80%ED%99%94/ class="content-summary text-sm overflow-hidden">
+1from itertools import permutations 2def solution(expression): 3 answer = 0 4 operations = list(filter(lambda x: not x.isdigit(), expression)) 5 numbers = expression.replace('-','+').replace('*','+').split('+') 6 expression = [int(numbers[0])] 7 8 for i in range(len(operations)): 9 expression.append(operations[i]) 10 expression.append(int(numbers[i+1])) 11 12 for case in permutations(('+', '-', '*'), 3): 13 temp = expression[::-1] 14 for op in case: 15 stack = [] 16 while temp: 17 if temp[-1] == op: 18 temp.pop() 19 a = stack.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-09-16 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-09-07T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%BF%BC%EB%93%9C%EC%95%95%EC%B6%95_%ED%9B%84_%EA%B0%9C%EC%88%98_%EC%84%B8%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 쿼드압축 후 개수 세기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%BF%BC%EB%93%9C%EC%95%95%EC%B6%95_%ED%9B%84_%EA%B0%9C%EC%88%98_%EC%84%B8%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1answer = [0, 0] 2 3def solution(arr): 4 def recursion(sx, sy, k): 5 global answer 6 origin = arr[sy][sx] 7 cnt = 0 8 for i in range(sx, sx+k): 9 for j in range(sy, sy+k): 10 if origin != arr[j][i]: 11 recursion(sx, sy, k//2) 12 recursion(sx+k//2, sy, k//2) 13 recursion(sx, sy+k//2, k//2) 14 recursion(sx+k//2, sy+k//2, k//2) 15 return 16 answer[origin] += 1 17 18 recursion(0, 0, len(arr)) 19 return answer 문제 0과 1로 이루어진 2^n x 2^n 크기의 2차원 정수 배열 arr을 압축하려 한다 압축하는 방법은 당신이 압축하고자 하는 특정 영역을 S라고 정의한다 만약 S 내부에 있는 모든 수가 같은 값이라면, S를 해당 수 하나로 압축시킨다 그렇지 않다면, S를 정확히 4개의 균일한 정사각형 영역으로 쪼갠 뒤, 각 정사각형 영역에 대해 같은 방식의 압축을 시도한다 TC input [[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]]
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-09-07 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-09-06T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 이진 변환 반복하기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def solution(s): 2 answer = [] 3 cnt = 0 4 zero_cnt = 0 5 6 while len(s) != 1: 7 zero = s.count('0') 8 s = str(bin(len(s)-zero)).split('b')[1] 9 cnt += 1 10 zero_cnt += zero 11 12 return [cnt, zero_cnt] 문제 이진변환을 다음과 같이 정의한다 1. x의 모든 0을 제거한다 2. x의 길이를 c라고 하면, x를 &lsquo;c를 2진법으로 표현한 문자열&rsquo;로 바꾼다 s가 &lsquo;1&rsquo;이 될때까지 이진변환을 가했을 때, [이진변환의 횟수, 제거된 모든 0의 개수]를 반환하라 TC input s : &ldquo;110010101001&rdquo;
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-09-06 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-09-04T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%A9%94%EB%89%B4_%EB%A6%AC%EB%89%B4%EC%96%BC/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 메뉴 리뉴얼 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%A9%94%EB%89%B4_%EB%A6%AC%EB%89%B4%EC%96%BC/ class="content-summary text-sm overflow-hidden">
+1from itertools import combinations 2from collections import defaultdict 3 4def solution(orders, course): 5 answer = [] 6 7 for i in course: 8 dataset = defaultdict(int) 9 10 for j in orders: 11 for k in combinations(j, i): 12 # ABC, ACB를 같은 것으로 취급하기 위해 정렬 13 dataset[''.join(sorted(k))] += 1 14 15 if len(dataset) == 0: 16 continue 17 18 max_value = max(dataset.values()) 19 20 # 2번 이상 주문된 메뉴만 추가 21 if max_value == 1: 22 continue 23 24 for k, _ in filter(lambda x:x[1] == max_value, dataset.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-09-04 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-31T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 순위 검색 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89/ class="content-summary text-sm overflow-hidden">
+1from itertools import combinations 2from collections import defaultdict 3from bisect import bisect_left 4 5def solution(infos, queries): 6 answer = [] 7 dataset = defaultdict(list) 8 9 for info in infos: 10 token = info.split(' ') 11 12 for j in range(5): 13 for case in list(combinations([0,1,2,3], j)): 14 temp = token[:-1] 15 for c in case: 16 temp[c] = '-' 17 dataset[''.join(temp)].append(int(token[-1])) 18 for value in dataset.values(): 19 value.sort() 20 21 for query in queries: 22 query = query.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-31 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-28T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EA%B4%84%ED%98%B8_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 괄호 회전하기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EA%B4%84%ED%98%B8_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def check(string): 2 stack = [] 3 for i in string: 4 if i == '(' or i == '{' or i == '[': 5 stack.append(i) 6 else: 7 if len(stack) == 0: 8 return False 9 if i == ')': 10 if stack[-1] != '(': return False 11 if i == '}': 12 if stack[-1] != '{': return False 13 if i == ']': 14 if stack[-1] != '[': return False 15 stack.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-28 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-24T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%ED%96%89%EB%A0%AC_%ED%85%8C%EB%91%90%EB%A6%AC_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 행렬 테두리 회전하기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%ED%96%89%EB%A0%AC_%ED%85%8C%EB%91%90%EB%A6%AC_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1dx = [1, 0, -1, 0] 2dy = [0, 1, 0, -1] 3 4def solution(rows, columns, queries): 5 table = [[(j*columns)+i+1 for i in range(columns)] for j in range(rows)] 6 answer = [] 7 8 for y1, x1, y2, x2 in queries: 9 min_num = 10000 10 x1 -= 1 11 y1 -= 1 12 x2 -= 1 13 y2 -= 1 14 direction = 0 15 curX, curY = x1, y1 16 postNum = table[y1][x1] 17 while True: 18 curX = curX+dx[direction] 19 curY = curY+dy[direction] 20 21 temp = table[curY][curX] 22 table[curY][curX] = postNum 23 postNum = temp 24 25 min_num = min(min_num ,postNum) 26 27 if ((curX == x2 and curY == y1) or 28 (curX == x2 and curY == y2) or 29 (curX == x1 and curY == y2)): 30 direction += 1 31 32 if curX == x1 and curY == y1: 33 break 34 35 answer.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-24 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-23T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_2%EA%B0%9C_%EC%9D%B4%ED%95%98%EB%A1%9C_%EB%8B%A4%EB%A5%B8_%EB%B9%84%ED%8A%B8/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 2개 이하로 다른 비트 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_2%EA%B0%9C_%EC%9D%B4%ED%95%98%EB%A1%9C_%EB%8B%A4%EB%A5%B8_%EB%B9%84%ED%8A%B8/ class="content-summary text-sm overflow-hidden">
+1def solution(numbers): 2 answer = [] 3 for number in numbers: 4 num = list(str(bin(number)).split('b')[1]) 5 6 # 첫번째 자릿수가 0인 경우 7 if num[-1] == '0': 8 num[-1] = '1' 9 answer.append(int('0b'+''.join(num), 2)) 10 continue 11 12 # 첫번째 자릿수가 1인 경우 13 num = ['0']+num 14 # 두번째 자리부터 순회 15 for i in range(len(num)-2, -1, -1): 16 # 가장 오른쪽의 0을 찾았을 때 17 if num[i] == '0': 18 # 0을 오른쪽으로, 1을 왼쪽으로 옮긴다 19 num[i], num[i+1] = num[i+1], num[i] 20 answer.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-23 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-22T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EA%B1%B0%EB%A6%AC%EB%91%90%EA%B8%B0_%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 거리두기 확인하기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EA%B1%B0%EB%A6%AC%EB%91%90%EA%B8%B0_%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1dx = [-1, 1, 0, 0] 2dy = [0, 0, -1, 1] 3def quest(table): 4 table = [list(line) for line in table] 5 for j in range(5): 6 for i in range(5): 7 if table[i][j] == 'P': 8 flag = [False]*4 9 target = [] 10 for k in range(4): 11 nx = i+dx[k] 12 ny = j+dy[k] 13 if 0 &lt;= nx &lt; 5 and 0 &lt;= ny &lt; 5: 14 target.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-22 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-21T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%AA%A8%EC%9D%8C%EC%82%AC%EC%A0%84/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 모음사전 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%AA%A8%EC%9D%8C%EC%82%AC%EC%A0%84/ class="content-summary text-sm overflow-hidden">
+1def solution(word): 2 answer = 0 3 char = ['A', 'E', 'I', 'O', 'U'] 4 cnt = 0 5 6 def traverse(cur): 7 nonlocal char, cnt, word 8 if cur == word: 9 return cnt 10 11 if len(cur) &lt; 5: 12 for ch in char: 13 cnt += 1 14 if traverse(cur+ch) != None: 15 return cnt 16 return traverse('') 문제 사전에 A,E,I,O,U만 사용하여 만들 수 있는 길이 5이하의 모든 단어가 수록되어있다 단어 하나 word가 주어질때 사전에서 몇번째 단어인지 구하라 TC input &lsquo;I&rsquo;
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-21 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-20T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%B9%9B%EC%9D%98_%EA%B2%BD%EB%A1%9C_%EC%82%AC%EC%9D%B4%ED%81%B4/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 빛의 경로 사이클 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%B9%9B%EC%9D%98_%EA%B2%BD%EB%A1%9C_%EC%82%AC%EC%9D%B4%ED%81%B4/ class="content-summary text-sm overflow-hidden">
+1dx = [1, 0, -1, 0] 2dy = [0, 1, 0, -1] 3def solution(grid): 4 N = len(grid) 5 M = len(grid[0]) 6 grid = [list(line) for line in grid] 7 route = [[[False]*4 for _ in range(M)] for _ in range(N)] 8 answer = [] 9 10 for i in range(M): 11 for j in range(N): 12 for k in range(4): 13 cur = [i, j] 14 dir = k 15 cnt = 0 16 while not route[cur[1]][cur[0]][dir]: 17 cnt += 1 18 route[cur[1]][cur[0]][dir] = True 19 cur[0] = (cur[0]+dx[dir]) % M 20 cur[1] = (cur[1]+dy[dir]) % N 21 22 if grid[cur[1]][cur[0]] == 'L': 23 dir = (dir-1) % 4 24 elif grid[cur[1]][cur[0]] == 'R': 25 dir = (dir+1) % 4 26 if cnt !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-20 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-18T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%A0%84%EB%A0%A5%EB%A7%9D%EC%9D%84_%EB%91%98%EB%A1%9C_%EB%82%98%EB%88%84%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 전력망을 둘로 나누기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%A0%84%EB%A0%A5%EB%A7%9D%EC%9D%84_%EB%91%98%EB%A1%9C_%EB%82%98%EB%88%84%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def solution(n, wires): 2 tower = [[] for _ in range(n)] 3 answer = 100 4 for wire in wires: 5 wire[0] -= 1 6 wire[1] -= 1 7 tower[wire[0]].append(wire[1]) 8 tower[wire[1]].append(wire[0]) 9 10 def traverse(visited, start): 11 visited[start] = True 12 for i in tower[start]: 13 if not visited[i]: 14 traverse(visited, i) 15 for wire in wires: 16 tower[wire[0]].remove(wire[1]) 17 tower[wire[1]].remove(wire[0]) 18 19 visited = [False]*n 20 a = 0 21 traverse(visited, wire[0]) 22 for i in range(n): 23 if visited[i]: 24 a += 1 25 26 visited = [False]*n 27 b = 0 28 traverse(visited, wire[1]) 29 for i in range(n): 30 if visited[i]: 31 b += 1 32 answer = min(answer, abs(a-b)) 33 tower[wire[0]].
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-18 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-17T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EA%B5%90%EC%A0%90%EC%97%90_%EB%B3%84_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 교점에 별 만들기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EA%B5%90%EC%A0%90%EC%97%90_%EB%B3%84_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def calc(a1, b1, c1, a2, b2, c2): 2 if a1*b2-a2*b1 == 0: 3 return (0.1, 0.1) 4 return ((b1*c2-b2*c1)/(a1*b2-a2*b1), (c1*a2-a1*c2)/(a1*b2-a2*b1)) 5 6def solution(line): 7 answer = [] 8 length = len(line) 9 points = [] 10 size = [1e15, -1e15, 1e15,- 1e15] 11 12 for i in range(length): 13 for j in range(i): 14 point = calc(line[i][0],line[i][1], line[i][2], line[j][0], line[j][1], line[j][2]) 15 if point[0]%1 != 0 or point[1]%1 != 0: 16 continue 17 x = int(point[0]) 18 y = int(point[1]) 19 points.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-17 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - n^2 배열 자르기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def solution(n, left, right): 2 answer = [] 3 start = (left//n, left%n) 4 end = (right//n, right%n) 5 6 for i in range(start[0], end[0]+1): 7 line = [i+1]*(i+1) + [i for i in range(i+2, n+1)] 8 answer += line 9 10 return answer[start[1]:right-(start[0]*n)+1] 문제 정수 n, left, right가 주어진다 n X n 크기의 2차원 배열을 만든다 i=1,2,3..n에 대해서, 1행 1열부터 i형 i행까지 숫자 i로 채운다 1행, 2행.. n행을 모두 이어붙인 새로운 1차원 배열을 만든다 새로운 1차원 배열에서 left번째 숫자부터 right번째 숫자까지를 배열로 반환하라 TC input n : 3, left : 2, right : 5
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-16 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-14T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%ED%94%BC%EB%A1%9C%EB%8F%84/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 피로도 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%ED%94%BC%EB%A1%9C%EB%8F%84/ class="content-summary text-sm overflow-hidden">
+1def solution(k, dungeons): 2 result = 0 3 length = len(dungeons) 4 def dfs(cur, visited, cnt): 5 nonlocal result 6 visit = False 7 for i in range(length): 8 if not visited[i] and cur >= dungeons[i][0]: 9 visit = True 10 visited[i] = True 11 dfs(cur-dungeons[i][1], visited, cnt+1) 12 visited[i] = False 13 14 if not visit: 15 result = max(result, cnt) 16 17 dfs(k, [False]*length, 0) 18 19 return result 문제 유저의 현재 피로도 k, 던전별 [&ldquo;최소 필요 피로도&rdquo;, &ldquo;소모 피로도&rdquo;]를 담은 2차원 배열 dungeons가 주어진다 던전을 탐험하기 위해서는 유저의 현재 남은 피로도가 최소 필요 피로도 이상이어야 한다 던전을 클리어하면 &ldquo;소모 피로도"만큼 피로도가 소모된다 던전을 탐험할 수 있는 최대 던전 수를 구하라 TC input k:80, dungeons:[[80,20],[50,40],[30,10]]
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-14 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-12T14:42:18\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/probabilityandstatistics/ class="text-2xl my-3 overflow-ellipsis-bundle">
+확률과 통계
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/probabilityandstatistics/ class="content-summary text-sm overflow-hidden">
+자료의 정리와 요약 통계 자료의 구분
+양적자료(quantitative data) 또는 수치형자료(numerical data) 이산자료(자녀 수), 연속자료(키) 질적자료(qualitative data) 또는 범주형자료(categorical data) 명목자료(혈액형, 성별), 순서자료(학점, 부서평가) 변수의 종류
+1all variables 2├── numerical 3│ ├-─ continuous (리터 수) 4│ └-─ discrete (나라 수) 5└─── categorical 6 ├-─ Nominal (성별) 7 └-─ Ordinal (근무 한 시간 : 12-2) 도수분포표 자료의 특성을 기준으로 일정한 계급으로 나누고, 각 계급에 도수를 대응하여 작성한 표
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-12 14:42:18 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-12T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C_%EC%86%8C%EC%88%98_%EA%B0%9C%EC%88%98_%EA%B5%AC%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - k진수에서 소수 개수 구하기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C_%EC%86%8C%EC%88%98_%EA%B0%9C%EC%88%98_%EA%B5%AC%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def convert10toN(n, k): 2 result = '' 3 while n > 1: 4 result = str(n%k)+ result 5 n = n // k 6 return (str(n)+result).lstrip('0') 7 8def is_prime(n): 9 if n &lt;= 1: 10 return False 11 12 end = int(n**(1/2))+1 13 for i in range(2, end): 14 if n%i == 0: 15 return False 16 return True 17 18 19def solution(n, k): 20 A = convert10toN(n, k) 21 answer = 0 22 for i in A.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-12 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-11T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 주차 요금 계산 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="content-summary text-sm overflow-hidden">
+1import math 2 3def diff(start, end): 4 sh, sm = map(int, start.split(':')) 5 eh, em = map(int, end.split(':')) 6 7 return (eh*60+em) - (sh*60+sm) 8 9def calc(time, baseTime, baseFee, unitTime, unitFee): 10 if time &lt; baseTime: 11 return baseFee 12 time -= baseTime 13 return baseFee + math.ceil(time/unitTime)*unitFee 14 15def solution(fees, records): 16 cars = {} 17 for i in records: 18 time, car_num, _ = i.split(' ') 19 # 새로 입차 한 경우 20 if not car_num in cars: 21 cars[car_num] = [0, time] 22 else: 23 # 출차 후 다시 입차한 경우 24 if cars[car_num][1] == '': 25 cars[car_num][1] = time 26 # 출차한 경우 27 else: 28 cars[car_num][0] += diff(cars[car_num][1], time) 29 cars[car_num][1] = '' 30 31 # 아직 출차하지 않은 차량들에 대해 23:59에 출차한 것으로 간주 32 for num in cars: 33 if cars[num][1] !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-11 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+</section>
+<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span> Algorithm (104)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
+<span class="text-xl mr-3">🌊</span>
+<span> C/CPP (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span> Java (8)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span> Javascript (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
+<span class="text-xl mr-3">🐍</span>
+<span> Python (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span> Spring (30)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
+<span class="text-xl mr-3">🔨</span>
+<span> 개발 도구 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
+<span class="text-xl mr-3">🎸</span>
+<span> 기타 (5)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span> 모각코 (38)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
+<span class="text-xl mr-3">🤖</span>
+<span> 인공지능 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span> 학과 공부 (27)</span>
+</a>
+</section>
+<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>boj (53)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c++ (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>celery (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>cs (16)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>django (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker-compose (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>elk (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>fastapi (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>git (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>github-actions (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>hackerrank (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>https (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>java (37)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>javascript (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>jwt (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>kubernetes (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>nginx (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ocaml (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>open-source (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>programmers (48)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>pytest (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>python (111)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rabbitmq (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rag (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>react (6)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>security (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>software-engineering (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>spring (31)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>sql (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ssl (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>testing (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>typescript (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>vercel (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span>
+</a>
+</section>
+<section id=search-section class=hidden>
+<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
+<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
+<style>div.pagefind-ui__result-thumb{display:none}</style>
+<div id=search></div>
+<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
+</section>
+</div>
+<div id=pagination-box>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/9/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
+</li>
+<li class=page-item>
+<a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
+</li>
+<li class="page-item active">
+<a aria-current=page aria-label="Page 10" class=page-link role=button>10</a>
+</li>
+<li class=page-item>
+<a href=/til/page/11/ aria-label="Page 11" class=page-link role=button>11</a>
+</li>
+<li class=page-item>
+<a href=/til/page/12/ aria-label="Page 12" class=page-link role=button>12</a>
+</li>
+<li class=page-item>
+<a href=/til/page/11/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,803 @@
+<!doctype html><html lang=ko>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<title>bong-u/til</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:site_name" content="bong-u/til">
+<meta property="og:title" content="bong-u/til">
+<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
+<meta property="og:type" content="blog">
+<meta property="og:url" content="https://github.com/bong-u/til-hugo">
+<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
+<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
+<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
+<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
+<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
+<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
+<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
+</head>
+<body class=custom-scroll>
+<div class="flex w-full flex-col items-center">
+<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
+<header class="flex justify-center p-3 w-full text-lg border-b border-line">
+<div class="w-full flex justify-between lg-5/6
+max-w-3xl">
+<h3>
+<a href=https://bong-u.github.io/til/ class=hover-black>
+bong-u/til
+</a>
+</h3>
+<div class="flex gap-5">
+<a class=hover-black href=https://bong-u.github.io/til/>
+🏠 home
+</a>
+<a class=hover-black href=https://github.com/bong-u/til>
+🐈 repository
+</a>
+</div>
+</div>
+</header>
+<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
+<div class="w-full flex max-w-3xl h-screen flex-col">
+<section class="mb-8 w-full">
+<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
+</video>
+</section>
+<main class="flex flex-col w-full gap-5">
+<form onchange=switchSection() class="flex justify-center">
+<input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">
+게시물
+</label>
+</input>
+<input id=switch-group type=radio name=switch>
+<label for=switch-group class=switch-button>
+분류
+</label>
+</input>
+<input id=switch-tag type=radio name=switch>
+<label for=switch-tag class=switch-button>
+태그
+</label>
+<input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">
+검색
+</label>
+</form>
+<div class="w-full p-5">
+<section id=summary-section class="grid gap-8">
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/operatingsystem2/ class="text-2xl my-3 overflow-ellipsis-bundle">
+운영체제 - 기말범위
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/operatingsystem2/ class="content-summary text-sm overflow-hidden">
+06-File-Management Directory File Directory Directory도 일종의 파일이다 해당 파일 FCB의 식별자만 저장한다 inode (index node) Unix에서는 FCB와 inode가 같다 모든 파일, 폴더가 Unique한 값을 가진다. (root는 2로 고정) File Systems 파티션의 구조 boot block, super block, FCB list, data blocks Partition Control block (Super block) blocks 개수, free data blocks 개수, free data blocks list 저장 inode table, free inode 개수, free inode list 저장 File Control Block (FCB) UNIX에서 128byte의 크기를 가진다 파일 이름, 파일 크기, uid, gid, 파일 주소 등등 저장 Management of Data Blocks Contiguous Allocation 각각의 파일을 연속적으로 저장 Direct Access File grow problem 존재 External fragmentation, Internal fragmentation 발생 Chained Allocation Direct acess File grow problem X External fragmentation X Poor data safety (앞 블록에 문제가 생기면 뒤 블록도 사용 불가능) Indexed Allocation (현대에 사용) Direct access File grow problem X External fragmentation X Medium level data safety (index block만 괜찮으면 된다) Index block이 추가로 필요하다 Free-Space Management Counting N-M&mldr; N번부터 M개의 블록이 비어있다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/stream/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Stream, Optional
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/stream/ class="content-summary text-sm overflow-hidden">
+Lambda 표현식 매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다. 함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다. 함수 몸체가 return문으로만 구성되어 있으면 괄호{}을 생략할 수 있습니다. 1(int x) -> x+1; 2(int x, int y) -> x+y; 3(Thread lamT) -> { lamT.start(); } Stream 특징 원본 데이터를 변경하지 않습니다. 요청되었을때만 데이터를 처리한다. parallelStream()을 이용하여 병렬처리가 가능하다. 예제1 1List&lt;String> highCaloriesFoodName = foodList.stream() 2 .filter(food -> { 3 System.out.println("filter : " + food.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/maven/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Maven
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/maven/ class="content-summary text-sm overflow-hidden">
+Maven coordinates groupId : 회사나 단체명 ex) org.springframework, org.prgms artifactId : 프로젝트 명 ex) spring-context, order-api version : 프로젝트 버전 ex) 5.2.15-RELEASE, 1.0-SNAPSHOT Build lifecycle validate, compile, test, package, verify, install, deploy Trnsitive Dependencies 1A 2├── B 3│ └─ C 4└── D C는 A의 transitive 의존성 Dependency Scope (&lt;scope>) compile(default) : 컴파일, 테스트, 실행에 라이브러리가 필요할때 provided : JDK 또는 컨테이너가 해당 라이브러리를 제공할때 (JSP, servlet) runtime : 실행과 테스트에만 사용될때 (JDBC driver) test : 테스트 컴파일 및 실행에만 필요할때 (easymock, junit) system: provided와 비슷하지만, 사용자가 jar파일의 위치를 지정 example 1&lt;project xmlns="http://maven.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/record/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Record
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/record/ class="content-summary text-sm overflow-hidden">
+레코드란 불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스 JDK16부터 지원 예제 Record 적용 전
+1public class Person { 2 private final String name; 3 private final int age; 4 5 public Person(String name, int age) { 6 this.name = name; 7 this.age = age; 8 } 9 10 public String getName() { 11 return name; 12 } 13 14 public int getAge() { 15 return age; 16 } 17} Record 적용 후
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/logging/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Logging
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/logging/ class="content-summary text-sm overflow-hidden">
+Java Logging Framework java.util.logging Apache Commons logging Log4J Logback SLF4J SLF4J (Simple Loggin Facade for Java) Loggin Framework들을 추상화시켜 놓은 것 Facade Pattern을 이용한 Logging framework Log Level trace - debug - info - warn - error
+Logger Logger 만들기 1private static final Logger logger = LoggerFactory.getLogger(OrderTester.class); Logger 이름은 보통 FQCN (상위 패키지 + 클래스)으로 사용한다 Logger 사용 1logger.info("version -> {}", logger.getName()); logback logback 설정파일 우선순위 logback-test.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/ioc/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - IoC (Inversion of Control)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/ioc/ class="content-summary text-sm overflow-hidden">
+IoC (Inversion of Control) 제어의 역전 메소드나 객체의 호출 작업이, 개발자가 아니라, 외부에서 결정되는 것 객체 간 결합도를 줄이고 유연한 코드를 작성하게 한다 IoC Container IoC가 일어나는 곳, IoC를 수행하는 대상 IoC 클래스 예제 1 public class OrderContext { 2 public OrderRepository orderRepository() { 3 return new OrderRepository(); 4 } 5 6 public OrderService orderService() { 7 return new OrderService(voucherService(), orderRepository()); 8 } 9 } 위 예제에서 OrderContext 클래스가 IoC 컨테이너 역할을 하고 있다 BeanFactory Spring container의 최상위 interface Bean을 생성하고 의존관계를 설정하는 기능을 담당하는 가장 기본적인 IoC 컨테이너 Lazy-loading 방식 사용 : Bean을 사용할때 loading -> 경량 컨테이너 ApplicationContext BeanFactroy의 구현체 Eager-loading 방식 : Runtime에 Bean을 loading &lt;-> Lazy-loading AnnotationConfigApplicationContext ApplicationContext의 구현체 Annotation 기반으로 설정하는 방식 &lt;-> XML방식
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/environment/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Environment
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/environment/ class="content-summary text-sm overflow-hidden">
+application.properties 환경변수 설정 application.properties 파일을 작성한다 파일 위치 : reousrces/application.properties 파일 내용 예시 : key = value 형태 app.name = spring Configuration에 설정한다 1@Configuration 2@PropertySource("application.properties") 3public class AppConfiguration {...} 환경변수 가져오기 ApplicationContext 활용하는 방법 1var environment = applicationContext.getEnvironment(); 2var property = environment.getProperty("app.name") @Value Annotation 활용 1@Value("${app.name}") 2private String name; 별도의 클래스 정의 클래스 정의
+1@Component 2@PropertySource("version.properties") 3public class VersionProvider { 4 private final String version; 5 6 public VersionProvider(@Value("${version:v0.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/profile/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Profile
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/profile/ class="content-summary text-sm overflow-hidden">
+Profile 프로그램을 개발, 테스트, 배포 환경으로 나눠서 실행해야할때가 있다 환경 설정을 위해 spring boot에서는 profile을 사용할 수 있다. 환경 변수 application.yml 1spring.config.activate.on-profile: dev 2env: 3 version: "v1.0.0 dev" 4--- 5spring.config.activate.on-profile: local 6env: 7 version: "v1.0.0 local" 8--- yml 파일에서는 &mdash;를 이용해 파일 분할이 가능하다 spring.config.active.on-profile을 설정해서 특정 프로필에 적용하고 싶은 환경변수를 설정 할 수 있다. application-&lt;profile>.properties .properties파일에서는 여러 파일로 분할하여 설정한다 예를 들어 &ldquo;dev"프로파일에서 적용될 파일은 &ldquo;application-dev.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/class_resource_issue/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/class_resource_issue/ class="content-summary text-sm overflow-hidden">
+상황 개발 환경에서는 ClassPathResource를 문제없이 불러온다
+jar로 package해서 실행했을 때 오류가 발생한다
+Caused by: java.lang.RuntimeException: Cannot read blacklist file at org.academy.springorder.blacklist.BlacklistRepository.list(BlacklistRepository.java:25) at org.academy.springorder.blacklist.BlacklistService.list(BlacklistService.java:16) at org.academy.springorder.CommandLineApplication.main(CommandLineApplication.java:66) ... 8 more 문제의 코드
+1 List&lt;String> list = new ArrayList&lt;String>(); 2 3 try { 4 list = Files.readAllLines(blacklist.getFile().toPath()); 5 } 6 catch (IOException e) { 7 throw new RuntimeException("Cannot read blacklist file"); 8 } 해결 readAllLines를 사용하지 않고 InputStreamReader와 BufferedRearder를 사용하여 해결하였다.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/try_with_resources/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Try with resources로 간결하게 반납하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/try_with_resources/ class="content-summary text-sm overflow-hidden">
+기존 코드 - try-catch-finally 사용 1Connection connection = null; 2Statement statement = null; 3ResultSet resultSet = null; 4 5try { 6 connection = DriverManager.getConnection(/* SECRET */); 7 statement = connection.createStatement(); 8 9 resultSet = statement.executeQuery("select * from customers"); 10 11 while (resultSet.next()) { 12 var name = resultSet.getString("name"); 13 var customerId = UUID.nameUUIDFromBytes(resultSet.getBytes("customer_id")); 14 logger.info("Customer id:{}, name: {}", customerId, name); 15 } 16} catch (SQLException e) { 17 logger.error("Error while connecting to DB", e); 18 throw e; 19} 20finally { 21 try { 22 if (connection !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/jdbc/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - JDBC, DBCP, JdbcTemplate
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/jdbc/ class="content-summary text-sm overflow-hidden">
+JDBC 자바 프로그램을 DB와 연결해주는 API
+JDBC 드라이버 DBMS와 통신을 담당하는 자바 클래스
+JDBC 드라이버는 4가지 종류가 있다 (Type 1~4) Mysql은 Type 4를 지원한다 예제 - Connection을 직접 연결 1public List&lt;UUID> findAllIds() { 2 List&lt;UUID> uuids = new ArrayList&lt;>(); 3 try ( 4 var connection = DriverManager.getConnection(url, username, password); 5 var statement = connection.createStatement(); 6 var resultSet = statement.executeQuery(SELECT_ALL_SQL); 7 ) { 8 while (resultSet.next()) { 9 var customerName = resultSet.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/double_brace_initialization/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Java - 이중 중괄호와 Anti-Pattern
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/double_brace_initialization/ class="content-summary text-sm overflow-hidden">
+기존 코드 1Map&lt;String, Object> map = new HashMap&lt;>(); 2map.put("customerId", customer.getCustomerId().toString().getBytes()); 3map.put("name", customer.getName()); 4map.put("email", customer.getEmail()); 5map.put("createdAt", Timestamp.valueOf(customer.getCreatedAt())); 6return map; Double Brace Initialization 적용 후 1return new HashMap&lt;>() {{ 2 put("customerId", customer.getCustomerId().toString().getBytes()); 3 put("name", customer.getName()); 4 put("email", customer.getEmail()); 5 put("createdAt", Timestamp.valueOf(customer.getCreatedAt())); 6}}; 효과 장점 코드가 가독성이 좋아진다 단점 추가로 익명 클래스를 사용한다 -> 메모리 추가 사용
+인스터스 및 개체에 대한 숨겨진 참조를 가진다 -> Memory Leak 유발 가능
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/transaction/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Transaction (트랜잭션)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/transaction/ class="content-summary text-sm overflow-hidden">
+상황 소비자가 판매자의 물건을 구매하는 함수를 구현 중이라고 하자 물건을 샀을때, 물건의 가격만큼 판매자의 돈은 증가시키고, 소비자의 돈은 감소시켜야한다 판매자의 돈은 증가시켰는데, 소비자의 돈을 감소시키는 중 오류가 났다 오류가 난 경우, 판매자의 돈을 증가시키기 이전으로 Rollback 해야 한다 위의 두가지 연산은 하나의 Transaction으로 묶여서 한번에 처리되어야 한다 Transaction 관리의 종류 Programmatic transaction management (프로그래밍적 트랜잭션 관리)
+Transaction 관련 코드를 직접 작성 예제 - TransactionManager 사용 1// Bean 등록 2@Bean 3public PlatformTransactionManager platformTransactionManager(DataSource dataSource) { 4 return new DataSourceTransactionManager(dataSource); 5} 6// 사용할 때 7// 새로운 트랜잭션을 시작한다 8var transaction = transactionManager.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/mvc_servlet/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - MVC 패턴, Servlet (서블릿)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/mvc_servlet/ class="content-summary text-sm overflow-hidden">
+Servlet 개념 클라이언트의 요청을 처리하고, 그 결과를 반환하는 자바 웹 프로그래밍 기술
+웹페이지를 동적으로 생성하는 역할을 수행한다 Servlet Conainer의 역할 Servlet의 생명주기를 관리한다 웹서버와의 통신지원 멀티쓰레드 지원, 관리 선언적인 보안 관리 예제 - Servlet 구현 1public class TestServlet extends HttpServlet { 2 private static final Logger logger = LoggerFactory.getLogger(TestServlet.class); 3 4 @Override 5 public void init() throws ServletException {} 6} doGet, doPost 등의 메소드를 구현해서 http 요청을 처리할 수 있다 Servlet Context를 등록하는 방법 web.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/object/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - POJO, DAO, DTO, VO, Entity
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/object/ class="content-summary text-sm overflow-hidden">
+Spring의 여러 객체들 여기저기서 들어봤지만 개념이 머리에 정리되지 않아 기술한다 POJO (Plain Old Java Object) 특정 기술에 종속되지 않는 순수한 자바 객체
+기본 생성자를 가진다 아무것도 상속받거나, 구현하지 않아야 한다 getter랑 setter만 존재 해야한다 1public class Person { 2 private String name; 3 private int age; 4 5 public Person() { 6 } 7 8 public String getName() { 9 return name; 10 } 11 12 public int getAge() { 13 return age; 14 } 15 16 public void setName(String name) { 17 this.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/restcontroller/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - @RestController 정리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/restcontroller/ class="content-summary text-sm overflow-hidden">
+@RestController @Controller와 @ResponseBody를 합친 Annotation이다 @Controller는 ViewName을 반환해서 DispatcherServlet이 ViewResolver을 사용한다 @RestController는 객체를 반환해서 HttpMessageConverter가 객체를 Json으로 변환한다 @Controller와의 코드 비교 @Controller 1@GetMapping("") 2public @ResponseBody List&lt;Voucher> getVouchers() { 3 return voucherRepository.list(); 4} @RestController 1@GetMapping("") 2public List&lt;Voucher> getVouchers() { 3 return voucherRepository.list(); 4} @RestControllerAdvice @ControllerAdvice와 같이 @Controller에서 발생한 예외를 전역적으로 처리하는 Annotation이다 @ControllerAdvice와 @RestControllerAdvice의 차이는 @Controller와 @RestController의 차이와 같다 예제 - @RestControllerAdvice 구현 필자는 Controller에서 발생한 IllegalArgumentException을 400 Bad Request로 처리하였다 1@RestControllerAdvice 2public class ControllerExceptionHandler { 3 4 @ExceptionHandler(IllegalArgumentException.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/responseentity/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - ResponseEntity 정리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/responseentity/ class="content-summary text-sm overflow-hidden">
+ResponseEntity Spring에서 HttpEntity라는 클래스를 지원한다 HttpEntity를 상속받는 두 클래스가 RequestEntity와 ResponseEntity이다 RequestEntity는 http요청을 보낼때 사용하고 ResponseEntity는 http응답을 할때 사용한다 정의 body, header, status를 인자로 넘길 수 있다 1public class ResponseEntity&lt;T> extends HttpEntity&lt;T> { 2 public ResponseEntity(HttpStatusCode status) {...} 3 4 public ResponseEntity(@Nullable T body, HttpStatusCode status) {...} 5 6 public ResponseEntity(MultiValueMap&lt;String, String> headers, HttpStatusCode status) {...} 7 8 public ResponseEntity(@Nullable T body, @Nullable MultiValueMap&lt;String, String> headers, HttpStatusCode status) {.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/method_reference/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Method reference (메소드 참조)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>☕</span>
+<span>Java</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/java/method_reference/ class="content-summary text-sm overflow-hidden">
+메소드 참조 메소드 참조는 Java 8부터 도입되었다 lambda와 같이 사용하면 간결한 코드를 만들 수 있다 정적 메소드 참조의 문법 1// lambda 식 2(str) -> String.toString(str); 3// 정적 메소드 참조 4String::toString 인스턴스 메소드 참조의 문법 1Person person; 2// lambda 식 3(age) -> person.setAge(); 4// 인스턴스 메소드 참조 5person::setAge 활용 1// lambda식 2getItems.forEach(item -> System.out.println(item)); 3// 메소드 참조 4getItems.forEach(System.out::println);
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/rest_error_response/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - RESTful API에서 내맘대로 에러 응답하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/rest_error_response/ class="content-summary text-sm overflow-hidden">
+1. 클래스 정의 1@Getter 2@RequiredArgsConstructor 3public class ExceptionResponse { 4 private final LocalDateTime timestamp = LocalDateTime.now(); // 2023-08-01T00:00:57.5995502 5 private final int status; // 400 6 private final String error; // MethodArumentNotValidException 7 private final String message; // 이메일 형식이 아닙니다 8 private final String path; // /api/customer 9} 내가 원하는 방식대로 클래스를 정의한다, 주석에는 해당 필드의 예시를 적어놓았다 2. ResponseEntity 만드는 함수 정의 1private ResponseEntity&lt;ExceptionResponse> handleException(HttpStatus status, Exception e, HttpServletRequest request) { 2 ExceptionResponse response = new ExceptionResponse( 3 status.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/bean_validation/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - Bean Validation : Annotation으로 Validation하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/bean_validation/ class="content-summary text-sm overflow-hidden">
+Bean Validation Annotation을 달아서 Validation을 수행할 수 있다. 주로 jakarta.validation과 hibernate.validator 두 패키지를 사용한다. Dependency Diagram 구조 spring-boot-starter-validation -> hibernate-validator -> jakarta.validation-api
+jakarta.validation에서 지원하는 annotation Annotation Description @NotNull null이 아닌가 ("", " " => 통과) @NotEmpty null이 아니고, size가 0인가 (" " => 통과) @NotBlank null이 아니고, trim한 결과가 empty인가 @Size 문자열, 배열의 길이가 해당 범위에 있는가 @Min 숫자가 해당 범위에 있는가 @Max 숫자가 해당 범위에 있는가 @Email 이메일 형식에 맞는가 @Pattern Regex(정규식)에 맞는가 @Past 과거의 날짜인가 @Future 미래의 날짜인가 @Digits 정수, 소수 자릿수가 해당 범위에 있는가 @DecimalMin, @DecimalMax 자릿수가 해당 범위에 있는가 (소수 이하 자릿수 포함) @Positive, @PositiveOrZero, @Negative, @NegativeOrZero hibernate.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+</section>
+<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
+<span class="text-xl mr-3">🧠</span>
+<span> Algorithm (104)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
+<span class="text-xl mr-3">🌊</span>
+<span> C/CPP (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
+<span class="text-xl mr-3">☕</span>
+<span> Java (8)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
+<span class="text-xl mr-3">🍌</span>
+<span> Javascript (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
+<span class="text-xl mr-3">🐍</span>
+<span> Python (9)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
+<span class="text-xl mr-3">🍃</span>
+<span> Spring (30)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
+<span class="text-xl mr-3">🔨</span>
+<span> 개발 도구 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
+<span class="text-xl mr-3">🎸</span>
+<span> 기타 (5)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
+<span class="text-xl mr-3">👨‍💻</span>
+<span> 모각코 (38)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
+<span class="text-xl mr-3">🤖</span>
+<span> 인공지능 (2)</span>
+</a>
+<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
+<span class="text-xl mr-3">🏫</span>
+<span> 학과 공부 (27)</span>
+</a>
+</section>
+<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>boj (53)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>c++ (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>celery (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>cs (16)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>django (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>docker-compose (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>elk (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>fastapi (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>git (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>github-actions (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>hackerrank (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>https (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>java (37)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>javascript (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>jwt (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>kubernetes (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>nginx (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ocaml (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>open-source (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>programmers (48)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>pytest (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>python (111)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rabbitmq (2)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>rag (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>react (6)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>security (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>software-engineering (3)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>spring (31)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>sql (5)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>ssl (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>testing (4)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>typescript (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>vercel (1)</span>
+</a>
+<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
+<span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span>
+</a>
+</section>
+<section id=search-section class=hidden>
+<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
+<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
+<style>div.pagefind-ui__result-thumb{display:none}</style>
+<div id=search></div>
+<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
+</section>
+</div>
+<div id=pagination-box>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/2/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/ aria-label="Page 1" class=page-link role=button>1</a>
+</li>
+<li class=page-item>
+<a href=/til/page/2/ aria-label="Page 2" class=page-link role=button>2</a>
+</li>
+<li class="page-item active">
+<a aria-current=page aria-label="Page 3" class=page-link role=button>3</a>
+</li>
+<li class=page-item>
+<a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
+</li>
+<li class=page-item>
+<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
+</li>
+<li class=page-item>
+<a href=/til/page/4/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+</body>
+</html>
