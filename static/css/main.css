@@ -62,7 +62,8 @@
   }
 
   div#pagination-box span {
-    @apply text-3xl;
+    letter-spacing: -0.4em;
+    @apply text-2xl;
   }
 
   .switch-button {

@@ -3,7 +3,7 @@
 <script type="text/javascript" src="{{ .Site.BaseURL }}script/main.js"></script>
 
 {{ .Render "header" }}
-<div class="w-full flex max-w-3xl h-screen flex-col">
+<div class="w-full flex max-w-3xl flex-col">
 	<section class="mb-8 w-full">
 		<video preload="metadata" poster="{{ .Site.BaseURL }}asset\profile.jpg" class="w-64 h-64 mx-auto" autoplay loop
 			muted>
@@ -39,10 +39,17 @@
 
 		<div class="w-full p-5">
 			<section id="summary-section" class="grid gap-8">
-				<!-- 최근에 commit한 20개 페이지 -->
-				{{ range first 20 .Site.RegularPages.ByLastmod.Reverse }}
+				<!-- 최근에 commit한 순서로 정렬 -->
+				{{ $pages := .Site.RegularPages.ByLastmod.Reverse }}
+				{{ $paginator := .Paginate $pages}}
+				{{ range $paginator.Pages }}
 				{{ .Render "summary" }}
 				{{ end }}
+				<div class="py-16">
+					<div id="pagination-box">
+						{{ template "_internal/pagination.html" .}}
+					</div>
+				</div>
 			</section>
 			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
 				{{ .Render "sections" }}
