@@ -975,6 +975,11 @@ input[name="switch"]:checked+label{
   margin-bottom: 1rem;
 }
 
+.my-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mb-16{
   margin-bottom: 4rem;
 }
