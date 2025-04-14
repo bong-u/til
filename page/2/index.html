@@ -75,6 +75,32 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/autowired/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Autowired
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/autowired/ class="content-summary text-sm overflow-hidden">
+@Autowired를 이용한 자동 객체 주입 방법1 : Field에 적용
+1public class MemberListPrinter { 2 @Autowired 3 private MemberDao memberDao; 4 @Autowired 5 private MemberPrinter printer; 6 7 public MemberListPrinter() {} 8 9 public void printAll() { 10 Collection&lt;Member> members = memberDao.selectAll(); 11 members.forEach(m -> printer.print(m)); 12 } 13} 방법2 : Method에 적용
+1public class MemberListPrinter { 2 private MemberDao memberDao; 3 private MemberPrinter printer; 4 5 public MemberListPrinter() {} 6 7 @Autowired 8 public void setMemberDao(MemberDao memberDao) { 9 this.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/spring/09_spring_mvc/ class="text-2xl my-3 overflow-ellipsis-bundle">
 09_spring_MVC
 </a>
@@ -534,30 +560,6 @@ Spring Boot Framework - KAKAO 김가연 선배님
 <div class=flex-grow>
 <a href=/til/school/spring_boot/ class="content-summary text-sm overflow-hidden">
 REST API REprensentational State Transfer 웹의 장점을 최대한 활용할 수 있는 아키텍처 Layered Architecture Presentation Layer 비즈니스 로직과 UI를 분리 @Controller가 붙은 클래스가 이에 해당 Service Layer 비즈니스 로직 구현 @Service가 붙은 클래스가 이에 해당 Data Access Layer 데이터를 조회, 등록, 수정, 삭제 @Repository가 붙은 클래스가 이에 해당 IoC Inversion of Control : 제어의 역전 모든 객체에 대한 제어권이 바뀌었음을 의미 객체의 주인이 개발자가 아닌 Spring application DI Constructor Injection
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/js_arguments_object_issue/ class="text-2xl my-3 overflow-ellipsis-bundle">
-JS - Arguments object 관련 이슈
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/js_arguments_object_issue/ class="content-summary text-sm overflow-hidden">
-상황 나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다. 구글에서 제공하는 태그 소스 중 일부이다. 1function gtag() { 2 dataLayer.push(arguments); 3} 나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다. 1const gtag = (...args) => { 2 dataLayer.push(args); 3}; 하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다. 이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">

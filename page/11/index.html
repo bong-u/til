@@ -74,6 +74,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-11T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 주차 요금 계산 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="content-summary text-sm overflow-hidden">
+1import math 2 3def diff(start, end): 4 sh, sm = map(int, start.split(':')) 5 eh, em = map(int, end.split(':')) 6 7 return (eh*60+em) - (sh*60+sm) 8 9def calc(time, baseTime, baseFee, unitTime, unitFee): 10 if time &lt; baseTime: 11 return baseFee 12 time -= baseTime 13 return baseFee + math.ceil(time/unitTime)*unitFee 14 15def solution(fees, records): 16 cars = {} 17 for i in records: 18 time, car_num, _ = i.split(' ') 19 # 새로 입차 한 경우 20 if not car_num in cars: 21 cars[car_num] = [0, time] 22 else: 23 # 출차 후 다시 입차한 경우 24 if cars[car_num][1] == '': 25 cars[car_num][1] = time 26 # 출차한 경우 27 else: 28 cars[car_num][0] += diff(cars[car_num][1], time) 29 cars[car_num][1] = '' 30 31 # 아직 출차하지 않은 차량들에 대해 23:59에 출차한 것으로 간주 32 for num in cars: 33 if cars[num][1] !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-11 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'2023-08-10T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/pgs_%EC%96%91%EA%B6%81%EB%8C%80%ED%9A%8C/ class="text-2xl my-3 overflow-ellipsis-bundle">
 프로그래머스 - 양궁대회 (L2)
@@ -526,30 +550,6 @@ ouput 6
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2023-07-18 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-17T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%AC%B4%EC%9D%B8%EB%8F%84_%EC%97%AC%ED%96%89/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 무인도 여행 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%AC%B4%EC%9D%B8%EB%8F%84_%EC%97%AC%ED%96%89/ class="content-summary text-sm overflow-hidden">
-1from collections import deque 2 3vx = [0, 0, -1, 1] 4vy = [-1, 1, 0, 0] 5 6def solution(maps): 7 N = len(maps) 8 M = len(maps[0]) 9 answer = [] 10 11 visited = [[False]*M for _ in range(N)] 12 13 for i in range(N): 14 for j in range(M): 15 if maps[i][j] != 'X' and not visited[i][j]: 16 cnt = 0 17 q = deque() 18 q.append((j, i)) 19 visited[i][j] = True 20 while q: 21 cx, cy = q.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-17 00:00:00 +0900 KST">
 </div>
 </div>
 <div class="border-b border-line"></div>

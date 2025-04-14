@@ -74,6 +74,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'2025-04-14T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/%EC%B5%9C%EC%8B%A0%EC%BB%B4%ED%93%A8%ED%84%B0%ED%8A%B9%EA%B0%95/ class="text-2xl my-3 overflow-ellipsis-bundle">
+최신컴퓨터특강
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/%EC%B5%9C%EC%8B%A0%EC%BB%B4%ED%93%A8%ED%84%B0%ED%8A%B9%EA%B0%95/ class="content-summary text-sm overflow-hidden">
+1주차 - 원유재 교수님 - 첨단분야 혁신융합대학사업 (COSS: Convergence and Open Sharing System) 추진배경 : 디지털 전환, 글로벌 경쟁 심화에 따라 신기술 초격차 확보 및 급증하는 신산업 인력 수요에 대응할 수 있는 인재 양성 충남대학교 : 블록체인 분야 특화, 연구협력(연구단지) 중심 특화 5개 융복합창의전공 블록체인융합전공 사이버보안융합전공 클라우드융합전공 데이터보안활용융합전공 : 컴퓨터 비전공자 대상 개인정보보호융합전공 25-1학기 충남대학교 개설 과목 블록체인 개론 블록체인 프로그래밍 디지털 자산과 블록체인 학생지원 혁신융합대학 학위 취득 장학금 지원 전문가와 교류 기회 학습기기 지원 현장실습 기회 3주차 - 김형신 교수님 AI기술의 임베디드 시스템화 이유 Privacy (개인정보 보호) Latency (지연시간) Cost (비용) Embedding Resnet Resnet을 임베디드 시스템에 적용함
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2025-04-14 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-12-16T15:45:54\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/python/interpreter/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Python의 동작 원리
@@ -550,32 +574,6 @@ Spring 개념 - Bean Lifecycle & Scope
 Bean 객체의 Lifecycle Bean 객체가 생성 또는 소멸될때 특정 코드를 실행하게 할 수 있다. @PostConstruct, @PreDestroy Annotation 사용
 1// Bean 객체 생성될 때 실행 2@PostConstruct 3public void postConstruct() {...} 4 5// Bean 객체 소멸될 때 실행 6@PreDestroy 7public void preDestroy() {...} InitializingBean, DisposableBean 구현
 1public class Client implements InitializingBean, DisposableBean { 2 // Bean 객체 생성될 때 실행 3 @Override 4 public void afterPropertiesSet() throws Exception {.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/autowired/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Spring 개념 - Autowired
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/autowired/ class="content-summary text-sm overflow-hidden">
-@Autowired를 이용한 자동 객체 주입 방법1 : Field에 적용
-1public class MemberListPrinter { 2 @Autowired 3 private MemberDao memberDao; 4 @Autowired 5 private MemberPrinter printer; 6 7 public MemberListPrinter() {} 8 9 public void printAll() { 10 Collection&lt;Member> members = memberDao.selectAll(); 11 members.forEach(m -> printer.print(m)); 12 } 13} 방법2 : Method에 적용
-1public class MemberListPrinter { 2 private MemberDao memberDao; 3 private MemberPrinter printer; 4 5 public MemberListPrinter() {} 6 7 @Autowired 8 public void setMemberDao(MemberDao memberDao) { 9 this.
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">

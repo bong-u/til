@@ -75,6 +75,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2748/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 2748 : 피보나치 수2 (B2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_2748/ class="content-summary text-sm overflow-hidden">
+&ldquo;알고리즘 분류-DP"에서 안 푼 문제이길래 한 번 풀어봤다. 1N = int(input()) 2 3L = [0, 1] + [0]*89 4 5for i in range(2, N+1): 6 L[i] = L[i-1]+L[i-2] 7 8print (L[N])
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_2573/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 2573 : 빙산 (G5)
 </a>
@@ -523,30 +547,6 @@ bong-u/til
 <div class=flex-grow>
 <a href=/til/algorithm/boj_2096/ class="content-summary text-sm overflow-hidden">
 1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3dp1 = [L[0][i] for i in range(3)] 4dp2 = [L[0][i] for i in range(3)] 5 6for i in range(1, N): 7tmp1 = [0]*3 8tmp2 = [0]*3 9for j in range(3): 10 11 if j == 0: 12 tmp1[0] = L[i][j] + max(dp1[0], dp1[1]) 13 tmp2[0] = L[i][j] + min(dp2[0], dp2[1]) 14 elif j == 1: 15 tmp1[1] = L[i][j] + max(dp1[0], dp1[1], dp1[2]) 16 tmp2[1] = L[i][j] + min(dp2[0], dp2[1], dp2[2]) 17 else: 18 tmp1[2] = L[i][j] + max(dp1[1], dp1[2]) 19 tmp2[2] = L[i][j] + min(dp2[1], dp2[2]) 20 dp1 = [i for i in tmp1] 21 dp2 = [i for i in tmp2] 22 23print (max(dp1), min(dp2)) Memoization과정이 다른 memoization 변수에 대해 종속적이라면 잘못된 결과를 초래한다 위 코드에서는 이를 방지하기 위해 tmp1, tmp2 변수를 사용한다 깊이 생각하지 않고 여러 번 제출해서 WA개수가 조금 많다;;
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_12852/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 12852 : 1로 만들기 2 (S1)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_12852/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2 3dp = [0, 0] + [10**6]*(N-1) 4bt = [0]*(N+1) 5 6for i in range(2, N+1): 7 dp[i] = min(dp[i-1]+1, dp[i]) 8 bt[i] = i-1 9 10 if i%3 == 0: 11 if dp[i//3]+1 &lt; dp[i]: 12 dp[i] = dp[i//3]+1 13 bt[i] = i//3 14 if i%2 == 0: 15 if dp[i//2]+1 &lt; dp[i]: 16 dp[i] = dp[i//2]+1 17 bt[i] = i//2 18 dp[i] = min(dp[i], dp[i//2]+1) 19 20print(dp[N]다 21i = N 22while i !
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">

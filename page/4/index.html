@@ -75,6 +75,31 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/bean_validation/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - Bean Validation : Annotation으로 Validation하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/bean_validation/ class="content-summary text-sm overflow-hidden">
+Bean Validation Annotation을 달아서 Validation을 수행할 수 있다. 주로 jakarta.validation과 hibernate.validator 두 패키지를 사용한다. Dependency Diagram 구조 spring-boot-starter-validation -> hibernate-validator -> jakarta.validation-api
+jakarta.validation에서 지원하는 annotation Annotation Description @NotNull null이 아닌가 ("", " " => 통과) @NotEmpty null이 아니고, size가 0인가 (" " => 통과) @NotBlank null이 아니고, trim한 결과가 empty인가 @Size 문자열, 배열의 길이가 해당 범위에 있는가 @Min 숫자가 해당 범위에 있는가 @Max 숫자가 해당 범위에 있는가 @Email 이메일 형식에 맞는가 @Pattern Regex(정규식)에 맞는가 @Past 과거의 날짜인가 @Future 미래의 날짜인가 @Digits 정수, 소수 자릿수가 해당 범위에 있는가 @DecimalMin, @DecimalMax 자릿수가 해당 범위에 있는가 (소수 이하 자릿수 포함) @Positive, @PositiveOrZero, @Negative, @NegativeOrZero hibernate.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/spring/jpa1/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Spring - JPA : 개념, 영속성 컨텍스트, 연관 관계 매핑
 </a>
@@ -541,33 +566,6 @@ SQLD 대비 정리
 React의 특징 Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks DOM HTML element를 tree형태로 표현한 것
 Virtual DOM DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식
 Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : 변경된 부분만 실제 DOM에 반영 Batch Update : 여러 개의 변경사항을 한번에 업데이트 React Component Class Component 생명주기 메소드를 포함 상속을 통해 Component를 생성 mutable state를 가질 수 있음 Functional Component immutable하다 stateless Hooks를 사용 LifeCycle Method Mounting constructor : 컴포넌트 생성자 static getDerivedStateFromProps : props로 state를 설정 render : 컴포넌트 렌더링 componentDidMount : 컴포넌트가 마운트된 직후 Updating static getDerivedStateFromProps : props로 state를 설정 shouldComponentUpdate : 컴포넌트 업데이트 여부 결정 render : 컴포넌트 렌더링 getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전 componentDidUpdate : 컴포넌트 업데이트 직후 Unmounting componentWillUnmount : 컴포넌트가 언마운트되기 직전 React Hooks 함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/network_security/ class="text-2xl my-3 overflow-ellipsis-bundle">
-네트워크 보안
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/network_security/ class="content-summary text-sm overflow-hidden">
-네트워크 보안 개요 네트워크 보안의 요구사항 기밀성(Confidentiality) 정보를 권한이 없는 개인에게 노출되지 않도록 함
-무결성(Integrity) 정보와 프로그램은 인가된 방식으로만 변경되도록 함
-가용성(Availability) 정보 자산에 대해 적절한 시간에 접근 가능하도록 함
-보안 공격의 종류 소극적 공격(Passive Attack) 정보를 도청하거나 감시하는 공격 방어방법 : 암호화 적극적 공격(Active Attack) 정보를 변조하거나 삭제하는 공격 방어방법 : 메시지 인증 보안 서비스 인증(Authentication) 사용자의 신원을 확인하는 과정
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">

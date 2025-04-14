@@ -94,7 +94,14 @@ bong-u/til
 <li><a href=#off-line-rendering-raypath-tracing>Off-line Rendering: Ray/Path Tracing</a></li>
 </ul>
 </li>
-<li><a href=#혼합현실>혼합현실</a></li>
+<li><a href=#mixed-reality-혼합현실>Mixed Reality (혼합현실)</a>
+<ul>
+<li><a href=#용어>용어</a></li>
+<li><a href=#buzzword>Buzzword</a></li>
+<li><a href=#궁극적인-목표>궁극적인 목표</a></li>
+<li><a href=#hmd-head-mounted-display>HMD (Head Mounted Display)</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -109,7 +116,7 @@ bong-u/til
 <div class="text-sm flex mb-8 justify-between text-textgray">
 <div>
 </div>
-<h4 id=date>수정일 : 2023-04-12</h4>
+<h4 id=date>수정일 : 2025-04-14</h4>
 </div>
 <hr class=opacity-30>
 <article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
@@ -391,18 +398,53 @@ $$ \left\lceil \log_2(10^n) \right\rceil = \left\lceil n \cdot \log_2 10 \right\
 <blockquote>
 <p>Rasterization + Ray Tracing, 별도의 코어 사용, 딥러닝 기반 기술 적용</p>
 </blockquote>
-<h2 id=혼합현실>혼합현실</h2>
+<h2 id=mixed-reality-혼합현실>Mixed Reality (혼합현실)</h2>
+<h3 id=용어>용어</h3>
+<ul>
+<li>현실(Real Environment) : 우리가 살고있는, 물리적 실체가 있는 환경</li>
+<li>가상 현실 (Virtual Reality) : 물리적으로 존재하지 않는, 가상으로 만들어진 환경</li>
+<li>증강 현실 (Augmented Reality) : 물리적 현실을 배경으로 가상의 객체를 증강시킨 환경</li>
+<li>혼합 현실 (Mixed Reality) : 물리적 현실과 가상의 객체가 혼재되어 있는 환경 (AR의 확장 형태)</li>
+</ul>
+<h3 id=buzzword>Buzzword</h3>
+<ul>
+<li>확장 현실(eXtended Reality) : MR을 VR까지 확장한 개념</li>
+<li>공간 컴퓨팅 (Spatial Computing) : Apple에서 제안한, 메타버스와 디지털 트윈까지 포함하는 개념</li>
+</ul>
+<h3 id=궁극적인-목표>궁극적인 목표</h3>
+<ul>
+<li>인간의 주요 감각들을 통해 진짜처럼 느끼게 하는 것</li>
+</ul>
+<h3 id=hmd-head-mounted-display>HMD (Head Mounted Display)</h3>
+<blockquote>
+<p>상업적으로 가장 성공한 VR 장치의 형태</p>
+</blockquote>
+<ul>
+<li>XR로의 확장이 가능하도록 전면부의 카메라로 촬영된 영상을 다시 디스플레이에 투사</li>
+</ul>
+<h4 id=hmd의-원리>HMD의 원리</h4>
+<ul>
+<li>작은 고해상도 디스플레이가 눈 앞에 있음 -> 초점을 맞출 수 없음</li>
+<li><strong>렌즈(돋보기)를 사용하여 상을 멀리 두며, 높은 시야각을 제공할 수 있도록 함</strong></li>
+<li>양안 시차를 사용해 거리를 인지할 수 있도록 해당 장치를 제공</li>
+</ul>
+<h4 id=hmd의-tracking>HMD의 Tracking</h4>
+<ul>
+<li>Outside-in Tracking : 외부 센서가 HMD 장치를 관찰하여 트래킹</li>
+<li>Inside-out Tracking : HMD에 설치된 센서들로 외부를 관찰하여 트래킹</li>
+</ul>
+<h4 id=xr-hmd>XR HMD</h4>
+<ul>
+<li>Optical see-through : 반투명한 디스플레이 내부에서 빛을 반사하여 전달</li>
+<li>Video see-through : 전면부의 카메라로 찍은 이미지에 가상의 물체를 더해 렌더링</li>
+</ul>
 </article>
 <div id=" meta" class=my-16>
 <div>
 <div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/spring_boot/>
+<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/network_security/>
 <span class=mx-3>◀</span>
-Spring Boot Framework - KAKAO 김가연 선배님
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/operatingsystem2/>
-운영체제 - 기말범위
-<span class=mx-3>▶</span>
+네트워크 보안
 </a>
 </div>
 </div>

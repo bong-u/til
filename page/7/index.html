@@ -75,6 +75,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_12852/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 12852 : 1로 만들기 2 (S1)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_12852/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2 3dp = [0, 0] + [10**6]*(N-1) 4bt = [0]*(N+1) 5 6for i in range(2, N+1): 7 dp[i] = min(dp[i-1]+1, dp[i]) 8 bt[i] = i-1 9 10 if i%3 == 0: 11 if dp[i//3]+1 &lt; dp[i]: 12 dp[i] = dp[i//3]+1 13 bt[i] = i//3 14 if i%2 == 0: 15 if dp[i//2]+1 &lt; dp[i]: 16 dp[i] = dp[i//2]+1 17 bt[i] = i//2 18 dp[i] = min(dp[i], dp[i//2]+1) 19 20print(dp[N]다 21i = N 22while i !
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_17070/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 17070 : 파이프 옮기기 1 (G5)
 </a>
@@ -521,30 +545,6 @@ bong-u/til
 <div class=flex-grow>
 <a href=/til/algorithm/boj_1167/ class="content-summary text-sm overflow-hidden">
 1import sys 2sys.setrecursionlimit(10**6) 3input = sys.stdin.readline 4 5V = int(input()) 6G = [[] for _ in range(V)] 7for _ in range(V): 8 token = list(map(int, input().split()))[:-1] 9 for i in range(1, len(token), 2): 10 G[token[0]-1].append((token[i]-1, token[i+1])) 11 12def dfs(node, dist): 13 global max_node, max_dist 14 visited[node] = True 15 if dist > max_dist: 16 max_node = node 17 max_dist = dist 18 for n_node, n_dist in G[node]: 19 if not visited[n_node]: 20 dfs(n_node, dist+n_dist) 21 22max_node = 0 23 24max_dist = 0 25visited = [False]*V 26dfs(0, 0) 27max_dist = 0 28visited = [False]*V 29dfs(max_node, 0) 30 31print (max_dist) 최근에 푼 &ldquo;1967: 트리의 지름&rdquo; 덕분에 쉽게 해결할 수 있었다 기억하자 트리의 지름 = (어떤 한 정점에서 가장 먼 점 P)에서 가장 먼 점 사이의 거리
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_14938/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 14938 : 서강그라운드 (G4)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_14938/ class="content-summary text-sm overflow-hidden">
-1N, M, R = map(int, input().split()) 2 3item = list(map(int, input().split())) 4G = [[] for _ in range(N)] 5for _ in range(R): 6 a, b, c = map(int, input().split()) 7 G[a-1].append((b-1, c)) 8 G[b-1].append((a-1, c)) 9 10def dfs(node, dist): 11 global result 12 if dist > M: 13 return 14 if not visit[node]: 15 result += item[node] 16 visit[node] = True 17 18 for n_node, n_dist in G[node]: 19 dfs(n_node, dist+n_dist) 20 21max_result = 0 22 23for i in range(N): 24 result = 0 25 visit = [False]*N 26 dfs(i, 0) 27 max_result = max(max_result, result) 28 29print (max_result) 분류에 다익스트라, 플로이드-워셜로 되어있지만 DFS로 풀었다 풀이 방법 여기서는 재방문 했다고 해서 탐색을 하지 않으면 안된다 재방문했을때 전에 방문했을 때보다 더 짧은 통로로 들어왔다면 더 많은 아이템을 얻을 수 있기 때문이다 다만, 아이템은 방문할 때마다 얻을 수 있는 것이 아니기 때문에 주의하여야 한다 위의 내용을 질문게시판을 보다가 깨닫고 풀 수 있었다
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">

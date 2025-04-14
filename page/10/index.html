@@ -74,6 +74,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-03-18T11:32:48\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/human_computer_interface/ class="text-2xl my-3 overflow-ellipsis-bundle">
+인간-컴퓨터 상호작용
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/human_computer_interface/ class="content-summary text-sm overflow-hidden">
+Design Techniques Contextual Inquiry 사용자의 환경에서 사용자의 행동을 관찰 Design Funnel 아이디어를 확장함과 동시에 축소 시킴으로서 결과 도출 Double Diamond Discover -> Define -> Develop -> Deliver Storyboarding 시나리오를 그림으로 표현 Prototyping 디자인을 표현하는 소프트웨어로 구현 종류: Low-fidelity(충실도가 낮음), High-fidelity(충실도가 높음) User Testing In-lab vs On-site Moderated vs Unmoderated : Exploratory vs Assessment Presentation & Communication Needfinding (요구사항 도출) 용어 UI (User Interface) 제품의 시각적인 요소
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-03-18 11:32:48 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'2023-12-06T11:02:27\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/school/film_and_literature/ class="text-2xl my-3 overflow-ellipsis-bundle">
 영화와 문학
@@ -531,30 +555,6 @@ ouput [2, 1, 3, 4]
 </a>
 </div>
 <div class="post-meta summary-date mt-auto" lastmod="2023-08-12 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-11T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 주차 요금 계산 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="content-summary text-sm overflow-hidden">
-1import math 2 3def diff(start, end): 4 sh, sm = map(int, start.split(':')) 5 eh, em = map(int, end.split(':')) 6 7 return (eh*60+em) - (sh*60+sm) 8 9def calc(time, baseTime, baseFee, unitTime, unitFee): 10 if time &lt; baseTime: 11 return baseFee 12 time -= baseTime 13 return baseFee + math.ceil(time/unitTime)*unitFee 14 15def solution(fees, records): 16 cars = {} 17 for i in records: 18 time, car_num, _ = i.split(' ') 19 # 새로 입차 한 경우 20 if not car_num in cars: 21 cars[car_num] = [0, time] 22 else: 23 # 출차 후 다시 입차한 경우 24 if cars[car_num][1] == '': 25 cars[car_num][1] = time 26 # 출차한 경우 27 else: 28 cars[car_num][0] += diff(cars[car_num][1], time) 29 cars[car_num][1] = '' 30 31 # 아직 출차하지 않은 차량들에 대해 23:59에 출차한 것으로 간주 32 for num in cars: 33 if cars[num][1] !
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-11 00:00:00 +0900 KST">
 </div>
 </div>
 <div class="border-b border-line"></div>
