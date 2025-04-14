@@ -102,6 +102,23 @@ bong-u/til
 <li><a href=#hmd-head-mounted-display>HMD (Head Mounted Display)</a></li>
 </ul>
 </li>
+<li><a href=#5주차---양희철-교수님---aiml-시스템-연구-동향>5주차 - 양희철 교수님 - AI/ML 시스템 연구 동향</a>
+<ul>
+<li><a href=#aiml-시스템의-효율성>AI/ML 시스템의 효율성</a></li>
+<li><a href=#aiml-시스템의-신뢰성>AI/ML 시스템의 신뢰성</a></li>
+</ul>
+</li>
+<li><a href=#6주차---박지훈-교수님---edge-컴퓨팅-환경-인공지능-응용-연구>6주차 - 박지훈 교수님 - Edge 컴퓨팅 환경 인공지능 응용 연구</a>
+<ul>
+<li><a href=#edge-computing>Edge Computing</a></li>
+<li><a href=#edge-computing의-장점>Edge Computing의 장점</a></li>
+<li><a href=#지향하는-것>지향하는 것</a></li>
+<li><a href=#연구-과정>연구 과정</a></li>
+<li><a href=#multitask-learning>Multitask Learning</a></li>
+<li><a href=#각종-연구>각종 연구</a></li>
+<li><a href=#이상-탐지>이상 탐지</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -437,6 +454,114 @@ $$ \left\lceil \log_2(10^n) \right\rceil = \left\lceil n \cdot \log_2 10 \right\
 <ul>
 <li>Optical see-through : 반투명한 디스플레이 내부에서 빛을 반사하여 전달</li>
 <li>Video see-through : 전면부의 카메라로 찍은 이미지에 가상의 물체를 더해 렌더링</li>
+</ul>
+<h2 id=5주차---양희철-교수님---aiml-시스템-연구-동향>5주차 - 양희철 교수님 - AI/ML 시스템 연구 동향</h2>
+<h3 id=aiml-시스템의-효율성>AI/ML 시스템의 효율성</h3>
+<ul>
+<li>
+<p>Distributed Training</p>
+<blockquote>
+<p>현실에서는 hybrid parallelism을 사용</p>
+</blockquote>
+<ul>
+<li>Data Parallelism : 데이터를 나누어 각 노드에서 학습</li>
+<li>Model/Pipeline Parallelism : 모델을 나누어 각 노드에서 학습</li>
+<li>Tensor parallelism : 텐서를 나누어 각 노드에서 학습</li>
+<li>Sequence parallelism : 토큰을 나누어 각 노드에서 학습</li>
+</ul>
+</li>
+</ul>
+<h3 id=aiml-시스템의-신뢰성>AI/ML 시스템의 신뢰성</h3>
+<h4 id=data-privacy>Data Privacy</h4>
+<blockquote>
+<p>클라우드나 엣지에서 학습이 이루어지는 경우, 데이터가 유출될 수 있음</p>
+</blockquote>
+<ul>
+<li>Distributed Learning
+<ul>
+<li>Federated Learning : 데이터는 클라우드에 두고, 모델만 엣지에서 학습
+<ol>
+<li>서버가 장치에 모델을 전송</li>
+<li>사용자의 데이터로 장치에서 모델이 학습</li>
+<li>각 장치가 모델을 N번 업데이트</li>
+<li>업데이트 된 모델이 서버에 전송</li>
+<li>모델이 서버에서 합쳐졌다가, 다시 장치에 전송</li>
+</ol>
+</li>
+<li>Split Learning
+<ul>
+<li>Centralized and distributed neural network training</li>
+<li>Peer-to-peer training for distributed learning</li>
+</ul>
+</li>
+<li>Decentralized Learning
+<ul>
+<li>Swarm learning</li>
+<li>Gossip Learning</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id=model-fairness>Model Fairness</h4>
+<blockquote>
+<p>모델이 특정 집단에 대해 편향되지 않도록 하는 것</p>
+</blockquote>
+<h4 id=reliability>Reliability</h4>
+<ul>
+<li>Machine Unlearning</li>
+</ul>
+<blockquote>
+<p>모델이 특정 데이터를 잊도록 하는 것</p>
+</blockquote>
+<h4 id=robustness>Robustness</h4>
+<blockquote>
+<p>Model Poisoning에 대한 방어</p>
+</blockquote>
+<h2 id=6주차---박지훈-교수님---edge-컴퓨팅-환경-인공지능-응용-연구>6주차 - 박지훈 교수님 - Edge 컴퓨팅 환경 인공지능 응용 연구</h2>
+<h3 id=edge-computing>Edge Computing</h3>
+<blockquote>
+<p>중앙 서버 대신 Edge 컴퓨터가 데이터가 생성되는 곳 혹은 처리가 필요한 곳 근처에서 데이터를 처리하는 개념</p>
+</blockquote>
+<h3 id=edge-computing의-장점>Edge Computing의 장점</h3>
+<ul>
+<li>지연시간 적음 -> 데이터를 중앙 서버에 보낼 필요 없음, 처리된 결과를 기다릴 필요 없음</li>
+<li>통신 연결 불필요</li>
+<li>네트워크 트래픽 감소</li>
+<li>높은 확장성 -> 센서/플랫폼 수를 늘리는 부담이 적음</li>
+<li>개인정보 및 보안 강화 -> 민감한 데이터를 전송할 필요 없음</li>
+</ul>
+<h3 id=지향하는-것>지향하는 것</h3>
+<ul>
+<li>데이터를 더 수집하지 않고 동일한 모델에서 정확도를 높이고 싶다 -> 데이터 증강/생성</li>
+<li>동일한 속도, 성능에 더 높은 정확도를 얻고 싶다 -> 모델 구조 개선</li>
+</ul>
+<h3 id=연구-과정>연구 과정</h3>
+<ul>
+<li>가설 -> 실험 설계 -> 실험 수행 -> 결과 분석</li>
+</ul>
+<h3 id=multitask-learning>Multitask Learning</h3>
+<blockquote>
+<p>하나의 모델이 여러 개의 task를 동시에 학습하는 방법</p>
+</blockquote>
+<h3 id=각종-연구>각종 연구</h3>
+<h4 id=데이터-증강>데이터 증강</h4>
+<blockquote>
+<p>기존에 획득된 데이터를 이용해 데이터에 변형을 가하여 모델의 일반화 성능을 높이는 방법</p>
+</blockquote>
+<h4 id=가상-데이터-생성활용>가상 데이터 생성/활용</h4>
+<blockquote>
+<p>현실과 유사한 가상 데이터를 활용하여 학습한 모델을 현실에 적용</p>
+</blockquote>
+<h4 id=정보-융합>정보 융합</h4>
+<ul>
+<li>어떤 순간적인 정보를 잘 분석하는 알고리즘을 만듦</li>
+</ul>
+<h3 id=이상-탐지>이상 탐지</h3>
+<ul>
+<li>Reconstruction 기반 : 입력 데이터를 차원 축소 -> 차원 확장하여 복원 가능성으로 복원 불가능한 경우/복원 데이터와 원본 차이가 큰 경우 이상으로 판별</li>
+<li>Prediction 기반 : 입력 데이터를 기반으로 미래를 예측 -> 해당 예측과 실제 값의 차이가 큰 경우 이상으로 탐지</li>
+<li>Representation 기반 : 특정 표현 공간으로 데이터 맵핑 -> 표현 공간에서의 거리/밀도 기반으로 클러스터에서 벗어난 데이터를 이상으로 탐지</li>
 </ul>
 </article>
 <div id=" meta" class=my-16>
