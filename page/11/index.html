@@ -74,6 +74,32 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-08-12T14:42:18\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/probabilityandstatistics/ class="text-2xl my-3 overflow-ellipsis-bundle">
+확률과 통계
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🏫</span>
+<span>학과 공부</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/school/probabilityandstatistics/ class="content-summary text-sm overflow-hidden">
+자료의 정리와 요약 통계 자료의 구분
+양적자료(quantitative data) 또는 수치형자료(numerical data) 이산자료(자녀 수), 연속자료(키) 질적자료(qualitative data) 또는 범주형자료(categorical data) 명목자료(혈액형, 성별), 순서자료(학점, 부서평가) 변수의 종류
+1all variables 2├── numerical 3│ ├-─ continuous (리터 수) 4│ └-─ discrete (나라 수) 5└─── categorical 6 ├-─ Nominal (성별) 7 └-─ Ordinal (근무 한 시간 : 12-2) 도수분포표 자료의 특성을 기준으로 일정한 계급으로 나누고, 각 계급에 도수를 대응하여 작성한 표
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-08-12 14:42:18 +0900 +0900">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'2023-08-12T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/pgs_k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C_%EC%86%8C%EC%88%98_%EA%B0%9C%EC%88%98_%EA%B5%AC%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
 프로그래머스 - k진수에서 소수 개수 구하기 (L2)
@@ -529,30 +555,6 @@ ouput 6
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-19T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 숫자 변환하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1from collections import deque 2 3def solution(x, y, n): 4 q = deque() 5 visited = [False] * 1000001 6 q.append((x, 0)) 7 8 while q: 9 cx, cnt = q.popleft() 10 if cx == y: 11 return cnt 12 13 if cx + n &lt;= y and not visited[cx+n]: 14 q.append((cx+n, cnt+1)) 15 visited[cx+n] = True 16 if cx * 2 &lt;= y and not visited[cx*2]: 17 q.append((cx*2, cnt+1)) 18 visited[cx*2] = True 19 if cx * 3 &lt;= y and not visited[cx*3]: 20 q.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-19 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -618,7 +620,7 @@ ouput 6
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (6)</span>
+<span> 기타 (7)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -652,7 +654,7 @@ ouput 6
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (17)</span>
+<span>cs (18)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>

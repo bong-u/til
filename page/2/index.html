@@ -75,6 +75,34 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/component_scan/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring 개념 - Component Scan
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/component_scan/ class="content-summary text-sm overflow-hidden">
+개념 Component Scan은 스프링이 직접 클래스를 검색해서 빈으로 등록해주는 기능이다 xml 또는 annotation을 통해 사용 가능하다 @ComponentScan basePacakges : 패키지 이름을 통해 스캔할 범위를 지정한다
+1@ComponentScan(basePackages="org.academy.order") 2@ComponentScan(basePackages={"org.academy.order", "org.academy.voucher"}) basePackageClasses : 해당 클래스가 들어있는 패키지를 범위로 지정한다
+1@ComponentScan(basePackageClasses="Order.class") 2@ComponentScan(basePackages={"Order.class", "Voucher.class"}) 예제 AppCtx.java
+1@Configuration 2@ComponentScan(basePackages = {"spring"}) 3public class AppCtx {...} MemberInfoPrinter.java
+1@Component("infoPrinter") 2public class MemberInfoPrinter {...} 효과
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/spring/bean_lifecycle_scope/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Spring 개념 - Bean Lifecycle & Scope
 </a>
@@ -544,30 +572,6 @@ CVCS의 종류 : SVN, Perforce, CVS
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/data_communication/ class="text-2xl my-3 overflow-ellipsis-bundle">
-데이터통신
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/data_communication/ class="content-summary text-sm overflow-hidden">
-메시지(패킷, 프레임), 계층 OSI 7 Model Physical Data Link Network Transport Session Presentation Application TCP/IP 계층 계층 이름 메시지 형태 내용 1 Phisical Bits Bits 2 Data Link Ethernet Frame Ethernet 주소 3 Network IP packet, Datagram IP 주소 4 Transport TCP Segment, UDP Datagram Port 번호 5 Application HTTP 메시지, Email 메시지 URL, Email 주소 Protocol Suite HTTP - TCP - IP - ARP 아날로그 신호 - 사인 함수 $$ y(t) = A sin(2\pi ft + \varphi) $$
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -633,7 +637,7 @@ CVCS의 종류 : SVN, Perforce, CVS
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (6)</span>
+<span> 기타 (7)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -667,7 +671,7 @@ CVCS의 종류 : SVN, Perforce, CVS
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (17)</span>
+<span>cs (18)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>

@@ -75,6 +75,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1967/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1967 : 트리의 지름(G4)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1967/ class="content-summary text-sm overflow-hidden">
+1import sys 2sys.setrecursionlimit(10**6) 3M = int(input()) 4G = [[] for _ in range(M)] 5 6for _ in range(M-1): 7 a, b, c = map(int, input().split()) 8 G[a-1].append((b-1, c)) 9 G[b-1].append((a-1, c)) 10 11n1 = 0 12tmp = 0 13 14def dfs(node, length): 15 global n1, tmp 16 visit[node] = True 17 if length > tmp: 18 tmp = length 19 n1 = node 20 for child, v in G[node]: 21 if not visit[child]: 22 dfs(child, length+v) 23 24visit = [False]*M 25dfs(0, 0) 26tmp = 0 27visit = [False]*M 28dfs(n1, 0) 29print (tmp) 인터넷에서 접근 방법을 참고했다 해결 방법 아무 정점에서 가장 먼 어떤 정점을 N이라고 하자 정점 N에서 가장 먼 정점 사이의 거리가 트리의 지름과 같다 느낀 점 루트를 구할 필요가 없다는 것을 깨달았다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_1167/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 1167 : 트리의 지름 (G2)
 </a>
@@ -533,32 +557,6 @@ Sun 10 May 2015 13:54:36 -0700
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-07-11T02:57:58\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/collaborative_process/ class="text-2xl my-3 overflow-ellipsis-bundle">
-협업프로세스 - LINE 나도희 선배님
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/collaborative_process/ class="content-summary text-sm overflow-hidden">
-IT 업계의 조직 구성 목적 조직 프로젝트 A : 기획, 개발자, 디자이너 프로젝트 B : 기획, 개발자, 디자이너 &mldr; 프로젝트가 커지면 관리가 힘듦
-기능 조직 기획 : 기획자, 기획자, 기획자 클라이언트 : 개발자, 개발자, 개발자 서버 : 개발자, 개발자, 개발자 부서내 개발자마다 하는 프로젝트가 다름
-개발 방법론 Waterfall 개발 방법론 명확한 요구사항을 가지고 프로젝트를 진행 장점 대략적인 일정 산출이 가능함 프로젝트의 시작과 끝이 명확함 단점 피드백 처리가 느리다 중간에 수정이 어렵다 Agile 개발 방법론 짧은 개발 주기를 가지고 피드백을 계속 반영하면서 진행 단점 프로젝트의 시작과 끝이 명확하지 않다 프로젝트 관리가 상대적으로 어려움이 있음 Kanban : 프로젝트 관리 도구 카드를 이용해서 &ldquo;할일&rdquo;, &ldquo;진행 중&rdquo;, &ldquo;완료&rdquo; 항목을 나누어서 각 테스크의 상태를 관리하는 보드
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-07-11 02:57:58 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -624,7 +622,7 @@ IT 업계의 조직 구성 목적 조직 프로젝트 A : 기획, 개발자, 디
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (6)</span>
+<span> 기타 (7)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -658,7 +656,7 @@ IT 업계의 조직 구성 목적 조직 프로젝트 A : 기획, 개발자, 디
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (17)</span>
+<span>cs (18)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>

@@ -75,6 +75,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1890/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1890 : 점프 (S1)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1890/ class="content-summary text-sm overflow-hidden">
+1N = int(input()) 2 3L = [list(map(int, input().split())) for _ in range(N)] 4dp = [[0]*N for _ in range(N)] 5dp[0][0] = 1 6for i in range(N): 7 for j in range(N): 8 if L[i][j] == 0: 9 continue 10 if dp[i][j] != 0: 11 right = j+L[i][j] 12 bottom = i+L[i][j] 13 14 if right &lt; N: 15 dp[i][right] += dp[i][j] 16 if bottom &lt; N: 17 dp[bottom][j] += dp[i][j] 18print (dp[N-1][N-1]) dp에 있는 값을 더해야하는데 1을 더해서 몇 번 틀렸다 거의 혼자 힘으로 풀었다
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_2096/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 2096 : 내려가기 (G5)
 </a>
@@ -527,30 +551,6 @@ bong-u/til
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1967/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1967 : 트리의 지름(G4)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_1967/ class="content-summary text-sm overflow-hidden">
-1import sys 2sys.setrecursionlimit(10**6) 3M = int(input()) 4G = [[] for _ in range(M)] 5 6for _ in range(M-1): 7 a, b, c = map(int, input().split()) 8 G[a-1].append((b-1, c)) 9 G[b-1].append((a-1, c)) 10 11n1 = 0 12tmp = 0 13 14def dfs(node, length): 15 global n1, tmp 16 visit[node] = True 17 if length > tmp: 18 tmp = length 19 n1 = node 20 for child, v in G[node]: 21 if not visit[child]: 22 dfs(child, length+v) 23 24visit = [False]*M 25dfs(0, 0) 26tmp = 0 27visit = [False]*M 28dfs(n1, 0) 29print (tmp) 인터넷에서 접근 방법을 참고했다 해결 방법 아무 정점에서 가장 먼 어떤 정점을 N이라고 하자 정점 N에서 가장 먼 정점 사이의 거리가 트리의 지름과 같다 느낀 점 루트를 구할 필요가 없다는 것을 깨달았다
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -616,7 +616,7 @@ bong-u/til
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (6)</span>
+<span> 기타 (7)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -650,7 +650,7 @@ bong-u/til
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (17)</span>
+<span>cs (18)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
