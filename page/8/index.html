@@ -75,6 +75,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1167/ class="text-2xl my-3 overflow-ellipsis-bundle">
+백준 - 1167 : 트리의 지름 (G2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/boj_1167/ class="content-summary text-sm overflow-hidden">
+1import sys 2sys.setrecursionlimit(10**6) 3input = sys.stdin.readline 4 5V = int(input()) 6G = [[] for _ in range(V)] 7for _ in range(V): 8 token = list(map(int, input().split()))[:-1] 9 for i in range(1, len(token), 2): 10 G[token[0]-1].append((token[i]-1, token[i+1])) 11 12def dfs(node, dist): 13 global max_node, max_dist 14 visited[node] = True 15 if dist > max_dist: 16 max_node = node 17 max_dist = dist 18 for n_node, n_dist in G[node]: 19 if not visited[n_node]: 20 dfs(n_node, dist+n_dist) 21 22max_node = 0 23 24max_dist = 0 25visited = [False]*V 26dfs(0, 0) 27max_dist = 0 28visited = [False]*V 29dfs(max_node, 0) 30 31print (max_dist) 최근에 푼 &ldquo;1967: 트리의 지름&rdquo; 덕분에 쉽게 해결할 수 있었다 기억하자 트리의 지름 = (어떤 한 정점에서 가장 먼 점 P)에서 가장 먼 점 사이의 거리
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_14938/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 14938 : 서강그라운드 (G4)
 </a>
@@ -535,30 +559,6 @@ IT 업계의 조직 구성 목적 조직 프로젝트 A : 기획, 개발자, 디
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-07-02T21:36:48\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-01plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 01 : 계획
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-01plan/ class="content-summary text-sm overflow-hidden">
-오늘의 목표 django에서 swagger 문서화 구현하기 django에서 JWT 인증 구현하기
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-07-02 21:36:48 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -624,7 +624,7 @@ IT 업계의 조직 구성 목적 조직 프로젝트 A : 기획, 개발자, 디
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (5)</span>
+<span> 기타 (6)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -658,7 +658,7 @@ IT 업계의 조직 구성 목적 조직 프로젝트 A : 기획, 개발자, 디
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (16)</span>
+<span>cs (17)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>

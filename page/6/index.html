@@ -74,6 +74,31 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/c_cpp/c_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">
+C언어 개념 정리
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🌊</span>
+<span>C/CPP</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/c_cpp/c_concept/ class="content-summary text-sm overflow-hidden">
+본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.
+dead code &lt;-> unreachable code dead code : 코드에서 실행되지만 그 결과가 다른 계산에 사용될 수 없는 섹션 unreachable code : 제어 흐름 경로가 없기 때문에 실행할 수 없는 프로그램 소스 코드의 일부 tag struct, union, enum 뒤에 붙는 이름 escape sequence 백슬래시()와 특정문자를 결합하여 표현하기 어려운 기능, 문자를 표시해준다. 종류 (대표적인 것만 몇개 뽑았다) \n : 개행 \t : 수평 탭 \o(8진수 숫자) : 8진수 \x(16진수 숫자) : 16진수 연결 다른 범위에 속하는 변수들을 서로 연결하는 것
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/boj_2748/ class="text-2xl my-3 overflow-ellipsis-bundle">
 백준 - 2748 : 피보나치 수2 (B2)
@@ -529,30 +554,6 @@ bong-u/til
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2096/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2096 : 내려가기 (G5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2096/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3dp1 = [L[0][i] for i in range(3)] 4dp2 = [L[0][i] for i in range(3)] 5 6for i in range(1, N): 7tmp1 = [0]*3 8tmp2 = [0]*3 9for j in range(3): 10 11 if j == 0: 12 tmp1[0] = L[i][j] + max(dp1[0], dp1[1]) 13 tmp2[0] = L[i][j] + min(dp2[0], dp2[1]) 14 elif j == 1: 15 tmp1[1] = L[i][j] + max(dp1[0], dp1[1], dp1[2]) 16 tmp2[1] = L[i][j] + min(dp2[0], dp2[1], dp2[2]) 17 else: 18 tmp1[2] = L[i][j] + max(dp1[1], dp1[2]) 19 tmp2[2] = L[i][j] + min(dp2[1], dp2[2]) 20 dp1 = [i for i in tmp1] 21 dp2 = [i for i in tmp2] 22 23print (max(dp1), min(dp2)) Memoization과정이 다른 memoization 변수에 대해 종속적이라면 잘못된 결과를 초래한다 위 코드에서는 이를 방지하기 위해 tmp1, tmp2 변수를 사용한다 깊이 생각하지 않고 여러 번 제출해서 WA개수가 조금 많다;;
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -618,7 +619,7 @@ bong-u/til
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (5)</span>
+<span> 기타 (6)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -652,7 +653,7 @@ bong-u/til
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (16)</span>
+<span>cs (17)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>

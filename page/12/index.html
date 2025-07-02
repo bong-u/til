@@ -74,6 +74,30 @@ bong-u/til
 <div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
+<img onload="checkRecentPost(event,'2023-07-18T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/pgs_%EB%92%A4%EC%97%90_%EC%9E%88%EB%8A%94_%ED%81%B0_%EC%88%98_%EC%B0%BE%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
+프로그래머스 - 뒤에 있는 큰 수 찾기 (L2)
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🧠</span>
+<span>Algorithm</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/algorithm/pgs_%EB%92%A4%EC%97%90_%EC%9E%88%EB%8A%94_%ED%81%B0_%EC%88%98_%EC%B0%BE%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
+1def solution(numbers): 2 stack = [] 3 answer = [-1] * len(numbers) 4 5 for i in range(len(numbers)): 6 while stack and stack[-1][1] &lt; numbers[i]: 7 answer[stack[-1][0]] = numbers[i] 8 stack.pop() 9 stack.append((i, numbers[i])) 10 print(stack) 11 12 return answer 문제 정수로 이루어진 배열 numbers가 주어진다 자신 보다 뒤에 있는 숫자 중 가장 크면서 가까운 수를 뒷 큰수라고 한다 모든 원소에 대해서 뒷 큰수를 구하여라 (존재하지 않으면 -1) TC input [2, 3, 3, 5]
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2023-07-18 00:00:00 +0900 KST">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
 <img onload="checkRecentPost(event,'2023-07-17T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/algorithm/pgs_%EB%AC%B4%EC%9D%B8%EB%8F%84_%EC%97%AC%ED%96%89/ class="text-2xl my-3 overflow-ellipsis-bundle">
 프로그래머스 - 무인도 여행 (L2)
@@ -558,7 +582,7 @@ Docker를 사용하는 이유 개선되고 완벽한 이식성 경량의 중량,
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (5)</span>
+<span> 기타 (6)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -592,7 +616,7 @@ Docker를 사용하는 이유 개선되고 완벽한 이식성 경량의 중량,
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (16)</span>
+<span>cs (17)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>

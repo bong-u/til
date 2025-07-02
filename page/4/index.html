@@ -75,6 +75,30 @@ bong-u/til
 <div class="flex justify-between items-center">
 <div class="flex items-center">
 <img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/rest_error_response/ class="text-2xl my-3 overflow-ellipsis-bundle">
+Spring - RESTful API에서 내맘대로 에러 응답하기
+</a>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class=text-2xl>🍃</span>
+<span>Spring</span>
+</div>
+</div>
+</div>
+<div class=flex-grow>
+<a href=/til/spring/rest_error_response/ class="content-summary text-sm overflow-hidden">
+1. 클래스 정의 1@Getter 2@RequiredArgsConstructor 3public class ExceptionResponse { 4 private final LocalDateTime timestamp = LocalDateTime.now(); // 2023-08-01T00:00:57.5995502 5 private final int status; // 400 6 private final String error; // MethodArumentNotValidException 7 private final String message; // 이메일 형식이 아닙니다 8 private final String path; // /api/customer 9} 내가 원하는 방식대로 클래스를 정의한다, 주석에는 해당 필드의 예시를 적어놓았다 2. ResponseEntity 만드는 함수 정의 1private ResponseEntity&lt;ExceptionResponse> handleException(HttpStatus status, Exception e, HttpServletRequest request) { 2 ExceptionResponse response = new ExceptionResponse( 3 status.
+</a>
+</div>
+<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
+</div>
+</div>
+<div class="border-b border-line"></div>
+<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
 <a href=/til/spring/bean_validation/ class="text-2xl my-3 overflow-ellipsis-bundle">
 Spring - Bean Validation : Annotation으로 Validation하기
 </a>
@@ -546,32 +570,6 @@ SQLD 대비 정리
 </div>
 </div>
 <div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_interview/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프론트엔드(react) 면접 준비
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_interview/ class="content-summary text-sm overflow-hidden">
-React의 특징 Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks DOM HTML element를 tree형태로 표현한 것
-Virtual DOM DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식
-Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : 변경된 부분만 실제 DOM에 반영 Batch Update : 여러 개의 변경사항을 한번에 업데이트 React Component Class Component 생명주기 메소드를 포함 상속을 통해 Component를 생성 mutable state를 가질 수 있음 Functional Component immutable하다 stateless Hooks를 사용 LifeCycle Method Mounting constructor : 컴포넌트 생성자 static getDerivedStateFromProps : props로 state를 설정 render : 컴포넌트 렌더링 componentDidMount : 컴포넌트가 마운트된 직후 Updating static getDerivedStateFromProps : props로 state를 설정 shouldComponentUpdate : 컴포넌트 업데이트 여부 결정 render : 컴포넌트 렌더링 getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전 componentDidUpdate : 컴포넌트 업데이트 직후 Unmounting componentWillUnmount : 컴포넌트가 언마운트되기 직전 React Hooks 함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
 <div class=py-16>
 <div id=pagination-box>
 <ul class="pagination pagination-default">
@@ -637,7 +635,7 @@ Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : �
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
 <span class="text-xl mr-3">🎸</span>
-<span> 기타 (5)</span>
+<span> 기타 (6)</span>
 </a>
 <a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
 <span class="text-xl mr-3">👨‍💻</span>
@@ -671,7 +669,7 @@ Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : �
 </a>
 <a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
-<span>cs (16)</span>
+<span>cs (17)</span>
 </a>
 <a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
 <span class="text-xl mr-2">🏷️</span>
