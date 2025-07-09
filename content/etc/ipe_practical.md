@@ -4,6 +4,8 @@ date: 2025-07-02
 tags: ["cs"]
 ---
 
+- 볼드체의 개념은 기출 문제에서 등장, 나머지 개념은 모의고사에서 등장
+
 ## SW 공학 관련 개념
 - SOLID 원칙
   - S : 단일 책임 원칙 (SRP)
@@ -40,6 +42,7 @@ tags: ["cs"]
 - Slow Http read Dos : HTTP 요청 패킷의 헤더를 변조하여 웹 서버에 보내 연결 상태를 유지하게 하는 DoS
 - SNMP(Simplified Network Management Protocol) : 네트워크 장비의 상태를 모니터링하고 관리하기 위한 프로토콜
 - DHCP(Dynamic Host Configuration Protocol) : 네트워크 장치에 IP 주소를 자동으로 할당하는 프로토콜
+- **RARP** (Reverse Address Resolution Protocol) : MAC 주소 -> IP 주소 변환 프로토콜
 
 ## 보안 관련 개념
 - kill switch : 스마트폰 이용자가 도난당한 스마트폰의 작동을, 웹사이트를 통해 정지할 수 있도록 하는 일종의 자폭 기능
@@ -51,6 +54,8 @@ tags: ["cs"]
 - APT 공격 : 특정 타깃을 목표로 다양한 수단을 통한 지속적이고 지능적인 맞춤혐 공격 기법
 - SET(Secure Electronic Transaction) : 전자 상거래에서 안전한 결제를 위한 프로토콜
 - 사이버 킬체인 : 록히드 마틴의 공격형 방위 시스템
+- **DAC** (Discretionary Access Control) : 사용자가 자유롭게 객체에 대한 접근 권한을 관리할 수 있는 방식
+- MAC (Mandatory Access Control) : 시스템 관리자가 정책에 따라 사용자에게 접근 권한을 부여하는 방식
 
 ## 데이터베이스 관련 개념
 - 낙관적 검증 : 트랜잭션을 일단 수행하고, 트랜잭션 종료 시 검증을 수행하여 데이터베이스 반영하는 기법
@@ -82,6 +87,8 @@ tags: ["cs"]
 - 오픈 스택 : 아파치 라이선스로 배포되는 클라우드 플랫폼 프로젝트
 - BCP(Business Continuity Planning) : 재해 발생 시 비즈니스 운영을 지속하기 위한 계획
 - Trust Zone : ARM에서 개발한 보안 기술로, 하드웨어 기반의 보안 영역을 제공하여 민감한 데이터를 보호하는 기술
+- **WSDL** (Web Services Description Language) : 웹 서비스의 기능을 기술하는 XML 기반의 언어
+- **EAI** : 기업 내 다양한 시스템 간의 데이터 통합 및 상호 운용성을 위한 솔루션
 
 ## SQL
 
