@@ -24,7 +24,8 @@
   }
 
   .custom-scroll::-webkit-scrollbar-thumb {
-    @apply bg-scrollbar rounded-lg;
+    @apply bg-scrollbar rounded-md;
+    @apply bg-clip-padding border-x-2 border-transparent border-solid;
   }
 
   .box {
