@@ -53,11 +53,6 @@ bong-u/til
 <li><a href=#데이터베이스-관련-개념>데이터베이스 관련 개념</a></li>
 <li><a href=#os-관련-개념>OS 관련 개념</a></li>
 <li><a href=#기타-개념>기타 개념</a></li>
-<li><a href=#sql>SQL</a>
-<ul>
-<li><a href=#like-문법>LIKE 문법</a></li>
-</ul>
-</li>
 </ul>
 </nav>
 </aside>
@@ -73,7 +68,7 @@ bong-u/til
 <div>
 <span class="text-md mr-1">🏷️ cs</span>
 </div>
-<h4 id=date>수정일 : 2025-07-11</h4>
+<h4 id=date>수정일 : 2025-07-12</h4>
 </div>
 <hr class=opacity-30>
 <article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
@@ -120,6 +115,7 @@ bong-u/til
 </ul>
 </li>
 <li><strong>원인 결과 그래프</strong> : 프로그램의 입력과 출력 간의 관계를 그래프로 나타내어 테스트 케이스를 도출하는 기법</li>
+<li><strong>알파/베타 테스트</strong> : 알파-개발자와 함께 수행, 베타-개발자 없이 수행</li>
 </ul>
 <h2 id=네트워크-관련-개념>네트워크 관련 개념</h2>
 <ul>
@@ -159,15 +155,28 @@ bong-u/til
 <li>Accounting</li>
 </ul>
 </li>
+<li><strong>ISMS</strong> (Information Security Management System) : 정보 보호를 위한 관리 체계</li>
 </ul>
 <h2 id=데이터베이스-관련-개념>데이터베이스 관련 개념</h2>
 <ul>
 <li>낙관적 검증 : 트랜잭션을 일단 수행하고, 트랜잭션 종료 시 검증을 수행하여 데이터베이스 반영하는 기법</li>
 <li>2PC (Two-Phase Commit) : 분산 데이터베이스 시스템에서 트랜잭션의 원자성을 보장하기 위해 두 단계로 커밋을 수행하는 방식</li>
-<li>완전 함수 종속 : 릴레이션의 모든 속성이 기본키에만 종속되는 상태</li>
-<li>이행 함수 종속 : A->B, B->C 이면 A->C가 성립하는 상태</li>
+<li><strong>완전 함수 종속(Full)</strong> : 릴레이션의 모든 속성이 기본키에만 종속되는 상태</li>
+<li><strong>부분 함수 종속(Partial)</strong> : 릴레이션의 일부 속성이 기본키에만 종속되는 상태</li>
+<li><strong>이행 함수 종속(Transient)</strong> : A->B, B->C 이면 A->C가 성립하는 상태</li>
 <li>체크포인트 회복 기법 : 장애 발생 시 검사점 이후에 처리된 트랜잭션에 대해서만 장애를 복구하는 기법</li>
 <li><strong>로킹</strong> : 다중 트랜잭션 환경에서 트랜 잭션의 순차적 진행을 보장하는 직렬화 기법</li>
+<li>LIKE 문법
+<ul>
+<li><code>%</code> : 0개 이상의 문자열과 일치</li>
+<li><code>[ ]</code> : 1개의 문자와 일치</li>
+<li><code>[^ ]</code> : 1개의 문자와 불일치</li>
+<li><code>_</code> : 특정 위치의 1개 문자와 일치</li>
+</ul>
+</li>
+<li><strong>관계 해석</strong> : 비절차적 언어; 관계 데이터베이스에서 데이터를 질의하기 위한 수학적 표현 방법</li>
+<li><strong>ALL</strong> : 주로 서브쿼리에서 사용하는 다중행 연산자; 모든 행이 조건을 만족해야 함</li>
+<li>ANY : 주로 서브쿼리에서 사용하는 다중행 연산자; 하나 이상의 행이 조건을 만족하면 참</li>
 </ul>
 <h2 id=os-관련-개념>OS 관련 개념</h2>
 <ul>
@@ -199,14 +208,8 @@ bong-u/til
 <li>Trust Zone : ARM에서 개발한 보안 기술로, 하드웨어 기반의 보안 영역을 제공하여 민감한 데이터를 보호하는 기술</li>
 <li><strong>WSDL</strong> (Web Services Description Language) : 웹 서비스의 기능을 기술하는 XML 기반의 언어</li>
 <li><strong>EAI</strong> : 기업 내 다양한 시스템 간의 데이터 통합 및 상호 운용성을 위한 솔루션</li>
-</ul>
-<h2 id=sql>SQL</h2>
-<h3 id=like-문법>LIKE 문법</h3>
-<ul>
-<li><code>%</code> : 0개 이상의 문자열과 일치</li>
-<li><code>[ ]</code> : 1개의 문자와 일치</li>
-<li><code>[^ ]</code> : 1개의 문자와 불일치</li>
-<li><code>_</code> : 특정 위치의 1개 문자와 일치</li>
+<li><strong>NUI</strong> (Natural User Interface) : 신체를 활용한 사용자 인터페이스</li>
+<li>암호화 알고리즘 : AES, DES, RSA, IDEA, Skipjack</li>
 </ul>
 </article>
 <div id=" meta" class=my-16>
