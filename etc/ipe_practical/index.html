@@ -68,7 +68,7 @@ bong-u/til
 <div>
 <span class="text-md mr-1">🏷️ cs</span>
 </div>
-<h4 id=date>수정일 : 2025-07-12</h4>
+<h4 id=date>수정일 : 2025-07-13</h4>
 </div>
 <hr class=opacity-30>
 <article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
@@ -93,8 +93,10 @@ bong-u/til
 <ul>
 <li>Abstract Factory Pattern : 생성 패턴; 객체 생성에 대한 인터페이스를 제공하고, 구체적인 클래스는 서브클래스에서 정의하는 패턴</li>
 <li>Decorator Pattern : 구조 패턴; 객체에 추가적인 책임을 동적으로 부여하는 패턴</li>
-<li>Memento Pattern : 행동 패턴; 객체의 상태를 저장하고 복원하는 패턴</li>
+<li>Memento Pattern : 행위 패턴; 객체의 상태를 저장하고 복원하는 패턴</li>
 <li>Factory Method Pattern : 생성 패턴; 객체 생성에 대한 인터페이스를 제공하고, 구체적인 클래스는 서브클래스에서 정의하는 패턴</li>
+<li>Bridge Pattern : 구조 패턴; 추상화와 구현을 분리하여 독립적으로 확장할 수 있도록 하는 패턴</li>
+<li>Observer Pattern : 행위 패턴; 객체의 상태 변화에 따라 다른 객체에 알림을 보내는 패턴</li>
 </ul>
 </li>
 <li>이상 현상 : 데이터를 데이터베이스에 저장할때 불필요하게 중복되어 릴레이션 조작시 예기치 못한 곤란한 현상일 발생하는 현상</li>
@@ -132,8 +134,12 @@ bong-u/til
 <li>DHCP(Dynamic Host Configuration Protocol) : 네트워크 장치에 IP 주소를 자동으로 할당하는 프로토콜</li>
 <li><strong>RARP</strong> (Reverse Address Resolution Protocol) : MAC 주소 -> IP 주소 변환 프로토콜</li>
 <li><strong>Ad-hoc 네트워크</strong> : 중앙 라우터나 액세스 지점 없이 서로 직접 통신할 수 있도록 하는 임시 분산 무선 네트워크</li>
+<li>패킷 교환 방식
+<ul>
 <li><strong>가상회선 방식</strong> : 목적지 호스트와 미리 연결 후 통신하는 연결형 교환 방식</li>
 <li><strong>데이터그램 방식</strong> : 헤더를 붙여서 개별적으로 전달하는 비연결형 교환 방식</li>
+</ul>
+</li>
 </ul>
 <h2 id=보안-관련-개념>보안 관련 개념</h2>
 <ul>
@@ -156,6 +162,8 @@ bong-u/til
 </ul>
 </li>
 <li><strong>ISMS</strong> (Information Security Management System) : 정보 보호를 위한 관리 체계</li>
+<li><strong>사회공학 기법</strong> : 인간의 심리와 행동양식을 이용하여 정보를 탈취하거나 시스템에 침입하는 기법</li>
+<li><strong>SIEM</strong> : 보안 정보 및 이벤트 관리 시스템; 보안 로그와 이벤트를 수집, 분석하여 실시간으로 보안 위협을 탐지하고 대응하는 시스템</li>
 </ul>
 <h2 id=데이터베이스-관련-개념>데이터베이스 관련 개념</h2>
 <ul>
@@ -177,6 +185,7 @@ bong-u/til
 <li><strong>관계 해석</strong> : 비절차적 언어; 관계 데이터베이스에서 데이터를 질의하기 위한 수학적 표현 방법</li>
 <li><strong>ALL</strong> : 주로 서브쿼리에서 사용하는 다중행 연산자; 모든 행이 조건을 만족해야 함</li>
 <li>ANY : 주로 서브쿼리에서 사용하는 다중행 연산자; 하나 이상의 행이 조건을 만족하면 참</li>
+<li><strong>관계대수 기호:</strong> $\cup$(합집합), $-$(차집합), $\times$(카티션 곱), $\pi$(프로젝트), $\bowtie$(조인)</li>
 </ul>
 <h2 id=os-관련-개념>OS 관련 개념</h2>
 <ul>
@@ -185,6 +194,8 @@ bong-u/til
 <ul>
 <li>SJF(Shortest Job First) : 가장 짧은 작업을 먼저 처리하는 방식</li>
 <li>HRN (Highest Response Ratio Next) : 대기 시간과 서비스 시간을 고려하여 우선순위를 결정하는 방식</li>
+<li>RR(Round Robin) : 각 프로세스에 동일한 시간 할당량을 주고 순환적으로 처리하는 방식</li>
+<li>SRTF(Shortest Remaining Time First) : 남은 실행 시간이 가장 짧은 프로세스를 먼저 처리하는 방식</li>
 </ul>
 </li>
 <li>피터슨 알고리즘 : 두 프로세스 간의 상호 배제를 보장하는 알고리즘; 플랙그와 턴을 사용하여 상호 배제와 진입 허용을 구현</li>
@@ -210,6 +221,8 @@ bong-u/til
 <li><strong>EAI</strong> : 기업 내 다양한 시스템 간의 데이터 통합 및 상호 운용성을 위한 솔루션</li>
 <li><strong>NUI</strong> (Natural User Interface) : 신체를 활용한 사용자 인터페이스</li>
 <li>암호화 알고리즘 : AES, DES, RSA, IDEA, Skipjack</li>
+<li><strong>CVS</strong> : Concurrent Versions System; 분산 버전 관리 시스템; 중앙 집중식 버전 관리 시스템</li>
+<li><strong>SVN</strong> : Subversion; 버전 관리 시스템의 일종; CVS의 단점을 보완하기 위해 개발됨</li>
 </ul>
 </article>
 <div id=" meta" class=my-16>
