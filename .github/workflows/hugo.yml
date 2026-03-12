@@ -19,17 +19,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.91.2"
+          hugo-version: "0.157.0"
           # extended: true
 
-      - name: Add google analytics id
-        run: |
-          echo -e "\ngoogleAnalytics: \"$GA_TRACKING_ID\"" >> config.yaml
-
-        env:
-          GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
-
       - name: Build
+        env:
+          HUGO_SERVICES_GOOGLEANALYTICS_ID: ${{ secrets.GA_TRACKING_ID }}
         run: hugo --minify
 
       - name: Run Pagefind

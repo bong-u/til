@@ -25,7 +25,7 @@
 	<link id="twCSS" rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
 
 	<!-- google analytics -->
-	{{ if not .Site.IsServer }}
+	{{ if not hugo.IsServer }}
 	{{ partial "google-analytics.html" . }}
 	{{ end }}
 
