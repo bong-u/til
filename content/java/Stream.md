@@ -51,7 +51,7 @@ List<Integer> redHeavyAppleUid = appleList.parallelStream()     // 병렬 처리
 
 ## Optional
 ### 특징
-- Optional<T>는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.
+- `Optional<T>`는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.
 
 ### 예제1
 ```java

@@ -67,7 +67,7 @@ tags: ["CS"]
 
 ### 분석한 토큰을 표현하는 방법
 
-> Lexeme = <토큰번호, 토큰 값>
+> Lexeme = `<토큰번호, 토큰 값>`
 
 - 예시
   - if X < Y ...
@@ -329,7 +329,7 @@ tags: ["CS"]
 - SDD : semnatic action을 정의하는 추상적인 명세서
 - Semnatic Actions : 규칙에 대한 Action
   - Yacc/Bison : `$$, $1, $2, ...` 사용
-  - ANTLR : $<name> 사용
+  - ANTLR : `$<name>` 사용
 - Type declaration
 - Attribute 종류
   - synthesized attr. : children에 의해 계산 (terminal)
@@ -527,8 +527,8 @@ Method Employee(java.lang.String, int)
 
 #### 변수 바인딩
 
-- environment : <변수, storage location> 정보
-  - state: <변수, 값> 정보
+- environment : `<변수, storage location>` 정보
+  - state: `<변수, 값>` 정보
 - 어떤 변수 N이 storage location S에 지정되면 바인딩 된다고 한다
 
 #### Static Allocation

@@ -141,7 +141,7 @@ Set-Cookie: name=value; HttpOnly
 
 - 예시
   1. query string을 실행하는 페이지가 존재 (innerHTML)
-  2. 피해자가 해당 링크를 실행 => http://www.example.com/search?input=<script>alert(“attack”);</script>
+  2. 피해자가 해당 링크를 실행 => `http://www.example.com/search?input=<script>alert(“attack”);</script>`
   3. 피해자의 브라우저에서 alert가 실행됨
 
 ### Persistent (Stored) XSS Attack
@@ -167,7 +167,7 @@ Set-Cookie: name=value; HttpOnly
   ```
   - Link Approach
   ```js
-  let jsCode = '<script src="http://www.example.com/worm.js"></script>';
+  let jsCode = `'<script src="http://www.example.com/worm.js"></script>'`;
   ```
 
 ### 방어
@@ -182,9 +182,9 @@ Set-Cookie: name=value; HttpOnly
   ```html
   Content-Security-Policy: script-src 'nonce-2726c7f26c'
   // allowed script
-  <script nonce=2726c7f26c> ... </script>
+  `<script nonce=2726c7f26c> ... </script>`
   // not allowed script
-  <script nonce=42eh44jhad> ... </script>
+  `<script nonce=42eh44jhad> ... </script>`
   ```
 
 ## SQL Injection

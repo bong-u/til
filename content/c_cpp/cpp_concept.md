@@ -621,9 +621,9 @@ cout << std::get<std::string>(value) << endl; // hello
 
 #### 멤버, 비멤버 함수
 - index() : 현재 저장된 타입의 인덱스를 반환
-- holds_alternative<T>() : 특정 타입이 저장되어 있는지 확인
-- get<T>() : 특정 타입의 값을 반환 (타입이 맞지 않으면 예외 발생)
-- get_if<T>() : 특정 타입의 값을 반환 (타입이 맞지 않으면 nullptr 반환)
+- `holds_alternative<T>()` : 특정 타입이 저장되어 있는지 확인
+- `get<T>()` : 특정 타입의 값을 반환 (타입이 맞지 않으면 예외 발생)
+- `get_if<T>()` : 특정 타입의 값을 반환 (타입이 맞지 않으면 nullptr 반환)
 - visit() : 저장된 타입을 몰라도 처리 가능
 
 ```cpp

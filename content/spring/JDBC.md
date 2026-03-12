@@ -99,7 +99,7 @@ tags: ["Java", "Spring"]
 
 ### RowMapper
 - 기존에 사용하던 ResultSet은 resultSet.next()로 순회하면서 객체의 setter를 호출하였다
-- JdbcTemplate을 사용하기 위해서는 RowMapper<T>를 사용하여야 한다
+- JdbcTemplate을 사용하기 위해서는 `RowMapper<T>`를 사용하여야 한다
     ```java
     RowMapper<Customer> customerRowMapper = (resultSet, i) -> {
         var customerName = resultSet.getString("name");
