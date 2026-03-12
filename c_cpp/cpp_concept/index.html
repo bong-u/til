@@ -1,793 +1,286 @@
-<!doctype html><html lang=ko>
-<head>
-<title>C++ 개념 정리</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
- 참조(Reference)와 포인터(Pointer) 포인터(Pointer)  메모리 주소를 저장 …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="C++ 개념 정리">
-<meta property="og:description" content="본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
- 참조(Reference)와 포인터(Pointer) 포인터(Pointer)  메모리 주소를 저장 …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#참조reference와-포인터pointer>참조(Reference)와 포인터(Pointer)</a></li>
-<li><a href=#참조reference>참조(Reference)</a></li>
-<li><a href=#템플릿-template>템플릿 (Template)</a></li>
-<li><a href=#템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</a></li>
-<li><a href=#속성-attribute>속성 (Attribute)</a></li>
-<li><a href=#if-constexpr-c17>if constexpr (~C++17)</a></li>
-<li><a href=#lambda-c11>Lambda (~C++11)</a></li>
-<li><a href=#closure-c11>Closure (~C++11)</a></li>
-<li><a href=#escape-sequence>Escape Sequence</a></li>
-<li><a href=#encoding>Encoding</a></li>
-<li><a href=#cast-operator>Cast Operator</a></li>
-<li><a href=#constexpr-c11>constexpr (~C++11)</a></li>
-<li><a href=#lvalue-rvalue-참조>lvalue, rvalue 참조</a></li>
-<li><a href=#가상함수>가상함수</a></li>
-<li><a href=#enum-vs-enum-class>enum vs enum class</a></li>
-<li><a href=#explicit-지정자><code>explicit</code> 지정자</a></li>
-<li><a href=#숨겨진-friend-함수>숨겨진 <code>friend</code> 함수</a></li>
-<li><a href=#stdvariant-c17><code>std::variant</code> (~C++17)</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-C++ 개념 정리
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ c++</span>
-</div>
-<h4 id=date>수정일 : 2024-12-09</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<blockquote>
-<p>본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.</p>
-</blockquote>
-<h3 id=참조reference와-포인터pointer>참조(Reference)와 포인터(Pointer)</h3>
-<h4 id=포인터pointer>포인터(Pointer)</h4>
-<blockquote>
-<p>메모리 주소를 저장하는 변수</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 변수 선언
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#f92672>&amp;</span>a; <span style=color:#75715e>// a의 주소를 저장
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e>// 매개변수로 전달
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#f92672>*</span>a <span style=color:#f92672>+</span> <span style=color:#f92672>*</span>b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>add(<span style=color:#f92672>&amp;</span>a, <span style=color:#f92672>&amp;</span>b);
-</code></pre></div><h3 id=참조reference>참조(Reference)</h3>
-<blockquote>
-<p>변수에 별칭을 부여하는 것</p>
-</blockquote>
-<ul>
-<li>
-<p>이름으로 대상을 가리킨다.</p>
-</li>
-<li>
-<p>제약사항</p>
-<ul>
-<li>참조는 선언과 동시에 초기화해야 한다.</li>
-<li>참조는 한 번 초기화되면 다른 변수로 변경할 수 없다.</li>
-<li>참조는 NULL로 초기화할 수 없다.</li>
-</ul>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// 변수 선언
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> b <span style=color:#f92672>=</span> a; <span style=color:#75715e>// a의 별칭을 b로 지정
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e>// 매개변수로 전달
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>add (a, b);
-</code></pre></div><h3 id=템플릿-template>템플릿 (Template)</h3>
-<blockquote>
-<p>템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작성하는 방법</p>
-</blockquote>
-<h4 id=함수-템플릿>함수 템플릿</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>T add(T a, T b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
-</code></pre></div><h4 id=클래스-템플릿>클래스 템플릿</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Point</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    T x, y;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    Point(T x, T y) <span style=color:#f92672>:</span> x(x), y(y) {}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
-</code></pre></div><h3 id=템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</h3>
-<blockquote>
-<p>템플릿을 특정 타입에 대해 구체화하는 것</p>
-</blockquote>
-<h4 id=함수-템플릿-명시적-특수화>함수 템플릿 명시적 특수화</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>T add(T a, T b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e>// int 타입에 대한 특수화
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>int</span> add(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-</code></pre></div><h4 id=함수-템플릿-부분-특수화>함수 템플릿 부분 특수화</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>T add(T a, T b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e>// 포인터 타입에 대한 부분 특수화
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>T add(T<span style=color:#f92672>*</span> a, T<span style=color:#f92672>*</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>*</span>a <span style=color:#f92672>+</span> <span style=color:#f92672>*</span>b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-</code></pre></div><h3 id=속성-attribute>속성 (Attribute)</h3>
-<blockquote>
-<p>컴파일할때 특정 메시지를 생성하거나 컴파일러가 특정 동작을 수행할 수 있도록 함</p>
-</blockquote>
-<h4 id=noreturn-c11>[[noreturn]] (~c++11)</h4>
-<blockquote>
-<p>함수가 정상적으로 호출자에게 제어권을 반환하지 않음을 나타냄</p>
-</blockquote>
-<ul>
-<li>[[noreturn]]으로 선언된 함수가 정상적인 반환을 시도하는 경우 undefined behavior 발생</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>[[noreturn]]</span> <span style=color:#66d9ef>void</span> error() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>throw</span> <span style=color:#e6db74>&#34;error&#34;</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>int32_t</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    error();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>; <span style=color:#75715e>// dead code로 최적화될 수 있음
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#75715e></span>}
-</code></pre></div><h4 id=maybe_unused-c17>[[maybe_unused]] (~C++17)</h4>
-<blockquote>
-<p>사용하지 않는 변수, 함수, 매개변수, 타입에 대한 경고를 컴파일러가 무시하도록 명시</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>[[maybe_unused]]</span> <span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-</code></pre></div><h4 id=nodiscard-c17>[[nodiscard]] (~C++17)</h4>
-<blockquote>
-<p>함수의 반환값을 무시하는 경우 컴파일러가 경고하도록 명시</p>
-</blockquote>
-<ul>
-<li>반대로 (void) 형태로 캐스팅하여 경고를 억제할 수 있음</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>[[nodiscard]]</span> <span style=color:#66d9ef>int</span> add(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>}
-</code></pre></div><h4 id=fallthrough-c17><code>[[fallthrough]] (~C++17)</code></h4>
-<blockquote>
-<p>switch문에서 case 라벨을 사용할 때, break를 사용하지 않는 경우 경고를 억제</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>switch</span> (a) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>case</span> <span style=color:#ae81ff>1</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;1&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        <span style=color:#a6e22e>[[fallthrough]]</span>; <span style=color:#75715e>// 의도적으로 2로 넘어간다는 것을 명시
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>    <span style=color:#66d9ef>case</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;2&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>break</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;default&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#66d9ef>break</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>}
-</code></pre></div><h3 id=if-constexpr-c17>if constexpr (~C++17)</h3>
-<blockquote>
-<p>compile time에 조건문을 처리할 수 있도록 함</p>
-</blockquote>
-<ul>
-<li>조건이 거짓인 경우 해당 블록은 컴파일되지 않음</li>
-<li>템플릿과 비슷한 기능을 수행</li>
-<li>템플릿은 compile time에 모든 코드를 생성하지만 if constexpr는 조건에 따라 코드를 생성</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>void</span> print(T value) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>constexpr</span> (std<span style=color:#f92672>::</span>is_same_v<span style=color:#f92672>&lt;</span>T, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;int: &#34;</span> <span style=color:#f92672>&lt;&lt;</span> value <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>constexpr</span> (std<span style=color:#f92672>::</span>is_same_v<span style=color:#f92672>&lt;</span>T, <span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;double: &#34;</span> <span style=color:#f92672>&lt;&lt;</span> value <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    } <span style=color:#66d9ef>else</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;unknown type&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-</code></pre></div><h3 id=lambda-c11>Lambda (~C++11)</h3>
-<blockquote>
-<p>익명 함수를 정의하는 표현식</p>
-</blockquote>
-<ul>
-<li>간단한 함수를 선언할 때 사용</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>auto</span> add <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
-</code></pre></div><h4 id=transientnon-transient-lambda>Transient/Non-transient lambda</h4>
-<ul>
-<li>Transient lambda</li>
-</ul>
-<blockquote>
-<p>즉시 호출되고 소멸되는 람다 함수</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>    <span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>auto</span> result <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> x) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>        <span style=color:#66d9ef>return</span> x <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    }(); <span style=color:#75715e>// 즉시 호출
-</span></code></pre></div><ul>
-<li>Non-transient lambda</li>
-</ul>
-<blockquote>
-<p>메모리에 저장되어 여러 번 호출할 수 있는 람다 함수</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>std<span style=color:#f92672>::</span>function<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span>()<span style=color:#f92672>&gt;</span> add <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> a) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>int32_t</span> result <span style=color:#f92672>=</span> add(<span style=color:#ae81ff>10</span>);
-</code></pre></div><h3 id=closure-c11>Closure (~C++11)</h3>
-<blockquote>
-<p>lambda expression에서 외부 변수에 대한 참조를 캡처하는 방식</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>auto</span> add <span style=color:#f92672>=</span> [<span style=color:#f92672>&amp;</span>a](<span style=color:#66d9ef>int</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>};
-</code></pre></div><h4 id=capture>Capture</h4>
-<blockquote>
-<p>lamda 함수에서 외부 변수를 함수 내부로 가져오는 것</p>
-</blockquote>
-<ul>
-<li>
-<p>lambda 함수가 정의된 시점의 외부 변수를 사용할 수 있도록 함</p>
-</li>
-<li>
-<p>parameter 방식과의 비교</p>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// parameter 방식
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addAndPrint</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> a <span style=color:#f92672>+</span> b <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>int</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    addAndPrint(x, y);  <span style=color:#75715e>// 매번 호출할 때 값을 전달해야 함
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>}
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// capture 방식
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>int</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>auto</span> addAndPrint <span style=color:#f92672>=</span> [<span style=color:#f92672>&amp;</span>x, <span style=color:#f92672>&amp;</span>y]() {  <span style=color:#75715e>// 외부 변수 x와 y를 참조로 캡처
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> x <span style=color:#f92672>+</span> y <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>addAndPrint();  <span style=color:#75715e>// 매개변수 없이도 외부 변수에 접근 가능
-</span></code></pre></div><h4 id=capture-list>Capture List</h4>
-<ul>
-<li><code>[&]</code> : 모든 외부 변수를 참조로 캡처</li>
-<li><code>[=]</code> : 모든 외부 변수를 값으로 캡처</li>
-<li><code>[a]</code> : 변수 a를 값으로 캡처</li>
-<li><code>[&a]</code> : 변수 a를 참조로 캡처</li>
-</ul>
-<h3 id=escape-sequence>Escape Sequence</h3>
-<blockquote>
-<p>문자열 리터럴에서 특정 문자를 표현하기 위해 사용하는 문자열</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style=text-align:center>Escape Sequence</th>
-<th style=text-align:center>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:center><code>\'</code></td>
-<td style=text-align:center>작은 따옴표</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\"</code></td>
-<td style=text-align:center>큰 따옴표</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\?</code></td>
-<td style=text-align:center>물음표</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\\</code></td>
-<td style=text-align:center>역슬래시</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\a</code></td>
-<td style=text-align:center>벨 소리</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\b</code></td>
-<td style=text-align:center>백스페이스</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\f</code></td>
-<td style=text-align:center>폼 피드</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\n</code></td>
-<td style=text-align:center>개행</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\r</code></td>
-<td style=text-align:center>캐리지 리턴</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\t</code></td>
-<td style=text-align:center>수평 탭</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\v</code></td>
-<td style=text-align:center>수직 탭</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\0</code></td>
-<td style=text-align:center>널 문자</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\nnn</code></td>
-<td style=text-align:center>8진수</td>
-</tr>
-<tr>
-<td style=text-align:center><code>\xnn</code></td>
-<td style=text-align:center>16진수</td>
-</tr>
-</tbody>
-</table>
-<h3 id=encoding>Encoding</h3>
-<blockquote>
-<p>C++에서는 문자 리터럴에 접두사를 붙여 인코딩을 지정할 수 있음</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style=text-align:center>Encoding</th>
-<th style=text-align:center>Prefix</th>
-<th style=text-align:center>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:center>Literal Wide</td>
-<td style=text-align:center><code>L</code></td>
-<td style=text-align:center><code>L'A'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>Literal UTF-8</td>
-<td style=text-align:center><code>u8</code></td>
-<td style=text-align:center><code>u8'A'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>Literal UTF-16</td>
-<td style=text-align:center><code>u</code></td>
-<td style=text-align:center><code>u'A'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>Literal UTF-32</td>
-<td style=text-align:center><code>U</code></td>
-<td style=text-align:center><code>U'A'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>ASCII</td>
-<td style=text-align:center>none</td>
-<td style=text-align:center><code>'\x41'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>UTF-8</td>
-<td style=text-align:center>none</td>
-<td style=text-align:center><code>'\xC3\xA9'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>Unicode (UTF-16)</td>
-<td style=text-align:center>none</td>
-<td style=text-align:center><code>'\u0041'</code></td>
-</tr>
-<tr>
-<td style=text-align:center>Unicode (UTF-32)</td>
-<td style=text-align:center>none</td>
-<td style=text-align:center><code>'\U00000041'</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id=cast-operator>Cast Operator</h3>
-<blockquote>
-<p>C++에서는 다양한 형변환 연산자를 제공</p>
-</blockquote>
-<h4 id=static_cast>static_cast</h4>
-<blockquote>
-<p>논리적으로 형변환이 가능한 경우에 사용</p>
-</blockquote>
-<ul>
-<li>기본 타입 간의 변환, 포인터/참조 간의 명시적 변환에 사용</li>
-<li>컴파일 시점에 검증 -> 논리적으로 맞지 않은 경우 컴파일 에러 발생</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>double</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(a);
-</code></pre></div><h4 id=dynamic_cast>dynamic_cast</h4>
-<blockquote>
-<p>상속 관계에서의 형변환을 위해 사용</p>
-</blockquote>
-<ul>
-<li>런타임 시점에 안전한 형변환을 보장</li>
-<li>반드시 가상 함수가 있는 클래스에서만 사용 가능</li>
-<li>다운캐스팅 시, 형변환이 불가능한 경우 nullptr을 반환</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Base</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> print() {}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Derived</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Base {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>void</span> print() <span style=color:#66d9ef>override</span> {}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>Base<span style=color:#f92672>*</span> base <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Derived();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>Derived<span style=color:#f92672>*</span> derived <span style=color:#f92672>=</span> <span style=color:#66d9ef>dynamic_cast</span><span style=color:#f92672>&lt;</span>Derived<span style=color:#f92672>*&gt;</span>(base); <span style=color:#75715e>// 안전한 다운캐스팅
-</span></code></pre></div><h4 id=const_cast>const_cast</h4>
-<blockquote>
-<p>포인터 또는 참조형의 const 속성을 제거하기 위해 사용</p>
-</blockquote>
-<ul>
-<li>상수형 -> 비상수형으로 변환</li>
-<li>불변 데이터를 수정하는 데 사용하면 undefined behavior 발생</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>const_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*&gt;</span>(<span style=color:#f92672>&amp;</span>a);
-</code></pre></div><h4 id=reinterpret_cast>reinterpret_cast</h4>
-<blockquote>
-<p>포인터 형변환이나 비논리적 형변환을 위해 사용</p>
-</blockquote>
-<ul>
-<li>메모리 레이아웃을 기반으로 포인터를 변환</li>
-<li>undefined behavior를 발생시킬 수 있음</li>
-<li>완전히 다른 타입으로 변환이 가능하지만, 안정성을 보장하지 않음</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>reinterpret_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*&gt;</span>(<span style=color:#f92672>&amp;</span>a);
-</code></pre></div><h3 id=constexpr-c11>constexpr (~C++11)</h3>
-<blockquote>
-<p>컴파일 시간에 평가되는 표현식을 생성하기 위해 사용</p>
-</blockquote>
-<h4 id=변수>변수</h4>
-<ul>
-<li>compile time 상수에만 사용 가능</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> num1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> num2 <span style=color:#f92672>=</span> a; <span style=color:#75715e>// error: 변수 a는 runtime에 결정되므로 사용 불가
-</span></code></pre></div><h4 id=함수>함수</h4>
-<ul>
-<li>함수가 compile time에 실행되도록 보장</li>
-<li>인자 값이 compile time 상수인 경우 -> constexpr 함수로 동작</li>
-<li>인자 값이 compile time 상수가 아닌 경우 -> constexpr 함수로 동작</li>
-<li>body에서 불가능한 구문
-<ul>
-<li>goto</li>
-<li>try-catch</li>
-<li>초기화 수행이 없는 변수 선언</li>
-<li>리터럴 타입이 아닌 변수 선언</li>
-<li>static 변수 선언</li>
-<li>tls(thread local storage) 변수 선언</li>
-<li>등&mldr;</li>
-</ul>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>fibonacci</span>(<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#66d9ef>if</span> (n <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> n;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>+</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>fibonacci(<span style=color:#ae81ff>10</span>); <span style=color:#75715e>// compile time에 다 계산되어서 55로 대체됨
-</span></code></pre></div><h3 id=lvalue-rvalue-참조>lvalue, rvalue 참조</h3>
-<h4 id=lvalue>lvalue</h4>
-<blockquote>
-<p>객체를 가리키는 메모리 위치를 나타내는 표현식</p>
-</blockquote>
-<ul>
-<li>lvalue 참조</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> a <span style=color:#f92672>=</span> b;     <span style=color:#75715e>// a는 b의 참조자 (lvalue 참조)
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>a <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
-</code></pre></div><ul>
-<li>멤버 함수에서의 사용 예시</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>void</span> show() <span style=color:#f92672>&amp;</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;lvalue function called (object is lvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>MyClass obj;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>obj.show(); <span style=color:#75715e>// lvalue 객체에서 호출
-</span></code></pre></div><h4 id=rvalue>rvalue</h4>
-<blockquote>
-<p>메모리에 위치에 할당된 값을 나타내는 표현식</p>
-</blockquote>
-<ul>
-<li>
-<p>주소가 없거나, 임시로 할당된 값</p>
-</li>
-<li>
-<p>주로 표현식이나 함수의 반환값이다.</p>
-</li>
-<li>
-<p>move semnatics를 사용하여 자원을 효율적으로 이동시키는데 사용한다.</p>
-</li>
-<li>
-<p>rvalue 참조 (~C++11)</p>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>show</span>() <span style=color:#f92672>&amp;&amp;</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;rvalue function called (object is rvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
-</code></pre></div><ul>
-<li>멤버 함수에서의 사용 예시</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>void</span> show() <span style=color:#f92672>&amp;&amp;</span> { <span style=color:#75715e>// rvalue에서만 호출 가능
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;rvalue function called (object is rvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>MyClass().show(); <span style=color:#75715e>// rvalue 객체에서 호출
-</span></code></pre></div><h3 id=가상함수>가상함수</h3>
-<blockquote>
-<p>상속 관계에서 동적 바인딩을 위해 사용</p>
-</blockquote>
-<ul>
-<li>가상 함수를 가진 클래스를 다형성 클래스(polymorphic class)라고 함</li>
-<li>순수 가상 함수를 가진 클래스를 추상 클래스(abstract class)라고 함</li>
-</ul>
-<h4 id=virtual-지정자>virtual 지정자</h4>
-<ul>
-<li>가상 함수 : 오버라이딩이 선택적임</li>
-<li>순수 가상 함수 : 오버라이딩이 필수임</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Base</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#75715e>// 가상함수
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> show() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Base::show()&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e>// 순수 가상함수
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e></span>    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>print</span>() <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>};
-</code></pre></div><h4 id=override-지정자>override 지정자</h4>
-<blockquote>
-<p>오버라이딩을 명시적으로 표시</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Derived</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Base {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>void</span> show() <span style=color:#66d9ef>override</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Derived::show()&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>};
-</code></pre></div><h4 id=final-지정자>final 지정자</h4>
-<blockquote>
-<p>상속을 방지하는 키워드</p>
-</blockquote>
-<ul>
-<li>클래스에 사용 : 상속을 방지</li>
-<li>함수에 사용 : 오버라이딩을 방지</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>// 상속을 방지
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Car</span> <span style=color:#66d9ef>final</span> { ... };
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e>// 상속과 같이 쓰이는 경우
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Derived</span> <span style=color:#66d9ef>final</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Base { ... };
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Base</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#75715e>// 오버라이딩을 방지
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>    <span style=color:#66d9ef>void</span> show() <span style=color:#66d9ef>final</span> { ... }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>};
-</code></pre></div><h3 id=enum-vs-enum-class>enum vs enum class</h3>
-<h4 id=enum>enum</h4>
-<blockquote>
-<p>기존의 C 스타일 열거형</p>
-</blockquote>
-<ul>
-<li>컴파일 시점에 정수형 상수로 변환 -> 성능 저하가 없음</li>
-<li>다른 enum 영역이라도 변수명이 중복되면 충돌 발생</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    RED,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    GREEN,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    BLUE
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>Color color <span style=color:#f92672>=</span> RED;
-</code></pre></div><h4 id=enum-class-c11>enum class (~C++11)</h4>
-<blockquote>
-<p>enum의 확장된 버전</p>
-</blockquote>
-<ul>
-<li>묵시적 형변환이 불가능 -> 명시적 형변환 필요</li>
-<li>enum 영역이 격리되어 변수명이 중복되어도 충돌이 발생하지 않음</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>enum</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Color</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    RED,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    GREEN,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    BLUE
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>Color color <span style=color:#f92672>=</span> Color<span style=color:#f92672>::</span>RED;
-</code></pre></div><h3 id=explicit-지정자><code>explicit</code> 지정자</h3>
-<blockquote>
-<p>단일 인자 생성자의 암시적 형변환을 방지하기 위해 사용</p>
-</blockquote>
-<ul>
-<li>단일 인자 생성자 앞에 사용</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>explicit</span> MyClass(<span style=color:#66d9ef>int</span> a) <span style=color:#f92672>:</span> a(a) {}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>MyClass obj <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>; <span style=color:#75715e>// error: 암시적 형변환 불가
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#75715e></span>MyClass <span style=color:#a6e22e>obj</span>(<span style=color:#ae81ff>10</span>);  <span style=color:#75715e>// ok
-</span></code></pre></div><h3 id=숨겨진-friend-함수>숨겨진 <code>friend</code> 함수</h3>
-<blockquote>
-<p>클래스의 private 멤버에 접근할 수 있도록 하는 함수</p>
-</blockquote>
-<ul>
-<li>멤버함수가 아니지만 클래스의 private 멤버에 접근할 수 있음</li>
-<li>클래스 내부에 정의해야 함</li>
-<li>ADL로만 호출 가능</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>namespace</span> MyMath {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Point</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        <span style=color:#66d9ef>int</span> x, y;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        Point(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) <span style=color:#f92672>:</span> x(x), y(y) {}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#66d9ef>friend</span> <span style=color:#66d9ef>void</span> <span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(Point<span style=color:#f92672>&amp;</span> a, Point<span style=color:#f92672>&amp;</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            a.x <span style=color:#f92672>+=</span> b.x;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            a.y <span style=color:#f92672>+=</span> b.y;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    };
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#66d9ef>int32_t</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    MyMath<span style=color:#f92672>::</span>Point a(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    MyMath<span style=color:#f92672>::</span>Point b(<span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    a <span style=color:#f92672>+</span> b;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>}
-</code></pre></div><h4 id=adl-argument-dependent-lookup>ADL (Argument Dependent Lookup)</h4>
-<blockquote>
-<p>함수 호출 시 인자의 네임스페이스를 검색하여 함수를 찾는 것</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>namespace</span> MyMath {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Point</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        <span style=color:#66d9ef>int</span> x, y;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        Point(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) <span style=color:#f92672>:</span> x(x), y(y) {}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    };
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>void</span> <span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(Point<span style=color:#f92672>&amp;</span> a, Point<span style=color:#f92672>&amp;</span> b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        a.x <span style=color:#f92672>+=</span> b.x;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        a.y <span style=color:#f92672>+=</span> b.y;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#66d9ef>int32_t</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    MyMath<span style=color:#f92672>::</span>Point a(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    MyMath<span style=color:#f92672>::</span>Point b(<span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    a <span style=color:#f92672>+</span> b; <span style=color:#75715e>// ADL로 인해 MyMath::operator+ 함수 호출
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#75715e></span>    MyMath<span style=color:#f92672>::</span><span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(a, b); <span style=color:#75715e>// ADL이 없었다면 명시적으로 호출
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#75715e></span>}
-</code></pre></div><h3 id=stdvariant-c17><code>std::variant</code> (~C++17)</h3>
-<blockquote>
-<p>여러 타입 중 하나를 저장하는 클래스</p>
-</blockquote>
-<ul>
-<li>union과 똑같이 동작하지만, type-safe함</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>std<span style=color:#f92672>::</span>variant<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>double</span>, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span> value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>value <span style=color:#f92672>=</span> <span style=color:#ae81ff>3.14</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// 3.14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>value <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// hello
-</span></code></pre></div><h4 id=멤버-비멤버-함수>멤버, 비멤버 함수</h4>
-<ul>
-<li>index() : 현재 저장된 타입의 인덱스를 반환</li>
-<li>holds_alternative() : 특정 타입이 저장되어 있는지 확인</li>
-<li>get() : 특정 타입의 값을 반환 (타입이 맞지 않으면 예외 발생)</li>
-<li>get_if() : 특정 타입의 값을 반환 (타입이 맞지 않으면 nullptr 반환)</li>
-<li>visit() : 저장된 타입을 몰라도 처리 가능</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>std<span style=color:#f92672>::</span>variant<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>double</span>, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span> value;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>value <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>value.index(); <span style=color:#75715e>// 2 (타입 순서대로 index 형성)
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>std<span style=color:#f92672>::</span>holds_alternative<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(value); <span style=color:#75715e>// true
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(value); <span style=color:#75715e>// 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>std<span style=color:#f92672>::</span>get_if<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#f92672>&amp;</span>value); <span style=color:#75715e>// 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>std<span style=color:#f92672>::</span>visit([](<span style=color:#66d9ef>auto</span><span style=color:#f92672>&amp;</span> arg) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> arg <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>}, value);
-</code></pre></div>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/c_cpp/c_concept/>
-<span class=mx-3>◀</span>
-C언어 개념 정리
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+<!doctype html><html lang=ko><head><title>C++ 개념 정리</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
+본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
+
+참조(Reference)와 포인터(Pointer)
+포인터(Pointer)
+
+메모리 주소를 저 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="C++ 개념 정리"><meta property="og:description" content="
+본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.
+
+참조(Reference)와 포인터(Pointer)
+포인터(Pointer)
+
+메모리 주소를 저 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#참조reference와-포인터pointer>참조(Reference)와 포인터(Pointer)</a></li><li><a href=#참조reference>참조(Reference)</a></li><li><a href=#템플릿-template>템플릿 (Template)</a></li><li><a href=#템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</a></li><li><a href=#속성-attribute>속성 (Attribute)</a></li><li><a href=#if-constexpr-c17>if constexpr (~C++17)</a></li><li><a href=#lambda-c11>Lambda (~C++11)</a></li><li><a href=#closure-c11>Closure (~C++11)</a></li><li><a href=#escape-sequence>Escape Sequence</a></li><li><a href=#encoding>Encoding</a></li><li><a href=#cast-operator>Cast Operator</a></li><li><a href=#constexpr-c11>constexpr (~C++11)</a></li><li><a href=#lvalue-rvalue-참조>lvalue, rvalue 참조</a></li><li><a href=#가상함수>가상함수</a></li><li><a href=#enum-vs-enum-class>enum vs enum class</a></li><li><a href=#explicit-지정자><code>explicit</code> 지정자</a></li><li><a href=#숨겨진-friend-함수>숨겨진 <code>friend</code> 함수</a></li><li><a href=#stdvariant-c17><code>std::variant</code> (~C++17)</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">C++ 개념 정리</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ c++</span></div><h4 id=date>수정일 : 2024-12-09</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><blockquote><p>본 내용은 2023 MISRA-CPP 가이드라인을 공부하면서 개념을 정리한 것이다.</p></blockquote><h3 id=참조reference와-포인터pointer>참조(Reference)와 포인터(Pointer)</h3><h4 id=포인터pointer>포인터(Pointer)</h4><blockquote><p>메모리 주소를 저장하는 변수</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>// 변수 선언
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#f92672>&amp;</span>a; <span style=color:#75715e>// a의 주소를 저장
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#75715e>// 매개변수로 전달
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#f92672>*</span>a <span style=color:#f92672>+</span> <span style=color:#f92672>*</span>b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>add(<span style=color:#f92672>&amp;</span>a, <span style=color:#f92672>&amp;</span>b);
+</span></span></code></pre></div><h3 id=참조reference>참조(Reference)</h3><blockquote><p>변수에 별칭을 부여하는 것</p></blockquote><ul><li><p>이름으로 대상을 가리킨다.</p></li><li><p>제약사항</p><ul><li>참조는 선언과 동시에 초기화해야 한다.</li><li>참조는 한 번 초기화되면 다른 변수로 변경할 수 없다.</li><li>참조는 NULL로 초기화할 수 없다.</li></ul></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#75715e>// 변수 선언
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> b <span style=color:#f92672>=</span> a; <span style=color:#75715e>// a의 별칭을 b로 지정
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#75715e>// 매개변수로 전달
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> a, <span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>    a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>add (a, b);
+</span></span></code></pre></div><h3 id=템플릿-template>템플릿 (Template)</h3><blockquote><p>템플릿은 함수나 클래스를 정의할 때, 타입을 일반화하여 코드를 작성하는 방법</p></blockquote><h4 id=함수-템플릿>함수 템플릿</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>T add(T a, T b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><h4 id=클래스-템플릿>클래스 템플릿</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Point</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    T x, y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    Point(T x, T y) <span style=color:#f92672>:</span> x(x), y(y) {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>};
+</span></span></code></pre></div><h3 id=템플릿-특수화-template-specialization>템플릿 특수화 (Template Specialization)</h3><blockquote><p>템플릿을 특정 타입에 대해 구체화하는 것</p></blockquote><h4 id=함수-템플릿-명시적-특수화>함수 템플릿 명시적 특수화</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>T add(T a, T b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#75715e>// int 타입에 대한 특수화
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#66d9ef>int</span> add(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div><h4 id=함수-템플릿-부분-특수화>함수 템플릿 부분 특수화</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>T add(T a, T b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#75715e>// 포인터 타입에 대한 부분 특수화
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>T add(T<span style=color:#f92672>*</span> a, T<span style=color:#f92672>*</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>*</span>a <span style=color:#f92672>+</span> <span style=color:#f92672>*</span>b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div><h3 id=속성-attribute>속성 (Attribute)</h3><blockquote><p>컴파일할때 특정 메시지를 생성하거나 컴파일러가 특정 동작을 수행할 수 있도록 함</p></blockquote><h4 id=noreturn-c11>[[noreturn]] (~c++11)</h4><blockquote><p>함수가 정상적으로 호출자에게 제어권을 반환하지 않음을 나타냄</p></blockquote><ul><li>[[noreturn]]으로 선언된 함수가 정상적인 반환을 시도하는 경우 undefined behavior 발생</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>[[noreturn]]</span> <span style=color:#66d9ef>void</span> error() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>throw</span> <span style=color:#e6db74>&#34;error&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span><span style=color:#66d9ef>int32_t</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    error();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>; <span style=color:#75715e>// dead code로 최적화될 수 있음
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>}
+</span></span></code></pre></div><h4 id=maybe_unused-c17>[[maybe_unused]] (~C++17)</h4><blockquote><p>사용하지 않는 변수, 함수, 매개변수, 타입에 대한 경고를 컴파일러가 무시하도록 명시</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>[[maybe_unused]]</span> <span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span></code></pre></div><h4 id=nodiscard-c17>[[nodiscard]] (~C++17)</h4><blockquote><p>함수의 반환값을 무시하는 경우 컴파일러가 경고하도록 명시</p></blockquote><ul><li>반대로 (void) 형태로 캐스팅하여 경고를 억제할 수 있음</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>[[nodiscard]]</span> <span style=color:#66d9ef>int</span> add(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><h4 id=fallthrough-c17><code>[[fallthrough]] (~C++17)</code></h4><blockquote><p>switch문에서 case 라벨을 사용할 때, break를 사용하지 않는 경우 경고를 억제</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>switch</span> (a) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>case</span> <span style=color:#ae81ff>1</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;1&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>        <span style=color:#a6e22e>[[fallthrough]]</span>; <span style=color:#75715e>// 의도적으로 2로 넘어간다는 것을 명시
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>case</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;2&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;default&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>        <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>}
+</span></span></code></pre></div><h3 id=if-constexpr-c17>if constexpr (~C++17)</h3><blockquote><p>compile time에 조건문을 처리할 수 있도록 함</p></blockquote><ul><li>조건이 거짓인 경우 해당 블록은 컴파일되지 않음</li><li>템플릿과 비슷한 기능을 수행</li><li>템플릿은 compile time에 모든 코드를 생성하지만 if constexpr는 조건에 따라 코드를 생성</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>template</span> <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>void</span> print(T value) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>constexpr</span> (std<span style=color:#f92672>::</span>is_same_v<span style=color:#f92672>&lt;</span>T, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;int: &#34;</span> <span style=color:#f92672>&lt;&lt;</span> value <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>constexpr</span> (std<span style=color:#f92672>::</span>is_same_v<span style=color:#f92672>&lt;</span>T, <span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;double: &#34;</span> <span style=color:#f92672>&lt;&lt;</span> value <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;unknown type&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div><h3 id=lambda-c11>Lambda (~C++11)</h3><blockquote><p>익명 함수를 정의하는 표현식</p></blockquote><ul><li>간단한 함수를 선언할 때 사용</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>auto</span> add <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>};
+</span></span></code></pre></div><h4 id=transientnon-transient-lambda>Transient/Non-transient lambda</h4><ul><li>Transient lambda</li></ul><blockquote><p>즉시 호출되고 소멸되는 람다 함수</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>    <span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>auto</span> result <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> x) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>        <span style=color:#66d9ef>return</span> x <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    }(); <span style=color:#75715e>// 즉시 호출
+</span></span></span></code></pre></div><ul><li>Non-transient lambda</li></ul><blockquote><p>메모리에 저장되어 여러 번 호출할 수 있는 람다 함수</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>std<span style=color:#f92672>::</span>function<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int32_t</span>()<span style=color:#f92672>&gt;</span> add <span style=color:#f92672>=</span> [](<span style=color:#66d9ef>int</span> a) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#66d9ef>int32_t</span> result <span style=color:#f92672>=</span> add(<span style=color:#ae81ff>10</span>);
+</span></span></code></pre></div><h3 id=closure-c11>Closure (~C++11)</h3><blockquote><p>lambda expression에서 외부 변수에 대한 참조를 캡처하는 방식</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>auto</span> add <span style=color:#f92672>=</span> [<span style=color:#f92672>&amp;</span>a](<span style=color:#66d9ef>int</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>};
+</span></span></code></pre></div><h4 id=capture>Capture</h4><blockquote><p>lamda 함수에서 외부 변수를 함수 내부로 가져오는 것</p></blockquote><ul><li><p>lambda 함수가 정의된 시점의 외부 변수를 사용할 수 있도록 함</p></li><li><p>parameter 방식과의 비교</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>// parameter 방식
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addAndPrint</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> a <span style=color:#f92672>+</span> b <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>int</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    addAndPrint(x, y);  <span style=color:#75715e>// 매번 호출할 때 값을 전달해야 함
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#75715e>// capture 방식
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>int</span> y <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#66d9ef>auto</span> addAndPrint <span style=color:#f92672>=</span> [<span style=color:#f92672>&amp;</span>x, <span style=color:#f92672>&amp;</span>y]() {  <span style=color:#75715e>// 외부 변수 x와 y를 참조로 캡처
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> x <span style=color:#f92672>+</span> y <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>addAndPrint();  <span style=color:#75715e>// 매개변수 없이도 외부 변수에 접근 가능
+</span></span></span></code></pre></div><h4 id=capture-list>Capture List</h4><ul><li><code>[&]</code> : 모든 외부 변수를 참조로 캡처</li><li><code>[=]</code> : 모든 외부 변수를 값으로 캡처</li><li><code>[a]</code> : 변수 a를 값으로 캡처</li><li><code>[&amp;a]</code> : 변수 a를 참조로 캡처</li></ul><h3 id=escape-sequence>Escape Sequence</h3><blockquote><p>문자열 리터럴에서 특정 문자를 표현하기 위해 사용하는 문자열</p></blockquote><table><thead><tr><th style=text-align:center>Escape Sequence</th><th style=text-align:center>Description</th></tr></thead><tbody><tr><td style=text-align:center><code>\'</code></td><td style=text-align:center>작은 따옴표</td></tr><tr><td style=text-align:center><code>\"</code></td><td style=text-align:center>큰 따옴표</td></tr><tr><td style=text-align:center><code>\?</code></td><td style=text-align:center>물음표</td></tr><tr><td style=text-align:center><code>\\</code></td><td style=text-align:center>역슬래시</td></tr><tr><td style=text-align:center><code>\a</code></td><td style=text-align:center>벨 소리</td></tr><tr><td style=text-align:center><code>\b</code></td><td style=text-align:center>백스페이스</td></tr><tr><td style=text-align:center><code>\f</code></td><td style=text-align:center>폼 피드</td></tr><tr><td style=text-align:center><code>\n</code></td><td style=text-align:center>개행</td></tr><tr><td style=text-align:center><code>\r</code></td><td style=text-align:center>캐리지 리턴</td></tr><tr><td style=text-align:center><code>\t</code></td><td style=text-align:center>수평 탭</td></tr><tr><td style=text-align:center><code>\v</code></td><td style=text-align:center>수직 탭</td></tr><tr><td style=text-align:center><code>\0</code></td><td style=text-align:center>널 문자</td></tr><tr><td style=text-align:center><code>\nnn</code></td><td style=text-align:center>8진수</td></tr><tr><td style=text-align:center><code>\xnn</code></td><td style=text-align:center>16진수</td></tr></tbody></table><h3 id=encoding>Encoding</h3><blockquote><p>C++에서는 문자 리터럴에 접두사를 붙여 인코딩을 지정할 수 있음</p></blockquote><table><thead><tr><th style=text-align:center>Encoding</th><th style=text-align:center>Prefix</th><th style=text-align:center>Example</th></tr></thead><tbody><tr><td style=text-align:center>Literal Wide</td><td style=text-align:center><code>L</code></td><td style=text-align:center><code>L'A'</code></td></tr><tr><td style=text-align:center>Literal UTF-8</td><td style=text-align:center><code>u8</code></td><td style=text-align:center><code>u8'A'</code></td></tr><tr><td style=text-align:center>Literal UTF-16</td><td style=text-align:center><code>u</code></td><td style=text-align:center><code>u'A'</code></td></tr><tr><td style=text-align:center>Literal UTF-32</td><td style=text-align:center><code>U</code></td><td style=text-align:center><code>U'A'</code></td></tr><tr><td style=text-align:center>ASCII</td><td style=text-align:center>none</td><td style=text-align:center><code>'\x41'</code></td></tr><tr><td style=text-align:center>UTF-8</td><td style=text-align:center>none</td><td style=text-align:center><code>'\xC3\xA9'</code></td></tr><tr><td style=text-align:center>Unicode (UTF-16)</td><td style=text-align:center>none</td><td style=text-align:center><code>'\u0041'</code></td></tr><tr><td style=text-align:center>Unicode (UTF-32)</td><td style=text-align:center>none</td><td style=text-align:center><code>'\U00000041'</code></td></tr></tbody></table><h3 id=cast-operator>Cast Operator</h3><blockquote><p>C++에서는 다양한 형변환 연산자를 제공</p></blockquote><h4 id=static_cast>static_cast</h4><blockquote><p>논리적으로 형변환이 가능한 경우에 사용</p></blockquote><ul><li>기본 타입 간의 변환, 포인터/참조 간의 명시적 변환에 사용</li><li>컴파일 시점에 검증 -> 논리적으로 맞지 않은 경우 컴파일 에러 발생</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>double</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(a);
+</span></span></code></pre></div><h4 id=dynamic_cast>dynamic_cast</h4><blockquote><p>상속 관계에서의 형변환을 위해 사용</p></blockquote><ul><li>런타임 시점에 안전한 형변환을 보장</li><li>반드시 가상 함수가 있는 클래스에서만 사용 가능</li><li>다운캐스팅 시, 형변환이 불가능한 경우 nullptr을 반환</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Base</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> print() {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Derived</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Base {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>void</span> print() <span style=color:#66d9ef>override</span> {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>Base<span style=color:#f92672>*</span> base <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Derived();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>Derived<span style=color:#f92672>*</span> derived <span style=color:#f92672>=</span> <span style=color:#66d9ef>dynamic_cast</span><span style=color:#f92672>&lt;</span>Derived<span style=color:#f92672>*&gt;</span>(base); <span style=color:#75715e>// 안전한 다운캐스팅
+</span></span></span></code></pre></div><h4 id=const_cast>const_cast</h4><blockquote><p>포인터 또는 참조형의 const 속성을 제거하기 위해 사용</p></blockquote><ul><li>상수형 -> 비상수형으로 변환</li><li>불변 데이터를 수정하는 데 사용하면 undefined behavior 발생</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>const_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*&gt;</span>(<span style=color:#f92672>&amp;</span>a);
+</span></span></code></pre></div><h4 id=reinterpret_cast>reinterpret_cast</h4><blockquote><p>포인터 형변환이나 비논리적 형변환을 위해 사용</p></blockquote><ul><li>메모리 레이아웃을 기반으로 포인터를 변환</li><li>undefined behavior를 발생시킬 수 있음</li><li>완전히 다른 타입으로 변환이 가능하지만, 안정성을 보장하지 않음</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> b <span style=color:#f92672>=</span> <span style=color:#66d9ef>reinterpret_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>*&gt;</span>(<span style=color:#f92672>&amp;</span>a);
+</span></span></code></pre></div><h3 id=constexpr-c11>constexpr (~C++11)</h3><blockquote><p>컴파일 시간에 평가되는 표현식을 생성하기 위해 사용</p></blockquote><h4 id=변수>변수</h4><ul><li>compile time 상수에만 사용 가능</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> num1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> num2 <span style=color:#f92672>=</span> a; <span style=color:#75715e>// error: 변수 a는 runtime에 결정되므로 사용 불가
+</span></span></span></code></pre></div><h4 id=함수>함수</h4><ul><li>함수가 compile time에 실행되도록 보장</li><li>인자 값이 compile time 상수인 경우 -> constexpr 함수로 동작</li><li>인자 값이 compile time 상수가 아닌 경우 -> constexpr 함수로 동작</li><li>body에서 불가능한 구문<ul><li>goto</li><li>try-catch</li><li>초기화 수행이 없는 변수 선언</li><li>리터럴 타입이 아닌 변수 선언</li><li>static 변수 선언</li><li>tls(thread local storage) 변수 선언</li><li>등&mldr;</li></ul></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>fibonacci</span>(<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>if</span> (n <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> n;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>+</span> fibonacci(n <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>fibonacci(<span style=color:#ae81ff>10</span>); <span style=color:#75715e>// compile time에 다 계산되어서 55로 대체됨
+</span></span></span></code></pre></div><h3 id=lvalue-rvalue-참조>lvalue, rvalue 참조</h3><h4 id=lvalue>lvalue</h4><blockquote><p>객체를 가리키는 메모리 위치를 나타내는 표현식</p></blockquote><ul><li>lvalue 참조</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>int</span> b <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;</span> a <span style=color:#f92672>=</span> b;     <span style=color:#75715e>// a는 b의 참조자 (lvalue 참조)
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>a <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span></code></pre></div><ul><li>멤버 함수에서의 사용 예시</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>void</span> show() <span style=color:#f92672>&amp;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;lvalue function called (object is lvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>MyClass obj;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>obj.show(); <span style=color:#75715e>// lvalue 객체에서 호출
+</span></span></span></code></pre></div><h4 id=rvalue>rvalue</h4><blockquote><p>메모리에 위치에 할당된 값을 나타내는 표현식</p></blockquote><ul><li><p>주소가 없거나, 임시로 할당된 값</p></li><li><p>주로 표현식이나 함수의 반환값이다.</p></li><li><p>move semnatics를 사용하여 자원을 효율적으로 이동시키는데 사용한다.</p></li><li><p>rvalue 참조 (~C++11)</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>int</span><span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>show</span>() <span style=color:#f92672>&amp;&amp;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;rvalue function called (object is rvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><ul><li>멤버 함수에서의 사용 예시</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>void</span> show() <span style=color:#f92672>&amp;&amp;</span> { <span style=color:#75715e>// rvalue에서만 호출 가능
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;rvalue function called (object is rvalue)&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>MyClass().show(); <span style=color:#75715e>// rvalue 객체에서 호출
+</span></span></span></code></pre></div><h3 id=가상함수>가상함수</h3><blockquote><p>상속 관계에서 동적 바인딩을 위해 사용</p></blockquote><ul><li>가상 함수를 가진 클래스를 다형성 클래스(polymorphic class)라고 함</li><li>순수 가상 함수를 가진 클래스를 추상 클래스(abstract class)라고 함</li></ul><h4 id=virtual-지정자>virtual 지정자</h4><ul><li>가상 함수 : 오버라이딩이 선택적임</li><li>순수 가상 함수 : 오버라이딩이 필수임</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Base</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#75715e>// 가상함수
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> show() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Base::show()&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e>// 순수 가상함수
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#66d9ef>virtual</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>print</span>() <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>};
+</span></span></code></pre></div><h4 id=override-지정자>override 지정자</h4><blockquote><p>오버라이딩을 명시적으로 표시</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Derived</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Base {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>void</span> show() <span style=color:#66d9ef>override</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;Derived::show()&#34;</span> <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>};
+</span></span></code></pre></div><h4 id=final-지정자>final 지정자</h4><blockquote><p>상속을 방지하는 키워드</p></blockquote><ul><li>클래스에 사용 : 상속을 방지</li><li>함수에 사용 : 오버라이딩을 방지</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>// 상속을 방지
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Car</span> <span style=color:#66d9ef>final</span> { ... };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#75715e>// 상속과 같이 쓰이는 경우
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Derived</span> <span style=color:#66d9ef>final</span> <span style=color:#f92672>:</span> <span style=color:#66d9ef>public</span> Base { ... };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Base</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#75715e>// 오버라이딩을 방지
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>void</span> show() <span style=color:#66d9ef>final</span> { ... }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>};
+</span></span></code></pre></div><h3 id=enum-vs-enum-class>enum vs enum class</h3><h4 id=enum>enum</h4><blockquote><p>기존의 C 스타일 열거형</p></blockquote><ul><li>컴파일 시점에 정수형 상수로 변환 -> 성능 저하가 없음</li><li>다른 enum 영역이라도 변수명이 중복되면 충돌 발생</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    RED,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    GREEN,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    BLUE
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>Color color <span style=color:#f92672>=</span> RED;
+</span></span></code></pre></div><h4 id=enum-class-c11>enum class (~C++11)</h4><blockquote><p>enum의 확장된 버전</p></blockquote><ul><li>묵시적 형변환이 불가능 -> 명시적 형변환 필요</li><li>enum 영역이 격리되어 변수명이 중복되어도 충돌이 발생하지 않음</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>enum</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Color</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    RED,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    GREEN,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    BLUE
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>Color color <span style=color:#f92672>=</span> Color<span style=color:#f92672>::</span>RED;
+</span></span></code></pre></div><h3 id=explicit-지정자><code>explicit</code> 지정자</h3><blockquote><p>단일 인자 생성자의 암시적 형변환을 방지하기 위해 사용</p></blockquote><ul><li>단일 인자 생성자 앞에 사용</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyClass</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>explicit</span> MyClass(<span style=color:#66d9ef>int</span> a) <span style=color:#f92672>:</span> a(a) {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>MyClass obj <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>; <span style=color:#75715e>// error: 암시적 형변환 불가
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>MyClass <span style=color:#a6e22e>obj</span>(<span style=color:#ae81ff>10</span>);  <span style=color:#75715e>// ok
+</span></span></span></code></pre></div><h3 id=숨겨진-friend-함수>숨겨진 <code>friend</code> 함수</h3><blockquote><p>클래스의 private 멤버에 접근할 수 있도록 하는 함수</p></blockquote><ul><li>멤버함수가 아니지만 클래스의 private 멤버에 접근할 수 있음</li><li>클래스 내부에 정의해야 함</li><li>ADL로만 호출 가능</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>namespace</span> MyMath {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Point</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>        <span style=color:#66d9ef>int</span> x, y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        Point(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) <span style=color:#f92672>:</span> x(x), y(y) {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        <span style=color:#66d9ef>friend</span> <span style=color:#66d9ef>void</span> <span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(Point<span style=color:#f92672>&amp;</span> a, Point<span style=color:#f92672>&amp;</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>            a.x <span style=color:#f92672>+=</span> b.x;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            a.y <span style=color:#f92672>+=</span> b.y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span><span style=color:#66d9ef>int32_t</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    MyMath<span style=color:#f92672>::</span>Point a(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    MyMath<span style=color:#f92672>::</span>Point b(<span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    a <span style=color:#f92672>+</span> b;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>}
+</span></span></code></pre></div><h4 id=adl-argument-dependent-lookup>ADL (Argument Dependent Lookup)</h4><blockquote><p>함수 호출 시 인자의 네임스페이스를 검색하여 함수를 찾는 것</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>namespace</span> MyMath {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Point</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>        <span style=color:#66d9ef>int</span> x, y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>        Point(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) <span style=color:#f92672>:</span> x(x), y(y) {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>void</span> <span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(Point<span style=color:#f92672>&amp;</span> a, Point<span style=color:#f92672>&amp;</span> b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        a.x <span style=color:#f92672>+=</span> b.x;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        a.y <span style=color:#f92672>+=</span> b.y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span><span style=color:#66d9ef>int32_t</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    MyMath<span style=color:#f92672>::</span>Point a(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    MyMath<span style=color:#f92672>::</span>Point b(<span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    a <span style=color:#f92672>+</span> b; <span style=color:#75715e>// ADL로 인해 MyMath::operator+ 함수 호출
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    MyMath<span style=color:#f92672>::</span><span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(a, b); <span style=color:#75715e>// ADL이 없었다면 명시적으로 호출
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>}
+</span></span></code></pre></div><h3 id=stdvariant-c17><code>std::variant</code> (~C++17)</h3><blockquote><p>여러 타입 중 하나를 저장하는 클래스</p></blockquote><ul><li>union과 똑같이 동작하지만, type-safe함</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>std<span style=color:#f92672>::</span>variant<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>double</span>, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span> value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>value <span style=color:#f92672>=</span> <span style=color:#ae81ff>3.14</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// 3.14
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>value <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span>(value) <span style=color:#f92672>&lt;&lt;</span> endl; <span style=color:#75715e>// hello
+</span></span></span></code></pre></div><h4 id=멤버-비멤버-함수>멤버, 비멤버 함수</h4><ul><li>index() : 현재 저장된 타입의 인덱스를 반환</li><li>holds_alternative() : 특정 타입이 저장되어 있는지 확인</li><li>get() : 특정 타입의 값을 반환 (타입이 맞지 않으면 예외 발생)</li><li>get_if() : 특정 타입의 값을 반환 (타입이 맞지 않으면 nullptr 반환)</li><li>visit() : 저장된 타입을 몰라도 처리 가능</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>std<span style=color:#f92672>::</span>variant<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>double</span>, std<span style=color:#f92672>::</span>string<span style=color:#f92672>&gt;</span> value;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>value <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>value.index(); <span style=color:#75715e>// 2 (타입 순서대로 index 형성)
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>std<span style=color:#f92672>::</span>holds_alternative<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span>(value); <span style=color:#75715e>// true
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>value <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>std<span style=color:#f92672>::</span>get<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(value); <span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>std<span style=color:#f92672>::</span>get_if<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(<span style=color:#f92672>&amp;</span>value); <span style=color:#75715e>// 1
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>std<span style=color:#f92672>::</span>visit([](<span style=color:#66d9ef>auto</span><span style=color:#f92672>&amp;</span> arg) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> arg <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>}, value);
+</span></span></code></pre></div></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/c_cpp/c_concept/><span class=mx-3>◀</span>
+C언어 개념 정리</a></div></div></div><div id=comment-box></div></section></main></div></body></html>

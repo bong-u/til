@@ -1,150 +1,39 @@
-<!doctype html><html lang=ko>
-<head>
-<title>프로그래머스 - 메뉴 리뉴얼 (L2)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="1from itertools import combinations 2from collections import defaultdict 3 4def solution(orders, …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="프로그래머스 - 메뉴 리뉴얼 (L2)">
-<meta property="og:description" content="1from itertools import combinations 2from collections import defaultdict 3 4def solution(orders, …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#문제>문제</a></li>
-<li><a href=#해결방법>해결방법</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-프로그래머스 - 메뉴 리뉴얼 (L2)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
-<span class="text-md mr-1">🏷️ programmers</span>
-</div>
-<h4 id=date>수정일 : 2023-09-04</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> itertools <span style=color:#f92672>import</span> combinations
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> defaultdict
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(orders, course):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    answer <span style=color:#f92672>=</span> []
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> course:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        dataset <span style=color:#f92672>=</span> defaultdict(int)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> orders:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> combinations(j, i):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>                <span style=color:#75715e># ABC, ACB를 같은 것으로 취급하기 위해 정렬</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>                dataset[<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(sorted(k))] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#66d9ef>if</span> len(dataset) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>            <span style=color:#66d9ef>continue</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        max_value <span style=color:#f92672>=</span> max(dataset<span style=color:#f92672>.</span>values())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>        <span style=color:#75715e># 2번 이상 주문된 메뉴만 추가</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>if</span> max_value <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>            <span style=color:#66d9ef>continue</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>        <span style=color:#66d9ef>for</span> k, _ <span style=color:#f92672>in</span> filter(<span style=color:#66d9ef>lambda</span> x:x[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> max_value, dataset<span style=color:#f92672>.</span>items()):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>            answer<span style=color:#f92672>.</span>append(<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(k))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>    <span style=color:#66d9ef>return</span> sorted(answer)
-</code></pre></div><h3 id=문제>문제</h3>
-<ul>
-<li>손님들이 주문한 단품메뉴들이 문자열 형식으로 담긴 배열 orders, 코스 요리를 구성하는 단품메뉴들의 갯수가 담긴 배열 course가 주어진다</li>
-<li>손님들이 함께 주문한 단품메뉴들 중, 가장 많이 함께 주문한 단품메뉴 조합을 코스요리 메뉴로 구성하려고 한다</li>
-<li>코스요리 메뉴는 최소 2가지 이상의 단품메뉴로 구성되어야하며, 최소 2명 이상의 손님으로부터 주문된 단품메뉴 조합만을 코스요리 메뉴 후보에 포함한다</li>
-<li>코스요리 메뉴의 구성을 문자열 형식으로 배열에 담아 사전순으로 오름차순 정렬하여 return하라</li>
-<li>TC
-<ul>
-<li>input
-<blockquote>
-<p>orders: [&ldquo;ABCFG&rdquo;, &ldquo;AC&rdquo;, &ldquo;CDE&rdquo;, &ldquo;ACDE&rdquo;, &ldquo;BCFG&rdquo;, &ldquo;ACDEH&rdquo;]<br>
-course: [2,3,4]</p>
-</blockquote>
-</li>
-<li>ouput
-<blockquote>
-<p>[&ldquo;AC&rdquo;, &ldquo;ACDE&rdquo;, &ldquo;BCFG&rdquo;, &ldquo;CDE&rdquo;]</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id=해결방법>해결방법</h3>
-<ul>
-<li>combinations를 사용하여 모든 조합을 구해서 defaultdict로 개수를 센다</li>
-<li>defaultdict의 value 중 최대값을 구하고, 최대값과 같은 value를 가진 key를 answer에 추가한다</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>프로그래머스 - 메뉴 리뉴얼 (L2)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 1from itertools import combinations
+ 2from collections import defaultdict
+ 3
+ 4def solution(orders, …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="프로그래머스 - 메뉴 리뉴얼 (L2)"><meta property="og:description" content=" 1from itertools import combinations
+ 2from collections import defaultdict
+ 3
+ 4def solution(orders, …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#문제>문제</a></li><li><a href=#해결방법>해결방법</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">프로그래머스 - 메뉴 리뉴얼 (L2)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
+<span class="text-md mr-1">🏷️ programmers</span></div><h4 id=date>수정일 : 2023-09-04</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> itertools <span style=color:#f92672>import</span> combinations
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> defaultdict
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(orders, course):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    answer <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> course:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        dataset <span style=color:#f92672>=</span> defaultdict(int)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> orders:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>            <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> combinations(j, i):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>                <span style=color:#75715e># ABC, ACB를 같은 것으로 취급하기 위해 정렬</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>                dataset[<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(sorted(k))] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>        <span style=color:#66d9ef>if</span> len(dataset) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>            <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>        max_value <span style=color:#f92672>=</span> max(dataset<span style=color:#f92672>.</span>values())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>        <span style=color:#75715e># 2번 이상 주문된 메뉴만 추가</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>        <span style=color:#66d9ef>if</span> max_value <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>            <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>        
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        <span style=color:#66d9ef>for</span> k, _ <span style=color:#f92672>in</span> filter(<span style=color:#66d9ef>lambda</span> x:x[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> max_value, dataset<span style=color:#f92672>.</span>items()):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>            answer<span style=color:#f92672>.</span>append(<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(k))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>    <span style=color:#66d9ef>return</span> sorted(answer)
+</span></span></code></pre></div><h3 id=문제>문제</h3><ul><li>손님들이 주문한 단품메뉴들이 문자열 형식으로 담긴 배열 orders, 코스 요리를 구성하는 단품메뉴들의 갯수가 담긴 배열 course가 주어진다</li><li>손님들이 함께 주문한 단품메뉴들 중, 가장 많이 함께 주문한 단품메뉴 조합을 코스요리 메뉴로 구성하려고 한다</li><li>코스요리 메뉴는 최소 2가지 이상의 단품메뉴로 구성되어야하며, 최소 2명 이상의 손님으로부터 주문된 단품메뉴 조합만을 코스요리 메뉴 후보에 포함한다</li><li>코스요리 메뉴의 구성을 문자열 형식으로 배열에 담아 사전순으로 오름차순 정렬하여 return하라</li><li>TC<ul><li>input<blockquote><p>orders: [&ldquo;ABCFG&rdquo;, &ldquo;AC&rdquo;, &ldquo;CDE&rdquo;, &ldquo;ACDE&rdquo;, &ldquo;BCFG&rdquo;, &ldquo;ACDEH&rdquo;]<br>course: [2,3,4]</p></blockquote></li><li>ouput<blockquote><p>[&ldquo;AC&rdquo;, &ldquo;ACDE&rdquo;, &ldquo;BCFG&rdquo;, &ldquo;CDE&rdquo;]</p></blockquote></li></ul></li></ul><h3 id=해결방법>해결방법</h3><ul><li>combinations를 사용하여 모든 조합을 구해서 defaultdict로 개수를 센다</li><li>defaultdict의 value 중 최대값을 구하고, 최대값과 같은 value를 가진 key를 answer에 추가한다</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89/><span class=mx-3>◀</span>
 프로그래머스 - 순위 검색 (L2)
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/>
-프로그래머스 - 이진 변환 반복하기 (L2)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/>프로그래머스 - 이진 변환 반복하기 (L2)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

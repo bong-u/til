@@ -1,500 +1,209 @@
-<!doctype html><html lang=ko>
-<head>
-<title>[모각코24하계] 02 : 결과</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="RAG (Retrieval-Augmented Generation) 이론 정리  RAG는 검색과 생성을 결합한 모델로, …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="[모각코24하계] 02 : 결과">
-<meta property="og:description" content="RAG (Retrieval-Augmented Generation) 이론 정리  RAG는 검색과 생성을 결합한 모델로, …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#rag-retrieval-augmented-generation-이론-정리>RAG (Retrieval-Augmented Generation) 이론 정리</a></li>
-<li><a href=#opensearch>OpenSearch</a>
-<ul>
-<li><a href=#분석>분석</a></li>
-<li><a href=#opensearch에서-지원하는-요소>OpenSearch에서 지원하는 요소</a></li>
-<li><a href=#opensearch-접근을-위한-curl-명령어>OpenSearch 접근을 위한 cURL 명령어</a></li>
-</ul>
-</li>
-<li><a href=#opensearch를-활용한-rag-실습>OpenSearch를 활용한 Rag 실습</a>
-<ul>
-<li><a href=#배경>배경</a></li>
-<li><a href=#순서>순서</a></li>
-<li><a href=#1-일론-머스크-인터뷰-텍스트-가져오기>1. 일론 머스크 인터뷰 텍스트 가져오기</a></li>
-<li><a href=#2-opensearch-도커-컨테이너-실행>2. OpenSearch 도커 컨테이너 실행</a></li>
-<li><a href=#3-텍스트-데이터-임베딩-및-opensearch에-저장>3. 텍스트 데이터 임베딩 및 OpenSearch에 저장</a></li>
-<li><a href=#4-rag-모델이-opensearch를-쿼리하여-대답-생성>4. RAG 모델이 OpenSearch를 쿼리하여 대답 생성</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-[모각코24하계] 02 : 결과
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ rag</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=rag-retrieval-augmented-generation-이론-정리>RAG (Retrieval-Augmented Generation) 이론 정리</h2>
-<blockquote>
-<p>RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델</p>
-</blockquote>
-<ul>
-<li>
-<p>LLM의 문제점</p>
-<ul>
-<li>할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상</li>
-<li>최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제</li>
-<li>신뢰할 수 없는 출처로부터 정보를 생성하는 문제</li>
-</ul>
-</li>
-<li>
-<p>RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.</p>
-</li>
-</ul>
-<h2 id=opensearch>OpenSearch</h2>
-<blockquote>
-<p>OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전</p>
-</blockquote>
-<ul>
-<li>
-<p>벡터 데이터베이스 : 벡터 데이터를 저장하고 쿼리할 수 있는 데이터베이스</p>
-</li>
-<li>
-<p>주요 기능</p>
-<ul>
-<li>분산 검색 및 분석</li>
-<li>보안</li>
-<li>시각화와 대시보드 지원</li>
-</ul>
-</li>
-<li>
-<p>index와 document</p>
-<ul>
-<li>index : 데이터베이스</li>
-<li>document : 데이터베이스에 저장되는 데이터</li>
-</ul>
-</li>
-</ul>
-<h3 id=분석>분석</h3>
-<ul>
-<li>분석기 Analyzer (Character Filter + Tokenizer + Token Filter)
-<blockquote>
-<p>텍스트를 토큰화하고 필터링하는 과정을 수행</p>
-</blockquote>
-</li>
-<li>분석 과정
-<ol>
-<li>Character Filter
-<blockquote>
-<p>특정 문자를 제거하거나 변경하는 등의 작업을 수행</p>
-</blockquote>
-</li>
-<li>Tokenizer
-<blockquote>
-<p>기본적으로 공백을 기준으로 텍스트를 분리</p>
-</blockquote>
-</li>
-<li>Token Filter
-<blockquote>
-<p>토큰을 추가하거나 제거하는 등의 작업을 수행</p>
-</blockquote>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id=opensearch에서-지원하는-요소>OpenSearch에서 지원하는 요소</h3>
-<ol>
-<li>Tokenizer
-<ul>
-<li>Standard Tokenizer : 공백을 기준으로 텍스트를 분리, 문장 부호 삭제</li>
-<li>Letter Tokenizer : 문자를 기준으로 텍스트를 분리</li>
-<li>Whitespace Tokenizer : 공백을 기준으로 텍스트를 분리</li>
-<li>Ngram Tokenizer : 부분 문자열로 텍스트를 분리</li>
-</ul>
-</li>
-<li>Token Filter
-<ul>
-<li>Standard Token Filter : 아무것도 하지 않음</li>
-<li>Lowercase Token Filter : 텍스트를 소문자로 변환</li>
-<li>Synonym Token Filter : 동의어 처리</li>
-</ul>
-</li>
-<li>Analyzer
-<ul>
-<li>Standard Analyzer : Standard Tokenizer + Standard Token Filter</li>
-<li>Simple Analyzer : Letter Tokenizer + Lowercase Token Filter</li>
-<li>Whitespace Analyzer : Whitespace Tokenizer + Lowercase Token Filter</li>
-</ul>
-</li>
-</ol>
-<h3 id=opensearch-접근을-위한-curl-명령어>OpenSearch 접근을 위한 cURL 명령어</h3>
-<ul>
-<li>인덱스 조회
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/_cat/indices&#34;</span>
-</code></pre></div></li>
-<li>특정 인덱스 조회
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}&#34;</span>
-</code></pre></div></li>
-<li>전체 검색 결과 조회
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}/_search&#34;</span>
-</code></pre></div></li>
-<li>특정 검색어로 검색한 결과 조회
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}/_search&#34;</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#ae81ff></span>-H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#ae81ff></span>-d <span style=color:#e6db74>&#39;{&#34;query&#34;: {&#34;match&#34;: {&#34;field&#34;: &#34;value&#34;}}}&#39;</span>
-</code></pre></div></li>
-<li>인덱스 삭제
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>curl -X DELETE -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#ae81ff></span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}&#34;</span>
-</code></pre></div></li>
-</ul>
-<h2 id=opensearch를-활용한-rag-실습>OpenSearch를 활용한 Rag 실습</h2>
-<h3 id=배경>배경</h3>
-<ul>
-<li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li>
-<li>우리 팀의 주제는 특정 인물에게 상담을 받는 것 같은 대화를 할 수 있는 챗봇을 만드는 것이다.</li>
-<li>이를 위해 특정 인물이 했던 말을 모아 데이터셋으로 만들고 이를 RAG 모델에 적용시키려고 한다.</li>
-</ul>
-<h3 id=순서>순서</h3>
-<ol>
-<li>일론 머스크가 TED에서 한 인터뷰를 텍스트로 가져온다.</li>
-<li>OpenSearch 도커 컨테이너를 실행한다.</li>
-<li>텍스트 데이터를 임베딩해서 OpenSearch에 저장한다.</li>
-<li>RAG 모델이 OpenSearch를 쿼리하여 대답을 생성한다.</li>
-</ol>
-<h3 id=1-일론-머스크-인터뷰-텍스트-가져오기>1. 일론 머스크 인터뷰 텍스트 가져오기</h3>
-<ul>
-<li>
-<p>유튜브에서 &ldquo;스크립트 보기"를 통해 인터뷰 자막을 가져온다.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>22:03
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>EM: 이 큰 트럭을 몰면서 말도 안되는 움직임을 보였죠.
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>CA: 아주 멋지네요. 자, 그럼 정말 굉장한 사진에서
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>22:09
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>조금은 덜 굉장한 사진을 보죠. &#34;위기의 주부들&#34;인가에서 나오는 귀여운 집 사진인데요.
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>22:15
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>이게 갑자기 왜 나온거죠?
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>...
-</code></pre></div></li>
-<li>
-<p>일론 머스크가 한 말만 손수 정리한다.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>네. 제 스스로도 그 질문을 자주 하는 편입니다.
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>저희는 LA의 지하에 구멍을 내려고 하는데요. 이는 교통 체증을 완화시키기 위한
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>3차원 네트워크의 터널이 될 수도 있는 시발점을 만들기 위함입니다.
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>교통 체증은 오늘날 우리의 영혼을 탈탈 터는 문제 중의 하나입니다.
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>세계 모든 사람들에게 영향을 끼치고 있죠. 인생에서 너무도 많은 부분을 가져갑니다.
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>...
-</code></pre></div></li>
-</ul>
-<h3 id=2-opensearch-도커-컨테이너-실행>2. OpenSearch 도커 컨테이너 실행</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>docker create -it -p 9200:9200 -p 9600:9600 -e OPENSEARCH_INITIAL_ADMIN_PASSWORD<span style=color:#f92672>={</span>password<span style=color:#f92672>}</span> -e <span style=color:#e6db74>&#34;discovery.type=single-node&#34;</span> -v opensearch_vol:/usr/share/opensearch/data --name opensearch opensearchproject/opensearch
-</code></pre></div><ul>
-<li>설명
-<ul>
-<li>-p 9200:9200 : OpenSearch HTTP 포트</li>
-<li>-p 9600:9600 : OpenSearch 모니터링 포트</li>
-<li>-e OPENSEARCH_INITIAL_ADMIN_PASSWORD={password} : 초기 비밀번호 설정</li>
-<li>-e &ldquo;discovery.type=single-node&rdquo; : 단일 노드로 실행</li>
-<li>-v opensearch_vol:/usr/share/opensearch/data : 데이터 볼륨 마운트</li>
-</ul>
-</li>
-</ul>
-<h4 id=ssl-오류-발생과-해결>SSL 오류 발생과 해결</h4>
-<ul>
-<li>
-<p>하지만 위 명령어로 실행하면 컨테이너 내부에서 오류가 발생한다</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>2024-07-05 22:15:12 Caused by: io.netty.handler.ssl.NotSslRecordException: not an SSL/TLS record: ...
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>2024-07-05 22:15:12     at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1314) ~[netty-handler-4.1.110.Final.jar:4.1.110.Final]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>2024-07-05 22:15:12     at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1387) ~[netty-handler-4.1.110.Final.jar:4.1.110.Final]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>2024-07-05 22:15:12     at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530) ~[netty-codec-4.1.110.Final.jar:4.1.110.Final]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>2024-07-05 22:15:12     at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469) ~[netty-codec-4.1.110.Final.jar:4.1.110.Final]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>2024-07-05 22:15:12     ... 16 more
-</code></pre></div></li>
-<li>
-<p>프로젝트 기간이 길지 않고, 해당 포트는 외부에 노출할 필요가 없으므로 SSL을 끄고 실행하는 것으로 해결하였다.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#ae81ff>/usr/share/opensearch/config/opensearch.yml</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e># 변경 전</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#f92672>plugins.security.ssl.http.enabled</span>: <span style=color:#66d9ef>true</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e># 변경 후</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>plugins.security.ssl.http.enabled</span>: <span style=color:#66d9ef>false</span>
-</code></pre></div></li>
-</ul>
-<h3 id=3-텍스트-데이터-임베딩-및-opensearch에-저장>3. 텍스트 데이터 임베딩 및 OpenSearch에 저장</h3>
-<blockquote>
-<p>RAG 세션을 해주신 멘토님이 짜준 코드를 적극! 참고하여 작성하였다.</p>
-</blockquote>
-<h4 id=opensearch-인덱스-생성>OpenSearch 인덱스 생성</h4>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1</span><span style=color:#f92672>from</span> opensearchpy <span style=color:#f92672>import</span> OpenSearch
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2</span><span style=color:#f92672>import</span> torch
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3</span><span style=color:#f92672>from</span> transformers <span style=color:#f92672>import</span> AutoTokenizer, AutoModel
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4</span><span style=color:#f92672>from</span> langchain.text_splitter <span style=color:#f92672>import</span> RecursiveCharacterTextSplitter
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5</span><span style=color:#f92672>from</span> langchain_community.document_loaders <span style=color:#f92672>import</span> TextLoader
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6</span><span style=color:#f92672>from</span> langchain_community.vectorstores <span style=color:#f92672>import</span> OpenSearchVectorSearch
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8</span>INDEX_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;elon_musk&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9</span>FILE_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ted_elon_musk_script.txt&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11</span><span style=color:#75715e>## OpenSearch 연결 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12</span>client <span style=color:#f92672>=</span> OpenSearch(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13</span>    hosts<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#e6db74>&#34;port&#34;</span>: <span style=color:#ae81ff>9200</span>}], http_auth<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, {password})
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16</span><span style=color:#75715e>## 텍스트 데이터 불러오기</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17</span>loader <span style=color:#f92672>=</span> TextLoader(file_path<span style=color:#f92672>=</span>FILE_NAME, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18</span>docs <span style=color:#f92672>=</span> loader<span style=color:#f92672>.</span>load()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20</span>text_splitter <span style=color:#f92672>=</span> RecursiveCharacterTextSplitter(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21</span>    chunk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22</span>    chunk_overlap<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23</span>    separators<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>],
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24</span>    length_function<span style=color:#f92672>=</span>len,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27</span>documents <span style=color:#f92672>=</span> text_splitter<span style=color:#f92672>.</span>split_documents(docs)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29</span><span style=color:#75715e># print(documents)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31</span><span style=color:#75715e>## Embedding 모델 정의</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyEmbeddingModel</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33</span>    <span style=color:#66d9ef>def</span> __init__(self, model_name):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34</span>        self<span style=color:#f92672>.</span>tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(model_name)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35</span>        self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> AutoModel<span style=color:#f92672>.</span>from_pretrained(model_name)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>embed_documents</span>(self, doc):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38</span>        inputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tokenizer(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39</span>            doc, return_tensors<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pt&#34;</span>, padding<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, truncation<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40</span>        )
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42</span>        <span style=color:#66d9ef>with</span> torch<span style=color:#f92672>.</span>no_grad():
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43</span>            outputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>model(<span style=color:#f92672>**</span>inputs)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44</span>            embeddings <span style=color:#f92672>=</span> outputs<span style=color:#f92672>.</span>last_hidden_state<span style=color:#f92672>.</span>mean(dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>.</span>tolist()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46</span>        <span style=color:#66d9ef>return</span> embeddings
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>embed_query</span>(self, text):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49</span>        inputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tokenizer(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50</span>            [text], padding<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, truncation<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, return_tensors<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pt&#34;</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51</span>        )
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52</span>        <span style=color:#66d9ef>with</span> torch<span style=color:#f92672>.</span>no_grad():
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53</span>            outputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>model(<span style=color:#f92672>**</span>inputs)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54</span>            embeddings <span style=color:#f92672>=</span> outputs<span style=color:#f92672>.</span>last_hidden_state<span style=color:#f92672>.</span>mean(dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>.</span>tolist()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55</span>        <span style=color:#66d9ef>return</span> embeddings
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58</span><span style=color:#75715e>## index 구조 정의</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59</span>index_body <span style=color:#f92672>=</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60</span>    <span style=color:#e6db74>&#34;settings&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61</span>        <span style=color:#e6db74>&#34;analysis&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62</span>            <span style=color:#e6db74>&#34;tokenizer&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63</span>                <span style=color:#e6db74>&#34;nori_user_dict&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64</span>                    <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;nori_tokenizer&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65</span>                    <span style=color:#e6db74>&#34;decompound_mode&#34;</span>: <span style=color:#e6db74>&#34;mixed&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66</span>                    <span style=color:#e6db74>&#34;user_dictionary&#34;</span>: <span style=color:#e6db74>&#34;user_dic.txt&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67</span>                }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68</span>            },
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69</span>            <span style=color:#e6db74>&#34;analyzer&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70</span>                <span style=color:#e6db74>&#34;korean_anlyzer&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71</span>                    <span style=color:#e6db74>&#34;filter&#34;</span>: [
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72</span>                        <span style=color:#e6db74>&#34;synonym&#34;</span>, <span style=color:#e6db74>&#34;lowercase&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73</span>                    ],
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74</span>                    <span style=color:#e6db74>&#34;tokenizer&#34;</span>: <span style=color:#e6db74>&#34;nori_user_dict&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75</span>                }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76</span>            },
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77</span>            <span style=color:#e6db74>&#34;filter&#34;</span>: {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78</span>                <span style=color:#e6db74>&#34;synonym&#34;</span> :{
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79</span>                    <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;synonym_graph&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80</span>                    <span style=color:#e6db74>&#34;synonyms_path&#34;</span> : <span style=color:#e6db74>&#34;synonyms.txt&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81</span>                }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82</span>            }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83</span>        }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87</span><span style=color:#75715e>## Embedding 모델 생성</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88</span>my_embedding <span style=color:#f92672>=</span> MyEmbeddingModel(<span style=color:#e6db74>&#34;monologg/kobert&#34;</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90</span><span style=color:#75715e>## OpenSearch에 데이터 삽입</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91</span>vector_db <span style=color:#f92672>=</span> OpenSearchVectorSearch<span style=color:#f92672>.</span>from_documents(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92</span>    index_name<span style=color:#f92672>=</span>INDEX_NAME,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93</span>    body<span style=color:#f92672>=</span>index_body,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94</span>    documents<span style=color:#f92672>=</span>documents,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95</span>    embedding<span style=color:#f92672>=</span>my_embedding,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96</span>    op_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;create&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97</span>    opensearch_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:9200&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98</span>    http_auth<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, {password}),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99</span>    use_ssl<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100</span>    verify_certs<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101</span>    ssl_assert_hostname<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102</span>    ssl_show_warn<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103</span>    bulk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>1000000</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104</span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>360000</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107</span>result <span style=color:#f92672>=</span> vector_db<span style=color:#f92672>.</span>add_documents(documents, bulk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>1000000</span>)
-</code></pre></div><ul>
-<li>tokenizer는 한국어를 지원하는 &ldquo;nori_tokenizer"를 사용하였다.</li>
-<li>embedding 모델은 저거 말고도 여러가지가 존재하는데, 어떤 모델이 프로젝트에 가장 부합하는 모델인지는 실험을 해볼 것이다.</li>
-<li>curl을 통해 localhost:9200/elon_musk/_search로 요청을 보내 임베딩한 데이터가 잘 들어갔는지 확인할 수 있다.</li>
-</ul>
-<h3 id=4-rag-모델이-opensearch를-쿼리하여-대답-생성>4. RAG 모델이 OpenSearch를 쿼리하여 대답 생성</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> langchain.prompts <span style=color:#f92672>import</span> PromptTemplate
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> langchain.chains <span style=color:#f92672>import</span> LLMChain
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> ChatOpenAI
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>from</span> opensearchpy <span style=color:#f92672>import</span> OpenSearch
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#f92672>import</span> os
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>INDEX_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;elon_musk&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e># 환경변수 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;OPENAI_API_KEY&#34;</span>] <span style=color:#f92672>=</span> {api_key}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>llm <span style=color:#f92672>=</span> ChatOpenAI(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    model_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-3.5-turbo&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>prompt_template <span style=color:#f92672>=</span> PromptTemplate(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    input_variables<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;context&#34;</span>, <span style=color:#e6db74>&#34;question&#34;</span>],
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    template<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span style=color:#e6db74>Imagine you are </span><span style=color:#e6db74>{character_name}</span><span style=color:#e6db74>,
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span style=color:#e6db74>a wise and experienced advisor. Given the context: &#34;</span><span style=color:#e6db74>{context}</span><span style=color:#e6db74>&#34;,
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span style=color:#e6db74>how would you respond to this inquiry: &#34;</span><span style=color:#e6db74>{question}</span><span style=color:#e6db74>&#34;?&#39;,
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span style=color:#e6db74>(in korean)
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span style=color:#e6db74>&#34;&#34;&#34;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>llm_chain <span style=color:#f92672>=</span> LLMChain(llm<span style=color:#f92672>=</span>llm, prompt<span style=color:#f92672>=</span>prompt_template)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>client <span style=color:#f92672>=</span> OpenSearch(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    hosts<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;http://localhost:9200&#34;</span>],
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    http_auth<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, {password}),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    use_ssl<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>    verify_certs<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>    ssl_assert_hostname<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    ssl_show_warn<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_documents</span>(query):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>    search_body <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;query&#34;</span>: {<span style=color:#e6db74>&#34;match&#34;</span>: {<span style=color:#e6db74>&#34;text&#34;</span>: query}}}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>    response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(index<span style=color:#f92672>=</span>INDEX_NAME, body<span style=color:#f92672>=</span>search_body)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>    hits <span style=color:#f92672>=</span> response[<span style=color:#e6db74>&#34;`its&#34;</span>][<span style=color:#e6db74>&#34;hits&#34;</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    <span style=color:#66d9ef>return</span> [hit[<span style=color:#e6db74>&#34;_source&#34;</span>][<span style=color:#e6db74>&#34;text&#34;</span>] <span style=color:#66d9ef>for</span> hit <span style=color:#f92672>in</span> hits]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>    question <span style=color:#f92672>=</span> input(<span style=color:#e6db74>&#34;Enter your question</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>    search_results <span style=color:#f92672>=</span> search_documents(question)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span>    print(search_results)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span>    <span style=color:#75715e># context = &#34; &#34;.join(search_results)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span>    context <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53</span>    response <span style=color:#f92672>=</span> llm_chain<span style=color:#f92672>.</span>invoke({<span style=color:#e6db74>&#34;character_name&#34;</span>: INDEX_NAME, <span style=color:#e6db74>&#34;context&#34;</span>: context, <span style=color:#e6db74>&#34;question&#34;</span>: question})
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55</span>    print (response[<span style=color:#e6db74>&#34;text&#34;</span>])
-</code></pre></div><ul>
-<li>OpenSearch에 저장된 데이터를 쿼리하여 RAG 모델에 넣어 대답을 생성한다.</li>
-<li>search_documents 함수를 통해 OpenSearch에 쿼리를 보내고, 그 결과를 context로 사용한다.</li>
-</ul>
-<h4 id=결과>결과</h4>
-<ul>
-<li>질문
-<blockquote>
-<p>테슬라에 대해서 어떻게 생각해?</p>
-</blockquote>
-</li>
-<li>RAG를 사용하지 않았을 때의 대답
-<blockquote>
-<p>테슬라는 혁신적인 기업으로서 미래를 향한 비전을 가지고 있습니다. 그들의 전기 자동차 기술과 에너지 솔루션은 전 세계적으로 주목받고 있습니다. 테슬라의 혁신적인 접근 방식과 지속 가능한 비즈니스 모델에 대해 매우 긍정적으로 생각하고 있습니다.</p>
-</blockquote>
-</li>
-<li>RAG를 사용할때 적용된 context
-<blockquote>
-<p>[&lsquo;길게 갈 것 같지는 않아요.\n그러네요. 저는 최대한 오랫동안 테슬라에 머물 생각이에요.\n그리고 준비 중에 있는 흥미로운 일도 많고요. 아시다시피, 모델 3이 출시 예정이고요.&rsquo;, &lsquo;올해 말까지 LA에서 뉴욕까지\n완전 자율 주행으로 횡단하는 계획에 맞춰서 진행 중이에요.\n사람이 테슬라에 타서 운전대를 잡지 않고 &ldquo;뉴욕"을 찍으면 그리로 간다는 말이네요.&rsquo;, &lsquo;길게 갈 것 같지는 않아요.\n그러네요. 저는 최대한 오랫동안 테슬라에 머물 생각이에요.\n그리고 준비 중에 있는 흥미로운 일도 많고요. 아시다시피, 모델 3이 출시 예정이고요.&rsquo;, &lsquo;올해 말까지 LA에서 뉴욕까지\n완전 자율 주행으로 횡단하는 계획에 맞춰서 진행 중이에요.\n사람이 테슬라에 타서 운전대를 잡지 않고 &ldquo;뉴욕"을 찍으면 그리로 간다는 말이네요.']</p>
-</blockquote>
-</li>
-<li>RAG를 사용할 때의 대답
-<blockquote>
-<p>저는 테슬라를 매우 긍정적으로 생각합니다. 테슬라는 혁신적인 기술과 지속 가능한 미래를 위한 비전을 갖춘 기업으로서, 자율 주행 기술을 통해 우리의 삶을 혁신하고 있습니다. 또한, 전기차 시장을 선도하고 환경에 친화적인 차량을 제공하는 멋진 기업이라고 생각합니다. 테슬라의 미래가 밝고 흥미로운 일들이 계속해서 일어날 것이라고 믿습니다.</p>
-</blockquote>
-</li>
-<li>고찰
-<blockquote>
-<p>확실히 RAG를 사용하지 않았을 때는 객관적이고 일반적인 대답을 하는 반면, RAG를 사용할 때는 테슬라에 대해 긍정적인 일론 머스크의 대답과, 자율주행 기술을 언급했다는 것을 반영하여 대답을 생성하였다.</p>
-</blockquote>
-</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-2-02plan/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>[모각코24하계] 02 : 결과</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="RAG (Retrieval-Augmented Generation) 이론 정리
+
+RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="[모각코24하계] 02 : 결과"><meta property="og:description" content="RAG (Retrieval-Augmented Generation) 이론 정리
+
+RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#rag-retrieval-augmented-generation-이론-정리>RAG (Retrieval-Augmented Generation) 이론 정리</a></li><li><a href=#opensearch>OpenSearch</a><ul><li><a href=#분석>분석</a></li><li><a href=#opensearch에서-지원하는-요소>OpenSearch에서 지원하는 요소</a></li><li><a href=#opensearch-접근을-위한-curl-명령어>OpenSearch 접근을 위한 cURL 명령어</a></li></ul></li><li><a href=#opensearch를-활용한-rag-실습>OpenSearch를 활용한 Rag 실습</a><ul><li><a href=#배경>배경</a></li><li><a href=#순서>순서</a></li><li><a href=#1-일론-머스크-인터뷰-텍스트-가져오기>1. 일론 머스크 인터뷰 텍스트 가져오기</a></li><li><a href=#2-opensearch-도커-컨테이너-실행>2. OpenSearch 도커 컨테이너 실행</a></li><li><a href=#3-텍스트-데이터-임베딩-및-opensearch에-저장>3. 텍스트 데이터 임베딩 및 OpenSearch에 저장</a></li><li><a href=#4-rag-모델이-opensearch를-쿼리하여-대답-생성>4. RAG 모델이 OpenSearch를 쿼리하여 대답 생성</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">[모각코24하계] 02 : 결과</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ rag</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=rag-retrieval-augmented-generation-이론-정리>RAG (Retrieval-Augmented Generation) 이론 정리</h2><blockquote><p>RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델</p></blockquote><ul><li><p>LLM의 문제점</p><ul><li>할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상</li><li>최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제</li><li>신뢰할 수 없는 출처로부터 정보를 생성하는 문제</li></ul></li><li><p>RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.</p></li></ul><h2 id=opensearch>OpenSearch</h2><blockquote><p>OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전</p></blockquote><ul><li><p>벡터 데이터베이스 : 벡터 데이터를 저장하고 쿼리할 수 있는 데이터베이스</p></li><li><p>주요 기능</p><ul><li>분산 검색 및 분석</li><li>보안</li><li>시각화와 대시보드 지원</li></ul></li><li><p>index와 document</p><ul><li>index : 데이터베이스</li><li>document : 데이터베이스에 저장되는 데이터</li></ul></li></ul><h3 id=분석>분석</h3><ul><li>분석기 Analyzer (Character Filter + Tokenizer + Token Filter)<blockquote><p>텍스트를 토큰화하고 필터링하는 과정을 수행</p></blockquote></li><li>분석 과정<ol><li>Character Filter<blockquote><p>특정 문자를 제거하거나 변경하는 등의 작업을 수행</p></blockquote></li><li>Tokenizer<blockquote><p>기본적으로 공백을 기준으로 텍스트를 분리</p></blockquote></li><li>Token Filter<blockquote><p>토큰을 추가하거나 제거하는 등의 작업을 수행</p></blockquote></li></ol></li></ul><h3 id=opensearch에서-지원하는-요소>OpenSearch에서 지원하는 요소</h3><ol><li>Tokenizer<ul><li>Standard Tokenizer : 공백을 기준으로 텍스트를 분리, 문장 부호 삭제</li><li>Letter Tokenizer : 문자를 기준으로 텍스트를 분리</li><li>Whitespace Tokenizer : 공백을 기준으로 텍스트를 분리</li><li>Ngram Tokenizer : 부분 문자열로 텍스트를 분리</li></ul></li><li>Token Filter<ul><li>Standard Token Filter : 아무것도 하지 않음</li><li>Lowercase Token Filter : 텍스트를 소문자로 변환</li><li>Synonym Token Filter : 동의어 처리</li></ul></li><li>Analyzer<ul><li>Standard Analyzer : Standard Tokenizer + Standard Token Filter</li><li>Simple Analyzer : Letter Tokenizer + Lowercase Token Filter</li><li>Whitespace Analyzer : Whitespace Tokenizer + Lowercase Token Filter</li></ul></li></ol><h3 id=opensearch-접근을-위한-curl-명령어>OpenSearch 접근을 위한 cURL 명령어</h3><ul><li>인덱스 조회<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#e6db74>&#34;http://localhost:9200/_cat/indices&#34;</span>
+</span></span></code></pre></div></li><li>특정 인덱스 조회<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}&#34;</span>
+</span></span></code></pre></div></li><li>전체 검색 결과 조회<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}/_search&#34;</span>
+</span></span></code></pre></div></li><li>특정 검색어로 검색한 결과 조회<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>curl -X GET -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}/_search&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>-H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>-d <span style=color:#e6db74>&#39;{&#34;query&#34;: {&#34;match&#34;: {&#34;field&#34;: &#34;value&#34;}}}&#39;</span>
+</span></span></code></pre></div></li><li>인덱스 삭제<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>curl -X DELETE -u <span style=color:#f92672>{</span>username<span style=color:#f92672>}</span>:<span style=color:#f92672>{</span>password<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#e6db74>&#34;http://localhost:9200/{index_name}&#34;</span>
+</span></span></code></pre></div></li></ul><h2 id=opensearch를-활용한-rag-실습>OpenSearch를 활용한 Rag 실습</h2><h3 id=배경>배경</h3><ul><li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li><li>우리 팀의 주제는 특정 인물에게 상담을 받는 것 같은 대화를 할 수 있는 챗봇을 만드는 것이다.</li><li>이를 위해 특정 인물이 했던 말을 모아 데이터셋으로 만들고 이를 RAG 모델에 적용시키려고 한다.</li></ul><h3 id=순서>순서</h3><ol><li>일론 머스크가 TED에서 한 인터뷰를 텍스트로 가져온다.</li><li>OpenSearch 도커 컨테이너를 실행한다.</li><li>텍스트 데이터를 임베딩해서 OpenSearch에 저장한다.</li><li>RAG 모델이 OpenSearch를 쿼리하여 대답을 생성한다.</li></ol><h3 id=1-일론-머스크-인터뷰-텍스트-가져오기>1. 일론 머스크 인터뷰 텍스트 가져오기</h3><ul><li><p>유튜브에서 &ldquo;스크립트 보기"를 통해 인터뷰 자막을 가져온다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>22:03
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>EM: 이 큰 트럭을 몰면서 말도 안되는 움직임을 보였죠.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>CA: 아주 멋지네요. 자, 그럼 정말 굉장한 사진에서
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>22:09
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>조금은 덜 굉장한 사진을 보죠. &#34;위기의 주부들&#34;인가에서 나오는 귀여운 집 사진인데요.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>22:15
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>이게 갑자기 왜 나온거죠?
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>...
+</span></span></code></pre></div></li><li><p>일론 머스크가 한 말만 손수 정리한다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>네. 제 스스로도 그 질문을 자주 하는 편입니다.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>저희는 LA의 지하에 구멍을 내려고 하는데요. 이는 교통 체증을 완화시키기 위한
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>3차원 네트워크의 터널이 될 수도 있는 시발점을 만들기 위함입니다.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>교통 체증은 오늘날 우리의 영혼을 탈탈 터는 문제 중의 하나입니다.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>세계 모든 사람들에게 영향을 끼치고 있죠. 인생에서 너무도 많은 부분을 가져갑니다.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>...
+</span></span></code></pre></div></li></ul><h3 id=2-opensearch-도커-컨테이너-실행>2. OpenSearch 도커 컨테이너 실행</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>docker create -it -p 9200:9200 -p 9600:9600 -e OPENSEARCH_INITIAL_ADMIN_PASSWORD<span style=color:#f92672>={</span>password<span style=color:#f92672>}</span> -e <span style=color:#e6db74>&#34;discovery.type=single-node&#34;</span> -v opensearch_vol:/usr/share/opensearch/data --name opensearch opensearchproject/opensearch
+</span></span></code></pre></div><ul><li>설명<ul><li>-p 9200:9200 : OpenSearch HTTP 포트</li><li>-p 9600:9600 : OpenSearch 모니터링 포트</li><li>-e OPENSEARCH_INITIAL_ADMIN_PASSWORD={password} : 초기 비밀번호 설정</li><li>-e &ldquo;discovery.type=single-node&rdquo; : 단일 노드로 실행</li><li>-v opensearch_vol:/usr/share/opensearch/data : 데이터 볼륨 마운트</li></ul></li></ul><h4 id=ssl-오류-발생과-해결>SSL 오류 발생과 해결</h4><ul><li><p>하지만 위 명령어로 실행하면 컨테이너 내부에서 오류가 발생한다</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>2024-07-05 22:15:12 Caused by: io.netty.handler.ssl.NotSslRecordException: not an SSL/TLS record: ...
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>2024-07-05 22:15:12     at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1314) ~[netty-handler-4.1.110.Final.jar:4.1.110.Final]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>2024-07-05 22:15:12     at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1387) ~[netty-handler-4.1.110.Final.jar:4.1.110.Final]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>2024-07-05 22:15:12     at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530) ~[netty-codec-4.1.110.Final.jar:4.1.110.Final]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>2024-07-05 22:15:12     at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469) ~[netty-codec-4.1.110.Final.jar:4.1.110.Final]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>2024-07-05 22:15:12     ... 16 more
+</span></span></code></pre></div></li><li><p>프로젝트 기간이 길지 않고, 해당 포트는 외부에 노출할 필요가 없으므로 SSL을 끄고 실행하는 것으로 해결하였다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#ae81ff>/usr/share/opensearch/config/opensearch.yml</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#75715e># 변경 전</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#f92672>plugins.security.ssl.http.enabled</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span><span style=color:#75715e># 변경 후</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#f92672>plugins.security.ssl.http.enabled</span>: <span style=color:#66d9ef>false</span>
+</span></span></code></pre></div></li></ul><h3 id=3-텍스트-데이터-임베딩-및-opensearch에-저장>3. 텍스트 데이터 임베딩 및 OpenSearch에 저장</h3><blockquote><p>RAG 세션을 해주신 멘토님이 짜준 코드를 적극! 참고하여 작성하였다.</p></blockquote><h4 id=opensearch-인덱스-생성>OpenSearch 인덱스 생성</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1</span><span><span style=color:#f92672>from</span> opensearchpy <span style=color:#f92672>import</span> OpenSearch
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2</span><span><span style=color:#f92672>import</span> torch
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3</span><span><span style=color:#f92672>from</span> transformers <span style=color:#f92672>import</span> AutoTokenizer, AutoModel
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4</span><span><span style=color:#f92672>from</span> langchain.text_splitter <span style=color:#f92672>import</span> RecursiveCharacterTextSplitter
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5</span><span><span style=color:#f92672>from</span> langchain_community.document_loaders <span style=color:#f92672>import</span> TextLoader
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6</span><span><span style=color:#f92672>from</span> langchain_community.vectorstores <span style=color:#f92672>import</span> OpenSearchVectorSearch
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8</span><span>INDEX_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;elon_musk&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9</span><span>FILE_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ted_elon_musk_script.txt&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11</span><span><span style=color:#75715e>## OpenSearch 연결 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12</span><span>client <span style=color:#f92672>=</span> OpenSearch(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13</span><span>    hosts<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#e6db74>&#34;port&#34;</span>: <span style=color:#ae81ff>9200</span>}], http_auth<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, {password})
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14</span><span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16</span><span><span style=color:#75715e>## 텍스트 데이터 불러오기</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17</span><span>loader <span style=color:#f92672>=</span> TextLoader(file_path<span style=color:#f92672>=</span>FILE_NAME, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18</span><span>docs <span style=color:#f92672>=</span> loader<span style=color:#f92672>.</span>load()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20</span><span>text_splitter <span style=color:#f92672>=</span> RecursiveCharacterTextSplitter(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21</span><span>    chunk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22</span><span>    chunk_overlap<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23</span><span>    separators<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>],
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24</span><span>    length_function<span style=color:#f92672>=</span>len,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25</span><span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27</span><span>documents <span style=color:#f92672>=</span> text_splitter<span style=color:#f92672>.</span>split_documents(docs)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29</span><span><span style=color:#75715e># print(documents)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31</span><span><span style=color:#75715e>## Embedding 모델 정의</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyEmbeddingModel</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, model_name):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34</span><span>        self<span style=color:#f92672>.</span>tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(model_name)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35</span><span>        self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> AutoModel<span style=color:#f92672>.</span>from_pretrained(model_name)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>embed_documents</span>(self, doc):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38</span><span>        inputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tokenizer(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39</span><span>            doc, return_tensors<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pt&#34;</span>, padding<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, truncation<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40</span><span>        )
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42</span><span>        <span style=color:#66d9ef>with</span> torch<span style=color:#f92672>.</span>no_grad():
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43</span><span>            outputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>model(<span style=color:#f92672>**</span>inputs)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44</span><span>            embeddings <span style=color:#f92672>=</span> outputs<span style=color:#f92672>.</span>last_hidden_state<span style=color:#f92672>.</span>mean(dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>.</span>tolist()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46</span><span>        <span style=color:#66d9ef>return</span> embeddings
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>embed_query</span>(self, text):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49</span><span>        inputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tokenizer(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50</span><span>            [text], padding<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, truncation<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, return_tensors<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pt&#34;</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51</span><span>        )
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52</span><span>        <span style=color:#66d9ef>with</span> torch<span style=color:#f92672>.</span>no_grad():
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53</span><span>            outputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>model(<span style=color:#f92672>**</span>inputs)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54</span><span>            embeddings <span style=color:#f92672>=</span> outputs<span style=color:#f92672>.</span>last_hidden_state<span style=color:#f92672>.</span>mean(dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)<span style=color:#f92672>.</span>tolist()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55</span><span>        <span style=color:#66d9ef>return</span> embeddings
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58</span><span><span style=color:#75715e>## index 구조 정의</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59</span><span>index_body <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60</span><span>    <span style=color:#e6db74>&#34;settings&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61</span><span>        <span style=color:#e6db74>&#34;analysis&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62</span><span>            <span style=color:#e6db74>&#34;tokenizer&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63</span><span>                <span style=color:#e6db74>&#34;nori_user_dict&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64</span><span>                    <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;nori_tokenizer&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65</span><span>                    <span style=color:#e6db74>&#34;decompound_mode&#34;</span>: <span style=color:#e6db74>&#34;mixed&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66</span><span>                    <span style=color:#e6db74>&#34;user_dictionary&#34;</span>: <span style=color:#e6db74>&#34;user_dic.txt&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67</span><span>                }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68</span><span>            },
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69</span><span>            <span style=color:#e6db74>&#34;analyzer&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70</span><span>                <span style=color:#e6db74>&#34;korean_anlyzer&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71</span><span>                    <span style=color:#e6db74>&#34;filter&#34;</span>: [
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72</span><span>                        <span style=color:#e6db74>&#34;synonym&#34;</span>, <span style=color:#e6db74>&#34;lowercase&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73</span><span>                    ],
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74</span><span>                    <span style=color:#e6db74>&#34;tokenizer&#34;</span>: <span style=color:#e6db74>&#34;nori_user_dict&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75</span><span>                }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76</span><span>            },
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77</span><span>            <span style=color:#e6db74>&#34;filter&#34;</span>: {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78</span><span>                <span style=color:#e6db74>&#34;synonym&#34;</span> :{
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79</span><span>                    <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;synonym_graph&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80</span><span>                    <span style=color:#e6db74>&#34;synonyms_path&#34;</span> : <span style=color:#e6db74>&#34;synonyms.txt&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81</span><span>                }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82</span><span>            }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87</span><span><span style=color:#75715e>## Embedding 모델 생성</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88</span><span>my_embedding <span style=color:#f92672>=</span> MyEmbeddingModel(<span style=color:#e6db74>&#34;monologg/kobert&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90</span><span><span style=color:#75715e>## OpenSearch에 데이터 삽입</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91</span><span>vector_db <span style=color:#f92672>=</span> OpenSearchVectorSearch<span style=color:#f92672>.</span>from_documents(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92</span><span>    index_name<span style=color:#f92672>=</span>INDEX_NAME,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93</span><span>    body<span style=color:#f92672>=</span>index_body,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94</span><span>    documents<span style=color:#f92672>=</span>documents,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95</span><span>    embedding<span style=color:#f92672>=</span>my_embedding,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96</span><span>    op_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;create&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97</span><span>    opensearch_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:9200&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98</span><span>    http_auth<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, {password}),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99</span><span>    use_ssl<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">100</span><span>    verify_certs<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">101</span><span>    ssl_assert_hostname<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">102</span><span>    ssl_show_warn<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">103</span><span>    bulk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>1000000</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">104</span><span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>360000</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">105</span><span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">106</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">107</span><span>result <span style=color:#f92672>=</span> vector_db<span style=color:#f92672>.</span>add_documents(documents, bulk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>1000000</span>)
+</span></span></code></pre></div><ul><li>tokenizer는 한국어를 지원하는 &ldquo;nori_tokenizer"를 사용하였다.</li><li>embedding 모델은 저거 말고도 여러가지가 존재하는데, 어떤 모델이 프로젝트에 가장 부합하는 모델인지는 실험을 해볼 것이다.</li><li>curl을 통해 localhost:9200/elon_musk/_search로 요청을 보내 임베딩한 데이터가 잘 들어갔는지 확인할 수 있다.</li></ul><h3 id=4-rag-모델이-opensearch를-쿼리하여-대답-생성>4. RAG 모델이 OpenSearch를 쿼리하여 대답 생성</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> langchain.prompts <span style=color:#f92672>import</span> PromptTemplate
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> langchain.chains <span style=color:#f92672>import</span> LLMChain
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> ChatOpenAI
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#f92672>from</span> opensearchpy <span style=color:#f92672>import</span> OpenSearch
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>INDEX_NAME <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;elon_musk&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#75715e># 환경변수 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;OPENAI_API_KEY&#34;</span>] <span style=color:#f92672>=</span> {api_key}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>llm <span style=color:#f92672>=</span> ChatOpenAI(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    model_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-3.5-turbo&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>prompt_template <span style=color:#f92672>=</span> PromptTemplate(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    input_variables<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;context&#34;</span>, <span style=color:#e6db74>&#34;question&#34;</span>],
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    template<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span><span style=color:#e6db74>Imagine you are </span><span style=color:#e6db74>{character_name}</span><span style=color:#e6db74>,
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span><span style=color:#e6db74>a wise and experienced advisor. Given the context: &#34;</span><span style=color:#e6db74>{context}</span><span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span><span style=color:#e6db74>how would you respond to this inquiry: &#34;</span><span style=color:#e6db74>{question}</span><span style=color:#e6db74>&#34;?&#39;,
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span><span style=color:#e6db74>(in korean)
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span><span style=color:#e6db74>&#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>llm_chain <span style=color:#f92672>=</span> LLMChain(llm<span style=color:#f92672>=</span>llm, prompt<span style=color:#f92672>=</span>prompt_template)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>client <span style=color:#f92672>=</span> OpenSearch(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>    hosts<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;http://localhost:9200&#34;</span>],
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>    http_auth<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, {password}),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>    use_ssl<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>    verify_certs<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>    ssl_assert_hostname<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>    ssl_show_warn<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_documents</span>(query):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>    search_body <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;query&#34;</span>: {<span style=color:#e6db74>&#34;match&#34;</span>: {<span style=color:#e6db74>&#34;text&#34;</span>: query}}}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>    response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>search(index<span style=color:#f92672>=</span>INDEX_NAME, body<span style=color:#f92672>=</span>search_body)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>    hits <span style=color:#f92672>=</span> response[<span style=color:#e6db74>&#34;`its&#34;</span>][<span style=color:#e6db74>&#34;hits&#34;</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>    <span style=color:#66d9ef>return</span> [hit[<span style=color:#e6db74>&#34;_source&#34;</span>][<span style=color:#e6db74>&#34;text&#34;</span>] <span style=color:#66d9ef>for</span> hit <span style=color:#f92672>in</span> hits]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span><span>    question <span style=color:#f92672>=</span> input(<span style=color:#e6db74>&#34;Enter your question</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span><span>    search_results <span style=color:#f92672>=</span> search_documents(question)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span><span>    print(search_results)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span><span>    <span style=color:#75715e># context = &#34; &#34;.join(search_results)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span><span>    context <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">53</span><span>    response <span style=color:#f92672>=</span> llm_chain<span style=color:#f92672>.</span>invoke({<span style=color:#e6db74>&#34;character_name&#34;</span>: INDEX_NAME, <span style=color:#e6db74>&#34;context&#34;</span>: context, <span style=color:#e6db74>&#34;question&#34;</span>: question})
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">54</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">55</span><span>    print (response[<span style=color:#e6db74>&#34;text&#34;</span>])
+</span></span></code></pre></div><ul><li>OpenSearch에 저장된 데이터를 쿼리하여 RAG 모델에 넣어 대답을 생성한다.</li><li>search_documents 함수를 통해 OpenSearch에 쿼리를 보내고, 그 결과를 context로 사용한다.</li></ul><h4 id=결과>결과</h4><ul><li>질문<blockquote><p>테슬라에 대해서 어떻게 생각해?</p></blockquote></li><li>RAG를 사용하지 않았을 때의 대답<blockquote><p>테슬라는 혁신적인 기업으로서 미래를 향한 비전을 가지고 있습니다. 그들의 전기 자동차 기술과 에너지 솔루션은 전 세계적으로 주목받고 있습니다. 테슬라의 혁신적인 접근 방식과 지속 가능한 비즈니스 모델에 대해 매우 긍정적으로 생각하고 있습니다.</p></blockquote></li><li>RAG를 사용할때 적용된 context<blockquote><p>[&lsquo;길게 갈 것 같지는 않아요.\n그러네요. 저는 최대한 오랫동안 테슬라에 머물 생각이에요.\n그리고 준비 중에 있는 흥미로운 일도 많고요. 아시다시피, 모델 3이 출시 예정이고요.&rsquo;, &lsquo;올해 말까지 LA에서 뉴욕까지\n완전 자율 주행으로 횡단하는 계획에 맞춰서 진행 중이에요.\n사람이 테슬라에 타서 운전대를 잡지 않고 &ldquo;뉴욕"을 찍으면 그리로 간다는 말이네요.&rsquo;, &lsquo;길게 갈 것 같지는 않아요.\n그러네요. 저는 최대한 오랫동안 테슬라에 머물 생각이에요.\n그리고 준비 중에 있는 흥미로운 일도 많고요. 아시다시피, 모델 3이 출시 예정이고요.&rsquo;, &lsquo;올해 말까지 LA에서 뉴욕까지\n완전 자율 주행으로 횡단하는 계획에 맞춰서 진행 중이에요.\n사람이 테슬라에 타서 운전대를 잡지 않고 &ldquo;뉴욕"을 찍으면 그리로 간다는 말이네요.&rsquo;]</p></blockquote></li><li>RAG를 사용할 때의 대답<blockquote><p>저는 테슬라를 매우 긍정적으로 생각합니다. 테슬라는 혁신적인 기술과 지속 가능한 미래를 위한 비전을 갖춘 기업으로서, 자율 주행 기술을 통해 우리의 삶을 혁신하고 있습니다. 또한, 전기차 시장을 선도하고 환경에 친화적인 차량을 제공하는 멋진 기업이라고 생각합니다. 테슬라의 미래가 밝고 흥미로운 일들이 계속해서 일어날 것이라고 믿습니다.</p></blockquote></li><li>고찰<blockquote><p>확실히 RAG를 사용하지 않았을 때는 객관적이고 일반적인 대답을 하는 반면, RAG를 사용할 때는 테슬라에 대해 긍정적인 일론 머스크의 대답과, 자율주행 기술을 언급했다는 것을 반영하여 대답을 생성하였다.</p></blockquote></li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-2-02plan/><span class=mx-3>◀</span>
 [모각코24하계] 02 : 계획
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-2-03plan/>
-[모각코24하계] 03 : 계획
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako24-2-03plan/>[모각코24하계] 03 : 계획
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

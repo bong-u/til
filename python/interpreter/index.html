@@ -1,150 +1,37 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Python의 동작 원리</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="파이썬의 구현체 CPython  파이썬의 표준 구현체이자 인터프리터
- 역할  파이썬 코드를 바이트 코드로 변환 바이트 코드를 실행  파이썬 바이트 코드  .pyc 파일에 저장 플랫 …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Python의 동작 원리">
-<meta property="og:description" content="파이썬의 구현체 CPython  파이썬의 표준 구현체이자 인터프리터
- 역할  파이썬 코드를 바이트 코드로 변환 바이트 코드를 실행  파이썬 바이트 코드  .pyc 파일에 저장 플랫 …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#파이썬의-구현체>파이썬의 구현체</a>
-<ul>
-<li><a href=#cpython>CPython</a></li>
-<li><a href=#jython>Jython</a></li>
-<li><a href=#pypy>PyPy</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Python의 동작 원리
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
-<span class="text-md mr-1">🏷️ cs</span>
-</div>
-<h4 id=date>수정일 : 2024-12-16</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=파이썬의-구현체>파이썬의 구현체</h2>
-<h3 id=cpython>CPython</h3>
-<blockquote>
-<p>파이썬의 표준 구현체이자 인터프리터</p>
-</blockquote>
-<h4 id=역할>역할</h4>
-<ol>
-<li>파이썬 코드를 바이트 코드로 변환</li>
-<li>바이트 코드를 실행</li>
-</ol>
-<h4 id=파이썬-바이트-코드>파이썬 바이트 코드</h4>
-<ul>
-<li><code>.pyc</code> 파일에 저장</li>
-<li>플랫폼에 독립적</li>
-<li>파이썬 가상 머신(PVM)에서 실행</li>
-<li>예시
-<pre tabindex=0><code>  4           0 LOAD_GLOBAL              0 (print)
-			  2 LOAD_CONST               1 ('hello world')
+<!doctype html><html lang=ko><head><title>Python의 동작 원리</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="파이썬의 구현체
+CPython
+
+파이썬의 표준 구현체이자 인터프리터
+
+역할
+
+파이썬 코드를 바이트 코드로 변환
+바이트 코드를 실행
+
+파이썬 바이트 코드
+
+.pyc 파일에 저장
+플랫 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Python의 동작 원리"><meta property="og:description" content="파이썬의 구현체
+CPython
+
+파이썬의 표준 구현체이자 인터프리터
+
+역할
+
+파이썬 코드를 바이트 코드로 변환
+바이트 코드를 실행
+
+파이썬 바이트 코드
+
+.pyc 파일에 저장
+플랫 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#파이썬의-구현체>파이썬의 구현체</a><ul><li><a href=#cpython>CPython</a></li><li><a href=#jython>Jython</a></li><li><a href=#pypy>PyPy</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Python의 동작 원리</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
+<span class="text-md mr-1">🏷️ cs</span></div><h4 id=date>수정일 : 2024-12-16</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=파이썬의-구현체>파이썬의 구현체</h2><h3 id=cpython>CPython</h3><blockquote><p>파이썬의 표준 구현체이자 인터프리터</p></blockquote><h4 id=역할>역할</h4><ol><li>파이썬 코드를 바이트 코드로 변환</li><li>바이트 코드를 실행</li></ol><h4 id=파이썬-바이트-코드>파이썬 바이트 코드</h4><ul><li><code>.pyc</code> 파일에 저장</li><li>플랫폼에 독립적</li><li>파이썬 가상 머신(PVM)에서 실행</li><li>예시<pre tabindex=0><code>  4           0 LOAD_GLOBAL              0 (print)
+			  2 LOAD_CONST               1 (&#39;hello world&#39;)
 			  4 CALL_FUNCTION            1
 			  6 POP_TOP
 
   5           8 LOAD_CONST               2 (True)
 			 10 RETURN_VALUE
-</code></pre><pre tabindex=0><code>
-</code></pre></li>
-</ul>
-<h3 id=jython>Jython</h3>
-<blockquote>
-<p>파이썬 코드를 자바 바이트 코드로 변환, JVM에서 실행</p>
-</blockquote>
-<ul>
-<li>장점 : 자바 라이브러리 호출, 자바 클래스 사용 가능, GIL 없음</li>
-<li>단점 : 파이썬 3.x 지원하지 않음, CPython 대비 속도가 느림</li>
-</ul>
-<h3 id=pypy>PyPy</h3>
-<blockquote>
-<p>파이썬 코드를 JIT 컴파일하여 실행</p>
-</blockquote>
-<ul>
-<li>RPython(Restricted Python)으로 작성된 파이썬 인터프리터</li>
-</ul>
-<h4 id=접근-방식>접근 방식</h4>
-<ol>
-<li>RPython(엄격한 파이썬)을 만들어 인터프리터를 작성</li>
-<li>RPython의 효과적인 컴파일을 위해 다른 언어로 툴체인을 제작</li>
-<li>Python 구현을 RPython 문법으로 작성</li>
-<li>3에서 만든 구현을 1, 2를 통해 얻은 인터프리터로 컴파일</li>
-<li>4에서 만든 후보들의 성능을 측정하고, 개선</li>
-<li>5의 산출물을 출시, 다시 반복</li>
-</ol>
-<h4 id=장단점>장단점</h4>
-<ul>
-<li>장점 : CPython 대비 빠른 속도, 다양한 플랫폼 지원</li>
-<li>단점 : 특정 라이브러리 호환성 문제가 존재, 메모리 사용량이 큼</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/gil/>
-<span class=mx-3>◀</span>
-Python의 GIL
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</code></pre></li></ul><h3 id=jython>Jython</h3><blockquote><p>파이썬 코드를 자바 바이트 코드로 변환, JVM에서 실행</p></blockquote><ul><li>장점 : 자바 라이브러리 호출, 자바 클래스 사용 가능, GIL 없음</li><li>단점 : 파이썬 3.x 지원하지 않음, CPython 대비 속도가 느림</li></ul><h3 id=pypy>PyPy</h3><blockquote><p>파이썬 코드를 JIT 컴파일하여 실행</p></blockquote><ul><li>RPython(Restricted Python)으로 작성된 파이썬 인터프리터</li></ul><h4 id=접근-방식>접근 방식</h4><ol><li>RPython(엄격한 파이썬)을 만들어 인터프리터를 작성</li><li>RPython의 효과적인 컴파일을 위해 다른 언어로 툴체인을 제작</li><li>Python 구현을 RPython 문법으로 작성</li><li>3에서 만든 구현을 1, 2를 통해 얻은 인터프리터로 컴파일</li><li>4에서 만든 후보들의 성능을 측정하고, 개선</li><li>5의 산출물을 출시, 다시 반복</li></ol><h4 id=장단점>장단점</h4><ul><li>장점 : CPython 대비 빠른 속도, 다양한 플랫폼 지원</li><li>단점 : 특정 라이브러리 호환성 문제가 존재, 메모리 사용량이 큼</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/gil/><span class=mx-3>◀</span>
+Python의 GIL</a></div></div></div><div id=comment-box></div></section></main></div></body></html>

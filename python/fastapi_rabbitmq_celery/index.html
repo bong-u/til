@@ -1,230 +1,114 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Fastapi, RabbitMQ, Celery 연동</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="배경  테커 부트캠프에서 팀프로젝트를 진행 중이다. 웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다.  …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Fastapi, RabbitMQ, Celery 연동">
-<meta property="og:description" content="배경  테커 부트캠프에서 팀프로젝트를 진행 중이다. 웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다.  …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#배경>배경</a></li>
-<li><a href=#목표>목표</a></li>
-<li><a href=#docker-composeyml>docker-compose.yml</a></li>
-<li><a href=#dockerfileworker>Dockerfile.worker</a></li>
-<li><a href=#celery_workerpy>celery_worker.py</a></li>
-<li><a href=#celery-worker-사용-방법>Celery worker 사용 방법</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Fastapi, RabbitMQ, Celery 연동
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
+<!doctype html><html lang=ko><head><title>Fastapi, RabbitMQ, Celery 연동</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="배경
+
+테커 부트캠프에서 팀프로젝트를 진행 중이다.
+웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다. …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Fastapi, RabbitMQ, Celery 연동"><meta property="og:description" content="배경
+
+테커 부트캠프에서 팀프로젝트를 진행 중이다.
+웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다. …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#배경>배경</a></li><li><a href=#목표>목표</a></li><li><a href=#docker-composeyml>docker-compose.yml</a></li><li><a href=#dockerfileworker>Dockerfile.worker</a></li><li><a href=#celery_workerpy>celery_worker.py</a></li><li><a href=#celery-worker-사용-방법>Celery worker 사용 방법</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Fastapi, RabbitMQ, Celery 연동</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
 <span class="text-md mr-1">🏷️ fastapi</span>
 <span class="text-md mr-1">🏷️ rabbitmq</span>
-<span class="text-md mr-1">🏷️ celery</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=배경>배경</h3>
-<ul>
-<li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li>
-<li>웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다.</li>
-<li>여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다.</li>
-</ul>
-<h3 id=목표>목표</h3>
-<ul>
-<li>Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다.</li>
-</ul>
-<h3 id=docker-composeyml>docker-compose.yml</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>services</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>  <span style=color:#f92672>rabbitmq</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>rabbitmq:3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#f92672>ports</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>      - <span style=color:#e6db74>&#34;5672:5672&#34;</span> <span style=color:#75715e># RabbitMQ의 AMQP 포트</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>      - <span style=color:#e6db74>&#34;15672:15672&#34;</span> <span style=color:#75715e># RabbitMQ 관리 인터페이스 포트</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#f92672>volumes</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>      - <span style=color:#ae81ff>rabbitmq_data:/var/lib/rabbitmq</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#f92672>expose</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>      - <span style=color:#e6db74>&#34;5672&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>      - <span style=color:#e6db74>&#34;15672&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>  <span style=color:#f92672>celery_worker</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#f92672>build</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>      <span style=color:#f92672>context</span>: <span style=color:#ae81ff>.</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>      <span style=color:#f92672>dockerfile</span>: <span style=color:#ae81ff>Dockerfile.worker</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>celery -A utils.celery_worker worker --loglevel=info</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#f92672>volumes</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>      - <span style=color:#ae81ff>./app/utils:/app/utils</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    <span style=color:#f92672>environment</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    <span style=color:#f92672>depends_on</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>      - <span style=color:#ae81ff>rabbitmq</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>  <span style=color:#f92672>celery_beat</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>celery:4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>celery -A celery_beat beat --loglevel=info</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#f92672>environment</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>    <span style=color:#f92672>volumes</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>      - <span style=color:#ae81ff>./app/utils:/app</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>    <span style=color:#f92672>depends_on</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>      - <span style=color:#ae81ff>rabbitmq</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>  
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>  <span style=color:#f92672>web</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>python:slim</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    <span style=color:#75715e># interactive mode</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>    <span style=color:#f92672>stdin_open</span>: <span style=color:#66d9ef>true</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>    <span style=color:#75715e># tty mode</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>    <span style=color:#f92672>tty</span>: <span style=color:#66d9ef>true</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>    <span style=color:#f92672>environment</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span>    <span style=color:#f92672>volumes</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span>      - <span style=color:#ae81ff>./app:/app</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span>    <span style=color:#f92672>ports</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span>      - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span>    <span style=color:#f92672>depends_on</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53</span>      - <span style=color:#ae81ff>rabbitmq</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54</span>      - <span style=color:#ae81ff>celery_worker</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55</span>      - <span style=color:#ae81ff>celery_beat</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57</span><span style=color:#f92672>volumes</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58</span>  <span style=color:#f92672>rabbitmq_data</span>:
-</code></pre></div><ul>
-<li>Celery worker에만 Dockerfile.worker를 이미지로 사용한 이유
-<ol>
-<li>worker에 추가적으로 python 라이브러리를 설치해야함</li>
-<li>Celery 공식 도커 이미지가 deprecated 되었음.</li>
-</ol>
-</li>
-<li>Fastapi는 시간 관계상 따로 이미지를 만들지 않고 python:slim 이미지를 사용했다.</li>
-</ul>
-<h3 id=dockerfileworker>Dockerfile.worker</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dockerfile data-lang=dockerfile><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>FROM</span><span style=color:#e6db74> python:slim</span><span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 필요한 패키지 설치</span><span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># ffmpeg가 필요해서 추가하였다</span><span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> apt-get update <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#ae81ff></span>apt-get install -y --no-install-recommends gcc libpq-dev ffmpeg <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#ae81ff></span>rm -rf /var/lib/apt/lists/*<span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># 필요한 파이썬 패키지 설치</span><span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>COPY</span> requirements_celery_worker.txt ./<span style=color:#960050;background-color:#1e0010>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>RUN</span> pip install --no-cache-dir -r requirements_celery_worker.txt<span style=color:#960050;background-color:#1e0010>
-</span></code></pre></div><h3 id=celery_workerpy>celery_worker.py</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>import</span> os
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>from</span> celery <span style=color:#f92672>import</span> Celery
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>broker_url <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#39;CELERY_BROKER_URL&#39;</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>app <span style=color:#f92672>=</span> Celery(<span style=color:#e6db74>&#39;worker&#39;</span>, broker<span style=color:#f92672>=</span>broker_url, backend<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;rpc://&#34;</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>task
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add</span>(x, y):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>    <span style=color:#66d9ef>return</span> x <span style=color:#f92672>+</span> y
-</code></pre></div><ul>
-<li>broker_url은 RabbitMQ의 AMQP 주소를 의미한다.</li>
-<li>backend는 결과를 받기 위한 백엔드로 RabbitMQ를 사용한다.</li>
-</ul>
-<h3 id=celery-worker-사용-방법>Celery worker 사용 방법</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> celery_worker <span style=color:#f92672>import</span> add
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e># task를 비동기로 실행</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>result <span style=color:#f92672>=</span> add<span style=color:#f92672>.</span>delay(<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e># apply_async는 delay와 동일한 기능 수행</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e># delay와 달리 추가로 여러 옵션을 설정 가능</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>result <span style=color:#f92672>=</span> add<span style=color:#f92672>.</span>apply_async((<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e># 결과를 받기 위해 get()을 사용, 블로킹 호출</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>result<span style=color:#f92672>.</span>get()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e># 작업이 완료되었는지 확업</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>result<span style=color:#f92672>.</span>ready()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#75715e># 작업이 실패했는지 확인</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>result<span style=color:#f92672>.</span>successful()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#75715e># or</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>result<span style=color:#f92672>.</span>failed()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span style=color:#75715e># 작업의 상태 확인 (PENDING, STARTED, SUCCESS, FAILURE)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>result<span style=color:#f92672>.</span>state()
-</code></pre></div>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/django_jwt/>
-<span class=mx-3>◀</span>
+<span class="text-md mr-1">🏷️ celery</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=배경>배경</h3><ul><li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li><li>웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다.</li><li>여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다.</li></ul><h3 id=목표>목표</h3><ul><li>Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다.</li></ul><h3 id=docker-composeyml>docker-compose.yml</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#f92672>rabbitmq</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>rabbitmq:3</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>      - <span style=color:#e6db74>&#34;5672:5672&#34;</span> <span style=color:#75715e># RabbitMQ의 AMQP 포트</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>      - <span style=color:#e6db74>&#34;15672:15672&#34;</span> <span style=color:#75715e># RabbitMQ 관리 인터페이스 포트</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>      - <span style=color:#ae81ff>rabbitmq_data:/var/lib/rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#f92672>expose</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>      - <span style=color:#e6db74>&#34;5672&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>      - <span style=color:#e6db74>&#34;15672&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>  <span style=color:#f92672>celery_worker</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#f92672>build</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>      <span style=color:#f92672>context</span>: <span style=color:#ae81ff>.</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>      <span style=color:#f92672>dockerfile</span>: <span style=color:#ae81ff>Dockerfile.worker</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>celery -A utils.celery_worker worker --loglevel=info</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>      - <span style=color:#ae81ff>./app/utils:/app/utils</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>      - <span style=color:#ae81ff>rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>  <span style=color:#f92672>celery_beat</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>celery:4</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>celery -A celery_beat beat --loglevel=info</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>      - <span style=color:#ae81ff>./app/utils:/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>      - <span style=color:#ae81ff>rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>  
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>  <span style=color:#f92672>web</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>python:slim</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>    <span style=color:#75715e># interactive mode</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span><span>    <span style=color:#f92672>stdin_open</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span>    <span style=color:#75715e># tty mode</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span><span>    <span style=color:#f92672>tty</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span><span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span><span>      - <span style=color:#ae81ff>./app:/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span><span>      - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">53</span><span>      - <span style=color:#ae81ff>rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">54</span><span>      - <span style=color:#ae81ff>celery_worker</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">55</span><span>      - <span style=color:#ae81ff>celery_beat</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">56</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">57</span><span><span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">58</span><span>  <span style=color:#f92672>rabbitmq_data</span>:
+</span></span></code></pre></div><ul><li>Celery worker에만 Dockerfile.worker를 이미지로 사용한 이유<ol><li>worker에 추가적으로 python 라이브러리를 설치해야함</li><li>Celery 공식 도커 이미지가 deprecated 되었음.</li></ol></li><li>Fastapi는 시간 관계상 따로 이미지를 만들지 않고 python:slim 이미지를 사용했다.</li></ul><h3 id=dockerfileworker>Dockerfile.worker</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:slim</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#75715e># 필요한 패키지 설치</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#75715e># ffmpeg가 필요해서 추가하였다</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>RUN</span> apt-get update <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>apt-get install -y --no-install-recommends gcc libpq-dev ffmpeg <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>rm -rf /var/lib/apt/lists/*<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#75715e># 필요한 파이썬 패키지 설치</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#66d9ef>COPY</span> requirements_celery_worker.txt ./<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>RUN</span> pip install --no-cache-dir -r requirements_celery_worker.txt<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><h3 id=celery_workerpy>celery_worker.py</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#f92672>from</span> celery <span style=color:#f92672>import</span> Celery
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>broker_url <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#39;CELERY_BROKER_URL&#39;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>app <span style=color:#f92672>=</span> Celery(<span style=color:#e6db74>&#39;worker&#39;</span>, broker<span style=color:#f92672>=</span>broker_url, backend<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;rpc://&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span><span style=color:#a6e22e>@app.task</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add</span>(x, y):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>    <span style=color:#66d9ef>return</span> x <span style=color:#f92672>+</span> y
+</span></span></code></pre></div><ul><li>broker_url은 RabbitMQ의 AMQP 주소를 의미한다.</li><li>backend는 결과를 받기 위한 백엔드로 RabbitMQ를 사용한다.</li></ul><h3 id=celery-worker-사용-방법>Celery worker 사용 방법</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> celery_worker <span style=color:#f92672>import</span> add
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#75715e># task를 비동기로 실행</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>result <span style=color:#f92672>=</span> add<span style=color:#f92672>.</span>delay(<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#75715e># apply_async는 delay와 동일한 기능 수행</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#75715e># delay와 달리 추가로 여러 옵션을 설정 가능</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>result <span style=color:#f92672>=</span> add<span style=color:#f92672>.</span>apply_async((<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#75715e># 결과를 받기 위해 get()을 사용, 블로킹 호출</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>result<span style=color:#f92672>.</span>get()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span><span style=color:#75715e># 작업이 완료되었는지 확업</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>result<span style=color:#f92672>.</span>ready()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span><span style=color:#75715e># 작업이 실패했는지 확인</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>result<span style=color:#f92672>.</span>successful()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span><span style=color:#75715e># or</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>result<span style=color:#f92672>.</span>failed()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span><span style=color:#75715e># 작업의 상태 확인 (PENDING, STARTED, SUCCESS, FAILURE)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>result<span style=color:#f92672>.</span>state()
+</span></span></code></pre></div></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/django_jwt/><span class=mx-3>◀</span>
 Django - JWT 인증
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/python/github_action_pytest/>
-Github Actions에서 pytest 실행하기
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/python/github_action_pytest/>Github Actions에서 pytest 실행하기
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

@@ -1,182 +1,58 @@
-<!doctype html><html lang=ko>
-<head>
-<title>백준 - 8979 : 올림픽 (S5)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="1#include <bits/stdc++.h>2using namespace std; 3 4struct medal { 5	int number; 6	int gold; 7 …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="백준 - 8979 : 올림픽 (S5)">
-<meta property="og:description" content="1#include <bits/stdc++.h>2using namespace std; 3 4struct medal { 5	int number; 6	int gold; 7 …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#문제httpswwwacmicpcnetproblem8979><a href=https://www.acmicpc.net/problem/8979>문제</a></a></li>
-<li><a href=#해결방법>해결방법</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-백준 - 8979 : 올림픽 (S5)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ c++</span>
-<span class="text-md mr-1">🏷️ boj</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#75715e></span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>medal</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>	<span style=color:#66d9ef>int</span> number;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>	<span style=color:#66d9ef>int</span> gold;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>	<span style=color:#66d9ef>int</span> silver;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>	<span style=color:#66d9ef>int</span> bronze;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>cmp</span>(medal a, medal b) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>	<span style=color:#66d9ef>if</span> (a.gold <span style=color:#f92672>!=</span> b.gold) <span style=color:#66d9ef>return</span> a.gold <span style=color:#f92672>&gt;</span> b.gold;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>	<span style=color:#66d9ef>if</span> (a.silver <span style=color:#f92672>!=</span> b.silver) <span style=color:#66d9ef>return</span> a.silver <span style=color:#f92672>&gt;</span> b.silver;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>	<span style=color:#66d9ef>return</span> a.bronze <span style=color:#f92672>&gt;</span> b.bronze;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>	cin.tie(<span style=color:#ae81ff>0</span>)<span style=color:#f92672>-&gt;</span>sync_with_stdio(false);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>	<span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, target <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, rank <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>	cin <span style=color:#f92672>&gt;&gt;</span> n;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>	cin <span style=color:#f92672>&gt;&gt;</span> target;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>	medal<span style=color:#f92672>*</span> arr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> medal[n];
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>		cin <span style=color:#f92672>&gt;&gt;</span> arr[i].number <span style=color:#f92672>&gt;&gt;</span> arr[i].gold <span style=color:#f92672>&gt;&gt;</span> arr[i].silver <span style=color:#f92672>&gt;&gt;</span> arr[i].bronze;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>	}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>	sort(arr, arr <span style=color:#f92672>+</span> n, cmp);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>		<span style=color:#66d9ef>if</span> (i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> (arr[i].gold <span style=color:#f92672>!=</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].gold <span style=color:#f92672>||</span> arr[i].silver <span style=color:#f92672>!=</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].silver <span style=color:#f92672>||</span> arr[i].bronze <span style=color:#f92672>||</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].bronze)) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>			rank <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>		}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>		<span style=color:#66d9ef>if</span> (arr[i].number <span style=color:#f92672>==</span> target) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>			cout <span style=color:#f92672>&lt;&lt;</span> rank <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>			<span style=color:#66d9ef>break</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>		}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>	}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>	<span style=color:#66d9ef>delete</span>[] arr;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>}
-</code></pre></div><h3 id=문제httpswwwacmicpcnetproblem8979><a href=https://www.acmicpc.net/problem/8979>문제</a></h3>
-<ul>
-<li>
-<p>1번째 줄에 국가개수, 특정 국가번호가 주어진다.</p>
-</li>
-<li>
-<p>2번째 줄에 국가번호, 금메달 수, 은메달 수, 동메달 수가 주어진다.</p>
-</li>
-<li>
-<p>특정 국가번호가 몇등인지 출력해야한다.</p>
-</li>
-<li>
-<p>금, 은, 동메달 수가 모두 같다면 같은 등수로 처리한다.</p>
-</li>
-<li>
-<p>만약 공동 2등인 나라가 2개 나오는 경우, 3등은 없다</p>
-</li>
-<li>
-<p>TC</p>
-<ul>
-<li>input
-<blockquote>
-<p>4 3<br>
-1 1 2 0<br>
-2 0 1 0<br>
-3 0 1 0<br>
-4 0 0 1</p>
-</blockquote>
-</li>
-<li>ouput
-<blockquote>
-<p>2</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id=해결방법>해결방법</h3>
-<ul>
-<li>구조체를 이용하여 국가번호, 금, 은, 동메달 수를 저장한다.</li>
-<li>cmp함수를 이용하여 정렬한다.</li>
-<li>특정 국가번호를 찾아서 등수를 출력한다.</li>
-<li>같은 등수를 처리하기 위해 변수 rank를 활용하였다.</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/hrk_time_delta/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>백준 - 8979 : 올림픽 (S5)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 1#include <bits/stdc++.h>
+ 2using namespace std;
+ 3
+ 4struct medal {
+ 5	int number;
+ 6	int …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="백준 - 8979 : 올림픽 (S5)"><meta property="og:description" content=" 1#include <bits/stdc++.h>
+ 2using namespace std;
+ 3
+ 4struct medal {
+ 5	int number;
+ 6	int …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#문제>문제</a></li><li><a href=#해결방법>해결방법</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">백준 - 8979 : 올림픽 (S5)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ c++</span>
+<span class="text-md mr-1">🏷️ boj</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>medal</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>	<span style=color:#66d9ef>int</span> number;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>	<span style=color:#66d9ef>int</span> gold;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>	<span style=color:#66d9ef>int</span> silver;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>	<span style=color:#66d9ef>int</span> bronze;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>cmp</span>(medal a, medal b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>	<span style=color:#66d9ef>if</span> (a.gold <span style=color:#f92672>!=</span> b.gold) <span style=color:#66d9ef>return</span> a.gold <span style=color:#f92672>&gt;</span> b.gold;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>	<span style=color:#66d9ef>if</span> (a.silver <span style=color:#f92672>!=</span> b.silver) <span style=color:#66d9ef>return</span> a.silver <span style=color:#f92672>&gt;</span> b.silver;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>	<span style=color:#66d9ef>return</span> a.bronze <span style=color:#f92672>&gt;</span> b.bronze;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>	cin.tie(<span style=color:#ae81ff>0</span>)<span style=color:#f92672>-&gt;</span>sync_with_stdio(false);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>	<span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, target <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, rank <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>	cin <span style=color:#f92672>&gt;&gt;</span> n;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>	cin <span style=color:#f92672>&gt;&gt;</span> target;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>	medal<span style=color:#f92672>*</span> arr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> medal[n];
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>		cin <span style=color:#f92672>&gt;&gt;</span> arr[i].number <span style=color:#f92672>&gt;&gt;</span> arr[i].gold <span style=color:#f92672>&gt;&gt;</span> arr[i].silver <span style=color:#f92672>&gt;&gt;</span> arr[i].bronze;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>	sort(arr, arr <span style=color:#f92672>+</span> n, cmp);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>		<span style=color:#66d9ef>if</span> (i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> (arr[i].gold <span style=color:#f92672>!=</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].gold <span style=color:#f92672>||</span> arr[i].silver <span style=color:#f92672>!=</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].silver <span style=color:#f92672>||</span> arr[i].bronze <span style=color:#f92672>||</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].bronze)) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>			rank <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>		<span style=color:#66d9ef>if</span> (arr[i].number <span style=color:#f92672>==</span> target) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>			cout <span style=color:#f92672>&lt;&lt;</span> rank <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>			<span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>	<span style=color:#66d9ef>delete</span>[] arr;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>}
+</span></span></code></pre></div><h3 id=문제><a href=https://www.acmicpc.net/problem/8979>문제</a></h3><ul><li><p>1번째 줄에 국가개수, 특정 국가번호가 주어진다.</p></li><li><p>2번째 줄에 국가번호, 금메달 수, 은메달 수, 동메달 수가 주어진다.</p></li><li><p>특정 국가번호가 몇등인지 출력해야한다.</p></li><li><p>금, 은, 동메달 수가 모두 같다면 같은 등수로 처리한다.</p></li><li><p>만약 공동 2등인 나라가 2개 나오는 경우, 3등은 없다</p></li><li><p>TC</p><ul><li>input<blockquote><p>4 3<br>1 1 2 0<br>2 0 1 0<br>3 0 1 0<br>4 0 0 1</p></blockquote></li><li>ouput<blockquote><p>2</p></blockquote></li></ul></li></ul><h3 id=해결방법>해결방법</h3><ul><li>구조체를 이용하여 국가번호, 금, 은, 동메달 수를 저장한다.</li><li>cmp함수를 이용하여 정렬한다.</li><li>특정 국가번호를 찾아서 등수를 출력한다.</li><li>같은 등수를 처리하기 위해 변수 rank를 활용하였다.</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/hrk_time_delta/><span class=mx-3>◀</span>
 HackerRank - Time Delta
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_20125/>
-백준 - 20125 : 쿠키의 신체 측정 (S4)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_20125/>백준 - 20125 : 쿠키의 신체 측정 (S4)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

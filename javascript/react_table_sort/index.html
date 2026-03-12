@@ -1,128 +1,34 @@
-<!doctype html><html lang=ko>
-<head>
-<title>React - column을 기준으로 정렬하기</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Table에 있는 데이터들을 column별로 정렬해야 한다 데이터의 형식에 따라 comparator를 따로 구현하였다 1const comparatorStr = (a, b, …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="React - column을 기준으로 정렬하기">
-<meta property="og:description" content="Table에 있는 데이터들을 column별로 정렬해야 한다 데이터의 형식에 따라 comparator를 따로 구현하였다 1const comparatorStr = (a, b, …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#table에-있는-데이터들을-column별로-정렬해야-한다>Table에 있는 데이터들을 column별로 정렬해야 한다</a>
-<ul>
-<li><a href=#데이터의-형식에-따라-comparator를-따로-구현하였다>데이터의 형식에 따라 comparator를 따로 구현하였다</a></li>
-<li><a href=#정렬할-키나-순서가-바뀔때-마다-정렬을-수행한다>정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다</a></li>
-<li><a href=#정렬할-키-순서는-다음과-같이-정한다>정렬할 키, 순서는 다음과 같이 정한다</a></li>
-<li><a href=#느낀-점>느낀 점</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-React - column을 기준으로 정렬하기
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ react</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=table에-있는-데이터들을-column별로-정렬해야-한다>Table에 있는 데이터들을 column별로 정렬해야 한다</h2>
-<h3 id=데이터의-형식에-따라-comparator를-따로-구현하였다>데이터의 형식에 따라 comparator를 따로 구현하였다</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorStr</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>order</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>b</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>a</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>};
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorInt</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>order</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span>};
-</code></pre></div><h3 id=정렬할-키나-순서가-바뀔때-마다-정렬을-수행한다>정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>useEffect</span>(() =&gt; {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Key</span>.<span style=color:#a6e22e>NAME</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#a6e22e>setStateList</span>(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>      [...<span style=color:#a6e22e>stateList</span>].<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>comparatorStr</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>sortOrder</span>))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    );
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>  <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Key</span>.<span style=color:#a6e22e>SIZE</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#a6e22e>setStateList</span>(
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>      [...<span style=color:#a6e22e>stateList</span>].<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>comparatorInt</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>size</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>size</span>, <span style=color:#a6e22e>sortOrder</span>))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    );
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}, [<span style=color:#a6e22e>sortBy</span>, <span style=color:#a6e22e>sortOrder</span>]);
-</code></pre></div><h3 id=정렬할-키-순서는-다음과-같이-정한다>정렬할 키, 순서는 다음과 같이 정한다</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sortHandle</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>key</span>) =&gt; {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#75715e>// (현재 선택 된 키를 다시 눌렀을 때 &amp;&amp; 현재 오름차순 정렬일 때) -&gt; 내림차순
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>key</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>sortOrder</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#a6e22e>setSortOrder</span>(<span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>DESC</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#75715e>// 나머지 모든 경우 -&gt; 오름차순
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e></span>  <span style=color:#66d9ef>else</span> <span style=color:#a6e22e>setSortOrder</span>(<span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>  <span style=color:#75715e>// update sortBy
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span style=color:#75715e></span>  <span style=color:#a6e22e>setSortBy</span>(<span style=color:#a6e22e>key</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>};
-</code></pre></div><h3 id=느낀-점>느낀 점</h3>
-<ul>
-<li>나름 신경썼는데 UI측면에서 내 방식이 적절한 방식인지 잘 모르겠다.</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/react_useeffect/>
-React - useEffect 사용법
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+<!doctype html><html lang=ko><head><title>React - column을 기준으로 정렬하기</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Table에 있는 데이터들을 column별로 정렬해야 한다
+데이터의 형식에 따라 comparator를 따로 구현하였다
+1const comparatorStr = (a, b, …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="React - column을 기준으로 정렬하기"><meta property="og:description" content="Table에 있는 데이터들을 column별로 정렬해야 한다
+데이터의 형식에 따라 comparator를 따로 구현하였다
+1const comparatorStr = (a, b, …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#table에-있는-데이터들을-column별로-정렬해야-한다>Table에 있는 데이터들을 column별로 정렬해야 한다</a><ul><li><a href=#데이터의-형식에-따라-comparator를-따로-구현하였다>데이터의 형식에 따라 comparator를 따로 구현하였다</a></li><li><a href=#정렬할-키나-순서가-바뀔때-마다-정렬을-수행한다>정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다</a></li><li><a href=#정렬할-키-순서는-다음과-같이-정한다>정렬할 키, 순서는 다음과 같이 정한다</a></li><li><a href=#느낀-점>느낀 점</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">React - column을 기준으로 정렬하기</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ react</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=table에-있는-데이터들을-column별로-정렬해야-한다>Table에 있는 데이터들을 column별로 정렬해야 한다</h2><h3 id=데이터의-형식에-따라-comparator를-따로-구현하였다>데이터의 형식에 따라 comparator를 따로 구현하였다</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorStr</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>order</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>b</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>a</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>comparatorInt</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>order</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>order</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>};
+</span></span></code></pre></div><h3 id=정렬할-키나-순서가-바뀔때-마다-정렬을-수행한다>정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#a6e22e>useEffect</span>(() =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Key</span>.<span style=color:#a6e22e>NAME</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#a6e22e>setStateList</span>(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>      [...<span style=color:#a6e22e>stateList</span>].<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>comparatorStr</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>sortOrder</span>))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    );
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Key</span>.<span style=color:#a6e22e>SIZE</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#a6e22e>setStateList</span>(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>      [...<span style=color:#a6e22e>stateList</span>].<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>comparatorInt</span>(<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>size</span>, <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>size</span>, <span style=color:#a6e22e>sortOrder</span>))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    );
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}, [<span style=color:#a6e22e>sortBy</span>, <span style=color:#a6e22e>sortOrder</span>]);
+</span></span></code></pre></div><h3 id=정렬할-키-순서는-다음과-같이-정한다>정렬할 키, 순서는 다음과 같이 정한다</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sortHandle</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>key</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#75715e>// (현재 선택 된 키를 다시 눌렀을 때 &amp;&amp; 현재 오름차순 정렬일 때) -&gt; 내림차순
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sortBy</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>key</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>sortOrder</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>) <span style=color:#a6e22e>setSortOrder</span>(<span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>DESC</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  <span style=color:#75715e>// 나머지 모든 경우 -&gt; 오름차순
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>  <span style=color:#66d9ef>else</span> <span style=color:#a6e22e>setSortOrder</span>(<span style=color:#a6e22e>Order</span>.<span style=color:#a6e22e>ASC</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>  <span style=color:#75715e>// update sortBy
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>  <span style=color:#a6e22e>setSortBy</span>(<span style=color:#a6e22e>key</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>};
+</span></span></code></pre></div><h3 id=느낀-점>느낀 점</h3><ul><li>나름 신경썼는데 UI측면에서 내 방식이 적절한 방식인지 잘 모르겠다.</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/react_useeffect/>React - useEffect 사용법
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

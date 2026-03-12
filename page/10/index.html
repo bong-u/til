@@ -1,797 +1,515 @@
-<!doctype html><html lang=ko>
-<head>
-<meta name=generator content="Hugo 0.91.2">
-<title>bong-u/til</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="bong-u/til">
-<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6
-max-w-3xl">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="w-full flex max-w-3xl flex-col">
-<section class="mb-8 w-full">
-<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
-<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
-</video>
-</section>
-<main class="flex flex-col w-full gap-5">
-<form onchange=switchSection() class="flex justify-center">
-<input id=switch-page type=radio name=switch checked>
-<label for=switch-page class="switch-button rounded-l-lg">
-게시물
-</label>
-</input>
+<!doctype html><html lang=ko><head><meta name=generator content="Hugo 0.157.0"><title>bong-u/til</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="bong-u/til"><meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6
+max-w-3xl"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><div class="w-full flex max-w-3xl flex-col"><section class="mb-8 w-full"><video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm></video></section><main class="flex flex-col w-full gap-5"><form onchange=switchSection() class="flex justify-center"><input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">게시물
+</label></input>
 <input id=switch-group type=radio name=switch>
-<label for=switch-group class=switch-button>
-분류
-</label>
-</input>
+<label for=switch-group class=switch-button>분류
+</label></input>
 <input id=switch-tag type=radio name=switch>
-<label for=switch-tag class=switch-button>
-태그
-</label>
-<input id=search-tag type=radio name=switch>
-<label for=search-tag class="switch-button rounded-r-lg">
-검색
-</label>
-</form>
-<div class="w-full p-5">
-<section id=summary-section class="grid gap-8">
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-06-24T10:16:15\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-1-05plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24동계] 05 : 계획
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-1-05plan/ class="content-summary text-sm overflow-hidden">
-오늘의 목표 MSSQL 임시테이블 정리 MSSQL NOLOCK 정리
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-06-24T10:16:15\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-1-06plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24동계] 06 : 계획
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-1-06plan/ class="content-summary text-sm overflow-hidden">
-오늘의 목표 테스트 기법 종류 정리하기
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-06-24 10:16:15 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-03-18T11:32:48\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/human_computer_interface/ class="text-2xl my-3 overflow-ellipsis-bundle">
-인간-컴퓨터 상호작용
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/human_computer_interface/ class="content-summary text-sm overflow-hidden">
-Design Techniques Contextual Inquiry 사용자의 환경에서 사용자의 행동을 관찰 Design Funnel 아이디어를 확장함과 동시에 축소 시킴으로서 결과 도출 Double Diamond Discover -> Define -> Develop -> Deliver Storyboarding 시나리오를 그림으로 표현 Prototyping 디자인을 표현하는 소프트웨어로 구현 종류: Low-fidelity(충실도가 낮음), High-fidelity(충실도가 높음) User Testing In-lab vs On-site Moderated vs Unmoderated : Exploratory vs Assessment Presentation & Communication Needfinding (요구사항 도출) 용어 UI (User Interface) 제품의 시각적인 요소
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-03-18 11:32:48 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-12-06T11:02:27\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/film_and_literature/ class="text-2xl my-3 overflow-ellipsis-bundle">
-영화와 문학
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/film_and_literature/ class="content-summary text-sm overflow-hidden">
-매체 변환이란 소설, 희곡, 시, 영화 등 각각의 매체 형식을 다른 종류의 매체 형식으로 변환하는 것
-뤼미에르 형제에 의해서 영화가 발명된 후, 1910년대부터 기존 문학 작품을 영화의 형식에 맞도록 각색하는 양상이 인기를 얻게 됨.
-매체 변환 양상 분석 과정에서 고려해야할 사항
-구성의 생략과 압축 텍스트 -> 영화, 시공간적 제약을 받을 수 밖에 없다 따라서, 생략과 압축은 할 수 밖에 없다 시간과 공간의 영상적 변환 시공간을 처리하는 방식은 매체에 따라 달라질 수 밖에 없다.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-12-06 11:02:27 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-09-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%8A%9C%ED%94%8C/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 튜플 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%8A%9C%ED%94%8C/ class="content-summary text-sm overflow-hidden">
-1from collections import defaultdict 2 3def solution(s): 4 count = defaultdict(int) 5 for i in s[1:-1].replace('},{', '} {').split(' '): 6 for j in i[1:-1].split(','): 7 count[j] += 1 8 return [int(i[0]) for i in sorted(count.items(), key=lambda x: x[1], reverse=True)] 문제 특정 튜플을 포현하는 집합이 담긴 문자열 s가 매개변수로 주어진다 s가 표현하는 튜플을 배열에 담아 반환하라 TC input &ldquo;{{2},{2,1},{2,1,3},{2,1,3,4}}&rdquo;
-ouput [2, 1, 3, 4]
-해결방법 문제에서 원하는 튜플의 순서는 원소의 개수가 자주 등장하는 순서이다 각 원소의 개수를 세어 count라는 defaultdict에 넣는다 count를 value 기준으로 정렬하여 key값을 list의 형태로 반환하라
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-09-16 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-09-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%88%98%EC%8B%9D_%EC%B5%9C%EB%8C%80%ED%99%94/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 수식 최대화 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%88%98%EC%8B%9D_%EC%B5%9C%EB%8C%80%ED%99%94/ class="content-summary text-sm overflow-hidden">
-1from itertools import permutations 2def solution(expression): 3 answer = 0 4 operations = list(filter(lambda x: not x.isdigit(), expression)) 5 numbers = expression.replace('-','+').replace('*','+').split('+') 6 expression = [int(numbers[0])] 7 8 for i in range(len(operations)): 9 expression.append(operations[i]) 10 expression.append(int(numbers[i+1])) 11 12 for case in permutations(('+', '-', '*'), 3): 13 temp = expression[::-1] 14 for op in case: 15 stack = [] 16 while temp: 17 if temp[-1] == op: 18 temp.pop() 19 a = stack.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-09-16 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-09-07T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%BF%BC%EB%93%9C%EC%95%95%EC%B6%95_%ED%9B%84_%EA%B0%9C%EC%88%98_%EC%84%B8%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 쿼드압축 후 개수 세기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%BF%BC%EB%93%9C%EC%95%95%EC%B6%95_%ED%9B%84_%EA%B0%9C%EC%88%98_%EC%84%B8%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1answer = [0, 0] 2 3def solution(arr): 4 def recursion(sx, sy, k): 5 global answer 6 origin = arr[sy][sx] 7 cnt = 0 8 for i in range(sx, sx+k): 9 for j in range(sy, sy+k): 10 if origin != arr[j][i]: 11 recursion(sx, sy, k//2) 12 recursion(sx+k//2, sy, k//2) 13 recursion(sx, sy+k//2, k//2) 14 recursion(sx+k//2, sy+k//2, k//2) 15 return 16 answer[origin] += 1 17 18 recursion(0, 0, len(arr)) 19 return answer 문제 0과 1로 이루어진 2^n x 2^n 크기의 2차원 정수 배열 arr을 압축하려 한다 압축하는 방법은 당신이 압축하고자 하는 특정 영역을 S라고 정의한다 만약 S 내부에 있는 모든 수가 같은 값이라면, S를 해당 수 하나로 압축시킨다 그렇지 않다면, S를 정확히 4개의 균일한 정사각형 영역으로 쪼갠 뒤, 각 정사각형 영역에 대해 같은 방식의 압축을 시도한다 TC input [[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-09-07 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-09-06T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 이진 변환 반복하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%9D%B4%EC%A7%84_%EB%B3%80%ED%99%98_%EB%B0%98%EB%B3%B5%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def solution(s): 2 answer = [] 3 cnt = 0 4 zero_cnt = 0 5 6 while len(s) != 1: 7 zero = s.count('0') 8 s = str(bin(len(s)-zero)).split('b')[1] 9 cnt += 1 10 zero_cnt += zero 11 12 return [cnt, zero_cnt] 문제 이진변환을 다음과 같이 정의한다 1. x의 모든 0을 제거한다 2. x의 길이를 c라고 하면, x를 &lsquo;c를 2진법으로 표현한 문자열&rsquo;로 바꾼다 s가 &lsquo;1&rsquo;이 될때까지 이진변환을 가했을 때, [이진변환의 횟수, 제거된 모든 0의 개수]를 반환하라 TC input s : &ldquo;110010101001&rdquo;
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-09-06 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-09-04T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%A9%94%EB%89%B4_%EB%A6%AC%EB%89%B4%EC%96%BC/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 메뉴 리뉴얼 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%A9%94%EB%89%B4_%EB%A6%AC%EB%89%B4%EC%96%BC/ class="content-summary text-sm overflow-hidden">
-1from itertools import combinations 2from collections import defaultdict 3 4def solution(orders, course): 5 answer = [] 6 7 for i in course: 8 dataset = defaultdict(int) 9 10 for j in orders: 11 for k in combinations(j, i): 12 # ABC, ACB를 같은 것으로 취급하기 위해 정렬 13 dataset[''.join(sorted(k))] += 1 14 15 if len(dataset) == 0: 16 continue 17 18 max_value = max(dataset.values()) 19 20 # 2번 이상 주문된 메뉴만 추가 21 if max_value == 1: 22 continue 23 24 for k, _ in filter(lambda x:x[1] == max_value, dataset.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-09-04 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-31T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 순위 검색 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89/ class="content-summary text-sm overflow-hidden">
-1from itertools import combinations 2from collections import defaultdict 3from bisect import bisect_left 4 5def solution(infos, queries): 6 answer = [] 7 dataset = defaultdict(list) 8 9 for info in infos: 10 token = info.split(' ') 11 12 for j in range(5): 13 for case in list(combinations([0,1,2,3], j)): 14 temp = token[:-1] 15 for c in case: 16 temp[c] = '-' 17 dataset[''.join(temp)].append(int(token[-1])) 18 for value in dataset.values(): 19 value.sort() 20 21 for query in queries: 22 query = query.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-31 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-28T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EA%B4%84%ED%98%B8_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 괄호 회전하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EA%B4%84%ED%98%B8_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def check(string): 2 stack = [] 3 for i in string: 4 if i == '(' or i == '{' or i == '[': 5 stack.append(i) 6 else: 7 if len(stack) == 0: 8 return False 9 if i == ')': 10 if stack[-1] != '(': return False 11 if i == '}': 12 if stack[-1] != '{': return False 13 if i == ']': 14 if stack[-1] != '[': return False 15 stack.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-28 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-24T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%96%89%EB%A0%AC_%ED%85%8C%EB%91%90%EB%A6%AC_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 행렬 테두리 회전하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%96%89%EB%A0%AC_%ED%85%8C%EB%91%90%EB%A6%AC_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1dx = [1, 0, -1, 0] 2dy = [0, 1, 0, -1] 3 4def solution(rows, columns, queries): 5 table = [[(j*columns)+i+1 for i in range(columns)] for j in range(rows)] 6 answer = [] 7 8 for y1, x1, y2, x2 in queries: 9 min_num = 10000 10 x1 -= 1 11 y1 -= 1 12 x2 -= 1 13 y2 -= 1 14 direction = 0 15 curX, curY = x1, y1 16 postNum = table[y1][x1] 17 while True: 18 curX = curX+dx[direction] 19 curY = curY+dy[direction] 20 21 temp = table[curY][curX] 22 table[curY][curX] = postNum 23 postNum = temp 24 25 min_num = min(min_num ,postNum) 26 27 if ((curX == x2 and curY == y1) or 28 (curX == x2 and curY == y2) or 29 (curX == x1 and curY == y2)): 30 direction += 1 31 32 if curX == x1 and curY == y1: 33 break 34 35 answer.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-24 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-23T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_2%EA%B0%9C_%EC%9D%B4%ED%95%98%EB%A1%9C_%EB%8B%A4%EB%A5%B8_%EB%B9%84%ED%8A%B8/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 2개 이하로 다른 비트 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_2%EA%B0%9C_%EC%9D%B4%ED%95%98%EB%A1%9C_%EB%8B%A4%EB%A5%B8_%EB%B9%84%ED%8A%B8/ class="content-summary text-sm overflow-hidden">
-1def solution(numbers): 2 answer = [] 3 for number in numbers: 4 num = list(str(bin(number)).split('b')[1]) 5 6 # 첫번째 자릿수가 0인 경우 7 if num[-1] == '0': 8 num[-1] = '1' 9 answer.append(int('0b'+''.join(num), 2)) 10 continue 11 12 # 첫번째 자릿수가 1인 경우 13 num = ['0']+num 14 # 두번째 자리부터 순회 15 for i in range(len(num)-2, -1, -1): 16 # 가장 오른쪽의 0을 찾았을 때 17 if num[i] == '0': 18 # 0을 오른쪽으로, 1을 왼쪽으로 옮긴다 19 num[i], num[i+1] = num[i+1], num[i] 20 answer.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-23 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-22T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EA%B1%B0%EB%A6%AC%EB%91%90%EA%B8%B0_%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 거리두기 확인하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EA%B1%B0%EB%A6%AC%EB%91%90%EA%B8%B0_%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1dx = [-1, 1, 0, 0] 2dy = [0, 0, -1, 1] 3def quest(table): 4 table = [list(line) for line in table] 5 for j in range(5): 6 for i in range(5): 7 if table[i][j] == 'P': 8 flag = [False]*4 9 target = [] 10 for k in range(4): 11 nx = i+dx[k] 12 ny = j+dy[k] 13 if 0 &lt;= nx &lt; 5 and 0 &lt;= ny &lt; 5: 14 target.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-22 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-21T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%AA%A8%EC%9D%8C%EC%82%AC%EC%A0%84/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 모음사전 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%AA%A8%EC%9D%8C%EC%82%AC%EC%A0%84/ class="content-summary text-sm overflow-hidden">
-1def solution(word): 2 answer = 0 3 char = ['A', 'E', 'I', 'O', 'U'] 4 cnt = 0 5 6 def traverse(cur): 7 nonlocal char, cnt, word 8 if cur == word: 9 return cnt 10 11 if len(cur) &lt; 5: 12 for ch in char: 13 cnt += 1 14 if traverse(cur+ch) != None: 15 return cnt 16 return traverse('') 문제 사전에 A,E,I,O,U만 사용하여 만들 수 있는 길이 5이하의 모든 단어가 수록되어있다 단어 하나 word가 주어질때 사전에서 몇번째 단어인지 구하라 TC input &lsquo;I&rsquo;
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-21 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-20T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%B9%9B%EC%9D%98_%EA%B2%BD%EB%A1%9C_%EC%82%AC%EC%9D%B4%ED%81%B4/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 빛의 경로 사이클 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%B9%9B%EC%9D%98_%EA%B2%BD%EB%A1%9C_%EC%82%AC%EC%9D%B4%ED%81%B4/ class="content-summary text-sm overflow-hidden">
-1dx = [1, 0, -1, 0] 2dy = [0, 1, 0, -1] 3def solution(grid): 4 N = len(grid) 5 M = len(grid[0]) 6 grid = [list(line) for line in grid] 7 route = [[[False]*4 for _ in range(M)] for _ in range(N)] 8 answer = [] 9 10 for i in range(M): 11 for j in range(N): 12 for k in range(4): 13 cur = [i, j] 14 dir = k 15 cnt = 0 16 while not route[cur[1]][cur[0]][dir]: 17 cnt += 1 18 route[cur[1]][cur[0]][dir] = True 19 cur[0] = (cur[0]+dx[dir]) % M 20 cur[1] = (cur[1]+dy[dir]) % N 21 22 if grid[cur[1]][cur[0]] == 'L': 23 dir = (dir-1) % 4 24 elif grid[cur[1]][cur[0]] == 'R': 25 dir = (dir+1) % 4 26 if cnt !
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-20 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-18T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%A0%84%EB%A0%A5%EB%A7%9D%EC%9D%84_%EB%91%98%EB%A1%9C_%EB%82%98%EB%88%84%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 전력망을 둘로 나누기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%A0%84%EB%A0%A5%EB%A7%9D%EC%9D%84_%EB%91%98%EB%A1%9C_%EB%82%98%EB%88%84%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def solution(n, wires): 2 tower = [[] for _ in range(n)] 3 answer = 100 4 for wire in wires: 5 wire[0] -= 1 6 wire[1] -= 1 7 tower[wire[0]].append(wire[1]) 8 tower[wire[1]].append(wire[0]) 9 10 def traverse(visited, start): 11 visited[start] = True 12 for i in tower[start]: 13 if not visited[i]: 14 traverse(visited, i) 15 for wire in wires: 16 tower[wire[0]].remove(wire[1]) 17 tower[wire[1]].remove(wire[0]) 18 19 visited = [False]*n 20 a = 0 21 traverse(visited, wire[0]) 22 for i in range(n): 23 if visited[i]: 24 a += 1 25 26 visited = [False]*n 27 b = 0 28 traverse(visited, wire[1]) 29 for i in range(n): 30 if visited[i]: 31 b += 1 32 answer = min(answer, abs(a-b)) 33 tower[wire[0]].
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-18 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-17T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EA%B5%90%EC%A0%90%EC%97%90_%EB%B3%84_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 교점에 별 만들기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EA%B5%90%EC%A0%90%EC%97%90_%EB%B3%84_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def calc(a1, b1, c1, a2, b2, c2): 2 if a1*b2-a2*b1 == 0: 3 return (0.1, 0.1) 4 return ((b1*c2-b2*c1)/(a1*b2-a2*b1), (c1*a2-a1*c2)/(a1*b2-a2*b1)) 5 6def solution(line): 7 answer = [] 8 length = len(line) 9 points = [] 10 size = [1e15, -1e15, 1e15,- 1e15] 11 12 for i in range(length): 13 for j in range(i): 14 point = calc(line[i][0],line[i][1], line[i][2], line[j][0], line[j][1], line[j][2]) 15 if point[0]%1 != 0 or point[1]%1 != 0: 16 continue 17 x = int(point[0]) 18 y = int(point[1]) 19 points.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-17 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-16T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - n^2 배열 자르기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def solution(n, left, right): 2 answer = [] 3 start = (left//n, left%n) 4 end = (right//n, right%n) 5 6 for i in range(start[0], end[0]+1): 7 line = [i+1]*(i+1) + [i for i in range(i+2, n+1)] 8 answer += line 9 10 return answer[start[1]:right-(start[0]*n)+1] 문제 정수 n, left, right가 주어진다 n X n 크기의 2차원 배열을 만든다 i=1,2,3..n에 대해서, 1행 1열부터 i형 i행까지 숫자 i로 채운다 1행, 2행.. n행을 모두 이어붙인 새로운 1차원 배열을 만든다 새로운 1차원 배열에서 left번째 숫자부터 right번째 숫자까지를 배열로 반환하라 TC input n : 3, left : 2, right : 5
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-16 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-14T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%94%BC%EB%A1%9C%EB%8F%84/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 피로도 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%94%BC%EB%A1%9C%EB%8F%84/ class="content-summary text-sm overflow-hidden">
-1def solution(k, dungeons): 2 result = 0 3 length = len(dungeons) 4 def dfs(cur, visited, cnt): 5 nonlocal result 6 visit = False 7 for i in range(length): 8 if not visited[i] and cur >= dungeons[i][0]: 9 visit = True 10 visited[i] = True 11 dfs(cur-dungeons[i][1], visited, cnt+1) 12 visited[i] = False 13 14 if not visit: 15 result = max(result, cnt) 16 17 dfs(k, [False]*length, 0) 18 19 return result 문제 유저의 현재 피로도 k, 던전별 [&ldquo;최소 필요 피로도&rdquo;, &ldquo;소모 피로도&rdquo;]를 담은 2차원 배열 dungeons가 주어진다 던전을 탐험하기 위해서는 유저의 현재 남은 피로도가 최소 필요 피로도 이상이어야 한다 던전을 클리어하면 &ldquo;소모 피로도"만큼 피로도가 소모된다 던전을 탐험할 수 있는 최대 던전 수를 구하라 TC input k:80, dungeons:[[80,20],[50,40],[30,10]]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-14 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class=py-16>
-<div id=pagination-box>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/9/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
-</li>
-<li class=page-item>
-<a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 10" class=page-link role=button>10</a>
-</li>
-<li class=page-item>
-<a href=/til/page/11/ aria-label="Page 11" class=page-link role=button>11</a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label="Page 12" class=page-link role=button>12</a>
-</li>
-<li class=page-item>
-<a href=/til/page/11/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
-</ul>
-</div>
-</div>
-</section>
-<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
-<span class="text-xl mr-3">🧠</span>
-<span> Algorithm (104)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
-<span class="text-xl mr-3">🌊</span>
-<span> C/CPP (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
-<span class="text-xl mr-3">☕</span>
-<span> Java (8)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
-<span class="text-xl mr-3">🍌</span>
-<span> Javascript (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
-<span class="text-xl mr-3">🐍</span>
-<span> Python (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span> Spring (30)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
-<span class="text-xl mr-3">🔨</span>
-<span> 개발 도구 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
-<span class="text-xl mr-3">🎸</span>
-<span> 기타 (7)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
-<span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (38)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
-<span class="text-xl mr-3">🤖</span>
-<span> 인공지능 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span> 학과 공부 (28)</span>
-</a>
-</section>
-<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+<label for=switch-tag class=switch-button>태그
+</label><input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">검색</label></form><div class="w-full p-5"><section id=summary-section class="grid gap-8"><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-02/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 02 : 결과</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-02/ class="content-summary text-sm overflow-hidden"><h2 id=rag-retrieval-augmented-generation-이론-정리>RAG (Retrieval-Augmented Generation) 이론 정리</h2><blockquote><p>RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델</p></blockquote><ul><li><p>LLM의 문제점</p><ul><li>할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상</li><li>최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제</li><li>신뢰할 수 없는 출처로부터 정보를 생성하는 문제</li></ul></li><li><p>RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.</p></li></ul><h2 id=opensearch>OpenSearch</h2><blockquote><p>OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전</p></blockquote><ul><li><p>벡터 데이터베이스 : 벡터 데이터를 저장하고 쿼리할 수 있는 데이터베이스</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-03/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 03 : 결과</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-03/ class="content-summary text-sm overflow-hidden"><h2 id=fastapi-rabbitmq-celery-연동>Fastapi, RabbitMQ, Celery 연동</h2><h3 id=배경>배경</h3><ul><li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li><li>웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다.</li><li>여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다.</li></ul><h3 id=목표>목표</h3><ul><li>Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다.</li></ul><h3 id=docker-composeyml>docker-compose.yml</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3&#39;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>services</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#f92672>rabbitmq</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>rabbitmq:3</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>      - <span style=color:#e6db74>&#34;5672:5672&#34;</span> <span style=color:#75715e># RabbitMQ의 AMQP 포트</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>      - <span style=color:#e6db74>&#34;15672:15672&#34;</span> <span style=color:#75715e># RabbitMQ 관리 인터페이스 포트</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>      - <span style=color:#ae81ff>rabbitmq_data:/var/lib/rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#f92672>expose</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>      - <span style=color:#e6db74>&#34;5672&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>      - <span style=color:#e6db74>&#34;15672&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>  <span style=color:#f92672>celery_worker</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#f92672>build</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>      <span style=color:#f92672>context</span>: <span style=color:#ae81ff>.</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>      <span style=color:#f92672>dockerfile</span>: <span style=color:#ae81ff>Dockerfile.worker</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>celery -A utils.celery_worker worker --loglevel=info</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>      - <span style=color:#ae81ff>./app/utils:/app/utils</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>      - <span style=color:#ae81ff>rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>  <span style=color:#f92672>celery_beat</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>celery:4</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>celery -A celery_beat beat --loglevel=info</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>      - <span style=color:#ae81ff>./app/utils:/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>      - <span style=color:#ae81ff>rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>  
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>  <span style=color:#f92672>web</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>python:slim</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>    <span style=color:#f92672>working_dir</span>: <span style=color:#ae81ff>/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>    <span style=color:#75715e># interactive mode</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span><span>    <span style=color:#f92672>stdin_open</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span>    <span style=color:#75715e># tty mode</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span><span>    <span style=color:#f92672>tty</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span><span>    <span style=color:#f92672>environment</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span><span>      - <span style=color:#ae81ff>CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span><span>      - <span style=color:#ae81ff>./app:/app</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span><span>      - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">53</span><span>      - <span style=color:#ae81ff>rabbitmq</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">54</span><span>      - <span style=color:#ae81ff>celery_worker</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">55</span><span>      - <span style=color:#ae81ff>celery_beat</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">56</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">57</span><span><span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">58</span><span>  <span style=color:#f92672>rabbitmq_data</span>:
+</span></span></code></pre></div><ul><li>Celery worker에만 Dockerfile.worker를 이미지로 사용한 이유<ol><li>worker에 추가적으로 python 라이브러리를 설치해야함</li><li>Celery 공식 도커 이미지가 deprecated 되었음.</li></ol></li><li>Fastapi는 시간 관계상 따로 이미지를 만들지 않고 python:slim 이미지를 사용했다.</li></ul><h3 id=dockerfileworker>Dockerfile.worker</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:slim</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#75715e># 필요한 패키지 설치</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#75715e># ffmpeg가 필요해서 추가하였다</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>RUN</span> apt-get update <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>apt-get install -y --no-install-recommends gcc libpq-dev ffmpeg <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>rm -rf /var/lib/apt/lists/*<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#75715e># 필요한 파이썬 패키지 설치</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#66d9ef>COPY</span> requirements_celery_worker.txt ./<span style=color:#960050;background-color:#1e0010>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>RUN</span> pip install --no-cache-dir -r requirements_celery_worker.txt<span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><h3 id=celery_workerpy>celery_worker.py</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#f92672>from</span> celery <span style=color:#f92672>import</span> Celery
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>broker_url <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#39;CELERY_BROKER_URL&#39;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>app <span style=color:#f92672>=</span> Celery(<span style=color:#e6db74>&#39;worker&#39;</span>, broker<span style=color:#f92672>=</span>broker_url, backend<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;rpc://&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span><span style=color:#a6e22e>@app.task</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add</span>(x, y):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>    <span style=color:#66d9ef>return</span> x <span style=color:#f92672>+</span> y
+</span></span></code></pre></div><ul><li>broker_url은 RabbitMQ의 AMQP 주소를 의미한다.</li><li>backend는 결과를 받기 위한 백엔드로 RabbitMQ를 사용한다.</li></ul><h3 id=celery-worker-사용-방법>Celery worker 사용 방법</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> celery_worker <span style=color:#f92672>import</span> add
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#75715e># task를 비동기로 실행</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>result <span style=color:#f92672>=</span> add<span style=color:#f92672>.</span>delay(<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#75715e># apply_async는 delay와 동일한 기능 수행</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#75715e># delay와 달리 추가로 여러 옵션을 설정 가능</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>result <span style=color:#f92672>=</span> add<span style=color:#f92672>.</span>apply_async((<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>4</span>))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#75715e># 결과를 받기 위해 get()을 사용, 블로킹 호출</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>result<span style=color:#f92672>.</span>get()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span><span style=color:#75715e># 작업이 완료되었는지 확업</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>result<span style=color:#f92672>.</span>ready()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span><span style=color:#75715e># 작업이 실패했는지 확인</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>result<span style=color:#f92672>.</span>successful()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span><span style=color:#75715e># or</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>result<span style=color:#f92672>.</span>failed()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span><span style=color:#75715e># 작업의 상태 확인 (PENDING, STARTED, SUCCESS, FAILURE)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>result<span style=color:#f92672>.</span>state()
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/github_action_pytest/ class="text-2xl my-3 overflow-ellipsis-bundle">Github Actions에서 pytest 실행하기</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🐍</span>
+<span>Python</span></div></div></div><div class=flex-grow><a href=/til/python/github_action_pytest/ class="content-summary text-sm overflow-hidden"><h3 id=배경>배경</h3><ul><li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li><li>현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다.</li><li>Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다.</li></ul><h3 id=run-pytestyml>run-pytest.yml</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run pytest</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#75715e># main 또는 dev 브랜치에 pull request가 발생하면 실행</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#f92672>branches</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>      - <span style=color:#ae81ff>main</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>      - <span style=color:#ae81ff>dev</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>  <span style=color:#f92672>test</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Checkout code</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Set up Python</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-python@v2</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>          <span style=color:#f92672>python-version</span>: <span style=color:#e6db74>&#39;3.12&#39;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install dependencies</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span><span style=color:#e6db74>          python -m pip install --upgrade pip
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span><span style=color:#e6db74>          pip install -r requirements.txt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run tests</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>pytest .</span>
+</span></span></code></pre></div><h3 id=결과>결과</h3><pre tabindex=0><code>Run pytest .
+============================= test session starts ==============================
+platform linux -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+rootdir: /home/runner/work/Backend/Backend
+plugins: anyio-4.4.0
+collected 13 items
+
+app/tests/test_crud_chatroom.py ...                                      [ 23%]
+app/tests/test_crud_mentor.py ...                                        [ 46%]
+app/tests/test_crud_prescription.py ...                                  [ 69%]
+app/tests/test_crud_user.py ....                                         [100%]
+
+============================== 13 passed in 0.58s ==============================
+</code></pre><ul><li>생각보다 간단하게 구현할 수 있었다.</li><li>테스트 커버리지 100% 찍고, CD까지 구현하면 더할 나위 없을 것 같다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-04plan/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 04 : 계획</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-04plan/ class="content-summary text-sm overflow-hidden"><h2 id=오늘의-목표>오늘의 목표</h2><ol><li>Github Actions를 이용하여 pytest 자동화 테스트 환경 구축</li></ol></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-04/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 04 : 결과</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-04/ class="content-summary text-sm overflow-hidden"><h3 id=배경>배경</h3><ul><li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li><li>현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다.</li><li>Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다.</li></ul><h3 id=run-pytestyml>run-pytest.yml</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run pytest</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#75715e># main 또는 dev 브랜치에 pull request가 발생하면 실행</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#f92672>branches</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>      - <span style=color:#ae81ff>main</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>      - <span style=color:#ae81ff>dev</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>  <span style=color:#f92672>test</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Checkout code</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Set up Python</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/setup-python@v2</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>          <span style=color:#f92672>python-version</span>: <span style=color:#e6db74>&#39;3.12&#39;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install dependencies</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span><span style=color:#e6db74>          python -m pip install --upgrade pip
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span><span style=color:#e6db74>          pip install -r requirements.txt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run tests</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>pytest .</span>
+</span></span></code></pre></div><h3 id=결과>결과</h3><pre tabindex=0><code>Run pytest .
+============================= test session starts ==============================
+platform linux -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+rootdir: /home/runner/work/Backend/Backend
+plugins: anyio-4.4.0
+collected 13 items
+
+app/tests/test_crud_chatroom.py ...                                      [ 23%]
+app/tests/test_crud_mentor.py ...                                        [ 46%]
+app/tests/test_crud_prescription.py ...                                  [ 69%]
+app/tests/test_crud_user.py ....                                         [100%]
+
+============================== 13 passed in 0.58s ==============================
+</code></pre><ul><li>생각보다 간단하게 구현할 수 있었다.</li><li>테스트 커버리지 100% 찍고, CD까지 구현하면 더할 나위 없을 것 같다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/fastapi_db_test/ class="text-2xl my-3 overflow-ellipsis-bundle">Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🐍</span>
+<span>Python</span></div></div></div><div class=flex-grow><a href=/til/python/fastapi_db_test/ class="content-summary text-sm overflow-hidden"><h3 id=상황>상황</h3><ul><li>테커 부트캠프에서 팀프로젝트를 진행 중이다.</li><li>단위테스트 코드는 작성이 완료되었고, 통합테스트 코드를 작성 중이다.</li><li>sqlite in-memory db를 사용해서 테스트 중인데, 테이블이 없다는 에러가 발생했다.</li><li>테스트 전에 테이블을 생성하는 코드가 실행됨에도 불구하고, 에러가 발생한다.</li><li>인메모리가 아닌 파일로 저장하는 방법을 사용하면 에러가 발생하지 않는 것을 보고 문제의 원인을 파악할 수 있었다.</li></ul><h3 id=코드>코드</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> database <span style=color:#f92672>import</span> Base, engine
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> fastapi.testclient <span style=color:#f92672>import</span> TestClient
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> app
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#f92672>from</span> models <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#75715e># 테이블을 생성하는 코드이다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(bind<span style=color:#f92672>=</span>engine)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>client <span style=color:#f92672>=</span> TestClient(app)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestUserApi</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_create_user</span>(self):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>        test_nickname <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;test_nickname&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>        <span style=color:#75715e># 아래 요청을 처리하는 코드에서 오류가 발생한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>        response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>post(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>            <span style=color:#e6db74>&#34;/api/users&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>            json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;nickname&#34;</span>: test_nickname},
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>        )
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>==</span> <span style=color:#ae81ff>200</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;nickname&#34;</span>] <span style=color:#f92672>==</span> test_nickname
+</span></span></code></pre></div><h3 id=원인>원인</h3><ul><li>테이블을 생성할때 만들어지는 세션과 TestClient가 요청을 처리할 때 사용하는 세션이 다르다.</li></ul><h3 id=해결-방법>해결 방법</h3><ul><li>TestClient내에 get_db() 함수를 임의로 주입한다</li><li>데이터베이스를 연결할때, 단일 세션을 사용하도록 한다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> database <span style=color:#f92672>import</span> Base, engine, get_db
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> sqlalchemy.orm <span style=color:#f92672>import</span> sessionmaker
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>from</span> fastapi.testclient <span style=color:#f92672>import</span> TestClient
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> app
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#f92672>from</span> models <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(bind<span style=color:#f92672>=</span>engine)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>client <span style=color:#f92672>=</span> TestClient(app)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span><span style=color:#75715e># 테스트에서 사용할 세션을 생성한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>TestingSessionLocal <span style=color:#f92672>=</span> sessionmaker(autocommit<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, autoflush<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, bind<span style=color:#f92672>=</span>engine)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>Base<span style=color:#f92672>.</span>metadata<span style=color:#f92672>.</span>create_all(bind<span style=color:#f92672>=</span>engine)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span><span style=color:#75715e># get_db() 함수를 재정의한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>override_get_db</span>():
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>        db <span style=color:#f92672>=</span> TestingSessionLocal()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>        <span style=color:#66d9ef>yield</span> db
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>    <span style=color:#66d9ef>finally</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        db<span style=color:#f92672>.</span>close()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span><span style=color:#75715e># get_db() 함수를 재정의한 함수를 주입한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>app<span style=color:#f92672>.</span>dependency_overrides[get_db] <span style=color:#f92672>=</span> override_get_db
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestUserApi</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_create_user</span>(self):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>        test_nickname <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;test_nickname&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>        response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>post(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>            <span style=color:#e6db74>&#34;/api/users&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>            json<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;nickname&#34;</span>: test_nickname},
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>        )
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>==</span> <span style=color:#ae81ff>201</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>        <span style=color:#66d9ef>assert</span> response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;nickname&#34;</span>] <span style=color:#f92672>==</span> test_nickname
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>engine <span style=color:#f92672>=</span> create_engine(    
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    os<span style=color:#f92672>.</span>getenv(<span style=color:#e6db74>&#34;DATABASE_URL&#34;</span>),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#75715e># sqlite를 사용할 때, 여러 스레드에서 연결이 가능하도록 설정한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    connect_args<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;check_same_thread&#34;</span>: <span style=color:#66d9ef>False</span>},
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    <span style=color:#75715e># 단일 세션을 사용하도록 설정한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    poolclass<span style=color:#f92672>=</span>StaticPool,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>)
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/devtools/nginx_https/ class="text-2xl my-3 overflow-ellipsis-bundle">Nginx에서 HTTPS 설정하기</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🔨</span>
+<span>개발 도구</span></div></div></div><div class=flex-grow><a href=/til/devtools/nginx_https/ class="content-summary text-sm overflow-hidden"><h2 id=배경>배경</h2><ul><li>테커 부트캠프를 진행중이다.</li><li>모든 프로그램은 docker-compose로 구성되어 있다.</li><li>AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다.</li><li>도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다.</li><li>따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다.</li></ul><h2 id=목표>목표</h2><ul><li>Nginx를 이용하여 HTTPS를 적용한다.</li></ul><h2 id=방법>방법</h2><h4 id=1-docker-composeyml에-certbot-컨테이너를-추가한다>1. docker-compose.yml에 certbot 컨테이너를 추가한다.</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yml data-lang=yml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>certbot</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>certbot/certbot</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>certbot</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        - <span style=color:#ae81ff>./certbot/conf:/etc/letsencrypt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        - <span style=color:#ae81ff>./certbot/www:/var/www/certbot</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        - <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#75715e># certbot을 무한루프로 돌리기 위해 사용</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#f92672>entrypoint</span>: <span style=color:#e6db74>&#34;/bin/sh -c &#39;trap exit TERM; while :; do sleep 6h &amp; wait $${!}; done;&#39;&#34;</span>
+</span></span></code></pre></div><h4 id=2-nginxconf를-수정한다>2. nginx.conf를 수정한다.</h4><pre tabindex=0><code class=language-conf data-lang=conf># certbot을 사용하기 위한 설정
+location /.well-known/acme-challenge/ {
+    allow all;
+    root /var/www/certbot;
+}
+</code></pre><h4 id=3-certbot-컨테이너를-활용해서-ssl-인증서를-발급받는다>3. certbot 컨테이너를 활용해서 SSL 인증서를 발급받는다.</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>docker exec -it certbot certbot certonly <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#75715e># 웹 루트 방식으로 인증서를 생성</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>  --webroot <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#75715e># 웹 서버의 웹 루트 디렉터리 경로를 지정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  --webroot-path<span style=color:#f92672>=</span>/var/www/certbot <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  <span style=color:#75715e># 인증서 갱신 및 중요한 알림을 받을 이메일 주소를 지정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>  --email <span style=color:#f92672>{</span>이메일 주소<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>  <span style=color:#75715e># Let&#39;s Encrypt 서비스 약관에 동의</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>  --agree-tos <span style=color:#ae81ff>\ </span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>  <span style=color:#75715e># EFF(Electronic Frontier Foundation) 뉴스레터를 받지 않도록 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>  --no-eff-email <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>  <span style=color:#75715e># SSL 인증서를 생성할 도메인 이름을 지정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>  -d <span style=color:#f92672>{</span>도메인 이름<span style=color:#f92672>}</span>
+</span></span></code></pre></div><h4 id=4-nginx-웹-서버와-함께-사용할-ssl-설정-파일을-다운로드>4. Nginx 웹 서버와 함께 사용할 SSL 설정 파일을 다운로드</h4><ul><li>다운 받은 후 파일을 알맞은 위치로 이동시킨다.</li><li>해당 프로젝트에서는 /etc/letsencrypt/로 이동시켰다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf &gt; <span style=color:#e6db74>&#34;./options-ssl-nginx.conf&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem &gt; <span style=color:#e6db74>&#34;./ssl-dhparams.pem&#34;</span>
+</span></span></code></pre></div><h4 id=5-nginxconf를-수정한다>5. nginx.conf를 수정한다.</h4><ul><li>필요한 부분만 추가하였다.</li></ul><pre tabindex=0><code class=language-conf data-lang=conf>server {
+    listen 80;
+    charset utf-8;
+
+    server_name {도메인 이름};
+
+    # HTTP 요청을 HTTPS로 리다이렉트
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+server {
+    listen 443 ssl;
+    charset utf-8;
+
+    server_name { 도메인 이름 };
+
+    # SSL 인증서 설정
+    ssl_certificate /etc/letsencrypt/live/api.forest-of-thoughts.site/fullchain.pem;
+    # SSL 인증서 키 설정
+    ssl_certificate_key /etc/letsencrypt/live/api.forest-of-thoughts.site/privkey.pem;
+    # SSL 설정 파일 포함
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    # Diffie-Hellman 키 설정
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+</code></pre><h4 id=6-nginx-컨테이너-설정을-수정한다>6. nginx 컨테이너 설정을 수정한다.</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yml data-lang=yml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#f92672>nginx</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>nginx:stable</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        - <span style=color:#e6db74>&#34;80:80&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>        - <span style=color:#e6db74>&#34;443:443&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>        - <span style=color:#ae81ff>./nginx.conf:/etc/nginx/nginx.conf</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>        - <span style=color:#ae81ff>./certbot/conf:/etc/letsencrypt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>        - <span style=color:#ae81ff>./certbot/www:/var/www/certbot</span>
+</span></span></code></pre></div><p>해</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/python/issue_websocket/ class="text-2xl my-3 overflow-ellipsis-bundle">Issue - fastapi에서 websocket 404 문제</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🐍</span>
+<span>Python</span></div></div></div><div class=flex-grow><a href=/til/python/issue_websocket/ class="content-summary text-sm overflow-hidden"><h3 id=배경>배경</h3><ul><li>테커 부트캠프 최종발표 전날이다.</li><li>gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다.</li></ul><h3 id=문제>문제</h3><ul><li>배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,)</li><li>다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다.</li><li>nginx의 log</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>{IP주소} <span style=color:#f92672>-</span> <span style=color:#f92672>-</span> [<span style=color:#ae81ff>02</span><span style=color:#f92672>/</span>Aug<span style=color:#f92672>/</span><span style=color:#ae81ff>2024</span><span style=color:#f92672>:</span><span style=color:#ae81ff>10</span><span style=color:#f92672>:</span><span style=color:#ae81ff>59</span><span style=color:#f92672>:</span><span style=color:#ae81ff>04</span> <span style=color:#f92672>+</span><span style=color:#ae81ff>0000</span>] <span style=color:#e6db74>&#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&#34;</span> <span style=color:#ae81ff>404</span> <span style=color:#ae81ff>22</span> <span style=color:#e6db74>&#34;-&#34;</span> <span style=color:#e6db74>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>{IP주소} <span style=color:#f92672>-</span> <span style=color:#f92672>-</span> [<span style=color:#ae81ff>02</span><span style=color:#f92672>/</span>Aug<span style=color:#f92672>/</span><span style=color:#ae81ff>2024</span><span style=color:#f92672>:</span><span style=color:#ae81ff>10</span><span style=color:#f92672>:</span><span style=color:#ae81ff>59</span><span style=color:#f92672>:</span><span style=color:#ae81ff>05</span> <span style=color:#f92672>+</span><span style=color:#ae81ff>0000</span>] <span style=color:#e6db74>&#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&#34;</span> <span style=color:#ae81ff>404</span> <span style=color:#ae81ff>22</span> <span style=color:#e6db74>&#34;-&#34;</span> <span style=color:#e6db74>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&#34;</span>
+</span></span></code></pre></div><h3 id=사고흐름>사고흐름</h3><ol><li>nginx 설정 문제인가? X<ul><li>nginx 설정은 변경되지 않았다.</li></ul></li><li>배포환경의 문제인가? X<ul><li>로컬에서 실행한 서버에서도 동일한 문제가 발생하였다.</li></ul></li><li>이번 배포에서 변경된 소스코드가 문제인가? X<ul><li>육안으로 확인했을 때는, 변경된 부분이 웹소켓과 관련이 없다.</li><li>로컬에서 이전 버전으로 reset 후 시도 해보았지만 문제가 해결되지 않았다.</li></ul></li><li>Docker image 문제인가? X<ul><li>백엔드 서버는 python:slim 이미지를 사용하고 있으며, 해당 이미지가 변경되어서 문제가 발생할 가능성이 있다고 생각했다.</li><li>로컬에서 docker image를 사용하지 않고 실행해보았지만 문제가 해결되지 않았다.</li><li>이때, 로그에서 <strong>warning 메시지</strong>를 확인했다.</li></ul><pre tabindex=0><code>WARNING:  No supported WebSocket library detected. Please use &#34;pip install &#39;uvicorn[standard]&#39;&#34;, or install &#39;websockets&#39; or &#39;wsproto&#39; manually.
+</code></pre></li></ol><h3 id=원인>원인</h3><ul><li>모종의 이유로, 이전에 개발/배포할때에는 존재했던 웹소켓 관련 라이브러리가 사라진 것이다.</li><li>오류를 해결하고 조사해본 결과 fastapi 레포지토리에 6시간 전 merge된 PR을 확인할 수 있었다. (<a href=https://github.com/fastapi/fastapi/pull/11935>https://github.com/fastapi/fastapi/pull/11935</a>)</li><li>해당 PR에서는 <code>pip install fastapi[standard]</code> 를 통해 표준 종속 라이브러리를 설치하는 기능이 추가되었다.</li><li>이로 인해, <code>uvicorn[standard]</code> 라이브러리를 설치하지 않았을 때, 웹소켓 관련 라이브러리가 설치되지 않아 발생한 문제였다.</li></ul><h3 id=해결>해결</h3><ul><li>requirements.txt에 <code>websockets</code>를 추가해서 문제를 해결할 수 있었다.</li></ul><h3 id=배운-점>배운 점</h3><ul><li>중요한 프로젝트를 할 때 requirements.txt에 항상 각 라이브러리에 버전을 명시해야겠다는 생각이 들었다.</li><li>이번에도 버전을 명시했다면, 라이브러리가 업데이트 되더라도 문제가 발생하지 않았을 것이다.</li><li>또한, 로그를 잘 확인하고, warning 메시지를 놓치지 않도록 주의해야겠다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-06plan/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 06 : 계획</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-06plan/ class="content-summary text-sm overflow-hidden"><h2 id=오늘의-목표>오늘의 목표</h2><ol><li>웹소켓 연결 에러 해결하기</li></ol></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-05/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 05 : 결과</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-05/ class="content-summary text-sm overflow-hidden"><h2 id=배경>배경</h2><ul><li>테커 부트캠프를 진행중이다.</li><li>모든 프로그램은 docker-compose로 구성되어 있다.</li><li>AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다.</li><li>도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다.</li><li>따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다.</li></ul><h2 id=목표>목표</h2><ul><li>Nginx를 이용하여 HTTPS를 적용한다.</li></ul><h2 id=방법>방법</h2><h4 id=1-docker-composeyml에-certbot-컨테이너를-추가한다>1. docker-compose.yml에 certbot 컨테이너를 추가한다.</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yml data-lang=yml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>certbot</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>certbot/certbot</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>certbot</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        - <span style=color:#ae81ff>./certbot/conf:/etc/letsencrypt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        - <span style=color:#ae81ff>./certbot/www:/var/www/certbot</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#f92672>depends_on</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        - <span style=color:#ae81ff>nginx</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#75715e># certbot을 무한루프로 돌리기 위해 사용</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#f92672>entrypoint</span>: <span style=color:#e6db74>&#34;/bin/sh -c &#39;trap exit TERM; while :; do sleep 6h &amp; wait $${!}; done;&#39;&#34;</span>
+</span></span></code></pre></div><h4 id=2-nginxconf를-수정한다>2. nginx.conf를 수정한다.</h4><pre tabindex=0><code class=language-conf data-lang=conf># certbot을 사용하기 위한 설정
+location /.well-known/acme-challenge/ {
+    allow all;
+    root /var/www/certbot;
+}
+</code></pre><h4 id=3-certbot-컨테이너를-활용해서-ssl-인증서를-발급받는다>3. certbot 컨테이너를 활용해서 SSL 인증서를 발급받는다.</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>docker exec -it certbot certbot certonly <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#75715e># 웹 루트 방식으로 인증서를 생성</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>  --webroot <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#75715e># 웹 서버의 웹 루트 디렉터리 경로를 지정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  --webroot-path<span style=color:#f92672>=</span>/var/www/certbot <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  <span style=color:#75715e># 인증서 갱신 및 중요한 알림을 받을 이메일 주소를 지정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>  --email <span style=color:#f92672>{</span>이메일 주소<span style=color:#f92672>}</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>  <span style=color:#75715e># Let&#39;s Encrypt 서비스 약관에 동의</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>  --agree-tos <span style=color:#ae81ff>\ </span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>  <span style=color:#75715e># EFF(Electronic Frontier Foundation) 뉴스레터를 받지 않도록 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>  --no-eff-email <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>  <span style=color:#75715e># SSL 인증서를 생성할 도메인 이름을 지정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>  -d <span style=color:#f92672>{</span>도메인 이름<span style=color:#f92672>}</span>
+</span></span></code></pre></div><h4 id=4-nginx-웹-서버와-함께-사용할-ssl-설정-파일을-다운로드>4. Nginx 웹 서버와 함께 사용할 SSL 설정 파일을 다운로드</h4><ul><li>다운 받은 후 파일을 알맞은 위치로 이동시킨다.</li><li>해당 프로젝트에서는 /etc/letsencrypt/로 이동시켰다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf &gt; <span style=color:#e6db74>&#34;./options-ssl-nginx.conf&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem &gt; <span style=color:#e6db74>&#34;./ssl-dhparams.pem&#34;</span>
+</span></span></code></pre></div><h4 id=5-nginxconf를-수정한다>5. nginx.conf를 수정한다.</h4><ul><li>필요한 부분만 추가하였다.</li></ul><pre tabindex=0><code class=language-conf data-lang=conf>server {
+    listen 80;
+    charset utf-8;
+
+    server_name {도메인 이름};
+
+    # HTTP 요청을 HTTPS로 리다이렉트
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+server {
+    listen 443 ssl;
+    charset utf-8;
+
+    server_name { 도메인 이름 };
+
+    # SSL 인증서 설정
+    ssl_certificate /etc/letsencrypt/live/api.forest-of-thoughts.site/fullchain.pem;
+    # SSL 인증서 키 설정
+    ssl_certificate_key /etc/letsencrypt/live/api.forest-of-thoughts.site/privkey.pem;
+    # SSL 설정 파일 포함
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    # Diffie-Hellman 키 설정
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+</code></pre><h4 id=6-nginx-컨테이너-설정을-수정한다>6. nginx 컨테이너 설정을 수정한다.</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yml data-lang=yml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#f92672>nginx</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>nginx:stable</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#f92672>ports</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        - <span style=color:#e6db74>&#34;80:80&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>        - <span style=color:#e6db74>&#34;443:443&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    <span style=color:#f92672>volumes</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>        - <span style=color:#ae81ff>./nginx.conf:/etc/nginx/nginx.conf</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>        - <span style=color:#ae81ff>./certbot/conf:/etc/letsencrypt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>        - <span style=color:#ae81ff>./certbot/www:/var/www/certbot</span>
+</span></span></code></pre></div><h2 id=회고>회고</h2><ul><li>보통 crontab을 활용해서 자동으로 인증서 갱신을 받는다.</li><li>이번에는 프로젝트 기간이 길지 않아서, 수동으로 진행했다.</li><li>다음에는 자동으로 인증서 갱신을 받는 것도 도전해보자.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class=py-16><div id=pagination-box><ul class="pagination pagination-default"><li class=page-item><a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/til/page/9/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a></li><li class="page-item active"><a aria-current=page aria-label="Page 10" class=page-link role=button>10</a></li><li class=page-item><a href=/til/page/11/ aria-label="Page 11" class=page-link role=button>11</a></li><li class=page-item><a href=/til/page/12/ aria-label="Page 12" class=page-link role=button>12</a></li><li class=page-item><a href=/til/page/11/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/til/page/24/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></section><section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/><span class="text-xl mr-3">🧠</span>
+<span>Algorithm (104)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/><span class="text-xl mr-3">🌊</span>
+<span>C/CPP (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/><span class="text-xl mr-3">☕</span>
+<span>Java (8)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/><span class="text-xl mr-3">🍌</span>
+<span>Javascript (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/><span class="text-xl mr-3">🐍</span>
+<span>Python (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/><span class="text-xl mr-3">🍃</span>
+<span>Spring (30)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/><span class="text-xl mr-3">🔨</span>
+<span>개발 도구 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/><span class="text-xl mr-3">🎸</span>
+<span>기타 (7)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/><span class="text-xl mr-3">👨‍💻</span>
+<span>모각코 (38)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/><span class="text-xl mr-3">🤖</span>
+<span>인공지능 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/><span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (28)</span></a></section><section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>boj (53)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c++ (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>celery (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>cs (18)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>django (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>docker (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>docker-compose (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker%20compose class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>docker compose (1)</span>
+</a><a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>elk (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>fastapi (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>git (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>github-actions (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/github%20actions class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>github actions (5)</span>
+</a><a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>hackerrank (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>https (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>java (37)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>javascript (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>jwt (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>kubernetes (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>nginx (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ocaml (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>open-source (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/open%20source class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>open source (2)</span>
+</a><a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>programmers (48)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>pytest (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>python (111)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rabbitmq (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rag (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>react (6)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>security (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>software-engineering (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>spring (31)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>sql (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ssl (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>testing (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>typescript (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>vercel (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>websocket (1)</span>
-</a>
-</section>
-<section id=search-section class=hidden>
-<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
-<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
-<style>div.pagefind-ui__result-thumb{display:none}</style>
-<div id=search></div>
-<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
-</section>
-</div>
-</main>
-</div>
-</div>
-</body>
-</html>
+</a><a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span></a></section><section id=search-section class=hidden><link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet><script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script><style>div.pagefind-ui__result-thumb{display:none}</style><div id=search></div><script>window.addEventListener("DOMContentLoaded",e=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:e=>(e.meta&&e.meta.image&&e.meta.image_alt&&(delete e.meta.image,delete e.meta.image_alt),e)})})</script></section></div></main></div></div></body></html>

@@ -1,15 +1,1108 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>모각코 on bong-u/til</title><link>https://bong-u.github.io/til/mogako/</link><description>Recent content in 모각코 on bong-u/til</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://bong-u.github.io/til/mogako/index.xml" rel="self" type="application/rss+xml"/><item><title>[모각코24하계] 06 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-06/</link><pubDate>Wed, 14 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-06/</guid><description>배경 테커 부트캠프 최종발표 전날이다. gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다. 문제 배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,) 다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다. nginx의 log 1{IP주소} - - [02/Aug/2024:10:59:04 +0000] &amp;#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&amp;#34; 404 22 &amp;#34;-&amp;#34; &amp;#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&amp;#34; 2{IP주소} - - [02/Aug/2024:10:59:05 +0000] &amp;#34;GET /ws/chatrooms/294?</description></item><item><title>[모각코24하계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-05/</link><pubDate>Sun, 04 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-05/</guid><description>배경 테커 부트캠프를 진행중이다. 모든 프로그램은 docker-compose로 구성되어 있다. AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다. 도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다. 따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다. 목표 Nginx를 이용하여 HTTPS를 적용한다. 방법 1. docker-compose.yml에 certbot 컨테이너를 추가한다. 1certbot: 2 image: certbot/certbot 3 container_name: certbot 4 volumes: 5 - ./certbot/conf:/etc/letsencrypt 6 - ./certbot/www:/var/www/certbot 7 depends_on: 8 - nginx 9 10 # certbot을 무한루프로 돌리기 위해 사용 11 entrypoint: &amp;#34;/bin/sh -c &amp;#39;trap exit TERM; while :; do sleep 6h &amp;amp; wait $${!</description></item><item><title>[모각코24하계] 05 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-05plan/</link><pubDate>Sun, 04 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-05plan/</guid><description>오늘의 목표 Nginx에서 HTTPS 설정하기</description></item><item><title>[모각코24하계] 06 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-06plan/</link><pubDate>Sun, 04 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-06plan/</guid><description>오늘의 목표 웹소켓 연결 에러 해결하기</description></item><item><title>[모각코24하계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-04/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-04/</guid><description>배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다. Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다. run-pytest.yml 1name: Run pytest 2 3# main 또는 dev 브랜치에 pull request가 발생하면 실행 4on: 5 pull_request: 6 branches: 7 - main 8 - dev 9 10jobs: 11 test: 12 runs-on: ubuntu-latest 13 14 steps: 15 - name: Checkout code 16 uses: actions/checkout@v2 17 18 - name: Set up Python 19 uses: actions/setup-python@v2 20 with: 21 python-version: &amp;#39;3.</description></item><item><title>[모각코24하계] 04 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-04plan/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-04plan/</guid><description>오늘의 목표 Github Actions를 이용하여 pytest 자동화 테스트 환경 구축</description></item><item><title>[모각코24하계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-03/</link><pubDate>Tue, 16 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-03/</guid><description>Fastapi, RabbitMQ, Celery 연동 배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다. 여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다. 목표 Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다. docker-compose.yml 1version: &amp;#39;3&amp;#39; 2 3services: 4 rabbitmq: 5 image: rabbitmq:3 6 ports: 7 - &amp;#34;5672:5672&amp;#34; # RabbitMQ의 AMQP 포트 8 - &amp;#34;15672:15672&amp;#34; # RabbitMQ 관리 인터페이스 포트 9 volumes: 10 - rabbitmq_data:/var/lib/rabbitmq 11 expose: 12 - &amp;#34;5672&amp;#34; 13 - &amp;#34;15672&amp;#34; 14 15 celery_worker: 16 build: 17 context: .</description></item><item><title>[모각코24하계] 03 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-03plan/</link><pubDate>Tue, 16 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-03plan/</guid><description>오늘의 목표 RabbitMQ, Celery, Fastapi 연동 정리</description></item><item><title>[모각코24하계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-02/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-02/</guid><description>RAG (Retrieval-Augmented Generation) 이론 정리 RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델
-LLM의 문제점
-할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상 최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제 신뢰할 수 없는 출처로부터 정보를 생성하는 문제 RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.
-OpenSearch OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전</description></item><item><title>[모각코24하계] 02 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-02plan/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-02plan/</guid><description>오늘의 목표 RAG 이론 정리 OpenSearch를 활용한 Rag 적용</description></item><item><title>[모각코24하계] 01 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-01/</link><pubDate>Tue, 02 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-01/</guid><description>django에서 swagger 문서화 구현하기 개요 장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
-프로젝트 구조 1. 2├── db.sqlite3 3├── djtest (메인 앱) 4│ ├── __init__.py 5│ ├── asgi.py 6│ ├── settings.py 7│ ├── urls.py 8│ ├── views.py 9│ └── wsgi.py 10├── manage.py 11├── paste (생성한 앱) 12│ ├── __init__.py 13│ ├── admin.py 14│ ├── apps.py 15│ ├── migrations 16│ ├── models.py 17│ ├── serializers.</description></item><item><title>[모각코24하계] 01 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-01plan/</link><pubDate>Tue, 02 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-01plan/</guid><description>오늘의 목표 django에서 swagger 문서화 구현하기 django에서 JWT 인증 구현하기</description></item><item><title>[모각코24동계] 06 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-06/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-06/</guid><description>테스트 기법 블랙박스 기법 개발자와 사용자들의 결험을 바탕으로 기능적 혹은 비기능적 테스트 케이스를 도출하고 선택하는 방법
-명세 기반 기법과 경험 기반 기법을 포함 화이트박스 기법 컴포넌트 또는 시스템의 내부 구조를 중심으로 테스트를 도출하는 방법
-구조 기반 기법 포함 명세 기반 기법 특징 해결할 문제를 명세하기 위해 모델을 사용한다 모델에서 테스트 케이스를 시스템적으로 도출하는 것이 가능하다 종류 동등 분할 경계값 분석 결정테이블 테스팅 상태전이 테스팅 유즈케이스 테스팅 경험 기반 기법 특징 테스트 관련 인력의 지식이나 경험으로 테스트 케이스를 도출한다 종류 탐색적 테스팅 오류 추정 체크리스트 구조 기반 기법 특징 코드와 개발 설계 등의 소프트웨어 구현 정보를 기반으로 테스트 케이스를 도출한다 종류 구문 테스팅과 커버리지 결정 테스팅과 커버리지 조건 / 결정 커버리지 변경 조건/ 결정 커버리지 다중 조건 커버리지</description></item><item><title>[모각코24동계] 06 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-06plan/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-06plan/</guid><description>오늘의 목표 테스트 기법 종류 정리하기</description></item><item><title>[모각코24동계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-05/</link><pubDate>Tue, 30 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-05/</guid><description>임시 테이블 지역 임시 테이블 (Local Temporary Table) 현재 connection에서만 사용 가능하다 해당 connection이 종료되면 테이블이 자동으로 삭제된다 테이블 이름 앞에 #를 붙여 사용한다 전역 임시 테이블 (Global Temporary Table) 다른 connection에서도 사용 가능하다 마지막 connection이 종료되면 테이블이 사라진다 테이블 이름 앞에 ##를 붙여 사용한다 생성하는 방법 1 - CREATE 사용 1CREATE TABLE #temp ( 2 id INT, 3 name VARCHAR(20) 4) 생성하는 방법 2 - SELECT INTO 사용 1SELECT * 2INTO #temp 3FROM table 특징 인덱스, 제약 조건 등은 복사되지 않는다 SELECT할때 ORDER BY를 사용해도 정렬된 순서대로 저장되지 않는다 LOCK 배타적 잠금 (Exclusive Lock, X) 하나의 특정 트랜잭션만 해당 리소스에 접근할 수 있다</description></item><item><title>[모각코24동계] 05 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-05plan/</link><pubDate>Tue, 30 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-05plan/</guid><description>오늘의 목표 MSSQL 임시테이블 정리 MSSQL NOLOCK 정리</description></item><item><title>[모각코24동계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-04/</link><pubDate>Tue, 23 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-04/</guid><description>Recursive Query 1WITH RECURSIVE CTE AS ( 2 SELECT 0 AS A 3 UNION ALL 4 SELECT A+1 AS NUM 5 FROM CTE 6 WHERE A &amp;lt; 10 # 0 부터 10까지 포함 7) 결과 (CTE테이블) A NUM 0 NULL … … 10 NULL 성능 비교 LIMIT 1 VS 서브쿼리 1SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE 2FROM FOOD_PRODUCT 3ORDER BY PRICE DESC 4LIMIT 1; 1SELECT * 2FROM FOOD_PRODUCT 3WHERE PRICE IN ( 4 SELECT MAX(PRICE) FROM FOOD_PRODUCT 5); LIMIT 1을 사용하는 쿼리는 모든 COLUMN의 데이터를 가져오고, 서브쿼리는 PRICE의 최대값만 가져와서 구하기 때문에, 테이블이 클수록 서브쿼리가 더 빠르다.</description></item><item><title>[모각코24동계] 04 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-04plan/</link><pubDate>Tue, 23 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-04plan/</guid><description>오늘의 목표 SQL Recursive Query 공부 SQL 문제 풀면서 배운 것 정리</description></item><item><title>[모각코24동계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-03/</link><pubDate>Wed, 17 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-03/</guid><description>Sub Query 단일 행 서브 쿼리 서브쿼리 결과 : 단일 행 결과 : 단일 행 1SELECT USER_ID, USER_NAME, USER_AGE 2FROM USERS 3WHERE TEAM_ID = ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME=&amp;#39;BONG&amp;#39; 7); 다중 행 서브 쿼리 서브쿼리 결과 : 다중 행 결과 : 단일행 다중 행 비교 연산자와 함께 사용 (IN, ALL, ANY, SOME) 1SELECT TEAM_ID, TEAM_NAME, TEAM_LOGO_URL 2FROM TEAM 3WHERE TEAM_ID IN ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME=&amp;#39;BONG&amp;#39; 7) 다중 컬럼 서브 쿼리 서브쿼리의 결과: 다중 행 결과 : 다중 행 1SELECT TEAM_ID, USER_NAME 2FROM USERS 3WHERE (TEAM_ID, HEIGHT) 4IN ( 5 SELECT TEAM_ID, MIN(HEIGHT) 6 FROM USERS 7 GROUP BY TEAM_ID 8) 9ORDER BY TEAM_ID, USER_NAME 연관 서브 쿼리 1SELECT B.</description></item><item><title>[모각코24동계] 03 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-03plan/</link><pubDate>Wed, 17 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-03plan/</guid><description>오늘의 목표 SQL 서브쿼리 공부</description></item><item><title>[모각코24동계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-02/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-02/</guid><description>SQL 기초 공부 DDL (Data Definition Language) CREATE ALTER DROP RENAME TRUNCATE DML (Data Manipulation Language) SELECT INSERT UPDATE DELETE DCL (Data Control Language) GRANT REVOKE TCL (Transaction Control Language) COMMIT ROLLBACK SAVEPOINT SELECT GROUP BY 특정 Column기준으로 그룹화
-그룹화 하지 않은 Column은 집계함수(SUM, COUNT)를 통해서만 조회해야한다
-1SELECT name, COUNT(name), SUM(quantity) FROM 테이블 GROUP BY name; HAVING GROUP BY 절에서 조건을 주기 위해 사용</description></item><item><title>[모각코24동계] 02 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-02plan/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-02plan/</guid><description>오늘의 목표 SQL 기초 공부 DDL DML DCL TCL DDL (Data Definition Language) DML (Data Manipulation Language) DCL (Data Control Language) TCL (Transaction Control Language)</description></item><item><title>[모각코24동계] 01 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-01/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-01/</guid><description>1. Agile 방법론 Agile 선언문 사람과 상호작용 &amp;gt; 프로세스와 도구 작동하는 소프트웨어 &amp;gt; 포괄적인 문서 고객과의 협력 &amp;gt; 계약 협상 변화에 대한 대응 &amp;gt; 계획을 따르기 Agile 12가지 원칙 초기부터 지속적으로 고객을 만족 요구사항 변경 수용 짧은 배포 주기 기획자와 개발자의 협업 동기부여된 팀원들로 팀빌딩 얼굴보고 대화하기 동작되는 소프트웨어로 진척 측정 지속 가능한 개발 속도 유지 좋은 기술로 좋은 설계하기 단순성 : 필요없는 일 최소화하기 자기조직화 팀 정기적으로 효율성을 향상시키기 Self-Organizing Team (자기조직화 팀) 스스로 작업을 수행하고 프로세스를 관리하며 진행 상황을 모니터링하는 방법을 스스로 결정하는 팀</description></item><item><title>[모각코24동계] 01 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-01plan/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-01plan/</guid><description>오늘의 목표 LG CNS 본사 인턴 교육 내용 정리 Agile 방법론 Scrum 방법론</description></item><item><title>[모각코24하계] 00 : 목표</title><link>https://bong-u.github.io/til/mogako/mogako24-1-00/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-00/</guid><description>나의 목표 성실한 포스팅으로 1일 1커밋을 향해 노력하겠다. 백마인턴십을 수행하면서 업무와 관련한 내용을 공부하며 정리하겠다. 직접 운영 중인 블로그를 개선 시켜 나가겠다.</description></item><item><title>[모각코23하계] 06 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-06/</link><pubDate>Wed, 16 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-06/</guid><description>프로그래머스 한 문제 풀기 프로그래머스 - n^2 배열 자르기 (L2) 🧠 Algorithm
-1def solution(n, left, right): 2 answer = [] 3 start = (left//n, left%n) 4 end = (right//n, right%n) 5 6 for i in range(start[0], end[0]&amp;#43;1): 7 line = [i&amp;#43;1]*(i&amp;#43;1) &amp;#43; [i for i in range(i&amp;#43;2, n&amp;#43;1)] 8 answer &amp;#43;= line 9 10 return answer[start[1]:right-(start[0]*n)&amp;#43;1] 문제 정수 n, left, right가 주어진다 n X n 크기의 2차원 배열을 만든다 i=1,2,3.</description></item><item><title>[모각코23하계] 06 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-06plan/</link><pubDate>Wed, 16 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-06plan/</guid><description>오늘의 목표 프로그래머스 한 문제 풀기 MockMvc 정리하기</description></item><item><title>[모각코23하계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-05/</link><pubDate>Wed, 09 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-05/</guid><description>프로그래머스 한 문제 풀기 프로그래머스 - 두 큐 합 같게 만들기 (L2) 🧠 Algorithm
-1from collections import deque 2 3def solution(queue1, queue2): 4 sum1, sum2 = sum(queue1), sum(queue2) 5 dq1 = deque(queue1) 6 dq2 = deque(queue2) 7 cnt = 0 8 9 while cnt &amp;amp;lt;= len(queue1)*2&amp;#43;1 and sum1 != sum2: 10 if sum1 &amp;amp;gt; sum2: 11 tmp = dq1.popleft() 12 dq2.append(tmp) 13 sum1 -= tmp 14 sum2 &amp;#43;= tmp 15 elif sum1 &amp;amp;lt; sum2: 16 tmp = dq2.</description></item><item><title>[모각코23하계] 05 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-05plan/</link><pubDate>Wed, 09 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-05plan/</guid><description>오늘의 목표 프로그래머스 한 문제 풀기 JPA 정리하기</description></item><item><title>[모각코23하계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-04/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-04/</guid><description>1. 프로그래머스 한 문제 풀기 프로그래머스 - 디펜스 게임 (L2) 🧠 Algorithm
-1import heapq 2 3def solution(n, k, enemy): 4 heap = [] 5 cnt = 0 6 for i in enemy: 7 n -= i 8 heapq.heappush(heap, -i) 9 while n &amp;amp;lt; 0: 10 k -= 1 11 if not heap or k &amp;amp;lt; 0: 12 return cnt 13 tmp = -heapq.heappop(heap) 14 n &amp;#43;= tmp 15 cnt &amp;#43;= 1 16 return cnt 문제 n: 가지고 있는 병사 수 k: 사용할 수 있는 무적권 스킬 수 enemy: 라운드마다 존재하는 적 수의 배열 라운드마다 enemy[i]명 만큼 소모하여 enemy[i]마리의 적을 막을 수 있다 무적권을 적절히 사용하여 버틸 수 있는 최대 라운드 수를 구하라 TC input n: 7, k: 3, enemy: [4, 2, 4, 5, 3, 3, 1] 2.</description></item><item><title>[모각코23하계] 04 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-04plan/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-04plan/</guid><description>오늘의 목표 프로그래머스 한 문제 풀기 @RestController 정리</description></item><item><title>[모각코23하계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-03/</link><pubDate>Wed, 19 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-03/</guid><description>1. 프로그래머스 한 문제 풀기 프로그래머스 - 숫자 변환하기 (L2) 🧠 Algorithm
-1from collections import deque 2 3def solution(x, y, n): 4 q = deque() 5 visited = [False] * 1000001 6 q.append((x, 0)) 7 8 while q: 9 cx, cnt = q.popleft() 10 if cx == y: 11 return cnt 12 13 if cx &amp;#43; n &amp;amp;lt;= y and not visited[cx&amp;#43;n]: 14 q.append((cx&amp;#43;n, cnt&amp;#43;1)) 15 visited[cx&amp;#43;n] = True 16 if cx * 2 &amp;amp;lt;= y and not visited[cx*2]: 17 q.</description></item><item><title>[모각코23하계] 03 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-03plan/</link><pubDate>Wed, 19 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-03plan/</guid><description>오늘의 목표 프로그래머스 한 문제 풀기 JDBC 정리</description></item><item><title>[모각코23하계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-02/</link><pubDate>Wed, 12 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-02/</guid><description>1. 프로그래머스 한 문제 풀기 프로그래머스 - 당구 연습 (L2) 🧠 Algorithm
-1def solution(m, n, startX, startY, balls): 2 answer = [] 3 for bx, by in balls: 4 tmp = [] 5 for x, y in [(-1*startX, startY), (startX, -1*startY), (startX, 2*n-startY), (2*m-startX, startY)]: 6 if bx==x and (y &amp;amp;lt; 0 &amp;amp;lt; by &amp;amp;lt; startY or startY &amp;amp;lt; by &amp;amp;lt; n &amp;amp;lt; y): 7 continue 8 if by==y and (x &amp;amp;lt; 0 &amp;amp;lt; bx &amp;amp;lt; startX or startX &amp;amp;lt; bx &amp;amp;lt; m &amp;amp;lt; x): 9 continue 10 tmp.</description></item><item><title>[모각코23하계] 02 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-02plan/</link><pubDate>Wed, 12 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-02plan/</guid><description>오늘의 목표 프로그래머스 한 문제 풀기 Springboot Testing 공부하기</description></item><item><title>[모각코23하계] 01 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-01/</link><pubDate>Wed, 05 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-01/</guid><description>1. 프로그래머스 한 문제 풀기 프로그래머스 - 두 원 사이의 정수 쌍 (L2) 🧠 Algorithm
-1import math 2 3def calc1(r): 4 result = 0 5 for i in range(1, r): 6 result &amp;#43;= math.floor(math.sqrt(r**2 - i**2)) 7 return result*4 &amp;#43; r*4 &amp;#43; 1 8 9def calc2(r): 10 result = 0 11 for i in range(1, r): 12 a = math.sqrt(r**2 - i**2) 13 result &amp;#43;= math.floor(a) 14 if a % 1 == 0: 15 result -= 1 16 return result*4 &amp;#43; r*4 &amp;#43; 1 17 18def solution(r1, r2): 19 return calc1(r2)-calc2(r1)&amp;#43;4 문제 두 원의 반지름 r1, r2가 주어진다.</description></item><item><title>[모각코23하계] 01 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-01plan/</link><pubDate>Wed, 05 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-01plan/</guid><description>오늘의 목표 프로그래머스 한 문제 풀기 Java의 record 개념 정리하기</description></item><item><title>[모각코23하계] 00 : 목표</title><link>https://bong-u.github.io/til/mogako/mogako23-1-00/</link><pubDate>Mon, 26 Jun 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-00/</guid><description>나의 목표 1. 성실한 포스팅으로 1일 1커밋을 향해 노력하겠다. 2. SW Academy에서 배운 Spring boot 기술을 상세하게 정리할 것이다. 2. 현재 기술 블로그의 디자인을 개선시킬 것이다. SW Academy 교육과정 - Backend 프레임워크를 위환 Java 심화 실리콘밸리에서 날아온 DataBase Spring Boot Basic 1 Spring Boot Basic 2 Spring Boot Basic 3 Spring Data Security 1 Spring Data Security 2</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>모각코 on bong-u/til</title><link>https://bong-u.github.io/til/mogako/</link><description>Recent content in 모각코 on bong-u/til</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://bong-u.github.io/til/mogako/index.xml" rel="self" type="application/rss+xml"/><item><title>[모각코24하계] 06 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-06/</link><pubDate>Wed, 14 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-06/</guid><description>&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;테커 부트캠프 최종발표 전날이다.&lt;/li&gt;
+&lt;li&gt;gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="문제"&gt;문제&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,)&lt;/li&gt;
+&lt;li&gt;다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다.&lt;/li&gt;
+&lt;li&gt;nginx의 log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;{IP주소} &lt;span style="color:#f92672"&gt;-&lt;/span&gt; &lt;span style="color:#f92672"&gt;-&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;02&lt;/span&gt;&lt;span style="color:#f92672"&gt;/&lt;/span&gt;Aug&lt;span style="color:#f92672"&gt;/&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;2024&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;59&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;04&lt;/span&gt; &lt;span style="color:#f92672"&gt;+&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0000&lt;/span&gt;] &lt;span style="color:#e6db74"&gt;&amp;#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;404&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;22&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;-&amp;#34;&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;{IP주소} &lt;span style="color:#f92672"&gt;-&lt;/span&gt; &lt;span style="color:#f92672"&gt;-&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;02&lt;/span&gt;&lt;span style="color:#f92672"&gt;/&lt;/span&gt;Aug&lt;span style="color:#f92672"&gt;/&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;2024&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;59&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;05&lt;/span&gt; &lt;span style="color:#f92672"&gt;+&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0000&lt;/span&gt;] &lt;span style="color:#e6db74"&gt;&amp;#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&amp;#34;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;404&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;22&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;-&amp;#34;&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="사고흐름"&gt;사고흐름&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;nginx 설정 문제인가? X
+&lt;ul&gt;
+&lt;li&gt;nginx 설정은 변경되지 않았다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;배포환경의 문제인가? X
+&lt;ul&gt;
+&lt;li&gt;로컬에서 실행한 서버에서도 동일한 문제가 발생하였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;이번 배포에서 변경된 소스코드가 문제인가? X
+&lt;ul&gt;
+&lt;li&gt;육안으로 확인했을 때는, 변경된 부분이 웹소켓과 관련이 없다.&lt;/li&gt;
+&lt;li&gt;로컬에서 이전 버전으로 reset 후 시도 해보았지만 문제가 해결되지 않았다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Docker image 문제인가? X
+&lt;ul&gt;
+&lt;li&gt;백엔드 서버는 python:slim 이미지를 사용하고 있으며, 해당 이미지가 변경되어서 문제가 발생할 가능성이 있다고 생각했다.&lt;/li&gt;
+&lt;li&gt;로컬에서 docker image를 사용하지 않고 실행해보았지만 문제가 해결되지 않았다.&lt;/li&gt;
+&lt;li&gt;이때, 로그에서 &lt;strong&gt;warning 메시지&lt;/strong&gt;를 확인했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;WARNING: No supported WebSocket library detected. Please use &amp;#34;pip install &amp;#39;uvicorn[standard]&amp;#39;&amp;#34;, or install &amp;#39;websockets&amp;#39; or &amp;#39;wsproto&amp;#39; manually.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="원인"&gt;원인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;모종의 이유로, 이전에 개발/배포할때에는 존재했던 웹소켓 관련 라이브러리가 사라진 것이다.&lt;/li&gt;
+&lt;li&gt;오류를 해결하고 조사해본 결과 fastapi 레포지토리에 6시간 전 merge된 PR을 확인할 수 있었다. (&lt;a href="https://github.com/fastapi/fastapi/pull/11935"&gt;https://github.com/fastapi/fastapi/pull/11935&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;해당 PR에서는 &lt;code&gt;pip install fastapi[standard]&lt;/code&gt; 를 통해 표준 종속 라이브러리를 설치하는 기능이 추가되었다.&lt;/li&gt;
+&lt;li&gt;이로 인해, &lt;code&gt;uvicorn[standard]&lt;/code&gt; 라이브러리를 설치하지 않았을 때, 웹소켓 관련 라이브러리가 설치되지 않아 발생한 문제였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="해결"&gt;해결&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;requirements.txt에 &lt;code&gt;websockets&lt;/code&gt;를 추가해서 문제를 해결할 수 있었다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="배운-점"&gt;배운 점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;중요한 프로젝트를 할 때 requirements.txt에 항상 각 라이브러리에 버전을 명시해야겠다는 생각이 들었다.&lt;/li&gt;
+&lt;li&gt;이번에도 버전을 명시했다면, 라이브러리가 업데이트 되더라도 문제가 발생하지 않았을 것이다.&lt;/li&gt;
+&lt;li&gt;또한, 로그를 잘 확인하고, warning 메시지를 놓치지 않도록 주의해야겠다.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[모각코24하계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-05/</link><pubDate>Sun, 04 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-05/</guid><description>&lt;h2 id="배경"&gt;배경&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;테커 부트캠프를 진행중이다.&lt;/li&gt;
+&lt;li&gt;모든 프로그램은 docker-compose로 구성되어 있다.&lt;/li&gt;
+&lt;li&gt;AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다.&lt;/li&gt;
+&lt;li&gt;도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다.&lt;/li&gt;
+&lt;li&gt;따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="목표"&gt;목표&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Nginx를 이용하여 HTTPS를 적용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="방법"&gt;방법&lt;/h2&gt;
+&lt;h4 id="1-docker-composeyml에-certbot-컨테이너를-추가한다"&gt;1. docker-compose.yml에 certbot 컨테이너를 추가한다.&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yml" data-lang="yml"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;certbot&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;image&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;certbot/certbot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;container_name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;certbot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./certbot/conf:/etc/letsencrypt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./certbot/www:/var/www/certbot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# certbot을 무한루프로 돌리기 위해 사용&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;entrypoint&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;/bin/sh -c &amp;#39;trap exit TERM; while :; do sleep 6h &amp;amp; wait $${!}; done;&amp;#39;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="2-nginxconf를-수정한다"&gt;2. nginx.conf를 수정한다.&lt;/h4&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-conf" data-lang="conf"&gt;# certbot을 사용하기 위한 설정
+location /.well-known/acme-challenge/ {
+ allow all;
+ root /var/www/certbot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id="3-certbot-컨테이너를-활용해서-ssl-인증서를-발급받는다"&gt;3. certbot 컨테이너를 활용해서 SSL 인증서를 발급받는다.&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;docker exec -it certbot certbot certonly &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# 웹 루트 방식으로 인증서를 생성&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt; --webroot &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# 웹 서버의 웹 루트 디렉터리 경로를 지정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; --webroot-path&lt;span style="color:#f92672"&gt;=&lt;/span&gt;/var/www/certbot &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# 인증서 갱신 및 중요한 알림을 받을 이메일 주소를 지정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; --email &lt;span style="color:#f92672"&gt;{&lt;/span&gt;이메일 주소&lt;span style="color:#f92672"&gt;}&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# Let&amp;#39;s Encrypt 서비스 약관에 동의&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt; --agree-tos &lt;span style="color:#ae81ff"&gt;\ &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# EFF(Electronic Frontier Foundation) 뉴스레터를 받지 않도록 설정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt; --no-eff-email &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# SSL 인증서를 생성할 도메인 이름을 지정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt; -d &lt;span style="color:#f92672"&gt;{&lt;/span&gt;도메인 이름&lt;span style="color:#f92672"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="4-nginx-웹-서버와-함께-사용할-ssl-설정-파일을-다운로드"&gt;4. Nginx 웹 서버와 함께 사용할 SSL 설정 파일을 다운로드&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;다운 받은 후 파일을 알맞은 위치로 이동시킨다.&lt;/li&gt;
+&lt;li&gt;해당 프로젝트에서는 /etc/letsencrypt/로 이동시켰다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf &amp;gt; &lt;span style="color:#e6db74"&gt;&amp;#34;./options-ssl-nginx.conf&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;sudo curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem &amp;gt; &lt;span style="color:#e6db74"&gt;&amp;#34;./ssl-dhparams.pem&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="5-nginxconf를-수정한다"&gt;5. nginx.conf를 수정한다.&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;필요한 부분만 추가하였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-conf" data-lang="conf"&gt;server {
+ listen 80;
+ charset utf-8;
+
+ server_name {도메인 이름};
+
+ # HTTP 요청을 HTTPS로 리다이렉트
+ location / {
+ return 301 https://$host$request_uri;
+ }
+}
+server {
+ listen 443 ssl;
+ charset utf-8;
+
+ server_name { 도메인 이름 };
+
+ # SSL 인증서 설정
+ ssl_certificate /etc/letsencrypt/live/api.forest-of-thoughts.site/fullchain.pem;
+ # SSL 인증서 키 설정
+ ssl_certificate_key /etc/letsencrypt/live/api.forest-of-thoughts.site/privkey.pem;
+ # SSL 설정 파일 포함
+ include /etc/letsencrypt/options-ssl-nginx.conf;
+ # Diffie-Hellman 키 설정
+ ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id="6-nginx-컨테이너-설정을-수정한다"&gt;6. nginx 컨테이너 설정을 수정한다.&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yml" data-lang="yml"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;nginx&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;image&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;nginx:stable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;80:80&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;443:443&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./nginx.conf:/etc/nginx/nginx.conf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./certbot/conf:/etc/letsencrypt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./certbot/www:/var/www/certbot&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="회고"&gt;회고&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;보통 crontab을 활용해서 자동으로 인증서 갱신을 받는다.&lt;/li&gt;
+&lt;li&gt;이번에는 프로젝트 기간이 길지 않아서, 수동으로 진행했다.&lt;/li&gt;
+&lt;li&gt;다음에는 자동으로 인증서 갱신을 받는 것도 도전해보자.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[모각코24하계] 05 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-05plan/</link><pubDate>Sun, 04 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-05plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Nginx에서 HTTPS 설정하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24하계] 06 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-06plan/</link><pubDate>Sun, 04 Aug 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-06plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;웹소켓 연결 에러 해결하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24하계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-04/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-04/</guid><description>&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;테커 부트캠프에서 팀프로젝트를 진행 중이다.&lt;/li&gt;
+&lt;li&gt;현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다.&lt;/li&gt;
+&lt;li&gt;Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="run-pytestyml"&gt;run-pytest.yml&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Run pytest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# main 또는 dev 브랜치에 pull request가 발생하면 실행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;pull_request&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;branches&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;dev&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;jobs&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;test&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;runs-on&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;ubuntu-latest&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;steps&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;15&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Checkout code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;16&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;uses&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;actions/checkout@v2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;17&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;18&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Set up Python&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;19&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;uses&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;actions/setup-python@v2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;20&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;with&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;21&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;python-version&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#39;3.12&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;22&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;23&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Install dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;24&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;run&lt;/span&gt;: |&lt;span style="color:#e6db74"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;25&lt;/span&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; python -m pip install --upgrade pip
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;26&lt;/span&gt;&lt;span&gt;&lt;span style="color:#e6db74"&gt; pip install -r requirements.txt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;27&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;28&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Run tests&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;29&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;run&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;pytest .&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="결과"&gt;결과&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;Run pytest .
+============================= test session starts ==============================
+platform linux -- Python 3.12.4, pytest-8.2.2, pluggy-1.5.0
+rootdir: /home/runner/work/Backend/Backend
+plugins: anyio-4.4.0
+collected 13 items
+
+app/tests/test_crud_chatroom.py ... [ 23%]
+app/tests/test_crud_mentor.py ... [ 46%]
+app/tests/test_crud_prescription.py ... [ 69%]
+app/tests/test_crud_user.py .... [100%]
+
+============================== 13 passed in 0.58s ==============================
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;생각보다 간단하게 구현할 수 있었다.&lt;/li&gt;
+&lt;li&gt;테스트 커버리지 100% 찍고, CD까지 구현하면 더할 나위 없을 것 같다.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[모각코24하계] 04 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-04plan/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-04plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Github Actions를 이용하여 pytest 자동화 테스트 환경 구축&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24하계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-03/</link><pubDate>Tue, 16 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-03/</guid><description>&lt;h2 id="fastapi-rabbitmq-celery-연동"&gt;Fastapi, RabbitMQ, Celery 연동&lt;/h2&gt;
+&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;테커 부트캠프에서 팀프로젝트를 진행 중이다.&lt;/li&gt;
+&lt;li&gt;웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다.&lt;/li&gt;
+&lt;li&gt;여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="목표"&gt;목표&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="docker-composeyml"&gt;docker-compose.yml&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;version&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;rabbitmq&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;image&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;rabbitmq:3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;5672:5672&amp;#34;&lt;/span&gt; &lt;span style="color:#75715e"&gt;# RabbitMQ의 AMQP 포트&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;15672:15672&amp;#34;&lt;/span&gt; &lt;span style="color:#75715e"&gt;# RabbitMQ 관리 인터페이스 포트&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;rabbitmq_data:/var/lib/rabbitmq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;expose&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;5672&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;15672&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;15&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;celery_worker&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;16&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;build&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;17&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;context&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;18&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;dockerfile&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;Dockerfile.worker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;19&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;command&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;celery -A utils.celery_worker worker --loglevel=info&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;20&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;working_dir&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;/app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;21&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;22&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./app/utils:/app/utils&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;23&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;24&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;25&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;26&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;rabbitmq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;27&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;28&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;celery_beat&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;29&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;image&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;celery:4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;30&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;command&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;celery -A celery_beat beat --loglevel=info&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;31&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;working_dir&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;/app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;32&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;33&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;34&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;35&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./app/utils:/app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;36&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;37&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;rabbitmq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;38&lt;/span&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;39&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;web&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;40&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;image&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;python:slim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;41&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;working_dir&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;/app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;42&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# interactive mode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;43&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;stdin_open&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;44&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# tty mode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;45&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;tty&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;46&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;environment&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;47&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;48&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;49&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;./app:/app&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;50&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;ports&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;51&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#e6db74"&gt;&amp;#34;8000:8000&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;52&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;depends_on&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;53&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;rabbitmq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;54&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;celery_worker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;55&lt;/span&gt;&lt;span&gt; - &lt;span style="color:#ae81ff"&gt;celery_beat&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;56&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;57&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;volumes&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;58&lt;/span&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;rabbitmq_data&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Celery worker에만 Dockerfile.worker를 이미지로 사용한 이유
+&lt;ol&gt;
+&lt;li&gt;worker에 추가적으로 python 라이브러리를 설치해야함&lt;/li&gt;
+&lt;li&gt;Celery 공식 도커 이미지가 deprecated 되었음.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Fastapi는 시간 관계상 따로 이미지를 만들지 않고 python:slim 이미지를 사용했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="dockerfileworker"&gt;Dockerfile.worker&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-dockerfile" data-lang="dockerfile"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#e6db74"&gt;python:slim&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 필요한 패키지 설치&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# ffmpeg가 필요해서 추가하였다&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;RUN&lt;/span&gt; apt-get update &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt;apt-get install -y --no-install-recommends gcc libpq-dev ffmpeg &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt;rm -rf /var/lib/apt/lists/*&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 필요한 파이썬 패키지 설치&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;COPY&lt;/span&gt; requirements_celery_worker.txt ./&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;RUN&lt;/span&gt; pip install --no-cache-dir -r requirements_celery_worker.txt&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="celery_workerpy"&gt;celery_worker.py&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; os
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; celery &lt;span style="color:#f92672"&gt;import&lt;/span&gt; Celery
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;broker_url &lt;span style="color:#f92672"&gt;=&lt;/span&gt; os&lt;span style="color:#f92672"&gt;.&lt;/span&gt;getenv(&lt;span style="color:#e6db74"&gt;&amp;#39;CELERY_BROKER_URL&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;app &lt;span style="color:#f92672"&gt;=&lt;/span&gt; Celery(&lt;span style="color:#e6db74"&gt;&amp;#39;worker&amp;#39;&lt;/span&gt;, broker&lt;span style="color:#f92672"&gt;=&lt;/span&gt;broker_url, backend&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;rpc://&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;@app.task&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;def&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;add&lt;/span&gt;(x, y):
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; x &lt;span style="color:#f92672"&gt;+&lt;/span&gt; y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;broker_url은 RabbitMQ의 AMQP 주소를 의미한다.&lt;/li&gt;
+&lt;li&gt;backend는 결과를 받기 위한 백엔드로 RabbitMQ를 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="celery-worker-사용-방법"&gt;Celery worker 사용 방법&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; celery_worker &lt;span style="color:#f92672"&gt;import&lt;/span&gt; add
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# task를 비동기로 실행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt;result &lt;span style="color:#f92672"&gt;=&lt;/span&gt; add&lt;span style="color:#f92672"&gt;.&lt;/span&gt;delay(&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# apply_async는 delay와 동일한 기능 수행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# delay와 달리 추가로 여러 옵션을 설정 가능&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt;result &lt;span style="color:#f92672"&gt;=&lt;/span&gt; add&lt;span style="color:#f92672"&gt;.&lt;/span&gt;apply_async((&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 결과를 받기 위해 get()을 사용, 블로킹 호출&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt;result&lt;span style="color:#f92672"&gt;.&lt;/span&gt;get()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 작업이 완료되었는지 확업&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt;result&lt;span style="color:#f92672"&gt;.&lt;/span&gt;ready()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;15&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;16&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 작업이 실패했는지 확인&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;17&lt;/span&gt;&lt;span&gt;result&lt;span style="color:#f92672"&gt;.&lt;/span&gt;successful()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;18&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# or&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;19&lt;/span&gt;&lt;span&gt;result&lt;span style="color:#f92672"&gt;.&lt;/span&gt;failed()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;20&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;21&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 작업의 상태 확인 (PENDING, STARTED, SUCCESS, FAILURE)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;22&lt;/span&gt;&lt;span&gt;result&lt;span style="color:#f92672"&gt;.&lt;/span&gt;state()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>[모각코24하계] 03 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-03plan/</link><pubDate>Tue, 16 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-03plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;RabbitMQ, Celery, Fastapi 연동 정리&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24하계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-02/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-02/</guid><description>&lt;h2 id="rag-retrieval-augmented-generation-이론-정리"&gt;RAG (Retrieval-Augmented Generation) 이론 정리&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;LLM의 문제점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상&lt;/li&gt;
+&lt;li&gt;최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제&lt;/li&gt;
+&lt;li&gt;신뢰할 수 없는 출처로부터 정보를 생성하는 문제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="opensearch"&gt;OpenSearch&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;벡터 데이터베이스 : 벡터 데이터를 저장하고 쿼리할 수 있는 데이터베이스&lt;/p&gt;</description></item><item><title>[모각코24하계] 02 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-02plan/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-02plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;RAG 이론 정리&lt;/li&gt;
+&lt;li&gt;OpenSearch를 활용한 Rag 적용&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24하계] 01 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-2-01/</link><pubDate>Tue, 02 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-01/</guid><description>&lt;h2 id="django에서-swagger-문서화-구현하기"&gt;django에서 swagger 문서화 구현하기&lt;/h2&gt;
+&lt;h3 id="개요"&gt;개요&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;프로젝트 구조&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;├── db.sqlite3
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;├── djtest &lt;span style="color:#f92672"&gt;(&lt;/span&gt;메인 앱&lt;span style="color:#f92672"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt;│ ├── __init__.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt;│ ├── asgi.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt;│ ├── settings.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt;│ ├── urls.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt;│ ├── views.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;│ └── wsgi.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;├── manage.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt;├── paste &lt;span style="color:#f92672"&gt;(&lt;/span&gt;생성한 앱&lt;span style="color:#f92672"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt;│ ├── __init__.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt;│ ├── admin.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt;│ ├── apps.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;15&lt;/span&gt;&lt;span&gt;│ ├── migrations
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;16&lt;/span&gt;&lt;span&gt;│ ├── models.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;17&lt;/span&gt;&lt;span&gt;│ ├── serializers.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;18&lt;/span&gt;&lt;span&gt;│ ├── tests.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;19&lt;/span&gt;&lt;span&gt;│ ├── urls.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;20&lt;/span&gt;&lt;span&gt;│ └── views.py
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;21&lt;/span&gt;&lt;span&gt;└── requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;자주 사용하는 Django 명령자&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 새로운 Django 프로젝트를 생성&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;python manage.py startproject
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 새로운 Django 앱을 생성&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt;python manage.py startapp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 데이터베이스에 적용할 마이그레이션 파일을 생성&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt;python manage.py makemigrations
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 마이그레이션 파일을 실제 데이터베이스에 적용&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt;python manage.py migrate
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 관리자(superuser) 계정을 생성&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;python manage.py createsuperuser
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 프로젝트의 테스트 케이스를 실행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt;python manage.py test
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 테스트용 서버를 특정 설정으로 실행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt;python manage.py testserver
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="crud-구현"&gt;CRUD 구현&lt;/h3&gt;
+&lt;h4 id="paste-모델-정의"&gt;Paste 모델 정의&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; django.db &lt;span style="color:#f92672"&gt;import&lt;/span&gt; models
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Paste&lt;/span&gt;(models&lt;span style="color:#f92672"&gt;.&lt;/span&gt;Model):
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; title &lt;span style="color:#f92672"&gt;=&lt;/span&gt; models&lt;span style="color:#f92672"&gt;.&lt;/span&gt;CharField(max_length&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;100&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; content &lt;span style="color:#f92672"&gt;=&lt;/span&gt; models&lt;span style="color:#f92672"&gt;.&lt;/span&gt;TextField()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# auto_now_add : 객체가 처음 생성될 때만 현재 날짜와 시간을 자동으로 설정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; created_at &lt;span style="color:#f92672"&gt;=&lt;/span&gt; models&lt;span style="color:#f92672"&gt;.&lt;/span&gt;DateTimeField(auto_now_add&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;True&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# auto_now : 객체가 저장될 때마다 현재 날짜와 시간을 자동으로 설정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt; updated_at &lt;span style="color:#f92672"&gt;=&lt;/span&gt; models&lt;span style="color:#f92672"&gt;.&lt;/span&gt;DateTimeField(auto_now&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;True&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Meta&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt; ordering &lt;span style="color:#f92672"&gt;=&lt;/span&gt; [&lt;span style="color:#e6db74"&gt;&amp;#39;-created_at&amp;#39;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;def&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;__str__&lt;/span&gt;(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; self&lt;span style="color:#f92672"&gt;.&lt;/span&gt;title
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="serializer-정의"&gt;Serializer 정의&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; rest_framework &lt;span style="color:#f92672"&gt;import&lt;/span&gt; serializers
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; .models &lt;span style="color:#f92672"&gt;import&lt;/span&gt; Paste
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;PasteSerializer&lt;/span&gt;(serializers&lt;span style="color:#f92672"&gt;.&lt;/span&gt;ModelSerializer):
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Meta&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt; model &lt;span style="color:#f92672"&gt;=&lt;/span&gt; Paste
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt; fields &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;__all__&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# 직접 지정하는 방법&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# fields = [&amp;#39;title&amp;#39;, &amp;#39;content&amp;#39;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="view-구현"&gt;View 구현&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;PasteView&lt;/p&gt;</description></item><item><title>[모각코24하계] 01 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-2-01plan/</link><pubDate>Tue, 02 Jul 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-2-01plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;django에서 swagger 문서화 구현하기&lt;/li&gt;
+&lt;li&gt;django에서 JWT 인증 구현하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24동계] 06 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-06/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-06/</guid><description>&lt;h2 id="테스트-기법"&gt;테스트 기법&lt;/h2&gt;
+&lt;h3 id="블랙박스-기법"&gt;블랙박스 기법&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;개발자와 사용자들의 결험을 바탕으로 기능적 혹은 비기능적 테스트 케이스를 도출하고 선택하는 방법&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;명세 기반 기법과 경험 기반 기법을 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="화이트박스-기법"&gt;화이트박스 기법&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;컴포넌트 또는 시스템의 내부 구조를 중심으로 테스트를 도출하는 방법&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;구조 기반 기법 포함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="명세-기반-기법"&gt;명세 기반 기법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;특징
+&lt;ul&gt;
+&lt;li&gt;해결할 문제를 명세하기 위해 모델을 사용한다&lt;/li&gt;
+&lt;li&gt;모델에서 테스트 케이스를 시스템적으로 도출하는 것이 가능하다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;종류
+&lt;ul&gt;
+&lt;li&gt;동등 분할&lt;/li&gt;
+&lt;li&gt;경계값 분석&lt;/li&gt;
+&lt;li&gt;결정테이블 테스팅&lt;/li&gt;
+&lt;li&gt;상태전이 테스팅&lt;/li&gt;
+&lt;li&gt;유즈케이스 테스팅&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="경험-기반-기법"&gt;경험 기반 기법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;특징
+&lt;ul&gt;
+&lt;li&gt;테스트 관련 인력의 지식이나 경험으로 테스트 케이스를 도출한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;종류
+&lt;ul&gt;
+&lt;li&gt;탐색적 테스팅&lt;/li&gt;
+&lt;li&gt;오류 추정&lt;/li&gt;
+&lt;li&gt;체크리스트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="구조-기반-기법"&gt;구조 기반 기법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;특징
+&lt;ul&gt;
+&lt;li&gt;코드와 개발 설계 등의 소프트웨어 구현 정보를 기반으로 테스트 케이스를 도출한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;종류
+&lt;ul&gt;
+&lt;li&gt;구문 테스팅과 커버리지&lt;/li&gt;
+&lt;li&gt;결정 테스팅과 커버리지&lt;/li&gt;
+&lt;li&gt;조건 / 결정 커버리지&lt;/li&gt;
+&lt;li&gt;변경 조건/ 결정 커버리지&lt;/li&gt;
+&lt;li&gt;다중 조건 커버리지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[모각코24동계] 06 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-06plan/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-06plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;테스트 기법 종류 정리하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24동계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-05/</link><pubDate>Tue, 30 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-05/</guid><description>&lt;h3 id="임시-테이블"&gt;임시 테이블&lt;/h3&gt;
+&lt;h4 id="지역-임시-테이블-local-temporary-table"&gt;지역 임시 테이블 (Local Temporary Table)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;현재 connection에서만 사용 가능하다&lt;/li&gt;
+&lt;li&gt;해당 connection이 종료되면 테이블이 자동으로 삭제된다&lt;/li&gt;
+&lt;li&gt;테이블 이름 앞에 &lt;code&gt;#&lt;/code&gt;를 붙여 사용한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="전역-임시-테이블-global-temporary-table"&gt;전역 임시 테이블 (Global Temporary Table)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;다른 connection에서도 사용 가능하다&lt;/li&gt;
+&lt;li&gt;마지막 connection이 종료되면 테이블이 사라진다&lt;/li&gt;
+&lt;li&gt;테이블 이름 앞에 &lt;code&gt;##&lt;/code&gt;를 붙여 사용한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="생성하는-방법-1---create-사용"&gt;생성하는 방법 1 - CREATE 사용&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;CREATE&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;TABLE&lt;/span&gt; &lt;span style="color:#f92672"&gt;#&lt;/span&gt;temp (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; id INT,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; name VARCHAR(&lt;span style="color:#ae81ff"&gt;20&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="생성하는-방법-2---select-into-사용"&gt;생성하는 방법 2 - SELECT INTO 사용&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;INTO&lt;/span&gt; &lt;span style="color:#f92672"&gt;#&lt;/span&gt;temp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;table&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;특징
+&lt;ul&gt;
+&lt;li&gt;인덱스, 제약 조건 등은 복사되지 않는다&lt;/li&gt;
+&lt;li&gt;SELECT할때 &lt;code&gt;ORDER BY&lt;/code&gt;를 사용해도 정렬된 순서대로 저장되지 않는다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="lock"&gt;LOCK&lt;/h3&gt;
+&lt;h4 id="배타적-잠금-exclusive-lock-x"&gt;배타적 잠금 (Exclusive Lock, X)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;하나의 특정 트랜잭션만 해당 리소스에 접근할 수 있다&lt;/p&gt;</description></item><item><title>[모각코24동계] 05 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-05plan/</link><pubDate>Tue, 30 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-05plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;MSSQL 임시테이블 정리&lt;/li&gt;
+&lt;li&gt;MSSQL NOLOCK 정리&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24동계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-04/</link><pubDate>Tue, 23 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-04/</guid><description>&lt;h3 id="recursive-query"&gt;Recursive Query&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WITH&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;RECURSIVE&lt;/span&gt; CTE &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; A
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;UNION&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;ALL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; A&lt;span style="color:#f92672"&gt;+&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; NUM
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; CTE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; A &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt; &lt;span style="color:#f92672"&gt;#&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;부터&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;까지&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;포함&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;결과 (CTE테이블)
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;A&lt;/th&gt;
+ &lt;th&gt;NUM&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;NULL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;…&lt;/td&gt;
+ &lt;td&gt;…&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;10&lt;/td&gt;
+ &lt;td&gt;NULL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="성능-비교"&gt;성능 비교&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;LIMIT 1 VS 서브쿼리
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; FOOD_PRODUCT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; PRICE &lt;span style="color:#66d9ef"&gt;DESC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;LIMIT&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; FOOD_PRODUCT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; PRICE &lt;span style="color:#66d9ef"&gt;IN&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;MAX&lt;/span&gt;(PRICE) &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; FOOD_PRODUCT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;LIMIT 1을 사용하는 쿼리는 모든 COLUMN의 데이터를 가져오고,&lt;/li&gt;
+&lt;li&gt;서브쿼리는 PRICE의 최대값만 가져와서 구하기 때문에, 테이블이 클수록 서브쿼리가 더 빠르다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="배운-것"&gt;배운 것&lt;/h3&gt;
+&lt;h4 id="group-by-기준이-2개-이상인-경우"&gt;GROUP BY 기준이 2개 이상인 경우&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;예를 들어 GROUP BY 학년, 학기 인 경우&lt;/li&gt;
+&lt;li&gt;2가지 조건 모두 적용하여 2023-1학기, 2023-2학기, 2024-1학기와 같이 묶인다&lt;/li&gt;
+&lt;li&gt;COLUMN의 순서를 이용하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;위 명령어에서 사용된 숫자는 SELECT 명령어에서 각각 1번째, 2번째, 3번째 컬럼을 의미한다.&lt;/p&gt;</description></item><item><title>[모각코24동계] 04 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-04plan/</link><pubDate>Tue, 23 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-04plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;SQL Recursive Query 공부&lt;/li&gt;
+&lt;li&gt;SQL 문제 풀면서 배운 것 정리&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24동계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-03/</link><pubDate>Wed, 17 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-03/</guid><description>&lt;h3 id="sub-query"&gt;Sub Query&lt;/h3&gt;
+&lt;h4 id="단일-행-서브-쿼리"&gt;단일 행 서브 쿼리&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서브쿼리 결과 : 단일 행&lt;/li&gt;
+&lt;li&gt;결과 : 단일 행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; USER_ID, USER_NAME, USER_AGE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; TEAM_ID &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; USER_NAME&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;BONG&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="다중-행-서브-쿼리"&gt;다중 행 서브 쿼리&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서브쿼리 결과 : 다중 행&lt;/li&gt;
+&lt;li&gt;결과 : 단일행&lt;/li&gt;
+&lt;li&gt;다중 행 비교 연산자와 함께 사용 (IN, ALL, ANY, SOME)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID, TEAM_NAME, TEAM_LOGO_URL
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; TEAM
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; TEAM_ID &lt;span style="color:#66d9ef"&gt;IN&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; USER_NAME&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;BONG&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="다중-컬럼-서브-쿼리"&gt;다중 컬럼 서브 쿼리&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서브쿼리의 결과: 다중 행&lt;/li&gt;
+&lt;li&gt;결과 : 다중 행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID, USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; (TEAM_ID, HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;IN&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID, &lt;span style="color:#66d9ef"&gt;MIN&lt;/span&gt;(HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; TEAM_ID, USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="연관-서브-쿼리"&gt;연관 서브 쿼리&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; B.TEAM_NAME, A.USER_NAME, A.HEIGHT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS A, TEAM B
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; A.HEIGHT &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AVG&lt;/span&gt;(X.HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; X.TEAM_ID &lt;span style="color:#f92672"&gt;=&lt;/span&gt; A.TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; X.TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="다른-위치에서-사용하는-서브-쿼리"&gt;다른 위치에서 사용하는 서브 쿼리&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; A.USER_NAME &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;유저이름&lt;/span&gt;, A.HEIGHT &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;키&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;ROUND ((
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AVG&lt;/span&gt; (X.HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS X &lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; X.TEAM_ID &lt;span style="color:#f92672"&gt;=&lt;/span&gt; A.TEAM_ID), &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;팀평균키&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS A)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>[모각코24동계] 03 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-03plan/</link><pubDate>Wed, 17 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-03plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;SQL 서브쿼리 공부&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24동계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-02/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-02/</guid><description>&lt;h2 id="sql-기초-공부"&gt;SQL 기초 공부&lt;/h2&gt;
+&lt;h3 id="ddl-data-definition-language"&gt;DDL (Data Definition Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CREATE&lt;/li&gt;
+&lt;li&gt;ALTER&lt;/li&gt;
+&lt;li&gt;DROP&lt;/li&gt;
+&lt;li&gt;RENAME&lt;/li&gt;
+&lt;li&gt;TRUNCATE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="dml-data-manipulation-language"&gt;DML (Data Manipulation Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;SELECT&lt;/li&gt;
+&lt;li&gt;INSERT&lt;/li&gt;
+&lt;li&gt;UPDATE&lt;/li&gt;
+&lt;li&gt;DELETE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="dcl-data-control-language"&gt;DCL (Data Control Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;GRANT&lt;/li&gt;
+&lt;li&gt;REVOKE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tcl-transaction-control-language"&gt;TCL (Transaction Control Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;COMMIT&lt;/li&gt;
+&lt;li&gt;ROLLBACK&lt;/li&gt;
+&lt;li&gt;SAVEPOINT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="select"&gt;SELECT&lt;/h3&gt;
+&lt;h4 id="group-by"&gt;GROUP BY&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;특정 Column기준으로 그룹화&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;그룹화 하지 않은 Column은 집계함수(SUM, COUNT)를 통해서만 조회해야한다&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; name, &lt;span style="color:#66d9ef"&gt;COUNT&lt;/span&gt;(name), &lt;span style="color:#66d9ef"&gt;SUM&lt;/span&gt;(quantity) &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;테이블&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; name;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="having"&gt;HAVING&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GROUP BY 절에서 조건을 주기 위해 사용&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; name, &lt;span style="color:#66d9ef"&gt;COUNT&lt;/span&gt;(name) &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;테이블&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; name &lt;span style="color:#66d9ef"&gt;HAVING&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;COUNT&lt;/span&gt;(name) &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="like"&gt;LIKE&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;문자열의 패턴을 검색하는데 사용&lt;/p&gt;</description></item><item><title>[모각코24동계] 02 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-02plan/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-02plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;h3 id="sql-기초-공부"&gt;SQL 기초 공부&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;DDL&lt;/li&gt;
+&lt;li&gt;DML&lt;/li&gt;
+&lt;li&gt;DCL&lt;/li&gt;
+&lt;li&gt;TCL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="ddl-data-definition-language"&gt;DDL (Data Definition Language)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;DML (Data Manipulation Language)&lt;/li&gt;
+&lt;li&gt;DCL (Data Control Language)&lt;/li&gt;
+&lt;li&gt;TCL (Transaction Control Language)&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>[모각코24동계] 01 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-01/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-01/</guid><description>&lt;h3 id="1-agile-방법론"&gt;1. Agile 방법론&lt;/h3&gt;
+&lt;h4 id="agile-선언문"&gt;Agile 선언문&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;사람과 상호작용 &amp;gt; 프로세스와 도구&lt;/li&gt;
+&lt;li&gt;작동하는 소프트웨어 &amp;gt; 포괄적인 문서&lt;/li&gt;
+&lt;li&gt;고객과의 협력 &amp;gt; 계약 협상&lt;/li&gt;
+&lt;li&gt;변화에 대한 대응 &amp;gt; 계획을 따르기&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="agile-12가지-원칙"&gt;Agile 12가지 원칙&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;초기부터 지속적으로 고객을 만족&lt;/li&gt;
+&lt;li&gt;요구사항 변경 수용&lt;/li&gt;
+&lt;li&gt;짧은 배포 주기&lt;/li&gt;
+&lt;li&gt;기획자와 개발자의 협업&lt;/li&gt;
+&lt;li&gt;동기부여된 팀원들로 팀빌딩&lt;/li&gt;
+&lt;li&gt;얼굴보고 대화하기&lt;/li&gt;
+&lt;li&gt;동작되는 소프트웨어로 진척 측정&lt;/li&gt;
+&lt;li&gt;지속 가능한 개발 속도 유지&lt;/li&gt;
+&lt;li&gt;좋은 기술로 좋은 설계하기&lt;/li&gt;
+&lt;li&gt;단순성 : 필요없는 일 최소화하기&lt;/li&gt;
+&lt;li&gt;자기조직화 팀&lt;/li&gt;
+&lt;li&gt;정기적으로 효율성을 향상시키기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="self-organizing-team-자기조직화-팀"&gt;Self-Organizing Team (자기조직화 팀)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;스스로 작업을 수행하고 프로세스를 관리하며 진행 상황을 모니터링하는 방법을 스스로 결정하는 팀&lt;/p&gt;</description></item><item><title>[모각코24동계] 01 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako24-1-01plan/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-01plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;h3 id="lg-cns-본사-인턴-교육-내용-정리"&gt;LG CNS 본사 인턴 교육 내용 정리&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Agile 방법론&lt;/li&gt;
+&lt;li&gt;Scrum 방법론&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코24하계] 00 : 목표</title><link>https://bong-u.github.io/til/mogako/mogako24-1-00/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-00/</guid><description>&lt;h2 id="나의-목표"&gt;나의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;성실한 포스팅으로 1일 1커밋을 향해 노력하겠다.&lt;/li&gt;
+&lt;li&gt;백마인턴십을 수행하면서 업무와 관련한 내용을 공부하며 정리하겠다.&lt;/li&gt;
+&lt;li&gt;직접 운영 중인 블로그를 개선 시켜 나가겠다.&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 06 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-06/</link><pubDate>Wed, 16 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-06/</guid><description>&lt;h3 id="프로그래머스-한-문제-풀기"&gt;프로그래머스 한 문제 풀기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/algorithm/pgs_n2_%EB%B0%B0%EC%97%B4_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;프로그래머스 - n^2 배열 자르기 (L2)&lt;/span&gt;
+ &lt;p&gt;🧠 Algorithm&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-python&amp;#34; data-lang=&amp;#34;python&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&amp;#34;&amp;gt; 1&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;#34;color:#66d9ef&amp;#34;&amp;gt;def&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;#34;color:#a6e22e&amp;#34;&amp;gt;solution&amp;lt;/span&amp;gt;(n, left, right):
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="mockmvc-정리하기"&gt;MockMvc 정리하기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/spring/mockmvc_param_null/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;Issue - MockMvc int타입 param이 null로 들어오는 문제&lt;/span&gt;
+ &lt;p&gt;🍃 Spring&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;h3 id=&amp;#34;문제상황&amp;#34;&amp;gt;문제상황&amp;lt;/h3&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;MockMvc를 이용하여 Controller를 테스트하고 있었다&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;UserResponse 내 int타입의 age변수의 값이 null로 들어오는 문제가 있었다&amp;lt;/p&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;UserController.java&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-java&amp;#34; data-lang=&amp;#34;java&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;</description></item><item><title>[모각코23하계] 06 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-06plan/</link><pubDate>Wed, 16 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-06plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프로그래머스 한 문제 풀기&lt;/li&gt;
+&lt;li&gt;MockMvc 정리하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-05/</link><pubDate>Wed, 09 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-05/</guid><description>&lt;h3 id="프로그래머스-한-문제-풀기"&gt;프로그래머스 한 문제 풀기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/algorithm/pgs_%EB%91%90_%ED%81%90_%ED%95%A9_%EA%B0%99%EA%B2%8C_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;프로그래머스 - 두 큐 합 같게 만들기 (L2)&lt;/span&gt;
+ &lt;p&gt;🧠 Algorithm&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-python&amp;#34; data-lang=&amp;#34;python&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&amp;#34;&amp;gt; 1&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;#34;color:#f92672&amp;#34;&amp;gt;from&amp;lt;/span&amp;gt; collections &amp;lt;span style=&amp;#34;color:#f92672&amp;#34;&amp;gt;import&amp;lt;/span&amp;gt; deque
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="jpa-정리하기"&gt;JPA 정리하기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/spring/jpa2/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;Spring - JPA : 프록시 객체, 영속성 전이, 고아 객체&lt;/span&gt;
+ &lt;p&gt;🍃 Spring&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;h3 id=&amp;#34;프록시-객체&amp;#34;&amp;gt;프록시 객체&amp;lt;/h3&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;프록시는 JPA의 실제 엔티티를 필요할 때만 꺼내쓰도록하는 가짜 객체이다&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;em.find 대신 em.getReference를 사용하면 프록시 객체를 얻을 수 있다&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;JPA에서는 프록시 객체를 사용하여 지연 로딩을 지원한다
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;FetchType.EAGER (즉시 로딩)
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-java&amp;#34; data-lang=&amp;#34;java&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;use
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;</description></item><item><title>[모각코23하계] 05 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-05plan/</link><pubDate>Wed, 09 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-05plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프로그래머스 한 문제 풀기&lt;/li&gt;
+&lt;li&gt;JPA 정리하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-04/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-04/</guid><description>&lt;h3 id="1-프로그래머스-한-문제-풀기"&gt;1. 프로그래머스 한 문제 풀기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/algorithm/pgs_%EB%94%94%ED%8E%9C%EC%8A%A4_%EA%B2%8C%EC%9E%84/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;프로그래머스 - 디펜스 게임 (L2)&lt;/span&gt;
+ &lt;p&gt;🧠 Algorithm&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-python&amp;#34; data-lang=&amp;#34;python&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&amp;#34;&amp;gt; 1&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;#34;color:#f92672&amp;#34;&amp;gt;import&amp;lt;/span&amp;gt; heapq
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="2-restcontroller-정리"&gt;2. @RestController 정리&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/spring/jdbc/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;Spring 개념 - JDBC, DBCP, JdbcTemplate&lt;/span&gt;
+ &lt;p&gt;🍃 Spring&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;h3 id=&amp;#34;jdbc&amp;#34;&amp;gt;JDBC&amp;lt;/h3&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;자바 프로그램을 DB와 연결해주는 API&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;h3 id=&amp;#34;jdbc-드라이버&amp;#34;&amp;gt;JDBC 드라이버&amp;lt;/h3&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;DBMS와 통신을 담당하는 자바 클래스&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;JDBC 드라이버는 4가지 종류가 있다 (Type 1~4)&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Mysql은 Type 4를 지원한다&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;예제 - Connection을 직접 연결
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-java&amp;#34; data-lang=&amp;#34;java&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;</description></item><item><title>[모각코23하계] 04 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-04plan/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-04plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프로그래머스 한 문제 풀기&lt;/li&gt;
+&lt;li&gt;@RestController 정리&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-03/</link><pubDate>Wed, 19 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-03/</guid><description>&lt;h3 id="1-프로그래머스-한-문제-풀기"&gt;1. 프로그래머스 한 문제 풀기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EB%B3%80%ED%99%98%ED%95%98%EA%B8%B0/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;프로그래머스 - 숫자 변환하기 (L2)&lt;/span&gt;
+ &lt;p&gt;🧠 Algorithm&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-python&amp;#34; data-lang=&amp;#34;python&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&amp;#34;&amp;gt; 1&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;#34;color:#f92672&amp;#34;&amp;gt;from&amp;lt;/span&amp;gt; collections &amp;lt;span style=&amp;#34;color:#f92672&amp;#34;&amp;gt;import&amp;lt;/span&amp;gt; deque
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="2-jdbc-정리"&gt;2. JDBC 정리&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/spring/jdbc/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;Spring 개념 - JDBC, DBCP, JdbcTemplate&lt;/span&gt;
+ &lt;p&gt;🍃 Spring&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;h3 id=&amp;#34;jdbc&amp;#34;&amp;gt;JDBC&amp;lt;/h3&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;자바 프로그램을 DB와 연결해주는 API&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;h3 id=&amp;#34;jdbc-드라이버&amp;#34;&amp;gt;JDBC 드라이버&amp;lt;/h3&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;DBMS와 통신을 담당하는 자바 클래스&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;JDBC 드라이버는 4가지 종류가 있다 (Type 1~4)&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Mysql은 Type 4를 지원한다&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;예제 - Connection을 직접 연결
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-java&amp;#34; data-lang=&amp;#34;java&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;</description></item><item><title>[모각코23하계] 03 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-03plan/</link><pubDate>Wed, 19 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-03plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프로그래머스 한 문제 풀기&lt;/li&gt;
+&lt;li&gt;JDBC 정리&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-02/</link><pubDate>Wed, 12 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-02/</guid><description>&lt;h3 id="1-프로그래머스-한-문제-풀기"&gt;1. 프로그래머스 한 문제 풀기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;프로그래머스 - 당구 연습 (L2)&lt;/span&gt;
+ &lt;p&gt;🧠 Algorithm&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-python&amp;#34; data-lang=&amp;#34;python&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&amp;#34;&amp;gt; 1&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;#34;color:#66d9ef&amp;#34;&amp;gt;def&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;#34;color:#a6e22e&amp;#34;&amp;gt;solution&amp;lt;/span&amp;gt;(m, n, startX, startY, balls):
+&amp;lt;/span
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="2-java의-testing-공부하기"&gt;2. Java의 Testing 공부하기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/spring/testing/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;Spring 개념 - Testing&lt;/span&gt;
+ &lt;p&gt;🍃 Spring&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;h2 id=&amp;#34;unit-test-단위-테스트&amp;#34;&amp;gt;Unit Test (단위 테스트)&amp;lt;/h2&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;h3 id=&amp;#34;관련-용어&amp;#34;&amp;gt;관련 용어&amp;lt;/h3&amp;gt;
+&amp;lt;h4 id=&amp;#34;sut-sytem-under-test&amp;#34;&amp;gt;SUT (Sytem Under Test)&amp;lt;/h4&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;테스트하고자하는 주요 대상이 되는 Unit&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;h4 id=&amp;#34;doc-depended-on-component&amp;#34;&amp;gt;DOC (Depended On Component)&amp;lt;/h4&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;SUT가 의존하는 객체&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;h4 id=&amp;#34;test-double&amp;#34;&amp;gt;Test double&amp;lt;/h4&amp;gt;
+&amp;lt;blockquote&amp;gt;
+&amp;lt;p&amp;gt;DOC를 대신해 줄 수 있는 객체&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Test double의 종류 : Moc
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;</description></item><item><title>[모각코23하계] 02 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-02plan/</link><pubDate>Wed, 12 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-02plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프로그래머스 한 문제 풀기&lt;/li&gt;
+&lt;li&gt;Springboot Testing 공부하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 01 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako23-1-01/</link><pubDate>Wed, 05 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-01/</guid><description>&lt;h3 id="1-프로그래머스-한-문제-풀기"&gt;1. 프로그래머스 한 문제 풀기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/algorithm/pgs_%EB%91%90_%EC%9B%90_%EC%82%AC%EC%9D%B4%EC%9D%98_%EC%A0%95%EC%88%98_%EC%8C%8D/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;프로그래머스 - 두 원 사이의 정수 쌍 (L2)&lt;/span&gt;
+ &lt;p&gt;🧠 Algorithm&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-python&amp;#34; data-lang=&amp;#34;python&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&amp;#34;&amp;gt; 1&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;#34;color:#f92672&amp;#34;&amp;gt;import&amp;lt;/span&amp;gt; math
+&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="2-java의-record-개념-정리하기"&gt;2. Java의 record 개념 정리하기&lt;/h3&gt;
+
+
+
+
+
+&lt;div class="h-40 flex px-3 box rounded-2xl"&gt;
+ &lt;a href=https://bong-u.github.io/til/java/record/ class="preview flex"&gt;
+ &lt;div class="flex flex-col w-full mx-5 justify-around"&gt;
+ &lt;div class="flex justify-between"&gt;
+ &lt;span class="text-2xl"&gt;Record&lt;/span&gt;
+ &lt;p&gt;☕ Java&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="line-clamp-3"&gt;
+ &amp;lt;h3 id=&amp;#34;레코드란&amp;#34;&amp;gt;레코드란&amp;lt;/h3&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;JDK16부터 지원&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h3 id=&amp;#34;예제&amp;#34;&amp;gt;예제&amp;lt;/h3&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;
+&amp;lt;p&amp;gt;Record 적용 전&amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;highlight&amp;#34;&amp;gt;&amp;lt;pre tabindex=&amp;#34;0&amp;#34; style=&amp;#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&amp;#34;&amp;gt;&amp;lt;code class=&amp;#34;language-java&amp;#34; data-lang=&amp;#34;java&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;display:flex;&amp;#34;&amp;gt;&amp;lt;span style=&amp;#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4e
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;</description></item><item><title>[모각코23하계] 01 : 계획</title><link>https://bong-u.github.io/til/mogako/mogako23-1-01plan/</link><pubDate>Wed, 05 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-01plan/</guid><description>&lt;h2 id="오늘의-목표"&gt;오늘의 목표&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프로그래머스 한 문제 풀기&lt;/li&gt;
+&lt;li&gt;Java의 record 개념 정리하기&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>[모각코23하계] 00 : 목표</title><link>https://bong-u.github.io/til/mogako/mogako23-1-00/</link><pubDate>Mon, 26 Jun 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako23-1-00/</guid><description>&lt;h2 id="나의-목표"&gt;나의 목표&lt;/h2&gt;
+&lt;h4 id="1-성실한-포스팅으로-1일-1커밋을-향해-노력하겠다"&gt;1. 성실한 포스팅으로 1일 1커밋을 향해 노력하겠다.&lt;/h4&gt;
+&lt;h4 id="2-sw-academy에서-배운-spring-boot-기술을-상세하게-정리할-것이다"&gt;2. SW Academy에서 배운 Spring boot 기술을 상세하게 정리할 것이다.&lt;/h4&gt;
+&lt;h4 id="2-현재-기술-블로그의-디자인을-개선시킬-것이다"&gt;2. 현재 기술 블로그의 디자인을 개선시킬 것이다.&lt;/h4&gt;
+&lt;h2 id="sw-academy-교육과정---backend"&gt;SW Academy 교육과정 - Backend&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;프레임워크를 위환 Java 심화&lt;/li&gt;
+&lt;li&gt;실리콘밸리에서 날아온 DataBase&lt;/li&gt;
+&lt;li&gt;Spring Boot Basic 1&lt;/li&gt;
+&lt;li&gt;Spring Boot Basic 2&lt;/li&gt;
+&lt;li&gt;Spring Boot Basic 3&lt;/li&gt;
+&lt;li&gt;Spring Data Security 1&lt;/li&gt;
+&lt;li&gt;Spring Data Security 2&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>

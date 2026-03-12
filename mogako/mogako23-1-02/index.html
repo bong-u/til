@@ -1,128 +1,44 @@
-<!doctype html><html lang=ko>
-<head>
-<title>[모각코23하계] 02 : 결과</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="1. 프로그래머스 한 문제 풀기 프로그래머스 - 당구 연습 (L2) 🧠 Algorithm
- 1def solution(m, n, startX, startY, balls): 2 …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="[모각코23하계] 02 : 결과">
-<meta property="og:description" content="1. 프로그래머스 한 문제 풀기 프로그래머스 - 당구 연습 (L2) 🧠 Algorithm
- 1def solution(m, n, startX, startY, balls): 2 …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</a></li>
-<li><a href=#2-java의-testing-공부하기>2. Java의 Testing 공부하기</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-[모각코23하계] 02 : 결과
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-</div>
-<h4 id=date>수정일 : 2024-06-24</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3>
-<div class="h-40 flex px-3 box rounded-2xl">
-<a href=https://bong-u.github.io/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/ class="preview flex">
-<div class="flex flex-col w-full mx-5 justify-around">
-<div class="flex justify-between">
-<span class=text-2xl>프로그래머스 - 당구 연습 (L2)</span>
-<p>🧠 Algorithm</p>
-</div>
-<div class=line-clamp-3>
-1def solution(m, n, startX, startY, balls): 2 answer = [] 3 for bx, by in balls: 4 tmp = [] 5 for x, y in [(-1*startX, startY), (startX, -1*startY), (startX, 2*n-startY), (2*m-startX, startY)]: 6 if bx==x and (y &amp;lt; 0 &amp;lt; by &amp;lt; startY or startY &amp;lt; by &amp;lt; n &amp;lt; y): 7 continue 8 if by==y and (x &amp;lt; 0 &amp;lt; bx &amp;lt; startX or startX &amp;lt; bx &amp;lt; m &amp;lt; x): 9 continue 10 tmp.
-</div>
-</div>
-</a>
-</div>
-<h3 id=2-java의-testing-공부하기>2. Java의 Testing 공부하기</h3>
-<div class="h-40 flex px-3 box rounded-2xl">
-<a href=https://bong-u.github.io/til/spring/testing/ class="preview flex">
-<div class="flex flex-col w-full mx-5 justify-around">
-<div class="flex justify-between">
-<span class=text-2xl>Spring 개념 - Testing</span>
-<p>🍃 Spring</p>
-</div>
-<div class=line-clamp-3>
-Unit Test (단위 테스트) 가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식
-관련 용어 SUT (Sytem Under Test) 테스트하고자하는 주요 대상이 되는 Unit
-DOC (Depended On Component) SUT가 의존하는 객체
-Test double DOC를 대신해 줄 수 있는 객체
-Test double의 종류 : Mock, Stub Mock 행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용 test framework : Mockito, JMock, EasyMock Stub 상태 검증 (객체의 상태를 확인하여 검정) 사용 Integration Test (통합 테스트) 여러 개의 Unit을 통합해서 테스트하는 방식
-</div>
-</div>
-</a>
-</div>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-02plan/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>[모각코23하계] 02 : 결과</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="1. 프로그래머스 한 문제 풀기
+
+
+
+
+
+
+    
+        
+            
+                프로그래머스 - 당구 연습 (L2) …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="[모각코23하계] 02 : 결과"><meta property="og:description" content="1. 프로그래머스 한 문제 풀기
+
+
+
+
+
+
+    
+        
+            
+                프로그래머스 - 당구 연습 (L2) …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</a></li><li><a href=#2-java의-testing-공부하기>2. Java의 Testing 공부하기</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">[모각코23하계] 02 : 결과</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div></div><h4 id=date>수정일 : 2024-06-24</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=1-프로그래머스-한-문제-풀기>1. 프로그래머스 한 문제 풀기</h3><div class="h-40 flex px-3 box rounded-2xl"><a href=https://bong-u.github.io/til/algorithm/pgs_%EB%8B%B9%EA%B5%AC_%EC%97%B0%EC%8A%B5/ class="preview flex"><div class="flex flex-col w-full mx-5 justify-around"><div class="flex justify-between"><span class=text-2xl>프로그래머스 - 당구 연습 (L2)</span><p>🧠 Algorithm</p></div><div class=line-clamp-3>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1&lt;/span>&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">solution&lt;/span>(m, n, startX, startY, balls):
+&lt;/span</div></div></a></div><h3 id=2-java의-testing-공부하기>2. Java의 Testing 공부하기</h3><div class="h-40 flex px-3 box rounded-2xl"><a href=https://bong-u.github.io/til/spring/testing/ class="preview flex"><div class="flex flex-col w-full mx-5 justify-around"><div class="flex justify-between"><span class=text-2xl>Spring 개념 - Testing</span><p>🍃 Spring</p></div><div class=line-clamp-3>&lt;h2 id="unit-test-단위-테스트">Unit Test (단위 테스트)&lt;/h2>
+&lt;blockquote>
+&lt;p>가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="관련-용어">관련 용어&lt;/h3>
+&lt;h4 id="sut-sytem-under-test">SUT (Sytem Under Test)&lt;/h4>
+&lt;blockquote>
+&lt;p>테스트하고자하는 주요 대상이 되는 Unit&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="doc-depended-on-component">DOC (Depended On Component)&lt;/h4>
+&lt;blockquote>
+&lt;p>SUT가 의존하는 객체&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="test-double">Test double&lt;/h4>
+&lt;blockquote>
+&lt;p>DOC를 대신해 줄 수 있는 객체&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>Test double의 종류 : Moc</div></div></a></div></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-02plan/><span class=mx-3>◀</span>
 [모각코23하계] 02 : 계획
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-03plan/>
-[모각코23하계] 03 : 계획
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/mogako/mogako23-1-03plan/>[모각코23하계] 03 : 계획
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

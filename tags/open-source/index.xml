@@ -1,1 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Open Source on bong-u/til</title><link>https://bong-u.github.io/til/tags/open-source/</link><description>Recent content in Open Source on bong-u/til</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 05 Dec 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/open-source/index.xml" rel="self" type="application/rss+xml"/><item><title>Github Readme Stats - private 레포지토리도 포함하기</title><link>https://bong-u.github.io/til/etc/gh_readme_stats_deploy/</link><pubDate>Thu, 05 Dec 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/etc/gh_readme_stats_deploy/</guid><description>배경 github에서 자신이 어떤 언어를 주로 쓰는지 통계를 주는 Readme를 본 기억이 나서 나도 만들어보고 싶었다. anuraghazra/github-readme-stats를 참고하여 README.md에 추가하였다. 그러나 preview를 해보았을 때, typescript가 절반으로 나오는 것이다. 말이 안되는 수치라서 알아보니, public 레포지토리만 포함되어 그런 것이었다. private 레포지토리도 통계에 포함하기 위한 방법을 설명하겠다. 방법 maintainer가 배포해놓은 서비스는 나의 private 레포지토리에 접근할 수 없다. private repository도 포함한 통계를 보기 위해서는 직접 배포해야 한다고 한다. 익숙한 Github Pages로 배포하려고 했으나, 동적으로 처리하는 부분이 있어서 Vercel로 배포하였다.</description></item><item><title>[오픈소스] thefuck - pip uninstall 규칙 추가</title><link>https://bong-u.github.io/til/python/thefuck_pip/</link><pubDate>Thu, 09 Nov 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/python/thefuck_pip/</guid><description>PR #1414 : Correct &amp;ldquo;pip delete|remove&amp;rdquo; -&amp;gt; &amp;ldquo;pip uninstall&amp;rdquo; 배경 pip uninstall &amp;lt;package&amp;gt;는 파이썬 패키지를 삭제하는 명령어이다. 헷갈려서 remove, delete로 오타를 친 경험이 있다. thefuck에서 지원하지 않는 것을 확인하고 기여하기로 했다. 과정 기존의 로직 : 오타가 났을 때, pip 명령에서 “maybe you meant” 하면서 추천해주는 명령어가 있다면 추천, 하지만 remove와 delete는 그 대상이 아님 잘못된 명령어가 ‘delete’ 또는 ‘remove’인 경우 suggest에 uninstall을 대입하도록 수정 1if broken_cmd == &amp;#39;delete&amp;#39; or broken_cmd == &amp;#39;remove&amp;#39;: 2 suggest = &amp;#39;uninstall&amp;#39; 테스트 코드 수정 1# 의도한대로 명령어를 잘 바꿔주는지 테스트 2@pytest.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Open Source on bong-u/til</title><link>https://bong-u.github.io/til/tags/open-source/</link><description>Recent content in Open Source on bong-u/til</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 05 Dec 2024 23:05:14 +0900</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/open-source/index.xml" rel="self" type="application/rss+xml"/><item><title>Github Readme Stats - private 레포지토리도 포함하기</title><link>https://bong-u.github.io/til/etc/gh_readme_stats_deploy/</link><pubDate>Thu, 05 Dec 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/etc/gh_readme_stats_deploy/</guid><description>&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;github에서 자신이 어떤 언어를 주로 쓰는지 통계를 주는 Readme를 본 기억이 나서 나도 만들어보고 싶었다.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/anuraghazra/github-readme-stats"&gt;anuraghazra/github-readme-stats&lt;/a&gt;를 참고하여 README.md에 추가하였다.&lt;/li&gt;
+&lt;li&gt;그러나 preview를 해보았을 때, typescript가 절반으로 나오는 것이다.&lt;/li&gt;
+&lt;li&gt;말이 안되는 수치라서 알아보니, public 레포지토리만 포함되어 그런 것이었다.&lt;/li&gt;
+&lt;li&gt;private 레포지토리도 통계에 포함하기 위한 방법을 설명하겠다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="방법"&gt;방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;maintainer가 배포해놓은 서비스는 나의 private 레포지토리에 접근할 수 없다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;private repository도 포함한 통계를 보기 위해서는 직접 배포해야 한다&lt;/strong&gt;고 한다.&lt;/li&gt;
+&lt;li&gt;익숙한 Github Pages로 배포하려고 했으나, 동적으로 처리하는 부분이 있어서 Vercel로 배포하였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="1-github-token-발급-받기"&gt;1. Github Token 발급 받기&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Github에서 PAT(Personal Access Token)을 발급 받는다.&lt;/li&gt;
+&lt;li&gt;scope는 &lt;code&gt;repo&lt;/code&gt;와 &lt;code&gt;read:user&lt;/code&gt;가 포함되어야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="2-vercel로-배포하기"&gt;2. Vercel로 배포하기&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;나는 먼저 anuraghara라는 분이 만들어놓은 origin 레포지토리를 fork하였다.&lt;/li&gt;
+&lt;li&gt;Vercel로 로그인한 후, Github 계정과 연동하여 fork한 레포지토리를 선택한다.&lt;/li&gt;
+&lt;li&gt;환경변수에 &lt;code&gt;PAT_1&lt;/code&gt;이라는 이름으로 발급받은 PAT을 등록한다.&lt;/li&gt;
+&lt;li&gt;배포한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="3-readmemd에-추가하기"&gt;3. README.md에 추가하기&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서비스에서 제공하는 기능이 여러가지가 있지만, 필자는 &amp;ldquo;Top Languages Card&amp;quot;만 추가할 것이다.&lt;/li&gt;
+&lt;li&gt;url은 &amp;lsquo;{Vercel에서 배포한 URL}/api/top-langs?username={Github ID}&amp;lsquo;이다.&lt;/li&gt;
+&lt;li&gt;이 url을 아래와 같은 형태로 README.md에 추가하면 된다.
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;[&lt;span style="color:#f92672"&gt;![Top Langs&lt;/span&gt;](&lt;span style="color:#a6e22e"&gt;https://{Vercel에서 배포한 URL}/api/top-langs?username={Github ID}&lt;/span&gt;)]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="결과"&gt;결과&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://bong-u.github.io/til/static/image/gh_readme_stats.png" alt="Top Langs"&gt;&lt;/p&gt;</description></item><item><title>[오픈소스] thefuck - pip uninstall 규칙 추가</title><link>https://bong-u.github.io/til/python/thefuck_pip/</link><pubDate>Thu, 09 Nov 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/python/thefuck_pip/</guid><description>&lt;h3 id="pr-1414--correct"&gt;&lt;a href="https://github.com/nvbn/thefuck/pull/1414"&gt;PR #1414 : Correct &amp;ldquo;pip delete|remove&amp;rdquo; -&amp;gt; &amp;ldquo;pip uninstall&amp;rdquo;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pip uninstall &amp;lt;package&amp;gt;&lt;/code&gt;는 파이썬 패키지를 삭제하는 명령어이다.&lt;/li&gt;
+&lt;li&gt;헷갈려서 remove, delete로 오타를 친 경험이 있다.&lt;/li&gt;
+&lt;li&gt;thefuck에서 지원하지 않는 것을 확인하고 기여하기로 했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="과정"&gt;과정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;기존의 로직 : 오타가 났을 때, pip 명령에서 “maybe you meant” 하면서 추천해주는 명령어가 있다면 추천, 하지만 remove와 delete는 그 대상이 아님&lt;/li&gt;
+&lt;li&gt;잘못된 명령어가 ‘delete’ 또는 ‘remove’인 경우 suggest에 uninstall을 대입하도록 수정
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; broken_cmd &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;delete&amp;#39;&lt;/span&gt; &lt;span style="color:#f92672"&gt;or&lt;/span&gt; broken_cmd &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;remove&amp;#39;&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; suggest &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;uninstall&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;테스트 코드 수정
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# 의도한대로 명령어를 잘 바꿔주는지 테스트&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;@pytest.mark.parametrize&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#39;script, synonym, new_cmd&amp;#39;&lt;/span&gt;, [
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; (&lt;span style="color:#e6db74"&gt;&amp;#39;pip delete thefuck&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;delete&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;pip uninstall thefuck&amp;#39;&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; (&lt;span style="color:#e6db74"&gt;&amp;#39;pip remove thefuck&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;remove&amp;#39;&lt;/span&gt;, &lt;span style="color:#e6db74"&gt;&amp;#39;pip uninstall thefuck&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;def&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;test_get_new_command_without_recommended&lt;/span&gt;(script, new_cmd, pip_unknown_cmd_without_recommend):
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;assert&lt;/span&gt; get_new_command(Command(script, pip_unknown_cmd_without_recommend)) &lt;span style="color:#f92672"&gt;==&lt;/span&gt; new_cmd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

@@ -1,796 +1,270 @@
-<!doctype html><html lang=ko>
-<head>
-<meta name=generator content="Hugo 0.91.2">
-<title>bong-u/til</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="bong-u/til">
-<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6
-max-w-3xl">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="w-full flex max-w-3xl flex-col">
-<section class="mb-8 w-full">
-<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
-<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
-</video>
-</section>
-<main class="flex flex-col w-full gap-5">
-<form onchange=switchSection() class="flex justify-center">
-<input id=switch-page type=radio name=switch checked>
-<label for=switch-page class="switch-button rounded-l-lg">
-게시물
-</label>
-</input>
+<!doctype html><html lang=ko><head><meta name=generator content="Hugo 0.157.0"><title>bong-u/til</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="bong-u/til"><meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6
+max-w-3xl"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><div class="w-full flex max-w-3xl flex-col"><section class="mb-8 w-full"><video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm></video></section><main class="flex flex-col w-full gap-5"><form onchange=switchSection() class="flex justify-center"><input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">게시물
+</label></input>
 <input id=switch-group type=radio name=switch>
-<label for=switch-group class=switch-button>
-분류
-</label>
-</input>
+<label for=switch-group class=switch-button>분류
+</label></input>
 <input id=switch-tag type=radio name=switch>
-<label for=switch-tag class=switch-button>
-태그
-</label>
-<input id=search-tag type=radio name=switch>
-<label for=search-tag class="switch-button rounded-r-lg">
-검색
-</label>
-</form>
-<div class="w-full p-5">
-<section id=summary-section class="grid gap-8">
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-12T14:42:18\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/probabilityandstatistics/ class="text-2xl my-3 overflow-ellipsis-bundle">
-확률과 통계
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/probabilityandstatistics/ class="content-summary text-sm overflow-hidden">
-자료의 정리와 요약 통계 자료의 구분
-양적자료(quantitative data) 또는 수치형자료(numerical data) 이산자료(자녀 수), 연속자료(키) 질적자료(qualitative data) 또는 범주형자료(categorical data) 명목자료(혈액형, 성별), 순서자료(학점, 부서평가) 변수의 종류
-1all variables 2├── numerical 3│ ├-─ continuous (리터 수) 4│ └-─ discrete (나라 수) 5└─── categorical 6 ├-─ Nominal (성별) 7 └-─ Ordinal (근무 한 시간 : 12-2) 도수분포표 자료의 특성을 기준으로 일정한 계급으로 나누고, 각 계급에 도수를 대응하여 작성한 표
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-12 14:42:18 +0900 +0900">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-12T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C_%EC%86%8C%EC%88%98_%EA%B0%9C%EC%88%98_%EA%B5%AC%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - k진수에서 소수 개수 구하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_k%EC%A7%84%EC%88%98%EC%97%90%EC%84%9C_%EC%86%8C%EC%88%98_%EA%B0%9C%EC%88%98_%EA%B5%AC%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def convert10toN(n, k): 2 result = '' 3 while n > 1: 4 result = str(n%k)+ result 5 n = n // k 6 return (str(n)+result).lstrip('0') 7 8def is_prime(n): 9 if n &lt;= 1: 10 return False 11 12 end = int(n**(1/2))+1 13 for i in range(2, end): 14 if n%i == 0: 15 return False 16 return True 17 18 19def solution(n, k): 20 A = convert10toN(n, k) 21 answer = 0 22 for i in A.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-12 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-11T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 주차 요금 계산 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%A3%BC%EC%B0%A8_%EC%9A%94%EA%B8%88_%EA%B3%84%EC%82%B0/ class="content-summary text-sm overflow-hidden">
-1import math 2 3def diff(start, end): 4 sh, sm = map(int, start.split(':')) 5 eh, em = map(int, end.split(':')) 6 7 return (eh*60+em) - (sh*60+sm) 8 9def calc(time, baseTime, baseFee, unitTime, unitFee): 10 if time &lt; baseTime: 11 return baseFee 12 time -= baseTime 13 return baseFee + math.ceil(time/unitTime)*unitFee 14 15def solution(fees, records): 16 cars = {} 17 for i in records: 18 time, car_num, _ = i.split(' ') 19 # 새로 입차 한 경우 20 if not car_num in cars: 21 cars[car_num] = [0, time] 22 else: 23 # 출차 후 다시 입차한 경우 24 if cars[car_num][1] == '': 25 cars[car_num][1] = time 26 # 출차한 경우 27 else: 28 cars[car_num][0] += diff(cars[car_num][1], time) 29 cars[car_num][1] = '' 30 31 # 아직 출차하지 않은 차량들에 대해 23:59에 출차한 것으로 간주 32 for num in cars: 33 if cars[num][1] !
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-11 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-10T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%96%91%EA%B6%81%EB%8C%80%ED%9A%8C/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 양궁대회 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%96%91%EA%B6%81%EB%8C%80%ED%9A%8C/ class="content-summary text-sm overflow-hidden">
-1def solution(n, info): 2 # 각각 몇 번 맞춰야 점수를 얻는지 저장하였다 3 goal_list = [i+1 for i in info] 4 5 cases = [] 6 7 def dfs(score, cnt, case): 8 # 몇 번째 점수인지 나타낸다 (0:10점, 1:9점, ...) 9 length = len(case) 10 if length == 11: 11 # 화살 개수가 남았다면 0점에 채워준다 12 if cnt != n: 13 case[-1] += n-cnt 14 cases.append((score, case)) 15 return 16 # 현재 단계에서 몇 점 맞아야 점수를 따는지를 나타낸다 17 goal = goal_list[length] 18 19 # 점수를 따는 경우 20 if cnt + goal &lt;= n: 21 # 딴 점수를 더해준다 22 dfs(score+(10-length), cnt+goal, case+[goal]) 23 # 상대가 점수를 따는 경우 24 if goal !
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-10 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-09T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%91%90_%ED%81%90_%ED%95%A9_%EA%B0%99%EA%B2%8C_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 두 큐 합 같게 만들기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%91%90_%ED%81%90_%ED%95%A9_%EA%B0%99%EA%B2%8C_%EB%A7%8C%EB%93%A4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1from collections import deque 2 3def solution(queue1, queue2): 4 sum1, sum2 = sum(queue1), sum(queue2) 5 dq1 = deque(queue1) 6 dq2 = deque(queue2) 7 cnt = 0 8 9 while cnt &lt;= len(queue1)*2+1 and sum1 != sum2: 10 if sum1 > sum2: 11 tmp = dq1.popleft() 12 dq2.append(tmp) 13 sum1 -= tmp 14 sum2 += tmp 15 elif sum1 &lt; sum2: 16 tmp = dq2.popleft() 17 dq1.append(tmp) 18 sum1 += tmp 19 sum2 -= tmp 20 cnt += 1 21 22 return cnt if sum1 == sum2 else -1 문제 길이가 같은 두 큐가 주어진다 두 큐의 합이 같아지도록 큐의 원소를 교환할 수 있는 최소 횟수를 구하라 큐의 pop은 왼쪽에서, push는 오른쪽에서 이루어진다 TC input queue1 : [3, 2, 7, 2], queue2 : [4 ,6, 5, 1]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-09 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-08T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%95%A0%EC%9D%B8_%ED%96%89%EC%82%AC/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 할인 행사 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%95%A0%EC%9D%B8_%ED%96%89%EC%82%AC/ class="content-summary text-sm overflow-hidden">
-1from collections import deque 2 3def solution(want, number, discount): 4 want_dict = dict() 5 answer = 0 6 7 for i in range(len(want)): 8 want_dict[want[i]] = number[i] 9 10 for i in discount[:10]: 11 if i in want_dict: 12 want_dict[i] -= 1 13 14 for i in range(0, len(discount)-9): 15 if all(map(lambda x: x &lt;= 0, want_dict.values())): 16 answer += 1 17 18 if discount[i] in want_dict: 19 want_dict[discount[i]] += 1 20 if i+10 &lt; len(discount) and discount[i+10] in want_dict: 21 want_dict[discount[i+10]] -= 1 22 23 return answer 문제 XYZ마트에서는 회원에 가입하면 10일동안 할인혜택을 받는다 할인하는 제품은 하루에 하나씩만 구매할 수 있다 정현이가 원하는 제품 리스트, 원하는 제품의 수량 리스트, 마트에서 할인하는 제품 리스트가 주어진다 정현이가 원하는 제품을 모두 할인 받을 수 있는 회원 등록 날짜의 수를 구하라 TC input want: [&ldquo;banana&rdquo;, &ldquo;apple&rdquo;, &ldquo;rice&rdquo;, &ldquo;pork&rdquo;, &ldquo;pot&rdquo;]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-08 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-07T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%98%BC%EC%9E%90_%EB%86%80%EA%B8%B0%EC%9D%98_%EB%8B%AC%EC%9D%B8/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 혼자 놀기의 달인 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%98%BC%EC%9E%90_%EB%86%80%EA%B8%B0%EC%9D%98_%EB%8B%AC%EC%9D%B8/ class="content-summary text-sm overflow-hidden">
-1def solution(cards): 2 length = len(cards) 3 visited = [False] * length 4 answer = [] 5 6 for i in range(length): 7 cnt = 0 8 cur = i 9 while not visited[cur-1]: 10 visited[cur-1] = True 11 cur = cards[cur-1] 12 cnt += 1 13 if cnt != 0: 14 answer.append(cnt) 15 16 if len(answer) &lt;= 1: 17 return 0 18 answer.sort(reverse=True) 19 return answer[0]*answer[1] 문제 주어진 배열 cards를 순회한다 cards[i]번째 원소를 방문한다, 이미 방문한 원소인 경우 그만한다 한번 이어서 방문한 원소를 그룹화한다고 할 때, 두 그룹의 원소개수의 곱의 최대값을 구하라 TC input [8,6,3,7,2,5,1,4]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-07 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-06T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%97%B0%EC%86%8D_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4_%ED%95%A9%EC%9D%98_%EA%B0%9C%EC%88%98/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 연속 수열 합의 개수 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%97%B0%EC%86%8D_%EB%B6%80%EB%B6%84_%EC%88%98%EC%97%B4_%ED%95%A9%EC%9D%98_%EA%B0%9C%EC%88%98/ class="content-summary text-sm overflow-hidden">
-첫번째 풀이 1def solution(elements): 2 result = set() 3 length = len(elements) 4 elements = elements*2 5 for i in range(length): 6 temp = 0 7 for j in range(length): 8 temp += elements[i+j] 9 result.add(temp) 10 11 return len(result) 개선한 풀이 1def solution(elements): 2result = set() 3length = len(elements) 4for i in range(length): 5 temp = 0 6 for j in range(length): 7 temp += elements[(i+j)%length] 8 result.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-06 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-04T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%83%9D%EB%B0%B0%EC%83%81%EC%9E%90/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 택배상자 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%83%9D%EB%B0%B0%EC%83%81%EC%9E%90/ class="content-summary text-sm overflow-hidden">
-1def solution(order): 2 answer = 0 3 length = len(order) 4 stackA = [i for i in range(length, 0, -1)] 5 stackB = [] 6 7 for i in order: 8 while True: 9 if stackA and stackA[-1] == i: 10 stackA.pop() 11 break 12 if stackB and stackB[-1] == i: 13 stackB.pop() 14 break 15 16 if stackB and stackB[-1] > i: 17 return answer 18 19 stackB.append(stackA.pop()) 20 answer += 1 21 22 return answer 문제 원하는 상자 순서를 나타내는 정수배열 order가 주어진다 컨베이어 벨트에 [N&mldr; 3, 2, 1]와 같이 박스가 놓여있다 박스는 1번 상자부터 순차적으로 뺄 수 있다 뺀 상자를 잠깐 보조 컨베이어 벨트에 보관할 수 있다 보조 컨베이어 벨트는 스택과 같이 FILO가 적용된다 순서대로 상자를 싣지 못하면, 그만둔다 박스를 order에 맞게 몇 개까지 실을 수 있는지 구하라 TC input [4, 3, 1, 2, 5]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-04 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-03T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%A1%A4%EC%BC%80%EC%9D%B4%ED%81%AC_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 롤케이크 자르기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%A1%A4%EC%BC%80%EC%9D%B4%ED%81%AC_%EC%9E%90%EB%A5%B4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def solution(topping): 2 answer = 0 3 length = len(topping) 4 toppingA = [] 5 toppingB = [] 6 setA = set() 7 setB = set() 8 9 for i in range(length-1): 10 setA.add(topping[i]) 11 setB.add(topping[length-i-1]) 12 toppingA.append(len(setA)) 13 toppingB.append(len(setB)) 14 15 toppingB = toppingB[::-1] 16 for i in range(length-1): 17 if toppingA[i] == toppingB[i]: 18 answer+=1 19 return answer 문제 롤케이크 위에 올려진 토핑번호의 정수 배열 topping이 주어진다 롤케이크를 잘랐을 때, 두 조각의 토핑 종류를 똑같이 만드는 방법의 수를 구하라 TC input [1, 2, 1, 3, 1, 4, 1, 2]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-03 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-08-01T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%9A%B0%EB%B0%95%EC%88%98%EC%97%B4_%EC%A0%95%EC%A0%81%EB%B6%84/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 우박수열 정적분 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%9A%B0%EB%B0%95%EC%88%98%EC%97%B4_%EC%A0%95%EC%A0%81%EB%B6%84/ class="content-summary text-sm overflow-hidden">
-1def solution(k, ranges): 2 answer = [] 3 seq = [k] 4 section = [0] 5 while k > 1: 6 if k%2 == 0: 7 k = k//2 8 else: 9 k = k*3+1 10 seq.append(k) 11 12 for i in range(0, len(seq)-1): 13 a, b = seq[i], seq[i+1] 14 if a > b: 15 a, b = b, a 16 17 section.append((b-a)/2+a) 18 if len(section) != 0: 19 section[-1] += section[-2] 20 21 for i in ranges: 22 a, b = i[0], len(seq)+i[1]-1 23 if a > b: 24 answer.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-08-01 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-31T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EC%B9%B4%EB%93%9C_%EB%82%98%EB%88%84%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 숫자 카드 나누기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%88%AB%EC%9E%90_%EC%B9%B4%EB%93%9C_%EB%82%98%EB%88%84%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-첫번째 통과한 풀이
-1import math 2 3def gcd(a, b): 4 while b > 0: 5 a, b = b, a%b 6 return a 7 8def gcdOfArr(l): 9 result = l[0] 10 for i in range(1, len(l)): 11 result = gcd(result, l[i]) 12 return result 13 14def solution(arrayA, arrayB): 15 a1 = gcdOfArr(arrayA) 16 for i in arrayB: 17 if i % a1 == 0: 18 a1 = 0 19 break 20 a2 = gcdOfArr(arrayB) 21 for i in arrayA: 22 if i % a2 == 0: 23 a2 = 0 24 break 25 return max(a1, a2) 개선한 풀이
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-31 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-28T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EA%B7%A4_%EA%B3%A0%EB%A5%B4%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 귤 고르기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EA%B7%A4_%EA%B3%A0%EB%A5%B4%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def solution(k, tangerine): 2 D = {} 3 for i in tangerine: 4 if i in D: 5 D[i] += 1 6 else: 7 D[i] = 1 8 D = sorted(D.items(), key=lambda x: -x[1]) 9 answer = 0 10 for _, num in D: 11 k -= num 12 answer += 1 13 if k &lt;= 0: 14 break 15 16 return answer 문제 귤의 개수 k와 귤의 개수를 담은 배열 tangerine이 주어진다 귤 k개를 고를 때, 크기가 서로 다른 종류의 수의 최소값을 구하라 TC input k: 6, tangerine: [1, 3, 2, 5, 4, 5, 2, 3]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-28 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-27T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%A0%90_%EC%B0%8D%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 점 찍기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%A0%90_%EC%B0%8D%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1import math 2 3def solution(k, d): 4 answer = 0 5 6 for x in range(0, d+1, k): 7 a = math.floor((d**2-x**2)**0.5) // k + 1 8 answer += a 9 10 return answer 문제 2차원 좌표 평면에서 (xk (x=0,1,2,3&mldr;), yk (y=0,1,2,3&mldr;)) 지점에 점을 찍는다 원점과의 거리가 d가 넘으면 점을 찍지 않는다 k와 d가 주어질 때, 점이 총 몇 개 찍히는지 구하라 TC input k:2, d:4
-ouput 6
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-27 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-26T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%94%94%ED%8E%9C%EC%8A%A4_%EA%B2%8C%EC%9E%84/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 디펜스 게임 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%94%94%ED%8E%9C%EC%8A%A4_%EA%B2%8C%EC%9E%84/ class="content-summary text-sm overflow-hidden">
-1import heapq 2 3def solution(n, k, enemy): 4 heap = [] 5 cnt = 0 6 for i in enemy: 7 n -= i 8 heapq.heappush(heap, -i) 9 while n &lt; 0: 10 k -= 1 11 if not heap or k &lt; 0: 12 return cnt 13 tmp = -heapq.heappop(heap) 14 n += tmp 15 cnt += 1 16 return cnt 문제 n: 가지고 있는 병사 수 k: 사용할 수 있는 무적권 스킬 수 enemy: 라운드마다 존재하는 적 수의 배열 라운드마다 enemy[i]명 만큼 소모하여 enemy[i]마리의 적을 막을 수 있다 무적권을 적절히 사용하여 버틸 수 있는 최대 라운드 수를 구하라 TC input n: 7, k: 3, enemy: [4, 2, 4, 5, 3, 3, 1]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-26 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-25T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%85%8C%EC%9D%B4%EB%B8%94_%ED%95%B4%EC%8B%9C_%ED%95%A8%EC%88%98/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 테이블 해시 함수 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%85%8C%EC%9D%B4%EB%B8%94_%ED%95%B4%EC%8B%9C_%ED%95%A8%EC%88%98/ class="content-summary text-sm overflow-hidden">
-1def solution(data, col, row_begin, row_end): 2 answer = 0 3 data.sort(key=lambda x: (x[col-1], -x[0])) 4 s = [] 5 for i in range(row_begin-1, row_end): 6 s.append(sum(map(lambda x: x%(i+1), data[i]))) 7 8 for i in s: 9 answer ^= i 10 return answer 문제 해시 함수는 col, row_begin, row_end을 입력으로 받는다 테이블의 튜플을 col번째 컬럼의 값을 기준으로 오름차순 정렬을 하되, 만약 그 값이 동일하면 기본키인 첫 번째 컬럼의 값을 기준으로 내림차순 정렬한다 정렬된 데이터에서 S_i를 i 번째 행의 튜플에 대해 각 컬럼의 값을 i 로 나눈 나머지들의 합으로 정의한다 row_begin ≤ i ≤ row_end 인 모든 S_i를 누적하여 bitwise XOR 한 값을 해시 값으로서 반환하라 TC input data: [[2,2,6],[1,5,10],[4,2,9],[3,8,3]]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-25 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-24T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EB%A7%88%EB%B2%95%EC%9D%98_%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 마법의 엘리베이터 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EB%A7%88%EB%B2%95%EC%9D%98_%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0/ class="content-summary text-sm overflow-hidden">
-첫번째 BFS 풀이 1from collections import deque 2 3def solution(storey): 4 answer = 0 5 q = deque() 6 q.append((storey, 0)) 7 visited = [False] * (10**8+1) 8 9 while q: 10 cur, cnt = q.popleft() 11 12 13 visited[cur] = True 14 while cur != 0 and cur%10 == 0: 15 cur = cur // 10 16 if cur == 0: 17 answer = cnt 18 break 19 for j in [-1, 1]: 20 dest = cur + j 21 if 0 &lt;= dest &lt;= 10**8 and not visited[dest]: 22 q.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-24 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-23T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98_%ED%95%A0%EC%9D%B8%ED%96%89%EC%82%AC/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 이모티콘 할인행사 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98_%ED%95%A0%EC%9D%B8%ED%96%89%EC%82%AC/ class="content-summary text-sm overflow-hidden">
-1result = [] 2 3def dfs(size, percent, users, emoticons): 4 global result 5 6 if len(percent) == size: 7 temp = [0] * len(users) 8 for i in range(size): 9 for j in range(len(users)): 10 if percent[i]*100 >= users[j][0]: 11 temp[j] += emoticons[i]*(1-percent[i]) 12 serviceNum = 0 13 income = 0 14 for i in range(len(users)): 15 if temp[i] >= users[i][1]: 16 serviceNum += 1 17 else: 18 income += temp[i] 19 result.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-23 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-21T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%ED%83%9D%EB%B0%B0_%EB%B0%B0%EB%8B%AC%EA%B3%BC_%EC%88%98%EA%B1%B0%ED%95%98%EA%B8%B0/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 택배 배달과 수거하기 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%ED%83%9D%EB%B0%B0_%EB%B0%B0%EB%8B%AC%EA%B3%BC_%EC%88%98%EA%B1%B0%ED%95%98%EA%B8%B0/ class="content-summary text-sm overflow-hidden">
-1def solution(cap, n, deliveries, pickups): 2 answer = 0 3 tempD = 0 4 tempP = 0 5 for i in range(n-1, -1, -1): 6 tempD += deliveries[i] 7 tempP += pickups[i] 8 9 while tempD > 0 or tempP > 0: 10 tempD -= cap 11 tempP -= cap 12 answer += (i+1)*2 13 return answer 문제 트럭에 실을 수 있는 재활용 택배 상자의 최대개수 cap, 배달할 집의 개수 n 택배 상자의 개수를 담은 deliveries, 재활용 택배 상자의 개수를 담은 pickups가 주어진다 트럭하나로 모든 배달과 수거를 마치고 돌아올 수 있는 최소 이동 거리를 구하라 TC input (cap, n, deliveries, pickups) 4, 5, [1, 0, 3, 1, 2], [0, 3, 0, 4, 0]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-21 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2023-07-20T00:00:00\u002b09:00')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/pgs_%EC%8B%9C%EC%86%8C_%EC%A7%9D%EA%BF%8D/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프로그래머스 - 시소 짝꿍 (L2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/pgs_%EC%8B%9C%EC%86%8C_%EC%A7%9D%EA%BF%8D/ class="content-summary text-sm overflow-hidden">
-1def solution(weights): 2 answer = 0 3 wdict = {} 4 5 weights.sort(reverse=True) 6 for i in weights: 7 if i in wdict: 8 answer += wdict[i] 9 if i*3/2 in wdict: 10 answer += wdict[i*3/2] 11 if i*2 in wdict: 12 answer += wdict[i*2] 13 if i*4/3 in wdict: 14 answer += wdict[i*4/3] 15 16 wdict[i] = wdict[i]+1 if i in wdict else 1 17 return answer 문제 시소에는 중심으로부터 2m, 3m, 4m 떨어진 거리에 좌석이 존재한다 양쪽의 탑승한 사람의 무게와 시소 축과 좌석 간의 거리의 곱이 같아서 시소가 평행을 이룬다면 그 둘을 시소 짝꿍이라고 할 수 있다 사람들의 몸무게 배열이 주어질 때, 시소 짝꿍이 몇 쌍 존재하는지 구하라 TC input [100,180,360,100,270]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2023-07-20 00:00:00 +0900 KST">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class=py-16>
-<div id=pagination-box>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/10/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
-</li>
-<li class=page-item>
-<a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
-</li>
-<li class=page-item>
-<a href=/til/page/10/ aria-label="Page 10" class=page-link role=button>10</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 11" class=page-link role=button>11</a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label="Page 12" class=page-link role=button>12</a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
-</ul>
-</div>
-</div>
-</section>
-<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
-<span class="text-xl mr-3">🧠</span>
-<span> Algorithm (104)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
-<span class="text-xl mr-3">🌊</span>
-<span> C/CPP (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
-<span class="text-xl mr-3">☕</span>
-<span> Java (8)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
-<span class="text-xl mr-3">🍌</span>
-<span> Javascript (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
-<span class="text-xl mr-3">🐍</span>
-<span> Python (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span> Spring (30)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
-<span class="text-xl mr-3">🔨</span>
-<span> 개발 도구 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
-<span class="text-xl mr-3">🎸</span>
-<span> 기타 (7)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
-<span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (38)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
-<span class="text-xl mr-3">🤖</span>
-<span> 인공지능 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span> 학과 공부 (28)</span>
-</a>
-</section>
-<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+<label for=switch-tag class=switch-button>태그
+</label><input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">검색</label></form><div class="w-full p-5"><section id=summary-section class="grid gap-8"><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-2-06/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24하계] 06 : 결과</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-2-06/ class="content-summary text-sm overflow-hidden"><h3 id=배경>배경</h3><ul><li>테커 부트캠프 최종발표 전날이다.</li><li>gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다.</li></ul><h3 id=문제>문제</h3><ul><li>배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,)</li><li>다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다.</li><li>nginx의 log</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>{IP주소} <span style=color:#f92672>-</span> <span style=color:#f92672>-</span> [<span style=color:#ae81ff>02</span><span style=color:#f92672>/</span>Aug<span style=color:#f92672>/</span><span style=color:#ae81ff>2024</span><span style=color:#f92672>:</span><span style=color:#ae81ff>10</span><span style=color:#f92672>:</span><span style=color:#ae81ff>59</span><span style=color:#f92672>:</span><span style=color:#ae81ff>04</span> <span style=color:#f92672>+</span><span style=color:#ae81ff>0000</span>] <span style=color:#e6db74>&#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&#34;</span> <span style=color:#ae81ff>404</span> <span style=color:#ae81ff>22</span> <span style=color:#e6db74>&#34;-&#34;</span> <span style=color:#e6db74>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>{IP주소} <span style=color:#f92672>-</span> <span style=color:#f92672>-</span> [<span style=color:#ae81ff>02</span><span style=color:#f92672>/</span>Aug<span style=color:#f92672>/</span><span style=color:#ae81ff>2024</span><span style=color:#f92672>:</span><span style=color:#ae81ff>10</span><span style=color:#f92672>:</span><span style=color:#ae81ff>59</span><span style=color:#f92672>:</span><span style=color:#ae81ff>05</span> <span style=color:#f92672>+</span><span style=color:#ae81ff>0000</span>] <span style=color:#e6db74>&#34;GET /ws/chatrooms/294?user_id=296 HTTP/1.1&#34;</span> <span style=color:#ae81ff>404</span> <span style=color:#ae81ff>22</span> <span style=color:#e6db74>&#34;-&#34;</span> <span style=color:#e6db74>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15&#34;</span>
+</span></span></code></pre></div><h3 id=사고흐름>사고흐름</h3><ol><li>nginx 설정 문제인가? X<ul><li>nginx 설정은 변경되지 않았다.</li></ul></li><li>배포환경의 문제인가? X<ul><li>로컬에서 실행한 서버에서도 동일한 문제가 발생하였다.</li></ul></li><li>이번 배포에서 변경된 소스코드가 문제인가? X<ul><li>육안으로 확인했을 때는, 변경된 부분이 웹소켓과 관련이 없다.</li><li>로컬에서 이전 버전으로 reset 후 시도 해보았지만 문제가 해결되지 않았다.</li></ul></li><li>Docker image 문제인가? X<ul><li>백엔드 서버는 python:slim 이미지를 사용하고 있으며, 해당 이미지가 변경되어서 문제가 발생할 가능성이 있다고 생각했다.</li><li>로컬에서 docker image를 사용하지 않고 실행해보았지만 문제가 해결되지 않았다.</li><li>이때, 로그에서 <strong>warning 메시지</strong>를 확인했다.</li></ul><pre tabindex=0><code>WARNING:  No supported WebSocket library detected. Please use &#34;pip install &#39;uvicorn[standard]&#39;&#34;, or install &#39;websockets&#39; or &#39;wsproto&#39; manually.
+</code></pre></li></ol><h3 id=원인>원인</h3><ul><li>모종의 이유로, 이전에 개발/배포할때에는 존재했던 웹소켓 관련 라이브러리가 사라진 것이다.</li><li>오류를 해결하고 조사해본 결과 fastapi 레포지토리에 6시간 전 merge된 PR을 확인할 수 있었다. (<a href=https://github.com/fastapi/fastapi/pull/11935>https://github.com/fastapi/fastapi/pull/11935</a>)</li><li>해당 PR에서는 <code>pip install fastapi[standard]</code> 를 통해 표준 종속 라이브러리를 설치하는 기능이 추가되었다.</li><li>이로 인해, <code>uvicorn[standard]</code> 라이브러리를 설치하지 않았을 때, 웹소켓 관련 라이브러리가 설치되지 않아 발생한 문제였다.</li></ul><h3 id=해결>해결</h3><ul><li>requirements.txt에 <code>websockets</code>를 추가해서 문제를 해결할 수 있었다.</li></ul><h3 id=배운-점>배운 점</h3><ul><li>중요한 프로젝트를 할 때 requirements.txt에 항상 각 라이브러리에 버전을 명시해야겠다는 생각이 들었다.</li><li>이번에도 버전을 명시했다면, 라이브러리가 업데이트 되더라도 문제가 발생하지 않았을 것이다.</li><li>또한, 로그를 잘 확인하고, warning 메시지를 놓치지 않도록 주의해야겠다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/c_cpp/c_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">C언어 개념 정리</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🌊</span>
+<span>C/CPP</span></div></div></div><div class=flex-grow><a href=/til/c_cpp/c_concept/ class="content-summary text-sm overflow-hidden"><blockquote><p>본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.</p></blockquote><h3 id=dead-code---unreachable-code>dead code &lt;-> unreachable code</h3><ul><li>dead code : 코드에서 실행되지만 그 결과가 다른 계산에 사용될 수 없는 섹션</li><li>unreachable code : 제어 흐름 경로가 없기 때문에 실행할 수 없는 프로그램 소스 코드의 일부</li></ul><h3 id=tag>tag</h3><ul><li>struct, union, enum 뒤에 붙는 이름</li></ul><h3 id=escape-sequence>escape sequence</h3><ul><li>백슬래시()와 특정문자를 결합하여 표현하기 어려운 기능, 문자를 표시해준다.</li><li>종류 (대표적인 것만 몇개 뽑았다)<ul><li>\n : 개행</li><li>\t : 수평 탭</li><li>\o(8진수 숫자) : 8진수</li><li>\x(16진수 숫자) : 16진수</li></ul></li></ul><h3 id=연결>연결</h3><blockquote><p>다른 범위에 속하는 변수들을 서로 연결하는 것</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2748/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 2748 : 피보나치 수2 (B2)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_2748/ class="content-summary text-sm overflow-hidden"><ul><li>&ldquo;알고리즘 분류-DP"에서 안 푼 문제이길래 한 번 풀어봤다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>N <span style=color:#f92672>=</span> int(input())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>L <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> [<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span><span style=color:#ae81ff>89</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    L[i] <span style=color:#f92672>=</span> L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>L[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>print (L[N])
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2573/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 2573 : 빙산 (G5)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_2573/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>import</span> copy
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> deque
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>N, M <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>L[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>L[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][M<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>vx <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>vy <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>melt</span>(L):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    L_ <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(L)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(N):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>            <span style=color:#66d9ef>if</span> L[j][i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>                <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>                    nx <span style=color:#f92672>=</span> j <span style=color:#f92672>+</span> vx[k]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>                    ny <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> vy[k]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>                    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>                        <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>                    <span style=color:#66d9ef>if</span> L[nx][ny] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> L_[j][i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>                        L_[j][i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>    <span style=color:#66d9ef>return</span> L_
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check</span>(L):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>    visited <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>    q <span style=color:#f92672>=</span> deque()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>    c <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(M):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(N):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>            <span style=color:#66d9ef>if</span> L[j][i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> visited[j][i]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>                q<span style=color:#f92672>.</span>append((j, i))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>                <span style=color:#66d9ef>while</span> q:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>                    cx, cy <span style=color:#f92672>=</span> q<span style=color:#f92672>.</span>popleft()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>                    <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>4</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>                        nx <span style=color:#f92672>=</span> cx <span style=color:#f92672>+</span> vx[k]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>                        ny <span style=color:#f92672>=</span> cy <span style=color:#f92672>+</span> vy[k]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>                        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> nx <span style=color:#f92672>&lt;</span> N <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> ny <span style=color:#f92672>&lt;</span> M <span style=color:#f92672>or</span> visited[nx][ny]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span><span>                            <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span>                        <span style=color:#66d9ef>if</span> L[nx][ny] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span><span>                            visited[nx][ny] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span><span>                            q<span style=color:#f92672>.</span>append((nx, ny))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span><span>                c <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">48</span><span>    <span style=color:#66d9ef>return</span> c
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">49</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">50</span><span>cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">51</span><span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">52</span><span>    cnt <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">53</span><span>    L <span style=color:#f92672>=</span> melt(L)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">54</span><span>    t <span style=color:#f92672>=</span> check(L)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">55</span><span>    <span style=color:#66d9ef>if</span> t <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">56</span><span>        print (<span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">57</span><span>        <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">58</span><span>    <span style=color:#66d9ef>if</span> t <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">59</span><span>        print (cnt)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">60</span><span>        <span style=color:#66d9ef>break</span>
+</span></span></code></pre></div><ul><li>가로세로가 헷갈리면 안되는데.. 큰일이다</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2565/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 2565 : 전깃줄 (G5)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_2565/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>N <span style=color:#f92672>=</span> int(input())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>L <span style=color:#f92672>=</span> [i[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> sorted(L)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>N
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(N):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    dp[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        <span style=color:#66d9ef>if</span> L[j] <span style=color:#f92672>&lt;</span> L[i]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            dp[i] <span style=color:#f92672>=</span> max(dp[i], dp[j]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>print (N<span style=color:#f92672>-</span>max(dp))
+</span></span></code></pre></div><ul><li>LIS를 이용하는 문제</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2294/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 2294 : 동전 2 (G5)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_2294/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>N, K <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>V <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    V<span style=color:#f92672>.</span>append(int(input()))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>+</span>([<span style=color:#ae81ff>10001</span>]<span style=color:#f92672>*</span>K) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, K<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        <span style=color:#66d9ef>if</span> j <span style=color:#f92672>&gt;=</span> V[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>            dp[i][j] <span style=color:#f92672>=</span> min(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j], dp[i][j<span style=color:#f92672>-</span>V[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>            dp[i][j] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>res <span style=color:#f92672>=</span> dp[N][K]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>print (res <span style=color:#66d9ef>if</span> res <span style=color:#f92672>!=</span> <span style=color:#ae81ff>10001</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span></code></pre></div><ul><li>dp를 많이 풀어보자</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2225/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 2225 - 합분해 (G5)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_2225/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>N, K <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>(N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(K<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, K<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, K<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        dp[i][j] <span style=color:#f92672>=</span> (dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j] <span style=color:#f92672>+</span> dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>%</span><span style=color:#ae81ff>1000000000</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>print (dp[K][N])
+</span></span></code></pre></div><ul><li>내 힘으로 풀었다!</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_2193/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 2193 : 이친수 (S3)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_2193/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>N <span style=color:#f92672>=</span> int(input())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>N
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, N):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    dp[i] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]<span style=color:#f92672>+</span>dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>print (dp[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span></code></pre></div><ul><li>피보나치였다</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_17404/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 17404 : RGB거리 2 (G4)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_17404/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>N <span style=color:#f92672>=</span> int(input())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>L <span style=color:#f92672>=</span> [list(map(int, input()<span style=color:#f92672>.</span>split())) <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>result <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>3</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(N)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    dp[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> [<span style=color:#ae81ff>10000</span>]<span style=color:#f92672>*</span><span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    dp[<span style=color:#ae81ff>0</span>][i] <span style=color:#f92672>=</span> L[<span style=color:#ae81ff>0</span>][i]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        dp[j][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> min(dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>], dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>])<span style=color:#f92672>+</span>L[j][<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        dp[j][<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> min(dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>2</span>])<span style=color:#f92672>+</span>L[j][<span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        dp[j][<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> min(dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>], dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>1</span>])<span style=color:#f92672>+</span>L[j][<span style=color:#ae81ff>2</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    dp[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    result <span style=color:#f92672>=</span> min([result]<span style=color:#f92672>+</span>dp[N<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>print (result)
+</span></span></code></pre></div><ul><li><p>인터넷을 참고하여 풀었다</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T01:29:52Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_1699/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 1699 : 제곱수의 합 (S2)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_1699/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>N <span style=color:#f92672>=</span> int(input())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>100000</span>]<span style=color:#f92672>*</span>(N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>tmp <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>if</span> i<span style=color:#f92672>**</span>(<span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>) <span style=color:#f92672>%</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        dp[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        tmp <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, tmp):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>            dp[i] <span style=color:#f92672>=</span> min(dp[i], dp[i<span style=color:#f92672>-</span>(j<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>)]<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>print (dp[N])
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC"></div></div><div class="border-b border-line"></div><div class=py-16><div id=pagination-box><ul class="pagination pagination-default"><li class=page-item><a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/til/page/10/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/til/page/9/ aria-label="Page 9" class=page-link role=button>9</a></li><li class=page-item><a href=/til/page/10/ aria-label="Page 10" class=page-link role=button>10</a></li><li class="page-item active"><a aria-current=page aria-label="Page 11" class=page-link role=button>11</a></li><li class=page-item><a href=/til/page/12/ aria-label="Page 12" class=page-link role=button>12</a></li><li class=page-item><a href=/til/page/13/ aria-label="Page 13" class=page-link role=button>13</a></li><li class=page-item><a href=/til/page/12/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/til/page/24/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></section><section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/><span class="text-xl mr-3">🧠</span>
+<span>Algorithm (104)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/><span class="text-xl mr-3">🌊</span>
+<span>C/CPP (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/><span class="text-xl mr-3">☕</span>
+<span>Java (8)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/><span class="text-xl mr-3">🍌</span>
+<span>Javascript (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/><span class="text-xl mr-3">🐍</span>
+<span>Python (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/><span class="text-xl mr-3">🍃</span>
+<span>Spring (30)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/><span class="text-xl mr-3">🔨</span>
+<span>개발 도구 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/><span class="text-xl mr-3">🎸</span>
+<span>기타 (7)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/><span class="text-xl mr-3">👨‍💻</span>
+<span>모각코 (38)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/><span class="text-xl mr-3">🤖</span>
+<span>인공지능 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/><span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (28)</span></a></section><section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>boj (53)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c++ (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>celery (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>cs (18)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>django (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>docker (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>docker-compose (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker%20compose class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>docker compose (1)</span>
+</a><a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>elk (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>fastapi (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>git (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>github-actions (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/github%20actions class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>github actions (5)</span>
+</a><a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>hackerrank (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>https (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>java (37)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>javascript (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>jwt (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>kubernetes (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>nginx (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ocaml (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>open-source (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/open%20source class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>open source (2)</span>
+</a><a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>programmers (48)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>pytest (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>python (111)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rabbitmq (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rag (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>react (6)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>security (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>software-engineering (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>spring (31)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>sql (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ssl (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>testing (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>typescript (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>vercel (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>websocket (1)</span>
-</a>
-</section>
-<section id=search-section class=hidden>
-<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
-<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
-<style>div.pagefind-ui__result-thumb{display:none}</style>
-<div id=search></div>
-<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
-</section>
-</div>
-</main>
-</div>
-</div>
-</body>
-</html>
+</a><a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span></a></section><section id=search-section class=hidden><link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet><script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script><style>div.pagefind-ui__result-thumb{display:none}</style><div id=search></div><script>window.addEventListener("DOMContentLoaded",e=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:e=>(e.meta&&e.meta.image&&e.meta.image_alt&&(delete e.meta.image,delete e.meta.image_alt),e)})})</script></section></div></main></div></div></body></html>

@@ -1,247 +1,132 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Django - JWT 인증</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
- JWT …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Django - JWT 인증">
-<meta property="og:description" content="JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
- JWT …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#jwt-인증-구현하기>JWT 인증 구현하기</a>
-<ul>
-<li><a href=#requirements>requirements</a></li>
-<li><a href=#settingspy>settings.py</a></li>
-<li><a href=#urlspy>urls.py</a></li>
-<li><a href=#viewspy>views.py</a></li>
-<li><a href=#결과>결과</a></li>
-</ul>
-</li>
-<li><a href=#blacklist-적용>Blacklist 적용</a>
-<ul>
-<li><a href=#settingspy-1>settings.py</a></li>
-<li><a href=#결과-1>결과</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Django - JWT 인증
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ django</span>
-<span class="text-md mr-1">🏷️ jwt</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<blockquote>
-<p>JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.</p>
-</blockquote>
-<h2 id=jwt-인증-구현하기>JWT 인증 구현하기</h2>
-<blockquote>
-<p>장고에서는 <code>djangorestframework-simplejwt</code> 패키지를 사용하여 JWT 인증을 구현할 수 있다.</p>
-</blockquote>
-<h3 id=requirements>requirements</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>pip install djangorestframework-simplejwt
-</code></pre></div><h3 id=settingspy>settings.py</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>INSTALLED_APPS <span style=color:#f92672>=</span> [
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#e6db74>&#39;rest_framework&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#e6db74>&#39;rest_framework_simplejwt&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>]
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>REST_FRAMEWORK <span style=color:#f92672>=</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#75715e># 기본 인증 클래스를 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#e6db74>&#39;DEFAULT_AUTHENTICATION_CLASSES&#39;</span>: (
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        <span style=color:#e6db74>&#39;rest_framework_simplejwt.authentication.JWTAuthentication&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    ),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># 기본 스키마 클래스를 설정, CoreAPI를 사용하여 자동으로 API 문서화를 생성</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#e6db74>&#39;DEFAULT_SCHEMA_CLASS&#39;</span>: <span style=color:#e6db74>&#39;rest_framework.schemas.coreapi.AutoSchema&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># 기본 권한 클래스를 설정, AllowAny를 사용하여 모든 요청을 허용</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#e6db74>&#39;DEFAULT_PERMISSION_CLASSES&#39;</span>: (
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#e6db74>&#39;rest_framework.permissions.AllowAny&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    ),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>}
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> timedelta
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>SIMPLE_JWT <span style=color:#f92672>=</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#75715e># 액세스 토큰의 유효 기간을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#e6db74>&#39;ACCESS_TOKEN_LIFETIME&#39;</span>: timedelta(minutes<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># 리프레시 토큰의 유효 기간을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#e6db74>&#39;REFRESH_TOKEN_LIFETIME&#39;</span>: timedelta(days<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># 리프레시 토큰이 갱신될 때마다 새로운 리프레시 토큰을 발급할지 여부를 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#e6db74>&#39;ROTATE_REFRESH_TOKENS&#39;</span>: <span style=color:#66d9ef>False</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#75715e># 리프레시 토큰이 갱신된 후 이전 토큰을 블랙리스트에 추가할지 여부를 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#e6db74>&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span style=color:#66d9ef>True</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#75715e># JWT 토큰의 암호화 알고리즘을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#e6db74>&#39;ALGORITHM&#39;</span>: <span style=color:#e6db74>&#39;HS256&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#75715e># JWT 토큰을 서명할 때 사용할 키를 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#e6db74>&#39;SIGNING_KEY&#39;</span>: SECRET_KEY,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#75715e># 토큰 검증에 사용할 공개 키를 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#e6db74>&#39;VERIFYING_KEY&#39;</span>: <span style=color:#66d9ef>None</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>    <span style=color:#75715e># 토큰의 대상자(aud) 클레임을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#e6db74>&#39;AUDIENCE&#39;</span>: <span style=color:#66d9ef>None</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#75715e># 토큰의 발급자(iss) 클레임을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    <span style=color:#e6db74>&#39;ISSUER&#39;</span>: <span style=color:#66d9ef>None</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>    <span style=color:#75715e># 인증 헤더 타입을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    <span style=color:#e6db74>&#39;AUTH_HEADER_TYPES&#39;</span>: (<span style=color:#e6db74>&#39;Bearer&#39;</span>,),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>    <span style=color:#75715e># 인증 헤더의 이름을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>    <span style=color:#e6db74>&#39;AUTH_HEADER_NAME&#39;</span>: <span style=color:#e6db74>&#39;HTTP_AUTHORIZATION&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>    <span style=color:#75715e># 사용자 모델에서 사용자 ID 필드를 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#e6db74>&#39;USER_ID_FIELD&#39;</span>: <span style=color:#e6db74>&#39;id&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#75715e># JWT 토큰에서 사용자 ID를 저장할 클레임을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>    <span style=color:#e6db74>&#39;USER_ID_CLAIM&#39;</span>: <span style=color:#e6db74>&#39;user_id&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>    <span style=color:#75715e># 인증에 사용할 토큰 클래스들을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>    <span style=color:#e6db74>&#39;AUTH_TOKEN_CLASSES&#39;</span>: (<span style=color:#e6db74>&#39;rest_framework_simplejwt.tokens.AccessToken&#39;</span>,),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#75715e># 토큰의 유형을 저장할 클레임을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>    <span style=color:#e6db74>&#39;TOKEN_TYPE_CLAIM&#39;</span>: <span style=color:#e6db74>&#39;token_type&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>}
-</code></pre></div><h3 id=urlspy>urls.py</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> rest_framework_simplejwt.views <span style=color:#f92672>import</span> TokenObtainPairView, TokenRefreshView
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> rest_framework_simplejwt.authentication <span style=color:#f92672>import</span> JWTAuthentication
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>urlpatterns <span style=color:#f92672>=</span> [
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e># JWT 토큰을 발급하는 뷰</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>   path(<span style=color:#e6db74>&#34;token/&#34;</span>, TokenObtainPairView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;token_obtain_pair&#34;</span>),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e># JWT 토큰을 갱신하는 뷰</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>   path(<span style=color:#e6db74>&#34;token/refresh/&#34;</span>, TokenRefreshView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;token_refresh&#34;</span>),
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>]
-</code></pre></div><h3 id=viewspy>views.py</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> permissions
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> rest_framework_simplejwt.authentication <span style=color:#f92672>import</span> JWTAuthentication
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> drf_yasg.utils <span style=color:#f92672>import</span> swagger_auto_schema
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>   <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request, pk):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>        <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>        <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>
-</code></pre></div><h3 id=결과>결과</h3>
-<ul>
-<li><code>TokenObtainPairView</code>를 통해 access token과 refresh token을 발급받을 수 있다.</li>
-<li><code>TokenRefreshView</code>를 통해 refresh token을 사용하여 access token을 갱신할 수 있다.</li>
-<li>access token과 refresh token은 settings.py에서 설정한 유효 기간에 따라 만료된다.</li>
-</ul>
-<h2 id=blacklist-적용>Blacklist 적용</h2>
-<h3 id=settingspy-1>settings.py</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>INSTALLED_APPS <span style=color:#f92672>=</span> [
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#e6db74>&#39;rest_framework_simplejwt.token_blacklist&#39;</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>]
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>SIMPLE_JWT <span style=color:#f92672>=</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>...</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#75715e># 블랙리스트에 토큰을 추가할 때 사용할 모델을 설정</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#e6db74>&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span style=color:#66d9ef>True</span>,
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
-</code></pre></div><h3 id=결과-1>결과</h3>
-<ul>
-<li><code>TokenRefreshView</code>를 통해 토큰이 재발급될 때, 이전 refresh token을 블랙리스트에 추가한다.</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/django_basic/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>Django - JWT 인증</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
+JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
+
+JWT 인증 구현하기
+
+장고에서는 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Django - JWT 인증"><meta property="og:description" content="
+JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
+
+JWT 인증 구현하기
+
+장고에서는 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#jwt-인증-구현하기>JWT 인증 구현하기</a><ul><li><a href=#requirements>requirements</a></li><li><a href=#settingspy>settings.py</a></li><li><a href=#urlspy>urls.py</a></li><li><a href=#viewspy>views.py</a></li><li><a href=#결과>결과</a></li></ul></li><li><a href=#blacklist-적용>Blacklist 적용</a><ul><li><a href=#settingspy-1>settings.py</a></li><li><a href=#결과-1>결과</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Django - JWT 인증</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ django</span>
+<span class="text-md mr-1">🏷️ jwt</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><blockquote><p>JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.</p></blockquote><h2 id=jwt-인증-구현하기>JWT 인증 구현하기</h2><blockquote><p>장고에서는 <code>djangorestframework-simplejwt</code> 패키지를 사용하여 JWT 인증을 구현할 수 있다.</p></blockquote><h3 id=requirements>requirements</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>pip install djangorestframework-simplejwt
+</span></span></code></pre></div><h3 id=settingspy>settings.py</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>INSTALLED_APPS <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#e6db74>&#39;rest_framework&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    <span style=color:#e6db74>&#39;rest_framework_simplejwt&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>REST_FRAMEWORK <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#75715e># 기본 인증 클래스를 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#e6db74>&#39;DEFAULT_AUTHENTICATION_CLASSES&#39;</span>: (
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>        <span style=color:#e6db74>&#39;rest_framework_simplejwt.authentication.JWTAuthentication&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    ),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#75715e># 기본 스키마 클래스를 설정, CoreAPI를 사용하여 자동으로 API 문서화를 생성</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#e6db74>&#39;DEFAULT_SCHEMA_CLASS&#39;</span>: <span style=color:#e6db74>&#39;rest_framework.schemas.coreapi.AutoSchema&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e># 기본 권한 클래스를 설정, AllowAny를 사용하여 모든 요청을 허용</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#e6db74>&#39;DEFAULT_PERMISSION_CLASSES&#39;</span>: (
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>        <span style=color:#e6db74>&#39;rest_framework.permissions.AllowAny&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    ),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> timedelta
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>SIMPLE_JWT <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#75715e># 액세스 토큰의 유효 기간을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#e6db74>&#39;ACCESS_TOKEN_LIFETIME&#39;</span>: timedelta(minutes<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#75715e># 리프레시 토큰의 유효 기간을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#e6db74>&#39;REFRESH_TOKEN_LIFETIME&#39;</span>: timedelta(days<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e># 리프레시 토큰이 갱신될 때마다 새로운 리프레시 토큰을 발급할지 여부를 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#e6db74>&#39;ROTATE_REFRESH_TOKENS&#39;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#75715e># 리프레시 토큰이 갱신된 후 이전 토큰을 블랙리스트에 추가할지 여부를 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#e6db74>&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    <span style=color:#75715e># JWT 토큰의 암호화 알고리즘을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#e6db74>&#39;ALGORITHM&#39;</span>: <span style=color:#e6db74>&#39;HS256&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    <span style=color:#75715e># JWT 토큰을 서명할 때 사용할 키를 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#e6db74>&#39;SIGNING_KEY&#39;</span>: SECRET_KEY,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    <span style=color:#75715e># 토큰 검증에 사용할 공개 키를 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    <span style=color:#e6db74>&#39;VERIFYING_KEY&#39;</span>: <span style=color:#66d9ef>None</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>    <span style=color:#75715e># 토큰의 대상자(aud) 클레임을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    <span style=color:#e6db74>&#39;AUDIENCE&#39;</span>: <span style=color:#66d9ef>None</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    <span style=color:#75715e># 토큰의 발급자(iss) 클레임을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>    <span style=color:#e6db74>&#39;ISSUER&#39;</span>: <span style=color:#66d9ef>None</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>    <span style=color:#75715e># 인증 헤더 타입을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>    <span style=color:#e6db74>&#39;AUTH_HEADER_TYPES&#39;</span>: (<span style=color:#e6db74>&#39;Bearer&#39;</span>,),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>    <span style=color:#75715e># 인증 헤더의 이름을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>    <span style=color:#e6db74>&#39;AUTH_HEADER_NAME&#39;</span>: <span style=color:#e6db74>&#39;HTTP_AUTHORIZATION&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>    <span style=color:#75715e># 사용자 모델에서 사용자 ID 필드를 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>    <span style=color:#e6db74>&#39;USER_ID_FIELD&#39;</span>: <span style=color:#e6db74>&#39;id&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>    <span style=color:#75715e># JWT 토큰에서 사용자 ID를 저장할 클레임을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>    <span style=color:#e6db74>&#39;USER_ID_CLAIM&#39;</span>: <span style=color:#e6db74>&#39;user_id&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>    <span style=color:#75715e># 인증에 사용할 토큰 클래스들을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>    <span style=color:#e6db74>&#39;AUTH_TOKEN_CLASSES&#39;</span>: (<span style=color:#e6db74>&#39;rest_framework_simplejwt.tokens.AccessToken&#39;</span>,),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>    <span style=color:#75715e># 토큰의 유형을 저장할 클레임을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>    <span style=color:#e6db74>&#39;TOKEN_TYPE_CLAIM&#39;</span>: <span style=color:#e6db74>&#39;token_type&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>}
+</span></span></code></pre></div><h3 id=urlspy>urls.py</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> rest_framework_simplejwt.views <span style=color:#f92672>import</span> TokenObtainPairView, TokenRefreshView
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>from</span> rest_framework_simplejwt.authentication <span style=color:#f92672>import</span> JWTAuthentication
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>urlpatterns <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#75715e># JWT 토큰을 발급하는 뷰</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>   path(<span style=color:#e6db74>&#34;token/&#34;</span>, TokenObtainPairView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;token_obtain_pair&#34;</span>),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e># JWT 토큰을 갱신하는 뷰</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>   path(<span style=color:#e6db74>&#34;token/refresh/&#34;</span>, TokenRefreshView<span style=color:#f92672>.</span>as_view(), name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;token_refresh&#34;</span>),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>]
+</span></span></code></pre></div><h3 id=viewspy>views.py</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> rest_framework <span style=color:#f92672>import</span> permissions
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> rest_framework_simplejwt.authentication <span style=color:#f92672>import</span> JWTAuthentication
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>from</span> drf_yasg.utils <span style=color:#f92672>import</span> swagger_auto_schema
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteView</span>(APIView):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>post</span>(self, request):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>   <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PasteDetailView</span>(APIView):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, request, pk):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>        <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, request, pk):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>        <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete</span>(self, request, pk):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>        <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_permissions</span>(self):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>        <span style=color:#75715e># SAFE_METHODS : GET, HEAD, OPTIONS</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>request<span style=color:#f92672>.</span>method <span style=color:#f92672>in</span> permissions<span style=color:#f92672>.</span>SAFE_METHODS:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>AllowAny]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>            self<span style=color:#f92672>.</span>authentication_classes <span style=color:#f92672>=</span> [JWTAuthentication]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>            self<span style=color:#f92672>.</span>permission_classes <span style=color:#f92672>=</span> [permissions<span style=color:#f92672>.</span>IsAuthenticated]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>        <span style=color:#66d9ef>return</span> super()<span style=color:#f92672>.</span>get_permissions()
+</span></span></code></pre></div><h3 id=결과>결과</h3><ul><li><code>TokenObtainPairView</code>를 통해 access token과 refresh token을 발급받을 수 있다.</li><li><code>TokenRefreshView</code>를 통해 refresh token을 사용하여 access token을 갱신할 수 있다.</li><li>access token과 refresh token은 settings.py에서 설정한 유효 기간에 따라 만료된다.</li></ul><h2 id=blacklist-적용>Blacklist 적용</h2><h3 id=settingspy-1>settings.py</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>INSTALLED_APPS <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#e6db74>&#39;rest_framework_simplejwt.token_blacklist&#39;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>SIMPLE_JWT <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#75715e># 블랙리스트에 토큰을 추가할 때 사용할 모델을 설정</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    <span style=color:#e6db74>&#39;BLACKLIST_AFTER_ROTATION&#39;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><h3 id=결과-1>결과</h3><ul><li><code>TokenRefreshView</code>를 통해 토큰이 재발급될 때, 이전 refresh token을 블랙리스트에 추가한다.</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/python/django_basic/><span class=mx-3>◀</span>
 Django - crud 기초
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/python/fastapi_rabbitmq_celery/>
-Fastapi, RabbitMQ, Celery 연동
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/python/fastapi_rabbitmq_celery/>Fastapi, RabbitMQ, Celery 연동
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

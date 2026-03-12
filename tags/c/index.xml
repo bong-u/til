@@ -1,8 +1,366 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C on bong-u/til</title><link>https://bong-u.github.io/til/tags/c/</link><description>Recent content in C on bong-u/til</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 08 Sep 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>C언어 개념 정리</title><link>https://bong-u.github.io/til/c_cpp/c_concept/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/c_cpp/c_concept/</guid><description>본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.
-dead code &amp;lt;-&amp;gt; unreachable code dead code : 코드에서 실행되지만 그 결과가 다른 계산에 사용될 수 없는 섹션 unreachable code : 제어 흐름 경로가 없기 때문에 실행할 수 없는 프로그램 소스 코드의 일부 tag struct, union, enum 뒤에 붙는 이름 escape sequence 백슬래시()와 특정문자를 결합하여 표현하기 어려운 기능, 문자를 표시해준다. 종류 (대표적인 것만 몇개 뽑았다) \n : 개행 \t : 수평 탭 \o(8진수 숫자) : 8진수 \x(16진수 숫자) : 16진수 연결 다른 범위에 속하는 변수들을 서로 연결하는 것</description></item><item><title>운영체제 - 기말범위</title><link>https://bong-u.github.io/til/school/operatingsystem2/</link><pubDate>Mon, 29 May 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/operatingsystem2/</guid><description>06-File-Management Directory File Directory Directory도 일종의 파일이다 해당 파일 FCB의 식별자만 저장한다 inode (index node) Unix에서는 FCB와 inode가 같다 모든 파일, 폴더가 Unique한 값을 가진다. (root는 2로 고정) File Systems 파티션의 구조 boot block, super block, FCB list, data blocks Partition Control block (Super block) blocks 개수, free data blocks 개수, free data blocks list 저장 inode table, free inode 개수, free inode list 저장 File Control Block (FCB) UNIX에서 128byte의 크기를 가진다 파일 이름, 파일 크기, uid, gid, 파일 주소 등등 저장 Management of Data Blocks Contiguous Allocation 각각의 파일을 연속적으로 저장 Direct Access File grow problem 존재 External fragmentation, Internal fragmentation 발생 Chained Allocation Direct acess File grow problem X External fragmentation X Poor data safety (앞 블록에 문제가 생기면 뒤 블록도 사용 불가능) Indexed Allocation (현대에 사용) Direct access File grow problem X External fragmentation X Medium level data safety (index block만 괜찮으면 된다) Index block이 추가로 필요하다 Free-Space Management Counting N-M&amp;hellip; N번부터 M개의 블록이 비어있다.</description></item><item><title>운영체제 - 중간범위</title><link>https://bong-u.github.io/til/school/operatingsystem1/</link><pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/operatingsystem1/</guid><description>운영체제 개요 운영체제의 역할 Program execution Access to computer resources (I/O device, Data&amp;hellip;) Error detection and response Accounting (ex: task manager) 운영체제의 발전 Serial Processing : No OS, No Job scheduling
-Simple batch system
-OS가 job을 할당 Controlled by monitor Uni-programming
-다 실행될때까지 기다림 bad utilization Multiprogramming
-The processor can switch to the other job better utilization, needs more memory Time sharing</description></item><item><title>221207 SYSP</title><link>https://bong-u.github.io/til/school/sysp_09_11/</link><pubDate>Mon, 09 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/sysp_09_11/</guid><description>09-process1 예외적인 제어 흐름 하위 매커니즘 예외 (Exception) 상위 매커니즘 프로세스 컨텍스트 전환 OS 소프트웨어와 하드웨어 타이머로 구현 시그널 OS 소프트웨어로 구현 nolocal 점프 예외 테이블 (Exception Tables) 각 이벤트 타입은 예외번호 k를 갖는다 비동기형 예외 (Interrupt) 입출력 인터럽트 (ctrl + c)
-하드 리셋 인터러트
-소프트 리셋 인터럽트</description></item><item><title>221208 SYSP</title><link>https://bong-u.github.io/til/school/sysp_12_13/</link><pubDate>Mon, 09 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/sysp_12_13/</guid><description>12-memory-1 메모리에 관한 불편한 진실 메모리는 무한의 자원이 아니다 동적 메모리 할당 직접(explicit) vs 간접(implicit) 메모리 할당기 직접 할당 : 응용프로그램이 할당하고, 반환한다 ex) malloc, free 간접 할당 : 응용프로그램이 할당하지만, 반환하지는 않는다 ex) java의 garbage collector 프로세스의 메모리 이미지 스택은 아래로, 힙은 위로 성장한다 sbrk 함수가 추가적인 힙 메모리를 운영체제로부터 요청한다 (brk 포인터 이동) Malloc package 1#include &amp;lt;stdlib.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C on bong-u/til</title><link>https://bong-u.github.io/til/tags/c/</link><description>Recent content in C on bong-u/til</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 15 Nov 2024 02:24:07 +0000</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>C언어 개념 정리</title><link>https://bong-u.github.io/til/c_cpp/c_concept/</link><pubDate>Sun, 08 Sep 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/c_cpp/c_concept/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="dead-code---unreachable-code"&gt;dead code &amp;lt;-&amp;gt; unreachable code&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;dead code : 코드에서 실행되지만 그 결과가 다른 계산에 사용될 수 없는 섹션&lt;/li&gt;
+&lt;li&gt;unreachable code : 제어 흐름 경로가 없기 때문에 실행할 수 없는 프로그램 소스 코드의 일부&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tag"&gt;tag&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;struct, union, enum 뒤에 붙는 이름&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="escape-sequence"&gt;escape sequence&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;백슬래시()와 특정문자를 결합하여 표현하기 어려운 기능, 문자를 표시해준다.&lt;/li&gt;
+&lt;li&gt;종류 (대표적인 것만 몇개 뽑았다)
+&lt;ul&gt;
+&lt;li&gt;\n : 개행&lt;/li&gt;
+&lt;li&gt;\t : 수평 탭&lt;/li&gt;
+&lt;li&gt;\o(8진수 숫자) : 8진수&lt;/li&gt;
+&lt;li&gt;\x(16진수 숫자) : 16진수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="연결"&gt;연결&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;다른 범위에 속하는 변수들을 서로 연결하는 것&lt;/p&gt;</description></item><item><title>운영체제 - 기말범위</title><link>https://bong-u.github.io/til/school/operatingsystem2/</link><pubDate>Mon, 29 May 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/operatingsystem2/</guid><description>&lt;h1 id="06-file-management"&gt;06-File-Management&lt;/h1&gt;
+&lt;h2 id="directory"&gt;Directory&lt;/h2&gt;
+&lt;h3 id="file-directory"&gt;File Directory&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Directory도 일종의 파일이다&lt;/li&gt;
+&lt;li&gt;해당 파일 FCB의 식별자만 저장한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="inode-index-node"&gt;inode (index node)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Unix에서는 FCB와 inode가 같다&lt;/li&gt;
+&lt;li&gt;모든 파일, 폴더가 Unique한 값을 가진다. (root는 2로 고정)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="file-systems"&gt;File Systems&lt;/h2&gt;
+&lt;h3 id="파티션의-구조"&gt;파티션의 구조&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;boot block, super block, FCB list, data blocks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="partition-control-block-super-block"&gt;Partition Control block (Super block)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;blocks 개수, free data blocks 개수, free data blocks list 저장&lt;/li&gt;
+&lt;li&gt;inode table, free inode 개수, free inode list 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="file-control-block-fcb"&gt;File Control Block (FCB)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;UNIX에서 128byte의 크기를 가진다&lt;/li&gt;
+&lt;li&gt;파일 이름, 파일 크기, uid, gid, 파일 주소 등등 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="management-of-data-blocks"&gt;Management of Data Blocks&lt;/h2&gt;
+&lt;h3 id="contiguous-allocation"&gt;Contiguous Allocation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;각각의 파일을 연속적으로 저장&lt;/li&gt;
+&lt;li&gt;Direct Access&lt;/li&gt;
+&lt;li&gt;File grow problem 존재&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;External fragmentation&lt;/strong&gt;, Internal fragmentation 발생&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="chained-allocation"&gt;Chained Allocation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Direct acess&lt;/li&gt;
+&lt;li&gt;File grow problem X&lt;/li&gt;
+&lt;li&gt;External fragmentation X&lt;/li&gt;
+&lt;li&gt;Poor data safety (앞 블록에 문제가 생기면 뒤 블록도 사용 불가능)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="indexed-allocation-현대에-사용"&gt;Indexed Allocation (현대에 사용)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Direct access&lt;/li&gt;
+&lt;li&gt;File grow problem X&lt;/li&gt;
+&lt;li&gt;External fragmentation X&lt;/li&gt;
+&lt;li&gt;Medium level data safety (index block만 괜찮으면 된다)&lt;/li&gt;
+&lt;li&gt;Index block이 추가로 필요하다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="free-space-management"&gt;Free-Space Management&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Counting
+&lt;ul&gt;
+&lt;li&gt;N-M&amp;hellip;&lt;/li&gt;
+&lt;li&gt;N번부터 M개의 블록이 비어있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Linked List
+&lt;ul&gt;
+&lt;li&gt;비어있는 블록들을 연결리스트로 관리한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Grouping
+&lt;ul&gt;
+&lt;li&gt;비어있는 블록들을 그룹으로 관리한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Bit Vector
+&lt;ul&gt;
+&lt;li&gt;모든 블록들을 비트로 관리한다. (0이면 사용 중, 1이면 비어있음)&lt;/li&gt;
+&lt;li&gt;단점 : 용량을 많이 차지한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="file-system-example-unix"&gt;File System Example (UNIX)&lt;/h2&gt;
+&lt;h3 id="addresses-of-data-blocks"&gt;Addresses of Data Blocks&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Index 블록 하나는 4096 byte&lt;/li&gt;
+&lt;li&gt;4096 / 4 = 1024개의 블록 주소를 저장할 수 있다.&lt;/li&gt;
+&lt;li&gt;10개의 data blocks는 inode내(direct block field)에 저장한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="data-block-addressing"&gt;Data Block Addressing&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;direct block 10개 : 40KB (10 X 4 X 2^10 bytes)&lt;/li&gt;
+&lt;li&gt;single indirect block 1개 : 4MB (4KB X 2^10 = 2^22 bytes)&lt;/li&gt;
+&lt;li&gt;double indirect block 1개 : 4GB (4KB X 2^10 X 2^10 = 2^32 bytes)&lt;/li&gt;
+&lt;li&gt;triple indirect block 1개 : 4TB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="file-system-example-linux"&gt;File System Example (Linux)&lt;/h2&gt;
+&lt;h3 id="virtual-file-system-적용"&gt;Virtual File System 적용&lt;/h3&gt;
+&lt;h3 id="linux-inode"&gt;Linux Inode&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Inode의 크기 : 128 bytes (ext2, ext3), 256 bytes (ext4)&lt;/li&gt;
+&lt;li&gt;Direct block &lt;strong&gt;12개&lt;/strong&gt;, Indirect block 3개&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="07-io-management-disk-scheduling"&gt;07-IO-Management-Disk-Scheduling&lt;/h1&gt;
+&lt;h2 id="kernel-modules-for-io-management"&gt;Kernel Modules for IO Management&lt;/h2&gt;
+&lt;h3 id="kernel-io-management"&gt;Kernel I/O Management&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Device Scheduling&lt;/li&gt;
+&lt;li&gt;Error handling&lt;/li&gt;
+&lt;li&gt;Buffering (copy semantics를 유지)&lt;/li&gt;
+&lt;li&gt;Caching : 빠른 속도를 위해 사용&lt;/li&gt;
+&lt;li&gt;Spooling : 보조 기억 장치에 임시로 저장 (여러 사람이 공유하기 때문)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="interrupt-handling"&gt;Interrupt handling&lt;/h2&gt;
+&lt;h3 id="interrupt"&gt;Interrupt&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;주변 장치 -&amp;gt; OS : 비동기적 이벤트의 발생을 알림&lt;/li&gt;
+&lt;li&gt;IDT (Interrupt Descriptor Table = IVT) : 인터럽트 번호와 ISR의 주소를 저장&lt;/li&gt;
+&lt;li&gt;ISR (Interrupt Service Routine) : 인터럽트 발생 시 실행되는 함수&lt;/li&gt;
+&lt;li&gt;Interrupt 처리 과정
+&lt;ol&gt;
+&lt;li&gt;Mode change&lt;/li&gt;
+&lt;li&gt;IDT에서 ISR의 주소를 찾아서 실행&lt;/li&gt;
+&lt;li&gt;ISR에서 급한 일 부터 처리, 필요하면 미룬다&lt;/li&gt;
+&lt;li&gt;Scheduler가 할 일을 결정&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="trap"&gt;Trap&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;OS에게 동기적 이벤트의 발생을 알림&lt;/li&gt;
+&lt;li&gt;예) div_by_zero, seg_fault, protection_fault, page_fault&lt;/li&gt;
+&lt;li&gt;page fault만 프로세스를 종료 시키지 않음&lt;/li&gt;
+&lt;li&gt;Kernel은 Interrupt와 같은 방식으로 처리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="system-call"&gt;System Call&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Process -&amp;gt; OS : 동기적 이벤트의 발생을 알림&lt;/li&gt;
+&lt;li&gt;System call 처리
+&lt;ol&gt;
+&lt;li&gt;Using system call table ex) int $0x80&lt;/li&gt;
+&lt;li&gt;sysenter 명령&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="io-control--polling"&gt;I/O Control : Polling&lt;/h2&gt;
+&lt;h3 id="io-control"&gt;I/O Control&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Polling : 주기적으로 I/O 장치의 상태를 확인&lt;/li&gt;
+&lt;li&gt;Interrupt-driven I/O : I/O 장치가 인터럽트 발생&lt;/li&gt;
+&lt;li&gt;DMA(Direct Memory Access) : CPU의 개입 없이 메모리와 주변장치 사이의 데이터 전송&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="polling"&gt;Polling&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Busy-wait cycle
+&lt;ul&gt;
+&lt;li&gt;Host가 busy bit를 반복적으로 확인&lt;/li&gt;
+&lt;li&gt;Host가 write bit 설정, data-out register에 데이터 저장&lt;/li&gt;
+&lt;li&gt;Host가 command-ready bit 설정&lt;/li&gt;
+&lt;li&gt;Controller가 command-ready bit 설정을 확인하면 busy bit 설정&lt;/li&gt;
+&lt;li&gt;Controller가 control register (write command)를 읽고, data-out register의 데이터를 읽는다&lt;/li&gt;
+&lt;li&gt;I/O가 끝나면 controller가 command-ready bit, busy bit 해제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;특징
+&lt;ul&gt;
+&lt;li&gt;I/O가 빨리 끝나면 효율적, 늦게 끝나면 비효율적&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="io-control--interrupt-io-dma"&gt;I/O Control : Interrupt I/O, DMA&lt;/h2&gt;
+&lt;h3 id="interrupt-driven-io"&gt;Interrupt-Driven I/O&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://bong-u.github.io/til/static/image/os_interrupt_driven_io.png" alt="Interrupt driven I/O"&gt;&lt;/p&gt;</description></item><item><title>운영체제 - 중간범위</title><link>https://bong-u.github.io/til/school/operatingsystem1/</link><pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/operatingsystem1/</guid><description>&lt;h2 id="운영체제-개요"&gt;운영체제 개요&lt;/h2&gt;
+&lt;h3 id="운영체제의-역할"&gt;운영체제의 역할&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Program execution&lt;/li&gt;
+&lt;li&gt;Access to computer resources (I/O device, Data&amp;hellip;)&lt;/li&gt;
+&lt;li&gt;Error detection and response&lt;/li&gt;
+&lt;li&gt;Accounting (ex: task manager)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="운영체제의-발전"&gt;운영체제의 발전&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Serial Processing : No OS, No Job scheduling&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Simple batch system&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OS가 job을 할당&lt;/li&gt;
+&lt;li&gt;Controlled by monitor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Uni-programming&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;다 실행될때까지 기다림&lt;/li&gt;
+&lt;li&gt;bad utilization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Multiprogramming&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The processor can switch to the other job&lt;/li&gt;
+&lt;li&gt;better utilization, needs more memory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Time sharing&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;proceess에게 정해진 time slice (time quantum)가 주어진다.&lt;/li&gt;
+&lt;li&gt;better utilization, bad throughput&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Symmetric multiprocessing (SMP)&lt;/p&gt;</description></item><item><title>221207 SYSP</title><link>https://bong-u.github.io/til/school/sysp_09_11/</link><pubDate>Mon, 09 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/sysp_09_11/</guid><description>&lt;h2 id="09-process1"&gt;09-process1&lt;/h2&gt;
+&lt;h3 id="예외적인-제어-흐름"&gt;예외적인 제어 흐름&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;하위 매커니즘
+&lt;ol&gt;
+&lt;li&gt;예외 (Exception)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;상위 매커니즘
+&lt;ol&gt;
+&lt;li&gt;프로세스 컨텍스트 전환
+&lt;ul&gt;
+&lt;li&gt;OS 소프트웨어와 하드웨어 타이머로 구현&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;시그널
+&lt;ul&gt;
+&lt;li&gt;OS 소프트웨어로 구현&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;nolocal 점프&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="예외-테이블-exception-tables"&gt;예외 테이블 (Exception Tables)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;각 이벤트 타입은 예외번호 k를 갖는다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="비동기형-예외-interrupt"&gt;비동기형 예외 (Interrupt)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;입출력 인터럽트 (ctrl + c)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;하드 리셋 인터러트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;소프트 리셋 인터럽트&lt;/p&gt;
+&lt;h3 id="동기형-예외"&gt;동기형 예외&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Traps : 명령어의 결과로 발생하는 의도적인 예외 (syscall)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Faults : 핸들러가 정정할 수 있는 에러의 결과로 발생 (page faults)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Aborts : 복구 불가능한 에러의 결과로 발생&lt;/p&gt;</description></item><item><title>221208 SYSP</title><link>https://bong-u.github.io/til/school/sysp_12_13/</link><pubDate>Mon, 09 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/sysp_12_13/</guid><description>&lt;h2 id="12-memory-1"&gt;12-memory-1&lt;/h2&gt;
+&lt;h3 id="메모리에-관한-불편한-진실"&gt;메모리에 관한 불편한 진실&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;메모리는 무한의 자원이 아니다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="동적-메모리-할당"&gt;동적 메모리 할당&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;직접(explicit) vs 간접(implicit) 메모리 할당기
+&lt;ul&gt;
+&lt;li&gt;직접 할당 : 응용프로그램이 할당하고, 반환한다
+&lt;ul&gt;
+&lt;li&gt;ex) malloc, free&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;간접 할당 : 응용프로그램이 할당하지만, 반환하지는 않는다
+&lt;ul&gt;
+&lt;li&gt;ex) java의 garbage collector&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="프로세스의-메모리-이미지"&gt;프로세스의 메모리 이미지&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;스택은 아래로, 힙은 위로 성장한다&lt;/li&gt;
+&lt;li&gt;sbrk 함수가 추가적인 힙 메모리를 운영체제로부터 요청한다 (brk 포인터 이동)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="malloc-package"&gt;Malloc package&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;malloc&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;size_t&lt;/span&gt; size)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 성공시 : 최소 size 바이트의 메모리 블록의 포인터를 반환 (대게 8바이트 단위로 맞추어)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 실패시 : NULL리턴, set errno
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;free&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;p)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 가용 메모리 풀을 가리키는 블록 포인터 p 리턴
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;realloc&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;p, &lt;span style="color:#66d9ef"&gt;size_t&lt;/span&gt; size)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 블록 p의 크기를 변경하고, 새 블록의 포인터를 리턴
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 새 블록의 내용은 이전 블록과 새 블록 크기 중 적은 크기까지는 변화 없음
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="우수한-mallocfree-프로그램의-목표"&gt;우수한 malloc/free 프로그램의 목표&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;주요 목표
+&lt;ul&gt;
+&lt;li&gt;malloc과 free에서 우수한 시간 성능을 얻는다&lt;/li&gt;
+&lt;li&gt;우수한 공간 이용율을 가져야 한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;다른 목표
+&lt;ul&gt;
+&lt;li&gt;우수한 지역성 : 시간적으로 인접 (또는 유사한 객체) -&amp;gt; 공간상으로 인접&lt;/li&gt;
+&lt;li&gt;견고성 : free(p1) 함수가 유효한 포인터 p1에 대해 수행하는지 체크할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="성능-지표-1--처리량-throughput"&gt;성능 지표 1 : 처리량 (Throughput)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;단위 시간 동안 완료한 요청의 수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="성능-지표-2--최대-메모리-이용율-utilization"&gt;성능 지표 2 : 최대 메모리 이용율 (Utilization)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;k개의 요청 후에, 최대 메모리 이용율
+$$ U*{k} = (max*{i&amp;lt;=k}: P*{i}) / H*{k} $$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="내부-메모리-단편화-internal-fragmentation"&gt;내부 메모리 단편화 (Internal Fragmentation)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;일부 블록에서 블록 크기와 데이터 크기간의 차이로 인해 발생&lt;/li&gt;
+&lt;li&gt;이전 요청 패턴에 의해서만 영향을 받으므로 &lt;strong&gt;측정이 용이&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="외부-메모리-단편화-external-fragmentation"&gt;외부 메모리 단편화 (External Fragmentation)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;힙 전체 메모리를 합치면 수용이 가능하지만 가용 블록의 크기가 작은 경우에 발생&lt;/li&gt;
+&lt;li&gt;외부 단편화는 미래의 요청 패턴에 의해 결정되므로 &lt;strong&gt;측정이 어렵다&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="free-블럭-관리하기"&gt;Free 블럭 관리하기&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;간접리스트 : 크기 정보를 이용하여 모든 블록을 연결&lt;/li&gt;
+&lt;li&gt;직접리스트 : 가용 블록내에 포인터를 이용&lt;/li&gt;
+&lt;li&gt;구분 가용리스트 : 크기 클래스마다 별도의 가용 리스트를 유지&lt;/li&gt;
+&lt;li&gt;크기로 정렬된 블록&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="방법-1--간접-리스트-방식-implicit-list"&gt;방법 1 : 간접 리스트 방식 (Implicit List)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1 word = size(a) + payload + padding&lt;/p&gt;</description></item></channel></rss>

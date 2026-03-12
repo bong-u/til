@@ -1,179 +1,69 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Issue - MockMvc int타입 param이 null로 들어오는 문제</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="문제상황   MockMvc를 이용하여 Controller를 테스트하고 있었다
-  createUser 메소드는 인자로 UserResponse(DTO) …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Issue - MockMvc int타입 param이 null로 들어오는 문제">
-<meta property="og:description" content="문제상황   MockMvc를 이용하여 Controller를 테스트하고 있었다
-  createUser 메소드는 인자로 UserResponse(DTO) …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#문제상황>문제상황</a></li>
-<li><a href=#해결방법>해결방법</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Issue - MockMvc int타입 param이 null로 들어오는 문제
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ java</span>
-<span class="text-md mr-1">🏷️ spring</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=문제상황>문제상황</h3>
-<ul>
-<li>
-<p>MockMvc를 이용하여 Controller를 테스트하고 있었다</p>
-</li>
-<li>
-<p>createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다</p>
-</li>
-<li>
-<p>UserResponse 내 int타입의 age변수의 값이 null로 들어오는 문제가 있었다</p>
-</li>
-<li>
-<p>UserController.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@PostMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/user&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>SuccessResponse<span style=color:#f92672>&lt;</span>UserResponse<span style=color:#f92672>&gt;&gt;</span> <span style=color:#a6e22e>createUser</span><span style=color:#f92672>(</span>UserRequest user<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> SuccessResponse<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>201<span style=color:#f92672>,</span> userService<span style=color:#f92672>.</span><span style=color:#a6e22e>createUser</span><span style=color:#f92672>(</span>user<span style=color:#f92672>));</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-<li>
-<p>UserControllerTest.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Test</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createUserTest</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#75715e>// Given
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>    User user <span style=color:#f92672>=</span> User<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>id</span><span style=color:#f92672>(</span>1<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>name</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hong&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>            <span style=color:#75715e>// age의 값은 분명히 20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e></span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>age</span><span style=color:#f92672>(</span>20<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>hobby</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;swimming&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>            <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    UserRequest userReq <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> UserRequest<span style=color:#f92672>(</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        user<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>(),</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        user<span style=color:#f92672>.</span><span style=color:#a6e22e>getAge</span><span style=color:#f92672>(),</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>        user<span style=color:#f92672>.</span><span style=color:#a6e22e>getHobby</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#75715e>// When // Then
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#75715e></span>    mockMvc<span style=color:#f92672>.</span><span style=color:#a6e22e>perform</span><span style=color:#f92672>(</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            post<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/user&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>contentType</span><span style=color:#f92672>(</span>MediaType<span style=color:#f92672>.</span><span style=color:#a6e22e>APPLICATION_JSON</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>                <span style=color:#75715e>// userReq객체가 json string으로 정상적으로 변환된 것을 확인
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span style=color:#75715e></span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>content</span><span style=color:#f92672>(</span>objectMapper<span style=color:#f92672>.</span><span style=color:#a6e22e>writeValueAsString</span><span style=color:#f92672>(</span>userReq<span style=color:#f92672>)))</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>andExpect</span><span style=color:#f92672>(</span>status<span style=color:#f92672>().</span><span style=color:#a6e22e>isCreated</span><span style=color:#f92672>())</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>andExpect</span><span style=color:#f92672>(</span>jsonPath<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;$.content.name&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>value</span><span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()))</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>andExpect</span><span style=color:#f92672>(</span>jsonPath<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;$.content.age&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>value</span><span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>getAge</span><span style=color:#f92672>()))</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>andExpect</span><span style=color:#f92672>(</span>jsonPath<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;$.content.hobby&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>value</span><span style=color:#f92672>(</span>user<span style=color:#f92672>.</span><span style=color:#a6e22e>getHobby</span><span style=color:#f92672>()))</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>andExpect</span><span style=color:#f92672>(</span>jsonPath<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;$.serverDatetime&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>exists</span><span style=color:#f92672>())</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>andDo</span><span style=color:#f92672>(</span>print<span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-<li>
-<p>Debug log</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>...(생략)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>createUser(com.academy.board.dto.UserRequest):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>[Field error in object &#39;userRequest&#39; on field &#39;age&#39;: rejected value [null];
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>...(생략)
-</code></pre></div></li>
-<li>
-<p>UserRequest.java (DTO)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Getter</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#a6e22e>@AllArgsConstructor</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRequest</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>private</span> String name<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> age<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>private</span> String hobby<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>public</span> User <span style=color:#a6e22e>toEntity</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>return</span> User<span style=color:#f92672>.</span><span style=color:#a6e22e>builder</span><span style=color:#f92672>()</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>name</span><span style=color:#f92672>(</span>name<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>age</span><span style=color:#f92672>(</span>age<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>hobby</span><span style=color:#f92672>(</span>hobby<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>                <span style=color:#f92672>.</span><span style=color:#a6e22e>build</span><span style=color:#f92672>();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-</ul>
-<h3 id=해결방법>해결방법</h3>
-<ul>
-<li>UserRequest 클래스의 age의 타입을 <strong>int에서 Integer</strong>로 바꾸니까 해결되었다</li>
-<li>int는 변수의 타입으로, null을 허용하지 않고, Integer는 Wrapper class로, null을 허용한다는 특징을 가진다</li>
-<li>Spring에서 Wrapper클래스가 아닌 타입의 변수를 인자로 받는 행위를 금지시키는 것으로 보인다.</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/jpa_getbyid_refbyid/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>Issue - MockMvc int타입 param이 null로 들어오는 문제</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="문제상황
+
+
+MockMvc를 이용하여 Controller를 테스트하고 있었다
+
+
+createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Issue - MockMvc int타입 param이 null로 들어오는 문제"><meta property="og:description" content="문제상황
+
+
+MockMvc를 이용하여 Controller를 테스트하고 있었다
+
+
+createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#문제상황>문제상황</a></li><li><a href=#해결방법>해결방법</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Issue - MockMvc int타입 param이 null로 들어오는 문제</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ java</span>
+<span class="text-md mr-1">🏷️ spring</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=문제상황>문제상황</h3><ul><li><p>MockMvc를 이용하여 Controller를 테스트하고 있었다</p></li><li><p>createUser 메소드는 인자로 UserResponse(DTO) 객체를 받는다</p></li><li><p>UserResponse 내 int타입의 age변수의 값이 null로 들어오는 문제가 있었다</p></li><li><p>UserController.java</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@PostMapping</span>(<span style=color:#e6db74>&#34;/user&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>SuccessResponse<span style=color:#f92672>&lt;</span>UserResponse<span style=color:#f92672>&gt;&gt;</span> <span style=color:#a6e22e>createUser</span>(UserRequest user) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> SuccessResponse.<span style=color:#a6e22e>get</span>(201, userService.<span style=color:#a6e22e>createUser</span>(user));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div></li><li><p>UserControllerTest.java</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#a6e22e>@Test</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>createUserTest</span>() <span style=color:#66d9ef>throws</span> Exception {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#75715e>// Given</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    User user <span style=color:#f92672>=</span> User.<span style=color:#a6e22e>builder</span>()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>            .<span style=color:#a6e22e>id</span>(1)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>            .<span style=color:#a6e22e>name</span>(<span style=color:#e6db74>&#34;hong&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>            <span style=color:#75715e>// age의 값은 분명히 20</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>            .<span style=color:#a6e22e>age</span>(20)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            .<span style=color:#a6e22e>hobby</span>(<span style=color:#e6db74>&#34;swimming&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>            .<span style=color:#a6e22e>build</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    UserRequest userReq <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> UserRequest(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        user.<span style=color:#a6e22e>getName</span>(),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        user.<span style=color:#a6e22e>getAge</span>(),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>        user.<span style=color:#a6e22e>getHobby</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#75715e>// When // Then</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    mockMvc.<span style=color:#a6e22e>perform</span>(
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>            post(<span style=color:#e6db74>&#34;/user&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>                .<span style=color:#a6e22e>contentType</span>(MediaType.<span style=color:#a6e22e>APPLICATION_JSON</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>                <span style=color:#75715e>// userReq객체가 json string으로 정상적으로 변환된 것을 확인</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>                .<span style=color:#a6e22e>content</span>(objectMapper.<span style=color:#a6e22e>writeValueAsString</span>(userReq)))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>        .<span style=color:#a6e22e>andExpect</span>(status().<span style=color:#a6e22e>isCreated</span>())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>        .<span style=color:#a6e22e>andExpect</span>(jsonPath(<span style=color:#e6db74>&#34;$.content.name&#34;</span>).<span style=color:#a6e22e>value</span>(user.<span style=color:#a6e22e>getName</span>()))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        .<span style=color:#a6e22e>andExpect</span>(jsonPath(<span style=color:#e6db74>&#34;$.content.age&#34;</span>).<span style=color:#a6e22e>value</span>(user.<span style=color:#a6e22e>getAge</span>()))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>        .<span style=color:#a6e22e>andExpect</span>(jsonPath(<span style=color:#e6db74>&#34;$.content.hobby&#34;</span>).<span style=color:#a6e22e>value</span>(user.<span style=color:#a6e22e>getHobby</span>()))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>        .<span style=color:#a6e22e>andExpect</span>(jsonPath(<span style=color:#e6db74>&#34;$.serverDatetime&#34;</span>).<span style=color:#a6e22e>exists</span>())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>        .<span style=color:#a6e22e>andDo</span>(print());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>}
+</span></span></code></pre></div></li><li><p>Debug log</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>...(생략)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>createUser(com.academy.board.dto.UserRequest):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>[Field error in object &#39;userRequest&#39; on field &#39;age&#39;: rejected value [null];
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>...(생략)
+</span></span></code></pre></div></li><li><p>UserRequest.java (DTO)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#a6e22e>@Getter</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#a6e22e>@AllArgsConstructor</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRequest</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#66d9ef>private</span> String name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#66d9ef>private</span> String hobby;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>public</span> User <span style=color:#a6e22e>toEntity</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        <span style=color:#66d9ef>return</span> User.<span style=color:#a6e22e>builder</span>()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>                .<span style=color:#a6e22e>name</span>(name)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>                .<span style=color:#a6e22e>age</span>(age)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>                .<span style=color:#a6e22e>hobby</span>(hobby)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>                .<span style=color:#a6e22e>build</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>}
+</span></span></code></pre></div></li></ul><h3 id=해결방법>해결방법</h3><ul><li>UserRequest 클래스의 age의 타입을 <strong>int에서 Integer</strong>로 바꾸니까 해결되었다</li><li>int는 변수의 타입으로, null을 허용하지 않고, Integer는 Wrapper class로, null을 허용한다는 특징을 가진다</li><li>Spring에서 Wrapper클래스가 아닌 타입의 변수를 인자로 받는 행위를 금지시키는 것으로 보인다.</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/jpa_getbyid_refbyid/><span class=mx-3>◀</span>
 Spring - JPA : getReferenceById vs findById
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/ddd/>
-DDD(Domain Driven Design)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/ddd/>DDD(Domain Driven Design)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

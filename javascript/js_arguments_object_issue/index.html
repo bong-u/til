@@ -1,147 +1,29 @@
-<!doctype html><html lang=ko>
-<head>
-<title>JS - Arguments object 관련 이슈</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="상황  나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다. 구글에서 제공하는 태그 소스 중 일부이다.  1function …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="JS - Arguments object 관련 이슈">
-<meta property="og:description" content="상황  나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다. 구글에서 제공하는 태그 소스 중 일부이다.  1function …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#상황>상황</a></li>
-<li><a href=#arguments-object>Arguments object</a></li>
-<li><a href=#arrow-function에서는>Arrow function에서는?</a></li>
-<li><a href=#정리>정리</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-JS - Arguments object 관련 이슈
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ javascript</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=상황>상황</h3>
-<ul>
-<li>나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.</li>
-<li>구글에서 제공하는 태그 소스 중 일부이다.</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>gtag</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arguments</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>}
-</code></pre></div><ul>
-<li>나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다.</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gtag</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>args</span>);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
-</code></pre></div><ul>
-<li>하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다.</li>
-<li>이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.</li>
-</ul>
-<h3 id=arguments-object>Arguments object</h3>
-<ul>
-<li>Arguments 객체는 함수에 전달되는 유사 Array 형태이다.</li>
-<li>함수 parameter에 어떻게 명시되어있건 상관없이 동작한다.</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>func1</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>]);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>1</span>]);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>2</span>]);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>}
-</code></pre></div><ul>
-<li>arguments 객체는 3가지로 구성된다.</li>
-</ul>
-<ol>
-<li>함수에 넘겨진 인자 (index는 0부터 시작한다)</li>
-<li>length : 인자의 개수</li>
-<li>callee : 현재 실행 중인 함수의 참조값</li>
-</ol>
-<h3 id=arrow-function에서는>Arrow function에서는?</h3>
-<ul>
-<li>arrow function에서는 arguments 객체를 사용할 수 없다.</li>
-<li>대신 &mldr;args와 같은 문법으로 아래와 같이 사용할 수 있다.</li>
-<li>여기서는 Arguments 객체가 아닌 진짜 Array로 가져온다.</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>func2</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>0</span>]);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>};
-</code></pre></div><h3 id=정리>정리</h3>
-<ul>
-<li>Google analytics가 정상적으로 동작하기 위해서는 dataLayer에 Arguments object가 push 되었어야 하는데,</li>
-<li>내가 임의로 바꾸어서 Array가 push 되었다. 따라서 코드가 정상적으로 동작하지 않았다는 것을 알 수 있었다.</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/react_deploy_issue/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>JS - Arguments object 관련 이슈</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="상황
+
+나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.
+구글에서 제공하는 태그 소스 중 일부이다.
+
+1function gtag …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="JS - Arguments object 관련 이슈"><meta property="og:description" content="상황
+
+나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.
+구글에서 제공하는 태그 소스 중 일부이다.
+
+1function gtag …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#상황>상황</a></li><li><a href=#arguments-object>Arguments object</a></li><li><a href=#arrow-function에서는>Arrow function에서는?</a></li><li><a href=#정리>정리</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">JS - Arguments object 관련 이슈</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ javascript</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=상황>상황</h3><ul><li>나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.</li><li>구글에서 제공하는 태그 소스 중 일부이다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>gtag</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arguments</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><ul><li>나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gtag</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>args</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>};
+</span></span></code></pre></div><ul><li>하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다.</li><li>이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.</li></ul><h3 id=arguments-object>Arguments object</h3><ul><li>Arguments 객체는 함수에 전달되는 유사 Array 형태이다.</li><li>함수 parameter에 어떻게 명시되어있건 상관없이 동작한다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>func1</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>2</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><ul><li>arguments 객체는 3가지로 구성된다.</li></ul><ol><li>함수에 넘겨진 인자 (index는 0부터 시작한다)</li><li>length : 인자의 개수</li><li>callee : 현재 실행 중인 함수의 참조값</li></ol><h3 id=arrow-function에서는>Arrow function에서는?</h3><ul><li>arrow function에서는 arguments 객체를 사용할 수 없다.</li><li>대신 &mldr;args와 같은 문법으로 아래와 같이 사용할 수 있다.</li><li>여기서는 Arguments 객체가 아닌 진짜 Array로 가져온다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>func2</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>};
+</span></span></code></pre></div><h3 id=정리>정리</h3><ul><li>Google analytics가 정상적으로 동작하기 위해서는 dataLayer에 Arguments object가 push 되었어야 하는데,</li><li>내가 임의로 바꾸어서 Array가 push 되었다. 따라서 코드가 정상적으로 동작하지 않았다는 것을 알 수 있었다.</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/react_deploy_issue/><span class=mx-3>◀</span>
 React - build 이후 빈 화면만 나오는 문제
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/js_dicom_to_base64/>
-JS - Dicom to base64
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/javascript/js_dicom_to_base64/>JS - Dicom to base64
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

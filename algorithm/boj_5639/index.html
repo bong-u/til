@@ -1,178 +1,88 @@
-<!doctype html><html lang=ko>
-<head>
-<title>백준 - 5639 : 이진 검색 트리 (G5)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="풀이방법 1 : 직접 구현 1import sys 2 3sys.setrecursionlimit(10**6) 4class Node: 5 def __init__(self, value): …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="백준 - 5639 : 이진 검색 트리 (G5)">
-<meta property="og:description" content="풀이방법 1 : 직접 구현 1import sys 2 3sys.setrecursionlimit(10**6) 4class Node: 5 def __init__(self, value): …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#풀이방법-1--직접-구현>풀이방법 1 : 직접 구현</a></li>
-<li><a href=#풀이방법-2>풀이방법 2</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-백준 - 5639 : 이진 검색 트리 (G5)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
-<span class="text-md mr-1">🏷️ boj</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=풀이방법-1--직접-구현>풀이방법 1 : 직접 구현</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>def</span> __init__(self, value):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        self<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        self<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BinaryTree</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    <span style=color:#66d9ef>def</span> __init__(self, root):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        self<span style=color:#f92672>.</span>root <span style=color:#f92672>=</span> root
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>insert</span>(self, value):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>        cur_node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>root
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>            <span style=color:#66d9ef>if</span> value <span style=color:#f92672>&lt;</span> cur_node<span style=color:#f92672>.</span>value:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>                    cur_node <span style=color:#f92672>=</span>  cur_node<span style=color:#f92672>.</span>left
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>                <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>                    cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> Node(value)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>                    <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>                    cur_node <span style=color:#f92672>=</span> cur_node<span style=color:#f92672>.</span>right
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>                <span style=color:#66d9ef>else</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>                    cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> Node(value)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>                    <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(self, node):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>left)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>right)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span>        print (node<span style=color:#f92672>.</span>value)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span style=color:#66d9ef>try</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span>    tree <span style=color:#f92672>=</span> BinaryTree(Node(int(input())))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span style=color:#66d9ef>except</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span>    exit()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span>    <span style=color:#66d9ef>try</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span>        tree<span style=color:#f92672>.</span>insert(int(input()))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span>    <span style=color:#66d9ef>except</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span>        <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span>tree<span style=color:#f92672>.</span>traverse(tree<span style=color:#f92672>.</span>root)
-</code></pre></div><ul>
-<li>직접 트리를 구현하여 해결하였다</li>
-</ul>
-<h3 id=풀이방법-2>풀이방법 2</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>L <span style=color:#f92672>=</span> []
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>try</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        L<span style=color:#f92672>.</span>append(int(input()))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#66d9ef>except</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>        <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(root, end):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>if</span> root <span style=color:#f92672>&gt;</span> end:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#66d9ef>return</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    mid <span style=color:#f92672>=</span> end <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, end<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#66d9ef>if</span> L[root] <span style=color:#f92672>&lt;</span> L[i]:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            mid <span style=color:#f92672>=</span> i
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    traverse(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>    traverse(mid, end)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>    print (L[root])
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>traverse(<span style=color:#ae81ff>0</span>, len(L)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
-</code></pre></div><ul>
-<li>트리를 구현하지 않고 푸는 풀이는 인터넷을 참고하였다</li>
-<li>전위 순회한 결과를 리스트에 저장한 후, root 기준으로 나눠지는 mid를 찾아</li>
-<li>root기준 왼쪽, root기준 오른쪽을 각각 재귀적으로 순회하는 방법이다.</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_14938/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>백준 - 5639 : 이진 검색 트리 (G5)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="풀이방법 1 : 직접 구현
+ 1import sys
+ 2
+ 3sys.setrecursionlimit(10**6)
+ 4class Node:
+ 5    def __init__(self, …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="백준 - 5639 : 이진 검색 트리 (G5)"><meta property="og:description" content="풀이방법 1 : 직접 구현
+ 1import sys
+ 2
+ 3sys.setrecursionlimit(10**6)
+ 4class Node:
+ 5    def __init__(self, …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#풀이방법-1--직접-구현>풀이방법 1 : 직접 구현</a></li><li><a href=#풀이방법-2>풀이방법 2</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">백준 - 5639 : 이진 검색 트리 (G5)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
+<span class="text-md mr-1">🏷️ boj</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=풀이방법-1--직접-구현>풀이방법 1 : 직접 구현</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, value):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        self<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        self<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BinaryTree</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, root):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        self<span style=color:#f92672>.</span>root <span style=color:#f92672>=</span> root
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>insert</span>(self, value):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>        cur_node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>root
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>            <span style=color:#66d9ef>if</span> value <span style=color:#f92672>&lt;</span> cur_node<span style=color:#f92672>.</span>value:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>                    cur_node <span style=color:#f92672>=</span>  cur_node<span style=color:#f92672>.</span>left
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>                <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>                    cur_node<span style=color:#f92672>.</span>left <span style=color:#f92672>=</span> Node(value)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>                    <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>                <span style=color:#66d9ef>if</span> cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>                    cur_node <span style=color:#f92672>=</span> cur_node<span style=color:#f92672>.</span>right
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>                <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>                    cur_node<span style=color:#f92672>.</span>right <span style=color:#f92672>=</span> Node(value)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>                    <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(self, node):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>left <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>left)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>        <span style=color:#66d9ef>if</span> node<span style=color:#f92672>.</span>right <span style=color:#f92672>!=</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>            self<span style=color:#f92672>.</span>traverse(node<span style=color:#f92672>.</span>right)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>        print (node<span style=color:#f92672>.</span>value)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span><span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>    tree <span style=color:#f92672>=</span> BinaryTree(Node(int(input())))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span><span style=color:#66d9ef>except</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>    exit()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>    <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span><span>        tree<span style=color:#f92672>.</span>insert(int(input()))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span>    <span style=color:#66d9ef>except</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span><span>        <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span><span>tree<span style=color:#f92672>.</span>traverse(tree<span style=color:#f92672>.</span>root)
+</span></span></code></pre></div><ul><li>직접 트리를 구현하여 해결하였다</li></ul><h3 id=풀이방법-2>풀이방법 2</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>L <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        L<span style=color:#f92672>.</span>append(int(input()))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>except</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>traverse</span>(root, end):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#66d9ef>if</span> root <span style=color:#f92672>&gt;</span> end:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    mid <span style=color:#f92672>=</span> end <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, end<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>        <span style=color:#66d9ef>if</span> L[root] <span style=color:#f92672>&lt;</span> L[i]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>            mid <span style=color:#f92672>=</span> i
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>            <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    traverse(root<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>    traverse(mid, end)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>    print (L[root])
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>traverse(<span style=color:#ae81ff>0</span>, len(L)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span></code></pre></div><ul><li>트리를 구현하지 않고 푸는 풀이는 인터넷을 참고하였다</li><li>전위 순회한 결과를 리스트에 저장한 후, root 기준으로 나눠지는 mid를 찾아</li><li>root기준 왼쪽, root기준 오른쪽을 각각 재귀적으로 순회하는 방법이다.</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_14938/><span class=mx-3>◀</span>
 백준 - 14938 : 서강그라운드 (G4)
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_1043/>
-백준 - 1043 : 거짓말 (G4)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_1043/>백준 - 1043 : 거짓말 (G4)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

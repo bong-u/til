@@ -1,176 +1,43 @@
-<!doctype html><html lang=ko>
-<head>
-<title>프로그래머스 - 순위 검색 (L2)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="1from itertools import combinations 2from collections import defaultdict 3from bisect import …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="프로그래머스 - 순위 검색 (L2)">
-<meta property="og:description" content="1from itertools import combinations 2from collections import defaultdict 3from bisect import …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#문제>문제</a></li>
-<li><a href=#해결방법>해결방법</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-프로그래머스 - 순위 검색 (L2)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
-<span class="text-md mr-1">🏷️ programmers</span>
-</div>
-<h4 id=date>수정일 : 2023-08-31</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>from</span> itertools <span style=color:#f92672>import</span> combinations
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> defaultdict
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>from</span> bisect <span style=color:#f92672>import</span> bisect_left
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(infos, queries):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    answer <span style=color:#f92672>=</span> []
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    dataset <span style=color:#f92672>=</span> defaultdict(list)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#66d9ef>for</span> info <span style=color:#f92672>in</span> infos:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        token <span style=color:#f92672>=</span> info<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39; &#39;</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>5</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            <span style=color:#66d9ef>for</span> case <span style=color:#f92672>in</span> list(combinations([<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>], j)):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>                temp <span style=color:#f92672>=</span> token[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>                <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> case:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>                    temp[c] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;-&#39;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>                dataset[<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(temp)]<span style=color:#f92672>.</span>append(int(token[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>    <span style=color:#66d9ef>for</span> value <span style=color:#f92672>in</span> dataset<span style=color:#f92672>.</span>values():
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        value<span style=color:#f92672>.</span>sort()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#66d9ef>for</span> query <span style=color:#f92672>in</span> queries:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        query <span style=color:#f92672>=</span> query<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#34; and&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)<span style=color:#f92672>.</span>split()
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>        target_key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(query[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>        target_value <span style=color:#f92672>=</span> int(query[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>        count <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>        <span style=color:#66d9ef>if</span> target_key <span style=color:#f92672>in</span> dataset:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>            target_list <span style=color:#f92672>=</span> dataset[target_key]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>            idx <span style=color:#f92672>=</span> bisect_left(target_list, target_value)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span>            count <span style=color:#f92672>=</span> len(target_list)<span style=color:#f92672>-</span>idx
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span>        answer<span style=color:#f92672>.</span>append(count)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span>    <span style=color:#66d9ef>return</span> answer
-</code></pre></div><h3 id=문제>문제</h3>
-<ul>
-<li>
-<p>지원자가 지원서에 작성한 4가지 정보와, 특정 지원자의 지원서 점수가 문자열 배열로 주어진다</p>
-</li>
-<li>
-<p>개발언어는 cpp, java, python 중 하나, 지원 직군에는 backend, frontend 중 하나,</p>
-</li>
-<li>
-<p>지원 경력에는 junior, senior 중 하나, 소울푸드에는 chicken, pizza 중 하나가 주어진다</p>
-</li>
-<li>
-<p>개발팀이 궁금해하는 문의 조건도 문자열 배열로 주어진다</p>
-</li>
-<li>
-<p>개발언어와 직군, 경력, 소울푸드 조건은 &ldquo;and"로 구분되어 있다</p>
-</li>
-<li>
-<p>&lsquo;-&lsquo;표시는 해당 조건을 고려하지 않는다는 뜻인데, 점수를 제외한 항목에 주어질 수 있다</p>
-</li>
-<li>
-<p>문의조건에 해당하는 사람 중 코딩테스트 점수를 만족하는 사람의 수를 구하라</p>
-</li>
-<li>
-<p>TC</p>
-<ul>
-<li>input
-<blockquote>
-<p>info:[&ldquo;java backend junior pizza 150&rdquo;,&ldquo;python frontend senior chicken 210&rdquo;,&ldquo;python frontend senior chicken 150&rdquo;,&ldquo;cpp backend senior pizza 260&rdquo;,&ldquo;java backend junior chicken 80&rdquo;,&ldquo;python backend senior chicken 50&rdquo;]<br>
-query:[&ldquo;java and backend and junior and pizza 100&rdquo;,&ldquo;python and frontend and senior and chicken 200&rdquo;,&ldquo;cpp and - and senior and pizza 250&rdquo;,"- and backend and senior and - 150&rdquo;,"- and - and - and chicken 100","- and - and - and - 150"]</p>
-</blockquote>
-</li>
-<li>ouput
-<blockquote>
-<p>[1,1,1,1,2,4]</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id=해결방법>해결방법</h3>
-<ul>
-<li>언어, 직군, 경력, 소울푸드를 한번에 거르기 위해 dictionary에 key를 만들어주어야한다</li>
-<li>모든 경우를 고려해주기 위해 &lsquo;-&lsquo;도 섞어가면서 해당 지원자를 찾을 수 있는 모든 쿼리를 구해서 key로 등록한다</li>
-<li>value에는 점수가 들어가는데 이후에 이분탐색을 하기위해 오름차순으로 정렬해준다</li>
-<li>bisect_left 함수를 통해 해당 점수 이상인 사람의 수를 구한다</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EA%B4%84%ED%98%B8_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>프로그래머스 - 순위 검색 (L2)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 1from itertools import combinations
+ 2from collections import defaultdict
+ 3from bisect import …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="프로그래머스 - 순위 검색 (L2)"><meta property="og:description" content=" 1from itertools import combinations
+ 2from collections import defaultdict
+ 3from bisect import …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#문제>문제</a></li><li><a href=#해결방법>해결방법</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">프로그래머스 - 순위 검색 (L2)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
+<span class="text-md mr-1">🏷️ programmers</span></div><h4 id=date>수정일 : 2023-08-31</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>from</span> itertools <span style=color:#f92672>import</span> combinations
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> collections <span style=color:#f92672>import</span> defaultdict
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>from</span> bisect <span style=color:#f92672>import</span> bisect_left
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(infos, queries):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    answer <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    dataset <span style=color:#f92672>=</span> defaultdict(list)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#66d9ef>for</span> info <span style=color:#f92672>in</span> infos:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>        token <span style=color:#f92672>=</span> info<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#39; &#39;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>5</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>            <span style=color:#66d9ef>for</span> <span style=color:#66d9ef>case</span> <span style=color:#f92672>in</span> list(combinations([<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>3</span>], j)):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>                temp <span style=color:#f92672>=</span> token[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>                <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> <span style=color:#66d9ef>case</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>                    temp[c] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;-&#39;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>                dataset[<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(temp)]<span style=color:#f92672>.</span>append(int(token[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    <span style=color:#66d9ef>for</span> value <span style=color:#f92672>in</span> dataset<span style=color:#f92672>.</span>values():
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>        value<span style=color:#f92672>.</span>sort()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    <span style=color:#66d9ef>for</span> query <span style=color:#f92672>in</span> queries:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>        query <span style=color:#f92672>=</span> query<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#34; and&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)<span style=color:#f92672>.</span>split()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>        target_key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(query[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        target_value <span style=color:#f92672>=</span> int(query[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>        count <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>        <span style=color:#66d9ef>if</span> target_key <span style=color:#f92672>in</span> dataset:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>            target_list <span style=color:#f92672>=</span> dataset[target_key]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>            idx <span style=color:#f92672>=</span> bisect_left(target_list, target_value)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>            count <span style=color:#f92672>=</span> len(target_list)<span style=color:#f92672>-</span>idx
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>        answer<span style=color:#f92672>.</span>append(count)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>    <span style=color:#66d9ef>return</span> answer
+</span></span></code></pre></div><h3 id=문제>문제</h3><ul><li><p>지원자가 지원서에 작성한 4가지 정보와, 특정 지원자의 지원서 점수가 문자열 배열로 주어진다</p></li><li><p>개발언어는 cpp, java, python 중 하나, 지원 직군에는 backend, frontend 중 하나,</p></li><li><p>지원 경력에는 junior, senior 중 하나, 소울푸드에는 chicken, pizza 중 하나가 주어진다</p></li><li><p>개발팀이 궁금해하는 문의 조건도 문자열 배열로 주어진다</p></li><li><p>개발언어와 직군, 경력, 소울푸드 조건은 &ldquo;and"로 구분되어 있다</p></li><li><p>&lsquo;-&lsquo;표시는 해당 조건을 고려하지 않는다는 뜻인데, 점수를 제외한 항목에 주어질 수 있다</p></li><li><p>문의조건에 해당하는 사람 중 코딩테스트 점수를 만족하는 사람의 수를 구하라</p></li><li><p>TC</p><ul><li>input<blockquote><p>info:[&ldquo;java backend junior pizza 150&rdquo;,&ldquo;python frontend senior chicken 210&rdquo;,&ldquo;python frontend senior chicken 150&rdquo;,&ldquo;cpp backend senior pizza 260&rdquo;,&ldquo;java backend junior chicken 80&rdquo;,&ldquo;python backend senior chicken 50&rdquo;]<br>query:[&ldquo;java and backend and junior and pizza 100&rdquo;,&ldquo;python and frontend and senior and chicken 200&rdquo;,&ldquo;cpp and - and senior and pizza 250&rdquo;,&rdquo;- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"]</p></blockquote></li><li>ouput<blockquote><p>[1,1,1,1,2,4]</p></blockquote></li></ul></li></ul><h3 id=해결방법>해결방법</h3><ul><li>언어, 직군, 경력, 소울푸드를 한번에 거르기 위해 dictionary에 key를 만들어주어야한다</li><li>모든 경우를 고려해주기 위해 &lsquo;-&lsquo;도 섞어가면서 해당 지원자를 찾을 수 있는 모든 쿼리를 구해서 key로 등록한다</li><li>value에는 점수가 들어가는데 이후에 이분탐색을 하기위해 오름차순으로 정렬해준다</li><li>bisect_left 함수를 통해 해당 점수 이상인 사람의 수를 구한다</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EA%B4%84%ED%98%B8_%ED%9A%8C%EC%A0%84%ED%95%98%EA%B8%B0/><span class=mx-3>◀</span>
 프로그래머스 - 괄호 회전하기 (L2)
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EB%A9%94%EB%89%B4_%EB%A6%AC%EB%89%B4%EC%96%BC/>
-프로그래머스 - 메뉴 리뉴얼 (L2)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EB%A9%94%EB%89%B4_%EB%A6%AC%EB%89%B4%EC%96%BC/>프로그래머스 - 메뉴 리뉴얼 (L2)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

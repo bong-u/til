@@ -1,4 +1,293 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Javascript on bong-u/til</title><link>https://bong-u.github.io/til/javascript/</link><description>Recent content in Javascript on bong-u/til</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://bong-u.github.io/til/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Express&amp;React 프로젝트에 Recaptcha v3 적용하기</title><link>https://bong-u.github.io/til/javascript/apply_recaptcha/</link><pubDate>Tue, 03 Dec 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/apply_recaptcha/</guid><description>상황 사이드 프로젝트 &amp;ldquo;알록&amp;quot;을 개발하던 중, 사용자가 악의적인 목적으로 반복적으로 요청을 보내는 것을 어떻게 막을까 고민하게 되었다. 조사를 통해 Google에서 제공되는 Recaptcha를 사용하면 손쉽게 방지할 수 있다는 것을 알게 되었다. 공격자의 입장에서 생각했을 때, 지금 프로젝트에서 가장 취약한 부분은 회원가입이라고 생각했다. 회원가입은 회원이 아닌 자가, 아이디와 비밀번호 규칙만 만족한다면 반복적으로 요청을 보낼 수 있고, 이는 DB에 바로 저장되기 때문이다. 따라서 회원가입 부분에 Recaptcha를 적용하기로 결정했다. Recaptcha란? Recaptcha는 구글에서 제공하는 무료 보안 서비스로, 사용자가 로봇이 아님을 증명하는 방법 중 하나이다.</description></item><item><title>프론트엔드(react) 면접 준비</title><link>https://bong-u.github.io/til/javascript/react_interview/</link><pubDate>Mon, 27 May 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_interview/</guid><description>React의 특징 Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks DOM HTML element를 tree형태로 표현한 것
-Virtual DOM DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식
-Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : 변경된 부분만 실제 DOM에 반영 Batch Update : 여러 개의 변경사항을 한번에 업데이트 React Component Class Component 생명주기 메소드를 포함 상속을 통해 Component를 생성 mutable state를 가질 수 있음 Functional Component immutable하다 stateless Hooks를 사용 LifeCycle Method Mounting constructor : 컴포넌트 생성자 static getDerivedStateFromProps : props로 state를 설정 render : 컴포넌트 렌더링 componentDidMount : 컴포넌트가 마운트된 직후 Updating static getDerivedStateFromProps : props로 state를 설정 shouldComponentUpdate : 컴포넌트 업데이트 여부 결정 render : 컴포넌트 렌더링 getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전 componentDidUpdate : 컴포넌트 업데이트 직후 Unmounting componentWillUnmount : 컴포넌트가 언마운트되기 직전 React Hooks 함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능</description></item><item><title>React - 로그인 상태와 중첩 라우팅</title><link>https://bong-u.github.io/til/javascript/react_utilize_router/</link><pubDate>Sat, 12 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_utilize_router/</guid><description>배경 학부연구생 업무 중에, 로그인 여부에 따라 다른 페이지를 보여주는 기능을 구현해야 했다. 로그인을 하지 않았을때는 &amp;ldquo;/login&amp;quot;으로, 로그인을 했을 때는 &amp;ldquo;/&amp;ldquo;으로 리다이렉트 했다 path가 달라도 공통적으로 적용되는 레이아웃은 중첩 라우팅을 이용하여 구현했다 구조는 다음과 같다 코드 Router.js
-1&amp;lt;BrowserRouter&amp;gt; 2 &amp;lt;Routes&amp;gt; 3 &amp;lt;!-- isAuthorized를 prop으로 넘겨서 이미 login한 경우 redirect --&amp;gt; 4 &amp;lt;Route 5 path=&amp;#34;/login&amp;#34; 6 element={&amp;lt;Login isAuthorized={isAuthorized} /&amp;gt;} 7 /&amp;gt; 8 &amp;lt;!-- 로그인을 하지 않았는데 &amp;#34;/&amp;#34;로 접근시 redirect --&amp;gt; 9 {!</description></item><item><title>JS - Dicom to base64</title><link>https://bong-u.github.io/til/javascript/js_dicom_to_base64/</link><pubDate>Sun, 06 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/js_dicom_to_base64/</guid><description>배경 학부연구생 업무 중에, dicom파일을 서버에 전송하는 작업이 필요했다 보내는 형식은 2가지로 생각했다 dicom파일을 그대로 multipart/form-data 형식으로 보내는 방법 장점 : 파일을 그대로 효율적으로 전송할 수 있다 단점 : 파일 정보를 함께 보내기 어렵다 dicom파일을 base64로 인코딩하여 application/json 형식으로 보내는 방법 장점 : 파일 정보를 함께 보낼 수 있다 단점 : 인코딩으로 인해서 원본 파일보다 용량이 커진다 파일의 정보도 함께 구조화하여 보내기 위해 json형태로 보내는 방식을 택하였다 구현 dicom파일 -&amp;gt; base64 1// Encode a file to BASE64 2 const readFileAsync = (file) =&amp;gt; { 3 return new Promise((resolve, reject) =&amp;gt; { 4 // 비동기적으로 파일을 읽어오기 위해 FileReader 객체를 생성 5 const reader = new FileReader(); 6 7 // 읽기가 끝나면 수행 8 reader.</description></item><item><title>JS - Arguments object 관련 이슈</title><link>https://bong-u.github.io/til/javascript/js_arguments_object_issue/</link><pubDate>Wed, 05 Apr 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/js_arguments_object_issue/</guid><description>상황 나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다. 구글에서 제공하는 태그 소스 중 일부이다. 1function gtag() { 2 dataLayer.push(arguments); 3} 나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다. 1const gtag = (...args) =&amp;gt; { 2 dataLayer.push(args); 3}; 하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다. 이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.</description></item><item><title>React - build 이후 빈 화면만 나오는 문제</title><link>https://bong-u.github.io/til/javascript/react_deploy_issue/</link><pubDate>Thu, 19 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_deploy_issue/</guid><description>build 결과물을 돌리면 빈 화면만 나오는 문제 static files 로딩에 성공했는지 확인하자 문제가 있다면 index.html의 경로를 수정하자 react-router를 사용하고 있다면 url을 확인하자 deploy할때 root url이 아니라면 router에 basename을 추가해줘야한다. 1&amp;lt;Router basename=&amp;#34;/index&amp;#34;&amp;gt;...&amp;lt;/Router&amp;gt;</description></item><item><title>React - environment variable 설정하기</title><link>https://bong-u.github.io/til/javascript/react_env_var/</link><pubDate>Thu, 19 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_env_var/</guid><description> 프로그램이 개발/배포 상황에 따라 변수를 달리해야 할 때가 있다. 이때 react에서는 .env.development , .env.production 파일을 만들어서 환경변수를 쉽게 관리할 수 있다. react는 앞에 &amp;lsquo;REACT_APP&amp;rsquo; 을 붙여야 인식이 된다고한다. 설정 .env.development 1REACT_APP_HOST=localhost .env.production 1REACT_APP_HOST=192.168.0.1 사용 1${process.env.REACT_APP_HOST}</description></item><item><title>React - useEffect 사용법</title><link>https://bong-u.github.io/til/javascript/react_useeffect/</link><pubDate>Thu, 19 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_useeffect/</guid><description> component가 rendering 될 때 실행 1useEffect(()=&amp;gt; { 2 ... 3}); component가 mount 될 때 (처음 rendering 될 때) 실행 1useEffect(()=&amp;gt; { 2 ... 3}, []); component가 update 될 때 (props, states가 바뀔 때) 실행 1useEffect(()=&amp;gt; { 2 ... 3}, [{ props or states }]); component가 unmount 될 때 또는 update되기 직전에 실행 1useEffect(()=&amp;gt; { 2 return () =&amp;gt; { 3 ... 4 }; 5}, []);</description></item><item><title>React - column을 기준으로 정렬하기</title><link>https://bong-u.github.io/til/javascript/react_table_sort/</link><pubDate>Tue, 17 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_table_sort/</guid><description>Table에 있는 데이터들을 column별로 정렬해야 한다 데이터의 형식에 따라 comparator를 따로 구현하였다 1const comparatorStr = (a, b, order) =&amp;gt; { 2 if (order === Order.ASC) return a.localeCompare(b); 3 return b.localeCompare(a); 4}; 5 6const comparatorInt = (a, b, order) =&amp;gt; { 7 if (order === Order.ASC) return a &amp;gt; b ? 1 : -1; 8 return a &amp;lt; b ? 1 : -1; 9}; 정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다 1useEffect(() =&amp;gt; { 2 if (sortBy === Key.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Javascript on bong-u/til</title><link>https://bong-u.github.io/til/javascript/</link><description>Recent content in Javascript on bong-u/til</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://bong-u.github.io/til/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Express&amp;React 프로젝트에 Recaptcha v3 적용하기</title><link>https://bong-u.github.io/til/javascript/apply_recaptcha/</link><pubDate>Tue, 03 Dec 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/apply_recaptcha/</guid><description>&lt;h3 id="상황"&gt;상황&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;사이드 프로젝트 &amp;ldquo;알록&amp;quot;을 개발하던 중, 사용자가 악의적인 목적으로 반복적으로 요청을 보내는 것을 어떻게 막을까 고민하게 되었다.&lt;/li&gt;
+&lt;li&gt;조사를 통해 Google에서 제공되는 Recaptcha를 사용하면 손쉽게 방지할 수 있다는 것을 알게 되었다.&lt;/li&gt;
+&lt;li&gt;공격자의 입장에서 생각했을 때, 지금 프로젝트에서 가장 취약한 부분은 회원가입이라고 생각했다.&lt;/li&gt;
+&lt;li&gt;회원가입은 회원이 아닌 자가, 아이디와 비밀번호 규칙만 만족한다면 반복적으로 요청을 보낼 수 있고, 이는 DB에 바로 저장되기 때문이다.&lt;/li&gt;
+&lt;li&gt;따라서 &lt;strong&gt;회원가입 부분에 Recaptcha를 적용&lt;/strong&gt;하기로 결정했다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="recaptcha란"&gt;Recaptcha란?&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Recaptcha는 구글에서 제공하는 무료 보안 서비스로, 사용자가 로봇이 아님을 증명하는 방법 중 하나이다.&lt;/p&gt;</description></item><item><title>프론트엔드(react) 면접 준비</title><link>https://bong-u.github.io/til/javascript/react_interview/</link><pubDate>Mon, 27 May 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_interview/</guid><description>&lt;h4 id="react의-특징"&gt;React의 특징&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Component 기반&lt;/li&gt;
+&lt;li&gt;Virtual DOM&lt;/li&gt;
+&lt;li&gt;JSX&lt;/li&gt;
+&lt;li&gt;단방향 데이터 흐름&lt;/li&gt;
+&lt;li&gt;생명주기 메소드&lt;/li&gt;
+&lt;li&gt;Hooks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="dom"&gt;DOM&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HTML element를 tree형태로 표현한 것&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="virtual-dom"&gt;Virtual DOM&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교&lt;/li&gt;
+&lt;li&gt;Reconciliation : 변경된 부분만 실제 DOM에 반영&lt;/li&gt;
+&lt;li&gt;Batch Update : 여러 개의 변경사항을 한번에 업데이트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="react-component"&gt;React Component&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Class Component
+&lt;ul&gt;
+&lt;li&gt;생명주기 메소드를 포함&lt;/li&gt;
+&lt;li&gt;상속을 통해 Component를 생성&lt;/li&gt;
+&lt;li&gt;mutable state를 가질 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Functional Component
+&lt;ul&gt;
+&lt;li&gt;immutable하다&lt;/li&gt;
+&lt;li&gt;stateless&lt;/li&gt;
+&lt;li&gt;Hooks를 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="lifecycle-method"&gt;LifeCycle Method&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Mounting
+&lt;ul&gt;
+&lt;li&gt;constructor : 컴포넌트 생성자&lt;/li&gt;
+&lt;li&gt;static getDerivedStateFromProps : props로 state를 설정&lt;/li&gt;
+&lt;li&gt;render : 컴포넌트 렌더링&lt;/li&gt;
+&lt;li&gt;componentDidMount : 컴포넌트가 마운트된 직후&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Updating
+&lt;ul&gt;
+&lt;li&gt;static getDerivedStateFromProps : props로 state를 설정&lt;/li&gt;
+&lt;li&gt;shouldComponentUpdate : 컴포넌트 업데이트 여부 결정&lt;/li&gt;
+&lt;li&gt;render : 컴포넌트 렌더링&lt;/li&gt;
+&lt;li&gt;getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전&lt;/li&gt;
+&lt;li&gt;componentDidUpdate : 컴포넌트 업데이트 직후&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Unmounting
+&lt;ul&gt;
+&lt;li&gt;componentWillUnmount : 컴포넌트가 언마운트되기 직전&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="react-hooks"&gt;React Hooks&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능&lt;/p&gt;</description></item><item><title>React - 로그인 상태와 중첩 라우팅</title><link>https://bong-u.github.io/til/javascript/react_utilize_router/</link><pubDate>Sat, 12 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_utilize_router/</guid><description>&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;학부연구생 업무 중에, 로그인 여부에 따라 다른 페이지를 보여주는 기능을 구현해야 했다.&lt;/li&gt;
+&lt;li&gt;로그인을 하지 않았을때는 &amp;ldquo;/login&amp;quot;으로, 로그인을 했을 때는 &amp;ldquo;/&amp;ldquo;으로 리다이렉트 했다&lt;/li&gt;
+&lt;li&gt;path가 달라도 공통적으로 적용되는 레이아웃은 중첩 라우팅을 이용하여 구현했다&lt;/li&gt;
+&lt;li&gt;구조는 다음과 같다
+&lt;img src="https://bong-u.github.io/til/static/image/react_router_structure.png" alt="route_structure"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="코드"&gt;코드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Router.js&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&amp;lt;&lt;span style="color:#f92672"&gt;BrowserRouter&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Routes&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;!-- isAuthorized를 prop으로 넘겨서 이미 login한 경우 redirect --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Route&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;path&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/login&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;element&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&amp;lt;Login&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;isAuthorized&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{isAuthorized}&lt;/span&gt; /&amp;gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; /&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;!-- 로그인을 하지 않았는데 &amp;#34;/&amp;#34;로 접근시 redirect --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt; {!isAuthorized ? (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Route&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;path&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/&amp;#34;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;element&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&amp;lt;Navigate&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;to&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/login&amp;#34;&lt;/span&gt; /&amp;gt;} /&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt; ) : (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;!-- 공통 요소인 MainLayout에 대해 아래와 같이 중첩라우팅을 사용할 수 있다 --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Route&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;element&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&amp;lt;MainLayout&lt;/span&gt; /&amp;gt;}&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Route&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;path&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/&amp;#34;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;element&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&amp;lt;MainDashboard&lt;/span&gt; /&amp;gt;} /&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;15&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Route&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;path&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/file&amp;#34;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;element&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&amp;lt;FileManager&lt;/span&gt; /&amp;gt;} /&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;16&lt;/span&gt;&lt;span&gt; &amp;lt;&lt;span style="color:#f92672"&gt;Route&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;path&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/job&amp;#34;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;element&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&amp;lt;JobManager&lt;/span&gt; /&amp;gt;} /&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;17&lt;/span&gt;&lt;span&gt; &amp;lt;/&lt;span style="color:#f92672"&gt;Route&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;18&lt;/span&gt;&lt;span&gt; )}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;19&lt;/span&gt;&lt;span&gt; &amp;lt;/&lt;span style="color:#f92672"&gt;Routes&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;20&lt;/span&gt;&lt;span&gt;&amp;lt;/&lt;span style="color:#f92672"&gt;BrowserRouter&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MainLayout.js&lt;/p&gt;</description></item><item><title>JS - Dicom to base64</title><link>https://bong-u.github.io/til/javascript/js_dicom_to_base64/</link><pubDate>Sun, 06 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/js_dicom_to_base64/</guid><description>&lt;h3 id="배경"&gt;배경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;학부연구생 업무 중에, dicom파일을 서버에 전송하는 작업이 필요했다&lt;/li&gt;
+&lt;li&gt;보내는 형식은 2가지로 생각했다
+&lt;ol&gt;
+&lt;li&gt;dicom파일을 그대로 multipart/form-data 형식으로 보내는 방법
+&lt;ul&gt;
+&lt;li&gt;장점 : 파일을 그대로 효율적으로 전송할 수 있다&lt;/li&gt;
+&lt;li&gt;단점 : 파일 정보를 함께 보내기 어렵다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;dicom파일을 base64로 인코딩하여 application/json 형식으로 보내는 방법
+&lt;ul&gt;
+&lt;li&gt;장점 : 파일 정보를 함께 보낼 수 있다&lt;/li&gt;
+&lt;li&gt;단점 : 인코딩으로 인해서 원본 파일보다 용량이 커진다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;파일의 정보도 함께 구조화하여 보내기 위해 json형태로 보내는 방식을 택하였다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="구현"&gt;구현&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;dicom파일 -&amp;gt; base64
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// Encode a file to BASE64
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;readFileAsync&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;file&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; Promise((&lt;span style="color:#a6e22e"&gt;resolve&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;reject&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 비동기적으로 파일을 읽어오기 위해 FileReader 객체를 생성
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;reader&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;FileReader&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 읽기가 끝나면 수행
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;reader&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;onload&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;evt&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;resolve&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;evt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;target&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;result&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;11&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;12&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 에러가 발생하면 reject
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;13&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;reader&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;onerror&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;reject&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;14&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;15&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 파일을 Base64로 인코딩된 데이터 URL 형식으로 읽어온다
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;16&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;reader&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;readAsDataURL&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;file&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;17&lt;/span&gt;&lt;span&gt; });
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;18&lt;/span&gt;&lt;span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;위 함수는 파일을 base64로 인코딩하여 promise를 반환한다&lt;/li&gt;
+&lt;li&gt;결과
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;data:application/octet-stream;base64,AAAAAAAAAAAAAAAAA...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>JS - Arguments object 관련 이슈</title><link>https://bong-u.github.io/til/javascript/js_arguments_object_issue/</link><pubDate>Wed, 05 Apr 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/js_arguments_object_issue/</guid><description>&lt;h3 id="상황"&gt;상황&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.&lt;/li&gt;
+&lt;li&gt;구글에서 제공하는 태그 소스 중 일부이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;function&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;gtag&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;dataLayer&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;push&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;arguments&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;gtag&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (...&lt;span style="color:#a6e22e"&gt;args&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;dataLayer&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;push&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;args&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다.&lt;/li&gt;
+&lt;li&gt;이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="arguments-object"&gt;Arguments object&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Arguments 객체는 함수에 전달되는 유사 Array 형태이다.&lt;/li&gt;
+&lt;li&gt;함수 parameter에 어떻게 명시되어있건 상관없이 동작한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;function&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;func1&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;c&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;console&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;log&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;arguments&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;console&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;log&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;arguments&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;console&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;log&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;arguments&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;arguments 객체는 3가지로 구성된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;함수에 넘겨진 인자 (index는 0부터 시작한다)&lt;/li&gt;
+&lt;li&gt;length : 인자의 개수&lt;/li&gt;
+&lt;li&gt;callee : 현재 실행 중인 함수의 참조값&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="arrow-function에서는"&gt;Arrow function에서는?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;arrow function에서는 arguments 객체를 사용할 수 없다.&lt;/li&gt;
+&lt;li&gt;대신 &amp;hellip;args와 같은 문법으로 아래와 같이 사용할 수 있다.&lt;/li&gt;
+&lt;li&gt;여기서는 Arguments 객체가 아닌 진짜 Array로 가져온다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;func2&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (...&lt;span style="color:#a6e22e"&gt;args&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;console&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;log&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;args&lt;/span&gt;[&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="정리"&gt;정리&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Google analytics가 정상적으로 동작하기 위해서는 dataLayer에 Arguments object가 push 되었어야 하는데,&lt;/li&gt;
+&lt;li&gt;내가 임의로 바꾸어서 Array가 push 되었다. 따라서 코드가 정상적으로 동작하지 않았다는 것을 알 수 있었다.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>React - build 이후 빈 화면만 나오는 문제</title><link>https://bong-u.github.io/til/javascript/react_deploy_issue/</link><pubDate>Thu, 19 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_deploy_issue/</guid><description>&lt;h3 id="build-결과물을-돌리면-빈-화면만-나오는-문제"&gt;build 결과물을 돌리면 빈 화면만 나오는 문제&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;static files 로딩에 성공했는지 확인하자
+&lt;ul&gt;
+&lt;li&gt;문제가 있다면 index.html의 경로를 수정하자&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;react-router를 사용하고 있다면 url을 확인하자
+&lt;ul&gt;
+&lt;li&gt;deploy할때 root url이 아니라면 router에 basename을 추가해줘야한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;Router&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;basename&lt;/span&gt;&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;/index&amp;#34;&lt;/span&gt;&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt;...&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;/Router&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>React - environment variable 설정하기</title><link>https://bong-u.github.io/til/javascript/react_env_var/</link><pubDate>Thu, 19 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_env_var/</guid><description>&lt;ul&gt;
+&lt;li&gt;프로그램이 개발/배포 상황에 따라 변수를 달리해야 할 때가 있다.&lt;/li&gt;
+&lt;li&gt;이때 react에서는 .env.development , .env.production 파일을 만들어서 환경변수를 쉽게 관리할 수 있다.&lt;/li&gt;
+&lt;li&gt;react는 앞에 &lt;strong&gt;&amp;lsquo;REACT_APP&amp;rsquo;&lt;/strong&gt; 을 붙여야 인식이 된다고한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="설정"&gt;설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;.env.development
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;REACT_APP_HOST=localhost
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;.env.production
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;REACT_APP_HOST=192.168.0.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="사용"&gt;사용&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;$&lt;/span&gt;{&lt;span style="color:#a6e22e"&gt;process&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;env&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;REACT_APP_HOST&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>React - useEffect 사용법</title><link>https://bong-u.github.io/til/javascript/react_useeffect/</link><pubDate>Thu, 19 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_useeffect/</guid><description>&lt;ol&gt;
+&lt;li&gt;component가 rendering 될 때 실행
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;useEffect&lt;/span&gt;(()=&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;component가 mount 될 때 (처음 rendering 될 때) 실행
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;useEffect&lt;/span&gt;(()=&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;}, []);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;component가 update 될 때 (props, states가 바뀔 때) 실행
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;useEffect&lt;/span&gt;(()=&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;}, [{ &lt;span style="color:#a6e22e"&gt;props&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;or&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;states&lt;/span&gt; }]);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;component가 unmount 될 때 또는 update되기 직전에 실행
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;useEffect&lt;/span&gt;(()=&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; () =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;}, []);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>React - column을 기준으로 정렬하기</title><link>https://bong-u.github.io/til/javascript/react_table_sort/</link><pubDate>Tue, 17 Jan 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/javascript/react_table_sort/</guid><description>&lt;h2 id="table에-있는-데이터들을-column별로-정렬해야-한다"&gt;Table에 있는 데이터들을 column별로 정렬해야 한다&lt;/h2&gt;
+&lt;h3 id="데이터의-형식에-따라-comparator를-따로-구현하였다"&gt;데이터의 형식에 따라 comparator를 따로 구현하였다&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;comparatorStr&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;order&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;order&lt;/span&gt; &lt;span style="color:#f92672"&gt;===&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Order&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;ASC&lt;/span&gt;) &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;localeCompare&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;localeCompare&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;comparatorInt&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;order&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;order&lt;/span&gt; &lt;span style="color:#f92672"&gt;===&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Order&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;ASC&lt;/span&gt;) &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;a&lt;/span&gt; &lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt; &lt;span style="color:#f92672"&gt;?&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt; &lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#f92672"&gt;-&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;a&lt;/span&gt; &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt; &lt;span style="color:#f92672"&gt;?&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt; &lt;span style="color:#f92672"&gt;:&lt;/span&gt; &lt;span style="color:#f92672"&gt;-&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="정렬할-키나-순서가-바뀔때-마다-정렬을-수행한다"&gt;정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#a6e22e"&gt;useEffect&lt;/span&gt;(() =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;sortBy&lt;/span&gt; &lt;span style="color:#f92672"&gt;===&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Key&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;NAME&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;setStateList&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 4&lt;/span&gt;&lt;span&gt; [...&lt;span style="color:#a6e22e"&gt;stateList&lt;/span&gt;].&lt;span style="color:#a6e22e"&gt;sort&lt;/span&gt;((&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;) =&amp;gt; &lt;span style="color:#a6e22e"&gt;comparatorStr&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;name&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;name&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;sortOrder&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 5&lt;/span&gt;&lt;span&gt; );
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;sortBy&lt;/span&gt; &lt;span style="color:#f92672"&gt;===&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Key&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;SIZE&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 7&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;setStateList&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 8&lt;/span&gt;&lt;span&gt; [...&lt;span style="color:#a6e22e"&gt;stateList&lt;/span&gt;].&lt;span style="color:#a6e22e"&gt;sort&lt;/span&gt;((&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;) =&amp;gt; &lt;span style="color:#a6e22e"&gt;comparatorInt&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;a&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;size&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;b&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;size&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;sortOrder&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt; 9&lt;/span&gt;&lt;span&gt; );
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;10&lt;/span&gt;&lt;span&gt;}, [&lt;span style="color:#a6e22e"&gt;sortBy&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;sortOrder&lt;/span&gt;]);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="정렬할-키-순서는-다음과-같이-정한다"&gt;정렬할 키, 순서는 다음과 같이 정한다&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;const&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;sortHandle&lt;/span&gt; &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;key&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// (현재 선택 된 키를 다시 눌렀을 때 &amp;amp;&amp;amp; 현재 오름차순 정렬일 때) -&amp;gt; 내림차순
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;sortBy&lt;/span&gt; &lt;span style="color:#f92672"&gt;===&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;key&lt;/span&gt; &lt;span style="color:#f92672"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;sortOrder&lt;/span&gt; &lt;span style="color:#f92672"&gt;===&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;Order&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;ASC&lt;/span&gt;) &lt;span style="color:#a6e22e"&gt;setSortOrder&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;Order&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;DESC&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 나머지 모든 경우 -&amp;gt; 오름차순
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;setSortOrder&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;Order&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;ASC&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// update sortBy
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;setSortBy&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;key&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="느낀-점"&gt;느낀 점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;나름 신경썼는데 UI측면에서 내 방식이 적절한 방식인지 잘 모르겠다.&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

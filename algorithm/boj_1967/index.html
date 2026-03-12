@@ -1,137 +1,45 @@
-<!doctype html><html lang=ko>
-<head>
-<title>백준 - 1967 : 트리의 지름(G4)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="1import sys 2sys.setrecursionlimit(10**6) 3M = int(input()) 4G = [[] for _ in range(M)] 5 6for _ in …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="백준 - 1967 : 트리의 지름(G4)">
-<meta property="og:description" content="1import sys 2sys.setrecursionlimit(10**6) 3M = int(input()) 4G = [[] for _ in range(M)] 5 6for _ in …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#해결-방법>해결 방법</a></li>
-<li><a href=#느낀-점>느낀 점</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-백준 - 1967 : 트리의 지름(G4)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
-<span class="text-md mr-1">🏷️ boj</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> sys
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>M <span style=color:#f92672>=</span> int(input())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(M)]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(M<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    a, b, c <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    G[a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append((b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, c))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    G[b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append((a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, c))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>n1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>tmp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node, length):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    <span style=color:#66d9ef>global</span> n1, tmp
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    visit[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#66d9ef>if</span> length <span style=color:#f92672>&gt;</span> tmp:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>        tmp <span style=color:#f92672>=</span> length
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>        n1 <span style=color:#f92672>=</span> node
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    <span style=color:#66d9ef>for</span> child, v <span style=color:#f92672>in</span> G[node]:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visit[child]:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>            dfs(child, length<span style=color:#f92672>+</span>v)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>visit <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>dfs(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span>tmp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span>visit <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span>dfs(n1, <span style=color:#ae81ff>0</span>)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span>print (tmp)
-</code></pre></div><ul>
-<li>인터넷에서 접근 방법을 참고했다</li>
-</ul>
-<h3 id=해결-방법>해결 방법</h3>
-<ul>
-<li>아무 정점에서 가장 먼 어떤 정점을 N이라고 하자</li>
-<li>정점 N에서 가장 먼 정점 사이의 거리가 트리의 지름과 같다</li>
-</ul>
-<h3 id=느낀-점>느낀 점</h3>
-<ul>
-<li>루트를 구할 필요가 없다는 것을 깨달았다</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_15681/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>백준 - 1967 : 트리의 지름(G4)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 1import sys
+ 2sys.setrecursionlimit(10**6)
+ 3M = int(input())
+ 4G = [[] for _ in range(M)]
+ 5
+ 6for …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="백준 - 1967 : 트리의 지름(G4)"><meta property="og:description" content=" 1import sys
+ 2sys.setrecursionlimit(10**6)
+ 3M = int(input())
+ 4G = [[] for _ in range(M)]
+ 5
+ 6for …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#해결-방법>해결 방법</a></li><li><a href=#느낀-점>느낀 점</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">백준 - 1967 : 트리의 지름(G4)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
+<span class="text-md mr-1">🏷️ boj</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>import</span> sys
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>sys<span style=color:#f92672>.</span>setrecursionlimit(<span style=color:#ae81ff>10</span><span style=color:#f92672>**</span><span style=color:#ae81ff>6</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>M <span style=color:#f92672>=</span> int(input())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>G <span style=color:#f92672>=</span> [[] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(M)]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(M<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    a, b, c <span style=color:#f92672>=</span> map(int, input()<span style=color:#f92672>.</span>split())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    G[a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append((b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, c))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    G[b<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>append((a<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, c))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>n1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>tmp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dfs</span>(node, length):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    <span style=color:#66d9ef>global</span> n1, tmp
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    visit[node] <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    <span style=color:#66d9ef>if</span> length <span style=color:#f92672>&gt;</span> tmp:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>        tmp <span style=color:#f92672>=</span> length
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>        n1 <span style=color:#f92672>=</span> node
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    <span style=color:#66d9ef>for</span> child, v <span style=color:#f92672>in</span> G[node]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> visit[child]:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>            dfs(child, length<span style=color:#f92672>+</span>v)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>visit <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>dfs(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>tmp <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>visit <span style=color:#f92672>=</span> [<span style=color:#66d9ef>False</span>]<span style=color:#f92672>*</span>M
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>dfs(n1, <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>print (tmp)
+</span></span></code></pre></div><ul><li>인터넷에서 접근 방법을 참고했다</li></ul><h3 id=해결-방법>해결 방법</h3><ul><li>아무 정점에서 가장 먼 어떤 정점을 N이라고 하자</li><li>정점 N에서 가장 먼 정점 사이의 거리가 트리의 지름과 같다</li></ul><h3 id=느낀-점>느낀 점</h3><ul><li>루트를 구할 필요가 없다는 것을 깨달았다</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_15681/><span class=mx-3>◀</span>
 백준 - 15681 : 트리와 쿼리 (G5)
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_1167/>
-백준 - 1167 : 트리의 지름 (G2)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/boj_1167/>백준 - 1167 : 트리의 지름 (G2)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

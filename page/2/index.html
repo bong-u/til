@@ -1,813 +1,264 @@
-<!doctype html><html lang=ko>
-<head>
-<meta name=generator content="Hugo 0.91.2">
-<title>bong-u/til</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="bong-u/til">
-<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6
-max-w-3xl">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="w-full flex max-w-3xl flex-col">
-<section class="mb-8 w-full">
-<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
-<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
-</video>
-</section>
-<main class="flex flex-col w-full gap-5">
-<form onchange=switchSection() class="flex justify-center">
-<input id=switch-page type=radio name=switch checked>
-<label for=switch-page class="switch-button rounded-l-lg">
-게시물
-</label>
-</input>
+<!doctype html><html lang=ko><head><meta name=generator content="Hugo 0.157.0"><title>bong-u/til</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="bong-u/til"><meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6
+max-w-3xl"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><div class="w-full flex max-w-3xl flex-col"><section class="mb-8 w-full"><video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm></video></section><main class="flex flex-col w-full gap-5"><form onchange=switchSection() class="flex justify-center"><input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">게시물
+</label></input>
 <input id=switch-group type=radio name=switch>
-<label for=switch-group class=switch-button>
-분류
-</label>
-</input>
+<label for=switch-group class=switch-button>분류
+</label></input>
 <input id=switch-tag type=radio name=switch>
-<label for=switch-tag class=switch-button>
-태그
-</label>
-<input id=search-tag type=radio name=switch>
-<label for=search-tag class="switch-button rounded-r-lg">
-검색
-</label>
-</form>
-<div class="w-full p-5">
-<section id=summary-section class="grid gap-8">
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/component_scan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Spring 개념 - Component Scan
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/component_scan/ class="content-summary text-sm overflow-hidden">
-개념 Component Scan은 스프링이 직접 클래스를 검색해서 빈으로 등록해주는 기능이다 xml 또는 annotation을 통해 사용 가능하다 @ComponentScan basePacakges : 패키지 이름을 통해 스캔할 범위를 지정한다
-1@ComponentScan(basePackages="org.academy.order") 2@ComponentScan(basePackages={"org.academy.order", "org.academy.voucher"}) basePackageClasses : 해당 클래스가 들어있는 패키지를 범위로 지정한다
-1@ComponentScan(basePackageClasses="Order.class") 2@ComponentScan(basePackages={"Order.class", "Voucher.class"}) 예제 AppCtx.java
-1@Configuration 2@ComponentScan(basePackages = {"spring"}) 3public class AppCtx {...} MemberInfoPrinter.java
-1@Component("infoPrinter") 2public class MemberInfoPrinter {...} 효과
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/bean_lifecycle_scope/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Spring 개념 - Bean Lifecycle & Scope
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/bean_lifecycle_scope/ class="content-summary text-sm overflow-hidden">
-Bean 객체의 Lifecycle Bean 객체가 생성 또는 소멸될때 특정 코드를 실행하게 할 수 있다. @PostConstruct, @PreDestroy Annotation 사용
-1// Bean 객체 생성될 때 실행 2@PostConstruct 3public void postConstruct() {...} 4 5// Bean 객체 소멸될 때 실행 6@PreDestroy 7public void preDestroy() {...} InitializingBean, DisposableBean 구현
-1public class Client implements InitializingBean, DisposableBean { 2 // Bean 객체 생성될 때 실행 3 @Override 4 public void afterPropertiesSet() throws Exception {.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/autowired/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Spring 개념 - Autowired
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/autowired/ class="content-summary text-sm overflow-hidden">
-@Autowired를 이용한 자동 객체 주입 방법1 : Field에 적용
-1public class MemberListPrinter { 2 @Autowired 3 private MemberDao memberDao; 4 @Autowired 5 private MemberPrinter printer; 6 7 public MemberListPrinter() {} 8 9 public void printAll() { 10 Collection&lt;Member> members = memberDao.selectAll(); 11 members.forEach(m -> printer.print(m)); 12 } 13} 방법2 : Method에 적용
-1public class MemberListPrinter { 2 private MemberDao memberDao; 3 private MemberPrinter printer; 4 5 public MemberListPrinter() {} 6 7 @Autowired 8 public void setMemberDao(MemberDao memberDao) { 9 this.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/09_spring_mvc/ class="text-2xl my-3 overflow-ellipsis-bundle">
-09_spring_MVC
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/09_spring_mvc/ class="content-summary text-sm overflow-hidden">
-Spring MVC 시작하기 프로젝트 생성 앞에서 만들었던 자바 애플리케이션과는 좀 다른점이 있었다 jar이 아닌 war을 사용하는 등 여러가지 많았는데 일일이 적지는 않을 것이다 Controller 1@Controller 2public class HelloController { 3 @GetMapping("/hello") 4 public String hello(Model model, 5 @RequestParam(value="name", required=false) String name) { 6 model.addAttribute("greeting", "안녕하세요" + name); 7 return "hello"; 8 } 9} JSP 1&lt;%@ page contentType="text/html; charset=utf-8" %> 2&lt;!DOCTYPE html> 3&lt;html> 4 &lt;head> 5 &lt;title>Hello&lt;/title> 6 &lt;/head> 7 &lt;body> 8 인사말 : ${greeting} 9 &lt;/body> 10&lt;/html URL접속해도 해당 jsp파일이 나오지 않는 문제 vscode에서 community server connector라는 extension을 통해 tomcat을 띄워서 할려고 한다 특정 jsp를 감지했는지, serving하는지에 대한 로그가 없어 되는건지 알 수가 없다 web.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/ood/ class="text-2xl my-3 overflow-ellipsis-bundle">
-객체지향설계
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/ood/ class="content-summary text-sm overflow-hidden">
-Dynamic dispatch and Multiple inheritance Polymorphism Function overloading using compile time types of arguments Function overriding using runtime types of receiver objects virtual function for dynamic dispatch dynamic dispatch를 사용하기 위한 조건
-함수가 virtual keyword로 정의되어 있어야 한다.
-receiver object가 포인터(*), 참조(&)를 통해 refer되어야 한다
-1// from parent class : Employee 2virtual std::string GetInfo() { 3 return "Employee: " + name_ ; 4} 5// from child class : Developer 6std::string GetInfo() { 7 return "Developer: " + name_; 8} override keyword override 키워드를 사용하는 이유 직관적인 코드
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/aop/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Spring 개념 - AOP (Aspect Oriented Programming)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/aop/ class="content-summary text-sm overflow-hidden">
-AOP (Aspect Oriented Programming) 여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법 기본 개념 : 핵심 기능에 공통 기능을 삽입 구현하는 3가지 방법 컴파일 시점에 코드에 공통 기능을 삽입하는 방법 클래스 로딩 시점에 바이트 코드에 공통 기능을 삽입하는 방법 런타임에 프록시 객체를 생성해서 공통 기능을 삽입하는 방법 AOP 주요 용어 Target 부가 기능을 부여할 대상
-Advice 부가기능을 담고 있는 모듈
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/sysp_12_13/ class="text-2xl my-3 overflow-ellipsis-bundle">
-221208 SYSP
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/sysp_12_13/ class="content-summary text-sm overflow-hidden">
-12-memory-1 메모리에 관한 불편한 진실 메모리는 무한의 자원이 아니다 동적 메모리 할당 직접(explicit) vs 간접(implicit) 메모리 할당기 직접 할당 : 응용프로그램이 할당하고, 반환한다 ex) malloc, free 간접 할당 : 응용프로그램이 할당하지만, 반환하지는 않는다 ex) java의 garbage collector 프로세스의 메모리 이미지 스택은 아래로, 힙은 위로 성장한다 sbrk 함수가 추가적인 힙 메모리를 운영체제로부터 요청한다 (brk 포인터 이동) Malloc package 1#include &lt;stdlib.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/sysp_09_11/ class="text-2xl my-3 overflow-ellipsis-bundle">
-221207 SYSP
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/sysp_09_11/ class="content-summary text-sm overflow-hidden">
-09-process1 예외적인 제어 흐름 하위 매커니즘 예외 (Exception) 상위 매커니즘 프로세스 컨텍스트 전환 OS 소프트웨어와 하드웨어 타이머로 구현 시그널 OS 소프트웨어로 구현 nolocal 점프 예외 테이블 (Exception Tables) 각 이벤트 타입은 예외번호 k를 갖는다 비동기형 예외 (Interrupt) 입출력 인터럽트 (ctrl + c)
-하드 리셋 인터러트
-소프트 리셋 인터럽트
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/08_connect_db/ class="text-2xl my-3 overflow-ellipsis-bundle">
-08_connect_DB
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/08_connect_db/ class="content-summary text-sm overflow-hidden">
-DataSource 설정 AppCtx.java 1 @Bean(destroyMethod = "close") 2 public DataSource dataSource() { 3 DataSource ds = new DataSource(); 4 ds.setDriverClassName("com.mysql.jdbc.Driver"); 5 ds.setUrl("jdbc:mysql://localhost/spring5fs?"+ 6 "enabledTLSProtocols=TLSv1.2&"+ 7 "useSSL=false&"+ 8 "characterEncoding=utf8"); 9 ds.setUsername("spring5"); 10 ds.setPassword("spring5"); 11 ds.setInitialSize(2); 12 ds.setMaxActive(10); 13 ds.setTestWhileIdle(true); 14 ds.setMinEvictableIdleTimeMillis(60000 * 3); 15 ds.setTimeBetweenEvictionRunsMillis(10 * 1000); 16 return ds; 17 } Query 실행 JdbcTemplate을 이용한 select 1jdbcTemplate.query( 2"select * from MEMBER where EMAIL = ?", 3new RowMapper&lt;Member>() { 4 @Override 5 public Member mapRow(ResultSet rs, int rowNum) 6 throws SQLException { 7 Member member = new Member( 8 rs.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_table_sort/ class="text-2xl my-3 overflow-ellipsis-bundle">
-React - column을 기준으로 정렬하기
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_table_sort/ class="content-summary text-sm overflow-hidden">
-Table에 있는 데이터들을 column별로 정렬해야 한다 데이터의 형식에 따라 comparator를 따로 구현하였다 1const comparatorStr = (a, b, order) => { 2 if (order === Order.ASC) return a.localeCompare(b); 3 return b.localeCompare(a); 4}; 5 6const comparatorInt = (a, b, order) => { 7 if (order === Order.ASC) return a > b ? 1 : -1; 8 return a &lt; b ? 1 : -1; 9}; 정렬할 키나 순서가 바뀔때 마다 정렬을 수행한다 1useEffect(() => { 2 if (sortBy === Key.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/11_mvc_1/ class="text-2xl my-3 overflow-ellipsis-bundle">
-MVC 1 : Request Mapping, Command Object, Redirect, Form Tag, Model
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/11_mvc_1/ class="content-summary text-sm overflow-hidden">
-Request Mapping GetMapping/PostMapping으로 처리할 method를 지정하거나 RequestMapping을 사용할 수 있다. Access request parameter : HttpServletRequest 1@PostMapping("/register/step2") 2public String handleStep2(HttpServletRequest request) { 3 String agreeParam = request.getParameter("agree"); 4 if (agreeParam == null || !agreeParam.equals("true")) { 5 return "register/step1"; 6 } 7 return "register/step2"; Access request parameter : RequestParam Annotation 1@PostMapping("/register/step2") 2public String handleStep2( 3@RequestParam(value="agree", defaultValue="false") Boolean agree) { 4 if (!agree) { 5 return "register/step1"; 6 } 7 return "register/step2"; Redirect 1@GetMapping("/register/step2") 2public String handleStep2Get() { 3 return "redirect:/register/step1"; Command Object Use request parameter as command object RegisterController.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_useeffect/ class="text-2xl my-3 overflow-ellipsis-bundle">
-React - useEffect 사용법
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_useeffect/ class="content-summary text-sm overflow-hidden">
-component가 rendering 될 때 실행 1useEffect(()=> { 2 ... 3}); component가 mount 될 때 (처음 rendering 될 때) 실행 1useEffect(()=> { 2 ... 3}, []); component가 update 될 때 (props, states가 바뀔 때) 실행 1useEffect(()=> { 2 ... 3}, [{ props or states }]); component가 unmount 될 때 또는 update되기 직전에 실행 1useEffect(()=> { 2 return () => { 3 ... 4 }; 5}, []);
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_env_var/ class="text-2xl my-3 overflow-ellipsis-bundle">
-React - environment variable 설정하기
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_env_var/ class="content-summary text-sm overflow-hidden">
-프로그램이 개발/배포 상황에 따라 변수를 달리해야 할 때가 있다. 이때 react에서는 .env.development , .env.production 파일을 만들어서 환경변수를 쉽게 관리할 수 있다. react는 앞에 &lsquo;REACT_APP&rsquo; 을 붙여야 인식이 된다고한다. 설정 .env.development 1REACT_APP_HOST=localhost .env.production 1REACT_APP_HOST=192.168.0.1 사용 1${process.env.REACT_APP_HOST}
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_deploy_issue/ class="text-2xl my-3 overflow-ellipsis-bundle">
-React - build 이후 빈 화면만 나오는 문제
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_deploy_issue/ class="content-summary text-sm overflow-hidden">
-build 결과물을 돌리면 빈 화면만 나오는 문제 static files 로딩에 성공했는지 확인하자 문제가 있다면 index.html의 경로를 수정하자 react-router를 사용하고 있다면 url을 확인하자 deploy할때 root url이 아니라면 router에 basename을 추가해줘야한다. 1&lt;Router basename="/index">...&lt;/Router>
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/12_mvc_2/ class="text-2xl my-3 overflow-ellipsis-bundle">
-MVC 2 : Messages, Validate command object
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/12_mvc_2/ class="content-summary text-sm overflow-hidden">
-Messages label.properties member.register=회원가입 1&lt;%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 2&lt;head> 3 &lt;title>&lt;spring:message code="member.register" />&lt;/title> 4&lt;/head> 사이트가 여러 언어를 지원해야할 때 label_ko.properties, label_en.properties와 같이 만든다고 한다 http헤더의 Accept-Launguage를 자동으로 인식한다고 하니까 편할 것 같다 Validate command object Validation RegisterRequestValidator 1@Override 2public void validate(Object target, Errors errors) { 3 RegisterRequest regReq = (RegisterRequest) target; 4 5 if(regReq.getEmail() == null | regReq.getEmail().trim().isEmpty()) { 6 errors.rejectValue("email", "bad"); 7 } 8 else { 9 Matcher matcher = pattern.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/java/generics/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Generics
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>☕</span>
-<span>Java</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/java/generics/ class="content-summary text-sm overflow-hidden">
-효과 : 타입안정성, 간결한 코드 Generic class 1public class Box&lt;M, I> { 2 private M material; 3 private I item; 4 ... 5} 6 7Box&lt;Paper, String> box = new Box&lt;Paper, String>(); Generic Function 1public class CoffeeMachine { 2 public &lt;T> Coffee makeCoffee(T capsule) { 3 return new Coffee(capsule); 4 } 5} 6CoffeeMachine coffeeMachine = new CoffeeMachine(); 7Colombian capsule = new Colombian(); 8coffeeMachine.&lt;Colombian>makeCoffee(capsule); 9coffeeMachine.makeCoffee(capsule); Restrictions on Generics 1// BoxMaterial을 상속 받았으면서 Hard(인터페이스)를 구현한 클래스만 가능 2public class Box&lt;M extends BoxMaterial & Hard> 3// BoxMaterial의 조상 클래스만 가능 4public class Box&lt;T super BoxMaterial> Whild Card 1// T와 그 자손만 가능 2&lt;?
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/spring/13_mvc_3/ class="text-2xl my-3 overflow-ellipsis-bundle">
-MVC 3 : Session, Interceptor, Cookies
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍃</span>
-<span>Spring</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/spring/13_mvc_3/ class="content-summary text-sm overflow-hidden">
-Session 로그인 할 때 세션에 등록 LoginController.java 1@PostMapping 2public String submit(LoginCommand loginCommand, Errors errors, HttpSession session) { 3new LoginCommandValidator().validate(loginCommand, errors); 4if (errors.hasErrors()) { 5 return "login/loginForm"; 6} 7 8try { 9 AuthInfo authInfo = authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword()); 10 11 session.setAttribute("authInfo", authInfo); 12 return "login/loginSuccess"; 13} 14catch (WrongIdPasswordException e) { 15 errors.reject("idPasswordNotMatching"); 16 return "login/loginForm"; 17} 18} 로그아웃 할때 세션에서 삭제 LogoutController.java 1@RequestMapping("/logout") 2public String logout(HttpSession session) { 3 session.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/data_structure/ class="text-2xl my-3 overflow-ellipsis-bundle">
-자료구조
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/data_structure/ class="content-summary text-sm overflow-hidden">
-제 1장 : 자료구조를 배우기 위한 준비 (230302) 배열 배열(Array): 동일한 타입의 원소들이 연속적인 메모리 공간에 할당되어 있는 기초적인 자료구조 추상데이터 타입 추상데이터타입(ADT:Abstract Data Type) : 데이터와 그 데이터에 대한 추상적인 연산들로써 구성 ADT =~ 자바의 interface, 자료구조 =~ 자바의 class 자료구조는 추상데이터타입을 구체적으로 구현한 것 1-2 수행시간의 분석 알고리즘의 성능: 수행시간을 나타내는 **시간복잡도(Time Complexity)**와 알고리즘이 수행되는 동안 사용되는 메모리 공간의 크기를 나타내는 **공간복잡도(Space Complexity)**에 기반하여 분석 시간 복잡도
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/operatingsystem1/ class="text-2xl my-3 overflow-ellipsis-bundle">
-운영체제 - 중간범위
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/operatingsystem1/ class="content-summary text-sm overflow-hidden">
-운영체제 개요 운영체제의 역할 Program execution Access to computer resources (I/O device, Data&mldr;) Error detection and response Accounting (ex: task manager) 운영체제의 발전 Serial Processing : No OS, No Job scheduling
-Simple batch system
-OS가 job을 할당 Controlled by monitor Uni-programming
-다 실행될때까지 기다림 bad utilization Multiprogramming
-The processor can switch to the other job better utilization, needs more memory Time sharing
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/git/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Git 특강 - 네이버 정다현 선배님
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/git/ class="content-summary text-sm overflow-hidden">
-버전 관리 시스템 중앙집중식 버전 관리(CVCS) Centralized Version Control System
-CVCS의 종류 : SVN, Perforce, CVS
-문제
-중앙 서버의 부하가 큼 오프라인에서는 사용이 불가능 분산 버전 관리 시스템 (DVCS) Decentralized Version Control System DVCS의 종류 : Git, Mercurial, Bazaar Git command gst : git status git log &ndash;oneline : commit을 한줄로 출력 git log &ndash;all &ndash;graph : 그래프로 출력 merge의 3가지 종류 merge : 모든 commit들이 merge commit과 함께 merge squash and merge : 모든 commit들을 하나의 새로운 commit으로 요약하여 merge rebase and merge : 분기가 발생한 기준이 되는 base를 변경 특정 commit으로 롤백하는 방법 reset : commit 이력을 남기지 않고 되돌리기 revert : commit 이력을 남기고 되돌린다 현업에서는 revert를 주로 사용 reset git reset HEAD~ 옵션 &ndash;soft : HEAD 위치 변경, 파일 변화 없음, commit 직전의 상황 &ndash;mixed (default) : add하기 전으로 되돌려 준다, unstaged로 되돌려준다 &ndash;hard : 변경 내용이 모두 사라짐 &ndash;merge : merge 후에 되돌리기 위해서 사용 revert git revert HEAD cherry-pick git cherry pick &lt;commit id> 다른 브랜치의 특정 commit 만을 가져 올 때 사용 Markdown 글자 하이라이트 *글자 기울이기* **굵은 글씨** ~~취소 선~~ 수평선 ---
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class=py-16>
-<div id=pagination-box>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/ aria-label="Page 1" class=page-link role=button>1</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 2" class=page-link role=button>2</a>
-</li>
-<li class=page-item>
-<a href=/til/page/3/ aria-label="Page 3" class=page-link role=button>3</a>
-</li>
-<li class=page-item>
-<a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
-</li>
-<li class=page-item>
-<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
-</li>
-<li class=page-item>
-<a href=/til/page/3/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
-</ul>
-</div>
-</div>
-</section>
-<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
-<span class="text-xl mr-3">🧠</span>
-<span> Algorithm (104)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
-<span class="text-xl mr-3">🌊</span>
-<span> C/CPP (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
-<span class="text-xl mr-3">☕</span>
-<span> Java (8)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
-<span class="text-xl mr-3">🍌</span>
-<span> Javascript (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
-<span class="text-xl mr-3">🐍</span>
-<span> Python (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span> Spring (30)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
-<span class="text-xl mr-3">🔨</span>
-<span> 개발 도구 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
-<span class="text-xl mr-3">🎸</span>
-<span> 기타 (7)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
-<span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (38)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
-<span class="text-xl mr-3">🤖</span>
-<span> 인공지능 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span> 학과 공부 (28)</span>
-</a>
-</section>
-<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+<label for=switch-tag class=switch-button>태그
+</label><input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">검색</label></form><div class="w-full p-5"><section id=summary-section class="grid gap-8"><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-12-05T23:05:14+09:00")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/gh_readme_stats_deploy/ class="text-2xl my-3 overflow-ellipsis-bundle">Github Readme Stats - private 레포지토리도 포함하기</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🎸</span>
+<span>기타</span></div></div></div><div class=flex-grow><a href=/til/etc/gh_readme_stats_deploy/ class="content-summary text-sm overflow-hidden"><h3 id=배경>배경</h3><ul><li>github에서 자신이 어떤 언어를 주로 쓰는지 통계를 주는 Readme를 본 기억이 나서 나도 만들어보고 싶었다.</li><li><a href=https://github.com/anuraghazra/github-readme-stats>anuraghazra/github-readme-stats</a>를 참고하여 README.md에 추가하였다.</li><li>그러나 preview를 해보았을 때, typescript가 절반으로 나오는 것이다.</li><li>말이 안되는 수치라서 알아보니, public 레포지토리만 포함되어 그런 것이었다.</li><li>private 레포지토리도 통계에 포함하기 위한 방법을 설명하겠다.</li></ul><h3 id=방법>방법</h3><ul><li>maintainer가 배포해놓은 서비스는 나의 private 레포지토리에 접근할 수 없다.</li><li><strong>private repository도 포함한 통계를 보기 위해서는 직접 배포해야 한다</strong>고 한다.</li><li>익숙한 Github Pages로 배포하려고 했으나, 동적으로 처리하는 부분이 있어서 Vercel로 배포하였다.</li></ul><h4 id=1-github-token-발급-받기>1. Github Token 발급 받기</h4><ul><li>Github에서 PAT(Personal Access Token)을 발급 받는다.</li><li>scope는 <code>repo</code>와 <code>read:user</code>가 포함되어야 한다.</li></ul><h4 id=2-vercel로-배포하기>2. Vercel로 배포하기</h4><ol><li>나는 먼저 anuraghara라는 분이 만들어놓은 origin 레포지토리를 fork하였다.</li><li>Vercel로 로그인한 후, Github 계정과 연동하여 fork한 레포지토리를 선택한다.</li><li>환경변수에 <code>PAT_1</code>이라는 이름으로 발급받은 PAT을 등록한다.</li><li>배포한다.</li></ol><h4 id=3-readmemd에-추가하기>3. README.md에 추가하기</h4><ul><li>서비스에서 제공하는 기능이 여러가지가 있지만, 필자는 &ldquo;Top Languages Card"만 추가할 것이다.</li><li>url은 &lsquo;{Vercel에서 배포한 URL}/api/top-langs?username={Github ID}&lsquo;이다.</li><li>이 url을 아래와 같은 형태로 README.md에 추가하면 된다.<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>[<span style=color:#f92672>![Top Langs</span>](<span style=color:#a6e22e>https://{Vercel에서 배포한 URL}/api/top-langs?username={Github ID}</span>)]
+</span></span></code></pre></div></li></ul><h3 id=결과>결과</h3><p><img src=/static/image/gh_readme_stats.png alt="Top Langs"></p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-12-05 23:05:14 +0900 +0900"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-12-05T23:05:10+09:00")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/yaml_colon/ class="text-2xl my-3 overflow-ellipsis-bundle">Issue - yaml 문자열 속 colon(콜론)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🎸</span>
+<span>기타</span></div></div></div><div class=flex-grow><a href=/til/etc/yaml_colon/ class="content-summary text-sm overflow-hidden"><h3 id=문제상황>문제상황</h3><ul><li><p>TIL 블로그 자동 배포 github action 코드에 yaml 파일에 내용을 추가하는 부분이 있다</p></li><li><p>추가하는 문자열에 콜론이 포함되어 있어서 action에서 에러를 띄웠다</p></li><li><p>문제의 코드</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Add google analytics id</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>run</span>: <span style=color:#ae81ff>echo -e &#34;\nparams:\n    googleAnalytics : \&#34;$GA_TRACKING_ID\&#34;&#34; &gt;&gt; config.yaml</span>
+</span></span></code></pre></div></li><li><p>에러 메시지
+<img src=/static/image/error_ghaction_yaml.png alt=error></p></li></ul><h3 id=해결방법>해결방법</h3><ul><li>우여곡절 끝에 위와 같이 2줄로 나누어서 해결했다</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span> - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Add google analytics id</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#e6db74>        echo -e &#34;\nparams:&#34; &gt;&gt; config.yaml
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span><span style=color:#e6db74>        echo -e &#34;  googleAnalytics: \&#34;$GA_TRACKING_ID\&#34;&#34; &gt;&gt; config.yaml</span>
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-12-05 23:05:10 +0900 +0900"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-12-05T23:05:10+09:00")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/mogako/mogako24-1-01/ class="text-2xl my-3 overflow-ellipsis-bundle">[모각코24동계] 01 : 결과</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>👨‍💻</span>
+<span>모각코</span></div></div></div><div class=flex-grow><a href=/til/mogako/mogako24-1-01/ class="content-summary text-sm overflow-hidden"><h3 id=1-agile-방법론>1. Agile 방법론</h3><h4 id=agile-선언문>Agile 선언문</h4><ul><li>사람과 상호작용 > 프로세스와 도구</li><li>작동하는 소프트웨어 > 포괄적인 문서</li><li>고객과의 협력 > 계약 협상</li><li>변화에 대한 대응 > 계획을 따르기</li></ul><h4 id=agile-12가지-원칙>Agile 12가지 원칙</h4><ol><li>초기부터 지속적으로 고객을 만족</li><li>요구사항 변경 수용</li><li>짧은 배포 주기</li><li>기획자와 개발자의 협업</li><li>동기부여된 팀원들로 팀빌딩</li><li>얼굴보고 대화하기</li><li>동작되는 소프트웨어로 진척 측정</li><li>지속 가능한 개발 속도 유지</li><li>좋은 기술로 좋은 설계하기</li><li>단순성 : 필요없는 일 최소화하기</li><li>자기조직화 팀</li><li>정기적으로 효율성을 향상시키기</li></ol><h4 id=self-organizing-team-자기조직화-팀>Self-Organizing Team (자기조직화 팀)</h4><blockquote><p>스스로 작업을 수행하고 프로세스를 관리하며 진행 상황을 모니터링하는 방법을 스스로 결정하는 팀</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-12-05 23:05:10 +0900 +0900"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-12-05T23:05:10+09:00")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/gh_action_issue1/ class="text-2xl my-3 overflow-ellipsis-bundle">Issue - Gihub action 오류 - yaml multiline</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🎸</span>
+<span>기타</span></div></div></div><div class=flex-grow><a href=/til/etc/gh_action_issue1/ class="content-summary text-sm overflow-hidden"><h3 id=문제상황>문제상황</h3><ul><li>TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다.</li><li>에러 로그에는 python 라이브러리가 설치되지 않았다는 내용이 적혀있었다.</li></ul><h4 id=문제의-yaml-코드>문제의 yaml 코드</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install dependencies</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#f92672>run</span>: <span style=color:#ae81ff>python -m pip install --upgrade pip</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>	  <span style=color:#ae81ff>pip install -r requirements.txt</span>
+</span></span></code></pre></div><h3 id=해결방법>해결방법</h3><ul><li><a href=https://github.com/bong-u/cnu-notice/commit/a8936824048914565bb67c646468c07ff65c3f0f>fix: github action error - &ldquo;Could not find a version&rdquo;</a></li><li>하단의 <code>pip install</code> 명령어가 실행되지 않아 오류가 발생하는것으로 판단하였다.</li><li>literal 방식으로 pipe(|)를 사용하여 두번째 줄의 명령어가 실행되도록 수정하였다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install dependencies</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#e6db74>    python -m pip install --upgrade pip
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span><span style=color:#e6db74>    pip install -r requirements.txt</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>- <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run python script</span>
+</span></span></code></pre></div><h3 id=회고>회고</h3><ul><li>github action에서 yaml파일을 파싱하는 로직이 바뀐것에 대한 패치 노트는 찾지못하였다.</li><li>모호한 문법으로 yaml을 작성하여 발생한 문제였다.</li><li>이후에는 yaml 문법을 더욱 꼼꼼히 확인하고 사용해야겠다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-12-05 23:05:10 +0900 +0900"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-12-05T23:05:10+09:00")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/etc/gh_action_issue2/ class="text-2xl my-3 overflow-ellipsis-bundle">Issue - Gihub action 오류 - venv 적용</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🎸</span>
+<span>기타</span></div></div></div><div class=flex-grow><a href=/til/etc/gh_action_issue2/ class="content-summary text-sm overflow-hidden"><h3 id=문제상황>문제상황</h3><ul><li>TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다.</li></ul><h4 id=에러로그>에러로그</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>error: externally-managed-environment
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>× This environment is externally managed
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>╰─&gt; To install Python packages system-wide, try apt install
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>	python3-xyz, where xyz is the package you are trying to
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>	install.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>	If you wish to install a non-Debian-packaged Python package,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>	create a virtual environment using python3 -m venv path/to/venv.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>	Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>	sure you have python3-full installed.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>	If you wish to install a non-Debian packaged Python application,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>	it may be easiest to use pipx install xyz, which will manage a
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>	virtual environment <span style=color:#66d9ef>for</span> you. Make sure you have pipx installed.
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>	See /usr/share/doc/python3.11/README.venv <span style=color:#66d9ef>for</span> more information.
+</span></span></code></pre></div><h3 id=해결방법>해결방법</h3><ul><li><a href=https://github.com/bong-u/cnu-notice/commit/46eab9faae2e9652c3b4ee83e2008d15f65ef18e>fix: gh-action error &ldquo;The environment is externally managed&rdquo;</a></li><li>로그에 명시된대로 venv를 사용하여 해결하였다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-12-05 23:05:10 +0900 +0900"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-12-03T22:49:09+09:00")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/javascript/apply_recaptcha/ class="text-2xl my-3 overflow-ellipsis-bundle">Express&amp;React 프로젝트에 Recaptcha v3 적용하기</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍌</span>
+<span>Javascript</span></div></div></div><div class=flex-grow><a href=/til/javascript/apply_recaptcha/ class="content-summary text-sm overflow-hidden"><h3 id=상황>상황</h3><ul><li>사이드 프로젝트 &ldquo;알록"을 개발하던 중, 사용자가 악의적인 목적으로 반복적으로 요청을 보내는 것을 어떻게 막을까 고민하게 되었다.</li><li>조사를 통해 Google에서 제공되는 Recaptcha를 사용하면 손쉽게 방지할 수 있다는 것을 알게 되었다.</li><li>공격자의 입장에서 생각했을 때, 지금 프로젝트에서 가장 취약한 부분은 회원가입이라고 생각했다.</li><li>회원가입은 회원이 아닌 자가, 아이디와 비밀번호 규칙만 만족한다면 반복적으로 요청을 보낼 수 있고, 이는 DB에 바로 저장되기 때문이다.</li><li>따라서 <strong>회원가입 부분에 Recaptcha를 적용</strong>하기로 결정했다.</li></ul><h3 id=recaptcha란>Recaptcha란?</h3><blockquote><p>Recaptcha는 구글에서 제공하는 무료 보안 서비스로, 사용자가 로봇이 아님을 증명하는 방법 중 하나이다.</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-12-03 22:49:09 +0900 +0900"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T07:08:10Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_20125/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 20125 : 쿠키의 신체 측정 (S4)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_20125/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>char</span> board[<span style=color:#ae81ff>1000</span>][<span style=color:#ae81ff>1000</span>] <span style=color:#f92672>=</span> { NULL };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>int</span> n;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>tuple<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> getlength(<span style=color:#66d9ef>int</span> sx, <span style=color:#66d9ef>int</span> sy, <span style=color:#66d9ef>int</span> dx, <span style=color:#66d9ef>int</span> dy) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>	<span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>	<span style=color:#66d9ef>int</span> x <span style=color:#f92672>=</span> sx;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>	<span style=color:#66d9ef>int</span> y <span style=color:#f92672>=</span> sy;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>	<span style=color:#66d9ef>while</span> (true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>		x <span style=color:#f92672>+=</span> dx;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>		y <span style=color:#f92672>+=</span> dy;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>		<span style=color:#66d9ef>if</span> (y <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> y <span style=color:#f92672>&gt;=</span> n <span style=color:#f92672>||</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> x <span style=color:#f92672>&gt;=</span> n <span style=color:#f92672>||</span> board[x][y] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;*&#39;</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>			<span style=color:#66d9ef>return</span> { cnt, x<span style=color:#f92672>-</span>dx, y<span style=color:#f92672>-</span>dy };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>		cnt<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>	cin.tie(<span style=color:#ae81ff>0</span>)<span style=color:#f92672>-&gt;</span>sync_with_stdio(false);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>	cin <span style=color:#f92672>&gt;&gt;</span> n;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>	pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> heart <span style=color:#f92672>=</span> { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span> };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>	tuple<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span>, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> ass <span style=color:#f92672>=</span> { <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span> };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>		<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> n; j<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>			cin <span style=color:#f92672>&gt;&gt;</span> board[i][j];
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>			<span style=color:#66d9ef>if</span> (board[i][j] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;*&#39;</span> <span style=color:#f92672>&amp;&amp;</span> heart.first <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>				heart <span style=color:#f92672>=</span> { j, i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> };
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>	ass <span style=color:#f92672>=</span> getlength(heart.second, heart.first, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>	cout <span style=color:#f92672>&lt;&lt;</span> heart.second<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>&lt;&lt;</span> heart.first<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>	cout <span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(heart.second, heart.first, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(heart.second, heart.first, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(ass) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43</span><span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;</span>(ass), get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>2</span><span style=color:#f92672>&gt;</span>(ass)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>)) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44</span><span>		<span style=color:#f92672>&lt;&lt;</span> get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>0</span><span style=color:#f92672>&gt;</span>(getlength(get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;</span>(ass), get<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>2</span><span style=color:#f92672>&gt;</span>(ass)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46</span><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47</span><span>}
+</span></span></code></pre></div><h3 id=문제><a href=https://www.acmicpc.net/problem/20125>문제</a></h3><ul><li>정사각형 판의 크기 N과 쿠키의 신체 모양이 2차원 문자로 주어진다.</li><li>1번째 줄에는 심장의 위치를 출력한다.</li><li>2번째 줄에는 왼팔, 오른팔, 허리, 왼다리, 오른다리의 길이를 출력한다.</li><li>글로 설명하기 쉽지 않다.</li></ul><h3 id=해결방법>해결방법</h3><ul><li>입력 받으면서 심장의 위치를 딴다.</li><li>심장의 위치를 통해 허리의 끝을 딴다.</li><li>왼팔, 오른팔, 허리의 길이를 출력한다.</li><li>허리의 끝을 이용해 왼다리, 오른다리의 길이를 출력한다.</li><li>getlength() 함수를 정의하여 각 길이를 구했다.</li></ul><h3 id=막혔던-부분>막혔던 부분</h3><ul><li>x, y가 혼동되어서 고치는데 시간을 많이 잡아 먹자</li><li>c++로 2차원 배열 다루는 문제를 열심히 풀어보자!</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 07:08:10 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T07:05:09Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/algorithm/boj_8979/ class="text-2xl my-3 overflow-ellipsis-bundle">백준 - 8979 : 올림픽 (S5)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🧠</span>
+<span>Algorithm</span></div></div></div><div class=flex-grow><a href=/til/algorithm/boj_8979/ class="content-summary text-sm overflow-hidden"><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>medal</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>	<span style=color:#66d9ef>int</span> number;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>	<span style=color:#66d9ef>int</span> gold;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>	<span style=color:#66d9ef>int</span> silver;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>	<span style=color:#66d9ef>int</span> bronze;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>};
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>cmp</span>(medal a, medal b) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>	<span style=color:#66d9ef>if</span> (a.gold <span style=color:#f92672>!=</span> b.gold) <span style=color:#66d9ef>return</span> a.gold <span style=color:#f92672>&gt;</span> b.gold;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>	<span style=color:#66d9ef>if</span> (a.silver <span style=color:#f92672>!=</span> b.silver) <span style=color:#66d9ef>return</span> a.silver <span style=color:#f92672>&gt;</span> b.silver;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>	<span style=color:#66d9ef>return</span> a.bronze <span style=color:#f92672>&gt;</span> b.bronze;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>	cin.tie(<span style=color:#ae81ff>0</span>)<span style=color:#f92672>-&gt;</span>sync_with_stdio(false);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>	<span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, target <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, rank <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>	cin <span style=color:#f92672>&gt;&gt;</span> n;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>	cin <span style=color:#f92672>&gt;&gt;</span> target;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>	medal<span style=color:#f92672>*</span> arr <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> medal[n];
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>		cin <span style=color:#f92672>&gt;&gt;</span> arr[i].number <span style=color:#f92672>&gt;&gt;</span> arr[i].gold <span style=color:#f92672>&gt;&gt;</span> arr[i].silver <span style=color:#f92672>&gt;&gt;</span> arr[i].bronze;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>	sort(arr, arr <span style=color:#f92672>+</span> n, cmp);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>	<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>		<span style=color:#66d9ef>if</span> (i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> (arr[i].gold <span style=color:#f92672>!=</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].gold <span style=color:#f92672>||</span> arr[i].silver <span style=color:#f92672>!=</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].silver <span style=color:#f92672>||</span> arr[i].bronze <span style=color:#f92672>||</span> arr[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].bronze)) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span>			rank <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>		<span style=color:#66d9ef>if</span> (arr[i].number <span style=color:#f92672>==</span> target) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>			cout <span style=color:#f92672>&lt;&lt;</span> rank <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>			<span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>	<span style=color:#66d9ef>delete</span>[] arr;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span>	<span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>}
+</span></span></code></pre></div><h3 id=문제><a href=https://www.acmicpc.net/problem/8979>문제</a></h3><ul><li><p>1번째 줄에 국가개수, 특정 국가번호가 주어진다.</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 07:05:09 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/testing/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - Testing</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/testing/ class="content-summary text-sm overflow-hidden"><h2 id=unit-test-단위-테스트>Unit Test (단위 테스트)</h2><blockquote><p>가장 작은 단위 (클래스 또는 메소드)를 고립시켜서 테스트하는 방식</p></blockquote><h3 id=관련-용어>관련 용어</h3><h4 id=sut-sytem-under-test>SUT (Sytem Under Test)</h4><blockquote><p>테스트하고자하는 주요 대상이 되는 Unit</p></blockquote><h4 id=doc-depended-on-component>DOC (Depended On Component)</h4><blockquote><p>SUT가 의존하는 객체</p></blockquote><h4 id=test-double>Test double</h4><blockquote><p>DOC를 대신해 줄 수 있는 객체</p></blockquote><ul><li>Test double의 종류 : Mock, Stub</li></ul><h4 id=mock>Mock</h4><ul><li>행위 검증 (객체가 특정 동작을 수행하는지 검증) 사용</li><li>test framework : Mockito, JMock, EasyMock</li></ul><h4 id=stub>Stub</h4><ul><li>상태 검증 (객체의 상태를 확인하여 검정) 사용</li></ul><h2 id=integration-test-통합-테스트>Integration Test (통합 테스트)</h2><blockquote><p>여러 개의 Unit을 통합해서 테스트하는 방식</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/di/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - DI (Dependency Injection)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/di/ class="content-summary text-sm overflow-hidden"><h3 id=의존-주입-di--dependency-injection을-하는-방법>의존 주입 (DI : Dependency Injection)을 하는 방법</h3><ol><li><p>Assembler라는 별도의 클래스 생성</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Assembler</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>private</span> MemberDao memberDao;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>private</span> MemberRegisterService regSvc;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Assembler</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        memberDao <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberDao();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        regSvc <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MemberRegisterService(memberDao);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>public</span> MemberDao <span style=color:#a6e22e>getMemberDao</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        <span style=color:#66d9ef>return</span> memberDao;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#66d9ef>public</span> MemberRegisterService <span style=color:#a6e22e>getMemberRegisterService</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>        <span style=color:#66d9ef>return</span> regSvc;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>}
+</span></span></code></pre></div></li><li><p>Spring에서 지원하는 DI 사용</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class=py-16><div id=pagination-box><ul class="pagination pagination-default"><li class=page-item><a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/til/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/til/ aria-label="Page 1" class=page-link role=button>1</a></li><li class="page-item active"><a aria-current=page aria-label="Page 2" class=page-link role=button>2</a></li><li class=page-item><a href=/til/page/3/ aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/til/page/3/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/til/page/24/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></section><section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/><span class="text-xl mr-3">🧠</span>
+<span>Algorithm (104)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/><span class="text-xl mr-3">🌊</span>
+<span>C/CPP (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/><span class="text-xl mr-3">☕</span>
+<span>Java (8)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/><span class="text-xl mr-3">🍌</span>
+<span>Javascript (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/><span class="text-xl mr-3">🐍</span>
+<span>Python (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/><span class="text-xl mr-3">🍃</span>
+<span>Spring (30)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/><span class="text-xl mr-3">🔨</span>
+<span>개발 도구 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/><span class="text-xl mr-3">🎸</span>
+<span>기타 (7)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/><span class="text-xl mr-3">👨‍💻</span>
+<span>모각코 (38)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/><span class="text-xl mr-3">🤖</span>
+<span>인공지능 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/><span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (28)</span></a></section><section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>boj (53)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c++ (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>celery (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>cs (18)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>django (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>docker (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>docker-compose (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker%20compose class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>docker compose (1)</span>
+</a><a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>elk (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>fastapi (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>git (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>github-actions (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/github%20actions class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>github actions (5)</span>
+</a><a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>hackerrank (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>https (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>java (37)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>javascript (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>jwt (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>kubernetes (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>nginx (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ocaml (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>open-source (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/open%20source class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>open source (2)</span>
+</a><a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>programmers (48)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>pytest (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>python (111)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rabbitmq (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rag (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>react (6)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>security (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>software-engineering (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>spring (31)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>sql (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ssl (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>testing (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>typescript (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>vercel (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>websocket (1)</span>
-</a>
-</section>
-<section id=search-section class=hidden>
-<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
-<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
-<style>div.pagefind-ui__result-thumb{display:none}</style>
-<div id=search></div>
-<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
-</section>
-</div>
-</main>
-</div>
-</div>
-</body>
-</html>
+</a><a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span></a></section><section id=search-section class=hidden><link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet><script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script><style>div.pagefind-ui__result-thumb{display:none}</style><div id=search></div><script>window.addEventListener("DOMContentLoaded",e=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:e=>(e.meta&&e.meta.image&&e.meta.image_alt&&(delete e.meta.image,delete e.meta.image_alt),e)})})</script></section></div></main></div></div></body></html>

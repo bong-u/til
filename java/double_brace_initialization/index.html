@@ -1,140 +1,21 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Java - 이중 중괄호와 Anti-Pattern</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="기존 코드 1Map<String, Object> map = new HashMap<>(); 2map.put(&#34;customerId&#34;, …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Java - 이중 중괄호와 Anti-Pattern">
-<meta property="og:description" content="기존 코드 1Map<String, Object> map = new HashMap<>(); 2map.put(&#34;customerId&#34;, …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#기존-코드>기존 코드</a></li>
-<li><a href=#double-brace-initialization-적용-후>Double Brace Initialization 적용 후</a></li>
-<li><a href=#효과>효과</a></li>
-<li><a href=#결론>결론</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Java - 이중 중괄호와 Anti-Pattern
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ java</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=기존-코드>기존 코드</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>Map<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Object<span style=color:#f92672>&gt;</span> map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customerId&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCustomerId</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;createdAt&#34;</span><span style=color:#f92672>,</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCreatedAt</span><span style=color:#f92672>()));</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#66d9ef>return</span> map<span style=color:#f92672>;</span>
-</code></pre></div><h3 id=double-brace-initialization-적용-후>Double Brace Initialization 적용 후</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;()</span> <span style=color:#f92672>{{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;customerId&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCustomerId</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getBytes</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>,</span> customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>    put<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;createdAt&#34;</span><span style=color:#f92672>,</span> Timestamp<span style=color:#f92672>.</span><span style=color:#a6e22e>valueOf</span><span style=color:#f92672>(</span>customer<span style=color:#f92672>.</span><span style=color:#a6e22e>getCreatedAt</span><span style=color:#f92672>()));</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#f92672>}};</span>
-</code></pre></div><h3 id=효과>효과</h3>
-<ul>
-<li>장점
-<ul>
-<li>코드가 가독성이 좋아진다</li>
-</ul>
-</li>
-<li>단점
-<ul>
-<li>
-<p>추가로 익명 클래스를 사용한다 -> 메모리 추가 사용</p>
-</li>
-<li>
-<p>인스터스 및 개체에 대한 숨겨진 참조를 가진다 -> Memory Leak 유발 가능</p>
-</li>
-<li>
-<p>-> 안티패턴으로 간주된다</p>
-<h4 id=안티패턴-anti-pattern>안티패턴 (Anti-pattern)</h4>
-<blockquote>
-<p>실제 많이 사용되는 패턴이지만 비효율적이거나 비생산적이기 때문에 지양되는 패턴</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id=결론>결론</h3>
-<blockquote>
-<p>득보다 실이 많다, 사용하지 말자</p>
-</blockquote>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/java/try_with_resources/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>Java - 이중 중괄호와 Anti-Pattern</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='기존 코드
+1Map<String, Object> map = new HashMap<>();
+2map.put("customerId", …'><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Java - 이중 중괄호와 Anti-Pattern"><meta property="og:description" content='기존 코드
+1Map<String, Object> map = new HashMap<>();
+2map.put("customerId", …'><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#기존-코드>기존 코드</a></li><li><a href=#double-brace-initialization-적용-후>Double Brace Initialization 적용 후</a></li><li><a href=#효과>효과</a></li><li><a href=#결론>결론</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Java - 이중 중괄호와 Anti-Pattern</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ java</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=기존-코드>기존 코드</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>Map<span style=color:#f92672>&lt;</span>String, Object<span style=color:#f92672>&gt;</span> map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;customerId&#34;</span>, customer.<span style=color:#a6e22e>getCustomerId</span>().<span style=color:#a6e22e>toString</span>().<span style=color:#a6e22e>getBytes</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;name&#34;</span>, customer.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;email&#34;</span>, customer.<span style=color:#a6e22e>getEmail</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;createdAt&#34;</span>, Timestamp.<span style=color:#a6e22e>valueOf</span>(customer.<span style=color:#a6e22e>getCreatedAt</span>()));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#66d9ef>return</span> map;
+</span></span></code></pre></div><h3 id=double-brace-initialization-적용-후>Double Brace Initialization 적용 후</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;</span>() {{
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    put(<span style=color:#e6db74>&#34;customerId&#34;</span>, customer.<span style=color:#a6e22e>getCustomerId</span>().<span style=color:#a6e22e>toString</span>().<span style=color:#a6e22e>getBytes</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    put(<span style=color:#e6db74>&#34;name&#34;</span>, customer.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    put(<span style=color:#e6db74>&#34;email&#34;</span>, customer.<span style=color:#a6e22e>getEmail</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    put(<span style=color:#e6db74>&#34;createdAt&#34;</span>, Timestamp.<span style=color:#a6e22e>valueOf</span>(customer.<span style=color:#a6e22e>getCreatedAt</span>()));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>}};
+</span></span></code></pre></div><h3 id=효과>효과</h3><ul><li>장점<ul><li>코드가 가독성이 좋아진다</li></ul></li><li>단점<ul><li><p>추가로 익명 클래스를 사용한다 -> 메모리 추가 사용</p></li><li><p>인스터스 및 개체에 대한 숨겨진 참조를 가진다 -> Memory Leak 유발 가능</p></li><li><p>-> 안티패턴으로 간주된다</p><h4 id=안티패턴-anti-pattern>안티패턴 (Anti-pattern)</h4><blockquote><p>실제 많이 사용되는 패턴이지만 비효율적이거나 비생산적이기 때문에 지양되는 패턴</p></blockquote></li></ul></li></ul><h3 id=결론>결론</h3><blockquote><p>득보다 실이 많다, 사용하지 말자</p></blockquote></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/java/try_with_resources/><span class=mx-3>◀</span>
 Try with resources로 간결하게 반납하기
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/java/method_reference/>
-Method reference (메소드 참조)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/java/method_reference/>Method reference (메소드 참조)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

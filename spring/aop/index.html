@@ -1,209 +1,39 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Spring 개념 - AOP (Aspect Oriented Programming)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="AOP (Aspect Oriented Programming)  여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법 기본 개념 : 핵심 기능에  …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Spring 개념 - AOP (Aspect Oriented Programming)">
-<meta property="og:description" content="AOP (Aspect Oriented Programming)  여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법 기본 개념 : 핵심 기능에  …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#aop-aspect-oriented-programming>AOP (Aspect Oriented Programming)</a></li>
-<li><a href=#aop-주요-용어>AOP 주요 용어</a></li>
-<li><a href=#advice-1>Advice</a></li>
-<li><a href=#pointcut-1>Pointcut</a></li>
-<li><a href=#프록시-생성-방식>프록시 생성 방식</a></li>
-<li><a href=#advice-적용-순서>Advice 적용 순서</a></li>
-<li><a href=#around의-pointcut-설정>@Around의 Pointcut 설정</a></li>
-<li><a href=#pointcut-재사용>@Pointcut 재사용</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Spring 개념 - AOP (Aspect Oriented Programming)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ java</span>
-<span class="text-md mr-1">🏷️ spring</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h3 id=aop-aspect-oriented-programming>AOP (Aspect Oriented Programming)</h3>
-<ul>
-<li>여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법</li>
-<li>기본 개념 : 핵심 기능에 공통 기능을 삽입</li>
-<li>구현하는 3가지 방법
-<ol>
-<li>컴파일 시점에 코드에 공통 기능을 삽입하는 방법</li>
-<li>클래스 로딩 시점에 바이트 코드에 공통 기능을 삽입하는 방법</li>
-<li>런타임에 프록시 객체를 생성해서 공통 기능을 삽입하는 방법</li>
-</ol>
-</li>
-</ul>
-<h3 id=aop-주요-용어>AOP 주요 용어</h3>
-<h4 id=target>Target</h4>
-<blockquote>
-<p>부가 기능을 부여할 대상</p>
-</blockquote>
-<h4 id=advice>Advice</h4>
-<blockquote>
-<p>부가기능을 담고 있는 모듈</p>
-</blockquote>
-<h4 id=join-point>Join Point</h4>
-<blockquote>
-<p>Advice를 적용 가능한 지점</p>
-</blockquote>
-<h4 id=pointcut>Pointcut</h4>
-<blockquote>
-<p>Joinpoint의 부분 집합으로서 실제 Advice가 적용되는 Joinpoint를 나타낸다</p>
-</blockquote>
-<h4 id=aspect>Aspect</h4>
-<blockquote>
-<p>Advice + Pointcut<br>
-여러 객체에 공통으로 적용되는 기능</p>
-</blockquote>
-<h4 id=weaving>Weaving</h4>
-<blockquote>
-<p>Join Point에 Advice를 적용하는 과정</p>
-</blockquote>
-<h3 id=advice-1>Advice</h3>
-<ul>
-<li>
-<p>Advice의 종류</p>
-<ul>
-<li>@Before : 조인 포인트 실행 이전에 실행</li>
-<li>@After : 조인 포인트 실행 이후에 무조건 실행</li>
-<li>@AfterReturning : 조인 포인트가 정상 실행 후 실행</li>
-<li>@AfterThrowing : 메서드가 예외를 던지는 경우 실행</li>
-<li>@Around : 위 4가지 Annotation을 포함, 반환값 조작가능, 예외 조작 가능</li>
-</ul>
-</li>
-<li>
-<p>예시 - @Around 사용</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Around</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;execution(public * org.academy..*Service.*(..))&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>log</span><span style=color:#f92672>(</span>ProceedingJoinPoint joinPoint<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Throwable <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>	log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Before method called. {}&#34;</span><span style=color:#f92672>,</span> joinPoint<span style=color:#f92672>.</span><span style=color:#a6e22e>getSignature</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>	var result <span style=color:#f92672>=</span> joinPoint<span style=color:#f92672>.</span><span style=color:#a6e22e>proceed</span><span style=color:#f92672>();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>	log<span style=color:#f92672>.</span><span style=color:#a6e22e>info</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;After method called with result =&gt; {}&#34;</span><span style=color:#f92672>,</span> result<span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>	<span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-</ul>
-<h3 id=pointcut-1>Pointcut</h3>
-<ul>
-<li>
-<p>앞의 코드에서 @Around 안에 포인트컷을 지정해서 사용하는 것을 확인할 수 있다</p>
-</li>
-<li>
-<p>보통 Pointcut끼리 모아놓고 Around와 분리해서 사용한다고 한다</p>
-</li>
-<li>
-<p>예시 - pointcut</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// PointCut 정의
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span><span style=color:#a6e22e>@Pointcut</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;execution(public * org.academy..*Service.*(..))&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>servicePublicMethodPointcut</span><span style=color:#f92672>()</span> <span style=color:#f92672>{...}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e>// Advice에 적용
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#75715e></span><span style=color:#a6e22e>@Around</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span style=color:#66d9ef>public</span> <span style=color:#f92672>...</span> <span style=color:#f92672>{...}</span>
-</code></pre></div></li>
-</ul>
-<h3 id=프록시-생성-방식>프록시 생성 방식</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@EnableAspectJAutoProxy</span><span style=color:#f92672>(</span>proxyTargetClass<span style=color:#f92672>=</span><span style=color:#66d9ef>true</span><span style=color:#f92672>)</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#75715e>// Before
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>Calculator cal <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;calculator&#34;</span><span style=color:#f92672>,</span> Calculator<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e>// After
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>RecCalculator cal <span style=color:#f92672>=</span> ctx<span style=color:#f92672>.</span><span style=color:#a6e22e>getBean</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;calculator&#34;</span><span style=color:#f92672>,</span> RecCalculator<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
-</code></pre></div><ul>
-<li>proxyTargetClass 속성을 지정하여 인터페이스가 아닌 자바 클래스를 상속받아 프록시를 생성할 수 있다</li>
-</ul>
-<h3 id=advice-적용-순서>Advice 적용 순서</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Aspect</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#a6e22e>@Order</span><span style=color:#f92672>(</span>2<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CacheAspect</span> <span style=color:#f92672>{...}</span>
-</code></pre></div><ul>
-<li>@Order annotation을 이용하여 적용순서를 지정할 수 있다</li>
-</ul>
-<h3 id=around의-pointcut-설정>@Around의 Pointcut 설정</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Around</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;execution(public * chap07 ..*(..))&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>execute</span><span style=color:#f92672>(...)</span> <span style=color:#f92672>{...}</span>
-</code></pre></div><ul>
-<li>@Pointcut publicTarget() 메소드를 사용하지 않을 수 있다</li>
-</ul>
-<h3 id=pointcut-재사용>@Pointcut 재사용</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@Around</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;ExeTimeAspect.publicTarget()&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>execute</span><span style=color:#f92672>(...)</span> <span style=color:#f92672>{...}</span>
-</code></pre></div>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/09_spring_mvc/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>Spring 개념 - AOP (Aspect Oriented Programming)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="AOP (Aspect Oriented Programming)
+
+여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법
+기본 개념 : 핵심 기능에 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Spring 개념 - AOP (Aspect Oriented Programming)"><meta property="og:description" content="AOP (Aspect Oriented Programming)
+
+여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법
+기본 개념 : 핵심 기능에 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#aop-aspect-oriented-programming>AOP (Aspect Oriented Programming)</a></li><li><a href=#aop-주요-용어>AOP 주요 용어</a></li><li><a href=#advice-1>Advice</a></li><li><a href=#pointcut-1>Pointcut</a></li><li><a href=#프록시-생성-방식>프록시 생성 방식</a></li><li><a href=#advice-적용-순서>Advice 적용 순서</a></li><li><a href=#around의-pointcut-설정>@Around의 Pointcut 설정</a></li><li><a href=#pointcut-재사용>@Pointcut 재사용</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Spring 개념 - AOP (Aspect Oriented Programming)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ java</span>
+<span class="text-md mr-1">🏷️ spring</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h3 id=aop-aspect-oriented-programming>AOP (Aspect Oriented Programming)</h3><ul><li>여러 객체에 공통으로 적용할 수 있는 기능을 분리해서 재사용성을 높여주는 프로그래밍 기법</li><li>기본 개념 : 핵심 기능에 공통 기능을 삽입</li><li>구현하는 3가지 방법<ol><li>컴파일 시점에 코드에 공통 기능을 삽입하는 방법</li><li>클래스 로딩 시점에 바이트 코드에 공통 기능을 삽입하는 방법</li><li>런타임에 프록시 객체를 생성해서 공통 기능을 삽입하는 방법</li></ol></li></ul><h3 id=aop-주요-용어>AOP 주요 용어</h3><h4 id=target>Target</h4><blockquote><p>부가 기능을 부여할 대상</p></blockquote><h4 id=advice>Advice</h4><blockquote><p>부가기능을 담고 있는 모듈</p></blockquote><h4 id=join-point>Join Point</h4><blockquote><p>Advice를 적용 가능한 지점</p></blockquote><h4 id=pointcut>Pointcut</h4><blockquote><p>Joinpoint의 부분 집합으로서 실제 Advice가 적용되는 Joinpoint를 나타낸다</p></blockquote><h4 id=aspect>Aspect</h4><blockquote><p>Advice + Pointcut<br>여러 객체에 공통으로 적용되는 기능</p></blockquote><h4 id=weaving>Weaving</h4><blockquote><p>Join Point에 Advice를 적용하는 과정</p></blockquote><h3 id=advice-1>Advice</h3><ul><li><p>Advice의 종류</p><ul><li>@Before : 조인 포인트 실행 이전에 실행</li><li>@After : 조인 포인트 실행 이후에 무조건 실행</li><li>@AfterReturning : 조인 포인트가 정상 실행 후 실행</li><li>@AfterThrowing : 메서드가 예외를 던지는 경우 실행</li><li>@Around : 위 4가지 Annotation을 포함, 반환값 조작가능, 예외 조작 가능</li></ul></li><li><p>예시 - @Around 사용</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Around</span>(<span style=color:#e6db74>&#34;execution(public * org.academy..*Service.*(..))&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>log</span>(ProceedingJoinPoint joinPoint) <span style=color:#66d9ef>throws</span> Throwable {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>	log.<span style=color:#a6e22e>info</span>(<span style=color:#e6db74>&#34;Before method called. {}&#34;</span>, joinPoint.<span style=color:#a6e22e>getSignature</span>().<span style=color:#a6e22e>toString</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>	<span style=color:#66d9ef>var</span> result <span style=color:#f92672>=</span> joinPoint.<span style=color:#a6e22e>proceed</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>	log.<span style=color:#a6e22e>info</span>(<span style=color:#e6db74>&#34;After method called with result =&gt; {}&#34;</span>, result);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>	<span style=color:#66d9ef>return</span> result;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>}
+</span></span></code></pre></div></li></ul><h3 id=pointcut-1>Pointcut</h3><ul><li><p>앞의 코드에서 @Around 안에 포인트컷을 지정해서 사용하는 것을 확인할 수 있다</p></li><li><p>보통 Pointcut끼리 모아놓고 Around와 분리해서 사용한다고 한다</p></li><li><p>예시 - pointcut</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#75715e>// PointCut 정의</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#a6e22e>@Pointcut</span>(<span style=color:#e6db74>&#34;execution(public * org.academy..*Service.*(..))&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>servicePublicMethodPointcut</span>() {...}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span><span style=color:#75715e>// Advice에 적용</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#a6e22e>@Around</span>(<span style=color:#e6db74>&#34;org.academy.springorder.aop.CommonPointcut.servicePublicMethodPointcut()&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#66d9ef>public</span> ... {...}
+</span></span></code></pre></div></li></ul><h3 id=프록시-생성-방식>프록시 생성 방식</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@EnableAspectJAutoProxy</span>(proxyTargetClass<span style=color:#f92672>=</span><span style=color:#66d9ef>true</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#75715e>// Before</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>Calculator cal <span style=color:#f92672>=</span> ctx.<span style=color:#a6e22e>getBean</span>(<span style=color:#e6db74>&#34;calculator&#34;</span>, Calculator.<span style=color:#a6e22e>class</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#75715e>// After</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>RecCalculator cal <span style=color:#f92672>=</span> ctx.<span style=color:#a6e22e>getBean</span>(<span style=color:#e6db74>&#34;calculator&#34;</span>, RecCalculator.<span style=color:#a6e22e>class</span>);
+</span></span></code></pre></div><ul><li>proxyTargetClass 속성을 지정하여 인터페이스가 아닌 자바 클래스를 상속받아 프록시를 생성할 수 있다</li></ul><h3 id=advice-적용-순서>Advice 적용 순서</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Aspect</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#a6e22e>@Order</span>(2)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CacheAspect</span> {...}
+</span></span></code></pre></div><ul><li>@Order annotation을 이용하여 적용순서를 지정할 수 있다</li></ul><h3 id=around의-pointcut-설정>@Around의 Pointcut 설정</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Around</span>(<span style=color:#e6db74>&#34;execution(public * chap07 ..*(..))&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>execute</span>(...) {...}
+</span></span></code></pre></div><ul><li>@Pointcut publicTarget() 메소드를 사용하지 않을 수 있다</li></ul><h3 id=pointcut-재사용>@Pointcut 재사용</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Around</span>(<span style=color:#e6db74>&#34;ExeTimeAspect.publicTarget()&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>execute</span>(...) {...}
+</span></span></code></pre></div></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/09_spring_mvc/><span class=mx-3>◀</span>
 09_spring_MVC
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/08_connect_db/>
-08_connect_DB
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/08_connect_db/>08_connect_DB
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

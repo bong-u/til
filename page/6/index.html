@@ -1,795 +1,304 @@
-<!doctype html><html lang=ko>
-<head>
-<meta name=generator content="Hugo 0.91.2">
-<title>bong-u/til</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="bong-u/til">
-<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6
-max-w-3xl">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="w-full flex max-w-3xl flex-col">
-<section class="mb-8 w-full">
-<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
-<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
-</video>
-</section>
-<main class="flex flex-col w-full gap-5">
-<form onchange=switchSection() class="flex justify-center">
-<input id=switch-page type=radio name=switch checked>
-<label for=switch-page class="switch-button rounded-l-lg">
-게시물
-</label>
-</input>
+<!doctype html><html lang=ko><head><meta name=generator content="Hugo 0.157.0"><title>bong-u/til</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="bong-u/til"><meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6
+max-w-3xl"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><div class="w-full flex max-w-3xl flex-col"><section class="mb-8 w-full"><video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm></video></section><main class="flex flex-col w-full gap-5"><form onchange=switchSection() class="flex justify-center"><input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">게시물
+</label></input>
 <input id=switch-group type=radio name=switch>
-<label for=switch-group class=switch-button>
-분류
-</label>
-</input>
+<label for=switch-group class=switch-button>분류
+</label></input>
 <input id=switch-tag type=radio name=switch>
-<label for=switch-tag class=switch-button>
-태그
-</label>
-<input id=search-tag type=radio name=switch>
-<label for=search-tag class="switch-button rounded-r-lg">
-검색
-</label>
-</form>
-<div class="w-full p-5">
-<section id=summary-section class="grid gap-8">
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-06/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 06 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-06/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프 최종발표 전날이다. gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다. 문제 배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,) 다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다. nginx의 log 1{IP주소} - - [02/Aug/2024:10:59:04 +0000] "GET /ws/chatrooms/294?user_id=296 HTTP/1.1" 404 22 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15" 2{IP주소} - - [02/Aug/2024:10:59:05 +0000] "GET /ws/chatrooms/294?
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/c_cpp/c_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">
-C언어 개념 정리
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🌊</span>
-<span>C/CPP</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/c_cpp/c_concept/ class="content-summary text-sm overflow-hidden">
-본 내용은 2023 MISRA-C 가이드라인을 공부하면서 개념을 정리한 것이다.
-dead code &lt;-> unreachable code dead code : 코드에서 실행되지만 그 결과가 다른 계산에 사용될 수 없는 섹션 unreachable code : 제어 흐름 경로가 없기 때문에 실행할 수 없는 프로그램 소스 코드의 일부 tag struct, union, enum 뒤에 붙는 이름 escape sequence 백슬래시()와 특정문자를 결합하여 표현하기 어려운 기능, 문자를 표시해준다. 종류 (대표적인 것만 몇개 뽑았다) \n : 개행 \t : 수평 탭 \o(8진수 숫자) : 8진수 \x(16진수 숫자) : 16진수 연결 다른 범위에 속하는 변수들을 서로 연결하는 것
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2748/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2748 : 피보나치 수2 (B2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2748/ class="content-summary text-sm overflow-hidden">
-&ldquo;알고리즘 분류-DP"에서 안 푼 문제이길래 한 번 풀어봤다. 1N = int(input()) 2 3L = [0, 1] + [0]*89 4 5for i in range(2, N+1): 6 L[i] = L[i-1]+L[i-2] 7 8print (L[N])
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2573/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2573 : 빙산 (G5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2573/ class="content-summary text-sm overflow-hidden">
-1import copy 2from collections import deque 3 4N, M = map(int, input().split()) 5L = [list(map(int, input().split())) for _ in range(N)] 6L[0][0] = 0 7L[N-1][M-1] = 0 8vx = [0, 0, -1, 1] 9vy = [-1, 1, 0, 0] 10 11def melt(L): 12 L_ = copy.deepcopy(L) 13 for i in range(M): 14 for j in range(N): 15 if L[j][i] != 0: 16 for k in range(4): 17 nx = j + vx[k] 18 ny = i + vy[k] 19 20 if not 0 &lt;= nx &lt; N or not 0 &lt;= ny &lt; M: 21 continue 22 if L[nx][ny] == 0 and L_[j][i] !
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2565/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2565 : 전깃줄 (G5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2565/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3L = [i[1] for i in sorted(L)] 4dp = [0]*N 5for i in range(N): 6 dp[i] = 1 7 for j in range(i): 8 if L[j] &lt; L[i]: 9 dp[i] = max(dp[i], dp[j]+1) 10 11print (N-max(dp)) LIS를 이용하는 문제
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2294/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2294 : 동전 2 (G5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2294/ class="content-summary text-sm overflow-hidden">
-1N, K = map(int, input().split()) 2V = [] 3for _ in range(N): 4 V.append(int(input())) 5dp = [[0]+([10001]*K) for _ in range(N+1)] 6 7for i in range(1, N+1): 8 for j in range(1, K+1): 9 if j >= V[i-1]: 10 dp[i][j] = min(dp[i-1][j], dp[i][j-V[i-1]]+1) 11 else: 12 dp[i][j] = dp[i-1][j] 13 14res = dp[N][K] 15 16print (res if res != 10001 else -1) dp를 많이 풀어보자
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2225/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2225 - 합분해 (G5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2225/ class="content-summary text-sm overflow-hidden">
-1N, K = map(int, input().split()) 2 3dp = [[0]*(N+1) for _ in range(K+1)] 4for i in range(1, K+1): 5 dp[i][0] = 1 6 7for i in range(1, K+1): 8 for j in range(1, N+1): 9 dp[i][j] = (dp[i-1][j] + dp[i][j-1])%1000000000 10print (dp[K][N]) 내 힘으로 풀었다!
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_2193/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 2193 : 이친수 (S3)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_2193/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2dp = [1]*N 3for i in range(2, N): 4 dp[i] = dp[i-2]+dp[i-1] 5print (dp[N-1]) 피보나치였다
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_17404/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 17404 : RGB거리 2 (G4)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_17404/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2L = [list(map(int, input().split())) for _ in range(N)] 3 4result = 100000 5 6for i in range(3): 7 dp = [[0, 0, 0] for _ in range(N)] 8 dp[0] = [10000]*3 9 dp[0][i] = L[0][i] 10 for j in range(1, N): 11 dp[j][0] = min(dp[j-1][1], dp[j-1][2])+L[j][0] 12 dp[j][1] = min(dp[j-1][0], dp[j-1][2])+L[j][1] 13 dp[j][2] = min(dp[j-1][0], dp[j-1][1])+L[j][2] 14 15 dp[N-1][i] = 100000 16 result = min([result]+dp[N-1]) 17 18print (result) 인터넷을 참고하여 풀었다
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1699/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1699 : 제곱수의 합 (S2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_1699/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2 3dp = [100000]*(N+1) 4tmp = 1 5 6for i in range(1, N+1): 7 if i**(1/2) % 1 == 0: 8 dp[i] = 1 9 tmp += 1 10 else: 11 for j in range(1, tmp): 12 dp[i] = min(dp[i], dp[i-(j**2)]+1) 13 14print (dp[N])
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_15683/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 15683 : 감시 (G4)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_15683/ class="content-summary text-sm overflow-hidden">
-1import copy, sys 2 3N, M = map(int, input().split()) 4L = [list(map(int, input().split())) for _ in range(N)] 5cctv = [] 6direction = [[[(0, 1)], [(0, -1)], [(1, 0)], [(-1, 0)]], 7[[(-1, 0), (1, 0)], [(0, -1), (0, 1)]], 8[[(-1, 0), (0, -1)], [(0, -1), (1, 0)], [(1, 0), (0, 1)], [(0, 1), (-1, 0)]], 9[[(-1, 0), (0, -1), (1, 0)], [(0, -1), (1, 0), (0, 1)], [(1, 0), (0, 1), (-1, 0)], [(0, 1), (-1, 0), (0, -1)]], 10[[(-1, 0), (0, -1), (1, 0), (0, 1)]]] 11res = sys.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_14891/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 14891 : 톱니바퀴 (G5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_14891/ class="content-summary text-sm overflow-hidden">
-1from collections import deque 2 3wheels = [deque(map(int, list(input()))) for _ in range(4)] 4 5def rotate(wheel, direction): 6 if direction == 1: 7 wheel.appendleft(wheel.pop()) 8 else: 9 wheel.append(wheel.popleft()) 10 return wheel 11 12K = int(input()) 13vd = [1, -1] 14res = 0 15 16for _ in range(K): 17 N, D = map(int, input().split()) 18 q = deque() 19 q.append((N-1, D)) 20 visited = [False] * 4 21 tmp = [] 22 23 while q: 24 cur, curD = q.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11057/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11057 : 오르막 수 (S1)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_11057/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2dp = [[1]+[0]*9 for _ in range(N+1)] 3 4for i in range(1, N+1): 5 for j in range(1, 10): 6 dp[i][j] = dp[i-1][j]+dp[i][j-1] 7 8print (sum(dp[N])%10007)
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11052/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11052 : 카드 구매하기 (S1)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_11052/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2P = list(map(int, input().split())) 3 4D = [P[0]]+[0]*(N-1) 5 6for i in range(1, N): 7 for j in range(1, i+1): 8 D[i] = max(D[i-j]+P[j-1], D[i]) 9 D[i] = max(P[i], D[i]) 10 11print (D[N-1]
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11051/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11051 : 이항계수2 (S2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_11051/ class="content-summary text-sm overflow-hidden">
-내장 함수 사용
-1import math 2 3N, K = map(int, input().split()) 4 5print (math.comb(N, K)%10007 파스칼의 사각형? dp 구현
-1N, K = map(int, input().split()) 2 3if K == 0: 4 print(1) 5 exit() 6 7dp = [[0]*N for _ in range(K)] 8 9for i in range(N): 10 dp[0][i] = i+1 11 12for i in range(1, K): 13 for j in range(i, N): 14 dp[i][j] = (dp[i-1][j-1] + dp[i][j-1]) % 10007 15 16print (dp[K-1][N-1])
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_11048/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 11048 : 이동하기 (S2)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_11048/ class="content-summary text-sm overflow-hidden">
-1N, M = map(int, input().split()) 2dp = [list(map(int, input().split())) for _ in range(N)] 3 4for i in range(1, N): 5 dp[i][0] = dp[i][0]+dp[i-1][0] 6for i in range(1, M): 7 dp[0][i] = dp[0][i]+dp[0][i-1] 8 9for i in range(1, N): 10 for j in range(1, M): 11 dp[i][j] = dp[i][j]+max(dp[i-1][j], dp[i][j-1]) 12 13print (dp[N-1][M-1])
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_10844/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 10844 : 쉬운 계단 수 (S1)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_10844/ class="content-summary text-sm overflow-hidden">
-접근이 어려워 인터넷을 참고했다. 코드는 보지 않았다. 수의 길이가 i이면서 마지막 숫자가 j인 계단 수의 개수를 저장하는 것이 핵심이다. 점화식은 L[i][j] = L[i-1][j-1]+L[i-1][j+1] 이다. 1N = int(input()) 2L = [[0]*12 for _ in range(100)] 3L[0] = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0] 4 5for i in range(1, N): 6 for j in range(1, 11): 7 L[i][j] = L[i-1][j-1]+L[i-1][j+1] 8 9print (sum(L[N-1])%1000000000)
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1010/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1010 : 다리놓기 (S5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_1010/ class="content-summary text-sm overflow-hidden">
-1import math 2 3for _ in range(int(input())): 4 a, b = map(int, input().split()) 5 print(math.comb(max(a,b), min(a,b)))
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_9655/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 9655 : 돌게임 (S5)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_9655/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2print ('CY' if N%2==0 else 'SK') 게임이론에서 기초 중 기초 문제이다
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T01:29:52Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/algorithm/boj_1309/ class="text-2xl my-3 overflow-ellipsis-bundle">
-백준 - 1309 : 동물원 (S1)
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🧠</span>
-<span>Algorithm</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/algorithm/boj_1309/ class="content-summary text-sm overflow-hidden">
-1N = int(input()) 2dp = [1, 3] + [0]*(N-1) 3 4for i in range(2, N+1): 5 dp[i] = (dp[i-1]*2 + dp[i-2]) % 9901 6 7print(dp[N]) 고민 끝에 답을 찾아보긴 했다 점화식 생각해내는 놈들 머리에 뭐가 든건지 모르겠다
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 01:29:52 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class=py-16>
-<div id=pagination-box>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/5/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
-</li>
-<li class=page-item>
-<a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 6" class=page-link role=button>6</a>
-</li>
-<li class=page-item>
-<a href=/til/page/7/ aria-label="Page 7" class=page-link role=button>7</a>
-</li>
-<li class=page-item>
-<a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
-</li>
-<li class=page-item>
-<a href=/til/page/7/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
-</ul>
-</div>
-</div>
-</section>
-<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
-<span class="text-xl mr-3">🧠</span>
-<span> Algorithm (104)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
-<span class="text-xl mr-3">🌊</span>
-<span> C/CPP (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
-<span class="text-xl mr-3">☕</span>
-<span> Java (8)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
-<span class="text-xl mr-3">🍌</span>
-<span> Javascript (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
-<span class="text-xl mr-3">🐍</span>
-<span> Python (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span> Spring (30)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
-<span class="text-xl mr-3">🔨</span>
-<span> 개발 도구 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
-<span class="text-xl mr-3">🎸</span>
-<span> 기타 (7)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
-<span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (38)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
-<span class="text-xl mr-3">🤖</span>
-<span> 인공지능 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span> 학과 공부 (28)</span>
-</a>
-</section>
-<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+<label for=switch-tag class=switch-button>태그
+</label><input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">검색</label></form><div class="w-full p-5"><section id=summary-section class="grid gap-8"><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/profile/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - Profile</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/profile/ class="content-summary text-sm overflow-hidden"><h3 id=profile>Profile</h3><ul><li>프로그램을 개발, 테스트, 배포 환경으로 나눠서 실행해야할때가 있다</li><li>환경 설정을 위해 spring boot에서는 profile을 사용할 수 있다.</li></ul><h3 id=환경-변수>환경 변수</h3><h4 id=applicationyml>application.yml</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yml data-lang=yml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>dev</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 dev&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>---
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#f92672>spring.config.activate.on-profile</span>: <span style=color:#ae81ff>local</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;v1.0.0 local&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>---
+</span></span></code></pre></div><ul><li>yml 파일에서는 &mdash;를 이용해 파일 분할이 가능하다</li><li>spring.config.active.on-profile을 설정해서 특정 프로필에 적용하고 싶은 환경변수를 설정 할 수 있다.</li></ul><h4 id=application-profileproperties>application-&lt;profile>.properties</h4><ul><li>.properties파일에서는 여러 파일로 분할하여 설정한다</li><li>예를 들어 &ldquo;dev"프로파일에서 적용될 파일은 &ldquo;application-dev.properties"이다.</li></ul><h3 id=profile-1>@Profile</h3><ul><li>프로파일마다 Bean객체를 다르게 등록할 수 있다.</li><li>아래의 코드에서는 test 환경에서만 TestBean을 등록한다</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Component</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#a6e22e>@Profile</span>(<span style=color:#e6db74>&#34;test&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestBean</span> { ... }
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/class_resource_issue/ class="text-2xl my-3 overflow-ellipsis-bundle">Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/class_resource_issue/ class="content-summary text-sm overflow-hidden"><h3 id=상황>상황</h3><ul><li><p>개발 환경에서는 ClassPathResource를 문제없이 불러온다</p></li><li><p>jar로 package해서 실행했을 때 오류가 발생한다</p><pre tabindex=0><code>Caused by: java.lang.RuntimeException: Cannot read blacklist file
+        at org.academy.springorder.blacklist.BlacklistRepository.list(BlacklistRepository.java:25)
+        at org.academy.springorder.blacklist.BlacklistService.list(BlacklistService.java:16)
+        at org.academy.springorder.CommandLineApplication.main(CommandLineApplication.java:66)
+        ... 8 more
+</code></pre></li><li><p>문제의 코드</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>    List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> list <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        list <span style=color:#f92672>=</span> Files.<span style=color:#a6e22e>readAllLines</span>(blacklist.<span style=color:#a6e22e>getFile</span>().<span style=color:#a6e22e>toPath</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    <span style=color:#66d9ef>catch</span> (IOException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> RuntimeException(<span style=color:#e6db74>&#34;Cannot read blacklist file&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>    }
+</span></span></code></pre></div></li></ul><h3 id=해결>해결</h3><ul><li><p>readAllLines를 사용하지 않고 InputStreamReader와 BufferedRearder를 사용하여 해결하였다.</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/try_with_resources/ class="text-2xl my-3 overflow-ellipsis-bundle">Try with resources로 간결하게 반납하기</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>☕</span>
+<span>Java</span></div></div></div><div class=flex-grow><a href=/til/java/try_with_resources/ class="content-summary text-sm overflow-hidden"><h3 id=기존-코드---try-catch-finally-사용>기존 코드 - try-catch-finally 사용</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>Connection connection <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>Statement statement <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>ResultSet resultSet <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span><span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    connection <span style=color:#f92672>=</span> DriverManager.<span style=color:#a6e22e>getConnection</span>(<span style=color:#75715e>/* SECRET */</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    statement <span style=color:#f92672>=</span> connection.<span style=color:#a6e22e>createStatement</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    resultSet <span style=color:#f92672>=</span> statement.<span style=color:#a6e22e>executeQuery</span>(<span style=color:#e6db74>&#34;select * from customers&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    <span style=color:#66d9ef>while</span> (resultSet.<span style=color:#a6e22e>next</span>()) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        <span style=color:#66d9ef>var</span> name <span style=color:#f92672>=</span> resultSet.<span style=color:#a6e22e>getString</span>(<span style=color:#e6db74>&#34;name&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        <span style=color:#66d9ef>var</span> customerId <span style=color:#f92672>=</span> UUID.<span style=color:#a6e22e>nameUUIDFromBytes</span>(resultSet.<span style=color:#a6e22e>getBytes</span>(<span style=color:#e6db74>&#34;customer_id&#34;</span>));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>        logger.<span style=color:#a6e22e>info</span>(<span style=color:#e6db74>&#34;Customer id:{}, name: {}&#34;</span>, customerId, name);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>} <span style=color:#66d9ef>catch</span> (SQLException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    logger.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span>, e);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    <span style=color:#66d9ef>throw</span> e;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span><span style=color:#66d9ef>finally</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    <span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>        <span style=color:#66d9ef>if</span> (connection <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>) connection.<span style=color:#a6e22e>close</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>        <span style=color:#66d9ef>if</span> (statement <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>) statement.<span style=color:#a6e22e>close</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>        <span style=color:#66d9ef>if</span> (resultSet <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>) resultSet.<span style=color:#a6e22e>close</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>    } <span style=color:#66d9ef>catch</span> (SQLException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>        logger.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;Error while closing connection&#34;</span>, e);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span>}
+</span></span></code></pre></div><h3 id=개선-코드---try-with-resource-사용>개선 코드 - try with resource 사용</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>try</span> (
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>var</span> connection <span style=color:#f92672>=</span> DriverManager.<span style=color:#a6e22e>getConnection</span>(<span style=color:#75715e>/* SECRET */</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>var</span> statement <span style=color:#f92672>=</span> connection.<span style=color:#a6e22e>createStatement</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#66d9ef>var</span> resultSet <span style=color:#f92672>=</span> statement.<span style=color:#a6e22e>executeQuery</span>(<span style=color:#e6db74>&#34;select * from customers&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#66d9ef>while</span> (resultSet.<span style=color:#a6e22e>next</span>()) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        <span style=color:#66d9ef>var</span> name <span style=color:#f92672>=</span> resultSet.<span style=color:#a6e22e>getString</span>(<span style=color:#e6db74>&#34;name&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        <span style=color:#66d9ef>var</span> customerId <span style=color:#f92672>=</span> UUID.<span style=color:#a6e22e>nameUUIDFromBytes</span>(resultSet.<span style=color:#a6e22e>getBytes</span>(<span style=color:#e6db74>&#34;customer_id&#34;</span>));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        logger.<span style=color:#a6e22e>info</span>(<span style=color:#e6db74>&#34;Customer id:{}, name: {}&#34;</span>, customerId, name);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>} <span style=color:#66d9ef>catch</span>  (SQLException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    logger.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span>, e);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    <span style=color:#66d9ef>throw</span> e;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>}
+</span></span></code></pre></div><ul><li>위 코드는 JDBC를 이용해 DB와 연결해서 데이터를 가져오는 코드이다.</li><li>기존 코드보다 훨씬 간결해진 것을 확인할 수 있다.</li></ul><h3 id=try-with-resources>Try with resources</h3><ul><li>사용법<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>try</span> (<span style=color:#75715e>/* 자원 생성 */</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#75715e>/* 자원 사용 */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>} <span style=color:#66d9ef>catch</span> (...) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    ...
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#75715e>/* 자원 자동 반납 */</span>
+</span></span></code></pre></div></li><li>조건<blockquote><p>try with resources문에서 사용되는 자원은 반드시 <strong>AutoCloseble interface</strong>를 구현해야한다.</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/jdbc/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - JDBC, DBCP, JdbcTemplate</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/jdbc/ class="content-summary text-sm overflow-hidden"><h3 id=jdbc>JDBC</h3><blockquote><p>자바 프로그램을 DB와 연결해주는 API</p></blockquote><h3 id=jdbc-드라이버>JDBC 드라이버</h3><blockquote><p>DBMS와 통신을 담당하는 자바 클래스</p></blockquote><ul><li>JDBC 드라이버는 4가지 종류가 있다 (Type 1~4)</li><li>Mysql은 Type 4를 지원한다</li><li>예제 - Connection을 직접 연결<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>public</span> List<span style=color:#f92672>&lt;</span>UUID<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>findAllIds</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    List<span style=color:#f92672>&lt;</span>UUID<span style=color:#f92672>&gt;</span> uuids <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>try</span> (
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>            <span style=color:#66d9ef>var</span> connection <span style=color:#f92672>=</span> DriverManager.<span style=color:#a6e22e>getConnection</span>(url, username, password);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>            <span style=color:#66d9ef>var</span> statement <span style=color:#f92672>=</span> connection.<span style=color:#a6e22e>createStatement</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>            <span style=color:#66d9ef>var</span> resultSet <span style=color:#f92672>=</span> statement.<span style=color:#a6e22e>executeQuery</span>(SELECT_ALL_SQL);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    ) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        <span style=color:#66d9ef>while</span> (resultSet.<span style=color:#a6e22e>next</span>()) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            <span style=color:#66d9ef>var</span> customerName <span style=color:#f92672>=</span> resultSet.<span style=color:#a6e22e>getString</span>(<span style=color:#e6db74>&#34;name&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>            <span style=color:#66d9ef>var</span> customerId <span style=color:#f92672>=</span> toUUID(resultSet.<span style=color:#a6e22e>getBytes</span>(<span style=color:#e6db74>&#34;customer_id&#34;</span>));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>            <span style=color:#66d9ef>var</span> createdAt <span style=color:#f92672>=</span> resultSet.<span style=color:#a6e22e>getTimestamp</span>(<span style=color:#e6db74>&#34;created_at&#34;</span>).<span style=color:#a6e22e>toLocalDateTime</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>            uuids.<span style=color:#a6e22e>add</span>(customerId);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    } <span style=color:#66d9ef>catch</span> (SQLException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>        logger.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;Error while connecting to DB&#34;</span>, e);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    <span style=color:#66d9ef>return</span> uuids;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>}
+</span></span></code></pre></div></li></ul><h3 id=dbcp-database-connection-pool>DBCP (DataBase Connection Pool)</h3><p><img src=/static/image/spring_dbcp.png alt=DBCP></p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/double_brace_initialization/ class="text-2xl my-3 overflow-ellipsis-bundle">Java - 이중 중괄호와 Anti-Pattern</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>☕</span>
+<span>Java</span></div></div></div><div class=flex-grow><a href=/til/java/double_brace_initialization/ class="content-summary text-sm overflow-hidden"><h3 id=기존-코드>기존 코드</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>Map<span style=color:#f92672>&lt;</span>String, Object<span style=color:#f92672>&gt;</span> map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;customerId&#34;</span>, customer.<span style=color:#a6e22e>getCustomerId</span>().<span style=color:#a6e22e>toString</span>().<span style=color:#a6e22e>getBytes</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;name&#34;</span>, customer.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;email&#34;</span>, customer.<span style=color:#a6e22e>getEmail</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>map.<span style=color:#a6e22e>put</span>(<span style=color:#e6db74>&#34;createdAt&#34;</span>, Timestamp.<span style=color:#a6e22e>valueOf</span>(customer.<span style=color:#a6e22e>getCreatedAt</span>()));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span><span style=color:#66d9ef>return</span> map;
+</span></span></code></pre></div><h3 id=double-brace-initialization-적용-후>Double Brace Initialization 적용 후</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;</span>() {{
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    put(<span style=color:#e6db74>&#34;customerId&#34;</span>, customer.<span style=color:#a6e22e>getCustomerId</span>().<span style=color:#a6e22e>toString</span>().<span style=color:#a6e22e>getBytes</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    put(<span style=color:#e6db74>&#34;name&#34;</span>, customer.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    put(<span style=color:#e6db74>&#34;email&#34;</span>, customer.<span style=color:#a6e22e>getEmail</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    put(<span style=color:#e6db74>&#34;createdAt&#34;</span>, Timestamp.<span style=color:#a6e22e>valueOf</span>(customer.<span style=color:#a6e22e>getCreatedAt</span>()));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>}};
+</span></span></code></pre></div><h3 id=효과>효과</h3><ul><li>장점<ul><li>코드가 가독성이 좋아진다</li></ul></li><li>단점<ul><li><p>추가로 익명 클래스를 사용한다 -> 메모리 추가 사용</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/transaction/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - Transaction (트랜잭션)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/transaction/ class="content-summary text-sm overflow-hidden"><h3 id=상황>상황</h3><ul><li>소비자가 판매자의 물건을 구매하는 함수를 구현 중이라고 하자</li><li>물건을 샀을때, 물건의 가격만큼 판매자의 돈은 증가시키고, 소비자의 돈은 감소시켜야한다</li><li>판매자의 돈은 증가시켰는데, 소비자의 돈을 감소시키는 중 오류가 났다</li><li>오류가 난 경우, 판매자의 돈을 증가시키기 이전으로 <strong>Rollback</strong> 해야 한다</li><li>위의 두가지 연산은 하나의 <strong>Transaction</strong>으로 묶여서 한번에 처리되어야 한다</li></ul><h3 id=transaction-관리의-종류>Transaction 관리의 종류</h3><ol><li><p>Programmatic transaction management (프로그래밍적 트랜잭션 관리)</p><ul><li>Transaction 관련 코드를 직접 작성</li><li>예제 - TransactionManager 사용<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#75715e>// Bean 등록</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#a6e22e>@Bean</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>public</span> PlatformTransactionManager <span style=color:#a6e22e>platformTransactionManager</span>(DataSource dataSource) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> DataSourceTransactionManager(dataSource);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#75715e>// 사용할 때</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#75715e>// 새로운 트랜잭션을 시작한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#66d9ef>var</span> transaction <span style=color:#f92672>=</span> transactionManager.<span style=color:#a6e22e>getTransaction</span>(<span style=color:#66d9ef>new</span> DefaultTransactionDefinition());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#75715e>/* Business Logic */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#75715e>// Commit하여 db에 반영한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    transactionManager.<span style=color:#a6e22e>commit</span>(transaction);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>} <span style=color:#66d9ef>catch</span> (DataAccessException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    logger.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;Got error&#34;</span>, e);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#75715e>// 예외 발생시 이전 상태로 Rollback 한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    transactionManager.<span style=color:#a6e22e>rollback</span>(transaction);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>}
+</span></span></code></pre></div></li></ul></li><li><p>Declarative transaction management (선언적 트랜잭션 관리)</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/mvc_servlet/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - MVC 패턴, Servlet (서블릿)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/mvc_servlet/ class="content-summary text-sm overflow-hidden"><h3 id=servlet-개념>Servlet 개념</h3><blockquote><p>클라이언트의 요청을 처리하고, 그 결과를 반환하는 자바 웹 프로그래밍 기술</p></blockquote><ul><li>웹페이지를 동적으로 생성하는 역할을 수행한다</li></ul><h3 id=servlet-conainer의-역할>Servlet Conainer의 역할</h3><ul><li>Servlet의 생명주기를 관리한다</li><li>웹서버와의 통신지원</li><li>멀티쓰레드 지원, 관리</li><li>선언적인 보안 관리</li></ul><h3 id=예제---servlet-구현>예제 - Servlet 구현</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TestServlet</span> <span style=color:#66d9ef>extends</span> HttpServlet {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LoggerFactory.<span style=color:#a6e22e>getLogger</span>(TestServlet.<span style=color:#a6e22e>class</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>() <span style=color:#66d9ef>throws</span> ServletException {}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>}
+</span></span></code></pre></div><ul><li>doGet, doPost 등의 메소드를 구현해서 http 요청을 처리할 수 있다</li></ul><h3 id=servlet-context를-등록하는-방법>Servlet Context를 등록하는 방법</h3><h4 id=webxml-작성>web.xml 작성</h4><ul><li>web.xml<blockquote><p>web application의 설정을 위한 deployment descriptor (배포 지정자)</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/object/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - POJO, DAO, DTO, VO, Entity</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/object/ class="content-summary text-sm overflow-hidden"><h3 id=spring의-여러-객체들>Spring의 여러 객체들</h3><ul><li>여기저기서 들어봤지만 개념이 머리에 정리되지 않아 기술한다</li></ul><h3 id=pojo-plain-old-java-object>POJO (Plain Old Java Object)</h3><blockquote><p>특정 기술에 종속되지 않는 순수한 자바 객체</p></blockquote><ul><li>기본 생성자를 가진다</li><li>아무것도 상속받거나, 구현하지 않아야 한다</li><li>getter랑 setter만 존재 해야한다</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>private</span> String name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Person</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getName</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>        <span style=color:#66d9ef>return</span> name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>getAge</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        <span style=color:#66d9ef>return</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setName</span>(String name) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setAge</span>(<span style=color:#66d9ef>int</span> age) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>age</span> <span style=color:#f92672>=</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>}
+</span></span></code></pre></div><h3 id=dao-data-access-object>DAO (Data Access Object)</h3><blockquote><p>DB에 접근하는 객체</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/restcontroller/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring - @RestController 정리</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/restcontroller/ class="content-summary text-sm overflow-hidden"><h3 id=restcontroller>@RestController</h3><ul><li>@Controller와 @ResponseBody를 합친 Annotation이다</li><li>@Controller는 ViewName을 반환해서 DispatcherServlet이 <strong>ViewResolver</strong>을 사용한다</li><li>@RestController는 객체를 반환해서 <strong>HttpMessageConverter</strong>가 객체를 Json으로 변환한다</li></ul><h3 id=controller와의-코드-비교>@Controller와의 코드 비교</h3><ul><li>@Controller</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@GetMapping</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>@ResponseBody</span> List<span style=color:#f92672>&lt;</span>Voucher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getVouchers</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> voucherRepository.<span style=color:#a6e22e>list</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><ul><li>@RestController</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@GetMapping</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> List<span style=color:#f92672>&lt;</span>Voucher<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getVouchers</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> voucherRepository.<span style=color:#a6e22e>list</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span></code></pre></div><h3 id=restcontrolleradvice>@RestControllerAdvice</h3><ul><li>@ControllerAdvice와 같이 @Controller에서 발생한 예외를 전역적으로 처리하는 Annotation이다</li><li>@ControllerAdvice와 @RestControllerAdvice의 차이는 @Controller와 @RestController의 차이와 같다</li></ul><h3 id=예제---restcontrolleradvice-구현>예제 - @RestControllerAdvice 구현</h3><ul><li>필자는 Controller에서 발생한 IllegalArgumentException을 400 Bad Request로 처리하였다</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@RestControllerAdvice</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ControllerExceptionHandler</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    <span style=color:#a6e22e>@ExceptionHandler</span>(IllegalArgumentException.<span style=color:#a6e22e>class</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>    <span style=color:#66d9ef>public</span> ResponseEntity<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>handleIllegalArgumentException</span>(IllegalArgumentException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>        <span style=color:#66d9ef>return</span> ResponseEntity.<span style=color:#a6e22e>status</span>(HttpStatus.<span style=color:#a6e22e>BAD_REQUEST</span>.<span style=color:#a6e22e>value</span>()).<span style=color:#a6e22e>body</span>(e.<span style=color:#a6e22e>getMessage</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>}
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/responseentity/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring - ResponseEntity 정리</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/responseentity/ class="content-summary text-sm overflow-hidden"><h3 id=responseentity>ResponseEntity</h3><ul><li>Spring에서 HttpEntity라는 클래스를 지원한다</li><li>HttpEntity를 상속받는 두 클래스가 RequestEntity와 ResponseEntity이다</li><li>RequestEntity는 http요청을 보낼때 사용하고</li><li>ResponseEntity는 http응답을 할때 사용한다</li></ul><h3 id=정의>정의</h3><ul><li>body, header, status를 인자로 넘길 수 있다</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ResponseEntity</span><span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>extends</span> HttpEntity<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>ResponseEntity</span>(HttpStatusCode status) {...}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>ResponseEntity</span>(<span style=color:#a6e22e>@Nullable</span> T body, HttpStatusCode status) {...}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>ResponseEntity</span>(MultiValueMap<span style=color:#f92672>&lt;</span>String, String<span style=color:#f92672>&gt;</span> headers, HttpStatusCode status) {...}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>ResponseEntity</span>(<span style=color:#a6e22e>@Nullable</span> T body, <span style=color:#a6e22e>@Nullable</span> MultiValueMap<span style=color:#f92672>&lt;</span>String, String<span style=color:#f92672>&gt;</span> headers, HttpStatusCode status) {...}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>ResponseEntity</span>(<span style=color:#a6e22e>@Nullable</span> T body, <span style=color:#a6e22e>@Nullable</span> MultiValueMap<span style=color:#f92672>&lt;</span>String, String<span style=color:#f92672>&gt;</span> headers, <span style=color:#66d9ef>int</span> rawStatus) {...}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>}
+</span></span></code></pre></div><h3 id=예제---responseentity>예제 - ResponseEntity</h3><ul><li>생성자를 이용하거나 builder 패턴을 활용해서 생성할 수 있다</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> ResponseEntity<span style=color:#f92672>&lt;&gt;</span>(object, HttpStatus.<span style=color:#a6e22e>valueOf</span>(200));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#75715e>/* 또는 */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>return</span> ResponseEntity.<span style=color:#a6e22e>status</span>(HttpStatus.<span style=color:#a6e22e>valueOf</span>(200)).<span style=color:#a6e22e>body</span>(object);
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class=py-16><div id=pagination-box><ul class="pagination pagination-default"><li class=page-item><a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/til/page/5/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/til/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class="page-item active"><a aria-current=page aria-label="Page 6" class=page-link role=button>6</a></li><li class=page-item><a href=/til/page/7/ aria-label="Page 7" class=page-link role=button>7</a></li><li class=page-item><a href=/til/page/8/ aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/til/page/7/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/til/page/24/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></section><section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/><span class="text-xl mr-3">🧠</span>
+<span>Algorithm (104)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/><span class="text-xl mr-3">🌊</span>
+<span>C/CPP (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/><span class="text-xl mr-3">☕</span>
+<span>Java (8)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/><span class="text-xl mr-3">🍌</span>
+<span>Javascript (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/><span class="text-xl mr-3">🐍</span>
+<span>Python (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/><span class="text-xl mr-3">🍃</span>
+<span>Spring (30)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/><span class="text-xl mr-3">🔨</span>
+<span>개발 도구 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/><span class="text-xl mr-3">🎸</span>
+<span>기타 (7)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/><span class="text-xl mr-3">👨‍💻</span>
+<span>모각코 (38)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/><span class="text-xl mr-3">🤖</span>
+<span>인공지능 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/><span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (28)</span></a></section><section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>boj (53)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c++ (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>celery (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>cs (18)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>django (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>docker (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>docker-compose (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker%20compose class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>docker compose (1)</span>
+</a><a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>elk (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>fastapi (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>git (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>github-actions (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/github%20actions class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>github actions (5)</span>
+</a><a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>hackerrank (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>https (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>java (37)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>javascript (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>jwt (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>kubernetes (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>nginx (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ocaml (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>open-source (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/open%20source class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>open source (2)</span>
+</a><a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>programmers (48)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>pytest (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>python (111)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rabbitmq (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rag (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>react (6)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>security (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>software-engineering (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>spring (31)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>sql (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ssl (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>testing (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>typescript (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>vercel (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>websocket (1)</span>
-</a>
-</section>
-<section id=search-section class=hidden>
-<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
-<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
-<style>div.pagefind-ui__result-thumb{display:none}</style>
-<div id=search></div>
-<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
-</section>
-</div>
-</main>
-</div>
-</div>
-</body>
-</html>
+</a><a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span></a></section><section id=search-section class=hidden><link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet><script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script><style>div.pagefind-ui__result-thumb{display:none}</style><div id=search></div><script>window.addEventListener("DOMContentLoaded",e=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:e=>(e.meta&&e.meta.image&&e.meta.image_alt&&(delete e.meta.image,delete e.meta.image_alt),e)})})</script></section></div></main></div></div></body></html>

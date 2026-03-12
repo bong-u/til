@@ -1,453 +1,60 @@
-<!doctype html><html lang=ko>
-<head>
-<title>확률과 통계</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="자료의 정리와 요약   통계 자료의 구분
- 양적자료(quantitative data) 또는 수치형자료(numerical data)  이산자료(자녀 수), 연속자료(키)   질적자 …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="확률과 통계">
-<meta property="og:description" content="자료의 정리와 요약   통계 자료의 구분
- 양적자료(quantitative data) 또는 수치형자료(numerical data)  이산자료(자녀 수), 연속자료(키)   질적자 …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#자료의-정리와-요약>자료의 정리와 요약</a>
-<ul>
-<li><a href=#도수분포표>도수분포표</a></li>
-<li><a href=#막대그래프>막대그래프</a></li>
-<li><a href=#히스토그램>히스토그램</a></li>
-<li><a href=#도수분포다각형>도수분포다각형</a></li>
-<li><a href=#원그래프>원그래프</a></li>
-<li><a href=#꺾은선-그래프>꺾은선 그래프</a></li>
-<li><a href=#대푯값>대푯값</a></li>
-<li><a href=#산포도>산포도</a></li>
-<li><a href=#상자그림>상자그림</a></li>
-</ul>
-</li>
-<li><a href=#확률>확률</a>
-<ul>
-<li><a href=#표본공간과-사건>표본공간과 사건</a></li>
-<li><a href=#확률-1>확률</a></li>
-<li><a href=#조건부-확률>조건부 확률</a></li>
-<li><a href=#독립-사건>독립 사건</a></li>
-<li><a href=#베이즈-정리>베이즈 정리</a></li>
-</ul>
-</li>
-<li><a href=#확률변수와-확률분포>확률변수와 확률분포</a>
-<ul>
-<li><a href=#확률-변수>확률 변수</a></li>
-<li><a href=#확률-분포>확률 분포</a></li>
-<li><a href=#확률변수의-기대값과-분산>확률변수의 기대값과 분산</a></li>
-<li><a href=#결합확률분포>결합확률분포</a></li>
-<li><a href=#공분산과-상관계수>공분산과 상관계수</a></li>
-</ul>
-</li>
-<li><a href=#여러가지-확률분포>여러가지 확률분포</a>
-<ul>
-<li><a href=#이산확률분포>이산확률분포</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-확률과 통계
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-</div>
-<h4 id=date>수정일 : 2023-08-12</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=자료의-정리와-요약>자료의 정리와 요약</h2>
-<ul>
-<li>
-<p>통계 자료의 구분</p>
-<ul>
-<li>양적자료(quantitative data) 또는 수치형자료(numerical data)
-<ul>
-<li>이산자료(자녀 수), 연속자료(키)</li>
-</ul>
-</li>
-<li>질적자료(qualitative data) 또는 범주형자료(categorical data)
-<ul>
-<li>명목자료(혈액형, 성별), 순서자료(학점, 부서평가)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>변수의 종류</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>all variables
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>├── numerical
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>│   ├-─ continuous <span style=color:#f92672>(</span>리터 수<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>│   └-─ discrete <span style=color:#f92672>(</span>나라 수<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>└─── categorical
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>    ├-─ Nominal <span style=color:#f92672>(</span>성별<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    └-─ Ordinal <span style=color:#f92672>(</span>근무 한 시간 : 12-2<span style=color:#f92672>)</span>
-</code></pre></div></li>
-</ul>
-<h3 id=도수분포표>도수분포표</h3>
-<blockquote>
-<p>자료의 특성을 기준으로 일정한 계급으로 나누고, 각 계급에 도수를 대응하여 작성한 표</p>
-</blockquote>
-<ul>
-<li>범주형 도수분포표
-<table>
-<thead>
-<tr>
-<th>색상</th>
-<th>도수</th>
-<th>상대도수</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>빨강</td>
-<td>60</td>
-<td>0.2</td>
-</tr>
-<tr>
-<td>&mldr;</td>
-<td>&mldr;</td>
-<td>&mldr;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>계급형 도수분포표
-<table>
-<thead>
-<tr>
-<th>계급(시간)</th>
-<th>계급값</th>
-<th>도수</th>
-<th>상대도수</th>
-<th>누적도수</th>
-<th>누적 상대도수</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10 ~ 17</td>
-<td>13.5</td>
-<td>7</td>
-<td>0.14</td>
-<td>7</td>
-<td>0.14</td>
-</tr>
-<tr>
-<td>17 ~ 24</td>
-<td>20.5</td>
-<td>24</td>
-<td>0.48</td>
-<td>31</td>
-<td>0.62</td>
-</tr>
-<tr>
-<td>&mldr;</td>
-<td>&mldr;</td>
-<td>&mldr;</td>
-<td>&mldr;</td>
-<td>&mldr;</td>
-<td>&mldr;</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<ul>
-<li>계급형 도수분포표 작성 순서
-<ol>
-<li>범위 $R=x_{max} - x_{min}$</li>
-<li>계급의 수 $k=1+log_2n$에 가까운 자연수</li>
-<li>계급의 간격 $c=\frac{R}{k}$</li>
-</ol>
-</li>
-</ul>
-<h3 id=막대그래프>막대그래프</h3>
-<h3 id=히스토그램>히스토그램</h3>
-<h3 id=도수분포다각형>도수분포다각형</h3>
-<h3 id=원그래프>원그래프</h3>
-<h3 id=꺾은선-그래프>꺾은선 그래프</h3>
-<h3 id=대푯값>대푯값</h3>
-<ul>
-<li>$Q_1$ = 제1사분위수 = 제25백분위수</li>
-<li>$Q_2$ = 제2사분위수 = 제50사분위수 = 중앙값</li>
-<li>$Q_3$ = 제3사분위수 = 제75사분위수</li>
-</ul>
-<h3 id=산포도>산포도</h3>
-<ul>
-<li>사분위수 범위
-<blockquote>
-<p>IQR $=Q_3- Q_1$</p>
-</blockquote>
-</li>
-<li>모분산
-$$\sigma^2=\frac1N\sum^N_{i-1}(x_i-\mu)^2$$</li>
-<li>표본분산
-$$S^2=\frac1{n-1}\sum^2_{i=1}(x_i-\bar{x})^2$$</li>
-<li>변동계수
-$$CV = \frac{표준편차}{평균}\times100%$$</li>
-<li>5점 요약 표시
-<blockquote>
-<p>$[\ x_{min},\ Q_1,\ Me,\ Q_3,\ x_{max}\ ]$</p>
-</blockquote>
-</li>
-<li>왜도
-$$\frac{\mu_3}{S^3}$$</li>
-<li>첨도
-$$\frac{\mu_4}{S^4}$$</li>
-</ul>
-<h3 id=상자그림>상자그림</h3>
-<h2 id=확률>확률</h2>
-<h3 id=표본공간과-사건>표본공간과 사건</h3>
-<ul>
-<li>
-<p>표본공간 : 모든 가능한 결과의 집합</p>
-</li>
-<li>
-<p>표본점 : 표본공간을 구성하는 개개의 원소</p>
-</li>
-<li>
-<p>사건 : 표본공간의 임의의 부분집합</p>
-</li>
-<li>
-<p>근원사건 : 한 원소로만 이루어진 사건</p>
-</li>
-<li>
-<p>전사건 : 표본공간의 모든 원소를 포함하는 사건 : $\Omega$</p>
-</li>
-<li>
-<p>공사건</p>
-</li>
-<li>
-<p>이산표본공간 vs 연속표본공간</p>
-</li>
-<li>
-<p>사건의 연산 : 합사건, 곱사건, 여사건, 배반사건</p>
-</li>
-<li>
-<p>연산법칙 : 교환법칙, 결합법칙, 분배법칙, 드모르간의 법칙</p>
-</li>
-</ul>
-<h3 id=확률-1>확률</h3>
-<ul>
-<li>라플라스의 확률
-$$P(A)=\frac nN$$</li>
-<li>확률의 공리
-<ol>
-<li>임의의 사건에 대해 $0 \leq P(A) \leq1$</li>
-<li>$P(\Omega)=1$</li>
-<li>A1, A2, &mldr;이 <strong>배반사건</strong>이라면 $P(A_1 \cup A_2 \cup &mldr;) = P(A_1)+P(A_2)+&mldr;$</li>
-</ol>
-</li>
-<li>확률의 성질</li>
-</ul>
-<h3 id=조건부-확률>조건부 확률</h3>
-<ul>
-<li>조건부 확률
-$$P(A\ |\ B) = \frac{P(A \cap B)}{P(B)},\ P(B)\neq0$$</li>
-<li>곱셈정리
-$$P(A \cap B)=P(B)P(A\ |\ B) = P(A)P(B\ |\ A)$$</li>
-</ul>
-<h3 id=독립-사건>독립 사건</h3>
-<ul>
-<li>독립
-$$ P(A) = P(A\ |\ B)\ or\ P(B) = P(B\ |\ A) $$</li>
-<li>곱셈정리
-$$ P(A \cap B) = P(A)P(B) $$</li>
-</ul>
-<h3 id=베이즈-정리>베이즈 정리</h3>
-<ul>
-<li>분할</li>
-<li>전확률 (사건 $A_1$&mldr; 이 분할일때)
-$$ P(B) = \sum^n_{k=1}P(A_k)\ P(B\ |\ A_k) $$</li>
-<li>베이즈 정리 (사건 $A_1$&mldr; 이 분할이고, $P(A_i)>0, P(B)>0$ 일때)
-$$P(A_i\ |\ B)=\frac{P(A_i \cap B)}{P(B)}=\frac{P(A_i)P(B\ |\ A_i)}{\sum^n_{k=1}P(A_k)P(B\ |\ A_k)}$$</li>
-</ul>
-<h2 id=확률변수와-확률분포>확률변수와 확률분포</h2>
-<h3 id=확률-변수>확률 변수</h3>
-<ul>
-<li>확률질량함수
-$$ f(x)=P(X=x) $$</li>
-<li>확률밀도함수
-$$ P(a \leq X \leq b) = \int^b_af(x)dx$$</li>
-</ul>
-<h3 id=확률-분포>확률 분포</h3>
-<ul>
-<li>분포함수 (누적분포함수)
-$$ F(x) = P(X \leq x) = \sum_{x_i \leq x}f(x_i)$$</li>
-<li>분포함수가 이산확률변수인 경우, $P(X=x)=F(x)-F(x-1)$</li>
-<li>연속확률분포
-$$F(x)=P(X \leq x)=\int_{-\infty}^xf(x)dx$$</li>
-</ul>
-<h3 id=확률변수의-기대값과-분산>확률변수의 기대값과 분산</h3>
-<ul>
-<li>
-<p>확률변수의 기댓값</p>
-</li>
-<li>
-<p>확률변수의 분산</p>
-</li>
-<li>
-<p>분산의 성질</p>
-</li>
-</ul>
-<h3 id=결합확률분포>결합확률분포</h3>
-<ul>
-<li>결합확률질량함수
-$$ f(x_i,\ y_j) = P(X=x_i, Y=y_j)\ (i=1\ &mldr;\ n\ j=1\ &mldr;\ m)$$</li>
-<li>결합분포함수
-$$ F(x, y) = \sum_{u \leq x}\sum_{u \leq y}f(u, v) $$</li>
-<li>결합확률밀도함수
-$$ P{(X, Y) \in A} = \int_a^b \int_c^d f(x, y)dydx $$</li>
-<li>결합분포함수
-$$ F(x, y) = \int_{- \infty}^x \int_{- \infty}^y f(u, v) du dv$$</li>
-</ul>
-<h3 id=공분산과-상관계수>공분산과 상관계수</h3>
-<ul>
-<li>공분산
-$$ Cov(X, Y) = E(XY) - \mu_X \mu_Y $$</li>
-<li>상관계수</li>
-<li>$$ Corr(X, Y) = \frac{Cov(X, Y)}{\sigma_X \sigma_Y} $$</li>
-<li>두 확률 변수가 독립이라면,
-<ol>
-<li>$E(XY) = E(X)E(Y)$</li>
-<li>$Var(X+Y) = Var(X)+Var(Y)$</li>
-<li>$Cov(X, Y) = 0$</li>
-<li>$Corr(X, Y) = 0$</li>
-</ol>
-</li>
-</ul>
-<h2 id=여러가지-확률분포>여러가지 확률분포</h2>
-<h3 id=이산확률분포>이산확률분포</h3>
-<ul>
-<li>
-<p>이산균등분포</p>
-<ul>
-<li>확률변수 X가 가지는 값의 확률이 모두 같은 확률분포
-$$ f(x) = \frac1n (x=1, 2,\ &mldr;,\ n) $$</li>
-</ul>
-</li>
-<li>
-<p>베르누이 분포 B(1, p)</p>
-<ul>
-<li>발생할 수 있는 결과가 오직 두 개뿐인 경우
-$$ f(x)=p^xq^{1-x}\ (x=0, 1) $$</li>
-<li>$E(x) = p$</li>
-<li>$V(x) = pq$</li>
-</ul>
-</li>
-<li>
-<p>이항분포 B(n, p)</p>
-<ul>
-<li>n회의 베르누이 시행에서 성공할 횟수 X의 확률분포
-$$ f(x) = _nC_x p^xq^{(n-x)} $$</li>
-<li>$E(X) = np$</li>
-<li>$V(X) = npq$</li>
-</ul>
-</li>
-<li>
-<p>초기하분포 H(N, M, n)</p>
-<ul>
-<li>n개의 표본을 비복원 추출의 확률분포
-$$ f(x) = \frac{{}<em>{M}C</em>{x} \cdot {}<em>{N-M}C</em>{n-x}}{{}<em>{N}C</em>{n}} $$</li>
-<li>$E(X) = n \frac{M}{N}$</li>
-<li>$V(X) = n \frac{M}{N}(1-\frac{M}{N})(\frac{N-n}{N-1})$</li>
-</ul>
-</li>
-<li>
-<p>푸아송분포 P(m)</p>
-<ul>
-<li>주어진 상황 속에서 발생하는 어떤 사건의 평균 발생회수 X의 확률분포
-$$ f(x) = \frac{e^{-m}m^x}{x!}\ (x=0, 1, 2, &mldr;)$$</li>
-<li>$E(X) = m$</li>
-<li>$V(X) = m$</li>
-<li>n>=20, p&lt;=0.05 이면 이항분포가 근사 가능</li>
-</ul>
-</li>
-<li>
-<p>기하분포 Geo(p)</p>
-<ul>
-<li>처음으로 성공할때까지의 시행횟수를 따르는 확률분포
-$$ p(x) = q^{x-1}p (x=1, 2, &mldr;) $$</li>
-<li>$E(X) = \frac{1}{p}$</li>
-<li>$V(X) = \frac{q}{p^2}$</li>
-</ul>
-</li>
-<li>
-<p>음이항분포 NB(k, p)</p>
-<ul>
-<li>반복시행에서 k번 성공할때까지의 시행횟수 X의 확률분포
-$$ f(x) = {}<em>{x-1}C</em>{k-1}\ p^kq^{x-k} $$</li>
-<li>$E(X)=\frac{k}{p}$</li>
-<li>$V(X)=\frac{kq}{p^2}$</li>
-</ul>
-</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-4%EC%9D%BC%EC%B0%A8/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>확률과 통계</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="자료의 정리와 요약
+
+
+통계 자료의 구분
+
+양적자료(quantitative data) 또는 수치형자료(numerical data)
+
+이산자료(자녀 수), 연속자료(키)
+
+
+질적자료 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="확률과 통계"><meta property="og:description" content="자료의 정리와 요약
+
+
+통계 자료의 구분
+
+양적자료(quantitative data) 또는 수치형자료(numerical data)
+
+이산자료(자녀 수), 연속자료(키)
+
+
+질적자료 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#자료의-정리와-요약>자료의 정리와 요약</a><ul><li><a href=#도수분포표>도수분포표</a></li><li><a href=#막대그래프>막대그래프</a></li><li><a href=#히스토그램>히스토그램</a></li><li><a href=#도수분포다각형>도수분포다각형</a></li><li><a href=#원그래프>원그래프</a></li><li><a href=#꺾은선-그래프>꺾은선 그래프</a></li><li><a href=#대푯값>대푯값</a></li><li><a href=#산포도>산포도</a></li><li><a href=#상자그림>상자그림</a></li></ul></li><li><a href=#확률>확률</a><ul><li><a href=#표본공간과-사건>표본공간과 사건</a></li><li><a href=#확률-1>확률</a></li><li><a href=#조건부-확률>조건부 확률</a></li><li><a href=#독립-사건>독립 사건</a></li><li><a href=#베이즈-정리>베이즈 정리</a></li></ul></li><li><a href=#확률변수와-확률분포>확률변수와 확률분포</a><ul><li><a href=#확률-변수>확률 변수</a></li><li><a href=#확률-분포>확률 분포</a></li><li><a href=#확률변수의-기대값과-분산>확률변수의 기대값과 분산</a></li><li><a href=#결합확률분포>결합확률분포</a></li><li><a href=#공분산과-상관계수>공분산과 상관계수</a></li></ul></li><li><a href=#여러가지-확률분포>여러가지 확률분포</a><ul><li><a href=#이산확률분포>이산확률분포</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">확률과 통계</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div></div><h4 id=date>수정일 : 2023-08-12</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=자료의-정리와-요약>자료의 정리와 요약</h2><ul><li><p>통계 자료의 구분</p><ul><li>양적자료(quantitative data) 또는 수치형자료(numerical data)<ul><li>이산자료(자녀 수), 연속자료(키)</li></ul></li><li>질적자료(qualitative data) 또는 범주형자료(categorical data)<ul><li>명목자료(혈액형, 성별), 순서자료(학점, 부서평가)</li></ul></li></ul></li><li><p>변수의 종류</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>all variables
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>├── numerical
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>│   ├-─ continuous <span style=color:#f92672>(</span>리터 수<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>│   └-─ discrete <span style=color:#f92672>(</span>나라 수<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>└─── categorical
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>    ├-─ Nominal <span style=color:#f92672>(</span>성별<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>    └-─ Ordinal <span style=color:#f92672>(</span>근무 한 시간 : 12-2<span style=color:#f92672>)</span>
+</span></span></code></pre></div></li></ul><h3 id=도수분포표>도수분포표</h3><blockquote><p>자료의 특성을 기준으로 일정한 계급으로 나누고, 각 계급에 도수를 대응하여 작성한 표</p></blockquote><ul><li>범주형 도수분포표<table><thead><tr><th>색상</th><th>도수</th><th>상대도수</th></tr></thead><tbody><tr><td>빨강</td><td>60</td><td>0.2</td></tr><tr><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td></tr></tbody></table></li><li>계급형 도수분포표<table><thead><tr><th>계급(시간)</th><th>계급값</th><th>도수</th><th>상대도수</th><th>누적도수</th><th>누적 상대도수</th></tr></thead><tbody><tr><td>10 ~ 17</td><td>13.5</td><td>7</td><td>0.14</td><td>7</td><td>0.14</td></tr><tr><td>17 ~ 24</td><td>20.5</td><td>24</td><td>0.48</td><td>31</td><td>0.62</td></tr><tr><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td></tr></tbody></table></li></ul><ul><li>계급형 도수분포표 작성 순서<ol><li>범위 $R=x_{max} - x_{min}$</li><li>계급의 수 $k=1+log_2n$에 가까운 자연수</li><li>계급의 간격 $c=\frac{R}{k}$</li></ol></li></ul><h3 id=막대그래프>막대그래프</h3><h3 id=히스토그램>히스토그램</h3><h3 id=도수분포다각형>도수분포다각형</h3><h3 id=원그래프>원그래프</h3><h3 id=꺾은선-그래프>꺾은선 그래프</h3><h3 id=대푯값>대푯값</h3><ul><li>$Q_1$ = 제1사분위수 = 제25백분위수</li><li>$Q_2$ = 제2사분위수 = 제50사분위수 = 중앙값</li><li>$Q_3$ = 제3사분위수 = 제75사분위수</li></ul><h3 id=산포도>산포도</h3><ul><li>사분위수 범위<blockquote><p>IQR $=Q_3- Q_1$</p></blockquote></li><li>모분산
+$$\sigma^2=\frac1N\sum^N_{i-1}(x_i-\mu)^2$$</li><li>표본분산
+$$S^2=\frac1{n-1}\sum^2_{i=1}(x_i-\bar{x})^2$$</li><li>변동계수
+$$CV = \frac{표준편차}{평균}\times100%$$</li><li>5점 요약 표시<blockquote><p>$[\ x_{min},\ Q_1,\ Me,\ Q_3,\ x_{max}\ ]$</p></blockquote></li><li>왜도
+$$\frac{\mu_3}{S^3}$$</li><li>첨도
+$$\frac{\mu_4}{S^4}$$</li></ul><h3 id=상자그림>상자그림</h3><h2 id=확률>확률</h2><h3 id=표본공간과-사건>표본공간과 사건</h3><ul><li><p>표본공간 : 모든 가능한 결과의 집합</p></li><li><p>표본점 : 표본공간을 구성하는 개개의 원소</p></li><li><p>사건 : 표본공간의 임의의 부분집합</p></li><li><p>근원사건 : 한 원소로만 이루어진 사건</p></li><li><p>전사건 : 표본공간의 모든 원소를 포함하는 사건 : $\Omega$</p></li><li><p>공사건</p></li><li><p>이산표본공간 vs 연속표본공간</p></li><li><p>사건의 연산 : 합사건, 곱사건, 여사건, 배반사건</p></li><li><p>연산법칙 : 교환법칙, 결합법칙, 분배법칙, 드모르간의 법칙</p></li></ul><h3 id=확률-1>확률</h3><ul><li>라플라스의 확률
+$$P(A)=\frac nN$$</li><li>확률의 공리<ol><li>임의의 사건에 대해 $0 \leq P(A) \leq1$</li><li>$P(\Omega)=1$</li><li>A1, A2, &mldr;이 <strong>배반사건</strong>이라면 $P(A_1 \cup A_2 \cup &mldr;) = P(A_1)+P(A_2)+&mldr;$</li></ol></li><li>확률의 성질</li></ul><h3 id=조건부-확률>조건부 확률</h3><ul><li>조건부 확률
+$$P(A\ |\ B) = \frac{P(A \cap B)}{P(B)},\ P(B)\neq0$$</li><li>곱셈정리
+$$P(A \cap B)=P(B)P(A\ |\ B) = P(A)P(B\ |\ A)$$</li></ul><h3 id=독립-사건>독립 사건</h3><ul><li>독립
+$$ P(A) = P(A\ |\ B)\ or\ P(B) = P(B\ |\ A) $$</li><li>곱셈정리
+$$ P(A \cap B) = P(A)P(B) $$</li></ul><h3 id=베이즈-정리>베이즈 정리</h3><ul><li>분할</li><li>전확률 (사건 $A_1$&mldr; 이 분할일때)
+$$ P(B) = \sum^n_{k=1}P(A_k)\ P(B\ |\ A_k) $$</li><li>베이즈 정리 (사건 $A_1$&mldr; 이 분할이고, $P(A_i)>0, P(B)>0$ 일때)
+$$P(A_i\ |\ B)=\frac{P(A_i \cap B)}{P(B)}=\frac{P(A_i)P(B\ |\ A_i)}{\sum^n_{k=1}P(A_k)P(B\ |\ A_k)}$$</li></ul><h2 id=확률변수와-확률분포>확률변수와 확률분포</h2><h3 id=확률-변수>확률 변수</h3><ul><li>확률질량함수
+$$ f(x)=P(X=x) $$</li><li>확률밀도함수
+$$ P(a \leq X \leq b) = \int^b_af(x)dx$$</li></ul><h3 id=확률-분포>확률 분포</h3><ul><li>분포함수 (누적분포함수)
+$$ F(x) = P(X \leq x) = \sum_{x_i \leq x}f(x_i)$$</li><li>분포함수가 이산확률변수인 경우, $P(X=x)=F(x)-F(x-1)$</li><li>연속확률분포
+$$F(x)=P(X \leq x)=\int_{-\infty}^xf(x)dx$$</li></ul><h3 id=확률변수의-기대값과-분산>확률변수의 기대값과 분산</h3><ul><li><p>확률변수의 기댓값</p></li><li><p>확률변수의 분산</p></li><li><p>분산의 성질</p></li></ul><h3 id=결합확률분포>결합확률분포</h3><ul><li>결합확률질량함수
+$$ f(x_i,\ y_j) = P(X=x_i, Y=y_j)\ (i=1\ &mldr;\ n\ j=1\ &mldr;\ m)$$</li><li>결합분포함수
+$$ F(x, y) = \sum_{u \leq x}\sum_{u \leq y}f(u, v) $$</li><li>결합확률밀도함수
+$$ P{(X, Y) \in A} = \int_a^b \int_c^d f(x, y)dydx $$</li><li>결합분포함수
+$$ F(x, y) = \int_{- \infty}^x \int_{- \infty}^y f(u, v) du dv$$</li></ul><h3 id=공분산과-상관계수>공분산과 상관계수</h3><ul><li>공분산
+$$ Cov(X, Y) = E(XY) - \mu_X \mu_Y $$</li><li>상관계수</li><li>$$ Corr(X, Y) = \frac{Cov(X, Y)}{\sigma_X \sigma_Y} $$</li><li>두 확률 변수가 독립이라면,<ol><li>$E(XY) = E(X)E(Y)$</li><li>$Var(X+Y) = Var(X)+Var(Y)$</li><li>$Cov(X, Y) = 0$</li><li>$Corr(X, Y) = 0$</li></ol></li></ul><h2 id=여러가지-확률분포>여러가지 확률분포</h2><h3 id=이산확률분포>이산확률분포</h3><ul><li><p>이산균등분포</p><ul><li>확률변수 X가 가지는 값의 확률이 모두 같은 확률분포
+$$ f(x) = \frac1n (x=1, 2,\ &mldr;,\ n) $$</li></ul></li><li><p>베르누이 분포 B(1, p)</p><ul><li>발생할 수 있는 결과가 오직 두 개뿐인 경우
+$$ f(x)=p^xq^{1-x}\ (x=0, 1) $$</li><li>$E(x) = p$</li><li>$V(x) = pq$</li></ul></li><li><p>이항분포 B(n, p)</p><ul><li>n회의 베르누이 시행에서 성공할 횟수 X의 확률분포
+$$ f(x) = _nC_x p^xq^{(n-x)} $$</li><li>$E(X) = np$</li><li>$V(X) = npq$</li></ul></li><li><p>초기하분포 H(N, M, n)</p><ul><li>n개의 표본을 비복원 추출의 확률분포
+$$ f(x) = \frac{{}<em>{M}C</em>{x} \cdot {}<em>{N-M}C</em>{n-x}}{{}<em>{N}C</em>{n}} $$</li><li>$E(X) = n \frac{M}{N}$</li><li>$V(X) = n \frac{M}{N}(1-\frac{M}{N})(\frac{N-n}{N-1})$</li></ul></li><li><p>푸아송분포 P(m)</p><ul><li>주어진 상황 속에서 발생하는 어떤 사건의 평균 발생회수 X의 확률분포
+$$ f(x) = \frac{e^{-m}m^x}{x!}\ (x=0, 1, 2, &mldr;)$$</li><li>$E(X) = m$</li><li>$V(X) = m$</li><li>n>=20, p&lt;=0.05 이면 이항분포가 근사 가능</li></ul></li><li><p>기하분포 Geo(p)</p><ul><li>처음으로 성공할때까지의 시행횟수를 따르는 확률분포
+$$ p(x) = q^{x-1}p (x=1, 2, &mldr;) $$</li><li>$E(X) = \frac{1}{p}$</li><li>$V(X) = \frac{q}{p^2}$</li></ul></li><li><p>음이항분포 NB(k, p)</p><ul><li>반복시행에서 k번 성공할때까지의 시행횟수 X의 확률분포
+$$ f(x) = {}<em>{x-1}C</em>{k-1}\ p^kq^{x-k} $$</li><li>$E(X)=\frac{k}{p}$</li><li>$V(X)=\frac{kq}{p^2}$</li></ul></li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EB%B0%8F-msa-%ED%8A%B9%EA%B0%95-4%EC%9D%BC%EC%B0%A8/><span class=mx-3>◀</span>
 쿠버네티스 및 MSA 특강 4일차 : MSA란 무엇인가
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/data_structure/>
-자료구조
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/data_structure/>자료구조
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

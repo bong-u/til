@@ -1,159 +1,42 @@
-<!doctype html><html lang=ko>
-<head>
-<title>Stream, Optional</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Lambda 표현식  매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다. 함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다. 함수 몸체가 return문으 …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="Stream, Optional">
-<meta property="og:description" content="Lambda 표현식  매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다. 함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다. 함수 몸체가 return문으 …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#lambda>Lambda</a>
-<ul>
-<li><a href=#표현식>표현식</a></li>
-</ul>
-</li>
-<li><a href=#stream>Stream</a>
-<ul>
-<li><a href=#특징>특징</a></li>
-<li><a href=#예제1>예제1</a></li>
-<li><a href=#예제2>예제2</a></li>
-</ul>
-</li>
-<li><a href=#optional>Optional</a>
-<ul>
-<li><a href=#특징-1>특징</a></li>
-<li><a href=#예제1-1>예제1</a></li>
-<li><a href=#예제2-1>예제2</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-Stream, Optional
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ java</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=lambda>Lambda</h2>
-<h3 id=표현식>표현식</h3>
-<ol>
-<li>매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다.</li>
-<li>함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다.</li>
-<li>함수 몸체가 return문으로만 구성되어 있으면 괄호{}을 생략할 수 있습니다.</li>
-</ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> x<span style=color:#f92672>)</span> <span style=color:#f92672>-&gt;</span> x<span style=color:#f92672>+</span>1<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> x<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> y<span style=color:#f92672>)</span> <span style=color:#f92672>-&gt;</span> x<span style=color:#f92672>+</span>y<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#f92672>(</span>Thread lamT<span style=color:#f92672>)</span> <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span> lamT<span style=color:#f92672>.</span><span style=color:#a6e22e>start</span><span style=color:#f92672>();</span> <span style=color:#f92672>}</span>
-</code></pre></div><h2 id=stream>Stream</h2>
-<h3 id=특징>특징</h3>
-<ul>
-<li>원본 데이터를 변경하지 않습니다.</li>
-<li>요청되었을때만 데이터를 처리한다.</li>
-<li>parallelStream()을 이용하여 병렬처리가 가능하다.</li>
-</ul>
-<h3 id=예제1>예제1</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> highCaloriesFoodName <span style=color:#f92672>=</span> foodList<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>()</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>filter</span><span style=color:#f92672>(</span>food <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;filter : &#34;</span> <span style=color:#f92672>+</span> food<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>            <span style=color:#75715e>// 400이상 칼로리인 음식만 필터링한다
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>            <span style=color:#66d9ef>return</span> food<span style=color:#f92672>.</span><span style=color:#a6e22e>getCalories</span><span style=color:#f92672>()</span> <span style=color:#f92672>&gt;</span> 400<span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        <span style=color:#f92672>})</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>food <span style=color:#f92672>-&gt;</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;map : &#34;</span> <span style=color:#f92672>+</span> food<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#75715e>// 음식 이름만 가져온다
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>            <span style=color:#66d9ef>return</span> food<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        <span style=color:#f92672>})</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>limit</span><span style=color:#f92672>(</span>3<span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>collect</span><span style=color:#f92672>(</span>Collectors<span style=color:#f92672>.</span><span style=color:#a6e22e>toList</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>highCaloriesFoodName<span style=color:#f92672>);</span>
-</code></pre></div><h3 id=예제2>예제2</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>List<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;</span> redHeavyAppleUid <span style=color:#f92672>=</span> appleList<span style=color:#f92672>.</span><span style=color:#a6e22e>parallelStream</span><span style=color:#f92672>()</span>     <span style=color:#75715e>// 병렬 처리
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>filter</span><span style=color:#f92672>(</span>apple <span style=color:#f92672>-&gt;</span> apple<span style=color:#f92672>.</span><span style=color:#a6e22e>getColor</span><span style=color:#f92672>().</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;RED&#34;</span><span style=color:#f92672>))</span>        <span style=color:#75715e>// 빨간색 사과 필터링
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>sorted</span><span style=color:#f92672>(</span>Comparator<span style=color:#f92672>.</span><span style=color:#a6e22e>comparing</span><span style=color:#f92672>(</span>Apple<span style=color:#f92672>::</span>getWeight<span style=color:#f92672>))</span>         <span style=color:#75715e>// 무게 순서대로 정렬
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>        <span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>Apple<span style=color:#f92672>::</span>getUidNum<span style=color:#f92672>).</span><span style=color:#a6e22e>collect</span><span style=color:#f92672>(</span>Collectors<span style=color:#f92672>.</span><span style=color:#a6e22e>toList</span><span style=color:#f92672>());</span>    <span style=color:#75715e>// 사과 고유번호 출력
-</span></code></pre></div><h2 id=optional>Optional</h2>
-<h3 id=특징-1>특징</h3>
-<ul>
-<li>Optional는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.</li>
-</ul>
-<h3 id=예제1-1>예제1</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> nameList <span style=color:#f92672>=</span> Optional<span style=color:#f92672>.</span><span style=color:#a6e22e>ofNullable</span><span style=color:#f92672>(</span>getNames<span style=color:#f92672>())</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>orElseGet</span><span style=color:#f92672>(()</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;());</span>
-</code></pre></div><h3 id=예제2-1>예제2</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>String result <span style=color:#f92672>=</span> user<span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>UserVO<span style=color:#f92672>::</span>getAddress<span style=color:#f92672>)</span> <span style=color:#75715e>// 주소 가져오기
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#75715e></span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>(</span>Address<span style=color:#f92672>::</span>getPostCode<span style=color:#f92672>)</span> <span style=color:#75715e>// 우편번호 가져오기
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span style=color:#75715e></span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>orElse</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;우편번호 없음&#34;</span><span style=color:#f92672>);</span> <span style=color:#75715e>// 없으면 &#34;우편번호 없음&#34; 출력
-</span></code></pre></div>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/java/generics/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>Stream, Optional</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Lambda
+표현식
+
+매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다.
+함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다.
+함수 몸체가 return문으 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="Stream, Optional"><meta property="og:description" content="Lambda
+표현식
+
+매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다.
+함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다.
+함수 몸체가 return문으 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#lambda>Lambda</a><ul><li><a href=#표현식>표현식</a></li></ul></li><li><a href=#stream>Stream</a><ul><li><a href=#특징>특징</a></li><li><a href=#예제1>예제1</a></li><li><a href=#예제2>예제2</a></li></ul></li><li><a href=#optional>Optional</a><ul><li><a href=#특징-1>특징</a></li><li><a href=#예제1-1>예제1</a></li><li><a href=#예제2-1>예제2</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">Stream, Optional</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ java</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=lambda>Lambda</h2><h3 id=표현식>표현식</h3><ol><li>매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다.</li><li>함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다.</li><li>함수 몸체가 return문으로만 구성되어 있으면 괄호{}을 생략할 수 있습니다.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>(<span style=color:#66d9ef>int</span> x) <span style=color:#f92672>-&gt;</span> x<span style=color:#f92672>+</span>1;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) <span style=color:#f92672>-&gt;</span> x<span style=color:#f92672>+</span>y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>(Thread lamT) <span style=color:#f92672>-&gt;</span> { lamT.<span style=color:#a6e22e>start</span>(); }
+</span></span></code></pre></div><h2 id=stream>Stream</h2><h3 id=특징>특징</h3><ul><li>원본 데이터를 변경하지 않습니다.</li><li>요청되었을때만 데이터를 처리한다.</li><li>parallelStream()을 이용하여 병렬처리가 가능하다.</li></ul><h3 id=예제1>예제1</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> highCaloriesFoodName <span style=color:#f92672>=</span> foodList.<span style=color:#a6e22e>stream</span>()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>        .<span style=color:#a6e22e>filter</span>(food <span style=color:#f92672>-&gt;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>            System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;filter : &#34;</span> <span style=color:#f92672>+</span> food.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>            <span style=color:#75715e>// 400이상 칼로리인 음식만 필터링한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>            <span style=color:#66d9ef>return</span> food.<span style=color:#a6e22e>getCalories</span>() <span style=color:#f92672>&gt;</span> 400;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        })
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        .<span style=color:#a6e22e>map</span>(food <span style=color:#f92672>-&gt;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>            System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;map : &#34;</span> <span style=color:#f92672>+</span> food.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            <span style=color:#75715e>// 음식 이름만 가져온다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>            <span style=color:#66d9ef>return</span> food.<span style=color:#a6e22e>getName</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        })
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        .<span style=color:#a6e22e>limit</span>(3)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        .<span style=color:#a6e22e>collect</span>(Collectors.<span style=color:#a6e22e>toList</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(highCaloriesFoodName);
+</span></span></code></pre></div><h3 id=예제2>예제2</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>List<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;</span> redHeavyAppleUid <span style=color:#f92672>=</span> appleList.<span style=color:#a6e22e>parallelStream</span>()     <span style=color:#75715e>// 병렬 처리</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>        .<span style=color:#a6e22e>filter</span>(apple <span style=color:#f92672>-&gt;</span> apple.<span style=color:#a6e22e>getColor</span>().<span style=color:#a6e22e>equals</span>(<span style=color:#e6db74>&#34;RED&#34;</span>))        <span style=color:#75715e>// 빨간색 사과 필터링</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>        .<span style=color:#a6e22e>sorted</span>(Comparator.<span style=color:#a6e22e>comparing</span>(Apple::getWeight))         <span style=color:#75715e>// 무게 순서대로 정렬</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        .<span style=color:#a6e22e>map</span>(Apple::getUidNum).<span style=color:#a6e22e>collect</span>(Collectors.<span style=color:#a6e22e>toList</span>());    <span style=color:#75715e>// 사과 고유번호 출력</span>
+</span></span></code></pre></div><h2 id=optional>Optional</h2><h3 id=특징-1>특징</h3><ul><li>Optional는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.</li></ul><h3 id=예제1-1>예제1</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> nameList <span style=color:#f92672>=</span> Optional.<span style=color:#a6e22e>ofNullable</span>(getNames())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    .<span style=color:#a6e22e>orElseGet</span>(() <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;</span>());
+</span></span></code></pre></div><h3 id=예제2-1>예제2</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>String result <span style=color:#f92672>=</span> user.<span style=color:#a6e22e>map</span>(UserVO::getAddress) <span style=color:#75715e>// 주소 가져오기</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    .<span style=color:#a6e22e>map</span>(Address::getPostCode) <span style=color:#75715e>// 우편번호 가져오기</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    .<span style=color:#a6e22e>orElse</span>(<span style=color:#e6db74>&#34;우편번호 없음&#34;</span>); <span style=color:#75715e>// 없으면 &#34;우편번호 없음&#34; 출력</span>
+</span></span></code></pre></div></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/java/generics/><span class=mx-3>◀</span>
 Generics
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/java/record/>
-Record
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/java/record/>Record
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

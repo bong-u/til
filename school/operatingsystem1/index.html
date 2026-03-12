@@ -1,754 +1,197 @@
-<!doctype html><html lang=ko>
-<head>
-<title>운영체제 - 중간범위</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="운영체제 개요 운영체제의 역할  Program execution Access to computer resources (I/O device, Data&mldr;) Error …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="운영체제 - 중간범위">
-<meta property="og:description" content="운영체제 개요 운영체제의 역할  Program execution Access to computer resources (I/O device, Data&mldr;) Error …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#운영체제-개요>운영체제 개요</a>
-<ul>
-<li><a href=#운영체제의-역할>운영체제의 역할</a></li>
-<li><a href=#운영체제의-발전>운영체제의 발전</a></li>
-<li><a href=#운영체제의-구성-요소>운영체제의 구성 요소</a></li>
-<li><a href=#os-architecture>OS Architecture</a></li>
-</ul>
-</li>
-<li><a href=#process>Process</a>
-<ul>
-<li><a href=#process란>Process란</a></li>
-<li><a href=#trace-of-processes>Trace of Processes</a></li>
-<li><a href=#process-state-model>Process state model</a></li>
-<li><a href=#process-control-block>Process Control block</a></li>
-<li><a href=#process-context>Process Context</a></li>
-<li><a href=#virtual-address-space>Virtual Address Space</a></li>
-<li><a href=#process-creation>Process Creation</a></li>
-<li><a href=#process-switch>Process switch</a></li>
-<li><a href=#process-termination>Process Termination</a></li>
-<li><a href=#inter-process-communication-ipc>Inter-Process Communication (IPC)</a></li>
-</ul>
-</li>
-<li><a href=#threads>Threads</a>
-<ul>
-<li><a href=#process와-thread의-차이>Process와 Thread의 차이</a></li>
-<li><a href=#thread란>Thread란</a></li>
-<li><a href=#thread의-장점>Thread의 장점</a></li>
-<li><a href=#user-level-threads>User-Level Threads</a></li>
-<li><a href=#kernel-level-threads>Kernel-Level Threads</a></li>
-</ul>
-</li>
-<li><a href=#mutual-exclusion-and-synchronization>Mutual Exclusion and Synchronization</a>
-<ul>
-<li><a href=#key-terms-in-concurrency>Key terms in Concurrency</a></li>
-<li><a href=#producerconsumer--finite-buffer>Producer/Consumer : Finite Buffer</a></li>
-<li><a href=#race-condition-in-a-uniprocessor>Race Condition in a Uniprocessor</a></li>
-<li><a href=#race-condition-in-one-process>Race Condition in one Process</a></li>
-<li><a href=#prevent-race-condition-sw-solution>Prevent Race Condition (<strong>SW solution</strong>)</a></li>
-<li><a href=#test-and-set-instruction-hw-solution>Test and Set Instruction (<strong>HW solution</strong>)</a></li>
-<li><a href=#semaphore-hw-solution>Semaphore (<strong>HW solution</strong>)</a></li>
-</ul>
-</li>
-<li><a href=#deadlock>Deadlock</a>
-<ul>
-<li><a href=#deadlock이란>Deadlock이란</a></li>
-<li><a href=#deadlock의-조건을-하나씩-깨보자>Deadlock의 조건을 하나씩 깨보자</a></li>
-<li><a href=#해결방법>해결방법</a></li>
-</ul>
-</li>
-<li><a href=#file-management>File Management</a>
-<ul>
-<li><a href=#fcb>FCB</a></li>
-<li><a href=#device-file>Device file</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-운영체제 - 중간범위
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ cs</span>
-<span class="text-md mr-1">🏷️ c</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=운영체제-개요>운영체제 개요</h2>
-<h3 id=운영체제의-역할>운영체제의 역할</h3>
-<ul>
-<li>Program execution</li>
-<li>Access to computer resources (I/O device, Data&mldr;)</li>
-<li>Error detection and response</li>
-<li>Accounting (ex: task manager)</li>
-</ul>
-<h3 id=운영체제의-발전>운영체제의 발전</h3>
-<ul>
-<li>
-<p>Serial Processing : No OS, No Job scheduling</p>
-</li>
-<li>
-<p>Simple batch system</p>
-<ul>
-<li>OS가 job을 할당</li>
-<li>Controlled by monitor</li>
-</ul>
-</li>
-<li>
-<p>Uni-programming</p>
-<ul>
-<li>다 실행될때까지 기다림</li>
-<li>bad utilization</li>
-</ul>
-</li>
-<li>
-<p>Multiprogramming</p>
-<ul>
-<li>The processor can switch to the other job</li>
-<li>better utilization, needs more memory</li>
-</ul>
-</li>
-<li>
-<p>Time sharing</p>
-<ul>
-<li>proceess에게 정해진 time slice (time quantum)가 주어진다.</li>
-<li>better utilization, bad throughput</li>
-</ul>
-</li>
-<li>
-<p>Symmetric multiprocessing (SMP)</p>
-<ul>
-<li>여러 processors가 main memory, I/O 장치들을 공유</li>
-<li>여러 processors가 동일한 function 수행 가능</li>
-</ul>
-</li>
-</ul>
-<h3 id=운영체제의-구성-요소>운영체제의 구성 요소</h3>
-<ul>
-<li>Distributed Systems (분산시스템)
-<ul>
-<li>여러 컴퓨터를 연결해 사용</li>
-<li>빠른 속도, 높은 데이터 가용성</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Command-Interpreter System
-<ul>
-<li>user가 직접 OS에게 일을 시킨다</li>
-</ul>
-</li>
-</ul>
-<h3 id=os-architecture>OS Architecture</h3>
-<ul>
-<li>Monolithic kernel
-<ul>
-<li>모든 OS의 기능을 하나의 kernel이 가지고 있는다</li>
-<li>하나 수정하면 전체를 컴파일 해야 한다</li>
-</ul>
-</li>
-<li>Microkernel kernel
-<ul>
-<li>kernel 내에 필요한 기능
-<blockquote>
-<p>Address space management, Interprocess communication, 기본적인 프로세스 scheduling 기능</p>
-</blockquote>
-</li>
-<li>kernel간 통신속도가 느리다</li>
-</ul>
-</li>
-</ul>
-<h2 id=process>Process</h2>
-<h3 id=process란>Process란</h3>
-<ul>
-<li>컴퓨터에서 실행 중인 객체</li>
-<li>register 중 PC가 context를 가리킨다</li>
-<li>Context는 data와 code로 구성</li>
-</ul>
-<h3 id=trace-of-processes>Trace of Processes</h3>
-<ul>
-<li>A -> time out -> B -> I/O request -> A</li>
-<li>사이사이에 dispatcher가 processor에 process를 교체한다</li>
-</ul>
-<h3 id=process-state-model>Process state model</h3>
-<p><img src=/static/image/os_process_states.png alt=process_states></p>
-<ul>
-<li>Process suspension의 이유
-<ul>
-<li>Swapping : memory 공간 확보를 위해</li>
-<li>Timing : 주기적으로 실행되는 프로그램</li>
-<li>Interactive user request : user의 요청</li>
-<li>Parent process request : parent process의 요청</li>
-</ul>
-</li>
-</ul>
-<h3 id=process-control-block>Process Control block</h3>
-<ul>
-<li>구성요소 : Identifier, State, Priority, PC, Memory pointers, Address of memory context, I/O state info, Accounting info</li>
-<li>Process 1개 당 PCB 1개</li>
-</ul>
-<h3 id=process-context>Process Context</h3>
-<ul>
-<li><strong>User Context : code, data, user stack</strong></li>
-<li><strong>System Context : kernel stack, PCB</strong></li>
-</ul>
-<h3 id=virtual-address-space>Virtual Address Space</h3>
-<blockquote>
-<p>프로세스가 실행되면 서 접근(access, reference) 가능한 주소들의 범위</p>
-</blockquote>
-<ul>
-<li>
-<p>32bit address computer : $2^{32}$ = 4G 번지, 3G~4G번지에는 커널이 들어간다</p>
-</li>
-<li>
-<p>보조기억장치의 VAS는 프로세스 개수만큼 존재</p>
-</li>
-<li>
-<p>구성</p>
-<pre tabindex=0><code>| kernel
+<!doctype html><html lang=ko><head><title>운영체제 - 중간범위</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="운영체제 개요
+운영체제의 역할
+
+Program execution
+Access to computer resources (I/O device, Data&mldr;)
+Error …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="운영체제 - 중간범위"><meta property="og:description" content="운영체제 개요
+운영체제의 역할
+
+Program execution
+Access to computer resources (I/O device, Data&mldr;)
+Error …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#운영체제-개요>운영체제 개요</a><ul><li><a href=#운영체제의-역할>운영체제의 역할</a></li><li><a href=#운영체제의-발전>운영체제의 발전</a></li><li><a href=#운영체제의-구성-요소>운영체제의 구성 요소</a></li><li><a href=#os-architecture>OS Architecture</a></li></ul></li><li><a href=#process>Process</a><ul><li><a href=#process란>Process란</a></li><li><a href=#trace-of-processes>Trace of Processes</a></li><li><a href=#process-state-model>Process state model</a></li><li><a href=#process-control-block>Process Control block</a></li><li><a href=#process-context>Process Context</a></li><li><a href=#virtual-address-space>Virtual Address Space</a></li><li><a href=#process-creation>Process Creation</a></li><li><a href=#process-switch>Process switch</a></li><li><a href=#process-termination>Process Termination</a></li><li><a href=#inter-process-communication-ipc>Inter-Process Communication (IPC)</a></li></ul></li><li><a href=#threads>Threads</a><ul><li><a href=#process와-thread의-차이>Process와 Thread의 차이</a></li><li><a href=#thread란>Thread란</a></li><li><a href=#thread의-장점>Thread의 장점</a></li><li><a href=#user-level-threads>User-Level Threads</a></li><li><a href=#kernel-level-threads>Kernel-Level Threads</a></li></ul></li><li><a href=#mutual-exclusion-and-synchronization>Mutual Exclusion and Synchronization</a><ul><li><a href=#key-terms-in-concurrency>Key terms in Concurrency</a></li><li><a href=#producerconsumer--finite-buffer>Producer/Consumer : Finite Buffer</a></li><li><a href=#race-condition-in-a-uniprocessor>Race Condition in a Uniprocessor</a></li><li><a href=#race-condition-in-one-process>Race Condition in one Process</a></li><li><a href=#prevent-race-condition-sw-solution>Prevent Race Condition (<strong>SW solution</strong>)</a></li><li><a href=#test-and-set-instruction-hw-solution>Test and Set Instruction (<strong>HW solution</strong>)</a></li><li><a href=#semaphore-hw-solution>Semaphore (<strong>HW solution</strong>)</a></li></ul></li><li><a href=#deadlock>Deadlock</a><ul><li><a href=#deadlock이란>Deadlock이란</a></li><li><a href=#deadlock의-조건을-하나씩-깨보자>Deadlock의 조건을 하나씩 깨보자</a></li><li><a href=#해결방법>해결방법</a></li></ul></li><li><a href=#file-management>File Management</a><ul><li><a href=#fcb>FCB</a></li><li><a href=#device-file>Device file</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">운영체제 - 중간범위</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ cs</span>
+<span class="text-md mr-1">🏷️ c</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=운영체제-개요>운영체제 개요</h2><h3 id=운영체제의-역할>운영체제의 역할</h3><ul><li>Program execution</li><li>Access to computer resources (I/O device, Data&mldr;)</li><li>Error detection and response</li><li>Accounting (ex: task manager)</li></ul><h3 id=운영체제의-발전>운영체제의 발전</h3><ul><li><p>Serial Processing : No OS, No Job scheduling</p></li><li><p>Simple batch system</p><ul><li>OS가 job을 할당</li><li>Controlled by monitor</li></ul></li><li><p>Uni-programming</p><ul><li>다 실행될때까지 기다림</li><li>bad utilization</li></ul></li><li><p>Multiprogramming</p><ul><li>The processor can switch to the other job</li><li>better utilization, needs more memory</li></ul></li><li><p>Time sharing</p><ul><li>proceess에게 정해진 time slice (time quantum)가 주어진다.</li><li>better utilization, bad throughput</li></ul></li><li><p>Symmetric multiprocessing (SMP)</p><ul><li>여러 processors가 main memory, I/O 장치들을 공유</li><li>여러 processors가 동일한 function 수행 가능</li></ul></li></ul><h3 id=운영체제의-구성-요소>운영체제의 구성 요소</h3><ul><li>Distributed Systems (분산시스템)<ul><li>여러 컴퓨터를 연결해 사용</li><li>빠른 속도, 높은 데이터 가용성</li></ul></li></ul><ul><li>Command-Interpreter System<ul><li>user가 직접 OS에게 일을 시킨다</li></ul></li></ul><h3 id=os-architecture>OS Architecture</h3><ul><li>Monolithic kernel<ul><li>모든 OS의 기능을 하나의 kernel이 가지고 있는다</li><li>하나 수정하면 전체를 컴파일 해야 한다</li></ul></li><li>Microkernel kernel<ul><li>kernel 내에 필요한 기능<blockquote><p>Address space management, Interprocess communication, 기본적인 프로세스 scheduling 기능</p></blockquote></li><li>kernel간 통신속도가 느리다</li></ul></li></ul><h2 id=process>Process</h2><h3 id=process란>Process란</h3><ul><li>컴퓨터에서 실행 중인 객체</li><li>register 중 PC가 context를 가리킨다</li><li>Context는 data와 code로 구성</li></ul><h3 id=trace-of-processes>Trace of Processes</h3><ul><li>A -> time out -> B -> I/O request -> A</li><li>사이사이에 dispatcher가 processor에 process를 교체한다</li></ul><h3 id=process-state-model>Process state model</h3><p><img src=/static/image/os_process_states.png alt=process_states></p><ul><li>Process suspension의 이유<ul><li>Swapping : memory 공간 확보를 위해</li><li>Timing : 주기적으로 실행되는 프로그램</li><li>Interactive user request : user의 요청</li><li>Parent process request : parent process의 요청</li></ul></li></ul><h3 id=process-control-block>Process Control block</h3><ul><li>구성요소 : Identifier, State, Priority, PC, Memory pointers, Address of memory context, I/O state info, Accounting info</li><li>Process 1개 당 PCB 1개</li></ul><h3 id=process-context>Process Context</h3><ul><li><strong>User Context : code, data, user stack</strong></li><li><strong>System Context : kernel stack, PCB</strong></li></ul><h3 id=virtual-address-space>Virtual Address Space</h3><blockquote><p>프로세스가 실행되면 서 접근(access, reference) 가능한 주소들의 범위</p></blockquote><ul><li><p>32bit address computer : $2^{32}$ = 4G 번지, 3G~4G번지에는 커널이 들어간다</p></li><li><p>보조기억장치의 VAS는 프로세스 개수만큼 존재</p></li><li><p>구성</p><pre tabindex=0><code>| kernel
 | stack (local var)
 | bss  (만들때 초기화 안 한 global var)
 
 | data (만들때 초기화 한 global var)
 | code
-</code></pre></li>
-</ul>
-<h3 id=process-creation>Process Creation</h3>
-<ul>
-<li>
-<p>Process가 생성되는 경우</p>
-<ol>
-<li>OS가 만드는 경우</li>
-<li>실행 중인 process가 자식을 만드는 경우</li>
-<li>User command</li>
-</ol>
-</li>
-<li>
-<p>fork()</p>
-<ol>
-<li>자식 프로세스의 memory infotable이 부모의 context를 가리키게 한다</li>
-<li>memory내에서 부모의 data, stack을 복제한다</li>
-<li>자식이 가리키는 것을 복제된 context로 바꾼다</li>
-</ol>
-<ul>
-<li>COW(Copy on write) : 복사를 늦춤으로서 메모리 절약</li>
-</ul>
-</li>
-</ul>
-<h3 id=process-switch>Process switch</h3>
-<ul>
-<li>Mode change : Memory 내에서 user mode &lt;-> system mode</li>
-<li>Context change : 다른 process로 switch</li>
-</ul>
-<ul>
-<li>
-<p>Context change를 하는 경우</p>
-<ul>
-<li>Process의 소멸 : Running -> Release</li>
-<li>Process의 block (I/O request, file open, page fault) : Running -> Blocked</li>
-<li>Expiration of time slice : Running -> Ready</li>
-<li>I/O interrupt : Blocked -> Ready</li>
-</ul>
-</li>
-<li>
-<p>Steps of context switch</p>
-<ol>
-<li>Save context(pc, other register) of processor</li>
-<li>Update the PCB</li>
-<li>Move PCB to appropriate queue</li>
-<li>Select another process to execute</li>
-<li>Update the PCB</li>
-<li>Update memory-management data structures</li>
-<li>Restore context of the selected process</li>
-</ol>
-</li>
-</ul>
-<h3 id=process-termination>Process Termination</h3>
-<ul>
-<li>Process가 삭제되는 경우
-<ol>
-<li>Normal ompletion</li>
-<li>Parent request</li>
-<li>Protection error : 비정상적인 접근을 할때 OS가 강제 종료</li>
-<li>Arithmetic Error, Invalid instruction&mldr;</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>terminated 상태 : Computer resource는 뺏겼지만, PCB는 남아있는 상태</li>
-<li>해당 프로세서의 부모 프로세스가 wait syscall을 호출하면 완전히 삭제</li>
-<li>지워지는 부모 밑에 자식이 남아있다면 자식들을 init 프로세스의 양자로 보낸다</li>
-</ul>
-<h3 id=inter-process-communication-ipc>Inter-Process Communication (IPC)</h3>
-<ol>
-<li>Message Passing : kernel내 mailbox를 통해 메시지를 주고받는 방법
-<ul>
-<li>user mode -> kernel mode -> user mode</li>
-<li>구현이 쉽다, 느리다</li>
-</ul>
-</li>
-<li>Shared Memory
-<ul>
-<li>VAD에 shared memory법 주소를 갖고있다</li>
-<li>빠르다, 구현이 어렵다</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>Message / Signal</li>
-</ul>
-<h2 id=threads>Threads</h2>
-<h3 id=process와-thread의-차이>Process와 Thread의 차이</h3>
-<h3 id=thread란>Thread란</h3>
-<ul>
-<li>
-<p>A unit of execution of in a process</p>
-</li>
-<li>
-<p>has an execution state</p>
-</li>
-<li>
-<p>구성 요소</p>
-<ul>
-<li>Stack</li>
-<li>Memory for registers context : thread control block</li>
-</ul>
-</li>
-<li>
-<p>multithread</p>
-<p><img src=/static/image/os_multithread.png alt=multi_thread></p>
-</li>
-</ul>
-<h3 id=thread의-장점>Thread의 장점</h3>
-<ol>
-<li>Process 만드는거 보다 Thread 만드는게 빠르다</li>
-<li>Process 없애는거 보다 Thread 없애는게 빠르다</li>
-<li>Process끼리 통신하는거보다 Thread끼리 통신이 더 빠르다 (data 공유)</li>
-</ol>
-<h3 id=user-level-threads>User-Level Threads</h3>
-<ul>
-<li>mode change가 필요없다</li>
-<li>user가 control 할 수 있다</li>
-<li>하나가 block되면 나머지도 block (kernel 입장에서 1개의 thread)</li>
-</ul>
-<h3 id=kernel-level-threads>Kernel-Level Threads</h3>
-<ul>
-<li>kernel에 종속적이다</li>
-<li>kernel이 개별적으로 관리할 수 있다</li>
-</ul>
-<h2 id=mutual-exclusion-and-synchronization>Mutual Exclusion and Synchronization</h2>
-<h3 id=key-terms-in-concurrency>Key terms in Concurrency</h3>
-<ul>
-<li>Race condition : 순서에 따라 결과가 달라질 때</li>
-<li>Mutual exclusion : 한 프로세스가 공유된 data를 access할때, 다른 프로세스가 건드리면 안된다는 성질</li>
-<li>Critical section : 공유된 resource를 access하는 부분의 코드</li>
-</ul>
-<ul>
-<li>Starvation : Process에게 자원이 배정되지 않는 경우</li>
-<li>Deadlock : Starvation for infinite duration</li>
-</ul>
-<h3 id=producerconsumer--finite-buffer>Producer/Consumer : Finite Buffer</h3>
-<ul>
-<li>
-<p>producer</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>item v;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>  <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> BUFFER_SIZE) ; <span style=color:#75715e>// busy waiting
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e></span>  <span style=color:#75715e>/* produce item v */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>  b[in] <span style=color:#f92672>=</span> v;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>  in <span style=color:#f92672>=</span> (in <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>  counter<span style=color:#f92672>++</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-</code></pre></div></li>
-<li>
-<p>consumer</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>item w;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) ; <span style=color:#75715e>// busy waiting
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#75715e></span>  w <span style=color:#f92672>=</span> b[out];
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  out <span style=color:#f92672>=</span> (out <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>  counter<span style=color:#f92672>--</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#75715e>/* consume item w */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>}
-</code></pre></div></li>
-<li>
-<p>=> Race condition 발생 가능</p>
-</li>
-</ul>
-<h3 id=race-condition-in-a-uniprocessor>Race Condition in a Uniprocessor</h3>
-<ul>
-<li>counter++, counter&ndash;와 같은 구문은 assembly로 바뀌면 1개이상의 instruction이다.</li>
-<li>중간에 interrupt가 발생하면 race condition이 생길 수 있으므로 atomic하게 실행되어야한다.</li>
-</ul>
-<h3 id=race-condition-in-one-process>Race Condition in one Process</h3>
-<ul>
-<li>Multithreading에서도 race condition이 발생할 수 있다.</li>
-</ul>
-<h3 id=prevent-race-condition-sw-solution>Prevent Race Condition (<strong>SW solution</strong>)</h3>
-<ul>
-<li>조건</li>
-</ul>
-<ol>
-<li>Mutual Exclusion : critical section에 하나가 접근 중이면 다른 하나는 접근 불가</li>
-<li>Progress : 아무도 없으면 접근 가능</li>
-<li>Bounded Waiting : 기다리는 데 한계 존재 (P1 -> P3 -> P1 -> P3 .., P2는?)</li>
-</ol>
-<ul>
-<li>
-<p>방법 1</p>
-<ul>
-<li>P0
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>do</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>while</span> (turn <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) ;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#75715e>/* remainder section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>} <span style=color:#66d9ef>while</span> (true);
-</code></pre></div></li>
-<li>P1
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>do</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  <span style=color:#66d9ef>while</span> (turn <span style=color:#f92672>!=</span> <span style=color:#ae81ff>1</span>) ;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#75715e>/* remainder section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>} <span style=color:#66d9ef>while</span> (true);
-</code></pre></div></li>
-<li>P0에서 turn = 1을 실행하기 전에 interrupt가 발생하면, P1도 접근 불가</li>
-<li>-> progress 성질 만족 X</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>
-<p>방법 2 (Peterson&rsquo;s Algorithm)</p>
-<ul>
-<li>P0
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>do</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  flag[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> true;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#66d9ef>while</span> (flag [<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&amp;&amp;</span> turn <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) ;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>  flag[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> false;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#75715e>/* remainder section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>} <span style=color:#66d9ef>while</span> (true);
-</code></pre></div></li>
-</ul>
-<ul>
-<li>P1
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#66d9ef>do</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>  flag[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> true;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>  <span style=color:#66d9ef>while</span> (flag [<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&amp;&amp;</span> turn <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) ;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>  <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>  flag[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> false;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>  <span style=color:#75715e>/* remainder section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span>} <span style=color:#66d9ef>while</span> (true);
-</code></pre></div></li>
-<li>모든 조건 만족</li>
-<li>프로세스 2개일때만 적용 가여</li>
-</ul>
-</li>
-<li>
-<p>방법 3 (Bakery Algorithm)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>do</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>  <span style=color:#75715e>// number를 부여받는 과정은 atomic 하지 않다
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#75715e></span>  choosing[i] <span style=color:#f92672>=</span> true
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>  <span style=color:#75715e>// 가장 큰 번호 + 1을 부여
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span style=color:#75715e></span>  number[i] <span style=color:#f92672>=</span> max(number[<span style=color:#ae81ff>0</span>], number[<span style=color:#ae81ff>1</span>], ..., number[n<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>  choosing[i] <span style=color:#f92672>=</span> false;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>  <span style=color:#66d9ef>for</span> (j<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; j<span style=color:#f92672>&lt;</span>n; j<span style=color:#f92672>++</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#75715e>// 다른 프로세스가 choosing 중인지 체크
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>    <span style=color:#66d9ef>while</span> (choosing[i]);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#75715e>// 자신이 번호를 받았는지, 발급 받은 번호가 1순위인지 체크
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#75715e></span>    <span style=color:#66d9ef>while</span> ((number[i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) <span style=color:#f92672>&amp;&amp;</span> (number[j], j) <span style=color:#f92672>&lt;</span> (number[i], i)) ;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>  <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>  number[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>  <span style=color:#75715e>/* remainder section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>  } <span style=color:#66d9ef>while</span> (true);
-</code></pre></div><ul>
-<li>모든 조건을 만족</li>
-<li>Overhead가 너무 크다</li>
-</ul>
-</li>
-</ul>
-<h3 id=test-and-set-instruction-hw-solution>Test and Set Instruction (<strong>HW solution</strong>)</h3>
-<ul>
-<li>testset function
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>boolean <span style=color:#a6e22e>testset</span> (i) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>  <span style=color:#66d9ef>if</span> (i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#75715e>// 들어가시오
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>    i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>return</span> true;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>  <span style=color:#66d9ef>else</span> {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e>// 들어가지 마시오
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> false;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>}
-</code></pre></div></li>
-</ul>
-<ul>
-<li>example
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#75715e>/* number of processes */</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>int</span> bolt;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>P</span>(<span style=color:#66d9ef>int</span> i) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>  <span style=color:#66d9ef>while</span> (true) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span> testset(bolt));
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    bolt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e>/* remainder section*/</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>  bolt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>  parbegin (P(<span style=color:#ae81ff>1</span>), P(<span style=color:#ae81ff>2</span>), ... , P(n))
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>}
-</code></pre></div></li>
-</ul>
-<h3 id=semaphore-hw-solution>Semaphore (<strong>HW solution</strong>)</h3>
-<ul>
-<li>
-<p>기본 요소</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>struct</span> semaphore {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>  <span style=color:#66d9ef>int</span> count;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>  queueType queue;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#66d9ef>void</span> semWait (semaphore s) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>  s.count <span style=color:#f92672>--</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>  <span style=color:#66d9ef>if</span> (s.count <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#75715e>// place this process in s.queue;
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>    <span style=color:#75715e>// block this process
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#75715e></span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#66d9ef>void</span> semSignal (semaphore s) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>  s.count<span style=color:#f92672>++</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>  <span style=color:#66d9ef>if</span> (s.count <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    <span style=color:#75715e>// remove a process P from s.queue;
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#75715e></span>    <span style=color:#75715e>// place process P on ready_list
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span style=color:#75715e></span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>}
-</code></pre></div></li>
-</ul>
-<ol>
-<li>basic example</li>
-</ol>
-<ul>
-<li>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#75715e>/* number of processes */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>semaphore s <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>P</span> (<span style=color:#66d9ef>int</span> i) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>  <span style=color:#66d9ef>while</span> (true) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    semWait(s);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#75715e>/* critical section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    semSignal(s);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    <span style=color:#75715e>/* remainder section */</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>  }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>  parbegin (P(<span style=color:#ae81ff>1</span>), P(<span style=color:#ae81ff>2</span>), ... , P(n));
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>}
-</code></pre></div></li>
-</ul>
-<ol start=2>
-<li>
-<p>producer/consumer example</p>
-<ul>
-<li>producer
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>semaphore count <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>semaphore empty <span style=color:#f92672>=</span> BUFFER_SIZE;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>semaphore mut_ex <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>producer</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>   <span style=color:#66d9ef>while</span> (true) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>       produce();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>       semWait(empty);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>       semWait(mut_ex);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>       append(); <span style=color:#75715e>// put the produced item into buffer
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#75715e></span>       semSignal(mut_ex);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>       semSignal(counter);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>   }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>}
-</code></pre></div></li>
-</ul>
-<ul>
-<li>
-<p>consumer</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>consumer</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#66d9ef>while</span> (true) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>        semWait(counter)<span style=color:#f92672>:</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        semWait(mut_ex);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        take();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        semSignal(mut_ex);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>        semSignal(empty);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>        consume();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>}
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>   parbegin (producer1, producer2, ... , consumer);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>}
-</code></pre></div></li>
-</ul>
-</li>
-<li>
-<p>reader/writer example</p>
-<ul>
-<li>
-<p>writer process</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>writer</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span>        <span style=color:#66d9ef>while</span>(true) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>            semWait(wsem);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>            WRITEUNIT();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span>            semSignal(wsem);
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span>        }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span>    }
-</code></pre></div></li>
-<li>
-<p>reader process</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>reader</span>() {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>        <span style=color:#66d9ef>while</span> (true) {
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>            semWait(rsem); <span style=color:#75715e>// 다른 reader 접근 불가
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#75715e></span>            readcount<span style=color:#f92672>++</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>            <span style=color:#66d9ef>if</span> (readcount <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) <span style=color:#75715e>// 첫번째 들어가는 reader
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#75715e></span>                semWait(wsem) <span style=color:#75715e>// writer 접근 불능
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#75715e></span>            semSignal(rsem); <span style=color:#75715e>// 다른 reader 접근 가능
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#75715e></span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            READUNIT();
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>            semWait(rsem); <span style=color:#75715e>// 다른 reader 접근 불가
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span style=color:#75715e></span>            readcount<span style=color:#f92672>--</span>;
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>            <span style=color:#66d9ef>if</span> (readcount <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#75715e>// 마지막 나오는 reader
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#75715e></span>                semSignal(wsem); <span style=color:#75715e>// writer 접근 가능
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#75715e></span>            semSignal(rsem); <span style=color:#75715e>// 다른 reader 접근 가능
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span style=color:#75715e></span>        }
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>    }
-</code></pre></div></li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>binary semaphore
-<ul>
-<li>semaphore의 값이 0과 1로 제한</li>
-<li>값이 1로 바뀌었을 때,모든 프로세스가 ready state로 변환</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>
-<p>Lock</p>
-<ul>
-<li>binary semaphore를 이용해 구현된 동기화 방식</li>
-</ul>
-</li>
-</ul>
-<h2 id=deadlock>Deadlock</h2>
-<h3 id=deadlock이란>Deadlock이란</h3>
-<ul>
-<li>Starvation : 어떤 자원을 다른 프로세스가 이미 점유하고 있어서 실행할 수 없는 상황</li>
-<li>Deadlock : 2개 이상의 process들이 서로 starvation인 상태</li>
-</ul>
-<h3 id=deadlock의-조건을-하나씩-깨보자>Deadlock의 조건을 하나씩 깨보자</h3>
-<ol>
-<li>Mutual exclusion : OS의 필수 기능</li>
-<li>Hold and wait : 시작부터 모든 자원을 받도록 구현 -> 비효율적</li>
-<li>No Preemption : 자원을 서로 뺏어감 -> 비효율적</li>
-<li>Circular Wait : 자원을 먼저 받아야 하는 경우 존재</li>
-</ol>
-<h3 id=해결방법>해결방법</h3>
-<ul>
-<li>최선의 방법 : deadlock이 발생했을 때, 한 개씩 죽여보기</li>
-</ul>
-<h2 id=file-management>File Management</h2>
-<h3 id=fcb>FCB</h3>
-<ul>
-<li>File Control block, 보조기억장치에 저장</li>
-<li>구성
-<blockquote>
-<p>file name, file size, uid, gid, file operation, creation time, last modified, last access time, address of file data&mldr;</p>
-</blockquote>
-</li>
-</ul>
-<h3 id=device-file>Device file</h3>
-<ul>
-<li>블록형 파일 (단위 : 4096byte)</li>
-<li>file size 대신 major number, minor number 존재</li>
-<li>Device I/O가 발생하면 해당 Device File과 I/O 하듯이 작동</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/socar_cto/>
-<span class=mx-3>◀</span>
+</code></pre></li></ul><h3 id=process-creation>Process Creation</h3><ul><li><p>Process가 생성되는 경우</p><ol><li>OS가 만드는 경우</li><li>실행 중인 process가 자식을 만드는 경우</li><li>User command</li></ol></li><li><p>fork()</p><ol><li>자식 프로세스의 memory infotable이 부모의 context를 가리키게 한다</li><li>memory내에서 부모의 data, stack을 복제한다</li><li>자식이 가리키는 것을 복제된 context로 바꾼다</li></ol><ul><li>COW(Copy on write) : 복사를 늦춤으로서 메모리 절약</li></ul></li></ul><h3 id=process-switch>Process switch</h3><ul><li>Mode change : Memory 내에서 user mode &lt;-> system mode</li><li>Context change : 다른 process로 switch</li></ul><ul><li><p>Context change를 하는 경우</p><ul><li>Process의 소멸 : Running -> Release</li><li>Process의 block (I/O request, file open, page fault) : Running -> Blocked</li><li>Expiration of time slice : Running -> Ready</li><li>I/O interrupt : Blocked -> Ready</li></ul></li><li><p>Steps of context switch</p><ol><li>Save context(pc, other register) of processor</li><li>Update the PCB</li><li>Move PCB to appropriate queue</li><li>Select another process to execute</li><li>Update the PCB</li><li>Update memory-management data structures</li><li>Restore context of the selected process</li></ol></li></ul><h3 id=process-termination>Process Termination</h3><ul><li>Process가 삭제되는 경우<ol><li>Normal ompletion</li><li>Parent request</li><li>Protection error : 비정상적인 접근을 할때 OS가 강제 종료</li><li>Arithmetic Error, Invalid instruction&mldr;</li></ol></li></ul><ul><li>terminated 상태 : Computer resource는 뺏겼지만, PCB는 남아있는 상태</li><li>해당 프로세서의 부모 프로세스가 wait syscall을 호출하면 완전히 삭제</li><li>지워지는 부모 밑에 자식이 남아있다면 자식들을 init 프로세스의 양자로 보낸다</li></ul><h3 id=inter-process-communication-ipc>Inter-Process Communication (IPC)</h3><ol><li>Message Passing : kernel내 mailbox를 통해 메시지를 주고받는 방법<ul><li>user mode -> kernel mode -> user mode</li><li>구현이 쉽다, 느리다</li></ul></li><li>Shared Memory<ul><li>VAD에 shared memory법 주소를 갖고있다</li><li>빠르다, 구현이 어렵다</li></ul></li></ol><ul><li>Message / Signal</li></ul><h2 id=threads>Threads</h2><h3 id=process와-thread의-차이>Process와 Thread의 차이</h3><h3 id=thread란>Thread란</h3><ul><li><p>A unit of execution of in a process</p></li><li><p>has an execution state</p></li><li><p>구성 요소</p><ul><li>Stack</li><li>Memory for registers context : thread control block</li></ul></li><li><p>multithread</p><p><img src=/static/image/os_multithread.png alt=multi_thread></p></li></ul><h3 id=thread의-장점>Thread의 장점</h3><ol><li>Process 만드는거 보다 Thread 만드는게 빠르다</li><li>Process 없애는거 보다 Thread 없애는게 빠르다</li><li>Process끼리 통신하는거보다 Thread끼리 통신이 더 빠르다 (data 공유)</li></ol><h3 id=user-level-threads>User-Level Threads</h3><ul><li>mode change가 필요없다</li><li>user가 control 할 수 있다</li><li>하나가 block되면 나머지도 block (kernel 입장에서 1개의 thread)</li></ul><h3 id=kernel-level-threads>Kernel-Level Threads</h3><ul><li>kernel에 종속적이다</li><li>kernel이 개별적으로 관리할 수 있다</li></ul><h2 id=mutual-exclusion-and-synchronization>Mutual Exclusion and Synchronization</h2><h3 id=key-terms-in-concurrency>Key terms in Concurrency</h3><ul><li>Race condition : 순서에 따라 결과가 달라질 때</li><li>Mutual exclusion : 한 프로세스가 공유된 data를 access할때, 다른 프로세스가 건드리면 안된다는 성질</li><li>Critical section : 공유된 resource를 access하는 부분의 코드</li></ul><ul><li>Starvation : Process에게 자원이 배정되지 않는 경우</li><li>Deadlock : Starvation for infinite duration</li></ul><h3 id=producerconsumer--finite-buffer>Producer/Consumer : Finite Buffer</h3><ul><li><p>producer</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>item v;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> BUFFER_SIZE) ; <span style=color:#75715e>// busy waiting
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  <span style=color:#75715e>/* produce item v */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>  b[in] <span style=color:#f92672>=</span> v;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>  in <span style=color:#f92672>=</span> (in <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>  counter<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div></li><li><p>consumer</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>item w;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#66d9ef>while</span> (counter <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) ; <span style=color:#75715e>// busy waiting
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  w <span style=color:#f92672>=</span> b[out];
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>  out <span style=color:#f92672>=</span> (out <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>%</span> BUFFER_SIZE;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>  counter<span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>  <span style=color:#75715e>/* consume item w */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>}
+</span></span></code></pre></div></li><li><p>=> Race condition 발생 가능</p></li></ul><h3 id=race-condition-in-a-uniprocessor>Race Condition in a Uniprocessor</h3><ul><li>counter++, counter&ndash;와 같은 구문은 assembly로 바뀌면 1개이상의 instruction이다.</li><li>중간에 interrupt가 발생하면 race condition이 생길 수 있으므로 atomic하게 실행되어야한다.</li></ul><h3 id=race-condition-in-one-process>Race Condition in one Process</h3><ul><li>Multithreading에서도 race condition이 발생할 수 있다.</li></ul><h3 id=prevent-race-condition-sw-solution>Prevent Race Condition (<strong>SW solution</strong>)</h3><ul><li>조건</li></ul><ol><li>Mutual Exclusion : critical section에 하나가 접근 중이면 다른 하나는 접근 불가</li><li>Progress : 아무도 없으면 접근 가능</li><li>Bounded Waiting : 기다리는 데 한계 존재 (P1 -> P3 -> P1 -> P3 .., P2는?)</li></ol><ul><li><p>방법 1</p><ul><li>P0<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#66d9ef>while</span> (turn <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) ;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>  <span style=color:#75715e>/* remainder section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>} <span style=color:#66d9ef>while</span> (true);
+</span></span></code></pre></div></li><li>P1<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#66d9ef>while</span> (turn <span style=color:#f92672>!=</span> <span style=color:#ae81ff>1</span>) ;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>  <span style=color:#75715e>/* remainder section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>} <span style=color:#66d9ef>while</span> (true);
+</span></span></code></pre></div></li><li>P0에서 turn = 1을 실행하기 전에 interrupt가 발생하면, P1도 접근 불가</li><li>-> progress 성질 만족 X</li></ul></li></ul><ul><li><p>방법 2 (Peterson&rsquo;s Algorithm)</p><ul><li>P0<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  flag[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> true;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  <span style=color:#66d9ef>while</span> (flag [<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&amp;&amp;</span> turn <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) ;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>  <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>  flag[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>  <span style=color:#75715e>/* remainder section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>} <span style=color:#66d9ef>while</span> (true);
+</span></span></code></pre></div></li></ul><ul><li>P1<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  flag[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> true;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  turn <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  <span style=color:#66d9ef>while</span> (flag [<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&amp;&amp;</span> turn <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) ;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>  <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>  flag[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>  <span style=color:#75715e>/* remainder section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>} <span style=color:#66d9ef>while</span> (true);
+</span></span></code></pre></div></li><li>모든 조건 만족</li><li>프로세스 2개일때만 적용 가여</li></ul></li><li><p>방법 3 (Bakery Algorithm)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#75715e>// number를 부여받는 과정은 atomic 하지 않다
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>  choosing[i] <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#75715e>// 가장 큰 번호 + 1을 부여
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  number[i] <span style=color:#f92672>=</span> <span style=color:#a6e22e>max</span>(number[<span style=color:#ae81ff>0</span>], number[<span style=color:#ae81ff>1</span>], ..., number[n<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  choosing[i] <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>  <span style=color:#66d9ef>for</span> (j<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; j<span style=color:#f92672>&lt;</span>n; j<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#75715e>// 다른 프로세스가 choosing 중인지 체크
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>while</span> (choosing[i]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#75715e>// 자신이 번호를 받았는지, 발급 받은 번호가 1순위인지 체크
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    <span style=color:#66d9ef>while</span> ((number[i] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) <span style=color:#f92672>&amp;&amp;</span> (number[j], j) <span style=color:#f92672>&lt;</span> (number[i], i)) ;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>  <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>  number[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>  <span style=color:#75715e>/* remainder section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>  } <span style=color:#66d9ef>while</span> (true);
+</span></span></code></pre></div><ul><li>모든 조건을 만족</li><li>Overhead가 너무 크다</li></ul></li></ul><h3 id=test-and-set-instruction-hw-solution>Test and Set Instruction (<strong>HW solution</strong>)</h3><ul><li>testset function<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>boolean <span style=color:#a6e22e>testset</span> (i) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#66d9ef>if</span> (i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#75715e>// 들어가시오
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>  <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e>// 들어가지 마시오
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>}
+</span></span></code></pre></div></li></ul><ul><li>example<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#75715e>/* number of processes */</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>int</span> bolt;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>P</span>(<span style=color:#66d9ef>int</span> i) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#66d9ef>while</span> (true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span> <span style=color:#a6e22e>testset</span>(bolt));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    bolt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e>/* remainder section*/</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>  bolt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>  <span style=color:#a6e22e>parbegin</span> (<span style=color:#a6e22e>P</span>(<span style=color:#ae81ff>1</span>), <span style=color:#a6e22e>P</span>(<span style=color:#ae81ff>2</span>), ... , <span style=color:#a6e22e>P</span>(n))
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>}
+</span></span></code></pre></div></li></ul><h3 id=semaphore-hw-solution>Semaphore (<strong>HW solution</strong>)</h3><ul><li><p>기본 요소</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>struct</span> semaphore {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#66d9ef>int</span> count;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>  queueType queue;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>semWait</span> (semaphore s) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>  s.count <span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>  <span style=color:#66d9ef>if</span> (s.count <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    <span style=color:#75715e>// place this process in s.queue;
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#75715e>// block this process
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>semSignal</span> (semaphore s) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>  s.count<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>  <span style=color:#66d9ef>if</span> (s.count <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    <span style=color:#75715e>// remove a process P from s.queue;
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    <span style=color:#75715e>// place process P on ready_list
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>}
+</span></span></code></pre></div></li></ul><ol><li>basic example</li></ol><ul><li><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> <span style=color:#75715e>/* number of processes */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>semaphore s <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>P</span> (<span style=color:#66d9ef>int</span> i) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>  <span style=color:#66d9ef>while</span> (true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#a6e22e>semWait</span>(s);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#75715e>/* critical section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#a6e22e>semSignal</span>(s);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    <span style=color:#75715e>/* remainder section */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>  }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>  <span style=color:#a6e22e>parbegin</span> (<span style=color:#a6e22e>P</span>(<span style=color:#ae81ff>1</span>), <span style=color:#a6e22e>P</span>(<span style=color:#ae81ff>2</span>), ... , <span style=color:#a6e22e>P</span>(n));
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>}
+</span></span></code></pre></div></li></ul><ol start=2><li><p>producer/consumer example</p><ul><li>producer<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>semaphore count <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>semaphore empty <span style=color:#f92672>=</span> BUFFER_SIZE;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>semaphore mut_ex <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>producer</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>   <span style=color:#66d9ef>while</span> (true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>       <span style=color:#a6e22e>produce</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>       <span style=color:#a6e22e>semWait</span>(empty);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>       <span style=color:#a6e22e>semWait</span>(mut_ex);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>       <span style=color:#a6e22e>append</span>(); <span style=color:#75715e>// put the produced item into buffer
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>       <span style=color:#a6e22e>semSignal</span>(mut_ex);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>       <span style=color:#a6e22e>semSignal</span>(counter);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>   }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>}
+</span></span></code></pre></div></li></ul><ul><li><p>consumer</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>consumer</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>while</span> (true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>        <span style=color:#a6e22e>semWait</span>(counter)<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>        <span style=color:#a6e22e>semWait</span>(mut_ex);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        <span style=color:#a6e22e>take</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        <span style=color:#a6e22e>semSignal</span>(mut_ex);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        <span style=color:#a6e22e>semSignal</span>(empty);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>        <span style=color:#a6e22e>consume</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>   <span style=color:#a6e22e>parbegin</span> (producer1, producer2, ... , consumer);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>}
+</span></span></code></pre></div></li></ul></li><li><p>reader/writer example</p><ul><li><p>writer process</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>writer</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>        <span style=color:#66d9ef>while</span>(true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>            <span style=color:#a6e22e>semWait</span>(wsem);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>            <span style=color:#a6e22e>WRITEUNIT</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>            <span style=color:#a6e22e>semSignal</span>(wsem);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>    }
+</span></span></code></pre></div></li><li><p>reader process</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>reader</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>        <span style=color:#66d9ef>while</span> (true) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>            <span style=color:#a6e22e>semWait</span>(rsem); <span style=color:#75715e>// 다른 reader 접근 불가
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>            readcount<span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>            <span style=color:#66d9ef>if</span> (readcount <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) <span style=color:#75715e>// 첫번째 들어가는 reader
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>                <span style=color:#a6e22e>semWait</span>(wsem) <span style=color:#75715e>// writer 접근 불능
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>            <span style=color:#a6e22e>semSignal</span>(rsem); <span style=color:#75715e>// 다른 reader 접근 가능
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            <span style=color:#a6e22e>READUNIT</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>            <span style=color:#a6e22e>semWait</span>(rsem); <span style=color:#75715e>// 다른 reader 접근 불가
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>            readcount<span style=color:#f92672>--</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>            <span style=color:#66d9ef>if</span> (readcount <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#75715e>// 마지막 나오는 reader
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>                <span style=color:#a6e22e>semSignal</span>(wsem); <span style=color:#75715e>// writer 접근 가능
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>            <span style=color:#a6e22e>semSignal</span>(rsem); <span style=color:#75715e>// 다른 reader 접근 가능
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>    }
+</span></span></code></pre></div></li></ul></li></ol><ul><li>binary semaphore<ul><li>semaphore의 값이 0과 1로 제한</li><li>값이 1로 바뀌었을 때,모든 프로세스가 ready state로 변환</li></ul></li></ul><ul><li><p>Lock</p><ul><li>binary semaphore를 이용해 구현된 동기화 방식</li></ul></li></ul><h2 id=deadlock>Deadlock</h2><h3 id=deadlock이란>Deadlock이란</h3><ul><li>Starvation : 어떤 자원을 다른 프로세스가 이미 점유하고 있어서 실행할 수 없는 상황</li><li>Deadlock : 2개 이상의 process들이 서로 starvation인 상태</li></ul><h3 id=deadlock의-조건을-하나씩-깨보자>Deadlock의 조건을 하나씩 깨보자</h3><ol><li>Mutual exclusion : OS의 필수 기능</li><li>Hold and wait : 시작부터 모든 자원을 받도록 구현 -> 비효율적</li><li>No Preemption : 자원을 서로 뺏어감 -> 비효율적</li><li>Circular Wait : 자원을 먼저 받아야 하는 경우 존재</li></ol><h3 id=해결방법>해결방법</h3><ul><li>최선의 방법 : deadlock이 발생했을 때, 한 개씩 죽여보기</li></ul><h2 id=file-management>File Management</h2><h3 id=fcb>FCB</h3><ul><li>File Control block, 보조기억장치에 저장</li><li>구성<blockquote><p>file name, file size, uid, gid, file operation, creation time, last modified, last access time, address of file data&mldr;</p></blockquote></li></ul><h3 id=device-file>Device file</h3><ul><li>블록형 파일 (단위 : 4096byte)</li><li>file size 대신 major number, minor number 존재</li><li>Device I/O가 발생하면 해당 Device File과 I/O 하듯이 작동</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/school/socar_cto/><span class=mx-3>◀</span>
 프로그래머로 산다는 것 (리더의 생각) - 쏘카 류석문 CTO님
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/collaborative_process/>
-협업프로세스 - LINE 나도희 선배님
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/school/collaborative_process/>협업프로세스 - LINE 나도희 선배님
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

@@ -1,811 +1,231 @@
-<!doctype html><html lang=ko>
-<head>
-<meta name=generator content="Hugo 0.91.2">
-<title>bong-u/til</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="bong-u/til">
-<meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6
-max-w-3xl">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<div class="w-full flex max-w-3xl flex-col">
-<section class="mb-8 w-full">
-<video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
-<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm>
-</video>
-</section>
-<main class="flex flex-col w-full gap-5">
-<form onchange=switchSection() class="flex justify-center">
-<input id=switch-page type=radio name=switch checked>
-<label for=switch-page class="switch-button rounded-l-lg">
-게시물
-</label>
-</input>
+<!doctype html><html lang=ko><head><meta name=generator content="Hugo 0.157.0"><title>bong-u/til</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="bong-u/til"><meta property="og:description" content="Bong-u&rsquo;s TIL (Today I Learned)"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script type=text/javascript src=https://bong-u.github.io/til/script/main.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6
+max-w-3xl"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><div class="w-full flex max-w-3xl flex-col"><section class="mb-8 w-full"><video preload=metadata poster=https://bong-u.github.io/til/asset\profile.jpg class="w-64 h-64 mx-auto" autoplay loop muted>
+<source src=https://bong-u.github.io/til/asset\profile.webm type=video/webm></video></section><main class="flex flex-col w-full gap-5"><form onchange=switchSection() class="flex justify-center"><input id=switch-page type=radio name=switch checked>
+<label for=switch-page class="switch-button rounded-l-lg">게시물
+</label></input>
 <input id=switch-group type=radio name=switch>
-<label for=switch-group class=switch-button>
-분류
-</label>
-</input>
+<label for=switch-group class=switch-button>분류
+</label></input>
 <input id=switch-tag type=radio name=switch>
-<label for=switch-tag class=switch-button>
-태그
-</label>
-<input id=search-tag type=radio name=switch>
-<label for=search-tag class="switch-button rounded-r-lg">
-검색
-</label>
-</form>
-<div class="w-full p-5">
-<section id=summary-section class="grid gap-8">
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/sqld/ class="text-2xl my-3 overflow-ellipsis-bundle">
-SQLD 대비 정리
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/sqld/ class="content-summary text-sm overflow-hidden">
-과목 1 : 데이터 모델링의 이해 데이터 모델링을 할때 유의 사항 중복 : 여러 장소에 같은 정보 X 비유연성 : 데이터의 정의와 사용 프로세스를 분리 -> 데이터가 적게 변화되도록 비일관성 : 데이터 간의 상호 연관관계를 명확히 정의 데이터 모델링의 종류 개념적 데이터 모델링 물리적 데이터 모델링 데이터 베이스 모델링의 특징 추상화, 단순화, 명확화
-데이터베이스 스키마의 구조 외부 스키마 : 사용자 관점의 데이터베이스 구조 개념 스키마 : 전체 데이터베이스의 논리적 구조 내부 스키마 : 물리적 저장장치에 대한 데이터베이스 구조 엔터티의 특징 반드시 해당 업무에서 필요하고 관리하고자 하는 정보여야한다.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/javascript/react_interview/ class="text-2xl my-3 overflow-ellipsis-bundle">
-프론트엔드(react) 면접 준비
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🍌</span>
-<span>Javascript</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/javascript/react_interview/ class="content-summary text-sm overflow-hidden">
-React의 특징 Component 기반 Virtual DOM JSX 단방향 데이터 흐름 생명주기 메소드 Hooks DOM HTML element를 tree형태로 표현한 것
-Virtual DOM DOM을 직접 조작하지 않고, 가상의 DOM을 만들어서 조작한 후, 실제 DOM과 비교하여 변경된 부분만 업데이트하는 방식
-Diffing : 이전 Virtual DOM과 현재 Virtual DOM을 비교 Reconciliation : 변경된 부분만 실제 DOM에 반영 Batch Update : 여러 개의 변경사항을 한번에 업데이트 React Component Class Component 생명주기 메소드를 포함 상속을 통해 Component를 생성 mutable state를 가질 수 있음 Functional Component immutable하다 stateless Hooks를 사용 LifeCycle Method Mounting constructor : 컴포넌트 생성자 static getDerivedStateFromProps : props로 state를 설정 render : 컴포넌트 렌더링 componentDidMount : 컴포넌트가 마운트된 직후 Updating static getDerivedStateFromProps : props로 state를 설정 shouldComponentUpdate : 컴포넌트 업데이트 여부 결정 render : 컴포넌트 렌더링 getSnapshotBeforeUpdate : 컴포넌트 업데이트 직전 componentDidUpdate : 컴포넌트 업데이트 직후 Unmounting componentWillUnmount : 컴포넌트가 언마운트되기 직전 React Hooks 함수형 컴포넌트에서 state와 생명주기 메소드를 사용할 수 있게 해주는 기능
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/school/network_security/ class="text-2xl my-3 overflow-ellipsis-bundle">
-네트워크 보안
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🏫</span>
-<span>학과 공부</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/school/network_security/ class="content-summary text-sm overflow-hidden">
-네트워크 보안 개요 네트워크 보안의 요구사항 기밀성(Confidentiality) 정보를 권한이 없는 개인에게 노출되지 않도록 함
-무결성(Integrity) 정보와 프로그램은 인가된 방식으로만 변경되도록 함
-가용성(Availability) 정보 자산에 대해 적절한 시간에 접근 가능하도록 함
-보안 공격의 종류 소극적 공격(Passive Attack) 정보를 도청하거나 감시하는 공격 방어방법 : 암호화 적극적 공격(Active Attack) 정보를 변조하거나 삭제하는 공격 방어방법 : 메시지 인증 보안 서비스 인증(Authentication) 사용자의 신원을 확인하는 과정
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/devtools/git_submodule/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Git - Submodule
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🔨</span>
-<span>개발 도구</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/devtools/git_submodule/ class="content-summary text-sm overflow-hidden">
-Git Submodule 레포지토리 하위에 다른 저장소를 관리하기 위한 도구
-용어 슈퍼 프로젝트 : 상위 레포지토리 서브 모듈 : 하위 레포지토리 명령어 super-repository의 “dirA” 라는 디렉토리에 sub-repository를 등록하는 경우
-1$ git submodule add https://github.com/bong-u/sub-repository.git dirA sub-repository의 변경상황을 반영해야하는 경우
-1# 1번째 방법 : sub-repository내에서 pull 해야한다 2$ cd dirA 3$ git pull 4# 2번째 방법 5$ git submodule update --remote 서브모듈을 포함한 프로젝트 클론하기
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/django_basic/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Django - crud 기초
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/django_basic/ class="content-summary text-sm overflow-hidden">
-개요 장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
-프로젝트 구조 1. 2├── db.sqlite3 3├── djtest (메인 앱) 4│ ├── __init__.py 5│ ├── asgi.py 6│ ├── settings.py 7│ ├── urls.py 8│ ├── views.py 9│ └── wsgi.py 10├── manage.py 11├── paste (생성한 앱) 12│ ├── __init__.py 13│ ├── admin.py 14│ ├── apps.py 15│ ├── migrations 16│ ├── models.py 17│ ├── serializers.py 18│ ├── tests.py 19│ ├── urls.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/django_jwt/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Django - JWT 인증
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/django_jwt/ class="content-summary text-sm overflow-hidden">
-JWT(Json Web Token)는 웹 표준으로, JSON 객체를 사용하여 정보를 안전하게 전달하는 방식이다.
-JWT 인증 구현하기 장고에서는 djangorestframework-simplejwt 패키지를 사용하여 JWT 인증을 구현할 수 있다.
-requirements 1pip install djangorestframework-simplejwt settings.py 1INSTALLED_APPS = [ 2 ... 3 'rest_framework', 4 'rest_framework_simplejwt', 5] 1REST_FRAMEWORK = { 2 # 기본 인증 클래스를 설정 3 'DEFAULT_AUTHENTICATION_CLASSES': ( 4 'rest_framework_simplejwt.authentication.JWTAuthentication', 5 ), 6 # 기본 스키마 클래스를 설정, CoreAPI를 사용하여 자동으로 API 문서화를 생성 7 'DEFAULT_SCHEMA_CLASS': 'rest_framework.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-01/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 01 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-01/ class="content-summary text-sm overflow-hidden">
-django에서 swagger 문서화 구현하기 개요 장고 프레임워크를 사용하여 기본적인 CRUD 기능과, REST API를 구현하는 방법을 알아보자.
-프로젝트 구조 1. 2├── db.sqlite3 3├── djtest (메인 앱) 4│ ├── __init__.py 5│ ├── asgi.py 6│ ├── settings.py 7│ ├── urls.py 8│ ├── views.py 9│ └── wsgi.py 10├── manage.py 11├── paste (생성한 앱) 12│ ├── __init__.py 13│ ├── admin.py 14│ ├── apps.py 15│ ├── migrations 16│ ├── models.py 17│ ├── serializers.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/ai/rag_concept/ class="text-2xl my-3 overflow-ellipsis-bundle">
-RAG 이론 정리 + OpenSearch
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🤖</span>
-<span>인공지능</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/ai/rag_concept/ class="content-summary text-sm overflow-hidden">
-RAG (Retrieval-Augmented Generation) RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델
-LLM의 문제점
-할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상 최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제 신뢰할 수 없는 출처로부터 정보를 생성하는 문제 RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.
-OpenSearch OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/ai/rag_opensearch/ class="text-2xl my-3 overflow-ellipsis-bundle">
-OpenSearch를 활용한 RAG 실습
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🤖</span>
-<span>인공지능</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/ai/rag_opensearch/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 우리 팀의 주제는 특정 인물에게 상담을 받는 것 같은 대화를 할 수 있는 챗봇을 만드는 것이다. 이를 위해 특정 인물이 했던 말을 모아 데이터셋으로 만들고 이를 RAG 모델에 적용시키려고 한다. 순서 일론 머스크가 TED에서 한 인터뷰를 텍스트로 가져온다. OpenSearch 도커 컨테이너를 실행한다. 텍스트 데이터를 임베딩해서 OpenSearch에 저장한다. RAG 모델이 OpenSearch를 쿼리하여 대답을 생성한다. 1. 일론 머스크 인터뷰 텍스트 가져오기 유튜브에서 &ldquo;스크립트 보기"를 통해 인터뷰 자막을 가져온다.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/fastapi_rabbitmq_celery/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Fastapi, RabbitMQ, Celery 연동
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/fastapi_rabbitmq_celery/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다. 여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다. 목표 Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다. docker-compose.yml 1version: '3' 2 3services: 4 rabbitmq: 5 image: rabbitmq:3 6 ports: 7 - "5672:5672" # RabbitMQ의 AMQP 포트 8 - "15672:15672" # RabbitMQ 관리 인터페이스 포트 9 volumes: 10 - rabbitmq_data:/var/lib/rabbitmq 11 expose: 12 - "5672" 13 - "15672" 14 15 celery_worker: 16 build: 17 context: .
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-02/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 02 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-02/ class="content-summary text-sm overflow-hidden">
-RAG (Retrieval-Augmented Generation) 이론 정리 RAG는 검색과 생성을 결합한 모델로, 검색을 통해 얻은 정보를 바탕으로 생성을 수행하는 모델
-LLM의 문제점
-할루시네이션: 생성 모델이 훈련 데이터에 없는 내용을 생성하는 현상 최신의 응답을 기대하는 상황에서 오래되었거나 일반적인 정보를 생성하는 문제 신뢰할 수 없는 출처로부터 정보를 생성하는 문제 RAG는 위에서 서술한 LLM 문제의 일부를 해결하기 위해 사용할 수 있는 수단이다.
-OpenSearch OpenSearch는 오픈소스 검색 및 분석 엔진으로, 엘라스틱서치의 포크 버전
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-03/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 03 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-03/ class="content-summary text-sm overflow-hidden">
-Fastapi, RabbitMQ, Celery 연동 배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 웹소켓을 통해 클라이언트로부터 받은 데이터를 gpt를 통해 처리하고, 결과를 다시 클라이언트로 보내는 서비스를 구현하고 있다. 여러 사용자의 요청을 원활하게 처리하기 위해 분산 비동기 시스템을 구축하려고 한다. 목표 Fastapi, RabbitMQ, Celery를 각자 docker 컨테이너로 구동시키고 연동한다. docker-compose.yml 1version: '3' 2 3services: 4 rabbitmq: 5 image: rabbitmq:3 6 ports: 7 - "5672:5672" # RabbitMQ의 AMQP 포트 8 - "15672:15672" # RabbitMQ 관리 인터페이스 포트 9 volumes: 10 - rabbitmq_data:/var/lib/rabbitmq 11 expose: 12 - "5672" 13 - "15672" 14 15 celery_worker: 16 build: 17 context: .
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/github_action_pytest/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Github Actions에서 pytest 실행하기
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/github_action_pytest/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다. Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다. run-pytest.yml 1name: Run pytest 2 3# main 또는 dev 브랜치에 pull request가 발생하면 실행 4on: 5 pull_request: 6 branches: 7 - main 8 - dev 9 10jobs: 11 test: 12 runs-on: ubuntu-latest 13 14 steps: 15 - name: Checkout code 16 uses: actions/checkout@v2 17 18 - name: Set up Python 19 uses: actions/setup-python@v2 20 with: 21 python-version: '3.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-04plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 04 : 계획
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-04plan/ class="content-summary text-sm overflow-hidden">
-오늘의 목표 Github Actions를 이용하여 pytest 자동화 테스트 환경 구축
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-04/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 04 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-04/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프에서 팀프로젝트를 진행 중이다. 현재 비즈니스 로직을 수행하는 함수를 대상으로 Unit Test가 필요하다. Unit Test 코드를 작성하고, Github Actions를 이용하여 자동으로 테스트가 수행되도록 설정하고자 한다. run-pytest.yml 1name: Run pytest 2 3# main 또는 dev 브랜치에 pull request가 발생하면 실행 4on: 5 pull_request: 6 branches: 7 - main 8 - dev 9 10jobs: 11 test: 12 runs-on: ubuntu-latest 13 14 steps: 15 - name: Checkout code 16 uses: actions/checkout@v2 17 18 - name: Set up Python 19 uses: actions/setup-python@v2 20 with: 21 python-version: '3.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/fastapi_db_test/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Fastapi - 통합테스트 In-Memory DB에서 테이블이 없다는 문제
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/fastapi_db_test/ class="content-summary text-sm overflow-hidden">
-상황 테커 부트캠프에서 팀프로젝트를 진행 중이다. 단위테스트 코드는 작성이 완료되었고, 통합테스트 코드를 작성 중이다. sqlite in-memory db를 사용해서 테스트 중인데, 테이블이 없다는 에러가 발생했다. 테스트 전에 테이블을 생성하는 코드가 실행됨에도 불구하고, 에러가 발생한다. 인메모리가 아닌 파일로 저장하는 방법을 사용하면 에러가 발생하지 않는 것을 보고 문제의 원인을 파악할 수 있었다. 코드 1from database import Base, engine 2from fastapi.testclient import TestClient 3 4from main import app 5from models import * 6 7# 테이블을 생성하는 코드이다 8Base.
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/devtools/nginx_https/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Nginx에서 HTTPS 설정하기
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🔨</span>
-<span>개발 도구</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/devtools/nginx_https/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프를 진행중이다. 모든 프로그램은 docker-compose로 구성되어 있다. AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다. 도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다. 따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다. 목표 Nginx를 이용하여 HTTPS를 적용한다. 방법 1. docker-compose.yml에 certbot 컨테이너를 추가한다. 1certbot: 2 image: certbot/certbot 3 container_name: certbot 4 volumes: 5 - ./certbot/conf:/etc/letsencrypt 6 - ./certbot/www:/var/www/certbot 7 depends_on: 8 - nginx 9 10 # certbot을 무한루프로 돌리기 위해 사용 11 entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 6h & wait $${!
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/python/issue_websocket/ class="text-2xl my-3 overflow-ellipsis-bundle">
-Issue - fastapi에서 websocket 404 문제
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>🐍</span>
-<span>Python</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/python/issue_websocket/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프 최종발표 전날이다. gpt 프롬프트 부분 수정을 main 브랜치에 반영하고, EC2 서버에 배포했다. 문제 배포한 서버에서 websocket 연결이 404 에러를 반환한다. (내일이 최종 발표인데,,,) 다른 http 요청은 정상적으로 처리되지만 웹소켓만 처리되지 않는 것을 확인했다. nginx의 log 1{IP주소} - - [02/Aug/2024:10:59:04 +0000] "GET /ws/chatrooms/294?user_id=296 HTTP/1.1" 404 22 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15" 2{IP주소} - - [02/Aug/2024:10:59:05 +0000] "GET /ws/chatrooms/294?
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-06plan/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 06 : 계획
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-06plan/ class="content-summary text-sm overflow-hidden">
-오늘의 목표 웹소켓 연결 에러 해결하기
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-<div class="flex justify-between items-center">
-<div class="flex items-center">
-<img onload="checkRecentPost(event,'2024-11-15T02:24:07Z')" class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
-<a href=/til/mogako/mogako24-2-05/ class="text-2xl my-3 overflow-ellipsis-bundle">
-[모각코24하계] 05 : 결과
-</a>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-2">
-<span class=text-2xl>👨‍💻</span>
-<span>모각코</span>
-</div>
-</div>
-</div>
-<div class=flex-grow>
-<a href=/til/mogako/mogako24-2-05/ class="content-summary text-sm overflow-hidden">
-배경 테커 부트캠프를 진행중이다. 모든 프로그램은 docker-compose로 구성되어 있다. AWS EC2에 구동 중인 서버에 HTTPS를 적용하려고 한다. 도메인 구매 없이 시도를 했으나, AWS에서 제공하는 도메인으로 SSL 인증서를 발급받을 수 없었다. 따라서, 도메인을 구매하고, Route 53을 통해 도메인을 연결했다. 목표 Nginx를 이용하여 HTTPS를 적용한다. 방법 1. docker-compose.yml에 certbot 컨테이너를 추가한다. 1certbot: 2 image: certbot/certbot 3 container_name: certbot 4 volumes: 5 - ./certbot/conf:/etc/letsencrypt 6 - ./certbot/www:/var/www/certbot 7 depends_on: 8 - nginx 9 10 # certbot을 무한루프로 돌리기 위해 사용 11 entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 6h & wait $${!
-</a>
-</div>
-<div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC">
-</div>
-</div>
-<div class="border-b border-line"></div>
-<div class=py-16>
-<div id=pagination-box>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/4/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/3/ aria-label="Page 3" class=page-link role=button>3</a>
-</li>
-<li class=page-item>
-<a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 5" class=page-link role=button>5</a>
-</li>
-<li class=page-item>
-<a href=/til/page/6/ aria-label="Page 6" class=page-link role=button>6</a>
-</li>
-<li class=page-item>
-<a href=/til/page/7/ aria-label="Page 7" class=page-link role=button>7</a>
-</li>
-<li class=page-item>
-<a href=/til/page/6/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class=page-item>
-<a href=/til/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
-</ul>
-</div>
-</div>
-</section>
-<section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/>
-<span class="text-xl mr-3">🧠</span>
-<span> Algorithm (104)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/>
-<span class="text-xl mr-3">🌊</span>
-<span> C/CPP (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/>
-<span class="text-xl mr-3">☕</span>
-<span> Java (8)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/>
-<span class="text-xl mr-3">🍌</span>
-<span> Javascript (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/>
-<span class="text-xl mr-3">🐍</span>
-<span> Python (9)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/>
-<span class="text-xl mr-3">🍃</span>
-<span> Spring (30)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/>
-<span class="text-xl mr-3">🔨</span>
-<span> 개발 도구 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/>
-<span class="text-xl mr-3">🎸</span>
-<span> 기타 (7)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/>
-<span class="text-xl mr-3">👨‍💻</span>
-<span> 모각코 (38)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/>
-<span class="text-xl mr-3">🤖</span>
-<span> 인공지능 (2)</span>
-</a>
-<a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/>
-<span class="text-xl mr-3">🏫</span>
-<span> 학과 공부 (28)</span>
-</a>
-</section>
-<section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
-<a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+<label for=switch-tag class=switch-button>태그
+</label><input id=search-tag type=radio name=switch>
+<label for=search-tag class="switch-button rounded-r-lg">검색</label></form><div class="w-full p-5"><section id=summary-section class="grid gap-8"><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/data_communication/ class="text-2xl my-3 overflow-ellipsis-bundle">데이터통신</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🏫</span>
+<span>학과 공부</span></div></div></div><div class=flex-grow><a href=/til/school/data_communication/ class="content-summary text-sm overflow-hidden"><h2 id=메시지패킷-프레임-계층>메시지(패킷, 프레임), 계층</h2><h3 id=osi-7-model>OSI 7 Model</h3><ol><li>Physical</li><li>Data Link</li><li>Network</li><li>Transport</li><li>Session</li><li>Presentation</li><li>Application</li></ol><h3 id=tcpip-계층>TCP/IP 계층</h3><table><thead><tr><th>계층</th><th>이름</th><th>메시지 형태</th><th>내용</th></tr></thead><tbody><tr><td>1</td><td>Phisical</td><td>Bits</td><td>Bits</td></tr><tr><td>2</td><td>Data Link</td><td>Ethernet Frame</td><td>Ethernet 주소</td></tr><tr><td>3</td><td>Network</td><td>IP packet, Datagram</td><td>IP 주소</td></tr><tr><td>4</td><td>Transport</td><td>TCP Segment, UDP Datagram</td><td>Port 번호</td></tr><tr><td>5</td><td>Application</td><td>HTTP 메시지, Email 메시지</td><td>URL, Email 주소</td></tr></tbody></table><h3 id=protocol-suite>Protocol Suite</h3><ul><li>HTTP - TCP - IP - ARP</li></ul><h3 id=아날로그-신호---사인-함수>아날로그 신호 - 사인 함수</h3><p>$$ y(t) = A sin(2\pi ft + \varphi) $$</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/spring_boot/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring Boot Framework - KAKAO 김가연 선배님</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🏫</span>
+<span>학과 공부</span></div></div></div><div class=flex-grow><a href=/til/school/spring_boot/ class="content-summary text-sm overflow-hidden"><h3 id=rest-api>REST API</h3><ul><li><strong>RE</strong>prensentational <strong>S</strong>tate <strong>T</strong>ransfer</li><li>웹의 장점을 최대한 활용할 수 있는 아키텍처</li></ul><h3 id=layered-architecture>Layered Architecture</h3><ul><li>Presentation Layer<ul><li>비즈니스 로직과 UI를 분리</li><li>@Controller가 붙은 클래스가 이에 해당</li></ul></li><li>Service Layer<ul><li>비즈니스 로직 구현</li><li>@Service가 붙은 클래스가 이에 해당</li></ul></li><li>Data Access Layer<ul><li>데이터를 조회, 등록, 수정, 삭제</li><li>@Repository가 붙은 클래스가 이에 해당</li></ul></li></ul><h3 id=ioc>IoC</h3><ul><li>Inversion of Control : 제어의 역전</li><li>모든 객체에 대한 제어권이 바뀌었음을 의미</li><li>객체의 주인이 개발자가 아닌 Spring application</li></ul><h3 id=di>DI</h3><ul><li><p>Constructor Injection</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/javascript/js_arguments_object_issue/ class="text-2xl my-3 overflow-ellipsis-bundle">JS - Arguments object 관련 이슈</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍌</span>
+<span>Javascript</span></div></div></div><div class=flex-grow><a href=/til/javascript/js_arguments_object_issue/ class="content-summary text-sm overflow-hidden"><h3 id=상황>상황</h3><ul><li>나의 기술 블로그와 Google Analytics를 연결하기 위해 tag를 삽입하는 작업 중 이었다.</li><li>구글에서 제공하는 태그 소스 중 일부이다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>gtag</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>arguments</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>}
+</span></span></code></pre></div><ul><li>나는 function 키워드를 사용한게 마음에 들지 않아. 아래와 같이 화살표 함수로 바꾸어 작업하였다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gtag</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>dataLayer</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>args</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>};
+</span></span></code></pre></div><ul><li>하지만 내 코드는 정상적으로 동작하지 않았고 구글의 코드 그대로 적용해야만 google analytics가 동작하였다.</li><li>이유는 두 방식의 차이점에 있었는데, 어떤 점이 다른건지 알아보게 되었다.</li></ul><h3 id=arguments-object>Arguments object</h3><ul><li>Arguments 객체는 함수에 전달되는 유사 Array 형태이다.</li><li>함수 parameter에 어떻게 명시되어있건 상관없이 동작한다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>func1</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>1</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>arguments</span>[<span style=color:#ae81ff>2</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div><ul><li>arguments 객체는 3가지로 구성된다.</li></ul><ol><li>함수에 넘겨진 인자 (index는 0부터 시작한다)</li><li>length : 인자의 개수</li><li>callee : 현재 실행 중인 함수의 참조값</li></ol><h3 id=arrow-function에서는>Arrow function에서는?</h3><ul><li>arrow function에서는 arguments 객체를 사용할 수 없다.</li><li>대신 &mldr;args와 같은 문법으로 아래와 같이 사용할 수 있다.</li><li>여기서는 Arguments 객체가 아닌 진짜 Array로 가져온다.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>func2</span> <span style=color:#f92672>=</span> (...<span style=color:#a6e22e>args</span>) =&gt; {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>0</span>]);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>};
+</span></span></code></pre></div><h3 id=정리>정리</h3><ul><li>Google analytics가 정상적으로 동작하기 위해서는 dataLayer에 Arguments object가 push 되었어야 하는데,</li><li>내가 임의로 바꾸어서 Array가 push 되었다. 따라서 코드가 정상적으로 동작하지 않았다는 것을 알 수 있었다.</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/school/operatingsystem2/ class="text-2xl my-3 overflow-ellipsis-bundle">운영체제 - 기말범위</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🏫</span>
+<span>학과 공부</span></div></div></div><div class=flex-grow><a href=/til/school/operatingsystem2/ class="content-summary text-sm overflow-hidden"><h1 id=06-file-management>06-File-Management</h1><h2 id=directory>Directory</h2><h3 id=file-directory>File Directory</h3><ul><li>Directory도 일종의 파일이다</li><li>해당 파일 FCB의 식별자만 저장한다</li></ul><h3 id=inode-index-node>inode (index node)</h3><ul><li>Unix에서는 FCB와 inode가 같다</li><li>모든 파일, 폴더가 Unique한 값을 가진다. (root는 2로 고정)</li></ul><h2 id=file-systems>File Systems</h2><h3 id=파티션의-구조>파티션의 구조</h3><ul><li>boot block, super block, FCB list, data blocks</li></ul><h3 id=partition-control-block-super-block>Partition Control block (Super block)</h3><ul><li>blocks 개수, free data blocks 개수, free data blocks list 저장</li><li>inode table, free inode 개수, free inode list 저장</li></ul><h3 id=file-control-block-fcb>File Control Block (FCB)</h3><ul><li>UNIX에서 128byte의 크기를 가진다</li><li>파일 이름, 파일 크기, uid, gid, 파일 주소 등등 저장</li></ul><h2 id=management-of-data-blocks>Management of Data Blocks</h2><h3 id=contiguous-allocation>Contiguous Allocation</h3><ul><li>각각의 파일을 연속적으로 저장</li><li>Direct Access</li><li>File grow problem 존재</li><li><strong>External fragmentation</strong>, Internal fragmentation 발생</li></ul><h3 id=chained-allocation>Chained Allocation</h3><ul><li>Direct acess</li><li>File grow problem X</li><li>External fragmentation X</li><li>Poor data safety (앞 블록에 문제가 생기면 뒤 블록도 사용 불가능)</li></ul><h3 id=indexed-allocation-현대에-사용>Indexed Allocation (현대에 사용)</h3><ul><li>Direct access</li><li>File grow problem X</li><li>External fragmentation X</li><li>Medium level data safety (index block만 괜찮으면 된다)</li><li>Index block이 추가로 필요하다</li></ul><h3 id=free-space-management>Free-Space Management</h3><ul><li>Counting<ul><li>N-M&mldr;</li><li>N번부터 M개의 블록이 비어있다.</li></ul></li><li>Linked List<ul><li>비어있는 블록들을 연결리스트로 관리한다.</li></ul></li><li>Grouping<ul><li>비어있는 블록들을 그룹으로 관리한다.</li></ul></li><li>Bit Vector<ul><li>모든 블록들을 비트로 관리한다. (0이면 사용 중, 1이면 비어있음)</li><li>단점 : 용량을 많이 차지한다.</li></ul></li></ul><h2 id=file-system-example-unix>File System Example (UNIX)</h2><h3 id=addresses-of-data-blocks>Addresses of Data Blocks</h3><ul><li>Index 블록 하나는 4096 byte</li><li>4096 / 4 = 1024개의 블록 주소를 저장할 수 있다.</li><li>10개의 data blocks는 inode내(direct block field)에 저장한다</li></ul><h3 id=data-block-addressing>Data Block Addressing</h3><ul><li>direct block 10개 : 40KB (10 X 4 X 2^10 bytes)</li><li>single indirect block 1개 : 4MB (4KB X 2^10 = 2^22 bytes)</li><li>double indirect block 1개 : 4GB (4KB X 2^10 X 2^10 = 2^32 bytes)</li><li>triple indirect block 1개 : 4TB</li></ul><h2 id=file-system-example-linux>File System Example (Linux)</h2><h3 id=virtual-file-system-적용>Virtual File System 적용</h3><h3 id=linux-inode>Linux Inode</h3><ul><li>Inode의 크기 : 128 bytes (ext2, ext3), 256 bytes (ext4)</li><li>Direct block <strong>12개</strong>, Indirect block 3개</li></ul><h1 id=07-io-management-disk-scheduling>07-IO-Management-Disk-Scheduling</h1><h2 id=kernel-modules-for-io-management>Kernel Modules for IO Management</h2><h3 id=kernel-io-management>Kernel I/O Management</h3><ol><li>Device Scheduling</li><li>Error handling</li><li>Buffering (copy semantics를 유지)</li><li>Caching : 빠른 속도를 위해 사용</li><li>Spooling : 보조 기억 장치에 임시로 저장 (여러 사람이 공유하기 때문)</li></ol><h2 id=interrupt-handling>Interrupt handling</h2><h3 id=interrupt>Interrupt</h3><ul><li>주변 장치 -> OS : 비동기적 이벤트의 발생을 알림</li><li>IDT (Interrupt Descriptor Table = IVT) : 인터럽트 번호와 ISR의 주소를 저장</li><li>ISR (Interrupt Service Routine) : 인터럽트 발생 시 실행되는 함수</li><li>Interrupt 처리 과정<ol><li>Mode change</li><li>IDT에서 ISR의 주소를 찾아서 실행</li><li>ISR에서 급한 일 부터 처리, 필요하면 미룬다</li><li>Scheduler가 할 일을 결정</li></ol></li></ul><h3 id=trap>Trap</h3><ul><li>OS에게 동기적 이벤트의 발생을 알림</li><li>예) div_by_zero, seg_fault, protection_fault, page_fault</li><li>page fault만 프로세스를 종료 시키지 않음</li><li>Kernel은 Interrupt와 같은 방식으로 처리</li></ul><h3 id=system-call>System Call</h3><ul><li>Process -> OS : 동기적 이벤트의 발생을 알림</li><li>System call 처리<ol><li>Using system call table ex) int $0x80</li><li>sysenter 명령</li></ol></li></ul><h2 id=io-control--polling>I/O Control : Polling</h2><h3 id=io-control>I/O Control</h3><ul><li>Polling : 주기적으로 I/O 장치의 상태를 확인</li><li>Interrupt-driven I/O : I/O 장치가 인터럽트 발생</li><li>DMA(Direct Memory Access) : CPU의 개입 없이 메모리와 주변장치 사이의 데이터 전송</li></ul><h3 id=polling>Polling</h3><ul><li>Busy-wait cycle<ul><li>Host가 busy bit를 반복적으로 확인</li><li>Host가 write bit 설정, data-out register에 데이터 저장</li><li>Host가 command-ready bit 설정</li><li>Controller가 command-ready bit 설정을 확인하면 busy bit 설정</li><li>Controller가 control register (write command)를 읽고, data-out register의 데이터를 읽는다</li><li>I/O가 끝나면 controller가 command-ready bit, busy bit 해제</li></ul></li></ul><ul><li>특징<ul><li>I/O가 빨리 끝나면 효율적, 늦게 끝나면 비효율적</li></ul></li></ul><h2 id=io-control--interrupt-io-dma>I/O Control : Interrupt I/O, DMA</h2><h3 id=interrupt-driven-io>Interrupt-Driven I/O</h3><p><img src=/static/image/os_interrupt_driven_io.png alt="Interrupt driven I/O"></p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/stream/ class="text-2xl my-3 overflow-ellipsis-bundle">Stream, Optional</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>☕</span>
+<span>Java</span></div></div></div><div class=flex-grow><a href=/til/java/stream/ class="content-summary text-sm overflow-hidden"><h2 id=lambda>Lambda</h2><h3 id=표현식>표현식</h3><ol><li>매개변수 화살표(->) 함수몸체로 이용하여 사용할 수 있습니다.</li><li>함수 몸체가 단일 실행문이면 괄호{}를 생략할 수 있습니다.</li><li>함수 몸체가 return문으로만 구성되어 있으면 괄호{}을 생략할 수 있습니다.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>(<span style=color:#66d9ef>int</span> x) <span style=color:#f92672>-&gt;</span> x<span style=color:#f92672>+</span>1;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> y) <span style=color:#f92672>-&gt;</span> x<span style=color:#f92672>+</span>y;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>(Thread lamT) <span style=color:#f92672>-&gt;</span> { lamT.<span style=color:#a6e22e>start</span>(); }
+</span></span></code></pre></div><h2 id=stream>Stream</h2><h3 id=특징>특징</h3><ul><li>원본 데이터를 변경하지 않습니다.</li><li>요청되었을때만 데이터를 처리한다.</li><li>parallelStream()을 이용하여 병렬처리가 가능하다.</li></ul><h3 id=예제1>예제1</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> highCaloriesFoodName <span style=color:#f92672>=</span> foodList.<span style=color:#a6e22e>stream</span>()
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>        .<span style=color:#a6e22e>filter</span>(food <span style=color:#f92672>-&gt;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>            System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;filter : &#34;</span> <span style=color:#f92672>+</span> food.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>            <span style=color:#75715e>// 400이상 칼로리인 음식만 필터링한다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>            <span style=color:#66d9ef>return</span> food.<span style=color:#a6e22e>getCalories</span>() <span style=color:#f92672>&gt;</span> 400;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        })
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        .<span style=color:#a6e22e>map</span>(food <span style=color:#f92672>-&gt;</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>            System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(<span style=color:#e6db74>&#34;map : &#34;</span> <span style=color:#f92672>+</span> food.<span style=color:#a6e22e>getName</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            <span style=color:#75715e>// 음식 이름만 가져온다</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>            <span style=color:#66d9ef>return</span> food.<span style=color:#a6e22e>getName</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        })
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        .<span style=color:#a6e22e>limit</span>(3)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>        .<span style=color:#a6e22e>collect</span>(Collectors.<span style=color:#a6e22e>toList</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>System.<span style=color:#a6e22e>out</span>.<span style=color:#a6e22e>println</span>(highCaloriesFoodName);
+</span></span></code></pre></div><h3 id=예제2>예제2</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>List<span style=color:#f92672>&lt;</span>Integer<span style=color:#f92672>&gt;</span> redHeavyAppleUid <span style=color:#f92672>=</span> appleList.<span style=color:#a6e22e>parallelStream</span>()     <span style=color:#75715e>// 병렬 처리</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>        .<span style=color:#a6e22e>filter</span>(apple <span style=color:#f92672>-&gt;</span> apple.<span style=color:#a6e22e>getColor</span>().<span style=color:#a6e22e>equals</span>(<span style=color:#e6db74>&#34;RED&#34;</span>))        <span style=color:#75715e>// 빨간색 사과 필터링</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>        .<span style=color:#a6e22e>sorted</span>(Comparator.<span style=color:#a6e22e>comparing</span>(Apple::getWeight))         <span style=color:#75715e>// 무게 순서대로 정렬</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        .<span style=color:#a6e22e>map</span>(Apple::getUidNum).<span style=color:#a6e22e>collect</span>(Collectors.<span style=color:#a6e22e>toList</span>());    <span style=color:#75715e>// 사과 고유번호 출력</span>
+</span></span></code></pre></div><h2 id=optional>Optional</h2><h3 id=특징-1>특징</h3><ul><li>Optional는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.</li></ul><h3 id=예제1-1>예제1</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>List<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> nameList <span style=color:#f92672>=</span> Optional.<span style=color:#a6e22e>ofNullable</span>(getNames())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    .<span style=color:#a6e22e>orElseGet</span>(() <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;</span>());
+</span></span></code></pre></div><h3 id=예제2-1>예제2</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>String result <span style=color:#f92672>=</span> user.<span style=color:#a6e22e>map</span>(UserVO::getAddress) <span style=color:#75715e>// 주소 가져오기</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>    .<span style=color:#a6e22e>map</span>(Address::getPostCode) <span style=color:#75715e>// 우편번호 가져오기</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    .<span style=color:#a6e22e>orElse</span>(<span style=color:#e6db74>&#34;우편번호 없음&#34;</span>); <span style=color:#75715e>// 없으면 &#34;우편번호 없음&#34; 출력</span>
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/maven/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - Maven</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/maven/ class="content-summary text-sm overflow-hidden"><h3 id=maven-coordinates>Maven coordinates</h3><ul><li>groupId : 회사나 단체명 ex) org.springframework, org.prgms</li><li>artifactId : 프로젝트 명 ex) spring-context, order-api</li><li>version : 프로젝트 버전 ex) 5.2.15-RELEASE, 1.0-SNAPSHOT</li></ul><h3 id=build-lifecycle>Build lifecycle</h3><ul><li>validate, compile, test, package, verify, install, deploy</li></ul><h3 id=trnsitive-dependencies>Trnsitive Dependencies</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>A
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>├── B
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>│   └─ C
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>└── D
+</span></span></code></pre></div><ul><li>C는 A의 transitive 의존성</li></ul><h3 id=dependency-scope-scope>Dependency Scope (&lt;scope>)</h3><ul><li>compile(default) : 컴파일, 테스트, 실행에 라이브러리가 필요할때</li><li>provided : JDK 또는 컨테이너가 해당 라이브러리를 제공할때 (JSP, servlet)</li><li>runtime : 실행과 테스트에만 사용될때 (JDBC driver)</li><li>test : 테스트 컴파일 및 실행에만 필요할때 (easymock, junit)</li><li>system: provided와 비슷하지만, 사용자가 jar파일의 위치를 지정</li></ul><h3 id=example>example</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-xml data-lang=xml><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>&lt;project</span> <span style=color:#a6e22e>xmlns=</span><span style=color:#e6db74>&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style=color:#a6e22e>xmlns:xsi=</span><span style=color:#e6db74>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>  <span style=color:#a6e22e>xsi:schemaLocation=</span><span style=color:#e6db74>&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>  <span style=color:#f92672>&lt;modelVersion&gt;</span>4.0.0<span style=color:#f92672>&lt;/modelVersion&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>  <span style=color:#f92672>&lt;groupId&gt;</span>org.prgms<span style=color:#f92672>&lt;/groupId&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>  <span style=color:#f92672>&lt;artifactId&gt;</span>academy-maven<span style=color:#f92672>&lt;/artifactId&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>  <span style=color:#f92672>&lt;version&gt;</span>1.0-SNAPSHOT<span style=color:#f92672>&lt;/version&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>  <span style=color:#f92672>&lt;packaging&gt;</span>jar<span style=color:#f92672>&lt;/packaging&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>  <span style=color:#f92672>&lt;name&gt;</span>academy-maven<span style=color:#f92672>&lt;/name&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>  <span style=color:#f92672>&lt;url&gt;</span>http://maven.apache.org<span style=color:#f92672>&lt;/url&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>  <span style=color:#f92672>&lt;properties&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#f92672>&lt;project.build.sourceEncoding&gt;</span>UTF-8<span style=color:#f92672>&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>  <span style=color:#f92672>&lt;/properties&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>  <span style=color:#f92672>&lt;dependencies&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    <span style=color:#f92672>&lt;dependency&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>      <span style=color:#f92672>&lt;groupId&gt;</span>junit<span style=color:#f92672>&lt;/groupId&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>      <span style=color:#f92672>&lt;artifactId&gt;</span>junit<span style=color:#f92672>&lt;/artifactId&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>      <span style=color:#f92672>&lt;version&gt;</span>3.8.1<span style=color:#f92672>&lt;/version&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>      <span style=color:#f92672>&lt;scope&gt;</span>test<span style=color:#f92672>&lt;/scope&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>    <span style=color:#f92672>&lt;/dependency&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>  <span style=color:#f92672>&lt;/dependencies&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span><span style=color:#f92672>&lt;/project&gt;</span>
+</span></span></code></pre></div></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/java/record/ class="text-2xl my-3 overflow-ellipsis-bundle">Record</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>☕</span>
+<span>Java</span></div></div></div><div class=flex-grow><a href=/til/java/record/ class="content-summary text-sm overflow-hidden"><h3 id=레코드란>레코드란</h3><ul><li>불변(immutable) 데이터 객체를 쉽게 생성할 수 있도록 하는 새로운 유형의 클래스</li><li>JDK16부터 지원</li></ul><h3 id=예제>예제</h3><ul><li><p>Record 적용 전</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> String name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Person</span>(String name, <span style=color:#66d9ef>int</span> age) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>        <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>age</span> <span style=color:#f92672>=</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getName</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        <span style=color:#66d9ef>return</span> name;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>getAge</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>        <span style=color:#66d9ef>return</span> age;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>}
+</span></span></code></pre></div></li><li><p>Record 적용 후</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/logging/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - Logging</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/logging/ class="content-summary text-sm overflow-hidden"><h3 id=java-logging-framework>Java Logging Framework</h3><ul><li>java.util.logging</li><li>Apache Commons logging</li><li>Log4J</li><li><strong>Logback</strong></li><li><strong>SLF4J</strong></li></ul><h3 id=slf4j-simple-loggin-facade-for-java>SLF4J (Simple Loggin Facade for Java)</h3><ul><li>Loggin Framework들을 추상화시켜 놓은 것</li><li>Facade Pattern을 이용한 Logging framework</li></ul><h3 id=log-level>Log Level</h3><blockquote><p>trace - debug - info - warn - error</p></blockquote><h3 id=logger>Logger</h3><h4 id=logger-만들기>Logger 만들기</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> Logger logger <span style=color:#f92672>=</span> LoggerFactory.<span style=color:#a6e22e>getLogger</span>(OrderTester.<span style=color:#a6e22e>class</span>);
+</span></span></code></pre></div><ul><li>Logger 이름은 보통 FQCN (상위 패키지 + 클래스)으로 사용한다</li></ul><h4 id=logger-사용>Logger 사용</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>logger.<span style=color:#a6e22e>info</span>(<span style=color:#e6db74>&#34;version -&gt; {}&#34;</span>, logger.<span style=color:#a6e22e>getName</span>());
+</span></span></code></pre></div><h3 id=logback>logback</h3><h4 id=logback-설정파일-우선순위>logback 설정파일 우선순위</h4><blockquote><p>logback-test.yml -> logback.groovy -> logback.xml -> 기본 설정</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/ioc/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - IoC (Inversion of Control)</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/ioc/ class="content-summary text-sm overflow-hidden"><h3 id=ioc-inversion-of-control>IoC (Inversion of Control)</h3><ul><li>제어의 역전</li><li>메소드나 객체의 호출 작업이, 개발자가 아니라, 외부에서 결정되는 것</li><li>객체 간 결합도를 줄이고 유연한 코드를 작성하게 한다</li></ul><h3 id=ioc-container>IoC Container</h3><ul><li>IoC가 일어나는 곳, IoC를 수행하는 대상</li></ul><h3 id=ioc-클래스-예제>IoC 클래스 예제</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>OrderContext</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span>        <span style=color:#66d9ef>public</span> OrderRepository <span style=color:#a6e22e>orderRepository</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> OrderRepository();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6</span><span>        <span style=color:#66d9ef>public</span> OrderService <span style=color:#a6e22e>orderService</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7</span><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> OrderService(voucherService(), orderRepository());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9</span><span>    }
+</span></span></code></pre></div><ul><li>위 예제에서 OrderContext 클래스가 IoC 컨테이너 역할을 하고 있다</li></ul><h3 id=beanfactory>BeanFactory</h3><ul><li>Spring container의 최상위 interface</li><li>Bean을 생성하고 의존관계를 설정하는 기능을 담당하는 가장 기본적인 IoC 컨테이너</li><li>Lazy-loading 방식 사용 : Bean을 사용할때 loading -> 경량 컨테이너</li></ul><h3 id=applicationcontext>ApplicationContext</h3><ul><li>BeanFactroy의 구현체</li><li>Eager-loading 방식 : Runtime에 Bean을 loading &lt;-> Lazy-loading</li></ul><h3 id=annotationconfigapplicationcontext>AnnotationConfigApplicationContext</h3><ul><li>ApplicationContext의 구현체</li><li>Annotation 기반으로 설정하는 방식 &lt;-> XML방식</li></ul></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]"><div class="flex justify-between items-center"><div class="flex items-center"><img onload='checkRecentPost(event,"2024-11-15T02:24:07Z")' class="inline h-6 hidden mx-2" src=https://bong-u.github.io/til/asset/new.png alt=new>
+<a href=/til/spring/environment/ class="text-2xl my-3 overflow-ellipsis-bundle">Spring 개념 - Environment</a></div><div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class=text-2xl>🍃</span>
+<span>Spring</span></div></div></div><div class=flex-grow><a href=/til/spring/environment/ class="content-summary text-sm overflow-hidden"><h2 id=applicationproperties>application.properties</h2><h3 id=환경변수-설정>환경변수 설정</h3><ol><li>application.properties 파일을 작성한다</li></ol><ul><li>파일 위치 : reousrces/application.properties</li><li>파일 내용 예시 : key = value 형태<pre tabindex=0><code>app.name = spring
+</code></pre></li></ul><ol start=2><li>Configuration에 설정한다</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Configuration</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#a6e22e>@PropertySource</span>(<span style=color:#e6db74>&#34;application.properties&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfiguration</span> {...}
+</span></span></code></pre></div><h3 id=환경변수-가져오기>환경변수 가져오기</h3><h4 id=applicationcontext-활용하는-방법>ApplicationContext 활용하는 방법</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#66d9ef>var</span> environment <span style=color:#f92672>=</span> applicationContext.<span style=color:#a6e22e>getEnvironment</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>var</span> property <span style=color:#f92672>=</span> environment.<span style=color:#a6e22e>getProperty</span>(<span style=color:#e6db74>&#34;app.name&#34;</span>)
+</span></span></code></pre></div><h4 id=value-annotation-활용>@Value Annotation 활용</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@Value</span>(<span style=color:#e6db74>&#34;${app.name}&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>private</span> String name;
+</span></span></code></pre></div><h4 id=별도의-클래스-정의>별도의 클래스 정의</h4><ul><li><p>클래스 정의</p></a></div><div class="post-meta summary-date mt-auto" lastmod="2024-11-15 02:24:07 +0000 UTC"></div></div><div class="border-b border-line"></div><div class=py-16><div id=pagination-box><ul class="pagination pagination-default"><li class=page-item><a href=/til/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/til/page/4/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/til/page/3/ aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/til/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class="page-item active"><a aria-current=page aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/til/page/6/ aria-label="Page 6" class=page-link role=button>6</a></li><li class=page-item><a href=/til/page/7/ aria-label="Page 7" class=page-link role=button>7</a></li><li class=page-item><a href=/til/page/6/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/til/page/24/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></section><section id=group-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/algorithm/><span class="text-xl mr-3">🧠</span>
+<span>Algorithm (104)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/c_cpp/><span class="text-xl mr-3">🌊</span>
+<span>C/CPP (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/java/><span class="text-xl mr-3">☕</span>
+<span>Java (8)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/javascript/><span class="text-xl mr-3">🍌</span>
+<span>Javascript (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/python/><span class="text-xl mr-3">🐍</span>
+<span>Python (9)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/spring/><span class="text-xl mr-3">🍃</span>
+<span>Spring (30)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/devtools/><span class="text-xl mr-3">🔨</span>
+<span>개발 도구 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/etc/><span class="text-xl mr-3">🎸</span>
+<span>기타 (7)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/mogako/><span class="text-xl mr-3">👨‍💻</span>
+<span>모각코 (38)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/ai/><span class="text-xl mr-3">🤖</span>
+<span>인공지능 (2)</span>
+</a><a class="box rounded-lg flex p-4 hover-bold hover-bigger" href=/til/school/><span class="text-xl mr-3">🏫</span>
+<span>학과 공부 (28)</span></a></section><section id=tag-section class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5"><a href=https://bong-u.github.io/til/tags/boj class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>boj (53)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/c++ class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>c++ (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/celery class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>celery (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/cs class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>cs (18)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/django class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>django (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>docker (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/docker-compose class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>docker-compose (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/docker%20compose class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>docker compose (1)</span>
+</a><a href=https://bong-u.github.io/til/tags/elk class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>elk (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/fastapi class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>fastapi (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/git class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>git (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/github-actions class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>github-actions (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/github%20actions class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>github actions (5)</span>
+</a><a href=https://bong-u.github.io/til/tags/hackerrank class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>hackerrank (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/https class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>https (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/java class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>java (37)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/javascript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>javascript (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/jwt class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>jwt (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/kubernetes class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>kubernetes (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/nginx class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>nginx (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ocaml class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ocaml (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/open-source class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>open-source (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/open%20source class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>open source (2)</span>
+</a><a href=https://bong-u.github.io/til/tags/programmers class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>programmers (48)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/pytest class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>pytest (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/python class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>python (111)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rabbitmq class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rabbitmq (2)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/rag class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>rag (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/react class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>react (6)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/security class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>security (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/software-engineering class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>software-engineering (3)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/spring class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>spring (31)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/sql class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>sql (5)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/ssl class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>ssl (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/testing class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>testing (4)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/typescript class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>typescript (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
+</a><a href=https://bong-u.github.io/til/tags/vercel class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
 <span>vercel (1)</span>
-</a>
-<a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger">
-<span class="text-xl mr-2">🏷️</span>
-<span>websocket (1)</span>
-</a>
-</section>
-<section id=search-section class=hidden>
-<link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet>
-<script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script>
-<style>div.pagefind-ui__result-thumb{display:none}</style>
-<div id=search></div>
-<script>window.addEventListener('DOMContentLoaded',a=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:a=>(a.meta&&a.meta.image&&a.meta.image_alt&&(delete a.meta.image,delete a.meta.image_alt),a)})})</script>
-</section>
-</div>
-</main>
-</div>
-</div>
-</body>
-</html>
+</a><a href=https://bong-u.github.io/til/tags/websocket class="tag-item box flex p-4 hover-bold hover-bigger"><span class="text-xl mr-2">🏷️</span>
+<span>websocket (1)</span></a></section><section id=search-section class=hidden><link href=https://bong-u.github.io/til/pagefind/pagefind-ui.css rel=stylesheet><script src=https://bong-u.github.io/til/pagefind/pagefind-ui.js></script><style>div.pagefind-ui__result-thumb{display:none}</style><div id=search></div><script>window.addEventListener("DOMContentLoaded",e=>{new PagefindUI({element:"#search",showSubResults:!0,pageSize:10,autofocus:!0,translations:{placeholder:"검색",clear_search:"검색 초기화",load_more:"결과 더보기",search_label:"사이트 검색",filters_label:"필터",zero_results:'"[SEARCH_TERM]"에 대한 결과가 없습니다.',many_results:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',one_result:'"[SEARCH_TERM]"에 대한 [COUNT]개의 결과',alt_search:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.',search_suggestion:'"[SEARCH_TERM]"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:',searching:'"[SEARCH_TERM]" 검색 중...'},processResult:e=>(e.meta&&e.meta.image&&e.meta.image_alt&&(delete e.meta.image,delete e.meta.image_alt),e)})})</script></section></div></main></div></div></body></html>

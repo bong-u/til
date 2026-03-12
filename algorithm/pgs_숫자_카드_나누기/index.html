@@ -1,172 +1,61 @@
-<!doctype html><html lang=ko>
-<head>
-<title>프로그래머스 - 숫자 카드 나누기 (L2)</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="첫번째 통과한 풀이
-1import math 2 3def gcd(a, b): 4 while b > 0: 5 a, b = b, a%b 6 return a 7 8def …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="프로그래머스 - 숫자 카드 나누기 (L2)">
-<meta property="og:description" content="첫번째 통과한 풀이
-1import math 2 3def gcd(a, b): 4 while b > 0: 5 a, b = b, a%b 6 return a 7 8def …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#문제>문제</a></li>
-<li><a href=#해결방법>해결방법</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-프로그래머스 - 숫자 카드 나누기 (L2)
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ python</span>
-<span class="text-md mr-1">🏷️ programmers</span>
-</div>
-<h4 id=date>수정일 : 2023-07-31</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<ul>
-<li>
-<p>첫번째 통과한 풀이</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> math
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcd</span>(a, b):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#66d9ef>while</span> b <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        a, b <span style=color:#f92672>=</span> b, a<span style=color:#f92672>%</span>b
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>    <span style=color:#66d9ef>return</span> a
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcdOfArr</span>(l):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    result <span style=color:#f92672>=</span> l[<span style=color:#ae81ff>0</span>]
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(l)):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        result <span style=color:#f92672>=</span> gcd(result, l[i])
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>return</span> result
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arrayA, arrayB):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    a1 <span style=color:#f92672>=</span> gcdOfArr(arrayA)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayB:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span>        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> a1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span>            a1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span>            <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span>    a2 <span style=color:#f92672>=</span> gcdOfArr(arrayB)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayA:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span>        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> a2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span>            a2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span>            <span style=color:#66d9ef>break</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span>    <span style=color:#66d9ef>return</span> max(a1, a2)
-</code></pre></div></li>
-<li>
-<p>개선한 풀이</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>import</span> math
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>from</span> functools <span style=color:#f92672>import</span> reduce
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcd</span>(a, b):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>while</span> b <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>        a, b <span style=color:#f92672>=</span> b, a<span style=color:#f92672>%</span>b
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>    <span style=color:#66d9ef>return</span> a
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arrayA, arrayB):
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>    a1 <span style=color:#f92672>=</span> reduce(gcd, arrayA)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    a1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> any(i <span style=color:#f92672>%</span> a1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayB) <span style=color:#66d9ef>else</span> a1
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    a2 <span style=color:#f92672>=</span> reduce(gcd, arrayB)
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    a2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> any(i <span style=color:#f92672>%</span> a2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayA) <span style=color:#66d9ef>else</span> a2
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span>    <span style=color:#66d9ef>return</span> max(a1, a2)
-</code></pre></div></li>
-</ul>
-<h3 id=문제>문제</h3>
-<ul>
-<li>철수가 가진 숫자의 배열 arrayA, 영희가 가진 숫자의 배열 arrayB가 주어진다</li>
-<li>철수가 가진 카드들의 모든 숫자를 나눌 수 있고, 영희가 가진 숫자는 하나도 나눌 수 없는 양의 정수 a</li>
-<li>영희가 가진 카드들의 모든 숫자를 나눌 수 있고, 철수가 가진 숫자는 하나도 나눌 수 없는 양의 정수 a</li>
-<li>가장 큰 양의 정수 a를 구하라, 없다면 0을 반환하라</li>
-<li>TC
-<ul>
-<li>input
-<blockquote>
-<p>[14, 35, 119]</p>
-</blockquote>
-</li>
-<li>ouput
-<blockquote>
-<p>7</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id=해결방법>해결방법</h3>
-<ul>
-<li>프로그래머스에서 지원하는 파이썬이 3.8이라서 내장함수 math.gcd(3.9부터 지원)를 사용하지 못했다</li>
-<li>유클리드 호제법 기억이 나지 않아서 약간의 구글링을 통해 해결하였다</li>
-<li>reduce와 any함수를 통해 코드의 길이를 대폭 감소 시킬 수 있었다, 자주 활용하자</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EA%B7%A4_%EA%B3%A0%EB%A5%B4%EA%B8%B0/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>프로그래머스 - 숫자 카드 나누기 (L2)</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
+
+첫번째 통과한 풀이
+ 1import math
+ 2
+ 3def gcd(a, b):
+ 4    while b > 0:
+ 5        a, b = b, a%b
+ 6 …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="프로그래머스 - 숫자 카드 나누기 (L2)"><meta property="og:description" content="
+
+첫번째 통과한 풀이
+ 1import math
+ 2
+ 3def gcd(a, b):
+ 4    while b > 0:
+ 5        a, b = b, a%b
+ 6 …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><ul><li><a href=#문제>문제</a></li><li><a href=#해결방법>해결방법</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">프로그래머스 - 숫자 카드 나누기 (L2)</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ python</span>
+<span class="text-md mr-1">🏷️ programmers</span></div><h4 id=date>수정일 : 2023-07-31</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><ul><li><p>첫번째 통과한 풀이</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>import</span> math
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcd</span>(a, b):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#66d9ef>while</span> b <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        a, b <span style=color:#f92672>=</span> b, a<span style=color:#f92672>%</span>b
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>    <span style=color:#66d9ef>return</span> a
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcdOfArr</span>(l):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    result <span style=color:#f92672>=</span> l[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(l)):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        result <span style=color:#f92672>=</span> gcd(result, l[i])
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#66d9ef>return</span> result
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arrayA, arrayB):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    a1 <span style=color:#f92672>=</span> gcdOfArr(arrayA)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayB:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> a1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>            a1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span>            <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>    a2 <span style=color:#f92672>=</span> gcdOfArr(arrayB)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayA:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>        <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> a2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>            a2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>            <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>    <span style=color:#66d9ef>return</span> max(a1, a2)
+</span></span></code></pre></div></li><li><p>개선한 풀이</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>import</span> math
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>from</span> functools <span style=color:#f92672>import</span> reduce
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gcd</span>(a, b):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>while</span> b <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        a, b <span style=color:#f92672>=</span> b, a<span style=color:#f92672>%</span>b
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>    <span style=color:#66d9ef>return</span> a
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solution</span>(arrayA, arrayB):
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>    a1 <span style=color:#f92672>=</span> reduce(gcd, arrayA)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    a1 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> any(i <span style=color:#f92672>%</span> a1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayB) <span style=color:#66d9ef>else</span> a1
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    a2 <span style=color:#f92672>=</span> reduce(gcd, arrayB)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    a2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>if</span> any(i <span style=color:#f92672>%</span> a2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> arrayA) <span style=color:#66d9ef>else</span> a2
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>    <span style=color:#66d9ef>return</span> max(a1, a2)
+</span></span></code></pre></div></li></ul><h3 id=문제>문제</h3><ul><li>철수가 가진 숫자의 배열 arrayA, 영희가 가진 숫자의 배열 arrayB가 주어진다</li><li>철수가 가진 카드들의 모든 숫자를 나눌 수 있고, 영희가 가진 숫자는 하나도 나눌 수 없는 양의 정수 a</li><li>영희가 가진 카드들의 모든 숫자를 나눌 수 있고, 철수가 가진 숫자는 하나도 나눌 수 없는 양의 정수 a</li><li>가장 큰 양의 정수 a를 구하라, 없다면 0을 반환하라</li><li>TC<ul><li>input<blockquote><p>[14, 35, 119]</p></blockquote></li><li>ouput<blockquote><p>7</p></blockquote></li></ul></li></ul><h3 id=해결방법>해결방법</h3><ul><li>프로그래머스에서 지원하는 파이썬이 3.8이라서 내장함수 math.gcd(3.9부터 지원)를 사용하지 못했다</li><li>유클리드 호제법 기억이 나지 않아서 약간의 구글링을 통해 해결하였다</li><li>reduce와 any함수를 통해 코드의 길이를 대폭 감소 시킬 수 있었다, 자주 활용하자</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EA%B7%A4_%EA%B3%A0%EB%A5%B4%EA%B8%B0/><span class=mx-3>◀</span>
 프로그래머스 - 귤 고르기 (L2)
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EC%9A%B0%EB%B0%95%EC%88%98%EC%97%B4_%EC%A0%95%EC%A0%81%EB%B6%84/>
-프로그래머스 - 우박수열 정적분 (L2)
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/algorithm/pgs_%EC%9A%B0%EB%B0%95%EC%88%98%EC%97%B4_%EC%A0%95%EC%A0%81%EB%B6%84/>프로그래머스 - 우박수열 정적분 (L2)
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>

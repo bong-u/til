@@ -1,4 +1,269 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SQL on bong-u/til</title><link>https://bong-u.github.io/til/tags/sql/</link><description>Recent content in SQL on bong-u/til</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 09 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/sql/index.xml" rel="self" type="application/rss+xml"/><item><title>SQLD 대비 정리</title><link>https://bong-u.github.io/til/school/sqld/</link><pubDate>Thu, 09 May 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/sqld/</guid><description>과목 1 : 데이터 모델링의 이해 데이터 모델링을 할때 유의 사항 중복 : 여러 장소에 같은 정보 X 비유연성 : 데이터의 정의와 사용 프로세스를 분리 -&amp;gt; 데이터가 적게 변화되도록 비일관성 : 데이터 간의 상호 연관관계를 명확히 정의 데이터 모델링의 종류 개념적 데이터 모델링 물리적 데이터 모델링 데이터 베이스 모델링의 특징 추상화, 단순화, 명확화
-데이터베이스 스키마의 구조 외부 스키마 : 사용자 관점의 데이터베이스 구조 개념 스키마 : 전체 데이터베이스의 논리적 구조 내부 스키마 : 물리적 저장장치에 대한 데이터베이스 구조 엔터티의 특징 반드시 해당 업무에서 필요하고 관리하고자 하는 정보여야한다.</description></item><item><title>[모각코24동계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-05/</link><pubDate>Tue, 30 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-05/</guid><description>임시 테이블 지역 임시 테이블 (Local Temporary Table) 현재 connection에서만 사용 가능하다 해당 connection이 종료되면 테이블이 자동으로 삭제된다 테이블 이름 앞에 #를 붙여 사용한다 전역 임시 테이블 (Global Temporary Table) 다른 connection에서도 사용 가능하다 마지막 connection이 종료되면 테이블이 사라진다 테이블 이름 앞에 ##를 붙여 사용한다 생성하는 방법 1 - CREATE 사용 1CREATE TABLE #temp ( 2 id INT, 3 name VARCHAR(20) 4) 생성하는 방법 2 - SELECT INTO 사용 1SELECT * 2INTO #temp 3FROM table 특징 인덱스, 제약 조건 등은 복사되지 않는다 SELECT할때 ORDER BY를 사용해도 정렬된 순서대로 저장되지 않는다 LOCK 배타적 잠금 (Exclusive Lock, X) 하나의 특정 트랜잭션만 해당 리소스에 접근할 수 있다</description></item><item><title>[모각코24동계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-04/</link><pubDate>Tue, 23 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-04/</guid><description>Recursive Query 1WITH RECURSIVE CTE AS ( 2 SELECT 0 AS A 3 UNION ALL 4 SELECT A+1 AS NUM 5 FROM CTE 6 WHERE A &amp;lt; 10 # 0 부터 10까지 포함 7) 결과 (CTE테이블) A NUM 0 NULL … … 10 NULL 성능 비교 LIMIT 1 VS 서브쿼리 1SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE 2FROM FOOD_PRODUCT 3ORDER BY PRICE DESC 4LIMIT 1; 1SELECT * 2FROM FOOD_PRODUCT 3WHERE PRICE IN ( 4 SELECT MAX(PRICE) FROM FOOD_PRODUCT 5); LIMIT 1을 사용하는 쿼리는 모든 COLUMN의 데이터를 가져오고, 서브쿼리는 PRICE의 최대값만 가져와서 구하기 때문에, 테이블이 클수록 서브쿼리가 더 빠르다.</description></item><item><title>[모각코24동계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-03/</link><pubDate>Wed, 17 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-03/</guid><description>Sub Query 단일 행 서브 쿼리 서브쿼리 결과 : 단일 행 결과 : 단일 행 1SELECT USER_ID, USER_NAME, USER_AGE 2FROM USERS 3WHERE TEAM_ID = ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME=&amp;#39;BONG&amp;#39; 7); 다중 행 서브 쿼리 서브쿼리 결과 : 다중 행 결과 : 단일행 다중 행 비교 연산자와 함께 사용 (IN, ALL, ANY, SOME) 1SELECT TEAM_ID, TEAM_NAME, TEAM_LOGO_URL 2FROM TEAM 3WHERE TEAM_ID IN ( 4 SELECT TEAM_ID 5 FROM USERS 6 WHERE USER_NAME=&amp;#39;BONG&amp;#39; 7) 다중 컬럼 서브 쿼리 서브쿼리의 결과: 다중 행 결과 : 다중 행 1SELECT TEAM_ID, USER_NAME 2FROM USERS 3WHERE (TEAM_ID, HEIGHT) 4IN ( 5 SELECT TEAM_ID, MIN(HEIGHT) 6 FROM USERS 7 GROUP BY TEAM_ID 8) 9ORDER BY TEAM_ID, USER_NAME 연관 서브 쿼리 1SELECT B.</description></item><item><title>[모각코24동계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-02/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-02/</guid><description>SQL 기초 공부 DDL (Data Definition Language) CREATE ALTER DROP RENAME TRUNCATE DML (Data Manipulation Language) SELECT INSERT UPDATE DELETE DCL (Data Control Language) GRANT REVOKE TCL (Transaction Control Language) COMMIT ROLLBACK SAVEPOINT SELECT GROUP BY 특정 Column기준으로 그룹화
-그룹화 하지 않은 Column은 집계함수(SUM, COUNT)를 통해서만 조회해야한다
-1SELECT name, COUNT(name), SUM(quantity) FROM 테이블 GROUP BY name; HAVING GROUP BY 절에서 조건을 주기 위해 사용</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SQL on bong-u/til</title><link>https://bong-u.github.io/til/tags/sql/</link><description>Recent content in SQL on bong-u/til</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 15 Nov 2024 02:24:07 +0000</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/sql/index.xml" rel="self" type="application/rss+xml"/><item><title>SQLD 대비 정리</title><link>https://bong-u.github.io/til/school/sqld/</link><pubDate>Thu, 09 May 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/sqld/</guid><description>&lt;h3 id="과목-1--데이터-모델링의-이해"&gt;과목 1 : 데이터 모델링의 이해&lt;/h3&gt;
+&lt;h4 id="데이터-모델링을-할때-유의-사항"&gt;데이터 모델링을 할때 유의 사항&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;중복 : 여러 장소에 같은 정보 X&lt;/li&gt;
+&lt;li&gt;비유연성 : 데이터의 정의와 사용 프로세스를 분리 -&amp;gt; 데이터가 적게 변화되도록&lt;/li&gt;
+&lt;li&gt;비일관성 : 데이터 간의 상호 연관관계를 명확히 정의&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="데이터-모델링의-종류"&gt;데이터 모델링의 종류&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;개념적 데이터 모델링&lt;/li&gt;
+&lt;li&gt;물리적 데이터 모델링&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="데이터-베이스-모델링의-특징"&gt;데이터 베이스 모델링의 특징&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;추상화, 단순화, 명확화&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="데이터베이스-스키마의-구조"&gt;데이터베이스 스키마의 구조&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;외부 스키마 : 사용자 관점의 데이터베이스 구조&lt;/li&gt;
+&lt;li&gt;개념 스키마 : 전체 데이터베이스의 논리적 구조&lt;/li&gt;
+&lt;li&gt;내부 스키마 : 물리적 저장장치에 대한 데이터베이스 구조&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="엔터티의-특징"&gt;엔터티의 특징&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;반드시 해당 업무에서 필요하고 관리하고자 하는 정보여야한다.&lt;/li&gt;
+&lt;li&gt;유일한 식별자에 의해 식별이 가능해야 한다.&lt;/li&gt;
+&lt;li&gt;영속적으로 존재하는 인스턴스의 집합이어야 한다.&lt;/li&gt;
+&lt;li&gt;엔터티는 업무 프로세스에 의해 이용 되어야 한다.&lt;/li&gt;
+&lt;li&gt;엔터티는 반드시 속성이 있어야 한다.&lt;/li&gt;
+&lt;li&gt;엔터티는 다른 엔터티와 최소 한 개 이상의 관계가 있어야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="엔터티-인스턴스-속성-속성값의-관계"&gt;엔터티, 인스턴스, 속성, 속성값의 관계&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;한 개의 엔터티는 두 개 이상의 인스턴스로 구성&lt;/li&gt;
+&lt;li&gt;한 개의 엔터티는 두 개 이상의 속성을 갖는다&lt;/li&gt;
+&lt;li&gt;한 개의 속성은 한 개의 속성값을 갖는다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="속성의-분류"&gt;속성의 분류&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;기본 속성 : 본래의 속성&lt;/li&gt;
+&lt;li&gt;설계 속성 : 데이터 모델링 과정에서 추가된 속성&lt;/li&gt;
+&lt;li&gt;파생 속성 : 다른 속성에 의해 만들어지는 속성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="관계의-표기법"&gt;관계의 표기법&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;관계명&lt;/li&gt;
+&lt;li&gt;관계차수&lt;/li&gt;
+&lt;li&gt;관계선택사양&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="식별자의-종류"&gt;식별자의 종류&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;주식별자 vs 보조식별자&lt;/li&gt;
+&lt;li&gt;내부식별자 vs 외부식별자 (타 엔티티에서 받아옴)&lt;/li&gt;
+&lt;li&gt;단일식별자 (하나의 속성) vs 복합식별자 (둘 이상의 속성)&lt;/li&gt;
+&lt;li&gt;본질식별자 vs 인조식별자&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="데이터-모델링의-순서"&gt;데이터 모델링의 순서&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;데이터모델링을 할 때 정규화를 정확하게 수행한다.&lt;/li&gt;
+&lt;li&gt;데이터베이스 용량산정을 수행한다.&lt;/li&gt;
+&lt;li&gt;데이터베이스에 발생되는 트랜잭션의 유형을 파악한다.&lt;/li&gt;
+&lt;li&gt;용량과 트랜잭션의 유형에 따라 반정규화를 수행 한다.&lt;/li&gt;
+&lt;li&gt;이력모델의 조정, PK/FK조정, 슈퍼타입/서브타입 조정 등을 수행한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="조인"&gt;조인&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Nested Loop Join&lt;/li&gt;
+&lt;li&gt;Single Loop Join&lt;/li&gt;
+&lt;li&gt;Sort Merge Join&lt;/li&gt;
+&lt;li&gt;Hash Join&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="정규화"&gt;정규화&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;제 1 정규화
+&lt;blockquote&gt;
+&lt;p&gt;각 열은 원자값만을 포함하고 있어야 한다.&lt;/p&gt;</description></item><item><title>[모각코24동계] 05 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-05/</link><pubDate>Tue, 30 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-05/</guid><description>&lt;h3 id="임시-테이블"&gt;임시 테이블&lt;/h3&gt;
+&lt;h4 id="지역-임시-테이블-local-temporary-table"&gt;지역 임시 테이블 (Local Temporary Table)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;현재 connection에서만 사용 가능하다&lt;/li&gt;
+&lt;li&gt;해당 connection이 종료되면 테이블이 자동으로 삭제된다&lt;/li&gt;
+&lt;li&gt;테이블 이름 앞에 &lt;code&gt;#&lt;/code&gt;를 붙여 사용한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="전역-임시-테이블-global-temporary-table"&gt;전역 임시 테이블 (Global Temporary Table)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;다른 connection에서도 사용 가능하다&lt;/li&gt;
+&lt;li&gt;마지막 connection이 종료되면 테이블이 사라진다&lt;/li&gt;
+&lt;li&gt;테이블 이름 앞에 &lt;code&gt;##&lt;/code&gt;를 붙여 사용한다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="생성하는-방법-1---create-사용"&gt;생성하는 방법 1 - CREATE 사용&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;CREATE&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;TABLE&lt;/span&gt; &lt;span style="color:#f92672"&gt;#&lt;/span&gt;temp (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; id INT,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; name VARCHAR(&lt;span style="color:#ae81ff"&gt;20&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="생성하는-방법-2---select-into-사용"&gt;생성하는 방법 2 - SELECT INTO 사용&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;INTO&lt;/span&gt; &lt;span style="color:#f92672"&gt;#&lt;/span&gt;temp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;table&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;특징
+&lt;ul&gt;
+&lt;li&gt;인덱스, 제약 조건 등은 복사되지 않는다&lt;/li&gt;
+&lt;li&gt;SELECT할때 &lt;code&gt;ORDER BY&lt;/code&gt;를 사용해도 정렬된 순서대로 저장되지 않는다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="lock"&gt;LOCK&lt;/h3&gt;
+&lt;h4 id="배타적-잠금-exclusive-lock-x"&gt;배타적 잠금 (Exclusive Lock, X)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;하나의 특정 트랜잭션만 해당 리소스에 접근할 수 있다&lt;/p&gt;</description></item><item><title>[모각코24동계] 04 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-04/</link><pubDate>Tue, 23 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-04/</guid><description>&lt;h3 id="recursive-query"&gt;Recursive Query&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WITH&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;RECURSIVE&lt;/span&gt; CTE &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; A
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;UNION&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;ALL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; A&lt;span style="color:#f92672"&gt;+&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; NUM
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; CTE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; A &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt; &lt;span style="color:#f92672"&gt;#&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;부터&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;까지&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;포함&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;결과 (CTE테이블)
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;A&lt;/th&gt;
+ &lt;th&gt;NUM&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;NULL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;…&lt;/td&gt;
+ &lt;td&gt;…&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;10&lt;/td&gt;
+ &lt;td&gt;NULL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="성능-비교"&gt;성능 비교&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;LIMIT 1 VS 서브쿼리
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; FOOD_PRODUCT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; PRICE &lt;span style="color:#66d9ef"&gt;DESC&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;LIMIT&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; FOOD_PRODUCT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; PRICE &lt;span style="color:#66d9ef"&gt;IN&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;MAX&lt;/span&gt;(PRICE) &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; FOOD_PRODUCT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;LIMIT 1을 사용하는 쿼리는 모든 COLUMN의 데이터를 가져오고,&lt;/li&gt;
+&lt;li&gt;서브쿼리는 PRICE의 최대값만 가져와서 구하기 때문에, 테이블이 클수록 서브쿼리가 더 빠르다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="배운-것"&gt;배운 것&lt;/h3&gt;
+&lt;h4 id="group-by-기준이-2개-이상인-경우"&gt;GROUP BY 기준이 2개 이상인 경우&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;예를 들어 GROUP BY 학년, 학기 인 경우&lt;/li&gt;
+&lt;li&gt;2가지 조건 모두 적용하여 2023-1학기, 2023-2학기, 2024-1학기와 같이 묶인다&lt;/li&gt;
+&lt;li&gt;COLUMN의 순서를 이용하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;위 명령어에서 사용된 숫자는 SELECT 명령어에서 각각 1번째, 2번째, 3번째 컬럼을 의미한다.&lt;/p&gt;</description></item><item><title>[모각코24동계] 03 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-03/</link><pubDate>Wed, 17 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-03/</guid><description>&lt;h3 id="sub-query"&gt;Sub Query&lt;/h3&gt;
+&lt;h4 id="단일-행-서브-쿼리"&gt;단일 행 서브 쿼리&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서브쿼리 결과 : 단일 행&lt;/li&gt;
+&lt;li&gt;결과 : 단일 행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; USER_ID, USER_NAME, USER_AGE
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; TEAM_ID &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; USER_NAME&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;BONG&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="다중-행-서브-쿼리"&gt;다중 행 서브 쿼리&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서브쿼리 결과 : 다중 행&lt;/li&gt;
+&lt;li&gt;결과 : 단일행&lt;/li&gt;
+&lt;li&gt;다중 행 비교 연산자와 함께 사용 (IN, ALL, ANY, SOME)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID, TEAM_NAME, TEAM_LOGO_URL
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; TEAM
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; TEAM_ID &lt;span style="color:#66d9ef"&gt;IN&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; USER_NAME&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#39;BONG&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="다중-컬럼-서브-쿼리"&gt;다중 컬럼 서브 쿼리&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;서브쿼리의 결과: 다중 행&lt;/li&gt;
+&lt;li&gt;결과 : 다중 행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID, USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; (TEAM_ID, HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;IN&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; TEAM_ID, &lt;span style="color:#66d9ef"&gt;MIN&lt;/span&gt;(HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; TEAM_ID, USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="연관-서브-쿼리"&gt;연관 서브 쿼리&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; B.TEAM_NAME, A.USER_NAME, A.HEIGHT
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS A, TEAM B
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; A.HEIGHT &lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AVG&lt;/span&gt;(X.HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;6&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; X.TEAM_ID &lt;span style="color:#f92672"&gt;=&lt;/span&gt; A.TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;7&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; X.TEAM_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;8&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;9&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ORDER&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="다른-위치에서-사용하는-서브-쿼리"&gt;다른 위치에서 사용하는 서브 쿼리&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; A.USER_NAME &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;유저이름&lt;/span&gt;, A.HEIGHT &lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;키&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;2&lt;/span&gt;&lt;span&gt;ROUND ((
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;3&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;AVG&lt;/span&gt; (X.HEIGHT)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;4&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS X &lt;span style="color:#66d9ef"&gt;WHERE&lt;/span&gt; X.TEAM_ID &lt;span style="color:#f92672"&gt;=&lt;/span&gt; A.TEAM_ID), &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;5&lt;/span&gt;&lt;span&gt;	&lt;span style="color:#66d9ef"&gt;AS&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;팀평균키&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; USERS A)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>[모각코24동계] 02 : 결과</title><link>https://bong-u.github.io/til/mogako/mogako24-1-02/</link><pubDate>Tue, 09 Jan 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/mogako/mogako24-1-02/</guid><description>&lt;h2 id="sql-기초-공부"&gt;SQL 기초 공부&lt;/h2&gt;
+&lt;h3 id="ddl-data-definition-language"&gt;DDL (Data Definition Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CREATE&lt;/li&gt;
+&lt;li&gt;ALTER&lt;/li&gt;
+&lt;li&gt;DROP&lt;/li&gt;
+&lt;li&gt;RENAME&lt;/li&gt;
+&lt;li&gt;TRUNCATE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="dml-data-manipulation-language"&gt;DML (Data Manipulation Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;SELECT&lt;/li&gt;
+&lt;li&gt;INSERT&lt;/li&gt;
+&lt;li&gt;UPDATE&lt;/li&gt;
+&lt;li&gt;DELETE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="dcl-data-control-language"&gt;DCL (Data Control Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;GRANT&lt;/li&gt;
+&lt;li&gt;REVOKE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tcl-transaction-control-language"&gt;TCL (Transaction Control Language)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;COMMIT&lt;/li&gt;
+&lt;li&gt;ROLLBACK&lt;/li&gt;
+&lt;li&gt;SAVEPOINT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="select"&gt;SELECT&lt;/h3&gt;
+&lt;h4 id="group-by"&gt;GROUP BY&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;특정 Column기준으로 그룹화&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;그룹화 하지 않은 Column은 집계함수(SUM, COUNT)를 통해서만 조회해야한다&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; name, &lt;span style="color:#66d9ef"&gt;COUNT&lt;/span&gt;(name), &lt;span style="color:#66d9ef"&gt;SUM&lt;/span&gt;(quantity) &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;테이블&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; name;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="having"&gt;HAVING&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GROUP BY 절에서 조건을 주기 위해 사용&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;SELECT&lt;/span&gt; name, &lt;span style="color:#66d9ef"&gt;COUNT&lt;/span&gt;(name) &lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#960050;background-color:#1e0010"&gt;테이블&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;GROUP&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;BY&lt;/span&gt; name &lt;span style="color:#66d9ef"&gt;HAVING&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;COUNT&lt;/span&gt;(name) &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="like"&gt;LIKE&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;문자열의 패턴을 검색하는데 사용&lt;/p&gt;</description></item></channel></rss>

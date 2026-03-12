@@ -1,215 +1,83 @@
-<!doctype html><html lang=ko>
-<head>
-<title>MVC 3 : Session, Interceptor, Cookies</title>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Session 로그인 할 때 세션에 등록  LoginController.java 1@PostMapping 2public String submit(LoginCommand …">
-<meta property="og:site_name" content="bong-u/til">
-<meta property="og:title" content="MVC 3 : Session, Interceptor, Cookies">
-<meta property="og:description" content="Session 로그인 할 때 세션에 등록  LoginController.java 1@PostMapping 2public String submit(LoginCommand …">
-<meta property="og:type" content="blog">
-<meta property="og:url" content="https://github.com/bong-u/til-hugo">
-<meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg">
-<script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script>
-<link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16>
-<link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32>
-<link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48>
-<link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64>
-<link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HE9FQR1ML7')</script>
-</head>
-<body class=custom-scroll>
-<div class="flex w-full flex-col items-center">
-<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script>
-<script>MathJax={tex:{inlineMath:[['$','$']]}}</script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script>
-<script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script>
-<header class="flex justify-center p-3 w-full text-lg border-b border-line">
-<div class="w-full flex justify-between lg-5/6">
-<h3>
-<a href=https://bong-u.github.io/til/ class=hover-black>
-bong-u/til
-</a>
-</h3>
-<div class="flex gap-5">
-<a class=hover-black href=https://bong-u.github.io/til/>
-🏠 home
-</a>
-<a class=hover-black href=https://github.com/bong-u/til>
-🐈 repository
-</a>
-</div>
-</div>
-</header>
-<input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden>
-<main class="w-full lg:w-5/6 px-3 sm:px-12">
-<aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#session>Session</a>
-<ul>
-<li><a href=#로그인-할-때-세션에-등록>로그인 할 때 세션에 등록</a></li>
-<li><a href=#로그아웃-할때-세션에서-삭제>로그아웃 할때 세션에서 삭제</a></li>
-<li><a href=#로그인-상태-여부에-따라-다르게-보여주기>로그인 상태 여부에 따라 다르게 보여주기</a></li>
-</ul>
-</li>
-<li><a href=#interceptor>Interceptor</a></li>
-<li><a href=#cookie>Cookie</a>
-<ul>
-<li><a href=#orgspringframeworkbeansnotreadablepropertyexception-invalid-property-rememberemail-of-bean-class-controllerlogincommand>org.springframework.beans.NotReadablePropertyException: Invalid property &lsquo;rememberEmail&rsquo; of bean class [controller.LoginCommand]</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
-<section class="my-16 xl:w-5/6">
-<div class="mb-8 whitespace-nowrap">
-<div class="flex justify-between items-baseline my-4 gap-8">
-<h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">
-MVC 3 : Session, Interceptor, Cookies
-</h1>
-</div>
-</div>
-<div class="text-sm flex mb-8 justify-between text-textgray">
-<div>
-<span class="text-md mr-1">🏷️ java</span>
-<span class="text-md mr-1">🏷️ spring</span>
-</div>
-<h4 id=date>수정일 : 2024-11-15</h4>
-</div>
-<hr class=opacity-30>
-<article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col">
-<h2 id=session>Session</h2>
-<h3 id=로그인-할-때-세션에-등록>로그인 할 때 세션에 등록</h3>
-<ul>
-<li>LoginController.java
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@PostMapping</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>submit</span><span style=color:#f92672>(</span>LoginCommand loginCommand<span style=color:#f92672>,</span> Errors errors<span style=color:#f92672>,</span> HttpSession session<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#66d9ef>new</span> LoginCommandValidator<span style=color:#f92672>().</span><span style=color:#a6e22e>validate</span><span style=color:#f92672>(</span>loginCommand<span style=color:#f92672>,</span> errors<span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>errors<span style=color:#f92672>.</span><span style=color:#a6e22e>hasErrors</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span><span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    AuthInfo authInfo <span style=color:#f92672>=</span> authService<span style=color:#f92672>.</span><span style=color:#a6e22e>authenticate</span><span style=color:#f92672>(</span>loginCommand<span style=color:#f92672>.</span><span style=color:#a6e22e>getEmail</span><span style=color:#f92672>(),</span> loginCommand<span style=color:#f92672>.</span><span style=color:#a6e22e>getPassword</span><span style=color:#f92672>());</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>    session<span style=color:#f92672>.</span><span style=color:#a6e22e>setAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>,</span> authInfo<span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginSuccess&#34;</span><span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>WrongIdPasswordException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span>    errors<span style=color:#f92672>.</span><span style=color:#a6e22e>reject</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;idPasswordNotMatching&#34;</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span><span style=color:#f92672>;</span>            
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-</ul>
-<h3 id=로그아웃-할때-세션에서-삭제>로그아웃 할때 세션에서 삭제</h3>
-<ul>
-<li>LogoutController.java
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span style=color:#a6e22e>@RequestMapping</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/logout&#34;</span><span style=color:#f92672>)</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>logout</span><span style=color:#f92672>(</span>HttpSession session<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    session<span style=color:#f92672>.</span><span style=color:#a6e22e>invalidate</span><span style=color:#f92672>();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/main&#34;</span><span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-</ul>
-<h3 id=로그인-상태-여부에-따라-다르게-보여주기>로그인 상태 여부에 따라 다르게 보여주기</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#f92672>&lt;</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${ empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>환영합니다<span style=color:#f92672>.&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>register<span style=color:#f92672>/</span>step1<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>회원 가입하기<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>login<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그인<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#f92672>&lt;/</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span style=color:#f92672>&lt;</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${! empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>$<span style=color:#f92672>{</span>authInfo<span style=color:#f92672>.</span><span style=color:#a6e22e>name</span><span style=color:#f92672>}</span>님<span style=color:#f92672>,</span> 환영합니다<span style=color:#f92672>.&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>edit<span style=color:#f92672>/</span>changePassword<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>비밀번호 변경<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>logout<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그아웃<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span style=color:#f92672>&lt;/</span>c<span style=color:#f92672>:</span><span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
-</code></pre></div><h2 id=interceptor>Interceptor</h2>
-<ul>
-<li>
-<p>로그인하지 않은 상태에서 접근하면 리다이렉트를 해줘야하는 사이트가 있다고하자</p>
-</li>
-<li>
-<p>HttpSession에 특정 개체가 존재하는지 검사해서 있다면 redirect할 수 있다.</p>
-</li>
-<li>
-<p>ChnagePwdController.java > public String form()</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span>AuthInfo authInfo <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>AuthInfo<span style=color:#f92672>)</span> session<span style=color:#f92672>.</span><span style=color:#a6e22e>getAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>authInfo <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/login&#34;</span><span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;edit/changePwdForm&#34;</span><span style=color:#f92672>;</span>
-</code></pre></div></li>
-<li>
-<p>하지만 여러 부분에서 이런 로직을 일일이 적용하는 것은 불편하다</p>
-</li>
-<li>
-<p>이때 HandlerInterceptor 인터페이스를 구현한다</p>
-</li>
-<li>
-<p>AuthCheckInterceptor.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AuthCheckInterceptor</span> <span style=color:#66d9ef>implements</span> HandlerInterceptor <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span>    <span style=color:#a6e22e>@Override</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>preHandle</span><span style=color:#f92672>(</span>HttpServletRequest request<span style=color:#f92672>,</span> HttpServletResponse response<span style=color:#f92672>,</span> Object handler<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span>        HttpSession session <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span><span style=color:#a6e22e>getSession</span><span style=color:#f92672>(</span><span style=color:#66d9ef>false</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>session <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span>            Object authInfo <span style=color:#f92672>=</span> session<span style=color:#f92672>.</span><span style=color:#a6e22e>getAttribute</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authInfo&#34;</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>authInfo <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>            <span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span>        <span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span>        response<span style=color:#f92672>.</span><span style=color:#a6e22e>sendRedirect</span><span style=color:#f92672>(</span>request<span style=color:#f92672>.</span><span style=color:#a6e22e>getContextPath</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/login&#34;</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span>    <span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-<li>
-<p>MvcConfig.java</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span style=color:#a6e22e>@Bean</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span style=color:#66d9ef>public</span> AuthCheckInterceptor <span style=color:#a6e22e>authCheckInterceptor</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> AuthCheckInterceptor<span style=color:#f92672>();</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span style=color:#f92672>}</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span style=color:#a6e22e>@Override</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addInterceptors</span><span style=color:#f92672>(</span>InterceptorRegistry registry<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span>    registry<span style=color:#f92672>.</span><span style=color:#a6e22e>addInterceptor</span><span style=color:#f92672>(</span>authCheckInterceptor<span style=color:#f92672>())</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span>    <span style=color:#f92672>.</span><span style=color:#a6e22e>addPathPatterns</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/edit/**&#34;</span><span style=color:#f92672>);</span>
-<span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span style=color:#f92672>}</span>
-</code></pre></div></li>
-<li>
-<p>/edit/** 패턴으로 요청이 들어오면 authCheckInterceptor로 연결되는 것을 볼 수 있다.</p>
-</li>
-</ul>
-<h2 id=cookie>Cookie</h2>
-<h3 id=orgspringframeworkbeansnotreadablepropertyexception-invalid-property-rememberemail-of-bean-class-controllerlogincommand>org.springframework.beans.NotReadablePropertyException: Invalid property &lsquo;rememberEmail&rsquo; of bean class [controller.LoginCommand]</h3>
-<ul>
-<li>LoginCommand.java 속 setRemberEmail(boolean rememberEmail)함수 이름에 오타가 있었다</li>
-<li>getter를 인식하지 못해서 발생한 오류이다</li>
-</ul>
-</article>
-<div id=" meta" class=my-16>
-<div>
-<div class="flex justify-between w-full text-lg">
-<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/12_mvc_2/>
-<span class=mx-3>◀</span>
+<!doctype html><html lang=ko><head><title>MVC 3 : Session, Interceptor, Cookies</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Session
+로그인 할 때 세션에 등록
+
+LoginController.java
+ 1@PostMapping
+ 2public String submit(LoginCommand …"><meta property="og:site_name" content="bong-u/til"><meta property="og:title" content="MVC 3 : Session, Interceptor, Cookies"><meta property="og:description" content="Session
+로그인 할 때 세션에 등록
+
+LoginController.java
+ 1@PostMapping
+ 2public String submit(LoginCommand …"><meta property="og:type" content="blog"><meta property="og:url" content="https://github.com/bong-u/til-hugo"><meta property="og:image" content="https://bong-u.github.io/til/asset/thumbnail.jpg"><script type=text/javascript src=https://bong-u.github.io/til/script/base.js></script><link rel=icon href=https://bong-u.github.io/til/favicon16.png sizes=16x16><link rel=icon href=https://bong-u.github.io/til/favicon32.png sizes=32x32><link rel=icon href=https://bong-u.github.io/til/favicon48.png sizes=48x48><link rel=icon href=https://bong-u.github.io/til/favicon64.png sizes=64x64><link id=twCSS rel=stylesheet href=https://bong-u.github.io/til/css/style.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-HE9FQR1ML7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-HE9FQR1ML7")</script></head><body class=custom-scroll><div class="flex w-full flex-col items-center"><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js></script><script>MathJax={tex:{inlineMath:[["$","$"]]}}</script><script type=text/javascript src=https://bong-u.github.io/til/script/single.js></script><script type=text/javascript src=https://bong-u.github.io/til/script/toc.js></script><header class="flex justify-center p-3 w-full text-lg border-b border-line"><div class="w-full flex justify-between lg-5/6"><h3><a href=https://bong-u.github.io/til/ class=hover-black>bong-u/til</a></h3><div class="flex gap-5"><a class=hover-black href=https://bong-u.github.io/til/>🏠 home
+</a><a class=hover-black href=https://github.com/bong-u/til>🐈 repository</a></div></div></header><input type=checkbox id=toggleDarkMode onchange=toggleDarkModeHandler() hidden><main class="w-full lg:w-5/6 px-3 sm:px-12"><aside class="fixed top-0 right-0 my-24 w-1/6 gap-3 px-9 hidden xl:flex text-sm overflow-hidden"><nav id=TableOfContents><ul><li><a href=#session>Session</a><ul><li><a href=#로그인-할-때-세션에-등록>로그인 할 때 세션에 등록</a></li><li><a href=#로그아웃-할때-세션에서-삭제>로그아웃 할때 세션에서 삭제</a></li><li><a href=#로그인-상태-여부에-따라-다르게-보여주기>로그인 상태 여부에 따라 다르게 보여주기</a></li></ul></li><li><a href=#interceptor>Interceptor</a></li><li><a href=#cookie>Cookie</a><ul><li><a href=#orgspringframeworkbeansnotreadablepropertyexception-invalid-property-rememberemail-of-bean-class-controllerlogincommand>org.springframework.beans.NotReadablePropertyException: Invalid property &lsquo;rememberEmail&rsquo; of bean class [controller.LoginCommand]</a></li></ul></li></ul></nav></aside><section class="my-16 xl:w-5/6"><div class="mb-8 whitespace-nowrap"><div class="flex justify-between items-baseline my-4 gap-8"><h1 id=title class="overflow-ellipsis-bundle text-3xl font-bold p-1">MVC 3 : Session, Interceptor, Cookies</h1></div></div><div class="text-sm flex mb-8 justify-between text-textgray"><div><span class="text-md mr-1">🏷️ java</span>
+<span class="text-md mr-1">🏷️ spring</span></div><h4 id=date>수정일 : 2024-11-15</h4></div><hr class=opacity-30><article data-pagefind-body id=content class="bg-inherit markdown-body flex flex-col"><h2 id=session>Session</h2><h3 id=로그인-할-때-세션에-등록>로그인 할 때 세션에 등록</h3><ul><li>LoginController.java<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#a6e22e>@PostMapping</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>submit</span>(LoginCommand loginCommand, Errors errors, HttpSession session) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#66d9ef>new</span> LoginCommandValidator().<span style=color:#a6e22e>validate</span>(loginCommand, errors);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span><span style=color:#66d9ef>if</span> (errors.<span style=color:#a6e22e>hasErrors</span>()) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    AuthInfo authInfo <span style=color:#f92672>=</span> authService.<span style=color:#a6e22e>authenticate</span>(loginCommand.<span style=color:#a6e22e>getEmail</span>(), loginCommand.<span style=color:#a6e22e>getPassword</span>());
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>    session.<span style=color:#a6e22e>setAttribute</span>(<span style=color:#e6db74>&#34;authInfo&#34;</span>, authInfo);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginSuccess&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span><span style=color:#66d9ef>catch</span> (WrongIdPasswordException e) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>    errors.<span style=color:#a6e22e>reject</span>(<span style=color:#e6db74>&#34;idPasswordNotMatching&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;login/loginForm&#34;</span>;            
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>}
+</span></span></code></pre></div></li></ul><h3 id=로그아웃-할때-세션에서-삭제>로그아웃 할때 세션에서 삭제</h3><ul><li>LogoutController.java<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span><span style=color:#a6e22e>@RequestMapping</span>(<span style=color:#e6db74>&#34;/logout&#34;</span>)
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>logout</span>(HttpSession session) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    session.<span style=color:#a6e22e>invalidate</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/main&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span>}
+</span></span></code></pre></div></li></ul><h3 id=로그인-상태-여부에-따라-다르게-보여주기>로그인 상태 여부에 따라 다르게 보여주기</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#f92672>&lt;</span>c:<span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${ empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>환영합니다.<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>register<span style=color:#f92672>/</span>step1<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>회원 가입하기<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>login<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그인<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#f92672>&lt;/</span>c:<span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#f92672>&lt;</span>c:<span style=color:#66d9ef>if</span> test<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;${! empty authInfo }&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>${authInfo.<span style=color:#a6e22e>name</span>}님, 환영합니다.<span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span><span style=color:#f92672>&lt;</span>p<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>edit<span style=color:#f92672>/</span>changePassword<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>비밀번호 변경<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    <span style=color:#f92672>&lt;</span>a href<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;c:url value=&#34;</span><span style=color:#f92672>/</span>logout<span style=color:#e6db74>&#34; /&gt;&#34;</span><span style=color:#f92672>&gt;[</span>로그아웃<span style=color:#f92672>]&lt;/</span>a<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span><span style=color:#f92672>&lt;/</span>p<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span><span style=color:#f92672>&lt;/</span>c:<span style=color:#66d9ef>if</span><span style=color:#f92672>&gt;</span>
+</span></span></code></pre></div><h2 id=interceptor>Interceptor</h2><ul><li><p>로그인하지 않은 상태에서 접근하면 리다이렉트를 해줘야하는 사이트가 있다고하자</p></li><li><p>HttpSession에 특정 개체가 존재하는지 검사해서 있다면 redirect할 수 있다.</p></li><li><p>ChnagePwdController.java > public String form()</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1</span><span>AuthInfo authInfo <span style=color:#f92672>=</span> (AuthInfo) session.<span style=color:#a6e22e>getAttribute</span>(<span style=color:#e6db74>&#34;authInfo&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2</span><span><span style=color:#66d9ef>if</span> (authInfo <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;redirect:/login&#34;</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5</span><span><span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;edit/changePwdForm&#34;</span>;
+</span></span></code></pre></div></li><li><p>하지만 여러 부분에서 이런 로직을 일일이 적용하는 것은 불편하다</p></li><li><p>이때 HandlerInterceptor 인터페이스를 구현한다</p></li><li><p>AuthCheckInterceptor.java</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AuthCheckInterceptor</span> <span style=color:#66d9ef>implements</span> HandlerInterceptor {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>    <span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>preHandle</span>(HttpServletRequest request, HttpServletResponse response, Object handler) <span style=color:#66d9ef>throws</span> Exception {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>        HttpSession session <span style=color:#f92672>=</span> request.<span style=color:#a6e22e>getSession</span>(<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>        <span style=color:#66d9ef>if</span>(session <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>            Object authInfo <span style=color:#f92672>=</span> session.<span style=color:#a6e22e>getAttribute</span>(<span style=color:#e6db74>&#34;authInfo&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span>            <span style=color:#66d9ef>if</span> (authInfo <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>            }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>        }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>        response.<span style=color:#a6e22e>sendRedirect</span>(request.<span style=color:#a6e22e>getContextPath</span>() <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/login&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span>    }
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>}
+</span></span></code></pre></div></li><li><p>MvcConfig.java</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-java data-lang=java><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#a6e22e>@Bean</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span><span style=color:#66d9ef>public</span> AuthCheckInterceptor <span style=color:#a6e22e>authCheckInterceptor</span>() {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> AuthCheckInterceptor();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span><span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addInterceptors</span>(InterceptorRegistry registry) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span>    registry.<span style=color:#a6e22e>addInterceptor</span>(authCheckInterceptor())
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span>    .<span style=color:#a6e22e>addPathPatterns</span>(<span style=color:#e6db74>&#34;/edit/**&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>}
+</span></span></code></pre></div></li><li><p>/edit/** 패턴으로 요청이 들어오면 authCheckInterceptor로 연결되는 것을 볼 수 있다.</p></li></ul><h2 id=cookie>Cookie</h2><h3 id=orgspringframeworkbeansnotreadablepropertyexception-invalid-property-rememberemail-of-bean-class-controllerlogincommand>org.springframework.beans.NotReadablePropertyException: Invalid property &lsquo;rememberEmail&rsquo; of bean class [controller.LoginCommand]</h3><ul><li>LoginCommand.java 속 setRemberEmail(boolean rememberEmail)함수 이름에 오타가 있었다</li><li>getter를 인식하지 못해서 발생한 오류이다</li></ul></article><div id=" meta" class=my-16><div><div class="flex justify-between w-full text-lg"><a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/12_mvc_2/><span class=mx-3>◀</span>
 MVC 2 : Messages, Validate command object
-</a>
-<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/maven/>
-Spring 개념 - Maven
-<span class=mx-3>▶</span>
-</a>
-</div>
-</div>
-</div>
-<div id=comment-box></div>
-</section>
-</main>
-</div>
-</body>
-</html>
+</a><a class="next ml-5 overflow-ellipsis-bundle hover-bold" href=/til/spring/maven/>Spring 개념 - Maven
+<span class=mx-3>▶</span></a></div></div></div><div id=comment-box></div></section></main></div></body></html>
