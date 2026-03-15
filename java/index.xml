@@ -223,7 +223,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="optional"&gt;Optional&lt;/h2&gt;
 &lt;h3 id="특징-1"&gt;특징&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Optional&lt;!-- raw HTML omitted --&gt;는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Optional&amp;lt;T&amp;gt;&lt;/code&gt;는 null이 올 수 있는 값을 감싸는 Wrapper 클래스이다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="예제1-1"&gt;예제1&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"&gt;1&lt;/span&gt;&lt;span&gt;List&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;String&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; nameList &lt;span style="color:#f92672"&gt;=&lt;/span&gt; Optional.&lt;span style="color:#a6e22e"&gt;ofNullable&lt;/span&gt;(getNames())
