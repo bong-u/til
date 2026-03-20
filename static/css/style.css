@@ -960,6 +960,11 @@ input[name="switch"]:checked+label{
   margin-bottom: 1rem;
 }
 
+.my-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mb-16{
   margin-bottom: 4rem;
 }
@@ -998,6 +1003,10 @@ input[name="switch"]:checked+label{
 
 .mt-auto{
   margin-top: auto;
+}
+
+.mt-8{
+  margin-top: 2rem;
 }
 
 .line-clamp-3{
@@ -1149,6 +1158,10 @@ input[name="switch"]:checked+label{
 
 .gap-5{
   gap: 1.25rem;
+}
+
+.gap-6{
+  gap: 1.5rem;
 }
 
 .gap-8{
