@@ -960,11 +960,6 @@ input[name="switch"]:checked+label{
   margin-bottom: 1rem;
 }
 
-.my-8{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .mb-16{
   margin-bottom: 4rem;
 }
@@ -1001,12 +996,12 @@ input[name="switch"]:checked+label{
   margin-top: 1rem;
 }
 
-.mt-auto{
-  margin-top: auto;
-}
-
 .mt-8{
   margin-top: 2rem;
+}
+
+.mt-auto{
+  margin-top: auto;
 }
 
 .line-clamp-3{
@@ -1345,6 +1340,34 @@ input[name="switch"]:checked+label{
 
 .hover-black:hover{
   color: var(--color-black);
+}
+
+div#pagination-box li.disabled .page-link {
+  opacity: 0.6;
+  cursor: default;
+}
+
+div#pagination-box li:first-child .page-link span,
+div#pagination-box li:nth-child(2) .page-link span,
+div#pagination-box li:nth-last-child(2) .page-link span,
+div#pagination-box li:last-child .page-link span {
+  display: none;
+}
+
+div#pagination-box li:first-child .page-link::after {
+  content: "⏪️";
+}
+
+div#pagination-box li:nth-child(2) .page-link::after {
+  content: "◀️";
+}
+
+div#pagination-box li:nth-last-child(2) .page-link::after {
+  content: "▶️";
+}
+
+div#pagination-box li:last-child .page-link::after {
+  content: "⏩️";
 }
 
 @media (min-width: 640px){

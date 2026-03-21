@@ -117,3 +117,31 @@
     @apply hover:text-black;
   }
 }
+
+div#pagination-box li.disabled .page-link {
+  opacity: 0.6;
+  cursor: default;
+}
+
+div#pagination-box li:first-child .page-link span,
+div#pagination-box li:nth-child(2) .page-link span,
+div#pagination-box li:nth-last-child(2) .page-link span,
+div#pagination-box li:last-child .page-link span {
+  display: none;
+}
+
+div#pagination-box li:first-child .page-link::after {
+  content: "⏪️";
+}
+
+div#pagination-box li:nth-child(2) .page-link::after {
+  content: "◀️";
+}
+
+div#pagination-box li:nth-last-child(2) .page-link::after {
+  content: "▶️";
+}
+
+div#pagination-box li:last-child .page-link::after {
+  content: "⏩️";
+}
