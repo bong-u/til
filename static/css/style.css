@@ -1055,6 +1055,10 @@ input[name="switch"]:checked+label{
   height: 100vh;
 }
 
+.min-h-0{
+  min-height: 0px;
+}
+
 .w-1\/6{
   width: 16.666667%;
 }
