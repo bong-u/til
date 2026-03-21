@@ -3,6 +3,11 @@
 window.onload = () => {
     formatTimeDiff();
     switchSection();
+
+    const sortToggleBtn = document.getElementById('sort-toggle');
+    if (sortToggleBtn) {
+        sortToggleBtn.addEventListener('click', toggleSort);
+    }
 };
 
 // 최근 게시물인 경우 "hidden" 클래스 제거
@@ -62,28 +67,35 @@ const formatTimeDiff = () => {
     }
 };
 
-// 스위치 버튼 클릭 시 섹션 전환
+// 인기순/최신순 토글
+const toggleSort = () => {
+    const popularList = document.getElementById('popular-list');
+    const recentList = document.getElementById('recent-list');
+    const sortToggle = document.getElementById('sort-toggle');
+
+    const isPopular = !popularList.classList.contains('hidden');
+
+    if (isPopular) {
+        popularList.classList.add('hidden');
+        recentList.classList.remove('hidden');
+        sortToggle.textContent = '🕐 최신순';
+    } else {
+        recentList.classList.add('hidden');
+        popularList.classList.remove('hidden');
+        sortToggle.textContent = '🔥 인기순';
+    }
+};
+
 const switchSection = () => {
     const switches = document.getElementsByName('switch');
-    const summarySection = document.getElementById('summary-section');
-    const groupSection = document.getElementById('group-section');
-    const tagSection = document.getElementById('tag-section');
-    const searchSection = document.getElementById('search-section');
+    const sections = [
+        document.getElementById('summary-section'),
+        document.getElementById('group-section'),
+        document.getElementById('tag-section'),
+        document.getElementById('search-section'),
+    ];
 
-    // 모든 섹션 숨기기
-    summarySection.classList.add('hidden');
-    groupSection.classList.add('hidden');
-    tagSection.classList.add('hidden');
-    searchSection.classList.add('hidden');
-
-    // 선택된 스위치에 따라 섹션 표시
-    if (switches[0].checked) {
-        summarySection.classList.remove('hidden');
-    } else if (switches[1].checked) {
-        groupSection.classList.remove('hidden');
-    } else if (switches[2].checked) {
-        tagSection.classList.remove('hidden');
-    } else if (switches[3].checked) {
-        searchSection.classList.remove('hidden');
-    }
+    sections.forEach((section, i) => {
+        section.style.display = switches[i].checked ? '' : 'none';
+    });
 }
