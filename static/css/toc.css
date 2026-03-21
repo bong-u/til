@@ -18,6 +18,6 @@
   }
 
   #TableOfContents ul > li {
-    @apply overflow-ellipsis-bundle my-2;
+    @apply text-ellipsis overflow-hidden whitespace-nowrap my-2;
   }
 }

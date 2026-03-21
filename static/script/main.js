@@ -22,6 +22,7 @@ const checkRecentPost = (e, recentCommitDate) => {
     // 기준일 이내면 "hidden" 클래스 제거
     if (dayDifference < NEW_THRESHOLD) {
         target.classList.remove('hidden');
+        target.classList.add('inline');
     }
 };
 
