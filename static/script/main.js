@@ -2,6 +2,7 @@
 
 window.onload = () => {
     formatTimeDiff();
+    checkRecentPosts();
     switchSection();
 
     const sortToggleBtn = document.getElementById('sort-toggle');
@@ -11,24 +12,19 @@ window.onload = () => {
 };
 
 // 최근 게시물인 경우 "hidden" 클래스 제거
-// recentCommitDate : ISO 8601 형식의 문자열
-const checkRecentPost = (e, recentCommitDate) => {
-    const target = e.target;
-    // 최근 게시물 기준일 (일 단위)
+const checkRecentPosts = () => {
     const NEW_THRESHOLD = 2;
-
-    // 오늘 날짜와 최근 커밋 날짜를 가져오기
     const today = new Date();
-    const recentDate = new Date(recentCommitDate); // recentCommitDate는 ISO 문자열 또는 Date 객체로 제공
 
-    // 날짜 차이 계산 (밀리초 → 일 단위)
-    const dayDifference = Math.floor((today - recentDate) / (1000 * 60 * 60 * 24));
+    document.querySelectorAll('img[data-lastmod]').forEach((img) => {
+        const recentDate = new Date(img.dataset.lastmod);
+        const dayDifference = Math.floor((today - recentDate) / (1000 * 60 * 60 * 24));
 
-    // 기준일 이내면 "hidden" 클래스 제거
-    if (dayDifference < NEW_THRESHOLD) {
-        target.classList.remove('hidden');
-        target.classList.add('inline');
-    }
+        if (dayDifference < NEW_THRESHOLD) {
+            img.classList.remove('hidden');
+            img.classList.add('inline');
+        }
+    });
 };
 
 const times = [
