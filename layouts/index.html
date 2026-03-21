@@ -38,16 +38,31 @@
 		</form>
 
 		<div class="w-full p-5">
-			<section id="summary-section" class="grid gap-8">
-				<!-- 최근에 commit한 순서로 정렬 -->
-				{{ $pages := .Site.RegularPages.ByLastmod.Reverse }}
-				{{ $paginator := .Paginate $pages}}
-				{{ range $paginator.Pages }}
-				{{ .Render "summary" }}
-				{{ end }}
-				<div class="py-16">
-					<div id="pagination-box">
-						{{ template "_internal/pagination.html" .}}
+			<section id="summary-section">
+				<div class="flex mb-4">
+					<button id="sort-toggle"
+						class="text-sm px-3 py-1 rounded-full border border-line hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+						🔥 인기순
+					</button>
+				</div>
+				<div id="popular-list" class="grid gap-8">
+					{{ range $i, $item := .Site.Data.popular }}
+					{{ $page := site.GetPage .path }}
+					{{ with $page }}
+					{{ .Render "summary" }}
+					{{ end }}
+					{{ end }}
+				</div>
+				<div id="recent-list" class="hidden grid gap-8">
+					{{ $pages := .Site.RegularPages.ByLastmod.Reverse }}
+					{{ $paginator := .Paginate $pages}}
+					{{ range $paginator.Pages }}
+					{{ .Render "summary" }}
+					{{ end }}
+					<div class="py-16">
+						<div id="pagination-box">
+							{{ template "_internal/pagination.html" .}}
+						</div>
 					</div>
 				</div>
 			</section>
