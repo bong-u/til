@@ -1,16 +1,41 @@
-@import url("./colors.css");
-@import url("./toc.css");
-@import url("./markdown.css");
+@import "tailwindcss";
+@import "./toc.css";
+@import "./markdown.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@source "../../layouts";
+@source "../../content";
 
+@theme {
+  /* Remove default colors, define custom palette only */
+  --color-*: initial;
+  --color-text: #3f3f46; /* zinc-700 */
+  --color-textgray: #71717a; /* zinc-500 */
+  --color-black: #000000;
+  --color-bg: #ffffff;
+  --color-scrollbar: #71717a; /* zinc-500 */
+  --color-codeinline: #f8f8f2;
+  --color-codebox: #1c1917; /* stone-900 */
+  --color-line: #e0e0e3; /* zinc-200 */
+  --color-box: #f4f4f5; /* zinc-100 */
+  --color-box-hover: #d4d4d8; /* zinc-300 */
+  --color-link: #059669; /* emerald-600 */
+  --color-quotebar: #059669; /* emerald-600 */
+
+  /* Fonts */
+  --font-base: "Apple SD Gothic Neo", system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-code: "Roboto Mono";
+
+  /* Custom list style types */
+  --list-style-type-circle: circle;
+  --list-style-type-square: square;
+  --list-style-type-alpha: lower-alpha;
+  --list-style-type-roman: upper-roman;
+}
 
 @layer base {
   * {
-    @apply font-base !important;
+    @apply !font-base;
   }
 
   body {
@@ -43,7 +68,7 @@
   }
 
   .preview {
-    @apply text-text hover:no-underline !important;
+    @apply !text-text hover:!no-underline;
   }
 
   li.page-item {
@@ -100,20 +125,54 @@
   }
 }
 
-@layer utilities {
-  .overflow-ellipsis-bundle {
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
-  }
+@utility overflow-ellipsis-bundle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-  .hover-bold {
-    @apply hover:font-bold;
+@utility hover-bold {
+  &:hover {
+    font-weight: bold;
   }
+}
 
-  .hover-bigger {
-    @apply hover:scale-110 !important;
+@utility hover-bigger {
+  &:hover {
+    scale: 1.1 !important;
   }
+}
 
-  .hover-black {
-    @apply hover:text-black;
+@utility hover-black {
+  &:hover {
+    color: var(--color-black);
   }
+}
+
+div#pagination-box li.disabled .page-link {
+  opacity: 0.6;
+  cursor: default;
+}
+
+div#pagination-box li:first-child .page-link span,
+div#pagination-box li:nth-child(2) .page-link span,
+div#pagination-box li:nth-last-child(2) .page-link span,
+div#pagination-box li:last-child .page-link span {
+  display: none;
+}
+
+div#pagination-box li:first-child .page-link::after {
+  content: "⏪️";
+}
+
+div#pagination-box li:nth-child(2) .page-link::after {
+  content: "◀️";
+}
+
+div#pagination-box li:nth-last-child(2) .page-link::after {
+  content: "▶️";
+}
+
+div#pagination-box li:last-child .page-link::after {
+  content: "⏩️";
 }
