@@ -92,6 +92,6 @@ const switchSection = () => {
     ];
 
     sections.forEach((section, i) => {
-        section.style.display = switches[i].checked ? '' : 'none';
+        section.classList.toggle('hidden', !switches[i].checked);
     });
 }
