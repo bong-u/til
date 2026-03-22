@@ -18,9 +18,9 @@
   },
   "homepage": "https://bong-u.github.io/til",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.0.0",
-    "hugo-extended": "^0.157.0",
-    "tailwindcss": "^4.0.0"
+    "@tailwindcss/cli": "^4.2.2",
+    "hugo-extended": "^0.158.0",
+    "tailwindcss": "^4.2.2"
   },
   "dependencies": {
     "@google-analytics/data": "^5.2.1"
