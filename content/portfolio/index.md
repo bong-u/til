@@ -1,6 +1,6 @@
 ---
 title: "Portfolio"
-_build:
+build:
   list: never
   publishResources: true
   render: always
