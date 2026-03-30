@@ -1,0 +1,5 @@
+{{- $src := .Destination -}}
+{{- if hasPrefix $src "/static/" -}}
+  {{- $src = printf "%s%s" site.BaseURL (strings.TrimPrefix "/static/" $src) -}}
+{{- end -}}
+<img src="{{ $src }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" />
