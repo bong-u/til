@@ -5,7 +5,7 @@
 {{ .Render "header" }}
 <div class="w-full flex max-w-3xl flex-col">
 	<section class="mb-8 w-full">
-		<video preload="metadata" poster="{{ .Site.BaseURL }}asset/profile.jpg" class="w-64 h-64 mx-auto" autoplay loop
+		<video fetchpriority="high" preload="metadata" poster="{{ .Site.BaseURL }}asset/profile.jpg" class="w-64 h-64 mx-auto" autoplay loop
 			muted>
 			<source src="{{ .Site.BaseURL }}asset/profile.webm" type="video/webm">
 		</video>
