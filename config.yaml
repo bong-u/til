@@ -1,5 +1,5 @@
 baseURL: "https://bong-u.github.io/til/"
-languageCode: "en-us"
+languageCode: "ko-kr"
 title: "bong-u/til"
 enableGitInfo: true
 timezone: "Asia/Seoul"
