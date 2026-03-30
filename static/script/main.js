@@ -82,6 +82,57 @@ const toggleSort = () => {
     }
 };
 
+let pagefindLoaded = false;
+
+const loadPagefind = () => {
+    if (pagefindLoaded) return;
+    pagefindLoaded = true;
+
+    const baseURL = document.querySelector('link[id="twCSS"]').href.replace('css/style.css', '');
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = baseURL + 'pagefind/pagefind-ui.css';
+    document.head.appendChild(link);
+
+    const script = document.createElement('script');
+    script.src = baseURL + 'pagefind/pagefind-ui.js';
+    script.onload = () => {
+        const ui = new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            pageSize: 10,
+            autofocus: true,
+            translations: {
+                "placeholder": "검색",
+                "clear_search": "검색 초기화",
+                "load_more": "결과 더보기",
+                "search_label": "사이트 검색",
+                "filters_label": "필터",
+                "zero_results": "\"[SEARCH_TERM]\"에 대한 결과가 없습니다.",
+                "many_results": "\"[SEARCH_TERM]\"에 대한 [COUNT]개의 결과",
+                "one_result": "\"[SEARCH_TERM]\"에 대한 [COUNT]개의 결과",
+                "alt_search": "\"[SEARCH_TERM]\"에 대한 결과가 없습니다. 대신 [DIFFERENT_TERM]에 대한 결과를 표시합니다.",
+                "search_suggestion": "\"[SEARCH_TERM]\"에 대한 결과가 없습니다. 다음 검색어를 시도해 보세요:",
+                "searching": "\"[SEARCH_TERM]\" 검색 중..."
+            },
+            processResult: (result) => {
+                if (result.meta && result.meta.image && result.meta.image_alt) {
+                    delete result.meta.image;
+                    delete result.meta.image_alt;
+                }
+                return result;
+            }
+        });
+        const input = document.querySelector("#search input.pagefind-ui__search-input");
+        if (input && !input.id) {
+            input.id = "pagefind-search";
+            input.name = "search";
+        }
+    };
+    document.head.appendChild(script);
+};
+
 const switchSection = () => {
     const switches = document.getElementsByName('switch');
     const sections = [
@@ -97,4 +148,8 @@ const switchSection = () => {
         section.classList.toggle('hidden', !isActive);
         tabs[i].setAttribute('aria-selected', isActive);
     });
+
+    if (switches[3].checked) {
+        loadPagefind();
+    }
 }
