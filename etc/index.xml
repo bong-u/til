@@ -279,7 +279,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="결과"&gt;결과&lt;/h3&gt;
-&lt;p&gt;&lt;img src="https://bong-u.github.io/til/static/image/gh_readme_stats.png" alt="Top Langs"&gt;&lt;/p&gt;</description></item><item><title>Issue - Gihub action 오류 - venv 적용</title><link>https://bong-u.github.io/til/etc/gh_action_issue2/</link><pubDate>Mon, 25 Nov 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/etc/gh_action_issue2/</guid><description>&lt;h3 id="문제상황"&gt;문제상황&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://bong-u.github.io/til/image/gh_readme_stats.png" alt="Top Langs" loading="lazy" /&gt;
+&lt;/p&gt;</description></item><item><title>Issue - Gihub action 오류 - venv 적용</title><link>https://bong-u.github.io/til/etc/gh_action_issue2/</link><pubDate>Mon, 25 Nov 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/etc/gh_action_issue2/</guid><description>&lt;h3 id="문제상황"&gt;문제상황&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;TIL 블로그 자동 배포 github action이 잘 작동하다가 실패한다.&lt;/li&gt;
 &lt;/ul&gt;
@@ -370,7 +371,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;에러 메시지
-&lt;img src="https://bong-u.github.io/til/static/image/error_ghaction_yaml.png" alt="error"&gt;&lt;/p&gt;
+&lt;img src="https://bong-u.github.io/til/image/error_ghaction_yaml.png" alt="error" loading="lazy" /&gt;
+&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="해결방법"&gt;해결방법&lt;/h3&gt;

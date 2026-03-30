@@ -191,7 +191,8 @@
 &lt;/ul&gt;
 &lt;h2 id="io-control--interrupt-io-dma"&gt;I/O Control : Interrupt I/O, DMA&lt;/h2&gt;
 &lt;h3 id="interrupt-driven-io"&gt;Interrupt-Driven I/O&lt;/h3&gt;
-&lt;p&gt;&lt;img src="https://bong-u.github.io/til/static/image/os_interrupt_driven_io.png" alt="Interrupt driven I/O"&gt;&lt;/p&gt;</description></item><item><title>운영체제 - 중간범위</title><link>https://bong-u.github.io/til/school/operatingsystem1/</link><pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/operatingsystem1/</guid><description>&lt;h2 id="운영체제-개요"&gt;운영체제 개요&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://bong-u.github.io/til/image/os_interrupt_driven_io.png" alt="Interrupt driven I/O" loading="lazy" /&gt;
+&lt;/p&gt;</description></item><item><title>운영체제 - 중간범위</title><link>https://bong-u.github.io/til/school/operatingsystem1/</link><pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/school/operatingsystem1/</guid><description>&lt;h2 id="운영체제-개요"&gt;운영체제 개요&lt;/h2&gt;
 &lt;h3 id="운영체제의-역할"&gt;운영체제의 역할&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Program execution&lt;/li&gt;

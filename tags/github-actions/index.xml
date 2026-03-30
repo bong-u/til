@@ -170,7 +170,8 @@ app/tests/test_crud_user.py .... [100%]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;에러 메시지
-&lt;img src="https://bong-u.github.io/til/static/image/error_ghaction_yaml.png" alt="error"&gt;&lt;/p&gt;
+&lt;img src="https://bong-u.github.io/til/image/error_ghaction_yaml.png" alt="error" loading="lazy" /&gt;
+&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="해결방법"&gt;해결방법&lt;/h3&gt;

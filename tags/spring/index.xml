@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spring on bong-u/til</title><link>https://bong-u.github.io/til/tags/spring/</link><description>Recent content in Spring on bong-u/til</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 30 Mar 2026 22:06:17 +0900</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/spring/index.xml" rel="self" type="application/rss+xml"/><item><title>DDD(Domain Driven Design)</title><link>https://bong-u.github.io/til/spring/ddd/</link><pubDate>Fri, 13 Dec 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/spring/ddd/</guid><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spring on bong-u/til</title><link>https://bong-u.github.io/til/tags/spring/</link><description>Recent content in Spring on bong-u/til</description><generator>Hugo</generator><language>ko-kr</language><lastBuildDate>Mon, 30 Mar 2026 22:33:15 +0900</lastBuildDate><atom:link href="https://bong-u.github.io/til/tags/spring/index.xml" rel="self" type="application/rss+xml"/><item><title>DDD(Domain Driven Design)</title><link>https://bong-u.github.io/til/spring/ddd/</link><pubDate>Fri, 13 Dec 2024 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/spring/ddd/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;도메인 패턴을 중심으로 설계하는 방법론&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id="ioc"&gt;IOC&lt;/h3&gt;
@@ -212,7 +212,8 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="entity의-life-cycle"&gt;Entity의 Life cycle&lt;/h3&gt;
-&lt;p&gt;&lt;img src="https://bong-u.github.io/til/static/image/entity_life_cycle.png" alt="image"&gt;&lt;/p&gt;</description></item><item><title>Spring - Bean Validation : Annotation으로 Validation하기</title><link>https://bong-u.github.io/til/spring/bean_validation/</link><pubDate>Tue, 01 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/spring/bean_validation/</guid><description>&lt;h3 id="bean-validation"&gt;Bean Validation&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://bong-u.github.io/til/image/entity_life_cycle.png" alt="Entity Life Cycle" loading="lazy" /&gt;
+&lt;/p&gt;</description></item><item><title>Spring - Bean Validation : Annotation으로 Validation하기</title><link>https://bong-u.github.io/til/spring/bean_validation/</link><pubDate>Tue, 01 Aug 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/spring/bean_validation/</guid><description>&lt;h3 id="bean-validation"&gt;Bean Validation&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Annotation을 달아서 Validation을 수행할 수 있다.&lt;/li&gt;
 &lt;li&gt;주로 jakarta.validation과 hibernate.validator 두 패키지를 사용한다.&lt;/li&gt;
@@ -554,7 +555,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="dbcp-database-connection-pool"&gt;DBCP (DataBase Connection Pool)&lt;/h3&gt;
-&lt;p&gt;&lt;img src="https://bong-u.github.io/til/static/image/spring_dbcp.png" alt="DBCP"&gt;&lt;/p&gt;</description></item><item><title>Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제</title><link>https://bong-u.github.io/til/spring/class_resource_issue/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/spring/class_resource_issue/</guid><description>&lt;h3 id="상황"&gt;상황&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://bong-u.github.io/til/image/spring_dbcp.png" alt="DBCP" loading="lazy" /&gt;
+&lt;/p&gt;</description></item><item><title>Issue - Jar 실행환경에서 ClassPathResource를 가져오지 못하는 문제</title><link>https://bong-u.github.io/til/spring/class_resource_issue/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0900</pubDate><guid>https://bong-u.github.io/til/spring/class_resource_issue/</guid><description>&lt;h3 id="상황"&gt;상황&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;개발 환경에서는 ClassPathResource를 문제없이 불러온다&lt;/p&gt;

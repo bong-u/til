@@ -1,18 +1,6 @@
-`use strict`;
-
-window.onload = () => {
-    modifyImagePath();
+document.addEventListener('DOMContentLoaded', () => {
     loadUtterances();
-};
-
-// 이미지 경로 변경
-const modifyImagePath = () => {
-    const imgElementList = document.querySelectorAll('img');
-
-    for (const imgElement of imgElementList) {
-        imgElement.src = imgElement.src.replace('/static/image', '/til/image');
-    }
-};
+});
 
 // 댓글 기능
 const loadUtterances = () => {
