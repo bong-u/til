@@ -2,6 +2,7 @@
 title: "컴파일러개론"
 date: 2023-09-01
 tags: ["CS"]
+math: true
 ---
 
 ## 개요

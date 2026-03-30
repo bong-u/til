@@ -2,6 +2,7 @@
 title: "네트워크 보안"
 date: 2024-06-05
 tags: ["CS", "Security"]
+math: true
 ---
 
 ## 네트워크 보안 개요

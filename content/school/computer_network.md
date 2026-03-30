@@ -2,6 +2,7 @@
 title: "컴퓨터네트워크"
 date: 2023-10-16
 tags: ["CS"]
+math: true
 ---
 
 ## HTTP

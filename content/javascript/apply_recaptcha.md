@@ -2,6 +2,7 @@
 title: "Express&React 프로젝트에 Recaptcha v3 적용하기"
 date: 2024-12-03
 tags: ["Typescript", "Security"]
+math: true
 ---
 
 ### 상황

@@ -2,6 +2,7 @@
 title: "Nginx에서 HTTPS 설정하기"
 date: 2024-07-25
 tags: ['Nginx', 'HTTPS', 'SSL', 'Docker']
+math: true
 ---
 
 ## 배경

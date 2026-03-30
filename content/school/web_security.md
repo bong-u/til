@@ -2,6 +2,7 @@
 title: "웹 보안"
 date: 2024-03-11
 tags: ["CS", "Security"]
+math: true
 ---
 
 ## Web Security Model
