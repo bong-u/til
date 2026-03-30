@@ -1,4 +1,6 @@
 {{ define "main" }}
+<!-- JSON-LD structured data -->
+{{ partial "jsonld.html" . }}
 <!-- latex -->
 {{ if .Params.math }}{{ partial "latex.html" . }}{{ end }}
 

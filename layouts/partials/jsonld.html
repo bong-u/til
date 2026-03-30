@@ -1,0 +1,17 @@
+{{- $desc := .Summary | truncate 100 -}}
+{{- with .Params.description }}{{ $desc = . }}{{ end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ $desc | jsonify }},
+  "datePublished": {{ .Date.Format "2006-01-02" | jsonify }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02" | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": "bong-u"
+  }
+}
+</script>
