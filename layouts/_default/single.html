@@ -45,14 +45,16 @@
 		<!-- previous, next -->
 		<div data-pagefind-ignore id=" meta" class="my-16">
 			<div>
+				{{- $prev := .PrevInSection | default .Prev -}}
+				{{- $next := .NextInSection | default .Next -}}
 				<div class="flex justify-between w-full text-lg">
-					{{ with .PrevInSection }}
-					<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href=" {{.RelPermalink}}">
+					{{ with $prev }}
+					<a class="previous mr-5 overflow-ellipsis-bundle hover-bold" href="{{.RelPermalink}}">
 						<span class="mx-3">◀</span>
 						{{.Title}}
 					</a>
 					{{ end }}
-					{{ with .NextInSection }}
+					{{ with $next }}
 					<a class="next ml-5 overflow-ellipsis-bundle hover-bold" href="{{.RelPermalink}}">
 						{{.Title}}
 						<span class="mx-3">▶</span>
