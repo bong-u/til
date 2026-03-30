@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<script defer type="text/javascript" src="{{ .Site.BaseURL }}script/main.js"></script>
+<script type="module" src="{{ .Site.BaseURL }}script/main.js"></script>
 
 {{ .Render "header" }}
 <div class="w-full flex max-w-3xl flex-col">
@@ -13,7 +13,7 @@
 
 	<main class="flex flex-col w-full gap-5">
 
-		<form onchange="switchSection()" class="flex justify-center" role="tablist" aria-label="콘텐츠 탐색">
+		<form id="switch-form" class="flex justify-center" role="tablist" aria-label="콘텐츠 탐색">
 			<input id="switch-page" type="radio" name="switch" checked>
 			<label for="switch-page" class="switch-button rounded-l-lg" role="tab" aria-selected="true" aria-controls="summary-section">
 				게시물

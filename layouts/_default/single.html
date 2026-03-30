@@ -5,8 +5,8 @@
 {{ if .Params.math }}{{ partial "latex.html" . }}{{ end }}
 
 
-<script type="text/javascript" src="{{ .Site.BaseURL }}script/single.js"></script>
-<script type="text/javascript" src="{{ .Site.BaseURL }}script/toc.js"></script>
+<script type="module" src="{{ .Site.BaseURL }}script/single.js"></script>
+<script type="module" src="{{ .Site.BaseURL }}script/toc.js"></script>
 
 
 {{ .Render "header" }}

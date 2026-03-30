@@ -1,8 +1,6 @@
-`use strict`;
-
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     loadUtterances();
-};
+});
 
 // 댓글 기능
 const loadUtterances = () => {

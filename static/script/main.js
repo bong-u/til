@@ -1,15 +1,15 @@
-`use strict`;
-
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     formatTimeDiff();
     checkRecentPosts();
     switchSection();
+
+    document.getElementById('switch-form').addEventListener('change', switchSection);
 
     const sortToggleBtn = document.getElementById('sort-toggle');
     if (sortToggleBtn) {
         sortToggleBtn.addEventListener('click', toggleSort);
     }
-};
+});
 
 // 최근 게시물인 경우 "hidden" 클래스 제거
 const checkRecentPosts = () => {
