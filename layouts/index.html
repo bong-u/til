@@ -13,32 +13,32 @@
 
 	<main class="flex flex-col w-full gap-5">
 
-		<form onchange="switchSection()" class="flex justify-center">
+		<form onchange="switchSection()" class="flex justify-center" role="tablist" aria-label="콘텐츠 탐색">
 			<input id="switch-page" type="radio" name="switch" checked>
-			<label for="switch-page" class="switch-button rounded-l-lg">
+			<label for="switch-page" class="switch-button rounded-l-lg" role="tab" aria-selected="true" aria-controls="summary-section">
 				게시물
 			</label>
 			</input>
 
 			<input id="switch-group" type="radio" name="switch">
-			<label for="switch-group" class="switch-button">
+			<label for="switch-group" class="switch-button" role="tab" aria-selected="false" aria-controls="group-section">
 				분류
 			</label>
 			</input>
 
 			<input id="switch-tag" type="radio" name="switch">
-			<label for="switch-tag" class="switch-button">
+			<label for="switch-tag" class="switch-button" role="tab" aria-selected="false" aria-controls="tag-section">
 				태그
 			</label>
 
 			<input id="search-tag" type="radio" name="switch">
-			<label for="search-tag" class="switch-button rounded-r-lg">
+			<label for="search-tag" class="switch-button rounded-r-lg" role="tab" aria-selected="false" aria-controls="search-section">
 				검색
 			</label>
 		</form>
 
 		<div class="w-full p-5">
-			<section id="summary-section">
+			<section id="summary-section" role="tabpanel" aria-labelledby="switch-page">
 				<div class="flex mb-4">
 					<button id="sort-toggle"
 						class="text-sm px-3 py-1 rounded-full border border-line hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
@@ -66,13 +66,13 @@
 					</div>
 				</div>
 			</section>
-			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+			<section id="group-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5" role="tabpanel" aria-labelledby="switch-group">
 				{{ .Render "sections" }}
 			</section>
-			<section id="tag-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5">
+			<section id="tag-section" class="hidden grid grid-cols-2 lg:grid-cols-3 gap-5" role="tabpanel" aria-labelledby="switch-tag">
 				{{ .Render "tags" }}
 			</section>
-			<section id="search-section" class="hidden">
+			<section id="search-section" class="hidden" role="tabpanel" aria-labelledby="search-tag">
 				{{ .Render "search" }}
 			</section>
 		</div>

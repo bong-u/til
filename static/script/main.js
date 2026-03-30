@@ -91,7 +91,10 @@ const switchSection = () => {
         document.getElementById('search-section'),
     ];
 
+    const tabs = document.querySelectorAll('[role="tab"]');
     sections.forEach((section, i) => {
-        section.classList.toggle('hidden', !switches[i].checked);
+        const isActive = switches[i].checked;
+        section.classList.toggle('hidden', !isActive);
+        tabs[i].setAttribute('aria-selected', isActive);
     });
 }
