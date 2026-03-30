@@ -35,7 +35,7 @@ tags: ["Java", "Spring"]
 
 ### Entity의 Life cycle
 
-![image](/static/image/entity_life_cycle.png)
+![Entity Life Cycle](/static/image/entity_life_cycle.png)
 
 - 비영속 (New / Transient): 영속성 컨텍스트와 전혀 관계가 없는 상태
 - 영속 (Managed): 영속성 컨텍스트에 저장된 상태
