@@ -46,7 +46,7 @@
 					</button>
 				</div>
 				<div id="popular-list" class="grid gap-8">
-					{{ range $i, $item := .Site.Data.popular }}
+					{{ range $i, $item := hugo.Data.popular }}
 					{{ $page := site.GetPage .path }}
 					{{ with $page }}
 					{{ .Render "summary" }}

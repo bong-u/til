@@ -20,7 +20,7 @@
   "homepage": "https://bong-u.github.io/til",
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.2",
-    "hugo-extended": "^0.158.0",
+    "hugo-extended": "^0.161.1",
     "tailwindcss": "^4.2.2"
   },
   "dependencies": {
