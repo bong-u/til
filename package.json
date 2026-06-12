@@ -4,8 +4,8 @@
   "description": "bong-u's til blog with hugo",
   "scripts": {
     "prestart": "rm -rf static/pagefind",
-    "start": "hugo server -b 'http://localhost/til' --bind '0.0.0.0' --port=1313 --disableFastRender",
-    "update-pagefind": "hugo --minify -b 'http://localhost/til' && npx pagefind --site public && cp -r public/pagefind static/",
+    "start": "hugo server --bind '0.0.0.0' --port=1313 --disableFastRender",
+    "update-pagefind": "hugo --minify -b 'http://localhost:1313/' && npx pagefind --site public && cp -r public/pagefind static/",
     "watch": "npx @tailwindcss/cli -i ./static/css/main.css -o ./static/css/style.css --watch"
   },
   "repository": {
@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/bong-u/til/issues"
   },
-  "homepage": "https://bong-u.github.io/til",
+  "homepage": "https://blog.bong-u.com",
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.2",
     "hugo-extended": "^0.161.1",

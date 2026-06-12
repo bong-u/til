@@ -1,4 +1,4 @@
-baseURL: "https://bong-u.github.io/til/"
+baseURL: "https://blog.bong-u.com/"
 locale: "ko-kr"
 title: "bong-u/til"
 enableGitInfo: true

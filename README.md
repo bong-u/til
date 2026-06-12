@@ -13,8 +13,8 @@ npm run watch
 
 ### Link
 
-- Deploy : https://bong-u.github.io/til
-- Develop : http://localhost:1313/til
+- Deploy : https://blog.bong-u.com
+- Develop : http://localhost:1313
 
 ### Support
 

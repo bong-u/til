@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bong-u.github.io/sitemap.xml
+Sitemap: https://blog.bong-u.com/sitemap.xml
