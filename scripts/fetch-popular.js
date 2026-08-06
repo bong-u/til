@@ -19,10 +19,10 @@ async function fetchPopularPages() {
 
   const pages = (response.rows || [])
     .map(row => ({
-      path: row.dimensionValues[0].value.replace(/^\/til/, ''),
+      path: row.dimensionValues[0].value,
       views: parseInt(row.metricValues[0].value, 10),
     }))
-    // /til/ 하위의 실제 게시물 경로만 필터링 (인덱스, 태그 등 제외)
+    // 실제 게시물 경로만 필터링 (인덱스, 태그 등 제외)
     .filter(p => {
       // /{section}/{slug}/ 형태의 실제 게시물만 포함
       const parts = p.path.replace(/^\//, '').replace(/\/$/, '').split('/');
