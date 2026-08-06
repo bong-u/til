@@ -20,7 +20,7 @@
   "homepage": "https://blog.bong-u.com",
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.2",
-    "hugo-extended": "^0.161.1",
+    "hugo-extended": "^0.164.0",
     "tailwindcss": "^4.2.2"
   },
   "dependencies": {
