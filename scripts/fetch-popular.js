@@ -26,7 +26,7 @@ async function fetchPopularPages() {
     .filter(p => {
       // /{section}/{slug}/ 형태의 실제 게시물만 포함
       const parts = p.path.replace(/^\//, '').replace(/\/$/, '').split('/');
-      return parts.length === 2 && parts[0] !== 'tags' && parts[1] !== '' && !parts[1].startsWith('page');
+      return parts.length === 2 && parts[0] !== 'tags' && parts[0] !== 'page' && parts[1] !== '' && !parts[1].startsWith('page');
     });
 
   fs.mkdirSync(path.dirname(OUTPUT_PATH), {recursive: true});
