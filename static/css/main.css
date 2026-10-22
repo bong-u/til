@@ -62,7 +62,7 @@
 
   .box .content-summary {
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
 

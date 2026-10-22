@@ -1,34 +1,41 @@
 {{ $section_emoji := .Parent.Params.emoji }}
 {{ $section_name := .Parent.Title }}
+{{ $thumbnail := partial "thumbnail.html" . }}
 
 
-<div class="box flex gap-3 flex-col rounded-lg w-full min-w-0 h-[220px]">
-    <div class="flex justify-between items-center">
-        <div class="flex items-center">
-            <!-- ISO 8601 형식으로 변환 -->
-            {{ $formattedLastmod := .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
-            <img data-lastmod="{{ $formattedLastmod }}" class="h-6 hidden mx-2"
-                src="{{ .Site.BaseURL }}asset/new.png" alt="new" width="24" height="24" />
-            <a href="{{ .RelPermalink }}" class="text-2xl my-3 overflow-ellipsis-bundle">
-                {{ .Title }}
-            </a>
-        </div>
-        <div class="flex justify-between items-center">
+<!-- 카드 전체가 링크. hover 시 안의 글자 전부 검게 -->
+<a href="{{ .RelPermalink }}" class="box group flex flex-col sm:flex-row gap-4 rounded-lg w-full min-w-0 hover-black">
+    {{ with $thumbnail }}
+    <img src="{{ site.BaseURL }}{{ . }}" alt="" loading="lazy" decoding="async" width="1200" height="630"
+        class="shrink-0 self-start w-full sm:w-[36%] h-auto rounded-lg" />
+    {{ end }}
+    <div class="flex gap-2 flex-col flex-1 min-w-0">
+        <!-- section, date -->
+        <div class="flex justify-between items-center text-sm text-textgray group-hover:text-black">
             <div class="flex items-center gap-2">
-                <span class="text-2xl">{{ $section_emoji }}</span>
+                <span class="text-lg">{{ $section_emoji }}</span>
                 <span>{{ $section_name }}</span>
             </div>
+            <div class="post-meta summary-date shrink-0" lastmod="{{ .Lastmod }}">
+                <!-- js will fill this -->
+            </div>
         </div>
-    </div>
-    <div class="flex-grow min-h-0 overflow-hidden">
-        <a href="{{ .RelPermalink }}" class="content-summary text-sm overflow-hidden">
+        <!-- title -->
+        <div class="flex items-center min-w-0">
+            <!-- ISO 8601 형식으로 변환 -->
+            {{ $formattedLastmod := .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}
+            <img data-lastmod="{{ $formattedLastmod }}" class="h-6 hidden mr-2"
+                src="{{ .Site.BaseURL }}asset/new.png" alt="new" width="24" height="24" />
+            <span class="text-2xl overflow-ellipsis-bundle">
+                {{ .Title }}
+            </span>
+        </div>
+        <!-- summary -->
+        <span class="content-summary text-sm overflow-hidden">
             {{ .Plain }}
-        </a>
+        </span>
     </div>
-    <div class="post-meta summary-date mt-auto" lastmod="{{ .Lastmod }}">
-        <!-- js will fill this -->
-    </div>
-</div>
+</a>
 
 <!-- line -->
 <div class="border-b border-line"></div>
