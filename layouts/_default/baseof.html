@@ -12,11 +12,19 @@
 	<meta property="og:description" content="{{ $desc }}" />
 	<meta property="og:type" content="blog" />
 	<meta property="og:url" content="{{ .Permalink }}" />
-	<meta property="og:image" content="{{ .Site.BaseURL }}asset/thumbnail.jpg" />
-	<meta name="twitter:card" content="summary" />
+	<!-- 글별 썸네일(scripts/generate-thumbnails.js)이 있으면 사용, 없으면 기본 이미지 -->
+	{{- $thumbnail := partial "thumbnail.html" . -}}
+	{{- $hasThumbnail := ne $thumbnail "" -}}
+	{{- $ogImage := cond $hasThumbnail $thumbnail "asset/thumbnail.jpg" }}
+	<meta property="og:image" content="{{ .Site.BaseURL }}{{ $ogImage }}" />
+	{{- if $hasThumbnail }}
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	{{- end }}
+	<meta name="twitter:card" content="{{ if $hasThumbnail }}summary_large_image{{ else }}summary{{ end }}" />
 	<meta name="twitter:title" content="{{ .Page.Title }}" />
 	<meta name="twitter:description" content="{{ $desc }}" />
-	<meta name="twitter:image" content="{{ .Site.BaseURL }}asset/thumbnail.jpg" />
+	<meta name="twitter:image" content="{{ .Site.BaseURL }}{{ $ogImage }}" />
 	<link rel="canonical" href="{{ .Permalink }}" />
 	<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}index.xml" />
 

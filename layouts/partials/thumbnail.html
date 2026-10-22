@@ -1,0 +1,10 @@
+{{- /* 글별 썸네일(scripts/generate-thumbnails.js) 경로. 없으면 빈 문자열 */ -}}
+{{- $path := "" -}}
+{{- if and .IsPage .File -}}
+{{- /* 파일명의 공백은 '-'로 치환 (생성 스크립트와 같은 규칙) */ -}}
+{{- $thumbnail := printf "thumbnail/%s/%s.webp" .Section (replace .File.ContentBaseName " " "-") -}}
+{{- if fileExists (printf "static/%s" $thumbnail) -}}
+{{- $path = $thumbnail -}}
+{{- end -}}
+{{- end -}}
+{{- return $path -}}
