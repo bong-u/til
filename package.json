@@ -6,7 +6,8 @@
     "prestart": "rm -rf static/pagefind",
     "start": "hugo server --bind '0.0.0.0' --port=1313 --disableFastRender",
     "update-pagefind": "hugo --minify -b 'http://localhost:1313/' && npx pagefind --site public && cp -r public/pagefind static/",
-    "watch": "npx @tailwindcss/cli -i ./static/css/main.css -o ./static/css/style.css --watch"
+    "watch": "npx @tailwindcss/cli -i ./static/css/main.css -o ./static/css/style.css --watch",
+    "thumbnail": "node scripts/generate-thumbnails.js"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,11 @@
   },
   "homepage": "https://blog.bong-u.com",
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/cli": "^4.2.2",
     "hugo-extended": "^0.164.0",
+    "opentype.js": "^2.0.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.2.2"
   },
   "dependencies": {

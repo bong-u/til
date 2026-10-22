@@ -9,6 +9,8 @@
 npm start
 # Build tailwind css
 npm run watch
+# Generate thumbnails for new or changed (uncommitted) posts
+npm run thumbnail
 ```
 
 ### Link
